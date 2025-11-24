@@ -10,8 +10,8 @@ import type {
   Warranty,
   FinancialAid,
   InterventionZone,
-  SiteSettings as SiteSettingsType,
-  Navigation as NavigationType,
+  SiteSetting,
+  Navigation,
   PricingPack,
   Project,
   Stat,
@@ -138,7 +138,7 @@ export async function getInterventionZones(): Promise<InterventionZone[]> {
 }
 
 // ===== SITE SETTINGS (Global) =====
-export async function getSiteSettings(): Promise<SiteSettingsType> {
+export async function getSiteSettings(): Promise<SiteSetting> {
   const payload = await getPayloadInstance();
   const result = await payload.findGlobal({
     slug: 'site-settings',
@@ -147,7 +147,7 @@ export async function getSiteSettings(): Promise<SiteSettingsType> {
 }
 
 // ===== NAVIGATION (Global) =====
-export async function getNavigation(): Promise<NavigationType> {
+export async function getNavigation(): Promise<Navigation> {
   const payload = await getPayloadInstance();
   const result = await payload.findGlobal({
     slug: 'navigation',
