@@ -269,28 +269,18 @@ async function migrate() {
     // ===== 7. MIGRATE NAVIGATION =====
     console.log('\n🧭 Migrating Navigation...');
     const navData = loadJSON('navData.json');
-    const footerData = loadJSON('footerData.json');
 
     await payload.updateGlobal({
       slug: 'navigation',
       data: {
         mainNav:
-          navData.links?.map((link: any, i: number) => ({
+          navData.menuItems?.map((link: any, i: number) => ({
             label: link.label,
             href: link.href,
             icon: link.icon || '',
             order: i,
           })) || [],
-        footerNav:
-          footerData.sections?.map((section: any, i: number) => ({
-            title: section.title,
-            links: section.links.map((link: any) => ({
-              label: link.label,
-              href: link.href,
-              icon: link.icon || '',
-            })),
-            order: i,
-          })) || [],
+        footerNav: [], // Footer navigation will be handled separately if needed
       },
     });
     console.log('  ✓ Navigation updated');
