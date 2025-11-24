@@ -5,9 +5,6 @@ import { motion } from 'framer-motion';
 import { CheckCircle2, Send, AlertCircle } from 'lucide-react';
 import { useState, useActionState, useEffect } from 'react';
 
-import contactData from '@/data/contactData.json';
-import contactHeaderData from '@/data/contactHeaderData.json';
-import siteConfig from '@/data/siteConfig.json';
 import { sendContactEmail } from '@/app/actions/contact';
 import { Title } from '../../_components/features/Hero';
 import { PageHeader } from '../../_components/shared/layout/PageHeader';
@@ -15,6 +12,15 @@ import { SectionContainer } from '../../_components/shared/layout/SectionWrapper
 import { ScrollDownButton } from '../../_components/shared/ui/ScrollDownButton';
 import { StatCard } from '../../_components/shared/ui/StatCard';
 import { getLucideIcon } from '../../_utils/getLucideIcon';
+import type {
+  PageHeader as PageHeaderType,
+  SiteSetting,
+} from '@/payload-types';
+
+interface ContactPageContentProps {
+  header: PageHeaderType | null;
+  siteSettings: SiteSetting;
+}
 
 const initialState = {
   success: false,
@@ -22,7 +28,10 @@ const initialState = {
   errors: {},
 };
 
-export default function ContactPageContent() {
+export default function ContactPageContent({
+  header,
+  siteSettings,
+}: ContactPageContentProps) {
   const [state, formAction, isPending] = useActionState(
     sendContactEmail,
     initialState
@@ -66,6 +75,31 @@ export default function ContactPageContent() {
     }
   };
 
+  const contactInfoItems = [
+    {
+      icon: 'Phone',
+      label: 'TÉLÉPHONE',
+      value: siteSettings.contact?.phone || '07 81 25 11 25',
+      href: `tel:${siteSettings.contact?.phone?.replace(/\s/g, '') || '0781251125'}`,
+      description: 'Du lundi au vendredi, 8h-19h',
+    },
+    {
+      icon: 'Mail',
+      label: 'EMAIL',
+      value: siteSettings.contact?.email || 'contact@bnb-energie.fr',
+      href: `mailto:${siteSettings.contact?.email || 'contact@bnb-energie.fr'}`,
+      description: 'Réponse sous 24h ouvrées',
+    },
+    {
+      icon: 'MapPin',
+      label: 'ADRESSE',
+      value: siteSettings.address
+        ? `${siteSettings.address.street}, ${siteSettings.address.zip} ${siteSettings.address.city}`
+        : 'Bourg-en-Bresse, Ain (01)',
+      description: "Intervention dans tout l'Ain (01)",
+    },
+  ];
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-linear-to-b from-neutral-50 via-white to-neutral-50">
       {/* Animated background blobs */}
@@ -98,15 +132,15 @@ export default function ContactPageContent() {
         />
       </div>
 
-      {}
+      {/* Header */}
       <PageHeader
         variant="simple"
         height="medium"
         bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
       >
         <Title
-          title={contactHeaderData.title}
-          subtitle={contactHeaderData.subtitle}
+          title={['Contactez-nous', header?.title || 'Contactez-nous']}
+          subtitle={header?.subtitle || ''}
         />
 
         <motion.p
@@ -115,15 +149,19 @@ export default function ContactPageContent() {
           transition={{ duration: 0.3, delay: 0.15 }}
           className="max-w-4xl px-4 text-sm leading-relaxed text-white/80 sm:text-base md:text-lg lg:text-xl"
         >
-          {contactHeaderData.description}
+          {header?.description || ''}
         </motion.p>
       </PageHeader>
 
       <SectionContainer>
-        {}
+        {/* Stats */}
         <div className="relative z-20 -mt-20 mb-20">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {contactData.stats.map((stat, index) => (
+            {[
+              { value: '48h', label: 'Réponse Garantie', icon: 'Clock' },
+              { value: '100%', label: 'Devis Gratuit', icon: 'FileCheck' },
+              { value: '01', label: 'Intervention Ain', icon: 'MapPin' },
+            ].map((stat, index) => (
               <StatCard
                 key={stat.label}
                 icon={stat.icon}
@@ -135,7 +173,7 @@ export default function ContactPageContent() {
           </div>
         </div>
 
-        {}
+        {/* Content */}
         <div className="grid gap-8 lg:grid-cols-3 lg:gap-12">
           {/* Contact Form */}
           <motion.div
@@ -152,10 +190,11 @@ export default function ContactPageContent() {
 
               <div className="relative z-10">
                 <h2 className="mb-3 text-3xl font-bold text-slate-800">
-                  {contactData.form.title}
+                  Envoyez-nous un message
                 </h2>
                 <p className="mb-10 text-lg leading-relaxed text-slate-600">
-                  {contactData.form.subtitle}
+                  Remplissez le formulaire ci-dessous pour une demande de devis
+                  ou d'information.
                 </p>
 
                 {state.success ? (
@@ -171,7 +210,8 @@ export default function ContactPageContent() {
                       Message envoyé !
                     </h3>
                     <p className="mx-auto max-w-md text-slate-600">
-                      {state.message || contactData.form.successMessage}
+                      {state.message ||
+                        'Merci de nous avoir contactés. Nous vous répondrons dans les plus brefs délais.'}
                     </p>
                     <Button
                       className="mt-6 bg-white text-slate-600 shadow-sm hover:bg-slate-50"
@@ -192,8 +232,7 @@ export default function ContactPageContent() {
                         htmlFor="name"
                         className="mb-2 ml-1 block text-sm font-bold text-slate-700 transition-colors group-focus-within:text-blue-600"
                       >
-                        {contactData.form.fields.name.label}{' '}
-                        <span className="text-amber-500">*</span>
+                        Nom complet <span className="text-amber-500">*</span>
                       </label>
                       <input
                         type="text"
@@ -202,7 +241,7 @@ export default function ContactPageContent() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        placeholder={contactData.form.fields.name.placeholder}
+                        placeholder="Votre nom et prénom"
                         className={`w-full rounded-xl border-2 bg-white px-5 py-4 text-slate-800 placeholder-slate-400 shadow-sm transition-all duration-300 focus:shadow-lg focus:shadow-blue-100 focus:outline-none ${
                           state.errors?.name
                             ? 'border-red-300 focus:border-red-500'
@@ -227,8 +266,7 @@ export default function ContactPageContent() {
                           htmlFor="email"
                           className="mb-2 ml-1 block text-sm font-bold text-slate-700 transition-colors group-focus-within:text-blue-600"
                         >
-                          {contactData.form.fields.email.label}{' '}
-                          <span className="text-amber-500">*</span>
+                          Email <span className="text-amber-500">*</span>
                         </label>
                         <input
                           type="email"
@@ -237,9 +275,7 @@ export default function ContactPageContent() {
                           value={formData.email}
                           onChange={handleChange}
                           required
-                          placeholder={
-                            contactData.form.fields.email.placeholder
-                          }
+                          placeholder="votre@email.com"
                           className={`w-full rounded-xl border-2 bg-white px-5 py-4 text-slate-800 placeholder-slate-400 shadow-sm transition-all duration-300 focus:shadow-lg focus:shadow-blue-100 focus:outline-none ${
                             state.errors?.email
                               ? 'border-red-300 focus:border-red-500'
@@ -263,8 +299,7 @@ export default function ContactPageContent() {
                           htmlFor="phone"
                           className="mb-2 ml-1 block text-sm font-bold text-slate-700 transition-colors group-focus-within:text-blue-600"
                         >
-                          {contactData.form.fields.phone.label}{' '}
-                          <span className="text-amber-500">*</span>
+                          Téléphone <span className="text-amber-500">*</span>
                         </label>
                         <input
                           type="tel"
@@ -273,9 +308,7 @@ export default function ContactPageContent() {
                           value={formData.phone}
                           onChange={handleChange}
                           required
-                          placeholder={
-                            contactData.form.fields.phone.placeholder
-                          }
+                          placeholder="06 12 34 56 78"
                           className={`w-full rounded-xl border-2 bg-white px-5 py-4 text-slate-800 placeholder-slate-400 shadow-sm transition-all duration-300 focus:shadow-lg focus:shadow-blue-100 focus:outline-none ${
                             state.errors?.phone
                               ? 'border-red-300 focus:border-red-500'
@@ -295,8 +328,7 @@ export default function ContactPageContent() {
                         htmlFor="subject"
                         className="mb-2 ml-1 block text-sm font-semibold text-slate-700"
                       >
-                        {contactData.form.fields.subject.label}{' '}
-                        <span className="text-amber-500">*</span>
+                        Sujet <span className="text-amber-500">*</span>
                       </label>
                       <input
                         type="text"
@@ -305,9 +337,7 @@ export default function ContactPageContent() {
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        placeholder={
-                          contactData.form.fields.subject.placeholder
-                        }
+                        placeholder="Demande de devis, Renseignements..."
                         className={`w-full rounded-xl border bg-white/50 px-5 py-4 text-slate-800 placeholder-slate-400 transition-all duration-300 focus:bg-white focus:ring-4 focus:ring-sky-100 focus:outline-none ${
                           state.errors?.subject
                             ? 'border-red-300 focus:border-red-500'
@@ -326,8 +356,7 @@ export default function ContactPageContent() {
                         htmlFor="message"
                         className="mb-2 ml-1 block text-sm font-semibold text-slate-700"
                       >
-                        {contactData.form.fields.message.label}{' '}
-                        <span className="text-amber-500">*</span>
+                        Message <span className="text-amber-500">*</span>
                       </label>
                       <textarea
                         id="message"
@@ -336,9 +365,7 @@ export default function ContactPageContent() {
                         onChange={handleChange}
                         required
                         rows={6}
-                        placeholder={
-                          contactData.form.fields.message.placeholder
-                        }
+                        placeholder="Décrivez votre projet..."
                         className={`h-full min-h-[150px] w-full resize-none rounded-xl border bg-white/50 px-5 py-4 text-slate-800 placeholder-slate-400 transition-all duration-300 focus:bg-white focus:ring-4 focus:ring-sky-100 focus:outline-none ${
                           state.errors?.message
                             ? 'border-red-300 focus:border-red-500'
@@ -359,9 +386,7 @@ export default function ContactPageContent() {
                       className="w-full rounded-xl bg-linear-to-r from-blue-600 via-sky-500 to-cyan-500 py-8 text-lg font-bold text-white shadow-xl shadow-sky-500/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-sky-500/40 disabled:cursor-not-allowed disabled:opacity-70"
                       endContent={!isPending && <Send className="h-5 w-5" />}
                     >
-                      {isPending
-                        ? 'Envoi en cours...'
-                        : contactData.form.submitButton}
+                      {isPending ? 'Envoi en cours...' : 'Envoyer ma demande'}
                     </Button>
 
                     {state.message && !state.success && (
@@ -390,14 +415,14 @@ export default function ContactPageContent() {
 
               <div className="relative z-10">
                 <h2 className="mb-3 text-2xl font-bold text-slate-800">
-                  {contactData.contactInfo.title}
+                  Nos Coordonnées
                 </h2>
                 <p className="mb-8 text-slate-600">
-                  {contactData.contactInfo.subtitle}
+                  Nous sommes à votre disposition pour toute question.
                 </p>
 
                 <div className="space-y-4">
-                  {contactData.contactInfo.items.map((item, index) => {
+                  {contactInfoItems.map((item, index) => {
                     const Icon = getLucideIcon(item.icon);
                     return (
                       <motion.div
@@ -425,12 +450,6 @@ export default function ContactPageContent() {
                           ) : (
                             <div className="text-lg font-bold text-slate-800">
                               {item.value}
-                              {item.value2 && (
-                                <>
-                                  <br />
-                                  {item.value2}
-                                </>
-                              )}
                             </div>
                           )}
                           <p className="mt-1 text-sm text-slate-500">
@@ -465,7 +484,7 @@ export default function ContactPageContent() {
           <div className="overflow-hidden rounded-3xl border border-white/60 bg-white/70 p-3 shadow-xl backdrop-blur-xl">
             <div className="relative h-[450px] w-full overflow-hidden rounded-2xl">
               <iframe
-                src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2761.5!2d${siteConfig.geo.longitude}!3d${siteConfig.geo.latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDbCsDEyJzIxLjIiTiA1wrAxMyczMS44IkU!5e0!3m2!1sfr!2sfr!4v1234567890`}
+                src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2761.5!2d${siteSettings.geo?.longitude || '5.2255'}!3d${siteSettings.geo?.latitude || '46.2059'}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDbCsDEyJzIxLjIiTiA1wrAxMyczMS44IkU!5e0!3m2!1sfr!2sfr!4v1234567890`}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -479,10 +498,12 @@ export default function ContactPageContent() {
               {/* Overlay Card */}
               <div className="absolute bottom-6 left-6 rounded-2xl border border-white/50 bg-white/90 p-6 shadow-lg backdrop-blur-md">
                 <h3 className="mb-1 text-lg font-bold text-slate-800">
-                  {contactData.map.title}
+                  Nous Trouver
                 </h3>
                 <p className="text-sm text-slate-600">
-                  {contactData.map.subtitle}
+                  {siteSettings.address
+                    ? `${siteSettings.address.street}, ${siteSettings.address.zip} ${siteSettings.address.city}`
+                    : 'Bourg-en-Bresse, Ain (01)'}
                 </p>
               </div>
             </div>

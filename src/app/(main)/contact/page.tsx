@@ -1,5 +1,6 @@
 import { generateMetadata } from '@/app/_config/metadata';
 import ContactPageContent from './ContactPageContent';
+import { getPageHeader, getSiteSettings } from '@/app/_lib/payload-queries';
 
 export const dynamic = 'force-static';
 export const revalidate = false;
@@ -22,6 +23,11 @@ export const metadata = generateMetadata({
   ],
 });
 
-export default function ContactPage() {
-  return <ContactPageContent />;
+export default async function ContactPage() {
+  const [header, siteSettings] = await Promise.all([
+    getPageHeader('contact'),
+    getSiteSettings(),
+  ]);
+
+  return <ContactPageContent header={header} siteSettings={siteSettings} />;
 }
