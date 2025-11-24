@@ -1,6 +1,11 @@
 import { generateMetadata } from '@/app/_config/metadata';
 import { Metadata } from 'next';
 import FAQPageContent from './FAQPageContent';
+import {
+  getFaqs,
+  getPageHeader,
+  getSiteSettings,
+} from '@/app/_lib/payload-queries';
 
 export const dynamic = 'force-static';
 export const revalidate = false;
@@ -21,6 +26,14 @@ export const metadata: Metadata = generateMetadata({
   ],
 });
 
-export default function FAQPage() {
-  return <FAQPageContent />;
+export default async function FAQPage() {
+  const [faqs, header, siteSettings] = await Promise.all([
+    getFaqs(),
+    getPageHeader('faq'),
+    getSiteSettings(),
+  ]);
+
+  return (
+    <FAQPageContent faqs={faqs} header={header} siteSettings={siteSettings} />
+  );
 }
