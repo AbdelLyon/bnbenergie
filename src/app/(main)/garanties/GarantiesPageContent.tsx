@@ -9,7 +9,6 @@ import { IntroSection } from '@/app/_components/shared/ui/IntroSection';
 import { ScrollDownButton } from '@/app/_components/shared/ui/ScrollDownButton';
 import { StatsGrid } from '@/app/_components/shared/ui/StatsGrid';
 import { WarrantyCard } from '@/app/_components/shared/ui/WarrantyCard';
-import { Accordion, AccordionItem } from '@heroui/accordion';
 import { motion } from 'framer-motion';
 import type {
   Warranty,
@@ -49,7 +48,7 @@ export default function GarantiesPageContent({
         bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
       >
         <Title
-          title={header?.title || 'Nos Garanties'}
+          title={['Nos Garanties', header?.title || 'Nos Garanties']}
           subtitle={header?.subtitle || ''}
         />
         <motion.p

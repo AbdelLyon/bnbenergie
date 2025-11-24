@@ -47,7 +47,7 @@ export default function ServicesPageContent({
         bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
       >
         <Title
-          title={header?.title || 'Nos Services'}
+          title={['Nos Services', header?.title || 'Nos Services']}
           subtitle={header?.subtitle || ''}
         />
         <motion.p
