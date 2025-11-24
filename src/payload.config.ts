@@ -1,15 +1,22 @@
-import { postgresAdapter } from '@payloadcms/db-postgres'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import path from 'path'
-import { buildConfig } from 'payload'
-import { fileURLToPath } from 'url'
-import sharp from 'sharp'
+import { postgresAdapter } from '@payloadcms/db-postgres';
+import { lexicalEditor } from '@payloadcms/richtext-lexical';
+import path from 'path';
+import { buildConfig } from 'payload';
+import { fileURLToPath } from 'url';
+import sharp from 'sharp';
 
-import { Users } from './collections/Users'
-import { Media } from './collections/Media'
+import { Users } from './collections/Users';
+import { Media } from './collections/Media';
+import { PageHeaders } from './collections/PageHeaders';
+import { Services } from './collections/Services';
+import { Warranties } from './collections/Warranties';
+import { FinancialAids } from './collections/FinancialAids';
+import { InterventionZones } from './collections/InterventionZones';
+import { SiteSettings } from './globals/SiteSettings';
+import { Navigation } from './globals/Navigation';
 
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 export default buildConfig({
   admin: {
@@ -21,6 +28,11 @@ export default buildConfig({
   collections: [
     Users,
     Media,
+    PageHeaders,
+    Services,
+    Warranties,
+    FinancialAids,
+    InterventionZones,
     {
       slug: 'pricing-packs',
       admin: {
@@ -269,6 +281,7 @@ export default buildConfig({
       ],
     },
   ],
+  globals: [SiteSettings, Navigation],
   editor: lexicalEditor(),
   secret: process.env['PAYLOAD_SECRET'] || '',
   typescript: {
@@ -283,4 +296,4 @@ export default buildConfig({
   plugins: [
     // storage-adapter-placeholder
   ],
-})
+});
