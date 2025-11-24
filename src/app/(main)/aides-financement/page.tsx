@@ -1,5 +1,10 @@
 import { generateMetadata } from '@/app/_config/metadata';
 import AidesPageContent from './AidesPageContent';
+import {
+  getFinancialAidsByCategory,
+  getPageHeader,
+  getSiteSettings,
+} from '@/app/_lib/payload-queries';
 
 export const dynamic = 'force-static';
 export const revalidate = false;
@@ -21,6 +26,14 @@ export const metadata = generateMetadata({
   ],
 });
 
-export default function AidesFinancementPage() {
-  return <AidesPageContent />;
+export default async function AidesFinancementPage() {
+  const [aids, header, siteSettings] = await Promise.all([
+    getFinancialAidsByCategory(),
+    getPageHeader('aides'),
+    getSiteSettings(),
+  ]);
+
+  return (
+    <AidesPageContent aids={aids} header={header} siteSettings={siteSettings} />
+  );
 }
