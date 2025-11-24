@@ -3,21 +3,20 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { MapPin, BoltIcon, Shield } from 'lucide-react';
+import type { Project, Media } from '@/payload-types';
 
 interface ProjectCardProps {
-  project: {
-    id: number;
-    title: string;
-    location: string;
-    description: string;
-    power: string;
-    panels: string;
-    image: string;
-  };
+  project: Project;
   index: number;
 }
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
+  // Handle image URL whether it's a string (ID) or Media object
+  const imageUrl =
+    typeof project.image === 'object' && project.image !== null
+      ? (project.image as Media).url || '/images/placeholder-project.jpg'
+      : '/images/placeholder-project.jpg'; // Fallback if image is ID or missing
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -27,9 +26,9 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       className="group overflow-hidden rounded-2xl border border-neutral-100 bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
     >
       {/* Image */}
-      <div className="relative h-64 overflow-hidden">
+      <div className="relative h-64 overflow-hidden bg-neutral-100">
         <Image
-          src={project.image}
+          src={imageUrl}
           alt={`Installation ${project.power} à ${project.location}`}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-110"

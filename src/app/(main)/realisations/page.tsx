@@ -1,5 +1,10 @@
 import { generateMetadata } from '@/app/_config/metadata';
 import RealisationsPageContent from './RealisationsPageContent';
+import {
+  getProjects,
+  getPageHeader,
+  getSiteSettings,
+} from '@/app/_lib/payload-queries';
 
 export const dynamic = 'force-static';
 export const revalidate = false;
@@ -21,6 +26,18 @@ export const metadata = generateMetadata({
   ],
 });
 
-export default function RealisationsPage() {
-  return <RealisationsPageContent />;
+export default async function RealisationsPage() {
+  const [projects, header, siteSettings] = await Promise.all([
+    getProjects(),
+    getPageHeader('realisations'),
+    getSiteSettings(),
+  ]);
+
+  return (
+    <RealisationsPageContent
+      projects={projects}
+      header={header}
+      siteSettings={siteSettings}
+    />
+  );
 }
