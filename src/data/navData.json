@@ -1,0 +1,65 @@
+{
+  "logo": {
+    "title": "BNB ÉNERGIE",
+    "subtitle": "Certifié RGE QualiPV"
+  },
+  "menuItems": [
+    {
+      "label": "Accueil",
+      "href": "/",
+      "icon": "Home"
+    },
+    {
+      "label": "Nos Services",
+      "href": "/services",
+      "icon": "Settings"
+    },
+    {
+      "label": "Garanties",
+      "href": "/garanties",
+      "icon": "Shield"
+    },
+    {
+      "label": "Aides & Financement",
+      "href": "/aides-financement",
+      "icon": "Euro"
+    },
+    {
+      "label": "Zones d'Intervention",
+      "href": "/zones-intervention",
+      "icon": "MapPin"
+    },
+    {
+      "label": "Réalisations",
+      "href": "/#realisations",
+      "icon": "Camera"
+    },
+    {
+      "label": "Nos packs",
+      "href": "#",
+      "icon": "DollarSign"
+    },
+    {
+      "label": "FAQ",
+      "href": "/faq-panneaux-solaires",
+      "icon": "HelpCircle"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact",
+      "icon": "Mail"
+    }
+  ],
+  "cta": {
+    "desktop": "Devis Gratuit",
+    "mobile_title": "Besoin d'un devis ?",
+    "mobile_subtitle": "Contactez-nous pour une étude gratuite et personnalisée",
+    "mobile_button1": "Appelez-nous",
+    "mobile_button2": "Voir les tarifs"
+  },
+  "phone_href": "tel:0781251125",
+  "footer": {
+    "line1": "Bourg-en-Bresse • Ain (01)",
+    "line2": "Certifié RGE QualiPV"
+  }
+}

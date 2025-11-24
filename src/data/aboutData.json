@@ -1,0 +1,58 @@
+{
+  "header": {
+    "badge": "NOTRE ENTREPRISE",
+    "title": ["Entreprise de Panneaux Solaires", "à Bourg-en-Bresse"],
+    "description": "BNB ÉNERGIE est votre société spécialisée dans l'installation de panneaux solaires photovoltaïques à Bourg-en-Bresse et dans l'Ain. Notre entreprise certifiée RGE QualiPV vous accompagne dans votre projet d'autoconsommation solaire avec une expertise reconnue et un service clé en main."
+  },
+  "benefits": {
+    "title": "Pourquoi Choisir Notre Entreprise ?",
+    "list": [
+      "Installation photovoltaïque certifiée RGE",
+      "Garantie décennale sur tous nos travaux",
+      "Démarches administratives prises en charge",
+      "Service après-vente réactif dans l'Ain",
+      "Financement en plusieurs fois disponible",
+      "Suivi de production en temps réel"
+    ]
+  },
+  "cta": {
+    "title": "Prêt à passer au solaire ?",
+    "description": "Demandez votre devis gratuit personnalisé et découvrez combien vous pouvez économiser avec nos panneaux solaires.",
+    "button1": "Voir nos tarifs",
+    "button2": "En savoir plus"
+  },
+  "seoContent": [
+    {
+      "icon": "Shield",
+      "title": "Installation Panneaux Solaires dans l'Ain",
+      "content": "Notre société intervient dans tout le département de l'Ain pour vos projets d'installation de panneaux solaires photovoltaïques. Que vous soyez à Bourg-en-Bresse, Oyonnax, Bellegarde-sur-Valserine ou Ambérieu-en-Bugey, notre équipe d'installateurs certifiés RGE se déplace pour réaliser votre installation solaire.",
+      "gradient": "from-blue-500 to-cyan-500",
+      "stat": "100%",
+      "statLabel": "Certifié"
+    },
+    {
+      "icon": "Award",
+      "title": "Entreprise Locale de Confiance",
+      "content": "Choisir une entreprise locale pour votre installation de panneaux solaires, c'est garantir un suivi de proximité et une réactivité optimale. Notre société basée à Bourg-en-Bresse connaît parfaitement les spécificités climatiques de l'Ain pour optimiser la production de vos panneaux photovoltaïques.",
+      "gradient": "from-purple-500 to-pink-500",
+      "stat": "500+",
+      "statLabel": "Installations"
+    },
+    {
+      "icon": "Zap",
+      "title": "Service Clé en Main",
+      "content": "Notre entreprise vous propose un service complet pour votre installation photovoltaïque : étude de faisabilité gratuite, démarches administratives, pose des panneaux solaires, raccordement et mise en service. Vous bénéficiez également de notre service après-vente et maintenance pour garantir la performance de votre installation.",
+      "gradient": "from-yellow-500 to-orange-500",
+      "stat": "48h",
+      "statLabel": "Devis"
+    },
+    {
+      "icon": "TrendingUp",
+      "title": "Prix et Aides pour Vos Panneaux Solaires",
+      "content": "Notre société vous accompagne dans le financement de votre projet solaire. Nous vous aidons à obtenir les aides de l'État pour l'installation de panneaux photovoltaïques et vous proposons des solutions adaptées à votre budget.",
+      "gradient": "from-green-500 to-emerald-500",
+      "stat": "-70%",
+      "statLabel": "Facture"
+    }
+  ]
+}

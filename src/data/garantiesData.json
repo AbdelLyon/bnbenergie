@@ -1,0 +1,233 @@
+{
+  "stats": [
+    {
+      "value": "10 ans",
+      "label": "Garantie Décennale",
+      "icon": "Shield"
+    },
+    {
+      "value": "25 ans",
+      "label": "Garantie Panneaux",
+      "icon": "Award"
+    },
+    {
+      "value": "RGE",
+      "label": "Certifié QualiPV",
+      "icon": "CheckCircle2"
+    }
+  ],
+  "intro": {
+    "title": "Des Garanties Complètes pour Votre Sérénité",
+    "description": "Investir dans le solaire, c'est investir pour l'avenir. Chez BNB ÉNERGIE, nous vous offrons une couverture complète avec nos certifications professionnelles, nos garanties décennales et les garanties constructeurs de matériel premium. Votre installation est protégée à chaque niveau."
+  },
+  "certifications": {
+    "title": "Nos Certifications Professionnelles",
+    "items": [
+      {
+        "icon": "Award",
+        "badge": "CERTIFICATION",
+        "title": "RGE QualiPV",
+        "subtitle": "Reconnu Garant de l'Environnement",
+        "description": "Notre certification RGE QualiPV atteste de notre expertise et de notre savoir-faire dans l'installation de panneaux photovoltaïques. Cette certification est obligatoire pour vous permettre de bénéficier des aides de l'État.",
+        "highlights": [
+          "Certification contrôlée par Qualit'EnR",
+          "Formation continue obligatoire",
+          "Audits réguliers de nos installations",
+          "Respect strict des normes DTU 43.1",
+          "Condition obligatoire pour les aides financières"
+        ],
+        "gradient": "from-blue-500 to-cyan-500"
+      },
+      {
+        "icon": "ShieldCheck",
+        "badge": "ASSURANCE",
+        "title": "Garantie Décennale",
+        "subtitle": "Protection complète pendant 10 ans",
+        "description": "Notre assurance décennale couvre l'intégralité de notre installation pendant 10 ans à compter de la réception des travaux. Elle protège contre tout dommage compromettant la solidité de l'ouvrage ou le rendant impropre à sa destination.",
+        "highlights": [
+          "Couverture de 10 ans après réception",
+          "Protection de l'étanchéité de votre toiture",
+          "Garantie de la fixation des panneaux",
+          "Couverture des défauts de pose",
+          "Attestation fournie à la fin des travaux"
+        ],
+        "gradient": "from-green-500 to-emerald-500"
+      },
+      {
+        "icon": "Building2",
+        "badge": "ENTREPRISE",
+        "title": "Responsabilité Civile Professionnelle",
+        "subtitle": "Assurance tous dommages",
+        "description": "Notre RC Pro couvre tous les dommages matériels et immatériels qui pourraient survenir pendant ou après l'installation. Vous êtes protégé contre tout préjudice lié à notre intervention.",
+        "highlights": [
+          "Couverture dommages matériels",
+          "Protection dommages immatériels",
+          "Garantie pendant et après travaux",
+          "Plafond de garantie élevé",
+          "Attestation disponible sur demande"
+        ],
+        "gradient": "from-orange-500 to-yellow-500"
+      }
+    ]
+  },
+  "productWarranties": {
+    "title": "Garanties Constructeurs & Matériel",
+    "description": "Nous travaillons exclusivement avec des fabricants de premier plan qui garantissent la qualité et la durabilité de leur matériel.",
+    "items": [
+      {
+        "icon": "Sun",
+        "title": "Panneaux Photovoltaïques",
+        "warranties": [
+          {
+            "label": "Garantie Produit",
+            "duration": "12 ans",
+            "description": "Couvre les défauts de fabrication et les vices cachés"
+          },
+          {
+            "label": "Garantie Performance",
+            "duration": "25 ans",
+            "description": "Garantit 80% de rendement minimum après 25 ans"
+          }
+        ],
+        "features": [
+          "Panneaux monocristallins haute performance",
+          "Certification IEC 61215 et IEC 61730",
+          "Résistance aux conditions extrêmes",
+          "Support technique fabricant disponible"
+        ]
+      },
+      {
+        "icon": "Zap",
+        "title": "Onduleurs & Micro-Onduleurs",
+        "warranties": [
+          {
+            "label": "Garantie Standard",
+            "duration": "5-10 ans",
+            "description": "Selon le modèle, extensible jusqu'à 20 ans"
+          },
+          {
+            "label": "SAV Constructeur",
+            "duration": "Disponible",
+            "description": "Remplacement sous garantie en cas de panne"
+          }
+        ],
+        "features": [
+          "Marques leaders du marché (Fronius, SolarEdge, Enphase)",
+          "Monitoring en temps réel de la production",
+          "Rendement optimisé > 97%",
+          "Extension de garantie disponible"
+        ]
+      },
+      {
+        "icon": "Cable",
+        "title": "Structure & Câblage",
+        "warranties": [
+          {
+            "label": "Garantie Matériel",
+            "duration": "10 ans",
+            "description": "Structures aluminium et systèmes de fixation"
+          },
+          {
+            "label": "Protection Électrique",
+            "duration": "2 ans",
+            "description": "Coffrets, protections et câbles DC/AC"
+          }
+        ],
+        "features": [
+          "Structures aluminium anti-corrosion",
+          "Fixations adaptées à votre type de toiture",
+          "Câbles solaires double isolation",
+          "Conformité NF C 15-100"
+        ]
+      }
+    ]
+  },
+  "commitments": {
+    "title": "Nos Engagements Qualité",
+    "items": [
+      {
+        "icon": "CheckCircle2",
+        "title": "Installation Conforme",
+        "description": "Respect strict des normes DTU et des règles de l'art. Chaque installation est réalisée selon un processus qualité rigoureux."
+      },
+      {
+        "icon": "FileCheck",
+        "title": "Documentation Complète",
+        "description": "Remise de tous les documents : attestations, garanties, guide d'utilisation, schémas électriques et certificat Consuel."
+      },
+      {
+        "icon": "Headphones",
+        "title": "SAV Réactif",
+        "description": "Service après-vente disponible et réactif. Intervention rapide en cas de problème pendant toute la durée de vie de votre installation."
+      },
+      {
+        "icon": "UserCheck",
+        "title": "Accompagnement Durable",
+        "description": "Nous restons à vos côtés bien après l'installation : conseils d'entretien, suivi de production, assistance administrative."
+      },
+      {
+        "icon": "Search",
+        "title": "Contrôles Réguliers",
+        "description": "Nos installations font l'objet de contrôles qualité internes et d'audits par les organismes certificateurs."
+      },
+      {
+        "icon": "TrendingUp",
+        "title": "Veille Technologique",
+        "description": "Formation continue de nos équipes aux dernières innovations et aux évolutions réglementaires du secteur photovoltaïque."
+      }
+    ]
+  },
+  "warranty_process": {
+    "title": "Comment Faire Jouer Vos Garanties ?",
+    "description": "Un processus simple et transparent pour activer vos garanties en cas de besoin.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Contact",
+        "description": "Contactez-nous par téléphone, email ou via notre formulaire de contact."
+      },
+      {
+        "number": "02",
+        "title": "Diagnostic",
+        "description": "Nous effectuons un diagnostic à distance ou sur site pour identifier le problème."
+      },
+      {
+        "number": "03",
+        "title": "Prise en Charge",
+        "description": "Activation de la garantie appropriée (décennale, constructeur ou SAV)."
+      },
+      {
+        "number": "04",
+        "title": "Intervention",
+        "description": "Réparation ou remplacement rapide selon les termes de la garantie applicable."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Questions Fréquentes sur les Garanties",
+    "items": [
+      {
+        "question": "Quelle est la différence entre la garantie décennale et la garantie produit ?",
+        "answer": "La garantie décennale couvre notre installation et la main d'œuvre pendant 10 ans (étanchéité, fixation, pose). La garantie produit couvre les défauts de fabrication du matériel (panneaux, onduleur) et est fournie directement par les constructeurs."
+      },
+      {
+        "question": "Que faire si mes panneaux produisent moins que prévu ?",
+        "answer": "Contactez-nous immédiatement. Nous effectuons un diagnostic complet pour identifier la cause (ombrage, salissure, panne technique). Si c'est un problème de matériel, la garantie performance ou produit s'applique. Si c'est lié à l'installation, notre garantie décennale intervient."
+      },
+      {
+        "question": "Les garanties sont-elles transférables en cas de vente de ma maison ?",
+        "answer": "Oui, la garantie décennale est attachée à l'ouvrage et se transmet automatiquement au nouvel acquéreur. Les garanties constructeurs sont également transférables dans la plupart des cas. Nous vous fournissons tous les documents nécessaires pour le transfert."
+      },
+      {
+        "question": "Dois-je souscrire une assurance spécifique pour mes panneaux solaires ?",
+        "answer": "Vos panneaux peuvent généralement être couverts par votre assurance habitation multirisque. Nous vous conseillons de déclarer l'installation à votre assureur. Nos garanties (décennale + constructeurs) couvrent déjà l'essentiel des risques liés à l'installation et au matériel."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Des Questions sur Nos Garanties ?",
+    "subtitle": "Notre équipe est à votre disposition pour vous expliquer en détail toutes nos garanties et certifications",
+    "button1": "Demander des informations",
+    "button2": "Appelez-nous : 07 81 25 11 25"
+  }
+}

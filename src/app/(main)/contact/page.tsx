@@ -1,0 +1,27 @@
+import { generateMetadata } from '@/app/_config/metadata';
+import ContactPageContent from './ContactPageContent';
+
+export const dynamic = 'force-static';
+export const revalidate = false;
+
+export const metadata = generateMetadata({
+  title: 'Contact - Devis Gratuit Panneaux Solaires',
+  description:
+    'Contactez BNB ÉNERGIE pour un devis gratuit sous 48h. Installation panneaux solaires RGE QualiPV à Bourg-en-Bresse. Tél : 07 81 25 11 25. ✓ Réponse rapide garantie.',
+  path: '/contact',
+  keywords: [
+    'devis panneaux solaires gratuit',
+    'contact installation solaire',
+    'devis gratuit photovoltaïque',
+    'demande devis panneaux solaires',
+    'contact BNB ÉNERGIE',
+    'installateur panneaux solaires Ain',
+    'devis installation solaire Bourg-en-Bresse',
+    'estimation prix panneaux solaires',
+    'rendez-vous installation solaire',
+  ],
+});
+
+export default function ContactPage() {
+  return <ContactPageContent />;
+}

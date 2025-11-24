@@ -1,0 +1,20 @@
+[
+  {
+    "icon": "Award",
+    "number": "10+",
+    "label": "Années d'expérience",
+    "color": "from-blue-600 to-cyan-600"
+  },
+  {
+    "icon": "TrendingUp",
+    "number": "500+",
+    "label": "Installations réalisées",
+    "color": "from-cyan-600 to-yellow-500"
+  },
+  {
+    "icon": "Users",
+    "number": "100%",
+    "label": "Clients satisfaits",
+    "color": "from-yellow-500 to-orange-500"
+  }
+]

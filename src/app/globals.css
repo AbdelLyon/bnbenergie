@@ -1,0 +1,493 @@
+@import 'tailwindcss';
+@plugin './_config/hero.ts';
+@source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+
+@theme inline {
+  --font-sans: var(--font-lato);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-montserrat);
+
+  /* ============================================
+     🎨 PALETTE
+     ============================================ */
+
+  /* Couleur principale - Bleu Profond Moderne */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+
+  /* Couleur secondaire - Ambre Chaleureux */
+  --color-secondary-50: #fffbeb;
+  --color-secondary-100: #fef3c7;
+  --color-secondary-200: #fde68a;
+  --color-secondary-300: #fcd34d;
+  --color-secondary-400: #fbbf24;
+  --color-secondary-500: #f59e0b;
+  --color-secondary-600: #d97706;
+  --color-secondary-700: #b45309;
+  --color-secondary-800: #92400e;
+  --color-secondary-900: #78350f;
+
+  /* Couleur accent - Cyan Frais */
+  --color-accent-50: #ecfeff;
+  --color-accent-100: #cffafe;
+  --color-accent-200: #a5f3fc;
+  --color-accent-300: #67e8f9;
+  --color-accent-400: #22d3ee;
+  --color-accent-500: #06b6d4;
+  --color-accent-600: #0891b2;
+  --color-accent-700: #0e7490;
+  --color-accent-800: #155e75;
+  --color-accent-900: #164e63;
+
+  /* Couleur succès - Vert Moderne */
+  --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-200: #bbf7d0;
+  --color-success-300: #86efac;
+  --color-success-400: #4ade80;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+  --color-success-800: #166534;
+  --color-success-900: #14532d;
+
+  /* Couleur neutres - Gris Épuré */
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f4f4f5;
+  --color-neutral-200: #e4e4e7;
+  --color-neutral-300: #d4d4d8;
+  --color-neutral-400: #a1a1aa;
+  --color-neutral-500: #71717a;
+  --color-neutral-600: #52525b;
+  --color-neutral-700: #3f3f46;
+  --color-neutral-800: #27272a;
+  --color-neutral-900: #18181b;
+
+  /* Couleur Ciel - Sky */
+  --color-sky-50: #f0f9ff;
+  --color-sky-400: #38bdf8;
+  --color-sky-500: #0ea5e9;
+
+  /* Couleur Émeraude - Emerald */
+  --color-emerald-500: #10b981;
+
+  /* Base */
+  --color-white: #ffffff;
+
+  /* Dégradés modernes */
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-primary-500) 0%,
+    var(--color-primary-600) 100%
+  );
+  --gradient-secondary: linear-gradient(
+    135deg,
+    var(--color-secondary-400) 0%,
+    var(--color-secondary-500) 100%
+  );
+  --gradient-accent: linear-gradient(
+    135deg,
+    var(--color-accent-400) 0%,
+    var(--color-accent-500) 100%
+  );
+  --gradient-modern: linear-gradient(
+    135deg,
+    var(--color-primary-500) 0%,
+    var(--color-accent-400) 33%,
+    var(--color-emerald-500) 66%,
+    var(--color-secondary-400) 100%
+  );
+  --gradient-subtle: linear-gradient(
+    135deg,
+    var(--color-primary-50) 0%,
+    var(--color-secondary-50) 50%,
+    var(--color-accent-50) 100%
+  );
+  --gradient-dark: linear-gradient(
+    135deg,
+    var(--color-primary-900) 0%,
+    var(--color-secondary-800) 50%,
+    var(--color-accent-900) 100%
+  );
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  @apply antialiased;
+  background: linear-gradient(
+    180deg,
+    var(--color-neutral-50) 0%,
+    var(--color-white) 50%,
+    var(--color-sky-50) 100%
+  );
+  min-height: 100vh;
+  font-feature-settings:
+    'kern' 1,
+    'liga' 1;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: linear-gradient(
+    135deg,
+    var(--color-secondary-400) 0%,
+    var(--color-secondary-500) 100%
+  );
+  color: var(--color-white);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--color-primary-600) 0%,
+    var(--color-sky-500) 50%,
+    var(--color-secondary-500) 100%
+  );
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* ============================================
+   🎨 ANIMATIONS MAGIQUES ULTRA-FLUIDES
+   ============================================ */
+
+@keyframes magicFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes solarFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  25% {
+    transform: translateY(-15px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(0);
+  }
+  75% {
+    transform: translateY(-20px) rotate(-1deg);
+  }
+}
+
+@keyframes solarGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 20px color-mix(in srgb, var(--color-secondary-400), transparent 70%),
+      0 0 40px color-mix(in srgb, var(--color-secondary-400), transparent 80%);
+  }
+  50% {
+    box-shadow:
+      0 0 30px color-mix(in srgb, var(--color-secondary-400), transparent 50%),
+      0 0 60px color-mix(in srgb, var(--color-secondary-400), transparent 70%);
+  }
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes energyPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes smoothWave {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  25% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(0);
+  }
+  75% {
+    transform: translateY(-8px) rotate(-2deg);
+  }
+}
+
+@keyframes organicMorph {
+  0%,
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: rotate(0);
+  }
+  50% {
+    border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%;
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes solarShimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* ============================================
+   💫 CLASSES UTILITAIRES SOLAIRES
+   ============================================ */
+
+.gradient-solar {
+  background: linear-gradient(
+    135deg,
+    var(--color-secondary-400) 0%,
+    var(--color-secondary-500) 50%,
+    var(--color-secondary-600) 100%
+  );
+  background-size: 200% 200%;
+}
+
+.gradient-sky {
+  background: linear-gradient(
+    135deg,
+    var(--color-sky-400) 0%,
+    var(--color-sky-500) 100%
+  );
+  background-size: 200% 200%;
+}
+
+.gradient-energy {
+  background: linear-gradient(
+    135deg,
+    var(--color-secondary-400) 0%,
+    var(--color-sky-400) 50%,
+    var(--color-emerald-500) 100%
+  );
+  background-size: 200% 200%;
+}
+
+.gradient-animated {
+  animation: gradientFlow 8s ease infinite;
+}
+
+.text-gradient-solar {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(
+    135deg,
+    var(--color-secondary-400) 0%,
+    var(--color-secondary-500) 50%,
+    var(--color-secondary-600) 100%
+  );
+  background-size: 200% 200%;
+}
+
+.text-gradient-sky {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(
+    135deg,
+    var(--color-sky-400) 0%,
+    var(--color-sky-500) 100%
+  );
+}
+
+.text-gradient-energy {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(
+    135deg,
+    var(--color-secondary-400) 0%,
+    var(--color-sky-400) 50%,
+    var(--color-emerald-500) 100%
+  );
+  background-size: 200% 200%;
+}
+
+.text-gradient-animated {
+  @apply bg-clip-text text-transparent;
+  background-image: var(--gradient-modern);
+  background-size: 200% 200%;
+  animation: gradientFlow 5s ease infinite;
+}
+
+/* Glassmorphisme solaire */
+.glass-solar {
+  @apply border border-amber-200/30 bg-linear-to-br from-amber-50/80 to-orange-50/80 backdrop-blur-xl;
+}
+
+.glass-sky {
+  @apply border border-sky-200/30 bg-linear-to-br from-sky-50/80 to-blue-50/80 backdrop-blur-xl;
+}
+
+/* Effets hover magiques */
+.hover-lift-solar {
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-lift-solar:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 25px 50px -12px
+    color-mix(in srgb, var(--color-secondary-400), transparent 75%);
+}
+
+.hover-glow-solar {
+  transition: all 0.5s ease;
+}
+
+.hover-glow-solar:hover {
+  box-shadow:
+    0 0 30px color-mix(in srgb, var(--color-secondary-400), transparent 50%),
+    0 0 60px color-mix(in srgb, var(--color-secondary-400), transparent 70%);
+  filter: brightness(1.1);
+}
+
+/* Animations */
+.float-solar {
+  animation: solarFloat 6s ease-in-out infinite;
+}
+
+.glow-solar {
+  animation: solarGlow 3s ease-in-out infinite;
+}
+
+.pulse-energy {
+  animation: energyPulse 2s ease-in-out infinite;
+}
+
+.wave-smooth {
+  animation: smoothWave 4s ease-in-out infinite;
+}
+
+.morph-organic {
+  animation: organicMorph 10s ease-in-out infinite;
+}
+
+.shimmer-solar {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-solar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-secondary-400), transparent 70%),
+    transparent
+  );
+  animation: solarShimmer 3s infinite;
+}
+
+.scroll-reveal {
+  opacity: 0;
+  animation: magicFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 3D Effects */
+.perspective-1000 {
+  perspective: 1000px;
+  perspective-origin: center;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* ============================================
+   PARALLAX EFFECTS - STYLE ANTIGRAVITY
+   ============================================ */
+
+/* Perspective pour effets 3D */
+.perspective-1000 {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.perspective-2000 {
+  perspective: 2000px;
+  transform-style: preserve-3d;
+}
+
+/* Container pour parallax multi-couches */
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+/* Optimisation GPU pour parallax */
+.parallax-layer {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Performance */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Désactiver les effets parallax */
+  .parallax-layer {
+    transform: none !important;
+    will-change: auto;
+  }
+}
