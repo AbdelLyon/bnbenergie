@@ -1,6 +1,11 @@
 import { generateMetadata } from '@/app/_config/metadata';
 import ServicesPageContent from './ServicesPageContent';
 import { ServiceStructuredData } from '../../_components/features/SEO/StructuredData';
+import {
+  getServices,
+  getPageHeader,
+  getSiteSettings,
+} from '@/app/_lib/payload-queries';
 
 export const dynamic = 'force-static';
 export const revalidate = false;
@@ -24,10 +29,20 @@ export const metadata = generateMetadata({
   ],
 });
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const [services, header, siteSettings] = await Promise.all([
+    getServices(),
+    getPageHeader('services'),
+    getSiteSettings(),
+  ]);
+
   return (
     <>
-      <ServicesPageContent />
+      <ServicesPageContent
+        services={services}
+        header={header}
+        siteSettings={siteSettings}
+      />
       <ServiceStructuredData />
     </>
   );
