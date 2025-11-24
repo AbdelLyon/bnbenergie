@@ -1,5 +1,10 @@
 import { generateMetadata } from '@/app/_config/metadata';
 import ZonesPageContent from './ZonesPageContent';
+import {
+  getInterventionZones,
+  getPageHeader,
+  getSiteSettings,
+} from '@/app/_lib/payload-queries';
 
 export const dynamic = 'force-static';
 export const revalidate = false;
@@ -20,6 +25,18 @@ export const metadata = generateMetadata({
   ],
 });
 
-export default function ZonesInterventionPage() {
-  return <ZonesPageContent />;
+export default async function ZonesInterventionPage() {
+  const [zones, header, siteSettings] = await Promise.all([
+    getInterventionZones(),
+    getPageHeader('zones'),
+    getSiteSettings(),
+  ]);
+
+  return (
+    <ZonesPageContent
+      zones={zones}
+      header={header}
+      siteSettings={siteSettings}
+    />
+  );
 }
