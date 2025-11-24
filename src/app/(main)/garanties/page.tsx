@@ -1,5 +1,10 @@
 import { generateMetadata } from '@/app/_config/metadata';
 import GarantiesPageContent from './GarantiesPageContent';
+import {
+  getWarrantiesByCategory,
+  getPageHeader,
+  getSiteSettings,
+} from '@/app/_lib/payload-queries';
 
 export const dynamic = 'force-static';
 export const revalidate = false;
@@ -20,6 +25,18 @@ export const metadata = generateMetadata({
   ],
 });
 
-export default function GarantiesPage() {
-  return <GarantiesPageContent />;
+export default async function GarantiesPage() {
+  const [warranties, header, siteSettings] = await Promise.all([
+    getWarrantiesByCategory(),
+    getPageHeader('garanties'),
+    getSiteSettings(),
+  ]);
+
+  return (
+    <GarantiesPageContent
+      warranties={warranties}
+      header={header}
+      siteSettings={siteSettings}
+    />
+  );
 }
