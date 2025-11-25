@@ -1,14 +1,17 @@
 'use client';
 
-import { Title } from '@/app/_components/features/Hero/Title';
-import { PageHeader } from '@/app/_components/shared/layout/PageHeader/PageHeader';
-import { SectionContainer } from '@/app/_components/shared/layout/SectionWrapper';
-import { CTASection } from '@/app/_components/shared/ui/CTASection';
-import { FeatureCard } from '@/app/_components/shared/ui/FeatureCard';
-import { IntroSection } from '@/app/_components/shared/ui/IntroSection';
-import { ScrollDownButton } from '@/app/_components/shared/ui/ScrollDownButton';
-import { StatsGrid } from '@/app/_components/shared/ui/StatsGrid';
-import { WarrantyCard } from '@/app/_components/shared/ui/WarrantyCard';
+import { Title } from '@/components/shared/ui/Title';
+import {
+  PageHeader,
+  ScrollDownButton,
+  SectionContainer,
+  StatsGrid,
+  IntroSection,
+  FeatureCard,
+  WarrantyCard,
+  CTASection,
+} from '@/components';
+
 import { motion } from 'framer-motion';
 import type {
   Warranty,
@@ -48,7 +51,7 @@ export default function GarantiesPageContent({
         bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
       >
         <Title
-          title={['Nos Garanties', header?.title || 'Nos Garanties']}
+          title={header?.title.split(' ') || ['Nos Garanties']}
           subtitle={header?.subtitle || ''}
         />
         <motion.p

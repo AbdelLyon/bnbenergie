@@ -1,8 +1,8 @@
 import {
   getInterventionZones,
   getSiteSettings,
-} from '@/app/_lib/payload-queries';
-import { slugify } from '@/app/_utils/slugify';
+} from '@/lib/payload-queries';
+import { slugify } from '@/utils/slugify';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import CityPageContent from './CityPageContent';

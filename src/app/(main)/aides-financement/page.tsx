@@ -1,31 +1,30 @@
-import { generateMetadata as generateMetadataHelper } from '@/app/_config/metadata';
+import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
 import AidesPageContent from './AidesPageContent';
 import {
   getFinancialAidsByCategory,
   getPageHeader,
   getSiteSettings,
-} from '@/app/_lib/payload-queries';
+} from '@/lib/payload-queries';
 import { Metadata } from 'next';
 
 export const dynamic = 'force-static';
-export const revalidate = 60; // Revalide toutes les 60 secondes
 
 export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataHelper({
-  title: 'Aides & Financement Panneaux Solaires 2025 Ain',
-  description:
-    'Prime autoconsommation, MaPrimeRénov, CEE, TVA réduite 10%, éco-PTZ. ✓ Aides panneaux solaires 2025. ✓ Accompagnement démarches. Financement Ain (01).',
-  path: '/aides-financement',
-  keywords: [
-    'aides panneaux solaires 2025',
-    'prime autoconsommation',
-    'MaPrimeRénov panneaux solaires',
-    'CEE certificats économies énergie',
-    'TVA réduite panneaux solaires',
-    'éco-prêt taux zéro solaire',
-    'financement panneaux solaires Ain',
-    'subventions photovoltaïque 2025',
-  ],
+    title: 'Aides & Financement Panneaux Solaires 2025 Ain',
+    description:
+      'Prime autoconsommation, MaPrimeRénov, CEE, TVA réduite 10%, éco-PTZ. ✓ Aides panneaux solaires 2025. ✓ Accompagnement démarches. Financement Ain (01).',
+    path: '/aides-financement',
+    keywords: [
+      'aides panneaux solaires 2025',
+      'prime autoconsommation',
+      'MaPrimeRénov panneaux solaires',
+      'CEE certificats économies énergie',
+      'TVA réduite panneaux solaires',
+      'éco-prêt taux zéro solaire',
+      'financement panneaux solaires Ain',
+      'subventions photovoltaïque 2025',
+    ],
   });
 }
 

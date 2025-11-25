@@ -3,16 +3,18 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Phone, Star } from 'lucide-react';
 import { useState } from 'react';
-import { PageHeader } from '@/app/_components/shared/layout/PageHeader/PageHeader';
-import { Title } from '@/app/_components/features/Hero/Title';
-import { ScrollDownButton } from '@/app/_components/shared/ui/ScrollDownButton';
-import { StatCard } from '@/app/_components/shared/ui/StatCard';
+
 import {
+  PageHeader,
+  ScrollDownButton,
   SectionContainer,
+  Title,
+  StatCard,
+  ProjectCard,
   SectionWrapper,
-} from '@/app/_components/shared/layout/SectionWrapper';
-import { BackgroundEffects } from '@/app/_components/shared/effects/BackgroundEffects';
-import { ProjectCard } from '@/app/_components/features/Realisations/components/ProjectCard';
+  BackgroundEffects,
+} from '@/components';
+
 import type {
   Project,
   PageHeader as PageHeaderType,
@@ -61,7 +63,7 @@ export default function RealisationsPageContent({
         bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
       >
         <Title
-          title={['Nos Réalisations', header?.title || 'Nos Réalisations']}
+          title={header?.title.split(' ') || ['Nos Réalisations']}
           subtitle={header?.subtitle || ''}
         />
         <motion.p
@@ -242,7 +244,10 @@ export default function RealisationsPageContent({
                 <ArrowRight className="h-5 w-5" />
               </motion.a>
               <motion.a
-                href={`tel:${siteSettings.contact?.phone?.replace(/\s/g, '') || '0781251125'}`}
+                href={`tel:${
+                  siteSettings.contact?.phone?.replace(/\s/g, '') ||
+                  '0781251125'
+                }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/30 bg-white/10 px-8 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20"

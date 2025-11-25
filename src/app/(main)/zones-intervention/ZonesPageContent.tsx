@@ -1,15 +1,20 @@
 'use client';
 
-import { Title } from '@/app/_components/features/Hero/Title';
-import { PageHeader } from '@/app/_components/shared/layout/PageHeader/PageHeader';
-import { SectionContainer } from '@/app/_components/shared/layout/SectionWrapper';
-import { CTASection } from '@/app/_components/shared/ui/CTASection';
-import { FeatureCard } from '@/app/_components/shared/ui/FeatureCard';
-import { IntroSection } from '@/app/_components/shared/ui/IntroSection';
-import { ScrollDownButton } from '@/app/_components/shared/ui/ScrollDownButton';
-import { StatsGrid } from '@/app/_components/shared/ui/StatsGrid';
+import {
+  Title,
+  PageHeader,
+  SectionContainer,
+  StatsGrid,
+  ScrollDownButton,
+  IntroSection,
+  FeatureCard,
+  CTASection,
+} from '@/components';
+
 import { motion } from 'framer-motion';
 import { MapPin } from 'lucide-react';
+import Link from 'next/link';
+import { slugify } from '@/utils/slugify';
 import type {
   InterventionZone,
   PageHeader as PageHeaderType,
@@ -43,10 +48,7 @@ export default function ZonesPageContent({
         bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
       >
         <Title
-          title={[
-            "Zones d'Intervention",
-            header?.title || "Zones d'Intervention",
-          ]}
+          title={header?.title.split(' ') || ["Zones d'Intervention"]}
           subtitle={header?.subtitle || ''}
         />
         <motion.p
@@ -114,7 +116,9 @@ export default function ZonesPageContent({
                 >
                   {/* Icône */}
                   <div
-                    className={`mb-6 inline-flex rounded-xl bg-linear-to-br ${group.gradient || 'from-blue-500 to-cyan-500'} p-4`}
+                    className={`mb-6 inline-flex rounded-xl bg-linear-to-br ${
+                      group.gradient || 'from-blue-500 to-cyan-500'
+                    } p-4`}
                   >
                     <MapPin className="h-8 w-8 text-white" />
                   </div>
@@ -124,10 +128,18 @@ export default function ZonesPageContent({
                     {group.zone}
                   </h3>
 
-                  {/* Description (Liste des communes) */}
-                  <p className="mb-4 text-sm leading-relaxed text-neutral-600">
-                    {group.communes?.map((c: any) => c.name).join(', ')}
-                  </p>
+                  {/* Liste des communes cliquables */}
+                  <div className="flex flex-wrap gap-2">
+                    {group.communes?.map((commune: any) => (
+                      <Link
+                        key={commune.name}
+                        href={`/zones-intervention/${slugify(commune.name)}`}
+                        className="rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-sm font-medium text-neutral-700 transition-all duration-200 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 hover:shadow-md"
+                      >
+                        {commune.name}
+                      </Link>
+                    ))}
+                  </div>
                 </motion.div>
               );
             })}

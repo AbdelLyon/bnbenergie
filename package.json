@@ -1,7 +1,7 @@
 {
-  "name": "blank",
+  "name": "bnbenergie",
   "version": "1.0.0",
-  "description": "A blank template to get started with Payload 3.0",
+  "description": "BNB Energie",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -11,14 +11,8 @@
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
     "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
-    "migrate": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/migrate-json-to-payload.ts",
-    "migrate:nav": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/migrate-navigation.ts",
-    "migrate:settings": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/migrate-site-settings.ts",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
-    "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
-    "test": "pnpm run test:int && pnpm run test:e2e",
-    "test:e2e": "cross-env NODE_OPTIONS=\"--no-deprecation --no-experimental-strip-types\" pnpm exec playwright test",
-    "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
     "@heroui/accordion": "^2.2.24",
@@ -31,52 +25,40 @@
     "@payloadcms/richtext-lexical": "^3.64.0",
     "@payloadcms/translations": "^3.64.0",
     "@react-three/fiber": "^9.4.0",
+    "clsx": "^2.1.1",
     "critters": "^0.0.25",
     "cross-env": "^7.0.3",
     "dotenv": "^17.2.3",
     "framer-motion": "12.23.24",
     "graphql": "^16.8.1",
     "lucide-react": "^0.552.0",
-    "next": "15.2.3",
+    "next": "15.4.7",
     "nodemailer": "^7.0.10",
     "payload": "^3.64.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "sharp": "^0.34.5",
+    "tailwind-merge": "^3.4.0",
     "three": "^0.181.2",
     "zod": "^4.1.12"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
-    "@playwright/test": "1.56.1",
+    "@eslint/js": "^9.39.1",
+    "@next/eslint-plugin-next": "^16.0.4",
     "@tailwindcss/postcss": "^4.1.17",
     "@types/node": "^22.5.4",
     "@types/nodemailer": "^7.0.4",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
     "@types/three": "^0.181.0",
-    "@vitejs/plugin-react": "4.5.2",
     "eslint": "^9.39.1",
     "eslint-config-next": "^16.0.4",
-    "jsdom": "26.1.0",
     "knip": "^5.70.1",
-    "playwright": "1.56.1",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.17",
     "tsx": "^4.20.6",
     "typescript": "5.7.3",
-    "vite-tsconfig-paths": "5.1.4",
-    "vitest": "3.2.3"
-  },
-  "engines": {
-    "node": "^18.20.2 || >=20.9.0",
-    "pnpm": "^9 || ^10"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "sharp",
-      "esbuild",
-      "unrs-resolver"
-    ]
+    "typescript-eslint": "^8.48.0"
   }
 }

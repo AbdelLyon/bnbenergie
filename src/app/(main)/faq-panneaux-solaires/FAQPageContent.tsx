@@ -4,17 +4,19 @@ import { Accordion, AccordionItem } from '@heroui/accordion';
 import { Button } from '@heroui/button';
 import { motion } from 'framer-motion';
 import { MailIcon, Phone } from 'lucide-react';
-import { Title } from '../../_components/features/Hero';
-import { PageHeader } from '../../_components/shared/layout/PageHeader';
-import { SectionContainer } from '../../_components/shared/layout/SectionWrapper';
-import { ScrollDownButton } from '../../_components/shared/ui/ScrollDownButton';
-import { StatCard } from '../../_components/shared/ui/StatCard';
-import { getLucideIcon } from '../../_utils/getLucideIcon';
+import { getLucideIcon } from '@/utils/getLucideIcon';
 import type {
   Faq,
   PageHeader as PageHeaderType,
   SiteSetting,
 } from '@/payload-types';
+import {
+  PageHeader,
+  ScrollDownButton,
+  SectionContainer,
+  StatCard,
+  Title,
+} from '@/components';
 
 interface FAQPageContentProps {
   faqs: Faq[];
@@ -76,7 +78,7 @@ export default function FAQPageContent({
           bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
         >
           <Title
-            title={['FAQ', header?.title || 'Questions Fréquentes']}
+            title={header?.title.split(' ') || ['Questions Fréquentes']}
             subtitle={header?.subtitle || ''}
           />
 
@@ -204,7 +206,10 @@ export default function FAQPageContent({
                 <div className="flex flex-col justify-center gap-4 sm:flex-row">
                   <Button
                     as="a"
-                    href={`tel:${siteSettings.contact?.phone?.replace(/\s/g, '') || '0781251125'}`}
+                    href={`tel:${
+                      siteSettings.contact?.phone?.replace(/\s/g, '') ||
+                      '0781251125'
+                    }`}
                     size="lg"
                     className="bg-white font-bold text-blue-600 shadow-lg transition-all hover:scale-105 hover:bg-gray-100"
                     startContent={<Phone className="h-5 w-5" />}
@@ -213,7 +218,9 @@ export default function FAQPageContent({
                   </Button>
                   <Button
                     as="a"
-                    href={`mailto:${siteSettings.contact?.email || 'contact@bnb-energie.fr'}`}
+                    href={`mailto:${
+                      siteSettings.contact?.email || 'contact@bnb-energie.fr'
+                    }`}
                     size="lg"
                     variant="bordered"
                     className="border-2 border-white/30 bg-white/10 font-bold text-white backdrop-blur-sm transition-all hover:bg-white/20"

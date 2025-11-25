@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Logo as LogoIcon } from '@/app/_components/shared/ui/Logo';
+import { Logo as LogoIcon } from '@/components/shared/ui/Logo';
 
 export const Logo = () => (
   <div className="group flex items-center gap-2">
