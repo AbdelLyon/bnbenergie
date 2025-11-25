@@ -27,7 +27,7 @@ export function AboutClient({ data }: { data: AboutData }) {
         />
 
         <div className={`grid grid-cols-1 lg:grid-cols-2 ${SPACING.grid.gap}`}>
-          {data.seoContent.map((item, index) => (
+          {data.seoContent?.map((item, index) => (
             <AboutCard
               key={item.title}
               icon={item.icon}

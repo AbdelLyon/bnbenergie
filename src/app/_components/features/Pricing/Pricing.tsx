@@ -1,36 +1,32 @@
-import { getPricingPacks } from '@/app/_lib/payload';
-import pricingData from '@/data/pricingData.json';
+import { getPricingPacks } from '@/app/_lib/payload-queries';
 import { PricingClient } from './PricingClient';
 
 export async function Pricing() {
-  try {
-    const response = await getPricingPacks();
+  const packsList = await getPricingPacks();
 
-    // Si Payload est vide, utiliser le fallback JSON
-    if (!response.docs || response.docs.length === 0) {
-      console.log('Payload is empty, using JSON fallback');
-      return <PricingClient data={pricingData} />;
-    }
+  const packs = packsList.map((pack: any) => ({
+    name: pack.name,
+    panels: pack.panels,
+    price: pack.price,
+    originalPrice: pack.originalPrice,
+    features: pack.features.map((f: any) => f.feature),
+    popular: pack.popular,
+    cta: pack.cta,
+  }));
 
-    const packs = response.docs.map((pack: any) => ({
-      name: pack.name,
-      panels: pack.panels,
-      price: pack.price,
-      originalPrice: pack.originalPrice,
-      features: pack.features.map((f: any) => f.feature),
-      popular: pack.popular,
-      cta: pack.cta,
-    }));
+  const data = {
+    header: {
+      badge: 'NOS OFFRES',
+      title: 'Des solutions adaptées à vos besoins',
+      subtitle:
+        'Choisissez le pack qui correspond le mieux à votre consommation et à votre budget.',
+    },
+    packs,
+    footer: {
+      note: '* Prix indicatifs TTC, sous réserve de visite technique.',
+      tags: ['Garantie 25 ans', 'Installation incluse', 'Démarches incluses'],
+    },
+  };
 
-    const data = {
-      header: pricingData.header,
-      packs,
-      footer: pricingData.footer,
-    };
-
-    return <PricingClient data={data} />;
-  } catch (error) {
-    console.error('Payload error, using JSON fallback:', error);
-    return <PricingClient data={pricingData} />;
-  }
+  return <PricingClient data={data} />;
 }

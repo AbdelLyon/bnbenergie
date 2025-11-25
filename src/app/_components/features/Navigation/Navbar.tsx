@@ -39,13 +39,13 @@ export async function Navbar() {
   const data = {
     logo: {
       title: siteSettings.siteName || 'BNB ÉNERGIE',
-      subtitle: siteSettings.businessName || 'Expert Photovoltaïque',
+      subtitle: siteSettings.businessName || 'Certifié RGE QualiPV',
     },
     menuCategories,
     cta: {
       label: siteSettings.contact?.phone || '07 81 25 11 25',
       phone: siteSettings.contact?.phone || '07 81 25 11 25',
-      phoneHref: `tel:${siteSettings.contact?.phone?.replace(/\s/g, '') || '0781251125'}`,
+      phoneHref: siteSettings.contact?.phone_href || 'tel:0781251125',
     },
   };
 

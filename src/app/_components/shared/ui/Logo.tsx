@@ -39,7 +39,9 @@ export function Logo({
       <motion.div
         whileHover={animated ? { rotate: 180, scale: 1.1 } : {}}
         transition={{ duration: 0.4 }}
-        className={`rounded-xl transition-all duration-300 ease-out ${containerSizeClasses[size]} ${
+        className={`rounded-xl transition-all duration-300 ease-out ${
+          containerSizeClasses[size]
+        } ${
           isScrolled
             ? 'bg-linear-to-br from-blue-600 via-cyan-500 to-blue-600'
             : 'border border-white/20 bg-white/10 backdrop-blur-sm'
@@ -49,7 +51,9 @@ export function Logo({
       </motion.div>
       {showRGEBadge && (
         <div
-          className={`absolute -right-1 -bottom-2 rounded-full font-bold uppercase ${badgeSizeClasses[size]} ${
+          className={`absolute -right-2.5 -bottom-2 rounded-full font-bold uppercase ${
+            badgeSizeClasses[size]
+          } ${
             isScrolled ? 'bg-amber-500 text-white' : 'bg-amber-400 text-black'
           }`}
         >

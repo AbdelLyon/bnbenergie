@@ -1,0 +1,772 @@
+@import 'tailwindcss';
+
+/* ============================================
+   THÈME MODERNE PAYLOAD CMS - BNB ÉNERGIE
+   ============================================ */
+
+/* Variables de couleurs personnalisées */
+:root {
+  --bnb-primary: #3b82f6;
+  --bnb-primary-dark: #2563eb;
+  --bnb-secondary: #06b6d4;
+  --bnb-secondary-dark: #0891b2;
+  --bnb-accent: #8b5cf6;
+  --bnb-success: #10b981;
+  --bnb-warning: #f59e0b;
+  --bnb-danger: #ef4444;
+}
+
+/* Page de Login - Mode Sombre (Défaut) */
+html[data-theme='dark'] body {
+  --theme-bg: #0f172a;
+  background-color: var(--theme-bg);
+}
+
+/* Page de Login */
+body:has(.login__brand) {
+  /* Fond très sombre pour un contraste maximal avec les particules et la carte */
+  background: radial-gradient(
+    ellipse at top left,
+    #0a0e1a 0%,
+    #020617 30%,
+    #000000 70%,
+    #000000 100%
+  );
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* S'assurer que le contenu passe par dessus les particules (z-index 0) */
+.login__wrap {
+  position: relative;
+  z-index: 10;
+}
+
+html[data-theme='light'] body:has(.login__brand) {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+}
+
+body:has(.login__brand)::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(6, 182, 212, 0.15) 0%,
+    transparent 60%
+  );
+  filter: blur(100px);
+  z-index: 0;
+}
+
+body:has(.login__brand)::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  right: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(59, 130, 246, 0.15) 0%,
+    transparent 60%
+  );
+  filter: blur(100px);
+  z-index: 0;
+}
+
+/* Carte de login */
+.login__wrap {
+  z-index: 100 !important;
+}
+
+.login__content {
+  position: relative;
+  z-index: 101 !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 24px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset !important;
+  padding: 40px !important;
+}
+
+[data-theme='dark'] .login__content {
+  background: rgba(15, 23, 42, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset, 0 0 60px rgba(59, 130, 246, 0.1) !important;
+}
+
+/* S'assurer que tous les éléments du formulaire sont cliquables */
+.login__content form,
+.login__content form *,
+.login__content input,
+.login__content button,
+.login__content a {
+  position: relative;
+  z-index: 102 !important;
+}
+
+/* Forcer le bouton de login à être cliquable */
+.login__content button[type='submit'],
+.login__content .btn--style-primary,
+.login form button {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+  user-select: auto !important;
+}
+
+/* Supprimer tout état disabled si présent */
+.login__content button:not([disabled]),
+.login form button:not([disabled]) {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* Forcer tous les boutons de la page login à être interactifs */
+body:has(.login__brand) button,
+body:has(.login__brand) [type='submit'],
+body:has(.login__brand) .btn {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 102 !important;
+}
+
+/* Boutons */
+.btn--style-primary {
+  background: linear-gradient(135deg, #2563eb, #0891b2) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3) !important;
+  position: relative !important;
+}
+
+.btn--style-primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4) !important;
+}
+
+.btn--style-primary:active {
+  transform: translateY(0) !important;
+}
+
+/* Loader pendant l'authentification */
+.btn--style-primary:disabled::after,
+button[type='submit']:disabled::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spinner 0.6s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn--style-primary:disabled,
+button[type='submit']:disabled {
+  cursor: wait !important;
+  opacity: 0.8 !important;
+}
+
+/* Inputs */
+.field-type.text input,
+.field-type.email input,
+.field-type.password input {
+  border-radius: 12px !important;
+  border: 1px solid #e2e8f0 !important;
+  background: #f8fafc !important;
+  transition: all 0.2s ease !important;
+  padding: 12px 16px !important;
+}
+
+.field-type.text input:focus,
+.field-type.email input:focus,
+.field-type.password input:focus {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+  background: #ffffff !important;
+  outline: none !important;
+}
+
+[data-theme='dark'] .field-type.text input,
+[data-theme='dark'] .field-type.email input,
+[data-theme='dark'] .field-type.password input {
+  background: rgba(30, 41, 59, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #f1f5f9 !important;
+}
+
+/* Lien "Mot de passe oublié" et autres liens dans login */
+.login__forgot-password,
+.login__content a,
+a[href*='forgot-password'],
+a[href*='reset-password'] {
+  color: #3b82f6 !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+.login__forgot-password:hover,
+.login__content a:hover,
+a[href*='forgot-password']:hover,
+a[href*='reset-password']:hover {
+  color: #2563eb !important;
+  text-decoration: underline !important;
+}
+
+/* S'assurer que tous les éléments interactifs ont un cursor pointer */
+button,
+a,
+[role='button'],
+input[type='submit'] {
+  cursor: pointer !important;
+}
+
+.app-header__step-nav-wrapper {
+  overflow: hidden !important;
+}
+
+.dashboard__card-list {
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Logo/Icon dans le header - ajuster la taille pour qu'il soit visible entièrement */
+.step-nav {
+  margin-top: 2px !important;
+}
+
+.step-nav__home {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+/* ============================================
+   THÈME GLOBAL - MODE LIGHT
+   ============================================ */
+
+html[data-theme='light'] {
+  /* Backgrounds */
+  --theme-bg: #f8fafc;
+  --theme-elevation-0: #ffffff;
+  --theme-elevation-50: #f8fafc;
+  --theme-elevation-100: #f1f5f9;
+  --theme-elevation-150: #e2e8f0;
+  --theme-elevation-200: #cbd5e1;
+
+  /* Text colors */
+  --theme-text: #0f172a;
+  --theme-text-secondary: #475569;
+  --theme-text-tertiary: #64748b;
+
+  /* Borders */
+  --theme-border: #e2e8f0;
+  --theme-border-hover: #cbd5e1;
+
+  /* Input colors */
+  --theme-input-bg: #f8fafc;
+  --theme-input-border: #e2e8f0;
+  --theme-input-focus-border: var(--bnb-primary);
+
+  /* Sidebar */
+  --theme-sidebar-bg: #ffffff;
+  --theme-sidebar-border: #e2e8f0;
+
+  /* Accents */
+  --theme-success-100: #dcfce7;
+  --theme-success-500: var(--bnb-success);
+  --theme-error-100: #fee2e2;
+  --theme-error-500: var(--bnb-danger);
+  --theme-warning-100: #fef3c7;
+  --theme-warning-500: var(--bnb-warning);
+}
+
+/* ============================================
+   THÈME GLOBAL - MODE DARK
+   ============================================ */
+
+html[data-theme='dark'] {
+  /* Backgrounds */
+  --theme-bg: #0f172a;
+  --theme-elevation-0: #1e293b;
+  --theme-elevation-50: #1e293b;
+  --theme-elevation-100: #334155;
+  --theme-elevation-150: #475569;
+  --theme-elevation-200: #64748b;
+
+  /* Text colors */
+  --theme-text: #f1f5f9;
+  --theme-text-secondary: #cbd5e1;
+  --theme-text-tertiary: #94a3b8;
+
+  /* Borders */
+  --theme-border: #334155;
+  --theme-border-hover: #475569;
+
+  /* Input colors */
+  --theme-input-bg: #1e293b;
+  --theme-input-border: #334155;
+  --theme-input-focus-border: var(--bnb-primary);
+
+  /* Sidebar */
+  --theme-sidebar-bg: #1e293b;
+  --theme-sidebar-border: #334155;
+
+  /* Accents */
+  --theme-success-100: rgba(16, 185, 129, 0.1);
+  --theme-success-500: var(--bnb-success);
+  --theme-error-100: rgba(239, 68, 68, 0.1);
+  --theme-error-500: var(--bnb-danger);
+  --theme-warning-100: rgba(245, 158, 11, 0.1);
+  --theme-warning-500: var(--bnb-warning);
+}
+
+/* ============================================
+   LAYOUT GÉNÉRAL
+   ============================================ */
+
+/* Background principal */
+body {
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* App wrapper */
+#app {
+  background-color: var(--theme-bg);
+}
+
+/* Forcer la visibilité du texte sur tous les éléments */
+main,
+div,
+span,
+p,
+li,
+td,
+th {
+  color: var(--theme-text) !important;
+}
+
+/* Texte secondaire */
+small,
+.description,
+.help-text,
+[class*='description'],
+[class*='help'] {
+  color: var(--theme-text-secondary) !important;
+}
+
+/* Conteneur principal */
+main[class*='template-default__wrap'] {
+  background-color: var(--theme-bg) !important;
+  padding: 24px !important;
+}
+
+/* ============================================
+   SIDEBAR / NAVIGATION
+   ============================================ */
+
+/* On garde le style par défaut, on ajoute juste le gradient sur l'item actif */
+nav a[aria-current='page'],
+nav button[aria-current='page'] {
+  background: linear-gradient(
+    135deg,
+    var(--bnb-primary),
+    var(--bnb-secondary)
+  ) !important;
+  color: white !important;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+#search-filter-input {
+  height: 43px !important;
+  padding-left: 35px !important;
+  border-radius: 10px !important;
+}
+.search-filter {
+  padding-left: 10px !important;
+  width: 100% !important;
+}
+
+.search-bar .icon--search {
+  position: absolute !important;
+  left: 8px !important;
+  opacity: 0.5;
+}
+
+.search-bar {
+  border-radius: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  height: auto !important;
+}
+.search-bar__actions {
+  justify-content: end;
+  width: 100%;
+}
+/* Titres - couleur du thème */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--theme-text) !important;
+}
+
+/* Texte - couleur du thème */
+p,
+span,
+div,
+li {
+  color: var(--theme-text) !important;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+/* Button primaire */
+.btn--style-primary,
+button[class*='primary'],
+button[type='submit'] {
+  background: linear-gradient(
+    135deg,
+    var(--bnb-primary),
+    var(--bnb-secondary)
+  ) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  padding: 10px 20px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3) !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+.btn--style-primary:hover,
+button[class*='primary']:hover,
+button[type='submit']:hover:not(:disabled) {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4) !important;
+}
+
+.btn--style-primary:disabled,
+button[type='submit']:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* Button secondaire */
+.btn--style-secondary,
+button[class*='secondary'] {
+  background-color: var(--theme-elevation-100) !important;
+  color: var(--theme-text) !important;
+  border: 1px solid var(--theme-border) !important;
+  border-radius: 10px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn--style-secondary:hover,
+button[class*='secondary']:hover {
+  background-color: var(--theme-elevation-150) !important;
+  border-color: var(--theme-border-hover) !important;
+}
+
+/* Button danger */
+.btn--style-danger,
+button[class*='delete'],
+button[class*='danger'] {
+  background: var(--bnb-danger) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 10px !important;
+}
+
+.btn--style-danger:hover {
+  background: #dc2626 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ============================================
+   INPUTS & FORM FIELDS
+   ============================================ */
+
+/* Text inputs */
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'],
+input[type='tel'],
+input[type='url'],
+input[type='date'],
+textarea,
+select {
+  background-color: var(--theme-input-bg) !important;
+  border: 1px solid var(--theme-input-border) !important;
+  border-radius: 10px !important;
+  color: var(--theme-text) !important;
+  padding: 10px 14px !important;
+  transition: all 0.2s ease !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  border-color: var(--theme-input-focus-border) !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+  background-color: var(--theme-elevation-0) !important;
+}
+
+/* Field labels */
+label {
+  color: var(--theme-text) !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+}
+
+/* Field descriptions */
+.field-description {
+  color: var(--theme-text-tertiary) !important;
+  font-size: 13px !important;
+}
+
+/* ============================================
+   TABLES
+   ============================================ */
+
+table {
+  background-color: var(--theme-elevation-0) !important;
+  border: 1px solid var(--theme-border) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+thead {
+  background-color: var(--theme-elevation-50) !important;
+  border-bottom: 1px solid var(--theme-border) !important;
+}
+
+th {
+  color: var(--theme-text) !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  padding: 12px 16px !important;
+}
+
+td {
+  color: var(--theme-text-secondary) !important;
+  padding: 12px 16px !important;
+  border-bottom: 1px solid var(--theme-border) !important;
+}
+
+tr:hover {
+  background-color: var(--theme-elevation-50) !important;
+}
+
+tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* ============================================
+   BADGES & PILLS
+   ============================================ */
+
+.pill,
+.badge,
+[class*='pill'],
+[class*='badge'] {
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  padding: 4px 10px !important;
+}
+
+.pill--style-success {
+  background-color: var(--theme-success-100) !important;
+  color: var(--theme-success-500) !important;
+}
+
+.pill--style-error,
+.pill--style-danger {
+  background-color: var(--theme-error-100) !important;
+  color: var(--theme-error-500) !important;
+}
+
+.pill--style-warning {
+  background-color: var(--theme-warning-100) !important;
+  color: var(--theme-warning-500) !important;
+}
+
+/* ============================================
+   MODALS & POPUPS
+   ============================================ */
+
+.popup,
+.modal,
+[class*='drawer'],
+[class*='popup'],
+[role='dialog'] {
+  background-color: var(--theme-elevation-0) !important;
+  border-radius: 5px !important;
+  padding: 2px 5px !important;
+  color: var(--theme-text) !important;
+}
+
+/* Backdrop */
+.popup__backdrop,
+.modal__backdrop,
+[class*='backdrop'] {
+  backdrop-filter: blur(8px) !important;
+  background-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ============================================
+   DROPDOWNS & MENUS
+   ============================================ */
+
+[class*='dropdown'],
+[class*='menu'],
+[role='menu'],
+[role='listbox'] {
+  background-color: var(--theme-elevation-0) !important;
+  border: 1px solid var(--theme-border) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1) !important;
+  padding: 8px !important;
+  overflow: hidden !important;
+}
+
+[class*='dropdown'] > *,
+[class*='menu'] > *,
+[role='menu'] > *,
+[role='listbox'] > * {
+  color: var(--theme-text-secondary) !important;
+  padding: 10px 14px !important;
+  border-radius: 8px !important;
+  transition: all 0.15s ease !important;
+  cursor: pointer !important;
+}
+
+[class*='dropdown'] > *:hover,
+[class*='menu'] > *:hover,
+[role='menu'] > *:hover,
+[role='listbox'] > *:hover {
+  background-color: var(--theme-elevation-100) !important;
+  color: var(--theme-text) !important;
+}
+
+/* Séparateur dans les menus */
+[class*='dropdown'] hr,
+[class*='menu'] hr,
+[role='separator'] {
+  border-color: var(--theme-border) !important;
+  margin: 8px 0 !important;
+}
+
+/* ============================================
+   RICH TEXT EDITOR
+   ============================================ */
+
+.lexical-editor {
+  background-color: var(--theme-input-bg) !important;
+  border: 1px solid var(--theme-input-border) !important;
+  border-radius: 10px !important;
+  color: var(--theme-text) !important;
+}
+
+.lexical-toolbar {
+  background-color: var(--theme-elevation-50) !important;
+  border-bottom: 1px solid var(--theme-border) !important;
+  border-radius: 10px 10px 0 0 !important;
+}
+
+/* ============================================
+   SCROLLBARS
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--theme-elevation-50);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--theme-elevation-200);
+  border-radius: 5px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bnb-primary);
+}
+
+/* ============================================
+   ANIMATIONS & TRANSITIONS
+   ============================================ */
+
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* ============================================
+   RESPONSIVE TWEAKS
+   ============================================ */
+
+@media (max-width: 768px) {
+  [class*='card'],
+  [class*='panel'] {
+    border-radius: 8px !important;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    border-radius: 8px !important;
+  }
+}

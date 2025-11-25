@@ -139,8 +139,8 @@ export default function ContactPageContent({
         bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
       >
         <Title
-          title={['Contactez-nous', header?.title || 'Contactez-nous']}
-          subtitle={header?.subtitle || ''}
+          title={header?.title.split(',') ?? ['Contactez-nous']}
+          subtitle={header?.subtitle ?? ''}
         />
 
         <motion.p

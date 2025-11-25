@@ -18,6 +18,7 @@ interface HeaderData {
   cta2_href: string;
   heroImages: string[];
   heroImageAlts?: string[];
+  stats: any[]; // Using any[] for now to avoid strict type checking issues between layers, or import Stat type
 }
 
 export function HeroClient({ data }: { data: HeaderData }) {
@@ -47,10 +48,10 @@ export function HeroClient({ data }: { data: HeaderData }) {
       bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
       backgroundVariant="clean"
     >
-      {}
+      {/* Titre */}
       <Title title={data.title} subtitle={data.subtitle} />
 
-      {}
+      {/* Description */}
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -60,7 +61,7 @@ export function HeroClient({ data }: { data: HeaderData }) {
         {data.description}
       </motion.p>
 
-      {}
+      {/* Boutons CTA */}
       <HeroCTAButtons
         primaryText={data.cta1}
         primaryHref="#pricing"
@@ -68,14 +69,14 @@ export function HeroClient({ data }: { data: HeaderData }) {
         secondaryHref={data.cta2_href}
       />
 
-      {}
+      {/* Stats */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3, delay: 0.25 }}
         className="w-full pt-1 sm:pt-0"
       >
-        <Stats />
+        <Stats stats={data.stats} />
       </motion.div>
     </PageHeader>
   );

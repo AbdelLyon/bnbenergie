@@ -1,15 +1,17 @@
-import { generateMetadata } from '@/app/_config/metadata';
+import { generateMetadata as generateMetadataHelper } from '@/app/_config/metadata';
 import ZonesPageContent from './ZonesPageContent';
 import {
   getInterventionZones,
   getPageHeader,
   getSiteSettings,
 } from '@/app/_lib/payload-queries';
+import { Metadata } from 'next';
 
 export const dynamic = 'force-static';
-export const revalidate = false;
+export const revalidate = 60; // Revalide toutes les 60 secondes
 
-export const metadata = generateMetadata({
+export async function generateMetadata(): Promise<Metadata> {
+  return generateMetadataHelper({
   title: "Zones d'Intervention Panneaux Solaires Ain",
   description:
     "Installation panneaux solaires dans tout l'Ain (01) : Bourg-en-Bresse, Oyonnax, Bellegarde, Ambérieu, Gex, Ferney-Voltaire. ✓ Déplacement gratuit. Rayon 50 km.",
@@ -23,7 +25,8 @@ export const metadata = generateMetadata({
     'installation solaire Ferney-Voltaire',
     'couverture géographique Ain 01',
   ],
-});
+  });
+}
 
 export default async function ZonesInterventionPage() {
   const [zones, header, siteSettings] = await Promise.all([

@@ -8,6 +8,7 @@ import sharp from 'sharp';
 import { Users } from './collections/Users';
 import { Media } from './collections/Media';
 import { PageHeaders } from './collections/PageHeaders';
+import { createRevalidateHook } from './lib/revalidate-hook';
 import { Services } from './collections/Services';
 import { Warranties } from './collections/Warranties';
 import { FinancialAids } from './collections/FinancialAids';
@@ -18,11 +19,48 @@ import { Navigation } from './globals/Navigation';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+import { fr } from '@payloadcms/translations/languages/fr';
+import { en } from '@payloadcms/translations/languages/en';
+
 export default buildConfig({
+  i18n: {
+    supportedLanguages: { fr, en },
+    fallbackLanguage: 'fr', // Défaut en français
+  },
   admin: {
     user: Users.slug,
+    theme: 'dark', // Force le mode sombre par défaut
     importMap: {
       baseDir: path.resolve(dirname),
+    },
+    components: {
+      graphics: {
+        Logo: './app/(payload)/admin/Graphics#Logo',
+        Icon: './app/(payload)/admin/Graphics#Icon',
+      },
+      beforeLogin: ['./app/(payload)/admin/LoginParticles'],
+    },
+    meta: {
+      titleSuffix: '- BNB ÉNERGIE Admin',
+      icons: [
+        {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          url: '/favicon.svg',
+        },
+        {
+          rel: 'icon',
+          type: 'image/x-icon',
+          url: '/favicon.ico',
+        },
+      ],
+      openGraph: {
+        images: [
+          {
+            url: '/opengraph-image.png',
+          },
+        ],
+      },
     },
   },
   collections: [
@@ -40,6 +78,9 @@ export default buildConfig({
       },
       access: {
         read: () => true,
+      },
+      hooks: {
+        afterChange: [createRevalidateHook('pricing-packs')],
       },
       fields: [
         {
@@ -100,6 +141,9 @@ export default buildConfig({
       access: {
         read: () => true,
       },
+      hooks: {
+        afterChange: [createRevalidateHook('projects')],
+      },
       fields: [
         {
           name: 'title',
@@ -149,6 +193,9 @@ export default buildConfig({
       access: {
         read: () => true,
       },
+      hooks: {
+        afterChange: [createRevalidateHook('stats')],
+      },
       fields: [
         {
           name: 'icon',
@@ -186,6 +233,9 @@ export default buildConfig({
       },
       access: {
         read: () => true,
+      },
+      hooks: {
+        afterChange: [createRevalidateHook('about-cards')],
       },
       fields: [
         {
@@ -234,6 +284,9 @@ export default buildConfig({
       access: {
         read: () => true,
       },
+      hooks: {
+        afterChange: [createRevalidateHook('benefits')],
+      },
       fields: [
         {
           name: 'text',
@@ -256,6 +309,9 @@ export default buildConfig({
       },
       access: {
         read: () => true,
+      },
+      hooks: {
+        afterChange: [createRevalidateHook('faqs')],
       },
       fields: [
         {
