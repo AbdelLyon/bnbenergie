@@ -6,7 +6,7 @@ import { Realisations } from '../_components/features/Realisations/Realisations'
 import { PricingStructuredData } from '../_components/features/SEO/StructuredData';
 
 export const dynamic = 'force-static';
-export const revalidate = false;
+export const revalidate = 60; // Revalide toutes les 60 secondes
 
 export default function Home() {
   return (

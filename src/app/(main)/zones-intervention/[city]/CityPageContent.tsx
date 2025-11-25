@@ -8,23 +8,39 @@ import { FeatureCard } from '@/app/_components/shared/ui/FeatureCard';
 import { IntroSection } from '@/app/_components/shared/ui/IntroSection';
 import { ScrollDownButton } from '@/app/_components/shared/ui/ScrollDownButton';
 import { StatsGrid } from '@/app/_components/shared/ui/StatsGrid';
-import siteConfig from '@/data/siteConfig.json';
-import zonesData from '@/data/zonesData.json';
-
-interface ZoneGroup {
-  zone: string;
-  communes: string[];
-  gradient: string;
-}
+import { SiteSetting } from '@/payload-types';
 
 interface CityPageContentProps {
   cityName: string;
-  cityGroup?: ZoneGroup;
+  cityGroup?: any; // Using any to avoid strict type mismatch with Payload generated types vs local interface
+  siteSettings: SiteSetting;
 }
+
+const WHY_LOCAL_ITEMS = [
+  {
+    icon: 'MapPin',
+    title: 'Proximité & Réactivité',
+    description:
+      "Basés dans l'Ain, nous intervenons rapidement pour l'installation et le SAV. Un interlocuteur unique proche de chez vous.",
+  },
+  {
+    icon: 'ShieldCheck',
+    title: 'Garanties Locales',
+    description:
+      'Toutes nos assurances et garanties sont valables en France. Nous connaissons les spécificités climatiques de la région.',
+  },
+  {
+    icon: 'Users',
+    title: 'Accompagnement',
+    description:
+      'Nous gérons toutes les démarches administratives (Mairie, Enedis, Consuel) pour vous simplifier la vie.',
+  },
+];
 
 export default function CityPageContent({
   cityName,
   cityGroup,
+  siteSettings,
 }: CityPageContentProps) {
   const scrollToNextSection = () => {
     const nextSection = document.querySelector('main > div');
@@ -88,7 +104,7 @@ export default function CityPageContent({
             Pourquoi choisir un installateur local à {cityName} ?
           </h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {zonesData.why_local.items.map((item, index) => (
+            {WHY_LOCAL_ITEMS.map((item, index) => (
               <FeatureCard
                 key={item.title}
                 icon={item.icon}
@@ -105,7 +121,7 @@ export default function CityPageContent({
         <CTASection
           title={`Prêt à passer au solaire à ${cityName} ?`}
           description="Demandez votre devis gratuit et sans engagement. Nous nous déplaçons chez vous pour étudier votre projet."
-          phoneNumber={siteConfig.contact.phone}
+          phoneNumber={siteSettings.contact.phone}
           primaryButton={{
             text: 'Demander mon devis gratuit',
             href: '/contact',

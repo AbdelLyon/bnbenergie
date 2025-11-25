@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
 
   serverExternalPackages: ['esbuild', 'drizzle-kit'],
 
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [

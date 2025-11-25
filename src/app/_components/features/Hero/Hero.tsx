@@ -1,6 +1,40 @@
-import headerData from '@/data/headerData.json';
+import { getPageHeader, getStats } from '@/app/_lib/payload-queries';
 import { HeroClient } from './HeroClient';
 
-export function Hero() {
-  return <HeroClient data={headerData} />;
+// Images statiques pour l'instant (à migrer vers Payload plus tard si nécessaire)
+const heroImages = [
+  'https://images.unsplash.com/photo-1463173904305-ba479d2123b7?q=80&w=2070&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1634412115855-46264464c6b0?q=80&w=2070&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1611365892117-00ac5ef43c90?q=80&w=2070&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1491677533189-49af044391ed?q=80&w=2070&auto=format&fit=crop',
+];
+
+const heroImageAlts = [
+  'Installation panneaux solaires photovoltaïques toiture maison Bourg-en-Bresse Ain - Entreprise RGE QualiPV BNB ÉNERGIE',
+  'Panneaux solaires modernes installation professionnelle - BNB ÉNERGIE expert photovoltaïque Ain 01',
+  'Pose panneaux solaires résidentiels autoconsommation Ain 01 - Installateur certifié professionnel garantie décennale',
+  'Panneaux photovoltaïques installation professionnelle Bourg-en-Bresse - Devis gratuit entreprise RGE 48h',
+];
+
+export async function Hero() {
+  const header = await getPageHeader('home');
+  const stats = await getStats();
+
+  const data = {
+    heroImages,
+    heroImageAlts,
+    chip: header?.badge || 'Certifié RGE QualiPV',
+    title: ['BNB ', 'ÉNERGIE'], // Titre spécifique avec style différent pour "ÉNERGIE"
+    subtitle:
+      header?.subtitle || "Expert Photovoltaïque dans l'Ain (01) - BNB ÉNERGIE",
+    description:
+      header?.description ||
+      'Solutions solaires pour réduire vos factures, valoriser votre bien et contribuer à un avenir durable.',
+    cta1: 'Devis Gratuit',
+    cta2: 'Nous Appeler',
+    cta2_href: 'tel:0781251125',
+    stats: stats,
+  };
+
+  return <HeroClient data={data} />;
 }

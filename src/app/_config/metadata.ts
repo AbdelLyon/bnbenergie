@@ -1,9 +1,7 @@
 import { Metadata } from 'next';
-import siteConfig from '@/data/siteConfig.json';
+import { getSiteSettings } from '@/app/_lib/payload-queries';
 
-const baseUrl = siteConfig.domain;
-
-export function generateMetadata({
+export async function generateMetadata({
   title,
   description,
   path = '',
@@ -15,7 +13,9 @@ export function generateMetadata({
   path?: string;
   keywords?: string[];
   images?: Array<{ url: string; width: number; height: number; alt: string }>;
-}): Metadata {
+}): Promise<Metadata> {
+  const siteConfig = await getSiteSettings();
+  const baseUrl = siteConfig.domain;
   const url = `${baseUrl}${path}`;
   const defaultImage = {
     url: `${baseUrl}/opengraph-image`,
@@ -24,13 +24,13 @@ export function generateMetadata({
     alt: title,
   };
 
+  const seoKeywords =
+    siteConfig.seo?.keywords?.map((k: any) => k.keyword) || [];
+
   return {
     title,
     description,
-    keywords:
-      keywords.length > 0
-        ? [...keywords, ...siteConfig.seo.keywords]
-        : siteConfig.seo.keywords,
+    keywords: keywords.length > 0 ? [...keywords, ...seoKeywords] : seoKeywords,
 
     alternates: {
       canonical: url,
@@ -68,17 +68,27 @@ export function generateMetadata({
   };
 }
 
+// Default metadata with placeholder values
+// Pages should override these with their own metadata
 export const defaultMetadata: Metadata = {
-  metadataBase: new URL(siteConfig.domain),
+  metadataBase: new URL(
+    process.env['NEXT_PUBLIC_SITE_URL'] || 'https://bnbenergie.fr'
+  ),
   title: {
-    default: siteConfig.seo.title,
-    template: siteConfig.seo.titleTemplate,
+    default: 'BNB ÉNERGIE | Installation Panneaux Solaires',
+    template: '%s | BNB ÉNERGIE',
   },
-  description: siteConfig.seo.description,
-  keywords: siteConfig.seo.keywords,
-  authors: [{ name: siteConfig.siteName }],
-  creator: siteConfig.siteName,
-  publisher: siteConfig.siteName,
+  description:
+    "Expert en installation de panneaux solaires photovoltaïques dans l'Ain (01). Devis gratuit, entreprise RGE QualiPV.",
+  keywords: [
+    'panneaux solaires',
+    'installation photovoltaïque',
+    'Ain',
+    'RGE QualiPV',
+  ],
+  authors: [{ name: 'BNB ÉNERGIE' }],
+  creator: 'BNB ÉNERGIE',
+  publisher: 'BNB ÉNERGIE',
 
   icons: {
     icon: '/logo.svg',
@@ -94,25 +104,19 @@ export const defaultMetadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    url: siteConfig.domain,
-    title: `${siteConfig.siteName} | Expert Photovoltaïque`,
-    description: siteConfig.seo.description,
-    siteName: siteConfig.siteName,
+    siteName: 'BNB ÉNERGIE',
     images: [
       {
-        url: `${siteConfig.domain}/opengraph-image`,
+        url: '/opengraph-image',
         width: 1200,
         height: 630,
-        alt: `Installation Panneaux Solaires à ${siteConfig.address.locality} (${siteConfig.address.zip}) - Expert Photovoltaïque ${siteConfig.address.region}`,
+        alt: 'BNB ÉNERGIE - Installation Panneaux Solaires',
       },
     ],
   },
 
   twitter: {
     card: 'summary_large_image',
-    title: `${siteConfig.siteName} (${siteConfig.address.zip})`,
-    description: siteConfig.seo.description,
-    images: [`${siteConfig.domain}/opengraph-image`],
   },
 
   robots: {
@@ -127,18 +131,11 @@ export const defaultMetadata: Metadata = {
     },
   },
 
-  alternates: {
-    canonical: siteConfig.domain,
-  },
-
   verification: {
-    google: siteConfig.verification.google,
+    google: process.env['NEXT_PUBLIC_GOOGLE_VERIFICATION'],
   },
 
   other: {
     'geo.region': 'FR-01',
-    'geo.placename': siteConfig.address.locality,
-    'geo.position': `${siteConfig.geo.latitude};${siteConfig.geo.longitude}`,
-    ICBM: `${siteConfig.geo.latitude}, ${siteConfig.geo.longitude}`,
   },
 };

@@ -10,11 +10,3 @@ export function slugify(text: string): string {
     .replace(/^-+/, '') // Trim - from start of text
     .replace(/-+$/, ''); // Trim - from end of text
 }
-
-export function deslugify(slug: string): string {
-  // This is a basic implementation. For better results, we should match against the original data.
-  return slug
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-}

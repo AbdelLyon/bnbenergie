@@ -1,7 +1,9 @@
 import { MetadataRoute } from 'next';
-import siteConfig from '@/data/siteConfig.json';
+import { getSiteSettings } from './_lib/payload-queries';
 
-export default function robots(): MetadataRoute.Robots {
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  const siteConfig = await getSiteSettings();
+
   return {
     rules: [
       {

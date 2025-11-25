@@ -9,9 +9,34 @@ import { useScrollPosition, useBodyScrollLock } from '@/app/_hooks';
 import { getLucideIcon } from '@/app/_utils/getLucideIcon';
 import { Logo as LogoIcon } from '@/app/_components/shared/ui/Logo';
 
-import type { megaMenuData } from '@/data/megaMenuData';
-
-type MegaMenuData = typeof megaMenuData;
+type MegaMenuData = {
+  logo: {
+    title: string;
+    subtitle: string;
+  };
+  menuCategories: Array<{
+    label: string;
+    type: 'link' | 'mega';
+    href?: string;
+    icon: string;
+    description?: string;
+    sections?: Array<{
+      title: string;
+      links: Array<{
+        label: string;
+        href: string;
+        description: string;
+        icon: string;
+      }>;
+    }>;
+    order: number;
+  }>;
+  cta: {
+    label: string;
+    phone: string;
+    phoneHref: string;
+  };
+};
 
 type LogoPrpos = {
   isScrolled: boolean;
@@ -160,7 +185,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                                         const IconComponent = getLucideIcon(
                                           link.icon
                                         );
-                                        
+
                                         const iconColors: Record<
                                           string,
                                           string

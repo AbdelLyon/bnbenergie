@@ -13,9 +13,17 @@ import {
 } from '@/app/_components/shared/layout/SectionWrapper';
 import { BackgroundEffects } from '@/app/_components/shared/effects/BackgroundEffects';
 import { ProjectCard } from '@/app/_components/features/Realisations/components/ProjectCard';
-import realisationsHeaderData from '@/data/realisationsHeaderData.json';
-import realisationsData from '@/data/realisationsData.json';
-import siteConfig from '@/data/siteConfig.json';
+import type {
+  Project,
+  PageHeader as PageHeaderType,
+  SiteSetting,
+} from '@/payload-types';
+
+interface RealisationsPageContentProps {
+  projects: Project[];
+  header: PageHeaderType | null;
+  siteSettings: SiteSetting;
+}
 
 const stats = [
   { value: '100+', label: 'Installations Réalisées', icon: 'CircleCheck' },
@@ -23,15 +31,19 @@ const stats = [
   { value: '100%', label: 'Clients Satisfaits', icon: 'Star' },
 ];
 
-export default function RealisationsPageContent() {
+export default function RealisationsPageContent({
+  projects,
+  header,
+  siteSettings,
+}: RealisationsPageContentProps) {
   const [selectedFilter, setSelectedFilter] = useState<string>('all');
 
   const powers = ['all', '3 kWc', '4.5 kWc', '6 kWc', '7.5 kWc', '9 kWc'];
 
   const filteredProjects =
     selectedFilter === 'all'
-      ? realisationsData.projects
-      : realisationsData.projects.filter((p) => p.power === selectedFilter);
+      ? projects
+      : projects.filter((p) => p.power === selectedFilter);
 
   const scrollToNextSection = () => {
     const nextSection = document.querySelector('main > div');
@@ -42,15 +54,15 @@ export default function RealisationsPageContent() {
 
   return (
     <main className="min-h-screen bg-linear-to-b from-white via-gray-50/30 to-white">
-      {}
+      {/* Header */}
       <PageHeader
         variant="simple"
         height="medium"
         bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
       >
         <Title
-          title={realisationsHeaderData.title}
-          subtitle={realisationsHeaderData.subtitle}
+          title={['Nos Réalisations', header?.title || 'Nos Réalisations']}
+          subtitle={header?.subtitle || ''}
         />
         <motion.p
           initial={{ opacity: 0 }}
@@ -58,12 +70,12 @@ export default function RealisationsPageContent() {
           transition={{ duration: 0.3, delay: 0.15 }}
           className="max-w-4xl px-4 text-sm leading-relaxed text-white/80 sm:text-base md:text-lg lg:text-xl"
         >
-          {realisationsHeaderData.description}
+          {header?.description || ''}
         </motion.p>
       </PageHeader>
 
       <SectionContainer>
-        {}
+        {/* Stats */}
         <div className="relative z-20 -mt-20 mb-20">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {stats.map((stat, index) => (
@@ -78,7 +90,7 @@ export default function RealisationsPageContent() {
           </div>
         </div>
 
-        {}
+        {/* Intro */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -95,7 +107,7 @@ export default function RealisationsPageContent() {
             Découvrez quelques-unes de nos installations certifiées RGE QualiPV.
           </p>
 
-          {}
+          {/* Filtres */}
           <div className="flex flex-wrap justify-center gap-3">
             {powers.map((power) => (
               <motion.button
@@ -115,14 +127,14 @@ export default function RealisationsPageContent() {
           </div>
         </motion.div>
 
-        {}
+        {/* Projets */}
         <div className="mb-20 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {filteredProjects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
 
-        {}
+        {/* Témoignages (statiques pour l'instant) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -198,7 +210,7 @@ export default function RealisationsPageContent() {
         </motion.div>
       </SectionContainer>
 
-      {}
+      {/* CTA */}
       <SectionWrapper
         background="gradient"
         className="relative overflow-hidden"
@@ -226,17 +238,17 @@ export default function RealisationsPageContent() {
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-8 py-4 text-lg font-bold text-blue-600 shadow-lg transition-all duration-300 hover:bg-blue-50 hover:shadow-xl"
               >
-                {realisationsData.cta}
+                Demander mon devis
                 <ArrowRight className="h-5 w-5" />
               </motion.a>
               <motion.a
-                href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
+                href={`tel:${siteSettings.contact?.phone?.replace(/\s/g, '') || '0781251125'}`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/30 bg-white/10 px-8 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20"
               >
                 <Phone className="h-5 w-5" />
-                Appelez-nous : {siteConfig.contact.phone}
+                Appelez-nous : {siteSettings.contact?.phone || '07 81 25 11 25'}
               </motion.a>
             </div>
           </motion.div>

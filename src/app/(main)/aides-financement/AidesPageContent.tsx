@@ -8,12 +8,29 @@ import { CTASection } from '@/app/_components/shared/ui/CTASection';
 import { IntroSection } from '@/app/_components/shared/ui/IntroSection';
 import { ScrollDownButton } from '@/app/_components/shared/ui/ScrollDownButton';
 import { StatsGrid } from '@/app/_components/shared/ui/StatsGrid';
-import aidesData from '@/data/aidesData.json';
-import aidesHeaderData from '@/data/aidesHeaderData.json';
-import siteConfig from '@/data/siteConfig.json';
 import { motion } from 'framer-motion';
+import type {
+  FinancialAid,
+  PageHeader as PageHeaderType,
+  SiteSetting,
+} from '@/payload-types';
 
-export default function AidesPageContent() {
+interface AidesPageContentProps {
+  aids: {
+    main: FinancialAid[];
+    local: FinancialAid[];
+    financing: FinancialAid[];
+    roi: FinancialAid[];
+  };
+  header: PageHeaderType | null;
+  siteSettings: SiteSetting;
+}
+
+export default function AidesPageContent({
+  aids,
+  header,
+  siteSettings,
+}: AidesPageContentProps) {
   const scrollToNextSection = () => {
     const nextSection = document.querySelector('main > div');
     if (nextSection) {
@@ -30,8 +47,11 @@ export default function AidesPageContent() {
         bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
       >
         <Title
-          title={aidesHeaderData.title}
-          subtitle={aidesHeaderData.subtitle}
+          title={[
+            'Aides & Financement',
+            header?.title || 'Aides & Financement',
+          ]}
+          subtitle={header?.subtitle || ''}
         />
         <motion.p
           initial={{ opacity: 0 }}
@@ -39,59 +59,153 @@ export default function AidesPageContent() {
           transition={{ duration: 0.3, delay: 0.15 }}
           className="max-w-4xl px-4 text-sm leading-relaxed text-white/80 sm:text-base md:text-lg lg:text-xl"
         >
-          {aidesHeaderData.description}
+          {header?.description || ''}
         </motion.p>
       </PageHeader>
 
       <SectionContainer>
-        {/* Stats flottantes */}
+        {/* Stats */}
         <StatsGrid
-          stats={aidesData.stats.map((stat) => ({
-            ...stat,
-            gradient: 'from-green-500 to-emerald-500',
-          }))}
+          stats={[
+            {
+              value: "Jusqu'à 2 520€",
+              label: 'Prime Autoconsommation',
+              icon: 'DollarSign',
+              gradient: 'from-green-500 to-emerald-500',
+            },
+            {
+              value: '0,13€/kWh',
+              label: 'Tarif de Rachat EDF',
+              icon: 'TrendingUp',
+              gradient: 'from-blue-500 to-cyan-500',
+            },
+            {
+              value: '20-30%',
+              label: "Économies d'Électricité",
+              icon: 'PiggyBank',
+              gradient: 'from-orange-500 to-yellow-500',
+            },
+          ]}
         />
 
         {/* Introduction */}
         <IntroSection
-          title={aidesData.intro.title}
-          description={aidesData.intro.description}
+          title="Des Aides Attractives pour Votre Transition Énergétique"
+          description="L'État français encourage fortement l'installation de panneaux solaires en proposant plusieurs dispositifs d'aides financières. BNB ÉNERGIE, certifié RGE QualiPV, vous permet de bénéficier de toutes ces aides et vous accompagne dans les démarches administratives."
         />
 
         {/* Aides principales */}
-        <div className="mb-20">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 md:text-4xl"
-          >
-            {aidesData.main_aids.title}
-          </motion.h2>
-          <div className="space-y-8">
-            {aidesData.main_aids.items.map((aid, index) => (
-              <AidCard
-                key={aid.title}
-                icon={aid.icon}
-                badge={aid.badge}
-                title={aid.title}
-                subtitle={aid.subtitle}
-                description={aid.description}
-                gradient={aid.gradient}
-                conditions={aid.conditions}
-                amounts={aid.amounts}
-                index={index}
-              />
-            ))}
+        {aids.main.length > 0 && (
+          <div className="mb-20">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+              className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 md:text-4xl"
+            >
+              Les Principales Aides Disponibles
+            </motion.h2>
+            <div className="space-y-8">
+              {aids.main.map((aid, index) => (
+                <AidCard
+                  key={aid.id}
+                  icon={aid.icon}
+                  badge={aid.badge || ''}
+                  title={aid.title}
+                  subtitle={aid.subtitle || ''}
+                  description={aid.description}
+                  gradient={aid.gradient || 'from-green-500 to-emerald-500'}
+                  conditions={aid.conditions?.map((c: any) => c.text) || []}
+                  amounts={
+                    aid.amounts?.map((a) => ({
+                      power: a.power,
+                      amount: a.amount,
+                      example: a.example || undefined,
+                      bestFor: a.bestFor || undefined,
+                    })) || []
+                  }
+                  index={index}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
+
+        {/* Aides locales */}
+        {aids.local.length > 0 && (
+          <div className="mb-20">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+              className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 md:text-4xl"
+            >
+              Aides Locales & Complémentaires
+            </motion.h2>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              {aids.local.map((aid) => (
+                <div
+                  key={aid.id}
+                  className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm"
+                >
+                  <h3 className="mb-2 text-xl font-bold text-neutral-900">
+                    {aid.title}
+                  </h3>
+                  <p className="text-neutral-600">{aid.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Solutions de financement */}
+        {aids.financing.length > 0 && (
+          <div className="mb-20">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+              className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 md:text-4xl"
+            >
+              Solutions de Financement
+            </motion.h2>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              {aids.financing.map((option) => (
+                <div
+                  key={option.id}
+                  className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm"
+                >
+                  <h3 className="mb-2 text-xl font-bold text-neutral-900">
+                    {option.title}
+                  </h3>
+                  <p className="mb-4 text-neutral-600">{option.description}</p>
+                  {option.features && option.features.length > 0 && (
+                    <ul className="space-y-2">
+                      {option.features.map((feature: any, idx: number) => (
+                        <li
+                          key={idx}
+                          className="flex items-start text-sm text-neutral-600"
+                        >
+                          <span className="mr-2">✓</span>
+                          {feature.text}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Call-to-Action */}
         <CTASection
-          title={aidesData.cta.title}
-          description={aidesData.cta.subtitle}
-          phoneNumber={siteConfig.contact.phone}
+          title="Calculez Vos Aides et Économies"
+          description="Demandez votre étude personnalisée gratuite et découvrez combien vous pouvez économiser"
+          phoneNumber={siteSettings.contact?.phone || '07 81 25 11 25'}
           primaryButton={{
             text: 'Demander mon devis',
             href: '/contact',

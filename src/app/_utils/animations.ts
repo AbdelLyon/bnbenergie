@@ -37,22 +37,6 @@ export const createFadeInUpAnimation = (
 };
 
 /**
- * Create a card hover animation configuration
- * @returns Framer Motion hover variants
- */
-export const createCardHoverAnimation = () => {
-  return {
-    whileHover: {
-      y: -4, // Équivalent à -translate-y-1 (0.25rem = 4px)
-      transition: {
-        duration: 0.3,
-        ease: [0.4, 0, 0.2, 1] as const,
-      },
-    },
-  };
-};
-
-/**
  * Standard viewport configuration for scroll animations
  */
 export const SCROLL_VIEWPORT = {

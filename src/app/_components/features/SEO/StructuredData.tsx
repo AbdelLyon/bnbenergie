@@ -1,6 +1,8 @@
-import siteConfig from '@/data/siteConfig.json';
+import { getSiteSettings } from '@/app/_lib/payload-queries';
 
-export function LocalBusinessStructuredData() {
+export async function LocalBusinessStructuredData() {
+  const siteConfig = await getSiteSettings();
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
@@ -22,7 +24,7 @@ export function LocalBusinessStructuredData() {
     address: {
       '@type': 'PostalAddress',
       streetAddress: siteConfig.address.street,
-      addressLocality: siteConfig.address.locality,
+      addressLocality: siteConfig.address.locality || siteConfig.address.city,
       addressRegion: siteConfig.address.region,
       postalCode: siteConfig.address.zip,
       addressCountry: siteConfig.address.country,
@@ -60,7 +62,9 @@ export function LocalBusinessStructuredData() {
       'Dépannage Panneaux Solaires',
     ],
 
-    sameAs: [siteConfig.social.facebook, siteConfig.social.instagram],
+    sameAs: [siteConfig.social?.facebook, siteConfig.social?.instagram].filter(
+      Boolean
+    ),
 
     aggregateRating: {
       '@type': 'AggregateRating',
@@ -113,7 +117,9 @@ export function LocalBusinessStructuredData() {
   );
 }
 
-export function WebSiteStructuredData() {
+export async function WebSiteStructuredData() {
+  const siteConfig = await getSiteSettings();
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -143,7 +149,9 @@ export function WebSiteStructuredData() {
   );
 }
 
-export function OrganizationStructuredData() {
+export async function OrganizationStructuredData() {
+  const siteConfig = await getSiteSettings();
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -162,7 +170,9 @@ export function OrganizationStructuredData() {
       areaServed: 'FR',
       availableLanguage: 'French',
     },
-    sameAs: [siteConfig.social.facebook, siteConfig.social.instagram],
+    sameAs: [siteConfig.social?.facebook, siteConfig.social?.instagram].filter(
+      Boolean
+    ),
   };
 
   return (
@@ -223,7 +233,9 @@ export function BreadcrumbStructuredData({
   );
 }
 
-export function ServiceStructuredData() {
+export async function ServiceStructuredData() {
+  const siteConfig = await getSiteSettings();
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -302,7 +314,9 @@ export function ServiceStructuredData() {
   );
 }
 
-export function PricingStructuredData() {
+export async function PricingStructuredData() {
+  const siteConfig = await getSiteSettings();
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',

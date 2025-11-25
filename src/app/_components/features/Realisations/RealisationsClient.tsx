@@ -10,6 +10,7 @@ import { Button } from '@heroui/button';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { ProjectCard } from './components/ProjectCard';
+import type { Project } from '@/payload-types';
 
 interface RealisationsData {
   header: {
@@ -17,15 +18,7 @@ interface RealisationsData {
     title: string;
     subtitle: string;
   };
-  projects: Array<{
-    id: number;
-    title: string;
-    location: string;
-    description: string;
-    power: string;
-    panels: string;
-    image: string;
-  }>;
+  projects: Project[];
   cta: string;
 }
 
@@ -42,7 +35,9 @@ export function RealisationsClient({ data }: { data: RealisationsData }) {
           subtitle={data.header.subtitle}
         />
 
-        <div className={`grid auto-rows-[1fr] items-stretch md:grid-cols-3 ${SPACING.grid.gap}`}>
+        <div
+          className={`grid auto-rows-[1fr] items-stretch md:grid-cols-3 ${SPACING.grid.gap}`}
+        >
           {data.projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
