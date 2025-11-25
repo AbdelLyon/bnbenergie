@@ -1,14 +1,13 @@
-import { generateMetadata as generateMetadataHelper } from '@/app/_config/metadata';
+import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
 import { Metadata } from 'next';
 import FAQPageContent from './FAQPageContent';
 import {
   getFaqs,
   getPageHeader,
   getSiteSettings,
-} from '@/app/_lib/payload-queries';
+} from '@/lib/payload-queries';
 
 export const dynamic = 'force-static';
-export const revalidate = 60; // Revalide toutes les 60 secondes
 
 export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataHelper({

@@ -1,12 +1,12 @@
 import { Lato, Montserrat } from 'next/font/google';
-import Footer from '../_components/features/Footer/Footer';
-import { Navbar } from '../_components/features/Navigation/Navbar';
+import { Footer } from '@/components/shared/Footer/Footer';
+import { Navbar } from '@/components/shared/Navigation/Navbar';
 import {
   LocalBusinessStructuredData,
   OrganizationStructuredData,
   WebSiteStructuredData,
-} from '../_components/features/SEO/StructuredData';
-import { defaultMetadata } from '../_config/metadata';
+} from '@/components/shared/SEO/StructuredData';
+import { defaultMetadata } from '@/config/metadata';
 import { Providers } from '../providers';
 
 const lato = Lato({
@@ -41,7 +41,10 @@ export default function MainLayout({
       <head>
         <meta httpEquiv="content-language" content="fr" />
       </head>
-      <body className={`${lato.variable} ${montserrat.variable} antialiased`} suppressHydrationWarning>
+      <body
+        className={`${lato.variable} ${montserrat.variable} antialiased`}
+        suppressHydrationWarning
+      >
         <Providers>
           <Navbar />
           {children}

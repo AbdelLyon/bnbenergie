@@ -1,14 +1,16 @@
 'use client';
 
-import { Title } from '@/app/_components/features/Hero/Title';
-import { PageHeader } from '@/app/_components/shared/layout/PageHeader/PageHeader';
-import { SectionContainer } from '@/app/_components/shared/layout/SectionWrapper';
-import { CTASection } from '@/app/_components/shared/ui/CTASection';
-import { FeatureCard } from '@/app/_components/shared/ui/FeatureCard';
-import { IntroSection } from '@/app/_components/shared/ui/IntroSection';
-import { ScrollDownButton } from '@/app/_components/shared/ui/ScrollDownButton';
-import { ServiceStep } from '@/app/_components/shared/ui/ServiceStep';
-import { StatsGrid } from '@/app/_components/shared/ui/StatsGrid';
+import {
+  StatsGrid,
+  PageHeader,
+  ScrollDownButton,
+  SectionContainer,
+  Title,
+  IntroSection,
+  FeatureCard,
+  CTASection,
+  ServiceStep,
+} from '@/components';
 import { motion } from 'framer-motion';
 import type {
   Service,
@@ -47,7 +49,7 @@ export default function ServicesPageContent({
         bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
       >
         <Title
-          title={['Nos Services', header?.title || 'Nos Services']}
+          title={header?.title.split(' ') || ['Nos Services']}
           subtitle={header?.subtitle || ''}
         />
         <motion.p

@@ -108,6 +108,7 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
+  fallbackLocale: null;
   globals: {
     'site-settings': SiteSetting;
     navigation: Navigation;
@@ -218,6 +219,23 @@ export interface PageHeader {
    * Nom de l'icône Lucide (ex: Sun, Zap, Shield)
    */
   icon?: string | null;
+  /**
+   * Images de carousel pour le header (si applicable)
+   */
+  heroImages?:
+    | {
+        image: number | Media;
+        /**
+         * Texte alternatif pour l'accessibilité et le SEO
+         */
+        alt: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Image unique pour le header (alternative au carousel)
+   */
+  singleImage?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -729,6 +747,14 @@ export interface PageHeadersSelect<T extends boolean = true> {
   description?: T;
   badge?: T;
   icon?: T;
+  heroImages?:
+    | T
+    | {
+        image?: T;
+        alt?: T;
+        id?: T;
+      };
+  singleImage?: T;
   updatedAt?: T;
   createdAt?: T;
 }

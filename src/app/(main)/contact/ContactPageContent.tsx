@@ -5,17 +5,14 @@ import { motion } from 'framer-motion';
 import { CheckCircle2, Send, AlertCircle } from 'lucide-react';
 import { useState, useActionState, useEffect } from 'react';
 
-import { sendContactEmail } from '@/app/actions/contact';
-import { Title } from '../../_components/features/Hero';
-import { PageHeader } from '../../_components/shared/layout/PageHeader';
-import { SectionContainer } from '../../_components/shared/layout/SectionWrapper';
-import { ScrollDownButton } from '../../_components/shared/ui/ScrollDownButton';
-import { StatCard } from '../../_components/shared/ui/StatCard';
-import { getLucideIcon } from '../../_utils/getLucideIcon';
+import { sendContactEmail } from '@/actions/contact';
+
 import type {
   PageHeader as PageHeaderType,
   SiteSetting,
 } from '@/payload-types';
+import { getLucideIcon } from '@/utils/getLucideIcon';
+import { PageHeader, ScrollDownButton, SectionContainer, StatCard, Title } from '@/components';
 
 interface ContactPageContentProps {
   header: PageHeaderType | null;
@@ -80,7 +77,9 @@ export default function ContactPageContent({
       icon: 'Phone',
       label: 'TÉLÉPHONE',
       value: siteSettings.contact?.phone || '07 81 25 11 25',
-      href: `tel:${siteSettings.contact?.phone?.replace(/\s/g, '') || '0781251125'}`,
+      href: `tel:${
+        siteSettings.contact?.phone?.replace(/\s/g, '') || '0781251125'
+      }`,
       description: 'Du lundi au vendredi, 8h-19h',
     },
     {
@@ -139,7 +138,7 @@ export default function ContactPageContent({
         bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
       >
         <Title
-          title={header?.title.split(',') ?? ['Contactez-nous']}
+          title={header?.title.split(' ') ?? ['Contactez-nous']}
           subtitle={header?.subtitle ?? ''}
         />
 
@@ -484,7 +483,11 @@ export default function ContactPageContent({
           <div className="overflow-hidden rounded-3xl border border-white/60 bg-white/70 p-3 shadow-xl backdrop-blur-xl">
             <div className="relative h-[450px] w-full overflow-hidden rounded-2xl">
               <iframe
-                src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2761.5!2d${siteSettings.geo?.longitude || '5.2255'}!3d${siteSettings.geo?.latitude || '46.2059'}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDbCsDEyJzIxLjIiTiA1wrAxMyczMS44IkU!5e0!3m2!1sfr!2sfr!4v1234567890`}
+                src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2761.5!2d${
+                  siteSettings.geo?.longitude || '5.2255'
+                }!3d${
+                  siteSettings.geo?.latitude || '46.2059'
+                }!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDbCsDEyJzIxLjIiTiA1wrAxMyczMS44IkU!5e0!3m2!1sfr!2sfr!4v1234567890`}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

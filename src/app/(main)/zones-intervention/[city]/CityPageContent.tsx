@@ -1,13 +1,15 @@
 'use client';
 
-import { Title } from '@/app/_components/features/Hero/Title';
-import { PageHeader } from '@/app/_components/shared/layout/PageHeader/PageHeader';
-import { SectionContainer } from '@/app/_components/shared/layout/SectionWrapper';
-import { CTASection } from '@/app/_components/shared/ui/CTASection';
-import { FeatureCard } from '@/app/_components/shared/ui/FeatureCard';
-import { IntroSection } from '@/app/_components/shared/ui/IntroSection';
-import { ScrollDownButton } from '@/app/_components/shared/ui/ScrollDownButton';
-import { StatsGrid } from '@/app/_components/shared/ui/StatsGrid';
+import {
+  Title,
+  PageHeader,
+  SectionContainer,
+  CTASection,
+  FeatureCard,
+  IntroSection,
+  ScrollDownButton,
+  StatsGrid,
+} from '@/components';
 import { SiteSetting } from '@/payload-types';
 
 interface CityPageContentProps {

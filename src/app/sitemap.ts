@@ -1,9 +1,9 @@
 import { MetadataRoute } from 'next';
-import { slugify } from '@/app/_utils/slugify';
+import { slugify } from '@/utils/slugify';
 import {
   getSiteSettings,
   getInterventionZones,
-} from '@/app/_lib/payload-queries';
+} from '@/lib/payload-queries';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [siteConfig, zones] = await Promise.all([

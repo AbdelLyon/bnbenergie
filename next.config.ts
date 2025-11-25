@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   compress: true,
   trailingSlash: false,
 
-  serverExternalPackages: ['esbuild', 'drizzle-kit'],
+  serverExternalPackages: ['esbuild', 'drizzle-kit', 'pg', 'pg-native', 'payload', '@payloadcms/db-postgres'],
 
   eslint: {
     ignoreDuringBuilds: true,
@@ -22,7 +22,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'enegerie.vercel.app',
+        hostname: 'bnbenergie.vercel.app',
       },
       {
         protocol: 'http',

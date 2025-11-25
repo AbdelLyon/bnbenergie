@@ -1,18 +1,17 @@
-import { About } from '../_components/features/About/About';
-import { Benefits } from '../_components/features/Benefits/Benefits';
-import { Hero } from '../_components/features/Hero/Hero';
-import { Pricing } from '../_components/features/Pricing/Pricing';
-import { Realisations } from '../_components/features/Realisations/Realisations';
-import { PricingStructuredData } from '../_components/features/SEO/StructuredData';
+import { About } from '@/app/(main)/_components/About/About';
+import { Benefits } from '@/app/(main)/_components/Benefits/Benefits';
+import { HomeHeader } from '@/app/(main)/_components/HomeHeader/HomeHeader';
+import { Pricing } from '@/app/(main)/_components/Pricing/Pricing';
+import { Realisations } from '@/app/(main)/_components/Realisations/Realisations';
+import { PricingStructuredData } from '@/components/shared/SEO/StructuredData';
 
 export const dynamic = 'force-static';
-export const revalidate = 60; // Revalide toutes les 60 secondes
 
 export default function Home() {
   return (
     <>
       <main className="min-h-screen bg-white">
-        <Hero />
+        <HomeHeader />
         <About />
         <Benefits />
         <Realisations />

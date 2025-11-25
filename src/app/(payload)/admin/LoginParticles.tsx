@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 
 const ParticlesEffect = dynamic(
   () =>
-    import('../../_components/shared/effects/ParticlesEffect').then(
+    import('../../../components/shared/effects/ParticlesEffect').then(
       (mod) => mod.ParticlesEffect
     ),
   { ssr: false }

@@ -1,13 +1,15 @@
 'use client';
 
-import { Title } from '@/app/_components/features/Hero';
-import { PageHeader } from '@/app/_components/shared/layout/PageHeader';
-import { SectionContainer } from '@/app/_components/shared/layout/SectionWrapper';
-import { AidCard } from '@/app/_components/shared/ui/AidCard';
-import { CTASection } from '@/app/_components/shared/ui/CTASection';
-import { IntroSection } from '@/app/_components/shared/ui/IntroSection';
-import { ScrollDownButton } from '@/app/_components/shared/ui/ScrollDownButton';
-import { StatsGrid } from '@/app/_components/shared/ui/StatsGrid';
+import {
+  AidCard,
+  CTASection,
+  IntroSection,
+  PageHeader,
+  ScrollDownButton,
+  SectionContainer,
+  Title,
+} from '@/components';
+import { StatsGrid } from '@/components/shared/ui/StatsGrid';
 import { motion } from 'framer-motion';
 import type {
   FinancialAid,
@@ -47,10 +49,7 @@ export default function AidesPageContent({
         bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
       >
         <Title
-          title={[
-            'Aides & Financement',
-            header?.title || 'Aides & Financement',
-          ]}
+          title={header?.title.split(' ') || ['Aides Financement']}
           subtitle={header?.subtitle || ''}
         />
         <motion.p

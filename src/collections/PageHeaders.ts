@@ -55,5 +55,36 @@ export const PageHeaders: CollectionConfig = {
         description: 'Nom de l\'icône Lucide (ex: Sun, Zap, Shield)',
       },
     },
+    {
+      name: 'heroImages',
+      type: 'array',
+      admin: {
+        description: 'Images de carousel pour le header (si applicable)',
+      },
+      fields: [
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+        {
+          name: 'alt',
+          type: 'text',
+          required: true,
+          admin: {
+            description: 'Texte alternatif pour l\'accessibilité et le SEO',
+          },
+        },
+      ],
+    },
+    {
+      name: 'singleImage',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Image unique pour le header (alternative au carousel)',
+      },
+    },
   ],
 }
