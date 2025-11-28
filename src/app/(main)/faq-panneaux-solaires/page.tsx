@@ -7,7 +7,8 @@ import {
   getSiteSettings,
 } from '@/lib/payload-queries';
 
-export const dynamic = 'force-static';
+// Revalidate every 60 seconds (ISR - Incremental Static Regeneration)
+export const revalidate = 60;
 
 export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataHelper({

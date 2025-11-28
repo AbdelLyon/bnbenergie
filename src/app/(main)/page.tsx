@@ -5,7 +5,8 @@ import { Pricing } from '@/app/(main)/_components/Pricing/Pricing';
 import { Realisations } from '@/app/(main)/_components/Realisations/Realisations';
 import { PricingStructuredData } from '@/components/shared/SEO/StructuredData';
 
-export const dynamic = 'force-static';
+// Revalidate every 60 seconds (ISR - Incremental Static Regeneration)
+export const revalidate = 60;
 
 export default function Home() {
   return (
