@@ -49,6 +49,14 @@ export async function POST(request: NextRequest) {
       case 'page-headers':
         // Revalider toutes les pages si c'est un header
         revalidatePath('/', 'layout');
+        revalidatePath('/');
+        revalidatePath('/services');
+        revalidatePath('/garanties');
+        revalidatePath('/aides-financement');
+        revalidatePath('/zones-intervention');
+        revalidatePath('/faq-panneaux-solaires');
+        revalidatePath('/realisations');
+        revalidatePath('/contact');
         break;
 
       case 'site-settings':

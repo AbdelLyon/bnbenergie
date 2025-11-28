@@ -46,7 +46,7 @@ export async function HomeHeader() {
     heroImages,
     heroImageAlts,
     chip: header?.badge || 'Certifié RGE QualiPV',
-    title: ['BNB ', 'ÉNERGIE'], // Titre spécifique avec style différent pour "ÉNERGIE"
+    title: header?.title ? header.title.split(' ') : ['BNB ', 'ÉNERGIE'], // Utiliser le titre de Payload ou fallback
     subtitle:
       header?.subtitle || "Expert Photovoltaïque dans l'Ain (01) - BNB ÉNERGIE",
     description:
