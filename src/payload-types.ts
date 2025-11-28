@@ -74,6 +74,7 @@ export interface Config {
     warranties: Warranty;
     'financial-aids': FinancialAid;
     'intervention-zones': InterventionZone;
+    'packs-page': PacksPage;
     'pricing-packs': PricingPack;
     projects: Project;
     stats: Stat;
@@ -94,6 +95,7 @@ export interface Config {
     warranties: WarrantiesSelect<false> | WarrantiesSelect<true>;
     'financial-aids': FinancialAidsSelect<false> | FinancialAidsSelect<true>;
     'intervention-zones': InterventionZonesSelect<false> | InterventionZonesSelect<true>;
+    'packs-page': PacksPageSelect<false> | PacksPageSelect<true>;
     'pricing-packs': PricingPacksSelect<false> | PricingPacksSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     stats: StatsSelect<false> | StatsSelect<true>;
@@ -489,6 +491,60 @@ export interface InterventionZone {
   createdAt: string;
 }
 /**
+ * Contenu de la page Nos Packs
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "packs-page".
+ */
+export interface PacksPage {
+  id: number;
+  /**
+   * Titre de la section (ex: "Pourquoi Choisir Nos Packs")
+   */
+  title: string;
+  /**
+   * Type de section
+   */
+  section: 'stats' | 'intro' | 'advantages' | 'process';
+  /**
+   * Description de la section
+   */
+  description?: string | null;
+  /**
+   * Nom de l'icône Lucide (ex: "Zap", "Shield", "TrendingUp")
+   */
+  icon?: string | null;
+  /**
+   * Valeur pour les stats (ex: "100%", "3 ans", "500+")
+   */
+  value?: string | null;
+  /**
+   * Gradient Tailwind CSS (ex: "from-blue-500 to-cyan-500")
+   */
+  gradient?: string | null;
+  /**
+   * Liste de fonctionnalités/avantages
+   */
+  features?:
+    | {
+        /**
+         * Icône Lucide
+         */
+        icon: string;
+        title: string;
+        description: string;
+        gradient?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Ordre d'affichage (0 = premier)
+   */
+  order: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pricing-packs".
  */
@@ -629,6 +685,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'intervention-zones';
         value: number | InterventionZone;
+      } | null)
+    | ({
+        relationTo: 'packs-page';
+        value: number | PacksPage;
       } | null)
     | ({
         relationTo: 'pricing-packs';
@@ -869,6 +929,30 @@ export interface InterventionZonesSelect<T extends boolean = true> {
         id?: T;
       };
   gradient?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "packs-page_select".
+ */
+export interface PacksPageSelect<T extends boolean = true> {
+  title?: T;
+  section?: T;
+  description?: T;
+  icon?: T;
+  value?: T;
+  gradient?: T;
+  features?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        gradient?: T;
+        id?: T;
+      };
   order?: T;
   updatedAt?: T;
   createdAt?: T;

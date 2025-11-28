@@ -256,6 +256,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                 as="a"
                 href={data.cta.phoneHref}
                 size="sm"
+                radius="full"
                 className="ml-2 bg-linear-to-r from-blue-600 to-cyan-600 font-bold text-white shadow-md shadow-blue-500/20 transition-all hover:scale-105 hover:shadow-lg"
                 startContent={<Phone className="h-4 w-4" />}
               >

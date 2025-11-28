@@ -57,6 +57,7 @@ export async function POST(request: NextRequest) {
         revalidatePath('/faq-panneaux-solaires');
         revalidatePath('/realisations');
         revalidatePath('/contact');
+        revalidatePath('/nos-packs');
         break;
 
       case 'site-settings':

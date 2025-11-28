@@ -14,6 +14,7 @@ import { Services } from './collections/Services';
 import { Warranties } from './collections/Warranties';
 import { FinancialAids } from './collections/FinancialAids';
 import { InterventionZones } from './collections/InterventionZones';
+import { PacksPage } from './collections/PacksPage';
 import { SiteSettings } from './globals/SiteSettings';
 import { Navigation } from './globals/Navigation';
 
@@ -72,6 +73,7 @@ export default buildConfig({
     Warranties,
     FinancialAids,
     InterventionZones,
+    PacksPage,
     {
       slug: 'pricing-packs',
       admin: {
