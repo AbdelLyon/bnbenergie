@@ -44,7 +44,6 @@ export async function Navbar() {
     menuCategories,
     cta: {
       label: siteSettings.contact?.phone || '07 81 25 11 25',
-      phone: siteSettings.contact?.phone || '07 81 25 11 25',
       phoneHref: siteSettings.contact?.phone_href || 'tel:0781251125',
     },
   };

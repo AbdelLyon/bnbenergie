@@ -31,7 +31,7 @@ export function HeaderBackground({
       {/* Images de fond */}
       {images.map((image, index) => (
         <motion.div
-          key={image}
+          key={`${image}-${index}`}
           initial={{ opacity: 0, scale: 1 }}
           animate={{
             opacity:

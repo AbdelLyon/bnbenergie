@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload';
+import { createRevalidateHook } from '../lib/revalidate-hook';
 
 export const Warranties: CollectionConfig = {
   slug: 'warranties',
@@ -9,6 +10,9 @@ export const Warranties: CollectionConfig = {
   },
   access: {
     read: () => true,
+  },
+  hooks: {
+    afterChange: [createRevalidateHook('warranties')],
   },
   fields: [
     {

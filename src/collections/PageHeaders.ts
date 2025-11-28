@@ -1,4 +1,5 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from 'payload';
+import { createRevalidateHook } from '../lib/revalidate-hook';
 
 export const PageHeaders: CollectionConfig = {
   slug: 'page-headers',
@@ -9,6 +10,9 @@ export const PageHeaders: CollectionConfig = {
   access: {
     read: () => true,
   },
+  hooks: {
+    afterChange: [createRevalidateHook('page-headers')],
+  },
   fields: [
     {
       name: 'pageSlug',
@@ -16,7 +20,8 @@ export const PageHeaders: CollectionConfig = {
       required: true,
       unique: true,
       admin: {
-        description: 'Identifiant unique de la page (ex: home, services, contact)',
+        description:
+          'Identifiant unique de la page (ex: home, services, contact)',
       },
     },
     {
@@ -52,7 +57,7 @@ export const PageHeaders: CollectionConfig = {
       name: 'icon',
       type: 'text',
       admin: {
-        description: 'Nom de l\'icône Lucide (ex: Sun, Zap, Shield)',
+        description: "Nom de l'icône Lucide (ex: Sun, Zap, Shield)",
       },
     },
     {
@@ -73,7 +78,7 @@ export const PageHeaders: CollectionConfig = {
           type: 'text',
           required: true,
           admin: {
-            description: 'Texte alternatif pour l\'accessibilité et le SEO',
+            description: "Texte alternatif pour l'accessibilité et le SEO",
           },
         },
       ],
@@ -87,4 +92,4 @@ export const PageHeaders: CollectionConfig = {
       },
     },
   ],
-}
+};

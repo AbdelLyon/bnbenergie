@@ -61,8 +61,8 @@ export const Footer = async () => {
             Zones d&apos;Intervention
           </h3>
           <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-start text-sm text-gray-400 md:grid-cols-4 lg:grid-cols-6">
-            {cities.map((city) => (
-              <p key={city}>{city}</p>
+            {cities.map((city, index) => (
+              <p key={`${city}-${index}`}>{city}</p>
             ))}
           </div>
         </div>

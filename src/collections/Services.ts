@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload';
+import { createRevalidateHook } from '../lib/revalidate-hook';
 
 export const Services: CollectionConfig = {
   slug: 'services',
@@ -9,6 +10,9 @@ export const Services: CollectionConfig = {
   },
   access: {
     read: () => true,
+  },
+  hooks: {
+    afterChange: [createRevalidateHook('services')],
   },
   fields: [
     {

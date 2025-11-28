@@ -13,7 +13,7 @@ export function BenefitsList({ benefits }: BenefitsListProps) {
       <div className="grid gap-5">
         {benefits.map((benefit, index) => (
           <motion.div
-            key={benefit}
+            key={`${benefit}-${index}`}
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}

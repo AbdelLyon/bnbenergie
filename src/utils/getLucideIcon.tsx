@@ -10,8 +10,9 @@ export function getLucideIcon(iconName: string | undefined): LucideIcon {
     return LucideIcons.HelpCircle;
   }
 
+  const cleanIconName = iconName.trim();
   const IconComponent = (LucideIcons as unknown as Record<string, LucideIcon>)[
-    iconName
+    cleanIconName
   ];
 
   if (!IconComponent) {

@@ -33,7 +33,6 @@ type MegaMenuData = {
   }>;
   cta: {
     label: string;
-    phone: string;
     phoneHref: string;
   };
 };
@@ -150,12 +149,10 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                     </button>
                   )}
 
-                  {}
                   <AnimatePresence>
                     {item.type === 'mega' && activeMega === item.label && (
                       <div className="absolute top-full left-1/2 z-50 w-[580px] -translate-x-1/2 pt-2">
                         <div className="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-xl shadow-black/5">
-                          {}
                           <div className="grid grid-cols-2 gap-0 p-5">
                             {item.sections?.map((section, idx) => (
                               <div
@@ -166,12 +163,10 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                                     : 'pl-5'
                                 }
                               >
-                                {}
                                 <h3 className="mb-3 px-1 text-[10px] font-bold tracking-wider text-gray-400 uppercase">
                                   {section.title}
                                 </h3>
 
-                                {}
                                 <div className="space-y-0.5">
                                   {section.links.map((link) => (
                                     <Link
@@ -180,7 +175,6 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                                       className="group flex items-center gap-3 rounded-lg p-2.5 transition-all duration-200 hover:bg-gray-50"
                                       onClick={() => setActiveMega(null)}
                                     >
-                                      {}
                                       {(() => {
                                         const IconComponent = getLucideIcon(
                                           link.icon
@@ -298,7 +292,6 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
         </div>
       </motion.nav>
 
-      {}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -332,15 +325,12 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                   <X className="size-5 text-white" />
                 </motion.button>
 
-                {}
                 <Logo isScrolled={isScrolled} subtitle={data.logo.subtitle} />
 
-                {}
                 <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-cyan-400/30 blur-3xl" />
                 <div className="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-blue-400/30 blur-3xl" />
               </div>
 
-              {}
               <nav className="flex-1 overflow-y-auto bg-gray-100 px-6 py-6">
                 <div className="space-y-3">
                   {data.menuCategories.map((item, index) => (
@@ -402,7 +392,6 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                             </span>
                           </div>
 
-                          {}
                           <div className="space-y-2">
                             {item.sections?.map((section) =>
                               section.links.map((link) => (
@@ -461,7 +450,6 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                 </div>
               </nav>
 
-              {}
               <div className="border-t border-gray-200 bg-white px-6 py-5">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -473,6 +461,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                     as="a"
                     href={data.cta.phoneHref}
                     size="lg"
+                    radius="full"
                     className="w-full bg-linear-to-r from-blue-600 to-cyan-600 font-bold text-white shadow-lg shadow-blue-500/30 transition-all hover:scale-[1.02] hover:shadow-xl"
                     startContent={<Phone className="h-5 w-5" />}
                   >

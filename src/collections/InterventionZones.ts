@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload';
+import { createRevalidateHook } from '../lib/revalidate-hook';
 
 export const InterventionZones: CollectionConfig = {
   slug: 'intervention-zones',
@@ -9,6 +10,9 @@ export const InterventionZones: CollectionConfig = {
   },
   access: {
     read: () => true,
+  },
+  hooks: {
+    afterChange: [createRevalidateHook('intervention-zones')],
   },
   fields: [
     {
