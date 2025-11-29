@@ -2,6 +2,7 @@
 
 import { z } from 'zod';
 import nodemailer from 'nodemailer';
+import { env, hasSmtpConfig } from '@/lib/env';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Le nom doit contenir au moins 2 caractères'),
@@ -47,11 +48,7 @@ export async function sendContactEmail(
   const { name, email, phone, subject, message } = validatedFields.data;
 
   // Check if SMTP configuration is present
-  if (
-    !process.env['SMTP_HOST'] ||
-    !process.env['SMTP_USER'] ||
-    !process.env['SMTP_PASS']
-  ) {
+  if (!hasSmtpConfig) {
     console.warn('SMTP configuration missing. Logging email instead.');
     console.log('Email content:', { name, email, phone, subject, message });
 
@@ -65,12 +62,12 @@ export async function sendContactEmail(
 
   try {
     const transporter = nodemailer.createTransport({
-      host: process.env['SMTP_HOST'],
-      port: Number(process.env['SMTP_PORT']) || 587,
+      host: env.SMTP_HOST,
+      port: Number(env.SMTP_PORT) || 587,
       secure: false, // true for 465, false for other ports
       auth: {
-        user: process.env['SMTP_USER'],
-        pass: process.env['SMTP_PASS'],
+        user: env.SMTP_USER,
+        pass: env.SMTP_PASS,
       },
     });
 
@@ -78,8 +75,8 @@ export async function sendContactEmail(
     await transporter.verify();
 
     const mailOptions = {
-      from: `"${name}" <${process.env['SMTP_USER']}>`, // Sender address
-      to: process.env['CONTACT_EMAIL'] || process.env['SMTP_USER'], // List of receivers
+      from: `"${name}" <${env.SMTP_USER}>`, // Sender address
+      to: env.CONTACT_EMAIL || env.SMTP_USER, // List of receivers
       replyTo: email,
       subject: `[Contact Site] ${subject}`, // Subject line
       text: `

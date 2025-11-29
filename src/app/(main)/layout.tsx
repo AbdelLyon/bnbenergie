@@ -1,4 +1,6 @@
 import { Lato, Montserrat } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Footer } from '@/components/shared/Footer/Footer';
 import { Navbar } from '@/components/shared/Navigation/Navbar';
 import {
@@ -53,6 +55,8 @@ export default function MainLayout({
         <LocalBusinessStructuredData />
         <WebSiteStructuredData />
         <OrganizationStructuredData />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

@@ -1,9 +1,12 @@
 /**
  * Fonctions utilitaires pour récupérer les données depuis Payload CMS
+ * Version optimisée avec support des options de requête et monitoring
  */
 
 import { getPayload } from 'payload';
 import config from '@/payload.config';
+import { DEFAULT_QUERY_LIMIT } from '@/config/database';
+import { withPerformanceTracking } from './monitoring';
 import type {
   PageHeader,
   Service,
@@ -30,59 +33,98 @@ async function getPayloadInstance() {
   return cachedPayload;
 }
 
+/**
+ * Options communes pour les requêtes Payload
+ */
+export interface QueryOptions {
+  /** Limite de résultats */
+  limit?: number;
+  /** Clause where personnalisée */
+  where?: any;
+  /** Tri personnalisé */
+  sort?: string;
+  /** Pagination - page */
+  page?: number;
+}
+
 // ===== PAGE HEADERS =====
 export async function getPageHeader(
   pageSlug: string
 ): Promise<PageHeader | null> {
-  const payload = await getPayloadInstance();
-  const result = await payload.find({
-    collection: 'page-headers',
-    where: {
-      pageSlug: {
-        equals: pageSlug,
-      },
-    },
-    limit: 1,
-  });
-  return result.docs[0] || null;
+  return withPerformanceTracking(
+    `getPageHeader(${pageSlug})`,
+    'db_query',
+    async () => {
+      const payload = await getPayloadInstance();
+      const result = await payload.find({
+        collection: 'page-headers',
+        where: {
+          pageSlug: {
+            equals: pageSlug,
+          },
+        },
+        limit: 1,
+      });
+      return result.docs[0] || null;
+    }
+  );
 }
 
 // ===== SERVICES =====
-export async function getServices(): Promise<Service[]> {
-  const payload = await getPayloadInstance();
-  const result = await payload.find({
-    collection: 'services',
-    sort: 'order',
-    limit: 100,
-  });
-  return result.docs;
+export async function getServices(options?: QueryOptions): Promise<Service[]> {
+  return withPerformanceTracking(
+    'getServices',
+    'db_query',
+    async () => {
+      const payload = await getPayloadInstance();
+      const result = await payload.find({
+        collection: 'services',
+        sort: options?.sort || 'order',
+        limit: options?.limit ?? DEFAULT_QUERY_LIMIT,
+        where: options?.where,
+        page: options?.page,
+      });
+      return result.docs;
+    }
+  );
 }
 
 // ===== WARRANTIES =====
 export async function getWarranties(
-  category?: 'certification' | 'product' | 'commitment' | 'process'
+  category?: 'certification' | 'product' | 'commitment' | 'process',
+  options?: QueryOptions
 ): Promise<Warranty[]> {
-  const payload = await getPayloadInstance();
-  const result = await payload.find({
-    collection: 'warranties',
-    where: category
-      ? {
-          category: {
-            equals: category,
-          },
-        }
-      : undefined,
-    sort: 'order',
-    limit: 100,
-  });
-  return result.docs;
+  return withPerformanceTracking(
+    `getWarranties(${category || 'all'})`,
+    'db_query',
+    async () => {
+      const payload = await getPayloadInstance();
+      const result = await payload.find({
+        collection: 'warranties',
+        where: category
+          ? {
+              category: {
+                equals: category,
+              },
+            }
+          : options?.where,
+        sort: options?.sort || 'order',
+        limit: options?.limit ?? DEFAULT_QUERY_LIMIT,
+        page: options?.page,
+      });
+      return result.docs;
+    }
+  );
 }
 
 export async function getWarrantiesByCategory() {
-  const certifications = await getWarranties('certification');
-  const products = await getWarranties('product');
-  const commitments = await getWarranties('commitment');
-  const process = await getWarranties('process');
+  // Utilise Promise.all pour paralléliser les requêtes
+  const [certifications, products, commitments, process] = await Promise.all([
+    getWarranties('certification'),
+    getWarranties('product'),
+    getWarranties('commitment'),
+    getWarranties('process'),
+  ]);
 
   return {
     certifications,
@@ -94,29 +136,40 @@ export async function getWarrantiesByCategory() {
 
 // ===== FINANCIAL AIDS =====
 export async function getFinancialAids(
-  category?: 'main' | 'local' | 'financing' | 'roi'
+  category?: 'main' | 'local' | 'financing' | 'roi',
+  options?: QueryOptions
 ): Promise<FinancialAid[]> {
-  const payload = await getPayloadInstance();
-  const result = await payload.find({
-    collection: 'financial-aids',
-    where: category
-      ? {
-          category: {
-            equals: category,
-          },
-        }
-      : undefined,
-    sort: 'order',
-    limit: 100,
-  });
-  return result.docs;
+  return withPerformanceTracking(
+    `getFinancialAids(${category || 'all'})`,
+    'db_query',
+    async () => {
+      const payload = await getPayloadInstance();
+      const result = await payload.find({
+        collection: 'financial-aids',
+        where: category
+          ? {
+              category: {
+                equals: category,
+              },
+            }
+          : options?.where,
+        sort: options?.sort || 'order',
+        limit: options?.limit ?? DEFAULT_QUERY_LIMIT,
+        page: options?.page,
+      });
+      return result.docs;
+    }
+  );
 }
 
 export async function getFinancialAidsByCategory() {
-  const main = await getFinancialAids('main');
-  const local = await getFinancialAids('local');
-  const financing = await getFinancialAids('financing');
-  const roi = await getFinancialAids('roi');
+  // Utilise Promise.all pour paralléliser les requêtes
+  const [main, local, financing, roi] = await Promise.all([
+    getFinancialAids('main'),
+    getFinancialAids('local'),
+    getFinancialAids('financing'),
+    getFinancialAids('roi'),
+  ]);
 
   return {
     main,
@@ -127,112 +180,191 @@ export async function getFinancialAidsByCategory() {
 }
 
 // ===== INTERVENTION ZONES =====
-export async function getInterventionZones(): Promise<InterventionZone[]> {
-  const payload = await getPayloadInstance();
-  const result = await payload.find({
-    collection: 'intervention-zones',
-    sort: 'order',
-    limit: 100,
-  });
-  return result.docs;
+export async function getInterventionZones(
+  options?: QueryOptions
+): Promise<InterventionZone[]> {
+  return withPerformanceTracking(
+    'getInterventionZones',
+    'db_query',
+    async () => {
+      const payload = await getPayloadInstance();
+      const result = await payload.find({
+        collection: 'intervention-zones',
+        sort: options?.sort || 'order',
+        limit: options?.limit ?? DEFAULT_QUERY_LIMIT,
+        where: options?.where,
+        page: options?.page,
+      });
+      return result.docs;
+    }
+  );
 }
 
 // ===== SITE SETTINGS (Global) =====
 export async function getSiteSettings(): Promise<SiteSetting> {
-  const payload = await getPayloadInstance();
-  const result = await payload.findGlobal({
-    slug: 'site-settings',
-  });
-  return result;
+  return withPerformanceTracking(
+    'getSiteSettings',
+    'db_query',
+    async () => {
+      const payload = await getPayloadInstance();
+      const result = await payload.findGlobal({
+        slug: 'site-settings',
+      });
+      return result;
+    }
+  );
 }
 
 // ===== NAVIGATION (Global) =====
 export async function getNavigation(): Promise<Navigation> {
-  const payload = await getPayloadInstance();
-  const result = await payload.findGlobal({
-    slug: 'navigation',
-  });
-  return result;
+  return withPerformanceTracking(
+    'getNavigation',
+    'db_query',
+    async () => {
+      const payload = await getPayloadInstance();
+      const result = await payload.findGlobal({
+        slug: 'navigation',
+      });
+      return result;
+    }
+  );
 }
 
 // ===== PRICING PACKS =====
-export async function getPricingPacks(): Promise<PricingPack[]> {
-  const payload = await getPayloadInstance();
-  const result = await payload.find({
-    collection: 'pricing-packs',
-    sort: 'order',
-    limit: 100,
-  });
-  return result.docs;
+export async function getPricingPacks(
+  options?: QueryOptions
+): Promise<PricingPack[]> {
+  return withPerformanceTracking(
+    'getPricingPacks',
+    'db_query',
+    async () => {
+      const payload = await getPayloadInstance();
+      const result = await payload.find({
+        collection: 'pricing-packs',
+        sort: options?.sort || 'order',
+        limit: options?.limit ?? DEFAULT_QUERY_LIMIT,
+        where: options?.where,
+        page: options?.page,
+      });
+      return result.docs;
+    }
+  );
 }
 
 // ===== PROJECTS =====
-export async function getProjects(limit = 100): Promise<Project[]> {
-  const payload = await getPayloadInstance();
-  const result = await payload.find({
-    collection: 'projects',
-    sort: 'order',
-    limit,
-  });
-  return result.docs;
+export async function getProjects(options?: QueryOptions): Promise<Project[]> {
+  return withPerformanceTracking(
+    'getProjects',
+    'db_query',
+    async () => {
+      const payload = await getPayloadInstance();
+      const result = await payload.find({
+        collection: 'projects',
+        sort: options?.sort || 'order',
+        limit: options?.limit ?? DEFAULT_QUERY_LIMIT,
+        where: options?.where,
+        page: options?.page,
+      });
+      return result.docs;
+    }
+  );
 }
 
 // ===== STATS =====
-export async function getStats(): Promise<Stat[]> {
-  const payload = await getPayloadInstance();
-  const result = await payload.find({
-    collection: 'stats',
-    sort: 'order',
-    limit: 100,
-  });
-  return result.docs;
+export async function getStats(options?: QueryOptions): Promise<Stat[]> {
+  return withPerformanceTracking(
+    'getStats',
+    'db_query',
+    async () => {
+      const payload = await getPayloadInstance();
+      const result = await payload.find({
+        collection: 'stats',
+        sort: options?.sort || 'order',
+        limit: options?.limit ?? DEFAULT_QUERY_LIMIT,
+        where: options?.where,
+        page: options?.page,
+      });
+      return result.docs;
+    }
+  );
 }
 
 // ===== ABOUT CARDS =====
-export async function getAboutCards(): Promise<AboutCard[]> {
-  const payload = await getPayloadInstance();
-  const result = await payload.find({
-    collection: 'about-cards',
-    sort: 'order',
-    limit: 100,
-  });
-  return result.docs;
+export async function getAboutCards(
+  options?: QueryOptions
+): Promise<AboutCard[]> {
+  return withPerformanceTracking(
+    'getAboutCards',
+    'db_query',
+    async () => {
+      const payload = await getPayloadInstance();
+      const result = await payload.find({
+        collection: 'about-cards',
+        sort: options?.sort || 'order',
+        limit: options?.limit ?? DEFAULT_QUERY_LIMIT,
+        where: options?.where,
+        page: options?.page,
+      });
+      return result.docs;
+    }
+  );
 }
 
 // ===== BENEFITS =====
-export async function getBenefits(): Promise<Benefit[]> {
-  const payload = await getPayloadInstance();
-  const result = await payload.find({
-    collection: 'benefits',
-    sort: 'order',
-    limit: 100,
-  });
-  return result.docs;
+export async function getBenefits(options?: QueryOptions): Promise<Benefit[]> {
+  return withPerformanceTracking(
+    'getBenefits',
+    'db_query',
+    async () => {
+      const payload = await getPayloadInstance();
+      const result = await payload.find({
+        collection: 'benefits',
+        sort: options?.sort || 'order',
+        limit: options?.limit ?? DEFAULT_QUERY_LIMIT,
+        where: options?.where,
+        page: options?.page,
+      });
+      return result.docs;
+    }
+  );
 }
 
 // ===== FAQS =====
-export async function getFaqs(category?: string): Promise<Faq[]> {
-  const payload = await getPayloadInstance();
-  const result = await payload.find({
-    collection: 'faqs',
-    where: category
-      ? {
-          category: {
-            equals: category,
-          },
-        }
-      : undefined,
-    sort: 'order',
-    limit: 100,
-  });
-  return result.docs;
+export async function getFaqs(
+  category?: string,
+  options?: QueryOptions
+): Promise<Faq[]> {
+  return withPerformanceTracking(
+    `getFaqs(${category || 'all'})`,
+    'db_query',
+    async () => {
+      const payload = await getPayloadInstance();
+      const result = await payload.find({
+        collection: 'faqs',
+        where: category
+          ? {
+              category: {
+                equals: category,
+              },
+            }
+          : options?.where,
+        sort: options?.sort || 'order',
+        limit: options?.limit ?? DEFAULT_QUERY_LIMIT,
+        page: options?.page,
+      });
+      return result.docs;
+    }
+  );
 }
 
 // ===== HELPER: Get all data for a specific page =====
 export async function getPageData(pageSlug: string) {
-  const header = await getPageHeader(pageSlug);
-  const siteSettings = await getSiteSettings();
-  const navigation = await getNavigation();
+  // Paralléliser les requêtes pour de meilleures performances
+  const [header, siteSettings, navigation] = await Promise.all([
+    getPageHeader(pageSlug),
+    getSiteSettings(),
+    getNavigation(),
+  ]);
 
   return {
     header,

@@ -28,6 +28,7 @@ export async function generateMetadata({
     siteConfig.seo?.keywords?.map((k: any) => k.keyword) || [];
 
   return {
+    // Note: metadataBase est défini dans le layout, pas besoin de le redéfinir ici
     title,
     description,
     keywords: keywords.length > 0 ? [...keywords, ...seoKeywords] : seoKeywords,
@@ -68,11 +69,13 @@ export async function generateMetadata({
   };
 }
 
+import { env } from '@/lib/env';
+
 // Default metadata with placeholder values
 // Pages should override these with their own metadata
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(
-    process.env['NEXT_PUBLIC_SITE_URL'] || 'https://bnbenergie.fr'
+    env.NEXT_PUBLIC_SITE_URL || 'https://bnbenergie.fr'
   ),
   title: {
     default: 'BNB ÉNERGIE | Installation Panneaux Solaires',
@@ -132,7 +135,7 @@ export const defaultMetadata: Metadata = {
   },
 
   verification: {
-    google: process.env['NEXT_PUBLIC_GOOGLE_VERIFICATION'],
+    google: env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
   },
 
   other: {

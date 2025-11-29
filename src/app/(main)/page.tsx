@@ -5,8 +5,9 @@ import { Pricing } from '@/app/(main)/_components/Pricing/Pricing';
 import { Realisations } from '@/app/(main)/_components/Realisations/Realisations';
 import { PricingStructuredData } from '@/components/shared/SEO/StructuredData';
 
-// Revalidate every 60 seconds (ISR - Incremental Static Regeneration)
-export const revalidate = 60;
+// ISR - Incremental Static Regeneration
+// Page d'accueil avec forte fréquence de mise à jour (HIGH_FREQUENCY)
+export const revalidate = 30;
 
 export default function Home() {
   return (

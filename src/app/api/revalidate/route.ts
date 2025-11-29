@@ -1,12 +1,26 @@
 import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
+import { env } from '@/lib/env';
+import { applyRateLimit } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
   // Vérifier le secret pour la sécurité
   const secret = request.nextUrl.searchParams.get('secret');
 
-  if (secret !== process.env['REVALIDATION_SECRET']) {
+  if (secret !== env.REVALIDATION_SECRET) {
     return NextResponse.json({ message: 'Invalid secret' }, { status: 401 });
+  }
+
+  // Appliquer le rate limiting
+  const rateLimitResult = await applyRateLimit(request, 'revalidation');
+  if (!rateLimitResult.success) {
+    return NextResponse.json(
+      {
+        message: 'Too many requests',
+        reset: rateLimitResult.reset,
+      },
+      { status: 429 }
+    );
   }
 
   try {

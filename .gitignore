@@ -31,6 +31,7 @@ yarn-error.log*
 
 # vercel
 .vercel
+.claude
 
 # typescript
 *.tsbuildinfo
@@ -44,3 +45,6 @@ next-env.d.ts
 
 # vitest
 coverage/
+
+# docker
+docker-compose.override.yml

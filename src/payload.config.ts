@@ -16,6 +16,8 @@ import { FinancialAids } from './collections/FinancialAids';
 import { InterventionZones } from './collections/InterventionZones';
 import { SiteSettings } from './globals/SiteSettings';
 import { Navigation } from './globals/Navigation';
+import { env, isDevelopment } from './lib/env';
+import { DATABASE_POOL_CONFIG } from './config/database';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -364,14 +366,19 @@ export default buildConfig({
   ],
   globals: [SiteSettings, Navigation],
   editor: lexicalEditor(),
-  secret: process.env['PAYLOAD_SECRET'] || '',
+  secret: env.PAYLOAD_SECRET,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env['DATABASE_URL'] || '',
+      connectionString: env.DATABASE_URL,
+      max: DATABASE_POOL_CONFIG.max,
+      idleTimeoutMillis: DATABASE_POOL_CONFIG.idleTimeoutMillis,
+      connectionTimeoutMillis: DATABASE_POOL_CONFIG.connectionTimeoutMillis,
     },
+    // Logging des requêtes en développement
+    logger: isDevelopment,
   }),
   sharp,
   plugins: [
@@ -380,7 +387,7 @@ export default buildConfig({
       collections: {
         media: true,
       },
-      token: process.env['BLOB_READ_WRITE_TOKEN'] || '',
+      token: env.BLOB_READ_WRITE_TOKEN,
     }),
   ],
 });

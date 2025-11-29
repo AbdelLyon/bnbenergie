@@ -8,7 +8,7 @@ import {
 } from '@/lib/payload-queries';
 import { Metadata } from 'next';
 
-// Revalidate every 60 seconds (ISR - Incremental Static Regeneration)
+// ISR - Incremental Static Regeneration (MEDIUM_FREQUENCY)
 export const revalidate = 60;
 
 export async function generateMetadata(): Promise<Metadata> {

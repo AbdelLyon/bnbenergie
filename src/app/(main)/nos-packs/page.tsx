@@ -8,8 +8,8 @@ import NosPacksPageContent from './NosPacksPageContent';
 import { PricingStructuredData } from '@/components/shared/SEO/StructuredData';
 import { Pricing } from '@/app/(main)/_components/Pricing/Pricing';
 
-// Revalidate every 60 seconds (ISR - Incremental Static Regeneration)
-export const revalidate = 60;
+// ISR - Incremental Static Regeneration
+export const revalidate = 60; // MEDIUM_FREQUENCY
 
 export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataHelper({

@@ -4,12 +4,15 @@
  * La revalidation se fait en arrière-plan pour ne pas bloquer l'UI
  */
 
+import { env } from './env';
+import { REVALIDATION_TIMEOUT } from '@/config/cache';
+
 export const createRevalidateHook = (collectionSlug: string) => {
   return async ({ doc }: any) => {
     // Utiliser SERVER_URL (privé) au lieu de NEXT_PUBLIC_SERVER_URL
     // Car ce hook s'exécute uniquement côté serveur
-    const serverUrl = process.env['SERVER_URL'] || process.env['NEXT_PUBLIC_SERVER_URL'];
-    const secret = process.env['REVALIDATION_SECRET'];
+    const serverUrl = env.SERVER_URL || env.NEXT_PUBLIC_SERVER_URL;
+    const secret = env.REVALIDATION_SECRET;
 
     // Si les variables d'environnement ne sont pas définies, skip silencieusement
     if (!serverUrl || !secret) {
@@ -23,7 +26,7 @@ export const createRevalidateHook = (collectionSlug: string) => {
     Promise.resolve().then(async () => {
       try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 5000); // Timeout de 5 secondes
+        const timeoutId = setTimeout(() => controller.abort(), REVALIDATION_TIMEOUT);
 
         const revalidationUrl = `${serverUrl}/api/revalidate?secret=${secret}`;
 
