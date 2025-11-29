@@ -8,6 +8,10 @@ export const Services: CollectionConfig = {
     description: "Étapes du processus d'installation de panneaux solaires",
     defaultColumns: ['number', 'title', 'duration', 'order'],
   },
+  labels: {
+    singular: 'Service',
+    plural: 'Services',
+  },
   access: {
     read: () => true,
   },

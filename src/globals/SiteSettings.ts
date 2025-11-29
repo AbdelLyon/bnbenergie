@@ -3,6 +3,7 @@ import { createRevalidateHook } from '../lib/revalidate-hook';
 
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
+  label: 'Paramètres du Site',
   admin: {
     description: 'Configuration globale du site',
   },

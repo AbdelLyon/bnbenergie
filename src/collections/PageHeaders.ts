@@ -7,6 +7,10 @@ export const PageHeaders: CollectionConfig = {
     useAsTitle: 'pageSlug',
     description: 'En-têtes et métadonnées pour chaque page du site',
   },
+  labels: {
+    singular: 'En-tête de Page',
+    plural: 'En-têtes de Page',
+  },
   access: {
     read: () => true,
   },

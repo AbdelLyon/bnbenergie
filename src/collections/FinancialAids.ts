@@ -8,6 +8,10 @@ export const FinancialAids: CollectionConfig = {
     description: 'Aides financières et solutions de financement',
     defaultColumns: ['title', 'category', 'order'],
   },
+  labels: {
+    singular: 'Aide Financière',
+    plural: 'Aides Financières',
+  },
   access: {
     read: () => true,
   },

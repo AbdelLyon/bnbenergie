@@ -8,6 +8,10 @@ export const InterventionZones: CollectionConfig = {
     description: "Zones géographiques d'intervention",
     defaultColumns: ['zone', 'order'],
   },
+  labels: {
+    singular: "Zone d'Intervention",
+    plural: "Zones d'Intervention",
+  },
   access: {
     read: () => true,
   },

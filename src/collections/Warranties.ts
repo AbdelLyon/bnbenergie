@@ -8,6 +8,10 @@ export const Warranties: CollectionConfig = {
     description: 'Garanties, certifications et engagements qualité',
     defaultColumns: ['title', 'category', 'order'],
   },
+  labels: {
+    singular: 'Garantie',
+    plural: 'Garanties',
+  },
   access: {
     read: () => true,
   },

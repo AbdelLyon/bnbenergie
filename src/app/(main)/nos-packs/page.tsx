@@ -2,7 +2,6 @@ import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
 import { Metadata } from 'next';
 import {
   getPageHeader,
-  getPacksPageBySection,
   getSiteSettings,
 } from '@/lib/payload-queries';
 import NosPacksPageContent from './NosPacksPageContent';
@@ -34,9 +33,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function NosPacksPage() {
-  const [header, packsContent, siteSettings] = await Promise.all([
+  const [header, siteSettings] = await Promise.all([
     getPageHeader('nos-packs'),
-    getPacksPageBySection(),
     getSiteSettings(),
   ]);
 
@@ -44,7 +42,6 @@ export default async function NosPacksPage() {
     <>
       <NosPacksPageContent
         header={header}
-        packsContent={packsContent}
         siteSettings={siteSettings}
       >
         <Pricing />

@@ -3,6 +3,7 @@ import { createRevalidateHook } from '../lib/revalidate-hook';
 
 export const Navigation: GlobalConfig = {
   slug: 'navigation',
+  label: 'Navigation',
   admin: {
     description: 'Configuration de la navigation du site',
   },

@@ -228,44 +228,6 @@ export async function getFaqs(category?: string): Promise<Faq[]> {
   return result.docs;
 }
 
-// ===== PACKS PAGE CONTENT =====
-export async function getPacksPageContent(section?: 'stats' | 'intro' | 'advantages' | 'process') {
-  try {
-    const payload = await getPayloadInstance();
-    const result = await payload.find({
-      collection: 'packs-page',
-      where: section
-        ? {
-            section: {
-              equals: section,
-            },
-          }
-        : undefined,
-      sort: 'order',
-      limit: 100,
-    });
-    return result.docs;
-  } catch (error) {
-    // Si la table n'existe pas encore, retourner un tableau vide
-    console.warn('packs-page collection not found, returning empty array');
-    return [];
-  }
-}
-
-export async function getPacksPageBySection() {
-  const stats = await getPacksPageContent('stats');
-  const intro = await getPacksPageContent('intro');
-  const advantages = await getPacksPageContent('advantages');
-  const process = await getPacksPageContent('process');
-
-  return {
-    stats,
-    intro,
-    advantages,
-    process,
-  };
-}
-
 // ===== HELPER: Get all data for a specific page =====
 export async function getPageData(pageSlug: string) {
   const header = await getPageHeader(pageSlug);

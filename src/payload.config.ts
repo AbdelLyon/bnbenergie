@@ -14,7 +14,6 @@ import { Services } from './collections/Services';
 import { Warranties } from './collections/Warranties';
 import { FinancialAids } from './collections/FinancialAids';
 import { InterventionZones } from './collections/InterventionZones';
-import { PacksPage } from './collections/PacksPage';
 import { SiteSettings } from './globals/SiteSettings';
 import { Navigation } from './globals/Navigation';
 
@@ -73,9 +72,12 @@ export default buildConfig({
     Warranties,
     FinancialAids,
     InterventionZones,
-    PacksPage,
     {
       slug: 'pricing-packs',
+      labels: {
+        singular: 'Pack Tarifaire',
+        plural: 'Packs Tarifaires',
+      },
       admin: {
         useAsTitle: 'name',
       },
@@ -138,6 +140,10 @@ export default buildConfig({
     // Projects / Réalisations
     {
       slug: 'projects',
+      labels: {
+        singular: 'Réalisation',
+        plural: 'Réalisations',
+      },
       admin: {
         useAsTitle: 'title',
       },
@@ -190,6 +196,10 @@ export default buildConfig({
     // Stats
     {
       slug: 'stats',
+      labels: {
+        singular: 'Statistique',
+        plural: 'Statistiques',
+      },
       admin: {
         useAsTitle: 'label',
       },
@@ -231,6 +241,10 @@ export default buildConfig({
     // About Cards
     {
       slug: 'about-cards',
+      labels: {
+        singular: 'Carte À Propos',
+        plural: 'Cartes À Propos',
+      },
       admin: {
         useAsTitle: 'title',
       },
@@ -281,6 +295,10 @@ export default buildConfig({
     // Benefits
     {
       slug: 'benefits',
+      labels: {
+        singular: 'Avantage',
+        plural: 'Avantages',
+      },
       admin: {
         useAsTitle: 'text',
       },
@@ -307,6 +325,10 @@ export default buildConfig({
     // FAQs
     {
       slug: 'faqs',
+      labels: {
+        singular: 'FAQ',
+        plural: 'FAQ',
+      },
       admin: {
         useAsTitle: 'question',
       },

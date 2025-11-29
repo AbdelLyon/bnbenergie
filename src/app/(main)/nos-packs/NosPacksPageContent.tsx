@@ -7,7 +7,6 @@ import {
   SectionContainer,
   StatsGrid,
   IntroSection,
-  FeatureCard,
   CTASection,
 } from '@/components';
 import { motion } from 'framer-motion';
@@ -17,23 +16,14 @@ import type {
 } from '@/payload-types';
 import { ReactNode } from 'react';
 
-interface PacksPageData {
-  stats: any[];
-  intro: any[];
-  advantages: any[];
-  process: any[];
-}
-
 interface NosPacksPageContentProps {
   header: PageHeaderType | null;
-  packsContent: PacksPageData;
   siteSettings: SiteSetting;
   children: ReactNode; // Pricing component from server
 }
 
 export default function NosPacksPageContent({
   header,
-  packsContent,
   siteSettings,
   children,
 }: NosPacksPageContentProps) {
@@ -44,17 +34,6 @@ export default function NosPacksPageContent({
     }
   };
 
-  // Préparer les stats pour StatsGrid (les 3 premières)
-  const stats = packsContent.stats.slice(0, 3).map((stat) => ({
-    value: stat.value || '',
-    label: stat.title || '',
-    icon: stat.icon || 'Zap',
-    gradient: stat.gradient || 'from-blue-500 to-cyan-500',
-  }));
-
-  // Intro section
-  const introSection = packsContent.intro[0];
-
   return (
     <main className="min-h-screen bg-linear-to-b from-white via-gray-50/30 to-white">
       {/* Header */}
@@ -64,7 +43,7 @@ export default function NosPacksPageContent({
         bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
       >
         <Title
-          title={header?.title?.split(' ') || ['Nos', 'Packs', 'Photovoltaïques']}
+          title={header?.title?.split(' ') || ['Nos', 'Packs']}
           subtitle={header?.subtitle || 'Des Solutions Adaptées à Vos Besoins'}
         />
         <motion.p
@@ -79,94 +58,38 @@ export default function NosPacksPageContent({
       </PageHeader>
 
       <SectionContainer>
-        {/* Stats - 3 cards qui remontent */}
-        {stats.length > 0 && <StatsGrid stats={stats} />}
+        {/* Stats - 3 cards qui remontent (EN DUR comme dans contact) */}
+        <StatsGrid
+          stats={[
+            {
+              value: 'Pack 3 kWc',
+              label: 'Budget Maîtrisé',
+              icon: 'Zap',
+              gradient: 'from-blue-500 to-cyan-500',
+            },
+            {
+              value: 'Pack 6 kWc',
+              label: 'Maison Familiale',
+              icon: 'Home',
+              gradient: 'from-green-500 to-emerald-500',
+            },
+            {
+              value: 'Pack 9 kWc',
+              label: 'Performance Max',
+              icon: 'TrendingUp',
+              gradient: 'from-orange-500 to-yellow-500',
+            },
+          ]}
+        />
 
         {/* Introduction */}
-        {introSection && (
-          <IntroSection
-            title={introSection.title || 'Choisissez le Pack Adapté à Vos Besoins'}
-            description={introSection.description || ''}
-          />
-        )}
+        <IntroSection
+          title="Choisissez le Pack Adapté à Vos Besoins"
+          description="Nos packs photovoltaïques sont conçus pour s'adapter à votre consommation énergétique et à votre budget. Installation clé en main avec démarches administratives incluses."
+        />
 
         {/* Section Pricing - Passée en children depuis le serveur */}
         {children}
-
-        {/* Avantages de nos packs */}
-        {packsContent.advantages.length > 0 && (
-          <div className="mb-20 mt-20">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
-              className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 md:text-4xl"
-            >
-              Pourquoi Choisir Nos Packs ?
-            </motion.h2>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {packsContent.advantages.map((advantage: any, index: number) => (
-                <FeatureCard
-                  key={advantage.id || index}
-                  icon={advantage.icon || 'CheckCircle2'}
-                  title={advantage.title || ''}
-                  description={advantage.description || ''}
-                  gradient={advantage.gradient || 'from-blue-500 to-cyan-500'}
-                  index={index}
-                />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Notre processus */}
-        {packsContent.process.length > 0 && (
-          <div className="mb-20">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
-              className="font-display mb-4 text-center text-3xl font-bold text-neutral-900 md:text-4xl"
-            >
-              Notre Accompagnement
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-              className="mb-12 text-center text-lg text-neutral-600"
-            >
-              De la prise de contact à la mise en service, nous gérons tout
-            </motion.p>
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-              {packsContent.process.map((step: any, index: number) => (
-                <motion.div
-                  key={step.id || index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group relative"
-                >
-                  <FeatureCard
-                    icon={step.icon || 'CheckCircle2'}
-                    title={step.title || ''}
-                    description={step.description || ''}
-                    gradient={step.gradient || 'from-blue-500 to-cyan-500'}
-                    index={index}
-                  />
-                  {/* Numéro de l'étape */}
-                  <div className="absolute -left-3 -top-3 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 text-lg font-bold text-white shadow-lg">
-                    {index + 1}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* Call-to-Action */}
         <CTASection
