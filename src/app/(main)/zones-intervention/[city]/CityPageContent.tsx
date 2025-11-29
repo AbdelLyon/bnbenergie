@@ -59,7 +59,7 @@ export default function CityPageContent({
         bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
       >
         <Title
-          title={['Installation Panneaux Solaires', `à ${cityName}`]}
+          title={['Installation', `à ${cityName}`]}
           subtitle="Votre expert photovoltaïque local"
         />
         <p className="max-w-4xl px-4 text-sm leading-relaxed text-white/80 sm:text-base md:text-lg lg:text-xl">
