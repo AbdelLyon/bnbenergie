@@ -1,22 +1,23 @@
 import { MetadataRoute } from 'next';
-import { slugify } from '@/app/_utils/slugify';
-import siteConfig from '@/data/siteConfig.json';
-import zonesData from '@/data/zonesData.json';
+import { slugify } from '@/utils/slugify';
+import {
+  getSiteSettings,
+  getInterventionZones,
+} from '@/lib/payload-queries';
 
-interface ZoneGroup {
-  zone: string;
-  communes: string[];
-  gradient: string;
-}
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const [siteConfig, zones] = await Promise.all([
+    getSiteSettings(),
+    getInterventionZones()
+  ]);
 
-export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.domain;
   const currentDate = new Date();
 
-  // Generate city URLs
-  const cityUrls = zonesData.communes.groups.flatMap((group: ZoneGroup) =>
-    group.communes.map((city: string) => ({
-      url: `${baseUrl}/zones-intervention/${slugify(city)}`,
+  // Generate city URLs from intervention zones
+  const cityUrls = zones.flatMap((zone) =>
+    zone.communes.map((commune) => ({
+      url: `${baseUrl}/zones-intervention/${slugify(commune.name)}`,
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,
       priority: 0.8,

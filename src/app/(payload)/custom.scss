@@ -1,0 +1,341 @@
+@import 'tailwindcss';
+
+/* ============================================
+   PERSONNALISATION PAGE LOGIN/REGISTER UNIQUEMENT
+   ============================================ */
+
+/* Page de Login */
+body:has(.login__brand) {
+  /* Fond très sombre pour un contraste maximal avec les particules et la carte */
+  background: radial-gradient(
+    ellipse at top left,
+    #0a0e1a 0%,
+    #020617 30%,
+    #000000 70%,
+    #000000 100%
+  );
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* S'assurer que le contenu passe par dessus les particules (z-index 0) */
+.login__wrap {
+  position: relative;
+  z-index: 10;
+}
+
+html[data-theme='light'] body:has(.login__brand) {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+}
+
+body:has(.login__brand)::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(6, 182, 212, 0.15) 0%,
+    transparent 60%
+  );
+  filter: blur(100px);
+  z-index: 0;
+}
+
+body:has(.login__brand)::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  right: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(59, 130, 246, 0.15) 0%,
+    transparent 60%
+  );
+  filter: blur(100px);
+  z-index: 0;
+}
+
+.login__brand {
+  margin-bottom: 20px !important;
+}
+
+
+[data-theme='dark'] .login__content {
+  background: rgba(15, 23, 42, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset, 0 0 60px rgba(59, 130, 246, 0.1) !important;
+}
+
+/* S'assurer que tous les éléments du formulaire sont cliquables */
+.login__content form,
+.login__content form *,
+.login__content input,
+.login__content button,
+.login__content a {
+  position: relative;
+  z-index: 102 !important;
+}
+
+/* Forcer le bouton de login à être cliquable */
+.login__content button[type='submit'],
+.login__content .btn--style-primary,
+.login form button {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+  user-select: auto !important;
+}
+
+/* Supprimer tout état disabled si présent */
+.login__content button:not([disabled]),
+.login form button:not([disabled]) {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* Forcer tous les boutons de la page login à être interactifs */
+body:has(.login__brand) button,
+body:has(.login__brand) [type='submit'],
+body:has(.login__brand) .btn {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 102 !important;
+}
+
+/* Boutons */
+.btn--style-primary {
+  background: linear-gradient(135deg, #2563eb, #0891b2) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3) !important;
+  position: relative !important;
+}
+
+.btn--style-primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4) !important;
+}
+
+.btn--style-primary:active {
+  transform: translateY(0) !important;
+}
+
+/* Boutons disabled (sans loader) */
+.btn--style-primary:disabled,
+button[type='submit']:disabled {
+  cursor: not-allowed !important;
+  opacity: 0.5 !important;
+  pointer-events: none !important;
+}
+
+/* Inputs */
+/* Inputs, Textareas, Selects, File inputs & Relationships */
+.field-type.text input,
+.field-type.email input,
+.field-type.password input,
+.field-type.number input,
+.field-type.textarea textarea,
+.field-type.upload .file-field__upload-button,
+.field-type.upload .file-field__dropzone,
+.upload__dropzoneAndUpload,
+.upload-field-card,
+.field-type.relationship .react-select__control,
+.field-type.select .react-select__control,
+.field-type.date input {
+  border-radius: 8px !important; /* Arrondi un peu plus prononcé */
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+  background: #f8fafc !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; /* Transition plus fluide */
+  padding: 4px 8px !important;
+  min-height: 45px !important; /* Un peu plus haut pour le confort */
+  font-size: 15px !important;
+}
+
+.field-type.text input:focus,
+.field-type.email input:focus,
+.field-type.password input:focus,
+.field-type.number input:focus,
+.field-type.textarea textarea:focus,
+.field-type.upload .file-field__upload-button:focus,
+.field-type.upload .file-field__dropzone:focus-within,
+.upload__dropzoneAndUpload:focus-within,
+.upload-field-card:focus-within,
+.field-type.relationship .react-select__control--is-focused,
+.field-type.select .react-select__control--is-focused,
+.field-type.date input:focus {
+border-color: #3b82f6 !important;
+
+/* Glow moderne + subtil */
+box-shadow:
+  0 0 0 3px rgba(59, 130, 246, 0.12),
+  0 4px 14px rgba(59, 130, 246, 0.08) !important;
+
+background: #ffffff !important;
+outline: none !important;
+
+/* Micro interaction moderne */
+transform: translateY(-1px);
+transition:
+  border-color 0.25s ease,
+  box-shadow 0.25s ease,
+  transform 0.2s ease;
+}
+
+[data-theme='dark'] .field-type.text input,
+[data-theme='dark'] .field-type.email input,
+[data-theme='dark'] .field-type.password input,
+[data-theme='dark'] .field-type.number input,
+[data-theme='dark'] .field-type.textarea textarea,
+[data-theme='dark'] .field-type.upload .file-field__upload-button,
+[data-theme='dark'] .field-type.upload .file-field__dropzone,
+[data-theme='dark'] .upload__dropzoneAndUpload,
+[data-theme='dark'] .upload-field-card,
+[data-theme='dark'] .field-type.relationship .react-select__control,
+[data-theme='dark'] .field-type.select .react-select__control,
+[data-theme='dark'] .field-type.date input {
+  background: rgba(15, 23, 42, 0.448) !important; /* Plus transparent */
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #f8fafc !important;
+  backdrop-filter: blur(10px); /* Effet verre dépoli si supporté */
+}
+
+/* Lien "Mot de passe oublié" et autres liens dans login */
+.login__forgot-password,
+.login__content a,
+a[href*='forgot-password'],
+a[href*='reset-password'] {
+  color: #3b82f6 !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+.login__forgot-password:hover,
+.login__content a:hover,
+a[href*='forgot-password']:hover,
+a[href*='reset-password']:hover {
+  color: #2563eb !important;
+  text-decoration: underline !important;
+}
+
+/* S'assurer que tous les éléments interactifs ont un cursor pointer */
+button,
+a,
+[role='button'],
+input[type='submit'] {
+  cursor: pointer !important;
+}
+
+.app-header__step-nav-wrapper {
+  overflow: hidden !important;
+}
+
+.dashboard__card-list {
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Global Background for Admin Panel (All Modes) */
+body {
+  background-color: #02040a !important; /* Deep Space Black */
+  --theme-bg-html: #02040a !important;
+  --theme-bg-page: #02040a !important;
+  --theme-elevation-0: #02040a !important;
+  --theme-elevation-50: #0b101b !important;
+  --theme-elevation-100: #161e2e !important;
+}
+
+/* Force dark theme variables even if light mode is selected */
+html[data-theme='dark'] {
+  /* BACKGROUNDS & ELEVATIONS (Deep Space Modern) */
+  --theme-bg: #02040a !important;
+  --theme-bg-html: #02040a !important;
+  --theme-bg-page: #02040a !important;
+
+  /* Élévations avec une teinte bleutée moderne */
+  --theme-elevation-0: #02040a !important;
+  --theme-elevation-50: #0b101b !important;
+  // --theme-elevation-100: #151b2e !important;
+  --theme-elevation-150: #1e2640 !important; /* Bordures subtiles */
+  --theme-elevation-200: #283252 !important;
+  --theme-elevation-250: #323e63 !important;
+  --theme-elevation-300: #3c4a75 !important;
+  --theme-elevation-350: #64748b !important; /* Slate-500 - Gris moyen pour labels secondaires */
+  --theme-elevation-400: #94a3b8 !important; /* Slate-400 */
+  --theme-elevation-450: #cbd5e1 !important; /* Slate-300 */
+  --theme-elevation-500: #94a3b8 !important; /* Slate-400 */
+  --theme-elevation-550: #cbd5e1 !important; /* Slate-300 */
+  --theme-elevation-600: #e2e8f0 !important; /* Slate-200 */
+  --theme-elevation-650: #f1f5f9 !important; /* Slate-100 */
+  --theme-elevation-700: #f8fafc !important; /* Slate-50 */
+  --theme-elevation-750: #ffffff !important;
+  --theme-elevation-800: #ffffff !important;
+  --theme-elevation-850: #ffffff !important;
+  --theme-elevation-900: #ffffff !important;
+  --theme-elevation-950: #ffffff !important;
+  --theme-elevation-1000: #ffffff !important;
+
+  /* Bordures très fines et subtiles */
+  --theme-border-color: rgba(255, 255, 255, 0.08) !important;
+  --theme-shadow-color: rgba(0, 0, 0, 0.6) !important;
+
+  /* SUCCESS (Neon Mint/Emerald) */
+  --theme-success-50: #022c22 !important;
+  --theme-success-100: #064e3b !important;
+  --theme-success-150: #065f46 !important;
+  --theme-success-200: #047857 !important;
+  --theme-success-250: #059669 !important;
+  --theme-success-300: #10b981 !important;
+  --theme-success-350: #34d399 !important;
+  --theme-success-400: #6ee7b7 !important; /* Main Success Color - Neon Mint */
+  --theme-success-450: #a7f3d0 !important;
+  --theme-success-500: #d1fae5 !important;
+
+  /* WARNING (Neon Amber) */
+  --theme-warning-50: #451a03 !important;
+  --theme-warning-100: #78350f !important;
+  --theme-warning-150: #92400e !important;
+  --theme-warning-200: #b45309 !important;
+  --theme-warning-250: #d97706 !important;
+  --theme-warning-300: #f59e0b !important;
+  --theme-warning-350: #fbbf24 !important;
+  --theme-warning-400: #fcd34d !important; /* Main Warning Color - Neon Amber */
+  --theme-warning-450: #fde68a !important;
+  --theme-warning-500: #fef3c7 !important;
+
+  /* ERROR (Neon Rose/Red) */
+  --theme-error-50: #4c0519 !important;
+  --theme-error-100: #881337 !important;
+  --theme-error-150: #9f1239 !important;
+  --theme-error-200: #be123c !important;
+  --theme-error-250: #e11d48 !important;
+  --theme-error-300: #f43f5e !important;
+  --theme-error-350: #fb7185 !important;
+  --theme-error-400: #fda4af !important; /* Main Error Color - Neon Rose */
+  --theme-error-450: #fecdd3 !important;
+  --theme-error-500: #ffe4e6 !important;
+}
+
+/* Logo/Icon dans le header - ajuster la taille pour qu'il soit visible entièrement */
+.step-nav {
+  margin-top: 2px !important;
+}
+
+.step-nav__home {
+  width: 30px !important;
+  height: 30px !important;
+}

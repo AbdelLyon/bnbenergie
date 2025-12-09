@@ -69,6 +69,11 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    'page-headers': PageHeader;
+    services: Service;
+    warranties: Warranty;
+    'financial-aids': FinancialAid;
+    'intervention-zones': InterventionZone;
     'pricing-packs': PricingPack;
     projects: Project;
     stats: Stat;
@@ -84,6 +89,11 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    'page-headers': PageHeadersSelect<false> | PageHeadersSelect<true>;
+    services: ServicesSelect<false> | ServicesSelect<true>;
+    warranties: WarrantiesSelect<false> | WarrantiesSelect<true>;
+    'financial-aids': FinancialAidsSelect<false> | FinancialAidsSelect<true>;
+    'intervention-zones': InterventionZonesSelect<false> | InterventionZonesSelect<true>;
     'pricing-packs': PricingPacksSelect<false> | PricingPacksSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     stats: StatsSelect<false> | StatsSelect<true>;
@@ -98,8 +108,15 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  globals: {};
-  globalsSelect: {};
+  fallbackLocale: null;
+  globals: {
+    'site-settings': SiteSetting;
+    navigation: Navigation;
+  };
+  globalsSelect: {
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    navigation: NavigationSelect<false> | NavigationSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -133,6 +150,11 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: number;
+  name?: string | null;
+  /**
+   * Admin: accès complet | Éditeur: gestion du contenu | Contributeur: création de contenu | Visualiseur: lecture seule
+   */
+  role: 'admin' | 'editor' | 'contributor' | 'viewer';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -169,6 +191,307 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * En-têtes et métadonnées pour chaque page du site
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-headers".
+ */
+export interface PageHeader {
+  id: number;
+  /**
+   * Identifiant unique de la page (ex: home, services, contact)
+   */
+  pageSlug: string;
+  /**
+   * Titre principal de la page
+   */
+  title: string;
+  /**
+   * Sous-titre optionnel
+   */
+  subtitle?: string | null;
+  /**
+   * Description de la page
+   */
+  description?: string | null;
+  /**
+   * Badge optionnel affiché au-dessus du titre
+   */
+  badge?: string | null;
+  /**
+   * Nom de l'icône Lucide (ex: Sun, Zap, Shield)
+   */
+  icon?: string | null;
+  /**
+   * Images de carousel pour le header (si applicable)
+   */
+  heroImages?:
+    | {
+        image: number | Media;
+        /**
+         * Texte alternatif pour l'accessibilité et le SEO
+         */
+        alt: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Image unique pour le header (alternative au carousel)
+   */
+  singleImage?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Étapes du processus d'installation de panneaux solaires
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: number;
+  /**
+   * Numéro de l'étape (ex: 01, 02, 03)
+   */
+  number: string;
+  /**
+   * Nom de l'icône Lucide (ex: Search, FileText, Hammer)
+   */
+  icon: string;
+  /**
+   * Titre de l'étape
+   */
+  title: string;
+  /**
+   * Sous-titre de l'étape
+   */
+  subtitle: string;
+  /**
+   * Description détaillée de l'étape
+   */
+  description: string;
+  /**
+   * Points clés de l'étape
+   */
+  highlights: {
+    text: string;
+    id?: string | null;
+  }[];
+  /**
+   * Durée estimée de l'étape (ex: 1-2 jours)
+   */
+  duration: string;
+  /**
+   * Classes Tailwind pour le gradient (ex: from-blue-500 to-cyan-500)
+   */
+  gradient: string;
+  /**
+   * Ordre d'affichage
+   */
+  order: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Garanties, certifications et engagements qualité
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "warranties".
+ */
+export interface Warranty {
+  id: number;
+  /**
+   * Nom de l'icône Lucide (ex: Award, Shield, CheckCircle2)
+   */
+  icon: string;
+  /**
+   * Badge optionnel (ex: CERTIFICATION, ASSURANCE)
+   */
+  badge?: string | null;
+  /**
+   * Titre de la garantie
+   */
+  title: string;
+  /**
+   * Sous-titre de la garantie
+   */
+  subtitle?: string | null;
+  /**
+   * Description détaillée
+   */
+  description: string;
+  /**
+   * Points clés de la garantie
+   */
+  highlights?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Caractéristiques techniques (pour les garanties produit)
+   */
+  features?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Détails des garanties (durée, type)
+   */
+  warrantyDetails?:
+    | {
+        label: string;
+        duration: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Classes Tailwind pour le gradient
+   */
+  gradient?: string | null;
+  /**
+   * Catégorie de la garantie
+   */
+  category: 'certification' | 'product' | 'commitment' | 'process';
+  /**
+   * Ordre d'affichage
+   */
+  order: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Aides financières et solutions de financement
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "financial-aids".
+ */
+export interface FinancialAid {
+  id: number;
+  /**
+   * Nom de l'icône Lucide (ex: Coins, Repeat, Home)
+   */
+  icon: string;
+  /**
+   * Badge optionnel (ex: AIDE PRINCIPALE, TVA RÉDUITE)
+   */
+  badge?: string | null;
+  /**
+   * Titre de l'aide
+   */
+  title: string;
+  /**
+   * Sous-titre de l'aide
+   */
+  subtitle?: string | null;
+  /**
+   * Description détaillée de l'aide
+   */
+  description: string;
+  /**
+   * Classes Tailwind pour le gradient
+   */
+  gradient?: string | null;
+  /**
+   * Conditions d'éligibilité
+   */
+  conditions?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Montants selon la puissance
+   */
+  amounts?:
+    | {
+        /**
+         * Puissance concernée (ex: ≤ 3 kWc)
+         */
+        power: string;
+        /**
+         * Montant de l'aide (ex: 300 €/kWc)
+         */
+        amount: string;
+        /**
+         * Exemple concret (ex: 900€ pour 3 kWc)
+         */
+        example?: string | null;
+        /**
+         * Pour qui c'est adapté (ex: Maison 2-3 personnes)
+         */
+        bestFor?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Caractéristiques de l'aide (pour les financements)
+   */
+  features?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Modalités de paiement
+   */
+  payment?: string | null;
+  /**
+   * Économies réalisées
+   */
+  savings?: string | null;
+  /**
+   * Lien vers plus d'informations
+   */
+  link?: string | null;
+  /**
+   * Catégorie de l'aide
+   */
+  category: 'main' | 'local' | 'financing' | 'roi';
+  /**
+   * Ordre d'affichage
+   */
+  order: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Zones géographiques d'intervention
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "intervention-zones".
+ */
+export interface InterventionZone {
+  id: number;
+  /**
+   * Nom de la zone (ex: Bourg-en-Bresse et Agglomération)
+   */
+  zone: string;
+  /**
+   * Liste des communes de cette zone
+   */
+  communes: {
+    name: string;
+    id?: string | null;
+  }[];
+  /**
+   * Classes Tailwind pour le gradient
+   */
+  gradient?: string | null;
+  /**
+   * Ordre d'affichage
+   */
+  order: number;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -293,6 +616,26 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
+        relationTo: 'page-headers';
+        value: number | PageHeader;
+      } | null)
+    | ({
+        relationTo: 'services';
+        value: number | Service;
+      } | null)
+    | ({
+        relationTo: 'warranties';
+        value: number | Warranty;
+      } | null)
+    | ({
+        relationTo: 'financial-aids';
+        value: number | FinancialAid;
+      } | null)
+    | ({
+        relationTo: 'intervention-zones';
+        value: number | InterventionZone;
+      } | null)
+    | ({
         relationTo: 'pricing-packs';
         value: number | PricingPack;
       } | null)
@@ -363,6 +706,8 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  name?: T;
+  role?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -397,6 +742,143 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-headers_select".
+ */
+export interface PageHeadersSelect<T extends boolean = true> {
+  pageSlug?: T;
+  title?: T;
+  subtitle?: T;
+  description?: T;
+  badge?: T;
+  icon?: T;
+  heroImages?:
+    | T
+    | {
+        image?: T;
+        alt?: T;
+        id?: T;
+      };
+  singleImage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services_select".
+ */
+export interface ServicesSelect<T extends boolean = true> {
+  number?: T;
+  icon?: T;
+  title?: T;
+  subtitle?: T;
+  description?: T;
+  highlights?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  duration?: T;
+  gradient?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "warranties_select".
+ */
+export interface WarrantiesSelect<T extends boolean = true> {
+  icon?: T;
+  badge?: T;
+  title?: T;
+  subtitle?: T;
+  description?: T;
+  highlights?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  features?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  warrantyDetails?:
+    | T
+    | {
+        label?: T;
+        duration?: T;
+        description?: T;
+        id?: T;
+      };
+  gradient?: T;
+  category?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "financial-aids_select".
+ */
+export interface FinancialAidsSelect<T extends boolean = true> {
+  icon?: T;
+  badge?: T;
+  title?: T;
+  subtitle?: T;
+  description?: T;
+  gradient?: T;
+  conditions?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  amounts?:
+    | T
+    | {
+        power?: T;
+        amount?: T;
+        example?: T;
+        bestFor?: T;
+        id?: T;
+      };
+  features?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  payment?: T;
+  savings?: T;
+  link?: T;
+  category?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "intervention-zones_select".
+ */
+export interface InterventionZonesSelect<T extends boolean = true> {
+  zone?: T;
+  communes?:
+    | T
+    | {
+        name?: T;
+        id?: T;
+      };
+  gradient?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -523,6 +1005,260 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * Configuration globale du site
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: number;
+  /**
+   * Nom complet du site
+   */
+  siteName: string;
+  /**
+   * Nom de l'entreprise
+   */
+  businessName: string;
+  /**
+   * URL du domaine (sans www)
+   */
+  domain: string;
+  /**
+   * Numéro de téléphone affiché
+   */
+  contactPhone: string;
+  /**
+   * Lien tel: (ex: tel:0781251125)
+   */
+  contactPhoneHref: string;
+  /**
+   * Email de contact
+   */
+  contactEmail: string;
+  /**
+   * Lien mailto:
+   */
+  contactEmailHref: string;
+  addressStreet: string;
+  addressCity: string;
+  addressLocality?: string | null;
+  addressRegion: string;
+  addressZip: string;
+  addressCountry: string;
+  /**
+   * Latitude GPS
+   */
+  geoLatitude: string;
+  /**
+   * Longitude GPS
+   */
+  geoLongitude: string;
+  /**
+   * URL Facebook
+   */
+  socialFacebook?: string | null;
+  /**
+   * URL Instagram
+   */
+  socialInstagram?: string | null;
+  /**
+   * URL LinkedIn
+   */
+  socialLinkedin?: string | null;
+  /**
+   * URL Twitter
+   */
+  socialTwitter?: string | null;
+  /**
+   * Titre SEO par défaut
+   */
+  seoTitle: string;
+  /**
+   * Template pour les titres de page (ex: %s | Nom du site)
+   */
+  seoTitleTemplate?: string | null;
+  /**
+   * Description SEO par défaut
+   */
+  seoDescription: string;
+  /**
+   * Mots-clés SEO
+   */
+  seoKeywords?:
+    | {
+        keyword: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Configuration de la navigation du site
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation".
+ */
+export interface Navigation {
+  id: number;
+  /**
+   * Liens de navigation principaux
+   */
+  mainNav: {
+    label: string;
+    href: string;
+    /**
+     * Nom de l'icône Lucide (optionnel)
+     */
+    icon?: string | null;
+    order: number;
+    id?: string | null;
+  }[];
+  /**
+   * Configuration du mega menu
+   */
+  megaMenu?:
+    | {
+        title: string;
+        description?: string | null;
+        icon?: string | null;
+        sections?:
+          | {
+              title: string;
+              links?:
+                | {
+                    label: string;
+                    href: string;
+                    description?: string | null;
+                    icon?: string | null;
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
+        order: number;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Navigation du footer
+   */
+  footerNav?:
+    | {
+        /**
+         * Titre de la colonne
+         */
+        title: string;
+        links: {
+          label: string;
+          href: string;
+          icon?: string | null;
+          id?: string | null;
+        }[];
+        order: number;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  siteName?: T;
+  businessName?: T;
+  domain?: T;
+  contactPhone?: T;
+  contactPhoneHref?: T;
+  contactEmail?: T;
+  contactEmailHref?: T;
+  addressStreet?: T;
+  addressCity?: T;
+  addressLocality?: T;
+  addressRegion?: T;
+  addressZip?: T;
+  addressCountry?: T;
+  geoLatitude?: T;
+  geoLongitude?: T;
+  socialFacebook?: T;
+  socialInstagram?: T;
+  socialLinkedin?: T;
+  socialTwitter?: T;
+  seoTitle?: T;
+  seoTitleTemplate?: T;
+  seoDescription?: T;
+  seoKeywords?:
+    | T
+    | {
+        keyword?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation_select".
+ */
+export interface NavigationSelect<T extends boolean = true> {
+  mainNav?:
+    | T
+    | {
+        label?: T;
+        href?: T;
+        icon?: T;
+        order?: T;
+        id?: T;
+      };
+  megaMenu?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        sections?:
+          | T
+          | {
+              title?: T;
+              links?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    description?: T;
+                    icon?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
+        order?: T;
+        id?: T;
+      };
+  footerNav?:
+    | T
+    | {
+        title?: T;
+        links?:
+          | T
+          | {
+              label?: T;
+              href?: T;
+              icon?: T;
+              id?: T;
+            };
+        order?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

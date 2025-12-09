@@ -1,0 +1,13 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "ignore": ["eslint.config.mjs", "scripts/**", "**/*.config.*"],
+  "ignoreExportsUsedInFile": true,
+  "ignoreDependencies": ["@eslint/eslintrc"],
+  "entry": [
+    "src/app/**/*.tsx!",
+    "src/app/**/*.ts!",
+    "!src/app/**/*.test.{ts,tsx}",
+    "!src/app/**/*.spec.{ts,tsx}"
+  ],
+  "project": ["src/**/*.{ts,tsx}!"]
+}

@@ -1,27 +1,19 @@
-import { Lato, Montserrat } from 'next/font/google';
-import Footer from '../_components/features/Footer/Footer';
-import { Navbar } from '../_components/features/Navigation/Navbar';
+import { Open_Sans } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Footer } from '@/components/shared/Footer/Footer';
+import { Navbar } from '@/components/shared/Navigation/Navbar';
 import {
   LocalBusinessStructuredData,
   OrganizationStructuredData,
   WebSiteStructuredData,
-} from '../_components/features/SEO/StructuredData';
-import { defaultMetadata } from '../_config/metadata';
+} from '@/components/shared/SEO/StructuredData';
+import { defaultMetadata } from '@/config/metadata';
 import { Providers } from '../providers';
 
-const lato = Lato({
-  weight: ['300', '400', '700', '900'],
-  variable: '--font-lato',
-  subsets: ['latin'],
-  display: 'swap',
-  preload: true,
-  fallback: ['system-ui', 'arial'],
-  adjustFontFallback: false,
-});
-
-const montserrat = Montserrat({
-  weight: ['600', '700', '800'],
-  variable: '--font-montserrat',
+const openSans = Open_Sans({
+  weight: ['300', '400', '500', '600', '700', '800'],
+  variable: '--font-open-sans',
   subsets: ['latin'],
   display: 'swap',
   preload: true,
@@ -41,7 +33,10 @@ export default function MainLayout({
       <head>
         <meta httpEquiv="content-language" content="fr" />
       </head>
-      <body className={`${lato.variable} ${montserrat.variable} antialiased`} suppressHydrationWarning>
+      <body
+        className={`${openSans.variable} antialiased`}
+        suppressHydrationWarning
+      >
         <Providers>
           <Navbar />
           {children}
@@ -50,6 +45,8 @@ export default function MainLayout({
         <LocalBusinessStructuredData />
         <WebSiteStructuredData />
         <OrganizationStructuredData />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

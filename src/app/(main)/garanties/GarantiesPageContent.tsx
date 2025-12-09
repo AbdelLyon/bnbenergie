@@ -1,199 +1,214 @@
 'use client';
 
-import { Title } from '@/app/_components/features/Hero/Title';
-import { PageHeader } from '@/app/_components/shared/layout/PageHeader/PageHeader';
-import { SectionContainer } from '@/app/_components/shared/layout/SectionWrapper';
-import { CTASection } from '@/app/_components/shared/ui/CTASection';
-import { FeatureCard } from '@/app/_components/shared/ui/FeatureCard';
-import { IntroSection } from '@/app/_components/shared/ui/IntroSection';
-import { ProcessStep } from '@/app/_components/shared/ui/ProcessStep';
-import { ScrollDownButton } from '@/app/_components/shared/ui/ScrollDownButton';
-import { StatsGrid } from '@/app/_components/shared/ui/StatsGrid';
-import { WarrantyCard } from '@/app/_components/shared/ui/WarrantyCard';
-import garantiesData from '@/data/garantiesData.json';
-import garantiesHeaderData from '@/data/garantiesHeaderData.json';
-import siteConfig from '@/data/siteConfig.json';
-import { Accordion, AccordionItem } from '@heroui/accordion';
+import { Title } from '@/components/shared/ui/Title';
+import {
+  PageHeader,
+  PageMainWrapper,
+  SectionContainer,
+  StatsGrid,
+  IntroSection,
+  FeatureCard,
+  WarrantyCard,
+  CTASection,
+} from '@/components';
+
 import { motion } from 'framer-motion';
+import type {
+  Warranty,
+  PageHeader as PageHeaderType,
+  SiteSetting,
+} from '@/payload-types';
 
-export default function GarantiesPageContent() {
-  const scrollToNextSection = () => {
-    const nextSection = document.querySelector('main > div');
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+interface GarantiesPageContentProps {
+  warranties: {
+    certifications: Warranty[];
+    products: Warranty[];
+    commitments: Warranty[];
+    process: Warranty[];
   };
+  header: PageHeaderType | null;
+  siteSettings: SiteSetting;
+}
 
+export default function GarantiesPageContent({
+  warranties,
+  header,
+  siteSettings,
+}: GarantiesPageContentProps) {
   return (
-    <main className="min-h-screen bg-linear-to-b from-white via-gray-50/30 to-white">
+    <PageMainWrapper variant="amber">
       {/* Header */}
-      <PageHeader
-        variant="simple"
-        height="medium"
-        bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
-      >
+      <PageHeader variant="simple" height="medium">
         <Title
-          title={garantiesHeaderData.title}
-          subtitle={garantiesHeaderData.subtitle}
+          title={header?.title.split(' ') || ['Nos Garanties']}
+          subtitle={header?.subtitle || ''}
         />
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 0.15 }}
-          className="max-w-4xl px-4 text-sm leading-relaxed text-white/80 sm:text-base md:text-lg lg:text-xl"
+          className="max-w-4xl text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
         >
-          {garantiesHeaderData.description}
+          {header?.description || ''}
         </motion.p>
       </PageHeader>
 
-      <SectionContainer>
-        {/* Stats flottantes */}
-        <StatsGrid
-          stats={garantiesData.stats.map((stat) => ({
-            ...stat,
-            gradient: 'from-blue-500 to-cyan-500',
-          }))}
-        />
+      <div className="relative z-10">
+        <SectionContainer>
+          {/* Stats */}
+          <StatsGrid
+            stats={[
+              {
+                value: '10 ans',
+                label: 'Garantie Décennale',
+                icon: 'Shield',
+                gradient: 'from-blue-500 to-cyan-500',
+              },
+              {
+                value: '25 ans',
+                label: 'Garantie Panneaux',
+                icon: 'Award',
+                gradient: 'from-green-500 to-emerald-500',
+              },
+              {
+                value: 'RGE',
+                label: 'Certifié QualiPV',
+                icon: 'CheckCircle2',
+                gradient: 'from-orange-500 to-yellow-500',
+              },
+            ]}
+          />
 
-        {/* Introduction */}
-        <IntroSection
-          title={garantiesData.intro.title}
-          description={garantiesData.intro.description}
-        />
-
-        {/* Garanties des panneaux */}
-        <div className="mb-20">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 md:text-4xl"
-          >
-            {garantiesData.productWarranties.title}
-          </motion.h2>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {garantiesData.productWarranties.items.map((product, index) => (
-              <WarrantyCard
-                key={product.title}
-                icon={product.icon}
-                title={product.title}
-                description=""
-                gradient="from-blue-500 to-cyan-500"
-                warranties={product.warranties}
-                features={product.features}
-                index={index}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Nos engagements */}
-        <div className="mb-20">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 md:text-4xl"
-          >
-            {garantiesData.commitments.title}
-          </motion.h2>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {garantiesData.commitments.items.map((commitment, index) => (
-              <FeatureCard
-                key={commitment.title}
-                icon={commitment.icon}
-                title={commitment.title}
-                description={commitment.description}
-                gradient="from-blue-500 to-cyan-500"
-                index={index}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Processus de garantie */}
-        <div className="mb-20">
+          {/* Introduction avec background amélioré */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="mb-12 text-center"
+            transition={{ duration: 0.5 }}
+            className="relative mb-24 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 shadow-xl border border-neutral-100 dark:border-white/5"
           >
-            <h2 className="font-display mb-4 text-3xl font-bold text-neutral-900 md:text-4xl">
-              {garantiesData.warranty_process.title}
-            </h2>
-            <p className="mx-auto max-w-3xl text-lg text-neutral-600">
-              {garantiesData.warranty_process.description}
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {garantiesData.warranty_process.steps.map((step, index) => (
-              <ProcessStep
-                key={step.number}
-                number={step.number}
-                title={step.title}
-                description={step.description}
-                showConnector={
-                  index < garantiesData.warranty_process.steps.length - 1
-                }
-                index={index}
+            {/* Pattern decoratif subtil */}
+            <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
+                  backgroundSize: '32px 32px',
+                }}
               />
-            ))}
-          </div>
-        </div>
+            </div>
 
-        {/* FAQ */}
-        <div className="mb-20">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 md:text-4xl"
-          >
-            {garantiesData.faq.title}
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="mx-auto max-w-4xl"
-          >
-            <Accordion variant="splitted">
-              {garantiesData.faq.items.map((faq, index) => (
-                <AccordionItem
-                  key={index}
-                  aria-label={faq.question}
-                  title={faq.question}
-                  classNames={{
-                    base: 'bg-white border border-neutral-200 rounded-xl shadow-sm hover:shadow-md transition-shadow',
-                    title: 'font-semibold text-neutral-900',
-                    content: 'text-neutral-600 pb-6',
-                  }}
-                >
-                  {faq.answer}
-                </AccordionItem>
-              ))}
-            </Accordion>
+            <div className="relative z-10 text-center max-w-4xl mx-auto">
+              <IntroSection
+                title="Des Garanties Complètes pour Votre Sérénité"
+                description="Investir dans le solaire, c'est investir pour l'avenir. Chez BNB ÉNERGIE, nous vous offrons une couverture complète avec nos certifications professionnelles, nos garanties décennales et les garanties constructeurs de matériel premium."
+                className="mb-0"
+              />
+            </div>
           </motion.div>
-        </div>
 
-        {/* Call-to-Action */}
-        <CTASection
-          title={garantiesData.cta.title}
-          description={garantiesData.cta.subtitle}
-          phoneNumber={siteConfig.contact.phone}
-          primaryButton={{
-            text: 'Demander mon devis',
-            href: '/contact',
-          }}
-          variant="gradient"
-        />
-      </SectionContainer>
-    </main>
+          {/* Certifications */}
+          {warranties.certifications.length > 0 && (
+            <div className="mb-20">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
+              >
+                Nos Certifications Professionnelles
+              </motion.h2>
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {warranties.certifications.map((cert, index) => (
+                  <FeatureCard
+                    key={cert.id}
+                    icon={cert.icon}
+                    title={cert.title}
+                    description={cert.description}
+                    gradient={cert.gradient || 'from-blue-500 to-cyan-500'}
+                    index={index}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Garanties Produits */}
+          {warranties.products.length > 0 && (
+            <div className="mb-20">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
+              >
+                Garanties Constructeurs & Matériel
+              </motion.h2>
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                {warranties.products.map((product, index) => (
+                  <WarrantyCard
+                    key={product.id}
+                    icon={product.icon}
+                    title={product.title}
+                    description={product.description}
+                    gradient={product.gradient || 'from-blue-500 to-cyan-500'}
+                    warranties={
+                      product.warrantyDetails?.map((w: any) => ({
+                        label: w.label,
+                        duration: w.duration,
+                        description: w.description,
+                      })) || []
+                    }
+                    features={product.features?.map((f: any) => f.text) || []}
+                    index={index}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Engagements */}
+          {warranties.commitments.length > 0 && (
+            <div className="mb-20">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
+              >
+                Nos Engagements Qualité
+              </motion.h2>
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {warranties.commitments.map((commitment, index) => (
+                  <FeatureCard
+                    key={commitment.id}
+                    icon={commitment.icon}
+                    title={commitment.title}
+                    description={commitment.description}
+                    gradient="from-blue-500 to-cyan-500"
+                    index={index}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Call-to-Action */}
+          <CTASection
+            title="Des Questions sur Nos Garanties ?"
+            description="Notre équipe est à votre disposition pour vous expliquer en détail toutes nos garanties et certifications"
+            phoneNumber={siteSettings.contactPhone || '07 81 25 11 25'}
+            primaryButton={{
+              text: 'Demander mon devis',
+              href: '/contact',
+            }}
+            variant="gradient"
+          />
+        </SectionContainer>
+      </div>
+    </PageMainWrapper>
   );
 }

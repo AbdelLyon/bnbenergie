@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   compress: true,
   trailingSlash: false,
 
-  serverExternalPackages: ['esbuild', 'drizzle-kit'],
+  serverExternalPackages: ['esbuild', 'drizzle-kit', 'pg', 'pg-native', 'payload', '@payloadcms/db-postgres'],
 
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'enegerie.vercel.app',
+        hostname: 'bnbenergie01.com',
       },
       {
         protocol: 'http',
@@ -63,7 +63,15 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Cache-Control',
-            value: 'public, max-age=0, must-revalidate',
+            value: 'no-cache, no-store, must-revalidate',
+          },
+          {
+            key: 'Pragma',
+            value: 'no-cache',
+          },
+          {
+            key: 'Expires',
+            value: '0',
           },
         ],
       },

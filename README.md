@@ -1,67 +1,101 @@
-# Payload Blank Template
+# BNB ÉNERGIE
 
-This template comes configured with the bare minimum to get started on anything you need.
+Site web professionnel pour BNB ÉNERGIE, spécialiste de l'installation de panneaux solaires photovoltaïques dans l'Ain (01).
 
-## Quick start
+## 🚀 Quick Start
 
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
+### Prérequis
 
-## Quick Start - local setup
+- Node.js 18+
+- pnpm 8+
+- PostgreSQL 14+
 
-To spin up this template locally, follow these steps:
+### Installation
 
-### Clone
+```bash
+# Cloner le repository
+git clone https://github.com/votre-org/bnbenergie.git
+cd bnbenergie
 
-After you click the `Deploy` button above, you'll want to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
+# Installer les dépendances
+pnpm install
 
-### Development
+# Configurer les variables d'environnement
+cp .env.example .env.local
 
-1. First [clone the repo](#clone) if you have not done so already
-2. `cd my-project && cp .env.example .env` to copy the example environment variables. You'll need to add the `MONGODB_URI` from your Cloud project to your `.env` if you want to use S3 storage and the MongoDB database that was created for you.
+# Générer les types Payload
+pnpm generate:types
 
-3. `pnpm install && pnpm dev` to install dependencies and start the dev server
-4. open `http://localhost:3000` to open the app in your browser
+# Lancer en mode développement
+pnpm dev
+```
 
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
+L'application sera disponible sur [http://localhost:3000](http://localhost:3000).
 
-#### Docker (Optional)
+## 📁 Structure du Projet
 
-If you prefer to use Docker for local development instead of a local MongoDB instance, the provided docker-compose.yml file can be used.
+```
+bnbenergie/
+├── src/
+│   ├── app/              # Routes Next.js (App Router)
+│   ├── components/       # Composants React
+│   ├── lib/              # Utilitaires et helpers
+│   ├── config/           # Configuration centralisée
+│   ├── collections/      # Collections Payload CMS
+│   ├── globals/          # Globals Payload
+│   └── services/         # Couche service
+├── public/               # Assets statiques
+└── scripts/              # Scripts utilitaires
+```
 
-To do so, follow these steps:
+Pour plus de détails, voir [ARCHITECTURE.md](./ARCHITECTURE.md).
 
-- Modify the `MONGODB_URI` in your `.env` file to `mongodb://127.0.0.1/<dbname>`
-- Modify the `docker-compose.yml` file's `MONGODB_URI` to match the above `<dbname>`
-- Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
+## 🛠 Stack Technique
 
-## How it works
+- **Framework**: Next.js 15 (App Router)
+- **UI**: React 19, HeroUI, Tailwind CSS 4
+- **CMS**: Payload CMS 3.x (Headless)
+- **Base de données**: PostgreSQL
+- **Storage**: Vercel Blob
+- **Déploiement**: Vercel
+- **Langage**: TypeScript (strict mode)
 
-The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
+## 🔧 Scripts Disponibles
 
-### Collections
+```bash
+# Développement
+pnpm dev              # Lancer le serveur de développement
+pnpm devsafe          # Nettoyer .next et relancer
 
-See the [Collections](https://payloadcms.com/docs/configuration/collections) docs for details on how to extend this functionality.
+# Build & Production
+pnpm build            # Build pour la production
+pnpm start            # Lancer en mode production
 
-- #### Users (Authentication)
+# Payload CMS
+pnpm generate:types   # Générer les types TypeScript
+pnpm generate:importmap  # Générer l'import map
+pnpm payload          # CLI Payload
 
-  Users are auth-enabled collections that have access to the admin panel.
+# Qualité du code
+pnpm lint             # Linter le code
+```
 
-  For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
+## 🔐 Variables d'Environnement
 
-- #### Media
+Voir [ARCHITECTURE.md](./ARCHITECTURE.md) pour la liste complète des variables requises.
 
-  This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
+## 📚 Documentation
 
-### Docker
+- [Architecture](./ARCHITECTURE.md) - Architecture détaillée du projet
+- [Next.js Docs](https://nextjs.org/docs)
+- [Payload CMS Docs](https://payloadcms.com/docs)
 
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
+## 📄 License
 
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
+MIT © BNB ÉNERGIE
 
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
+## 👥 Contact
 
-## Questions
-
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+- **Site**: https://bnbenergie01.com
+- **Email**: contact@bnbenergie.fr
+- **Téléphone**: 07 81 25 11 25

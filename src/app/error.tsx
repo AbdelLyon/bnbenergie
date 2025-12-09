@@ -1,6 +1,6 @@
 'use client';
 
-import { Link } from 'lucide-react';
+import Link from 'next/link';
 import { useEffect } from 'react';
 
 export default function Error({
@@ -11,7 +11,7 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    
+
     console.error('Application error:', error);
   }, [error]);
 

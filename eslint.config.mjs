@@ -1,21 +1,17 @@
-import { dirname } from 'path'
-import { fileURLToPath } from 'url'
-import { createRequire } from 'module'
-
-const require = createRequire(import.meta.url)
-const { FlatCompat } = require('@eslint/eslintrc')
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-})
+import js from '@eslint/js';
+import nextPlugin from '@next/eslint-plugin-next';
+import tseslint from 'typescript-eslint';
 
 const eslintConfig = [
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
   {
+    plugins: {
+      '@next/next': nextPlugin,
+    },
     rules: {
+      ...nextPlugin.configs.recommended.rules,
+      ...nextPlugin.configs['core-web-vitals'].rules,
       '@typescript-eslint/ban-ts-comment': 'warn',
       '@typescript-eslint/no-empty-object-type': 'warn',
       '@typescript-eslint/no-explicit-any': 'warn',
@@ -34,8 +30,8 @@ const eslintConfig = [
     },
   },
   {
-    ignores: ['.next/'],
+    ignores: ['.next/', 'scripts/', 'node_modules/'],
   },
-]
+];
 
-export default eslintConfig
+export default eslintConfig;

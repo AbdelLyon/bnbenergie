@@ -1,28 +1,19 @@
-import { slugify } from '@/app/_utils/slugify';
-import siteConfig from '@/data/siteConfig.json';
-import zonesData from '@/data/zonesData.json';
+import { getInterventionZones, getSiteSettings } from '@/lib/payload-queries';
+import { slugify } from '@/utils/slugify';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import CityPageContent from './CityPageContent';
 
-interface ZoneGroup {
-  zone: string;
-  communes: string[];
-  gradient: string;
-}
-
 // Helper to find city name from slug
-function findCityName(slug: string): string | undefined {
-  const allCommunes = zonesData.communes.groups.flatMap(
-    (group: ZoneGroup) => group.communes
-  );
+async function findCityName(slug: string): Promise<string | undefined> {
+  const zones = await getInterventionZones();
+  const allCommunes = zones.flatMap((zone) => zone.communes.map((c) => c.name));
   return allCommunes.find((city) => slugify(city) === slug);
 }
 
 export async function generateStaticParams() {
-  const allCommunes = zonesData.communes.groups.flatMap(
-    (group: ZoneGroup) => group.communes
-  );
+  const zones = await getInterventionZones();
+  const allCommunes = zones.flatMap((zone) => zone.communes.map((c) => c.name));
   return allCommunes.map((city) => ({
     city: slugify(city),
   }));
@@ -34,13 +25,16 @@ export async function generateMetadata({
   params: Promise<{ city: string }>;
 }): Promise<Metadata> {
   const { city } = await params;
-  const cityName = findCityName(city);
+  const cityName = await findCityName(city);
+  const siteSettings = await getSiteSettings();
 
   if (!cityName) {
     return {
       title: 'Zone non trouvée',
     };
   }
+
+  const canonicalUrl = `${siteSettings.domain}/zones-intervention/${city}`;
 
   return {
     title: `Installation Panneaux Solaires à ${cityName} | Devis Gratuit`,
@@ -52,10 +46,21 @@ export async function generateMetadata({
       `entreprise RGE ${cityName}`,
       `devis panneaux solaires ${cityName}`,
     ],
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: `Installation Panneaux Solaires à ${cityName} | BNB ÉNERGIE`,
       description: `Votre expert local en panneaux solaires à ${cityName}. Installation clé en main, autoconsommation et économies d'énergie.`,
-      url: `${siteConfig.domain}/zones-intervention/${city}`,
+      url: canonicalUrl,
+      type: 'website',
+      locale: 'fr_FR',
+      siteName: 'BNB ÉNERGIE',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `Installation Panneaux Solaires à ${cityName} | BNB ÉNERGIE`,
+      description: `Votre expert local en panneaux solaires à ${cityName}. Installation clé en main, autoconsommation et économies d'énergie.`,
     },
     robots: {
       index: true,
@@ -77,16 +82,27 @@ export default async function CityPage({
   params: Promise<{ city: string }>;
 }) {
   const { city } = await params;
-  const cityName = findCityName(city);
+  const cityName = await findCityName(city);
+  const siteSettings = await getSiteSettings();
+  const zones = await getInterventionZones();
 
   if (!cityName) {
     notFound();
   }
 
-  // Find the group this city belongs to for specific styling/data if needed
-  const cityGroup = zonesData.communes.groups.find((group: ZoneGroup) =>
-    group.communes.includes(cityName)
+  const cityGroup = zones.find((zone) =>
+    zone.communes.some((c) => c.name === cityName)
   );
 
-  return <CityPageContent cityName={cityName} cityGroup={cityGroup} />;
+  const mappedCityGroup = cityGroup
+    ? { ...cityGroup, gradient: cityGroup.gradient ?? undefined }
+    : undefined;
+
+  return (
+    <CityPageContent
+      cityName={cityName}
+      cityGroup={mappedCityGroup}
+      siteSettings={siteSettings}
+    />
+  );
 }
