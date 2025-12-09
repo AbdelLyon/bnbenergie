@@ -32,6 +32,10 @@ export default function MainLayout({
     <html lang="fr" suppressHydrationWarning>
       <head>
         <meta httpEquiv="content-language" content="fr" />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>
       <body
         className={`${openSans.variable} antialiased`}

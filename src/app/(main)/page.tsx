@@ -14,9 +14,9 @@ export const revalidate = 60;
 
 export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataHelper({
-    title: 'Installation Panneaux Solaires Ain (01) | Entreprise RGE QualiPV',
+    title: 'Installation Panneaux Solaires Ain | Expert RGE QualiPV',
     description:
-      "Expert en installation de panneaux solaires photovoltaïques dans l'Ain (01). ✓ Entreprise RGE QualiPV certifiée. ✓ Devis gratuit sous 48h. ✓ Garantie décennale. Installation clé en main à Bourg-en-Bresse.",
+      "Installateur panneaux solaires photovoltaïques Bourg-en-Bresse & Ain. RGE QualiPV. Devis gratuit 48h, MaPrimeRénov', installation pro 3-9kWc clé en main.",
     path: '',
     keywords: [
       'panneaux solaires Ain',
