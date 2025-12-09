@@ -5,7 +5,6 @@ import { buildConfig } from 'payload';
 import { fileURLToPath } from 'url';
 import sharp from 'sharp';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
-//users
 import { Users } from './collections/Users';
 import { Media } from './collections/Media';
 import { PageHeaders } from './collections/PageHeaders';
