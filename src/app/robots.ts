@@ -8,17 +8,12 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
     rules: [
       {
         userAgent: '*',
-        allow: '/',
-        disallow: ['/api/', '/_next/'],
-      },
-      {
-        userAgent: 'Googlebot',
-        allow: '/',
-        disallow: ['/api/', '/_next/'],
-      },
-      {
-        userAgent: 'Googlebot-Image',
-        allow: '/',
+        allow: [
+          '/',
+          '/_next/static/',
+          '/_next/image',
+        ],
+        disallow: ['/api/', '/admin/'],
       },
     ],
     sitemap: `${siteConfig.domain}/sitemap.xml`,
