@@ -41,19 +41,5 @@
     }
   ],
 
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.bnbenergie01.com"
-        }
-      ],
-      "destination": "https://bnbenergie01.com/:path*",
-      "permanent": true
-    }
-  ],
-
   "rewrites": []
 }
