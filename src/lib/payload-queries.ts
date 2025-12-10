@@ -9,6 +9,7 @@ import config from '@/payload.config';
 import { DEFAULT_QUERY_LIMIT } from '@/config/database';
 import { CACHE_TAGS, REVALIDATION_INTERVALS } from '@/config/cache';
 import { withPerformanceTracking } from './monitoring';
+import { FALLBACK_SITE_SETTINGS, mergeSiteSettings } from '@/config/fallback-settings';
 import type {
   PageHeader,
   Service,
@@ -268,11 +269,19 @@ const getSiteSettingsUncached = async (): Promise<SiteSetting> => {
     'getSiteSettings',
     'db_query',
     async () => {
-      const payload = await getPayloadInstance();
-      const result = await payload.findGlobal({
-        slug: 'site-settings',
-      });
-      return result;
+      try {
+        const payload = await getPayloadInstance();
+        const result = await payload.findGlobal({
+          slug: 'site-settings',
+        });
+
+        // Merge avec les fallbacks pour garantir que toutes les valeurs existent
+        return mergeSiteSettings(result) as SiteSetting;
+      } catch (error) {
+        console.error('❌ Error fetching site settings from Payload, using fallbacks:', error);
+        // En cas d'erreur Payload, retourner les fallbacks
+        return FALLBACK_SITE_SETTINGS as unknown as SiteSetting;
+      }
     }
   );
 };
