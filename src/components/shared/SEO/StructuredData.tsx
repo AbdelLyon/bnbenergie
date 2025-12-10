@@ -308,7 +308,7 @@ export async function PricingStructuredData() {
             },
             reviewBody:
               'Installation 3kWc parfaite. Équipe professionnelle RGE, délais respectés. Production conforme aux prévisions. Je recommande vivement!',
-            datePublished: '2025-10-15',
+            datePublished: '2024-10-15',
           },
           {
             '@type': 'Review',

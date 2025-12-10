@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataHelper({
     title: 'Aides & Financement Panneaux Solaires 2025 Ain',
     description:
-      'Prime autoconsommation, MaPrimeRénov, CEE, TVA réduite 10%, éco-PTZ. ✓ Aides panneaux solaires 2025. ✓ Accompagnement démarches. Financement Ain (01).',
+      'Prime autoconsommation, MaPrimeRénov, CEE, TVA 10%, éco-PTZ. Aides panneaux solaires 2025 Ain. Accompagnement démarches inclus.',
     path: '/aides-financement',
     keywords: [
       'aides panneaux solaires 2025',

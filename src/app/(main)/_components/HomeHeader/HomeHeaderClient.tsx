@@ -72,7 +72,7 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
         >
           <HomeHeaderCTAButtons
             primaryText={data.cta1}
-            primaryHref="#pricing"
+            primaryHref="/nos-packs"
             secondaryText={data.cta2}
             secondaryHref={data.cta2_href}
           />

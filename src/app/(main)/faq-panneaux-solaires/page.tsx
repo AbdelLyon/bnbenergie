@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataHelper({
     title: 'FAQ Panneaux Solaires Ain - Questions Fréquentes',
     description:
-      "Réponses à vos questions sur les panneaux solaires : prix, rentabilité, aides, installation. ✓ FAQ complète panneaux photovoltaïques. ✓ Conseils d'expert Ain.",
+      "Réponses à vos questions sur les panneaux solaires : prix, rentabilité, aides, installation. FAQ complète photovoltaïque. Conseils d'expert Ain.",
     path: '/faq-panneaux-solaires',
     keywords: [
       'faq panneaux solaires',

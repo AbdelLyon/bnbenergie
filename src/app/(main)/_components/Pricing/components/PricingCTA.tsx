@@ -8,7 +8,7 @@ interface PricingCTAProps {
 export function PricingCTA({ pack, isSpecialPrice }: PricingCTAProps) {
   return (
     <a
-      href="#contact"
+      href="/contact"
       className={`group/btn relative mt-6 block overflow-hidden rounded-xl px-6 py-4 text-center text-sm font-bold transition-all duration-300 ${
         pack.popular
           ? 'bg-linear-to-r from-blue-600 to-cyan-600 text-white'

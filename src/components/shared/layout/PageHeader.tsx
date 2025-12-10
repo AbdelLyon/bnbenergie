@@ -18,7 +18,6 @@ interface PageHeaderProps {
 
 export function PageHeader({
   images = [],
-  imageAlts,
   currentSlide = 0,
   variant = 'simple',
   height = 'full',
@@ -39,7 +38,6 @@ export function PageHeader({
       {variant === 'carousel' && images.length > 0 ? (
         <HeaderBackground
           images={images}
-          imageAlts={imageAlts}
           currentSlide={currentSlide}
           variant={backgroundVariant}
         />

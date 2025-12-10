@@ -7,14 +7,12 @@ import { ANIMATION_DURATIONS, TRANSITIONS } from '@/config/constants';
 
 export interface HeaderBackgroundProps {
   images: string[];
-  imageAlts?: string[];
   currentSlide: number;
   variant?: 'default' | 'clean';
 }
 
 export function HeaderBackground({
   images,
-  imageAlts,
   currentSlide,
   variant = 'default',
 }: HeaderBackgroundProps) {
@@ -71,8 +69,7 @@ export function HeaderBackground({
           <Image
             src={image}
             alt={
-              imageAlts?.[index] ||
-              `Installation panneaux solaires BNB ÉNERGIE ${index + 1}`
+              `Installation de panneaux solaires photovoltaïques par BNB ÉNERGIE à Bourg-en-Bresse - Vue ${index + 1}`
             }
             fill
             priority={index === 0}

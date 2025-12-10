@@ -58,7 +58,7 @@ export function BenefitsCTA({
           <div className="flex flex-col gap-5 sm:flex-row">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
               <Link
-                href="#pricing"
+                href="/nos-packs"
                 className="text-primary-600 inline-flex items-center justify-center rounded-full bg-white px-8 py-4 font-extrabold shadow-xl transition-all duration-300 hover:bg-neutral-50 hover:shadow-2xl"
               >
                 {button1}
@@ -66,7 +66,7 @@ export function BenefitsCTA({
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
               <Link
-                href="#faq"
+                href="/faq-panneaux-solaires"
                 className="inline-flex items-center justify-center rounded-full border-2 border-white/40 bg-white/10 px-8 py-4 font-extrabold text-white backdrop-blur-xl transition-all duration-300 hover:border-white/60 hover:bg-white/20 hover:shadow-xl"
               >
                 {button2}

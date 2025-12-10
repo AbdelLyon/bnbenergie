@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataHelper({
     title: 'Services Installation Solaire Clé en Main Ain (01)',
     description:
-      "Installation de panneaux solaires en 5 étapes dans l'Ain: étude gratuite, démarches administratives, pose RGE, Consuel et Enedis. ✓ Garantie décennale. Devis sous 48h.",
+      "Installation panneaux solaires clé en main Ain : étude gratuite, pose RGE, démarches, Consuel et Enedis. Garantie décennale. Devis 48h.",
     path: '/services',
     keywords: [
       'installation panneaux solaires',

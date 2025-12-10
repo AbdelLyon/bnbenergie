@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataHelper({
     title: 'Nos Packs Photovoltaïques - Tarifs Installation Solaire Ain (01)',
     description:
-      "Découvrez nos packs d'installation de panneaux solaires adaptés à vos besoins dans l'Ain. Tarifs transparents, garantie décennale incluse. Devis gratuit sous 48h.",
+      "Packs installation panneaux solaires adaptés à vos besoins dans l'Ain. Tarifs transparents, garantie décennale. Devis gratuit sous 48h.",
     path: '/nos-packs',
     keywords: [
       'pack panneaux solaires',

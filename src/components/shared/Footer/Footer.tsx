@@ -3,14 +3,12 @@ import {
   Phone,
   Mail,
   MapPin,
-  Facebook,
-  Instagram,
-  Linkedin,
   Sun,
   Shield,
   Award,
   ChevronRight
 } from 'lucide-react';
+import { Facebook, Instagram, Linkedin } from '@/components/shared/ui/SocialIcons';
 import Link from 'next/link';
 import { getSiteSettings, getInterventionZones } from '@/lib/payload-queries';
 
@@ -201,30 +199,42 @@ export const Footer = async () => {
             Suivez-nous
           </h3>
           <div className="flex gap-4">
-            <a
-              href="#"
-              className="group relative rounded-full bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-700 p-3 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/20"
-              aria-label="Facebook"
-            >
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <Facebook className="relative h-6 w-6 text-neutral-700 dark:text-neutral-300 transition-colors group-hover:text-white" />
-            </a>
-            <a
-              href="#"
-              className="group relative rounded-full bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-700 p-3 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-pink-500/20"
-              aria-label="Instagram"
-            >
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-pink-500 via-purple-500 to-orange-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <Instagram className="relative h-6 w-6 text-neutral-700 dark:text-neutral-300 transition-colors group-hover:text-white" />
-            </a>
-            <a
-              href="#"
-              className="group relative rounded-full bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-700 p-3 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/20"
-              aria-label="LinkedIn"
-            >
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <Linkedin className="relative h-6 w-6 text-neutral-700 dark:text-neutral-300 transition-colors group-hover:text-white" />
-            </a>
+            {siteSettings.socialFacebook && (
+              <a
+                href={siteSettings.socialFacebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative rounded-full bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-700 p-3 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/20"
+                aria-label="Facebook"
+              >
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <Facebook className="relative h-6 w-6 text-neutral-700 dark:text-neutral-300 transition-colors group-hover:text-white" />
+              </a>
+            )}
+            {siteSettings.socialInstagram && (
+              <a
+                href={siteSettings.socialInstagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative rounded-full bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-700 p-3 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-pink-500/20"
+                aria-label="Instagram"
+              >
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-pink-500 via-purple-500 to-orange-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <Instagram className="relative h-6 w-6 text-neutral-700 dark:text-neutral-300 transition-colors group-hover:text-white" />
+              </a>
+            )}
+            {siteSettings.socialLinkedin && (
+              <a
+                href={siteSettings.socialLinkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative rounded-full bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-700 p-3 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/20"
+                aria-label="LinkedIn"
+              >
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <Linkedin className="relative h-6 w-6 text-neutral-700 dark:text-neutral-300 transition-colors group-hover:text-white" />
+              </a>
+            )}
           </div>
         </div>
 

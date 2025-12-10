@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataHelper({
     title: "Zones d'Intervention Panneaux Solaires Ain",
     description:
-      "Installation panneaux solaires dans tout l'Ain (01) : Bourg-en-Bresse, Oyonnax, Bellegarde, Ambérieu, Gex, Ferney-Voltaire. ✓ Déplacement gratuit. Rayon 50 km.",
+      "Installation panneaux solaires dans tout l'Ain (01) : Bourg-en-Bresse, Oyonnax, Bellegarde, Gex. Déplacement gratuit. Rayon 50 km.",
     path: '/zones-intervention',
     keywords: [
       'zone intervention panneaux solaires Ain',
