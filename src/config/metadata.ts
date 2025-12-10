@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { getSiteSettings } from '@/lib/payload-queries';
+import { SEO_KEYWORDS } from './seo-keywords';
 
 export async function generateMetadata({
   title,
@@ -24,9 +25,8 @@ export async function generateMetadata({
     alt: title,
   };
 
-  const seoKeywords =
-    siteConfig.seoKeywords?.map((k: { keyword?: string | null }) => k.keyword).filter((k): k is string => !!k) || [];
 
+  const seoKeywords = [...SEO_KEYWORDS];
 
   return {
     // Note: metadataBase est défini dans le layout, pas besoin de le redéfinir ici
@@ -71,9 +71,6 @@ export async function generateMetadata({
 }
 
 import { env } from '@/lib/env';
-
-// Default metadata with placeholder values
-// Pages should override these with their own metadata
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(
     env.NEXT_PUBLIC_SITE_URL || 'https://bnbenergie01.com'
@@ -84,12 +81,7 @@ export const defaultMetadata: Metadata = {
   },
   description:
     "Expert en installation de panneaux solaires photovoltaïques dans l'Ain (01). Devis gratuit, entreprise RGE QualiPV.",
-  keywords: [
-    'panneaux solaires',
-    'installation photovoltaïque',
-    'Ain',
-    'RGE QualiPV',
-  ],
+  keywords: SEO_KEYWORDS,
   authors: [{ name: 'BNB ÉNERGIE' }],
   creator: 'BNB ÉNERGIE',
   publisher: 'BNB ÉNERGIE',
