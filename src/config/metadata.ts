@@ -75,7 +75,7 @@ export async function generateMetadata({
 import { env } from '@/lib/env';
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(
-    env.NEXT_PUBLIC_SITE_URL || 'https://bnbenergie01.com'
+    env.NEXT_PUBLIC_SITE_URL || 'https://www.bnbenergie01.com'
   ),
   title: {
     default: 'BNB ÉNERGIE | Installation Panneaux Solaires',

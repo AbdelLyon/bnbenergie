@@ -5,7 +5,7 @@ import { env } from '@/lib/env';
 // Root metadata shared across all routes
 export const metadata: Metadata = {
   metadataBase: new URL(
-    env.NEXT_PUBLIC_SITE_URL || env.SERVER_URL || 'https://bnbenergie01.com'
+    env.NEXT_PUBLIC_SITE_URL || env.SERVER_URL || 'https://www.bnbenergie01.com'
   ),
 };
 

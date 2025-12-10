@@ -3,7 +3,7 @@ export const FALLBACK_SITE_SETTINGS = {
   // Informations business
   siteName: 'BNB Énergie 01 - Panneaux Solaires Photovoltaïques Ain',
   businessName: 'BNB Énergie 01',
-  domain: 'https://bnbenergie01.com',
+  domain: 'https://www.bnbenergie01.com',
 
   // Contact
   contactPhone: '07 81 25 11 25',
