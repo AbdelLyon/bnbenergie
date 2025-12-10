@@ -17,7 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Generate city URLs from intervention zones
   const cityUrls = zones.flatMap((zone) =>
     zone.communes.map((commune) => ({
-      url: `${baseUrl}/zones-intervention/${slugify(commune.name)}`,
+      url: `${baseUrl}zones-intervention/${slugify(commune.name)}`,
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,
       priority: 0.8,
@@ -32,49 +32,49 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/contact`,
+      url: `${baseUrl}contact`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/services`,
+      url: `${baseUrl}services`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/zones-intervention`,
+      url: `${baseUrl}zones-intervention`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.85,
     },
     {
-      url: `${baseUrl}/garanties`,
+      url: `${baseUrl}garanties`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/realisations`,
+      url: `${baseUrl}realisations`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/aides-financement`,
+      url: `${baseUrl}aides-financement`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/nos-packs`,
+      url: `${baseUrl}nos-packs`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.85,
     },
     {
-      url: `${baseUrl}/faq-panneaux-solaires`,
+      url: `${baseUrl}faq-panneaux-solaires`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.75,
