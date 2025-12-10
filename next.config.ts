@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   compress: true,
-  trailingSlash: false,
+  trailingSlash: true,
 
   serverExternalPackages: ['esbuild', 'drizzle-kit', 'pg', 'pg-native', 'payload', '@payloadcms/db-postgres'],
 
