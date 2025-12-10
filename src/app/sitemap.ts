@@ -11,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     getInterventionZones()
   ]);
 
-  const baseUrl = siteConfig.domain;
+  const baseUrl = siteConfig.domain?.replace(/\/$/, '') || '';
   const currentDate = new Date();
 
   // Generate city URLs from intervention zones

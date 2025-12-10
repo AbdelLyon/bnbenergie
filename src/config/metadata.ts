@@ -16,7 +16,7 @@ export async function generateMetadata({
   images?: Array<{ url: string; width: number; height: number; alt: string }>;
 }): Promise<Metadata> {
   const siteConfig = await getSiteSettings();
-  const baseUrl = siteConfig.domain;
+  const baseUrl = siteConfig.domain?.replace(/\/$/, '') || '';
   const url = `${baseUrl}${path}`;
   const defaultImage = {
     url: `${baseUrl}/opengraph-image`,
