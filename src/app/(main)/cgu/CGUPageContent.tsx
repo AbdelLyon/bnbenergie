@@ -215,111 +215,46 @@ Conformément à la réglementation, vous pouvez recourir à un service de médi
         >
           Conditions applicables à l'utilisation de notre site web
         </motion.p>
-
-        {/* 3 Cards header style Services */}
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
-          {/* Card 1 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="group relative overflow-hidden rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 p-6 shadow-2xl"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 to-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div className="relative z-10 flex flex-col gap-3">
-              <Globe className="h-8 w-8 text-white" />
-              <h3 className="text-lg font-semibold text-white">Accès & Utilisation</h3>
-              <p className="text-white/70 text-sm">
-                Conditions d’accès, disponibilité et responsabilités des utilisateurs.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Card 2 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="group relative overflow-hidden rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 p-6 shadow-2xl"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div className="relative z-10 flex flex-col gap-3">
-              <Shield className="h-8 w-8 text-white" />
-              <h3 className="text-lg font-semibold text-white">Données & Sécurité</h3>
-              <p className="text-white/70 text-sm">
-                Protection des données, confidentialité et politique de sécurité.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Card 3 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="group relative overflow-hidden rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 p-6 shadow-2xl"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-red-400/20 to-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div className="relative z-10 flex flex-col gap-3">
-              <AlertTriangle className="h-8 w-8 text-white" />
-              <h3 className="text-lg font-semibold text-white">Responsabilités</h3>
-              <p className="text-white/70 text-sm">
-                Engagements, limitations de responsabilité et obligations légales.
-              </p>
-            </div>
-          </motion.div>
-        </div>
       </PageHeader>
 
       {/* Sections CGU */}
       <div className="relative z-10">
-        <SectionContainer className="mt-16">
-          <div className="space-y-8">
-            {sections.map((section, index) => {
-              const Icon = section.icon;
-              return (
-                <motion.div
-                  key={section.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group relative overflow-hidden rounded-3xl bg-white dark:bg-content1 p-8 shadow-xl border border-neutral-100 dark:border-white/5"
-                >
-                  {/* Background gradient effect */}
+        <SectionContainer className="mt-16 space-y-8">
+          {sections.map((section, index) => {
+            const Icon = section.icon;
+            return (
+              <motion.div
+                key={section.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group relative overflow-hidden rounded-3xl bg-white dark:bg-content1 p-8 shadow-xl border border-neutral-100 dark:border-white/5"
+              >
+                {section.gradient && (
                   <div
                     className={`absolute inset-0 bg-linear-to-br ${section.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-5`}
                   />
-                  {/* Pattern background */}
-                  <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
+                )}
+                {Icon && (
+                  <div className="mb-6 flex items-center gap-4 relative z-10">
                     <div
-                      className="absolute inset-0"
-                      style={{
-                        backgroundImage: `radial-linear(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                        backgroundSize: '32px 32px',
-                      }}
-                    />
-                  </div>
-                  <div className="relative z-10">
-                    <div className="mb-6 flex items-center gap-4">
-                      <div
-                        className={`inline-flex rounded-2xl bg-linear-to-br ${section.gradient} p-3 shadow-lg`}
-                      >
-                        <Icon className="h-5 w-5 text-white" />
-                      </div>
-                      <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">
-                        {section.title}
-                      </h2>
+                      className={`inline-flex rounded-2xl bg-linear-to-br ${section.gradient || 'from-gray-500 to-gray-600'} p-3 shadow-lg`}
+                    >
+                      <Icon className="h-5 w-5 text-white" />
                     </div>
-                    <div
-                      className="prose prose-neutral dark:prose-invert max-w-none text-neutral-700 dark:text-default-500 leading-relaxed whitespace-pre-line"
-                      dangerouslySetInnerHTML={{ __html: section.content }}
-                    />
+                    <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">
+                      {section.title}
+                    </h2>
                   </div>
-                </motion.div>
-              );
-            })}
-          </div>
+                )}
+                <div
+                  className="prose prose-neutral dark:prose-invert max-w-none text-neutral-700 dark:text-default-500 leading-relaxed whitespace-pre-line relative z-10"
+                  dangerouslySetInnerHTML={{ __html: section.content }}
+                />
+              </motion.div>
+            );
+          })}
 
           {/* Footer note */}
           <motion.div

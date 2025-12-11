@@ -1,13 +1,13 @@
 'use client';
 
+import { Title } from '@/components/shared/ui/Title';
 import {
   PageHeader,
   PageMainWrapper,
   SectionContainer,
-  Title,
 } from '@/components';
 import { motion } from 'framer-motion';
-import type { SiteSetting } from '@/payload-types';
+import type { SiteSetting, PageHeader as PageHeaderType } from '@/payload-types';
 import {
   FileText,
   DollarSign,
@@ -20,10 +20,11 @@ import {
 } from 'lucide-react';
 
 interface CGVPageContentProps {
+  header: PageHeaderType | null;
   siteSettings: SiteSetting;
 }
 
-export default function CGVPageContent({ siteSettings }: CGVPageContentProps) {
+export default function CGVPageContent({ header, siteSettings }: CGVPageContentProps) {
   const sections = [
     {
       icon: FileText,
@@ -200,19 +201,19 @@ Les présentes CGV sont soumises au droit français. En cas de litige, les tribu
 
   return (
     <PageMainWrapper variant="amber">
-      {/* Header */}
+      {/* Header uniquement */}
       <PageHeader variant="simple" height="medium">
         <Title
-          title={['Conditions', 'Générales']}
-          subtitle="Nos engagements commerciaux"
+          title={header?.title.split(' ') || ['Conditions', 'Générales']}
+          subtitle={header?.subtitle || 'Nos engagements commerciaux'}
         />
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 0.15 }}
-          className="max-w-4xl px-4 text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
+          className="max-w-4xl text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
         >
-          Conditions applicables à nos services d'installation solaire
+          {header?.description || 'Conditions applicables à nos services d\'installation solaire'}
         </motion.p>
       </PageHeader>
 
@@ -231,11 +232,9 @@ Les présentes CGV sont soumises au droit français. En cas de litige, les tribu
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="group relative overflow-hidden rounded-3xl bg-white dark:bg-content1 p-8 shadow-xl border border-neutral-100 dark:border-white/5"
                 >
-                  {/* Background gradient */}
                   <div
                     className={`absolute inset-0 bg-linear-to-br ${section.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-5`}
                   />
-                  {/* Pattern */}
                   <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
                     <div
                       className="absolute inset-0"
@@ -283,7 +282,7 @@ Les présentes CGV sont soumises au droit français. En cas de litige, les tribu
                   Questions sur nos CGV ?
                 </h2>
                 <p className="text-neutral-700 dark:text-default-500 leading-relaxed">
-                  Pour toute question concernant nos Conditions Générales de Vente, n'hésitez pas à nous contacter :
+                  Pour toute question concernant nos Conditions Générales de Vente, contactez-nous :
                 </p>
                 <p className="mt-4 text-sm text-neutral-600 dark:text-default-400">
                   <strong>Email :</strong>{' '}

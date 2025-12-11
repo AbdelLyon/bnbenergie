@@ -26,6 +26,7 @@ interface PolitiqueConfidentialitePageContentProps {
 export default function PolitiqueConfidentialitePageContent({
   siteSettings,
 }: PolitiqueConfidentialitePageContentProps) {
+  // ------------------ SECTIONS DE CONTENU ------------------
   const sections = [
     {
       icon: Database,
@@ -161,7 +162,7 @@ En cas de violation de données, nous vous en informerons dans les 72 heures con
 
   return (
     <PageMainWrapper variant="purple">
-      {/* HEADER */}
+      {/* ---------------- HEADER ---------------- */}
       <PageHeader variant="simple" height="medium">
         <Title
           title={['Politique', 'de confidentialité']}
@@ -178,10 +179,9 @@ En cas de violation de données, nous vous en informerons dans les 72 heures con
         </motion.p>
       </PageHeader>
 
-      {/* CARDS FLOTTANTES */}
+      {/* ---------------- CARDS FLOTTANTES ---------------- */}
       <div className="relative z-20 -mt-20 mb-16 px-4">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
           {/* Card 1 */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -235,11 +235,10 @@ En cas de violation de données, nous vous en informerons dans les 72 heures con
               Gérez vos droits, vos données et vos préférences.
             </p>
           </motion.div>
-
         </div>
       </div>
 
-      {/* CONTENU PRINCIPAL */}
+      {/* ---------------- CONTENU PRINCIPAL ---------------- */}
       <div className="relative z-10">
         <SectionContainer>
 
@@ -289,10 +288,12 @@ En cas de violation de données, nous vous en informerons dans les 72 heures con
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="group relative overflow-hidden rounded-3xl bg-white dark:bg-content1 p-8 shadow-xl border border-neutral-100 dark:border-white/5"
                 >
+                  {/* Gradient hover */}
                   <div
                     className={`absolute inset-0 bg-linear-to-br ${section.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-5`}
                   />
 
+                  {/* Pattern background */}
                   <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
                     <div
                       className="absolute inset-0"
@@ -368,7 +369,7 @@ En cas de violation de données, nous vous en informerons dans les 72 heures con
             </div>
           </motion.div>
 
-          {/* FOOTER */}
+          {/* ---------------- FOOTER ---------------- */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -377,8 +378,7 @@ En cas de violation de données, nous vous en informerons dans les 72 heures con
             className="mt-12 rounded-2xl bg-linear-to-br from-purple-50 to-violet-50 dark:from-purple-950/30 dark:to-violet-950/30 p-8 text-center border border-purple-100 dark:border-purple-900/50"
           >
             <p className="text-sm text-neutral-600 dark:text-default-400">
-              Date de dernière mise à jour :{' '}
-              {new Date().toLocaleDateString('fr-FR')}
+              Date de dernière mise à jour : {new Date().toLocaleDateString('fr-FR')}
             </p>
           </motion.div>
         </SectionContainer>

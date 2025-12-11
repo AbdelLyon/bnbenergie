@@ -110,67 +110,21 @@ export default function MentionsLegalesPageContent({
           title={['Mentions', 'Légales']}
           subtitle="Informations légales et éditoriales"
         />
-
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 0.15 }}
           className="max-w-4xl px-4 text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
         >
-          Conformément à la loi pour la Confiance dans l'Économie Numérique
-          (LCEN)
+          Conformément à la loi pour la Confiance dans l'Économie Numérique (LCEN)
         </motion.p>
       </PageHeader>
 
-      {/* ---------- CARDS FLOTTANTES (comme Services) ---------- */}
-      <div className="relative z-20 -mt-20 mb-20 px-4">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {/* Card 1 */}
-          <div className="rounded-3xl border border-white/20 bg-white/80 dark:bg-black/30 p-6 shadow-2xl backdrop-blur-lg">
-            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white shadow-lg">
-              <Building2 className="h-6 w-6" />
-            </div>
-            <h3 className="mb-2 text-lg font-semibold text-neutral-900 dark:text-white">
-              Identité de l’éditeur
-            </h3>
-            <p className="text-sm text-neutral-700 dark:text-neutral-300">
-              Informations sur l'entreprise et le responsable de la publication.
-            </p>
-          </div>
-
-          {/* Card 2 */}
-          <div className="rounded-3xl border border-white/20 bg-white/80 dark:bg-black/30 p-6 shadow-2xl backdrop-blur-lg">
-            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-green-600 text-white shadow-lg">
-              <Phone className="h-6 w-6" />
-            </div>
-            <h3 className="mb-2 text-lg font-semibold text-neutral-900 dark:text-white">
-              Contact & Support
-            </h3>
-            <p className="text-sm text-neutral-700 dark:text-neutral-300">
-              Moyens de contacter notre équipe pour toute demande ou question.
-            </p>
-          </div>
-
-          {/* Card 3 */}
-          <div className="rounded-3xl border border-white/20 bg-white/80 dark:bg-black/30 p-6 shadow-2xl backdrop-blur-lg">
-            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-purple-600 text-white shadow-lg">
-              <Shield className="h-6 w-6" />
-            </div>
-            <h3 className="mb-2 text-lg font-semibold text-neutral-900 dark:text-white">
-              Cadre légal
-            </h3>
-            <p className="text-sm text-neutral-700 dark:text-neutral-300">
-              Obligations légales, droits et responsabilités de l'utilisateur.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* ---------------- CONTENU PRINCIPAL ---------------- */}
+      {/* ---------------- SECTIONS INFORMATIVES ---------------- */}
       <div className="relative z-10">
-        <SectionContainer>
-          {/* Informations principales */}
-          <div className="mb-20 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <SectionContainer className="mt-16 space-y-12">
+          {/* Infos principales */}
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {sections.map((section, index) => {
               const Icon = section.icon;
               return (
@@ -182,33 +136,30 @@ export default function MentionsLegalesPageContent({
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="group relative overflow-hidden rounded-3xl bg-white dark:bg-content1 p-8 shadow-xl border border-neutral-100 dark:border-white/5 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
                 >
-                  {/* Gradient hover */}
                   <div
                     className={`absolute inset-0 bg-linear-to-br ${section.gradient} opacity-0 group-hover:opacity-5 transition-opacity`}
                   />
-
-                  {/* Icon */}
-                  <div
-                    className={`mb-6 inline-flex rounded-2xl bg-linear-to-br ${section.gradient} p-4 shadow-lg`}
-                  >
-                    <Icon className="h-6 w-6 text-white" />
-                  </div>
-
-                  <h2 className="mb-6 text-2xl font-bold text-neutral-900 dark:text-white">
-                    {section.title}
-                  </h2>
-
-                  <div className="space-y-4">
-                    {section.content.map((item, idx) => (
-                      <div key={idx} className="flex flex-col">
-                        <span className="text-sm font-semibold uppercase tracking-wider text-neutral-500 dark:text-default-400">
-                          {item.label}
-                        </span>
-                        <span className="mt-1 text-base font-medium text-neutral-900 dark:text-white">
-                          {item.value}
-                        </span>
-                      </div>
-                    ))}
+                  <div className="relative z-10">
+                    <div
+                      className={`mb-6 inline-flex rounded-2xl bg-linear-to-br ${section.gradient} p-4 shadow-lg`}
+                    >
+                      <Icon className="h-6 w-6 text-white" />
+                    </div>
+                    <h2 className="mb-6 text-2xl font-bold text-neutral-900 dark:text-white">
+                      {section.title}
+                    </h2>
+                    <div className="space-y-4">
+                      {section.content.map((item, idx) => (
+                        <div key={idx} className="flex flex-col">
+                          <span className="text-sm font-semibold uppercase tracking-wider text-neutral-500 dark:text-default-400">
+                            {item.label}
+                          </span>
+                          <span className="mt-1 text-base font-medium text-neutral-900 dark:text-white">
+                            {item.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </motion.div>
               );
@@ -228,11 +179,9 @@ export default function MentionsLegalesPageContent({
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="group relative overflow-hidden rounded-3xl bg-white dark:bg-content1 p-8 shadow-xl border border-neutral-100 dark:border-white/5"
                 >
-                  {/* Gradient hover */}
                   <div
                     className={`absolute inset-0 bg-linear-to-br ${section.gradient} opacity-0 group-hover:opacity-5 transition-opacity`}
                   />
-
                   <div className="relative z-10">
                     <div className="mb-6 flex items-center gap-4">
                       <div
@@ -240,12 +189,10 @@ export default function MentionsLegalesPageContent({
                       >
                         <Icon className="h-5 w-5 text-white" />
                       </div>
-
                       <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">
                         {section.title}
                       </h2>
                     </div>
-
                     <div
                       className="prose prose-neutral dark:prose-invert max-w-none leading-relaxed whitespace-pre-line text-neutral-700 dark:text-default-500"
                       dangerouslySetInnerHTML={{ __html: section.content }}
