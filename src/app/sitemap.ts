@@ -1,20 +1,16 @@
 import { MetadataRoute } from 'next';
 import { slugify } from '@/utils/slugify';
-import {
-  getSiteSettings,
-  getInterventionZones,
-} from '@/lib/payload-queries';
+import { getSiteSettings, getInterventionZones } from '@/lib/payload-queries';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [siteConfig, zones] = await Promise.all([
     getSiteSettings(),
-    getInterventionZones()
+    getInterventionZones(),
   ]);
 
   const baseUrl = siteConfig.domain?.replace(/\/$/, '') + '/';
   const currentDate = new Date();
 
-  // Generate city URLs from intervention zones
   const cityUrls = zones.flatMap((zone) =>
     zone.communes.map((commune) => ({
       url: `${baseUrl}zones-intervention/${slugify(commune.name)}`,
