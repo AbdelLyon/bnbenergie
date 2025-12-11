@@ -204,7 +204,7 @@ Conformément à la réglementation, vous pouvez recourir à un service de médi
       {/* Header avec Cards */}
       <PageHeader variant="simple" height="medium">
         <Title
-          title={['Conditions', "Générales d'utilisation"]}
+          title={['Conditions', "générales d'utilisation"]}
           subtitle="Règles d'utilisation du site"
         />
         <motion.p

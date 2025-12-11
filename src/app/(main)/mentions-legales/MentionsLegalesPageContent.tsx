@@ -107,7 +107,7 @@ export default function MentionsLegalesPageContent({
       {/* ---------------- HEADER ---------------- */}
       <PageHeader variant="simple" height="medium">
         <Title
-          title={['Mentions', 'Légales']}
+          title={['Mentions', 'légales']}
           subtitle="Informations légales et éditoriales"
         />
         <motion.p

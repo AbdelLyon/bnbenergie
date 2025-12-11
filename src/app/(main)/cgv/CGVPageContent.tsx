@@ -20,11 +20,10 @@ import {
 } from 'lucide-react';
 
 interface CGVPageContentProps {
-  header: PageHeaderType | null;
   siteSettings: SiteSetting;
 }
 
-export default function CGVPageContent({ header, siteSettings }: CGVPageContentProps) {
+export default function CGVPageContent({ siteSettings }: CGVPageContentProps) {
   const sections = [
     {
       icon: FileText,
@@ -204,8 +203,8 @@ Les présentes CGV sont soumises au droit français. En cas de litige, les tribu
       {/* Header uniquement */}
       <PageHeader variant="simple" height="medium">
         <Title
-          title={header?.title.split(' ') || ['Conditions', 'Générales']}
-          subtitle={header?.subtitle || 'Nos engagements commerciaux'}
+          title={['Conditions', 'générales']}
+          subtitle='Nos engagements commerciaux'
         />
         <motion.p
           initial={{ opacity: 0 }}
@@ -213,7 +212,7 @@ Les présentes CGV sont soumises au droit français. En cas de litige, les tribu
           transition={{ duration: 0.3, delay: 0.15 }}
           className="max-w-4xl text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
         >
-          {header?.description || 'Conditions applicables à nos services d\'installation solaire'}
+          Conditions applicables à nos services d\'installation solaire
         </motion.p>
       </PageHeader>
 
