@@ -161,24 +161,89 @@ En cas de violation de données, nous vous en informerons dans les 72 heures con
 
   return (
     <PageMainWrapper variant="purple">
+      {/* HEADER */}
       <PageHeader variant="simple" height="medium">
         <Title
-          title={['Politique', 'de Confidentialité']}
+          title={['Politique', 'de confidentialité']}
           subtitle="Protection de vos données personnelles"
         />
+
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 0.15 }}
-          className="max-w-4xl px-4 text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
+          className="max-w-3xl px-4 text-base font-normal leading-relaxed text-white/80 sm:text-lg md:text-xl"
         >
           Conformément au RGPD et à la loi Informatique et Libertés
         </motion.p>
       </PageHeader>
 
+      {/* CARDS FLOTTANTES */}
+      <div className="relative z-20 -mt-20 mb-16 px-4">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+          {/* Card 1 */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="rounded-3xl border border-white/20 bg-white/80 p-6 shadow-2xl backdrop-blur-lg dark:bg-black/30"
+          >
+            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-purple-600 text-white shadow-lg">
+              <Shield className="h-6 w-6" />
+            </div>
+            <h3 className="mb-2 text-lg font-semibold text-neutral-900 dark:text-white">
+              Données protégées
+            </h3>
+            <p className="text-sm text-neutral-700 dark:text-neutral-300">
+              Sécurité renforcée et conformité stricte RGPD.
+            </p>
+          </motion.div>
+
+          {/* Card 2 */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="rounded-3xl border border-white/20 bg-white/80 p-6 shadow-2xl backdrop-blur-lg dark:bg-black/30"
+          >
+            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white shadow-lg">
+              <Lock className="h-6 w-6" />
+            </div>
+            <h3 className="mb-2 text-lg font-semibold text-neutral-900 dark:text-white">
+              Transparence totale
+            </h3>
+            <p className="text-sm text-neutral-700 dark:text-neutral-300">
+              Une politique claire, accessible et mise à jour.
+            </p>
+          </motion.div>
+
+          {/* Card 3 */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="rounded-3xl border border-white/20 bg-white/80 p-6 shadow-2xl backdrop-blur-lg dark:bg-black/30"
+          >
+            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-lg">
+              <Eye className="h-6 w-6" />
+            </div>
+            <h3 className="mb-2 text-lg font-semibold text-neutral-900 dark:text-white">
+              Contrôle utilisateur
+            </h3>
+            <p className="text-sm text-neutral-700 dark:text-neutral-300">
+              Gérez vos droits, vos données et vos préférences.
+            </p>
+          </motion.div>
+
+        </div>
+      </div>
+
+      {/* CONTENU PRINCIPAL */}
       <div className="relative z-10">
         <SectionContainer>
-          {/* Introduction */}
+
+          {/* Intro */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -196,10 +261,9 @@ En cas de violation de données, nous vous en informerons dans les 72 heures con
                 </h2>
                 <p className="text-neutral-700 dark:text-default-500 leading-relaxed">
                   BNB Énergie 01 s'engage à protéger vos données personnelles et
-                  à respecter votre vie privée. Cette politique de
-                  confidentialité vous informe sur la manière dont nous
-                  collectons, utilisons et protégeons vos données conformément
-                  au Règlement Général sur la Protection des Données (RGPD).
+                  à respecter votre vie privée. Cette politique de confidentialité
+                  vous informe sur la manière dont nous collectons, utilisons et
+                  protégeons vos données conformément au RGPD.
                 </p>
                 <p className="mt-4 text-sm text-neutral-600 dark:text-default-400">
                   <strong>Responsable du traitement :</strong>{' '}
@@ -212,7 +276,7 @@ En cas de violation de données, nous vous en informerons dans les 72 heures con
             </div>
           </motion.div>
 
-          {/* Sections */}
+          {/* SECTIONS */}
           <div className="space-y-8">
             {sections.map((section, index) => {
               const Icon = section.icon;
@@ -225,17 +289,16 @@ En cas de violation de données, nous vous en informerons dans les 72 heures con
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="group relative overflow-hidden rounded-3xl bg-white dark:bg-content1 p-8 shadow-xl border border-neutral-100 dark:border-white/5"
                 >
-                  {/* Background gradient effect */}
                   <div
                     className={`absolute inset-0 bg-linear-to-br ${section.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-5`}
                   />
 
-                  {/* Pattern background */}
                   <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
                     <div
                       className="absolute inset-0"
                       style={{
-                        backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
+                        backgroundImage:
+                          'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)',
                         backgroundSize: '32px 32px',
                       }}
                     />
@@ -252,6 +315,7 @@ En cas de violation de données, nous vous en informerons dans les 72 heures con
                         {section.title}
                       </h2>
                     </div>
+
                     <div
                       className="prose prose-neutral dark:prose-invert max-w-none text-neutral-700 dark:text-default-500 leading-relaxed whitespace-pre-line"
                       dangerouslySetInnerHTML={{ __html: section.content }}
@@ -262,7 +326,7 @@ En cas de violation de données, nous vous en informerons dans les 72 heures con
             })}
           </div>
 
-          {/* Contact pour réclamations */}
+          {/* CNIL */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -280,8 +344,7 @@ En cas de violation de données, nous vous en informerons dans les 72 heures con
                 </h2>
                 <p className="text-neutral-700 dark:text-default-500 leading-relaxed">
                   Si vous estimez que vos droits ne sont pas respectés, vous
-                  pouvez introduire une réclamation auprès de la Commission
-                  Nationale de l'Informatique et des Libertés (CNIL) :
+                  pouvez introduire une réclamation auprès de la CNIL :
                 </p>
                 <p className="mt-4 text-sm text-neutral-600 dark:text-default-400">
                   <strong>CNIL</strong>
@@ -305,7 +368,7 @@ En cas de violation de données, nous vous en informerons dans les 72 heures con
             </div>
           </motion.div>
 
-          {/* Footer note */}
+          {/* FOOTER */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

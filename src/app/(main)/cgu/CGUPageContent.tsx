@@ -201,6 +201,7 @@ Conformément à la réglementation, vous pouvez recourir à un service de médi
 
   return (
     <PageMainWrapper variant="green">
+      {/* Header avec Cards */}
       <PageHeader variant="simple" height="medium">
         <Title
           title={['Conditions', "Générales d'utilisation"]}
@@ -214,47 +215,65 @@ Conformément à la réglementation, vous pouvez recourir à un service de médi
         >
           Conditions applicables à l'utilisation de notre site web
         </motion.p>
-      </PageHeader>
 
-      <div className="relative z-10">
-        <SectionContainer>
-          {/* Introduction */}
+        {/* 3 Cards header style Services */}
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+          {/* Card 1 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mb-12 rounded-3xl bg-linear-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 p-8 border border-green-100 dark:border-green-900/50"
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="group relative overflow-hidden rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 p-6 shadow-2xl"
           >
-            <div className="flex items-start gap-4">
-              <div className="inline-flex rounded-2xl bg-linear-to-br from-green-500 to-emerald-500 p-3 shadow-lg">
-                <Globe className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h2 className="mb-3 text-2xl font-bold text-neutral-900 dark:text-white">
-                  Bienvenue sur notre site
-                </h2>
-                <p className="text-neutral-700 dark:text-default-500 leading-relaxed">
-                  Les présentes Conditions Générales d'Utilisation (CGU)
-                  définissent les règles d'accès et d'utilisation du site{' '}
-                  <strong>
-                    {siteSettings.domain || 'https://bnbenergie01.com'}
-                  </strong>
-                  . En naviguant sur ce site, vous acceptez sans réserve les
-                  présentes CGU.
-                </p>
-                <p className="mt-4 text-sm text-neutral-600 dark:text-default-400">
-                  <strong>Éditeur du site :</strong>{' '}
-                  {siteSettings.businessName || 'BNB Énergie 01'}
-                  <br />
-                  <strong>Contact :</strong>{' '}
-                  {siteSettings.contactEmail || 'contact@bnbenergie01.com'}
-                </p>
-              </div>
+            <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 to-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="relative z-10 flex flex-col gap-3">
+              <Globe className="h-8 w-8 text-white" />
+              <h3 className="text-lg font-semibold text-white">Accès & Utilisation</h3>
+              <p className="text-white/70 text-sm">
+                Conditions d’accès, disponibilité et responsabilités des utilisateurs.
+              </p>
             </div>
           </motion.div>
 
-          {/* Sections */}
+          {/* Card 2 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="group relative overflow-hidden rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 p-6 shadow-2xl"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="relative z-10 flex flex-col gap-3">
+              <Shield className="h-8 w-8 text-white" />
+              <h3 className="text-lg font-semibold text-white">Données & Sécurité</h3>
+              <p className="text-white/70 text-sm">
+                Protection des données, confidentialité et politique de sécurité.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Card 3 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="group relative overflow-hidden rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 p-6 shadow-2xl"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-red-400/20 to-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="relative z-10 flex flex-col gap-3">
+              <AlertTriangle className="h-8 w-8 text-white" />
+              <h3 className="text-lg font-semibold text-white">Responsabilités</h3>
+              <p className="text-white/70 text-sm">
+                Engagements, limitations de responsabilité et obligations légales.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </PageHeader>
+
+      {/* Sections CGU */}
+      <div className="relative z-10">
+        <SectionContainer className="mt-16">
           <div className="space-y-8">
             {sections.map((section, index) => {
               const Icon = section.icon;
@@ -271,7 +290,6 @@ Conformément à la réglementation, vous pouvez recourir à un service de médi
                   <div
                     className={`absolute inset-0 bg-linear-to-br ${section.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-5`}
                   />
-
                   {/* Pattern background */}
                   <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
                     <div
@@ -282,7 +300,6 @@ Conformément à la réglementation, vous pouvez recourir à un service de médi
                       }}
                     />
                   </div>
-
                   <div className="relative z-10">
                     <div className="mb-6 flex items-center gap-4">
                       <div
@@ -304,52 +321,6 @@ Conformément à la réglementation, vous pouvez recourir à un service de médi
             })}
           </div>
 
-          {/* Contact */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mt-12 rounded-3xl bg-linear-to-br from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30 p-8 border border-blue-100 dark:border-blue-900/50"
-          >
-            <div className="flex items-start gap-4">
-              <div className="inline-flex rounded-2xl bg-linear-to-br from-blue-500 to-cyan-500 p-3 shadow-lg">
-                <FileText className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h2 className="mb-3 text-xl font-bold text-neutral-900 dark:text-white">
-                  Questions sur nos CGU ?
-                </h2>
-                <p className="text-neutral-700 dark:text-default-500 leading-relaxed">
-                  Pour toute question concernant nos Conditions Générales
-                  d'Utilisation, n'hésitez pas à nous contacter :
-                </p>
-                <p className="mt-4 text-sm text-neutral-600 dark:text-default-400">
-                  <strong>Email :</strong>{' '}
-                  <a
-                    href={`mailto:${
-                      siteSettings.contactEmail || 'contact@bnbenergie01.com'
-                    }`}
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    {siteSettings.contactEmail || 'contact@bnbenergie01.com'}
-                  </a>
-                  <br />
-                  <strong>Téléphone :</strong>{' '}
-                  <a
-                    href={`tel:${
-                      siteSettings.contactPhone?.replace(/\s/g, '') ||
-                      '0781251125'
-                    }`}
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    {siteSettings.contactPhone || '07 81 25 11 25'}
-                  </a>
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
           {/* Footer note */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -359,8 +330,7 @@ Conformément à la réglementation, vous pouvez recourir à un service de médi
             className="mt-12 rounded-2xl bg-linear-to-br from-green-50 to-emerald-50 dark:from-green-950/30 dark:to-emerald-950/30 p-8 text-center border border-green-100 dark:border-green-900/50"
           >
             <p className="text-sm text-neutral-600 dark:text-default-400">
-              Date de dernière mise à jour :{' '}
-              {new Date().toLocaleDateString('fr-FR')}
+              Date de dernière mise à jour : {new Date().toLocaleDateString('fr-FR')}
             </p>
           </motion.div>
         </SectionContainer>

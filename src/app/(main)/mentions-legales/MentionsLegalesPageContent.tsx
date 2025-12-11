@@ -23,31 +23,17 @@ export default function MentionsLegalesPageContent({
       title: 'Éditeur du Site',
       gradient: 'from-blue-500 to-cyan-500',
       content: [
-        {
-          label: 'Raison sociale',
-          value: siteSettings.businessName || 'BNB Énergie 01',
-        },
-        {
-          label: 'Forme juridique',
-          value: 'Société à responsabilité limitée (SARL)',
-        },
-        {
-          label: 'Capital social',
-          value: 'À définir',
-        },
-        {
-          label: 'SIRET',
-          value: 'À définir',
-        },
-        {
-          label: 'N° TVA intracommunautaire',
-          value: 'À définir',
-        },
+        { label: 'Raison sociale', value: siteSettings.businessName || 'BNB Énergie 01' },
+        { label: 'Forme juridique', value: 'Société à responsabilité limitée (SARL)' },
+        { label: 'Capital social', value: 'À définir' },
+        { label: 'SIRET', value: 'À définir' },
+        { label: 'N° TVA intracommunautaire', value: 'À définir' },
         {
           label: 'Siège social',
-          value: siteSettings.addressStreet
-            ? `${siteSettings.addressStreet}, ${siteSettings.addressZip} ${siteSettings.addressCity}`
-            : '16 Av. Pablo Picasso, 01000 Bourg-en-Bresse',
+          value:
+            siteSettings.addressStreet
+              ? `${siteSettings.addressStreet}, ${siteSettings.addressZip} ${siteSettings.addressCity}`
+              : '16 Av. Pablo Picasso, 01000 Bourg-en-Bresse',
         },
       ],
     },
@@ -56,14 +42,8 @@ export default function MentionsLegalesPageContent({
       title: 'Contact',
       gradient: 'from-green-500 to-emerald-500',
       content: [
-        {
-          label: 'Téléphone',
-          value: siteSettings.contactPhone || '07 81 25 11 25',
-        },
-        {
-          label: 'Email',
-          value: siteSettings.contactEmail || 'contact@bnbenergie01.com',
-        },
+        { label: 'Téléphone', value: siteSettings.contactPhone || '07 81 25 11 25' },
+        { label: 'Email', value: siteSettings.contactEmail || 'contact@bnbenergie01.com' },
       ],
     },
     {
@@ -71,14 +51,8 @@ export default function MentionsLegalesPageContent({
       title: 'Directeur de la Publication',
       gradient: 'from-purple-500 to-pink-500',
       content: [
-        {
-          label: 'Nom',
-          value: 'À définir',
-        },
-        {
-          label: 'Qualité',
-          value: 'Gérant',
-        },
+        { label: 'Nom', value: 'À définir' },
+        { label: 'Qualité', value: 'Gérant' },
       ],
     },
     {
@@ -86,18 +60,9 @@ export default function MentionsLegalesPageContent({
       title: 'Hébergement',
       gradient: 'from-orange-500 to-red-500',
       content: [
-        {
-          label: 'Hébergeur',
-          value: 'Vercel Inc.',
-        },
-        {
-          label: 'Adresse',
-          value: '440 N Barranca Ave #4133, Covina, CA 91723, États-Unis',
-        },
-        {
-          label: 'Site web',
-          value: 'https://vercel.com',
-        },
+        { label: 'Hébergeur', value: 'Vercel Inc.' },
+        { label: 'Adresse', value: '440 N Barranca Ave #4133, Covina, CA 91723, États-Unis' },
+        { label: 'Site web', value: 'https://vercel.com' },
       ],
     },
   ];
@@ -107,55 +72,45 @@ export default function MentionsLegalesPageContent({
       icon: Shield,
       title: 'Propriété Intellectuelle',
       gradient: 'from-indigo-500 to-blue-500',
-      content: `L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques.
-
-La reproduction de tout ou partie de ce site sur un support électronique ou papier quel qu'il soit est formellement interdite sauf autorisation expresse du directeur de la publication.`,
+      content: `L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur...`,
     },
     {
       icon: Shield,
       title: 'Protection des Données Personnelles',
       gradient: 'from-teal-500 to-cyan-500',
-      content: `Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés du 6 janvier 1978 modifiée, vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition aux données personnelles vous concernant.
-
-Pour exercer ces droits, vous pouvez nous contacter par email à l'adresse : ${
+      content: `Conformément au RGPD... <br><br>Vous pouvez nous contacter : ${
         siteSettings.contactEmail || 'contact@bnbenergie01.com'
-      }
-
-Pour plus d'informations sur le traitement de vos données, consultez notre <a href="/politique-confidentialite" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">Politique de Confidentialité</a>.`,
+      }`,
     },
     {
       icon: Shield,
       title: 'Cookies',
       gradient: 'from-amber-500 to-yellow-500',
-      content: `Ce site utilise des cookies pour améliorer votre expérience de navigation et analyser le trafic. En poursuivant votre navigation sur ce site, vous acceptez l'utilisation de cookies conformément à notre politique de confidentialité.
-
-Vous pouvez à tout moment désactiver les cookies depuis les paramètres de votre navigateur.`,
+      content: `Ce site utilise des cookies...`,
     },
     {
       icon: Shield,
       title: 'Crédits',
       gradient: 'from-rose-500 to-pink-500',
-      content: `Conception et développement : BNB Énergie 01
-Technologies utilisées : Next.js, React, TypeScript, Tailwind CSS
-Photographies : Toutes les photographies présentes sur ce site sont la propriété de BNB Énergie 01 ou utilisées avec autorisation.`,
+      content: `Conception et développement : BNB Énergie 01...`,
     },
     {
       icon: Shield,
       title: 'Limitation de Responsabilité',
       gradient: 'from-violet-500 to-purple-500',
-      content: `Les informations contenues sur ce site sont aussi précises que possible et le site est périodiquement remis à jour, mais peut toutefois contenir des inexactitudes, des omissions ou des lacunes.
-
-BNB Énergie 01 ne pourra être tenu responsable des dommages directs ou indirects résultant de l'utilisation de ce site ou de sites qui lui sont liés.`,
+      content: `Les informations contenues sur ce site sont aussi précises que possible...`,
     },
   ];
 
   return (
     <PageMainWrapper variant="blue">
+      {/* ---------------- HEADER ---------------- */}
       <PageHeader variant="simple" height="medium">
         <Title
           title={['Mentions', 'Légales']}
           subtitle="Informations légales et éditoriales"
         />
+
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -167,6 +122,51 @@ BNB Énergie 01 ne pourra être tenu responsable des dommages directs ou indirec
         </motion.p>
       </PageHeader>
 
+      {/* ---------- CARDS FLOTTANTES (comme Services) ---------- */}
+      <div className="relative z-20 -mt-20 mb-20 px-4">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Card 1 */}
+          <div className="rounded-3xl border border-white/20 bg-white/80 dark:bg-black/30 p-6 shadow-2xl backdrop-blur-lg">
+            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white shadow-lg">
+              <Building2 className="h-6 w-6" />
+            </div>
+            <h3 className="mb-2 text-lg font-semibold text-neutral-900 dark:text-white">
+              Identité de l’éditeur
+            </h3>
+            <p className="text-sm text-neutral-700 dark:text-neutral-300">
+              Informations sur l'entreprise et le responsable de la publication.
+            </p>
+          </div>
+
+          {/* Card 2 */}
+          <div className="rounded-3xl border border-white/20 bg-white/80 dark:bg-black/30 p-6 shadow-2xl backdrop-blur-lg">
+            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-green-600 text-white shadow-lg">
+              <Phone className="h-6 w-6" />
+            </div>
+            <h3 className="mb-2 text-lg font-semibold text-neutral-900 dark:text-white">
+              Contact & Support
+            </h3>
+            <p className="text-sm text-neutral-700 dark:text-neutral-300">
+              Moyens de contacter notre équipe pour toute demande ou question.
+            </p>
+          </div>
+
+          {/* Card 3 */}
+          <div className="rounded-3xl border border-white/20 bg-white/80 dark:bg-black/30 p-6 shadow-2xl backdrop-blur-lg">
+            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-purple-600 text-white shadow-lg">
+              <Shield className="h-6 w-6" />
+            </div>
+            <h3 className="mb-2 text-lg font-semibold text-neutral-900 dark:text-white">
+              Cadre légal
+            </h3>
+            <p className="text-sm text-neutral-700 dark:text-neutral-300">
+              Obligations légales, droits et responsabilités de l'utilisateur.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* ---------------- CONTENU PRINCIPAL ---------------- */}
       <div className="relative z-10">
         <SectionContainer>
           {/* Informations principales */}
@@ -180,50 +180,35 @@ BNB Énergie 01 ne pourra être tenu responsable des dommages directs ou indirec
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group relative overflow-hidden rounded-3xl bg-white dark:bg-content1 p-8 shadow-xl border border-neutral-100 dark:border-white/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+                  className="group relative overflow-hidden rounded-3xl bg-white dark:bg-content1 p-8 shadow-xl border border-neutral-100 dark:border-white/5 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
                 >
-                  {/* Background gradient effect */}
+                  {/* Gradient hover */}
                   <div
-                    className={`absolute inset-0 bg-linear-to-br ${section.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-5`}
+                    className={`absolute inset-0 bg-linear-to-br ${section.gradient} opacity-0 group-hover:opacity-5 transition-opacity`}
                   />
 
-                  {/* Pattern background */}
-                  <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        backgroundImage: `radial-linear(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                        backgroundSize: '32px 32px',
-                      }}
-                    />
+                  {/* Icon */}
+                  <div
+                    className={`mb-6 inline-flex rounded-2xl bg-linear-to-br ${section.gradient} p-4 shadow-lg`}
+                  >
+                    <Icon className="h-6 w-6 text-white" />
                   </div>
 
-                  <div className="relative z-10">
-                    {/* Icon */}
-                    <div
-                      className={`mb-6 inline-flex rounded-2xl bg-linear-to-br ${section.gradient} p-4 shadow-lg`}
-                    >
-                      <Icon className="h-6 w-6 text-white" />
-                    </div>
+                  <h2 className="mb-6 text-2xl font-bold text-neutral-900 dark:text-white">
+                    {section.title}
+                  </h2>
 
-                    {/* Title */}
-                    <h2 className="mb-6 text-2xl font-bold text-neutral-900 dark:text-white">
-                      {section.title}
-                    </h2>
-
-                    {/* Content */}
-                    <div className="space-y-4">
-                      {section.content.map((item, idx) => (
-                        <div key={idx} className="flex flex-col">
-                          <span className="text-sm font-semibold uppercase tracking-wider text-neutral-500 dark:text-default-400">
-                            {item.label}
-                          </span>
-                          <span className="mt-1 text-base font-medium text-neutral-900 dark:text-white">
-                            {item.value}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+                  <div className="space-y-4">
+                    {section.content.map((item, idx) => (
+                      <div key={idx} className="flex flex-col">
+                        <span className="text-sm font-semibold uppercase tracking-wider text-neutral-500 dark:text-default-400">
+                          {item.label}
+                        </span>
+                        <span className="mt-1 text-base font-medium text-neutral-900 dark:text-white">
+                          {item.value}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </motion.div>
               );
@@ -243,21 +228,10 @@ BNB Énergie 01 ne pourra être tenu responsable des dommages directs ou indirec
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="group relative overflow-hidden rounded-3xl bg-white dark:bg-content1 p-8 shadow-xl border border-neutral-100 dark:border-white/5"
                 >
-                  {/* Background gradient effect */}
+                  {/* Gradient hover */}
                   <div
-                    className={`absolute inset-0 bg-linear-to-br ${section.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-5`}
+                    className={`absolute inset-0 bg-linear-to-br ${section.gradient} opacity-0 group-hover:opacity-5 transition-opacity`}
                   />
-
-                  {/* Pattern background */}
-                  <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        backgroundImage: `radial-linear(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                        backgroundSize: '32px 32px',
-                      }}
-                    />
-                  </div>
 
                   <div className="relative z-10">
                     <div className="mb-6 flex items-center gap-4">
@@ -266,12 +240,14 @@ BNB Énergie 01 ne pourra être tenu responsable des dommages directs ou indirec
                       >
                         <Icon className="h-5 w-5 text-white" />
                       </div>
+
                       <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">
                         {section.title}
                       </h2>
                     </div>
+
                     <div
-                      className="prose prose-neutral dark:prose-invert max-w-none text-neutral-700 dark:text-default-500 leading-relaxed whitespace-pre-line"
+                      className="prose prose-neutral dark:prose-invert max-w-none leading-relaxed whitespace-pre-line text-neutral-700 dark:text-default-500"
                       dangerouslySetInnerHTML={{ __html: section.content }}
                     />
                   </div>
@@ -289,8 +265,7 @@ BNB Énergie 01 ne pourra être tenu responsable des dommages directs ou indirec
             className="mt-12 rounded-2xl bg-linear-to-br from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30 p-8 text-center border border-blue-100 dark:border-blue-900/50"
           >
             <p className="text-sm text-neutral-600 dark:text-default-400">
-              Date de dernière mise à jour :{' '}
-              {new Date().toLocaleDateString('fr-FR')}
+              Date de dernière mise à jour : {new Date().toLocaleDateString('fr-FR')}
             </p>
           </motion.div>
         </SectionContainer>

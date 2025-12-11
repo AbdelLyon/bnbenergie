@@ -191,10 +191,7 @@ En cas de force majeure, l'exécution de nos obligations sera suspendue sans ind
 En cas de difficulté concernant l'exécution du contrat, nous nous engageons à rechercher une solution amiable.
 
 <strong>Médiation de la consommation :</strong>
-Conformément à l'article L612-1 du Code de la consommation, vous pouvez recourir gratuitement à un médiateur de la consommation en cas de litige :
-
-Médiateur de la Consommation
-[Coordonnées du médiateur à définir]
+Conformément à l'article L612-1 du Code de la consommation, vous pouvez recourir gratuitement à un médiateur de la consommation en cas de litige.
 
 <strong>Droit applicable :</strong>
 Les présentes CGV sont soumises au droit français. En cas de litige, les tribunaux français seront seuls compétents.`,
@@ -203,6 +200,7 @@ Les présentes CGV sont soumises au droit français. En cas de litige, les tribu
 
   return (
     <PageMainWrapper variant="amber">
+      {/* Header */}
       <PageHeader variant="simple" height="medium">
         <Title
           title={['Conditions', 'Générales']}
@@ -220,37 +218,7 @@ Les présentes CGV sont soumises au droit français. En cas de litige, les tribu
 
       <div className="relative z-10">
         <SectionContainer>
-          {/* Introduction */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mb-12 rounded-3xl bg-linear-to-br from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30 p-8 border border-amber-100 dark:border-amber-900/50"
-          >
-            <div className="flex items-start gap-4">
-              <div className="inline-flex rounded-2xl bg-linear-to-br from-amber-500 to-orange-500 p-3 shadow-lg">
-                <FileText className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h2 className="mb-3 text-2xl font-bold text-neutral-900 dark:text-white">
-                  Conditions Générales de Vente
-                </h2>
-                <p className="text-neutral-700 dark:text-default-500 leading-relaxed">
-                  Les présentes Conditions Générales de Vente (CGV) définissent
-                  les droits et obligations de BNB Énergie 01 et de ses clients
-                  dans le cadre de la vente et de l'installation de panneaux
-                  solaires photovoltaïques.
-                </p>
-                <p className="mt-4 text-sm text-neutral-600 dark:text-default-400">
-                  <strong>Dernière mise à jour :</strong>{' '}
-                  {new Date().toLocaleDateString('fr-FR')}
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Sections */}
+          {/* Sections CGV */}
           <div className="space-y-8">
             {sections.map((section, index) => {
               const Icon = section.icon;
@@ -263,12 +231,11 @@ Les présentes CGV sont soumises au droit français. En cas de litige, les tribu
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="group relative overflow-hidden rounded-3xl bg-white dark:bg-content1 p-8 shadow-xl border border-neutral-100 dark:border-white/5"
                 >
-                  {/* Background gradient effect */}
+                  {/* Background gradient */}
                   <div
                     className={`absolute inset-0 bg-linear-to-br ${section.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-5`}
                   />
-
-                  {/* Pattern background */}
+                  {/* Pattern */}
                   <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
                     <div
                       className="absolute inset-0"
@@ -278,7 +245,6 @@ Les présentes CGV sont soumises au droit français. En cas de litige, les tribu
                       }}
                     />
                   </div>
-
                   <div className="relative z-10">
                     <div className="mb-6 flex items-center gap-4">
                       <div
@@ -306,7 +272,7 @@ Les présentes CGV sont soumises au droit français. En cas de litige, les tribu
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mt-12 rounded-3xl bg-linear-to-br from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30 p-8 border border-blue-100 dark:border-blue-900/50"
+            className="mt-12 rounded-2xl bg-linear-to-br from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30 p-8 border border-blue-100 dark:border-blue-900/50"
           >
             <div className="flex items-start gap-4">
               <div className="inline-flex rounded-2xl bg-linear-to-br from-blue-500 to-cyan-500 p-3 shadow-lg">
@@ -317,15 +283,12 @@ Les présentes CGV sont soumises au droit français. En cas de litige, les tribu
                   Questions sur nos CGV ?
                 </h2>
                 <p className="text-neutral-700 dark:text-default-500 leading-relaxed">
-                  Pour toute question concernant nos Conditions Générales de
-                  Vente, n'hésitez pas à nous contacter :
+                  Pour toute question concernant nos Conditions Générales de Vente, n'hésitez pas à nous contacter :
                 </p>
                 <p className="mt-4 text-sm text-neutral-600 dark:text-default-400">
                   <strong>Email :</strong>{' '}
                   <a
-                    href={`mailto:${
-                      siteSettings.contactEmail || 'contact@bnbenergie01.com'
-                    }`}
+                    href={`mailto:${siteSettings.contactEmail || 'contact@bnbenergie01.com'}`}
                     className="text-blue-600 dark:text-blue-400 hover:underline"
                   >
                     {siteSettings.contactEmail || 'contact@bnbenergie01.com'}
@@ -333,10 +296,7 @@ Les présentes CGV sont soumises au droit français. En cas de litige, les tribu
                   <br />
                   <strong>Téléphone :</strong>{' '}
                   <a
-                    href={`tel:${
-                      siteSettings.contactPhone?.replace(/\s/g, '') ||
-                      '0781251125'
-                    }`}
+                    href={`tel:${siteSettings.contactPhone?.replace(/\s/g, '') || '0781251125'}`}
                     className="text-blue-600 dark:text-blue-400 hover:underline"
                   >
                     {siteSettings.contactPhone || '07 81 25 11 25'}
@@ -355,8 +315,7 @@ Les présentes CGV sont soumises au droit français. En cas de litige, les tribu
             className="mt-12 rounded-2xl bg-linear-to-br from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30 p-8 text-center border border-amber-100 dark:border-amber-900/50"
           >
             <p className="text-sm text-neutral-600 dark:text-default-400">
-              Ces CGV peuvent être modifiées à tout moment. La version
-              applicable est celle en vigueur au moment de la commande.
+              Ces CGV peuvent être modifiées à tout moment. La version applicable est celle en vigueur au moment de la commande.
             </p>
           </motion.div>
         </SectionContainer>
