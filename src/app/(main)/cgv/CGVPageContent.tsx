@@ -7,7 +7,7 @@ import {
   SectionContainer,
 } from '@/components';
 import { motion } from 'framer-motion';
-import type { SiteSetting, PageHeader as PageHeaderType } from '@/payload-types';
+import type { SiteSetting } from '@/payload-types';
 import {
   FileText,
   DollarSign,
