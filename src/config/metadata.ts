@@ -27,11 +27,9 @@ export async function generateMetadata({
     alt: title,
   };
 
-
   const seoKeywords = [...SEO_KEYWORDS];
 
   return {
-    // Note: metadataBase est défini dans le layout, pas besoin de le redéfinir ici
     title,
     description,
     keywords: keywords.length > 0 ? [...keywords, ...seoKeywords] : seoKeywords,
@@ -74,9 +72,7 @@ export async function generateMetadata({
 
 import { env } from '@/lib/env';
 export const defaultMetadata: Metadata = {
-  metadataBase: new URL(
-    env.NEXT_PUBLIC_SITE_URL || 'https://www.bnbenergie01.com'
-  ),
+  metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL || 'https://bnbenergie01.com'),
   title: {
     default: 'BNB ÉNERGIE | Installation Panneaux Solaires',
     template: '%s | BNB ÉNERGIE',
