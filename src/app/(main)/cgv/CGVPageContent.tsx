@@ -5,6 +5,7 @@ import {
   PageHeader,
   PageMainWrapper,
   SectionContainer,
+  StatsGrid,
 } from '@/components';
 import { motion } from 'framer-motion';
 import type { SiteSetting } from '@/payload-types';
@@ -215,9 +216,30 @@ Les présentes CGV sont soumises au droit français. En cas de litige, les tribu
           Conditions applicables à nos services d\'installation solaire
         </motion.p>
       </PageHeader>
-
-      <div className="relative z-10">
+      <div id="cgv-section" className="relative z-10 -mt-24 pb-24">
         <SectionContainer>
+          <StatsGrid
+                      stats={[
+                        {
+                          value: '10 ans',
+                          label: 'Garantie Décennale',
+                          icon: 'Shield',
+                          gradient: 'from-blue-500 to-cyan-500',
+                        },
+                        {
+                          value: '25 ans',
+                          label: 'Garantie Panneaux',
+                          icon: 'Award',
+                          gradient: 'from-green-500 to-emerald-500',
+                        },
+                        {
+                          value: 'RGE',
+                          label: 'Certifié QualiPV',
+                          icon: 'CheckCircle2',
+                          gradient: 'from-orange-500 to-yellow-500',
+                        },
+                      ]}
+                          />
           {/* Sections CGV */}
           <div className="space-y-8">
             {sections.map((section, index) => {

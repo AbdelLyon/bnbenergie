@@ -218,8 +218,8 @@ Conformément à la réglementation, vous pouvez recourir à un service de médi
       </PageHeader>
 
       {/* Sections CGU */}
-      <div className="relative z-10">
-        <SectionContainer className="mt-16 space-y-8">
+      <div id="sections-cgu" className="relative z-10 -mt-24 pb-24">
+        <SectionContainer>
           {sections.map((section, index) => {
             const Icon = section.icon;
             return (

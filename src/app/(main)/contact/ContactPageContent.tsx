@@ -7,7 +7,7 @@ import type {
   PageHeader as PageHeaderType,
   SiteSetting,
 } from '@/payload-types';
-import { PageHeader, Title } from '@/components';
+import { PageHeader, PageMainWrapper, SectionContainer, Title } from '@/components';
 import { ContactForm } from './components/ContactForm';
 import { ContactInfo } from './components/ContactInfo';
 import { ContactMap } from './components/ContactMap';
@@ -65,7 +65,7 @@ export default function ContactPageContent({
     : 'Bourg-en-Bresse, Ain (01)';
 
   return (
-    <main className="min-h-screen bg-neutral-50 dark:bg-background">
+    <PageMainWrapper variant="teal">
       <PageHeader variant="simple" height="medium">
         <Title
           title={header?.title.split(' ') ?? ['Contactez-nous']}
@@ -83,7 +83,7 @@ export default function ContactPageContent({
       </PageHeader>
 
       <div id="contact-section" className="relative z-10 -mt-24 pb-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionContainer>
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -140,7 +140,7 @@ export default function ContactPageContent({
               </div>
             </div>
           </motion.div>
-        </div>
+        </SectionContainer>
       </div>
 
       <div className="w-full h-[500px] relative z-0">
@@ -150,6 +150,6 @@ export default function ContactPageContent({
           address={mapAddress}
         />
       </div>
-    </main>
+    </PageMainWrapper>
   );
 }
