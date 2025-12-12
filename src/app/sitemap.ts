@@ -75,20 +75,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.75,
     },
-
-    // --- Pages légales ajoutées ---
-    {
-      url: `${baseUrl}cgu`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly',
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}cgv`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly',
-      priority: 0.5,
-    },
     {
       url: `${baseUrl}mentions-legales`,
       lastModified: currentDate,

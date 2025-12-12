@@ -51,7 +51,7 @@ export function Title({ title }: TitleProps) {
     >
       <h1 className="px-4 text-4xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
         <motion.span
-          className="inline-block text-white mr-1.5 [text-shadow:0_2px_20px_rgba(0,0,0,0.4),0_4px_40px_rgba(0,0,0,0.3)]"
+          className="inline-block text-white mr-4 [text-shadow:0_2px_20px_rgba(0,0,0,0.4),0_4px_40px_rgba(0,0,0,0.3)]"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{

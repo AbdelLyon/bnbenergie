@@ -1,7 +1,6 @@
 import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
 import MentionsLegalesPageContent from './MentionsLegalesPageContent';
 import { Metadata } from 'next';
-import { getSiteSettings } from '@/lib/payload-queries';
 
 export const revalidate = 3600;
 
@@ -21,7 +20,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function MentionsLegalesPage() {
-  const siteSettings = await getSiteSettings();
+  //TODO
+  // const siteSettings = await getSiteSettings();
 
-  return <MentionsLegalesPageContent siteSettings={siteSettings} />;
+  return <MentionsLegalesPageContent />;
 }

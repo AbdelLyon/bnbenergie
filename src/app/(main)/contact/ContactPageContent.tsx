@@ -7,7 +7,12 @@ import type {
   PageHeader as PageHeaderType,
   SiteSetting,
 } from '@/payload-types';
-import { PageHeader, PageMainWrapper, SectionContainer, Title } from '@/components';
+import {
+  PageHeader,
+  PageMainWrapper,
+  SectionContainer,
+  Title,
+} from '@/components';
 import { ContactForm } from './components/ContactForm';
 import { ContactInfo } from './components/ContactInfo';
 import { ContactMap } from './components/ContactMap';

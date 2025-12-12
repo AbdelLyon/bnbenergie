@@ -197,7 +197,7 @@ export default function AidesPageContent({
                     <h3 className="mb-4 text-xl font-bold text-neutral-900 dark:text-foreground">
                       {option.title}
                     </h3>
-                    <p className="mb-6 text-neutral-600 dark:text-default-500 leading-relaxed">
+                    <div className="mb-6 text-neutral-600 dark:text-default-500 leading-relaxed">
                       {option.features && option.features.length > 0 && (
                         <ul className="space-y-3">
                           {option.features.map(
@@ -215,7 +215,7 @@ export default function AidesPageContent({
                           )}
                         </ul>
                       )}
-                    </p>
+                    </div>
                   </div>
                 ))}
               </div>

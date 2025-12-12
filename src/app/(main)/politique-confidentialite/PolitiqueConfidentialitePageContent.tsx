@@ -32,9 +32,19 @@ export default function PolitiqueConfidentialitePageContent({
       title: 'Données personnelles collectées',
       gradient: 'from-purple-500 to-violet-500',
       content: [
-        { label: 'Données d’identification', value: 'Nom, Prénom, Email, Téléphone, Code postal/Commune' },
-        { label: 'Données techniques', value: 'Adresse IP, Navigateur, Système d’exploitation, Pages consultées, Source de trafic' },
-        { label: 'Données sur votre projet', value: 'Type de projet, Puissance souhaitée, Message libre' },
+        {
+          label: 'Données d’identification',
+          value: 'Nom, Prénom, Email, Téléphone, Code postal/Commune',
+        },
+        {
+          label: 'Données techniques',
+          value:
+            'Adresse IP, Navigateur, Système d’exploitation, Pages consultées, Source de trafic',
+        },
+        {
+          label: 'Données sur votre projet',
+          value: 'Type de projet, Puissance souhaitée, Message libre',
+        },
       ],
     },
     {
@@ -42,10 +52,22 @@ export default function PolitiqueConfidentialitePageContent({
       title: 'Finalités du traitement',
       gradient: 'from-blue-500 to-cyan-500',
       content: [
-        { label: 'Gestion des demandes', value: 'Répondre aux demandes de contact et devis' },
-        { label: 'Relation client', value: 'Suivi du projet et service après-vente' },
-        { label: 'Amélioration des services', value: 'Analyse de l’utilisation du site et optimisation' },
-        { label: 'Obligations légales', value: 'Respect des réglementations comptables et fiscales' },
+        {
+          label: 'Gestion des demandes',
+          value: 'Répondre aux demandes de contact et devis',
+        },
+        {
+          label: 'Relation client',
+          value: 'Suivi du projet et service après-vente',
+        },
+        {
+          label: 'Amélioration des services',
+          value: 'Analyse de l’utilisation du site et optimisation',
+        },
+        {
+          label: 'Obligations légales',
+          value: 'Respect des réglementations comptables et fiscales',
+        },
       ],
     },
     {
@@ -53,10 +75,22 @@ export default function PolitiqueConfidentialitePageContent({
       title: 'Base légale du traitement',
       gradient: 'from-green-500 to-emerald-500',
       content: [
-        { label: 'Exécution d’un contrat', value: 'Traitement des demandes et réalisation de la prestation' },
-        { label: 'Intérêt légitime', value: 'Amélioration des services et sécurité du site' },
-        { label: 'Consentement', value: 'Envoi d’informations commerciales uniquement si accepté' },
-        { label: 'Obligation légale', value: 'Conservation des documents comptables et fiscaux' },
+        {
+          label: 'Exécution d’un contrat',
+          value: 'Traitement des demandes et réalisation de la prestation',
+        },
+        {
+          label: 'Intérêt légitime',
+          value: 'Amélioration des services et sécurité du site',
+        },
+        {
+          label: 'Consentement',
+          value: 'Envoi d’informations commerciales uniquement si accepté',
+        },
+        {
+          label: 'Obligation légale',
+          value: 'Conservation des documents comptables et fiscaux',
+        },
       ],
     },
     {
@@ -65,8 +99,14 @@ export default function PolitiqueConfidentialitePageContent({
       gradient: 'from-orange-500 to-red-500',
       content: [
         { label: 'Services internes', value: 'BNB ÉNERGIE' },
-        { label: 'Sous-traitants techniques', value: 'Hébergement, email, outils d’analyse' },
-        { label: 'Partenaires commerciaux', value: 'Seulement avec accord préalable' },
+        {
+          label: 'Sous-traitants techniques',
+          value: 'Hébergement, email, outils d’analyse',
+        },
+        {
+          label: 'Partenaires commerciaux',
+          value: 'Seulement avec accord préalable',
+        },
         { label: 'Autorités légales', value: 'Sur demande légale uniquement' },
       ],
     },
@@ -87,12 +127,30 @@ export default function PolitiqueConfidentialitePageContent({
       gradient: 'from-indigo-500 to-purple-500',
       content: [
         { label: 'Droit d’accès', value: 'Obtenir une copie de vos données' },
-        { label: 'Droit de rectification', value: 'Corriger vos données inexactes' },
-        { label: 'Droit à l’effacement', value: 'Demander la suppression de vos données' },
-        { label: 'Droit à la limitation', value: 'Limiter le traitement des données' },
-        { label: 'Droit d’opposition', value: 'S’opposer au traitement de vos données' },
-        { label: 'Droit à la portabilité', value: 'Recevoir vos données dans un format structuré' },
-        { label: 'Exercice de vos droits', value: `Contact : ${siteSettings.contactEmail || 'bnbenergie@gmail.com'}` },
+        {
+          label: 'Droit de rectification',
+          value: 'Corriger vos données inexactes',
+        },
+        {
+          label: 'Droit à l’effacement',
+          value: 'Demander la suppression de vos données',
+        },
+        {
+          label: 'Droit à la limitation',
+          value: 'Limiter le traitement des données',
+        },
+        {
+          label: 'Droit d’opposition',
+          value: 'S’opposer au traitement de vos données',
+        },
+        {
+          label: 'Droit à la portabilité',
+          value: 'Recevoir vos données dans un format structuré',
+        },
+        {
+          label: 'Exercice de vos droits',
+          value: `Contact : ${siteSettings.contactEmail || 'bnbenergie@gmail.com'}`,
+        },
       ],
     },
     {
@@ -100,9 +158,19 @@ export default function PolitiqueConfidentialitePageContent({
       title: 'Cookies et traceurs',
       gradient: 'from-amber-500 to-yellow-500',
       content: [
-        { label: 'Cookies essentiels', value: 'Nécessaires au fonctionnement du site, pas de consentement requis' },
-        { label: 'Cookies analytiques', value: 'Mesure d’audience, consentement requis' },
-        { label: 'Cookies marketing', value: 'Publicité ciblée, consentement requis' },
+        {
+          label: 'Cookies essentiels',
+          value:
+            'Nécessaires au fonctionnement du site, pas de consentement requis',
+        },
+        {
+          label: 'Cookies analytiques',
+          value: 'Mesure d’audience, consentement requis',
+        },
+        {
+          label: 'Cookies marketing',
+          value: 'Publicité ciblée, consentement requis',
+        },
       ],
     },
     {
@@ -111,20 +179,32 @@ export default function PolitiqueConfidentialitePageContent({
       gradient: 'from-teal-500 to-cyan-500',
       content: [
         { label: 'Chiffrement', value: 'SSL/TLS' },
-        { label: 'Hébergement sécurisé', value: 'Sauvegardes régulières et serveurs protégés' },
-        { label: 'Accès restreint', value: 'Seulement aux personnes autorisées' },
-        { label: 'Mise à jour régulière', value: 'Systèmes et logiciels à jour' },
-        { label: 'Formation du personnel', value: 'Sensibilisation à la protection des données' },
+        {
+          label: 'Hébergement sécurisé',
+          value: 'Sauvegardes régulières et serveurs protégés',
+        },
+        {
+          label: 'Accès restreint',
+          value: 'Seulement aux personnes autorisées',
+        },
+        {
+          label: 'Mise à jour régulière',
+          value: 'Systèmes et logiciels à jour',
+        },
+        {
+          label: 'Formation du personnel',
+          value: 'Sensibilisation à la protection des données',
+        },
       ],
     },
   ];
 
   return (
-    <PageMainWrapper variant="purple">
+    <PageMainWrapper variant="transparent">
       {/* ---------------- HEADER ---------------- */}
       <PageHeader variant="simple" height="medium">
         <Title
-          title={['Politique', 'de confidentialité']}
+          title={['Politique ', 'de confidentialité']}
           subtitle="Protection de vos données personnelles"
         />
         <motion.p
@@ -157,7 +237,8 @@ export default function PolitiqueConfidentialitePageContent({
                 <div
                   className="absolute inset-0"
                   style={{
-                    backgroundImage: 'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)',
+                    backgroundImage:
+                      'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)',
                     backgroundSize: '32px 32px',
                   }}
                 />
@@ -165,17 +246,28 @@ export default function PolitiqueConfidentialitePageContent({
 
               <div className="relative z-10">
                 <div className="mb-6 flex items-center gap-4">
-                  <div className={`inline-flex rounded-2xl bg-linear-to-br ${section.gradient} p-3 shadow-lg`}>
+                  <div
+                    className={`inline-flex rounded-2xl bg-linear-to-br ${section.gradient} p-3 shadow-lg`}
+                  >
                     <Icon className="h-5 w-5 text-white" />
                   </div>
-                  <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">{section.title}</h2>
+                  <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">
+                    {section.title}
+                  </h2>
                 </div>
 
                 <div className="space-y-2">
                   {section.content.map((item) => (
-                    <div key={item.label} className="flex justify-between border-b border-neutral-100 dark:border-white/5 py-1">
-                      <span className="font-medium text-neutral-700 dark:text-default-400">{item.label}</span>
-                      <span className="text-neutral-600 dark:text-default-500">{item.value}</span>
+                    <div
+                      key={item.label}
+                      className="flex justify-between border-b border-neutral-100 dark:border-white/5 py-1"
+                    >
+                      <span className="font-medium text-neutral-700 dark:text-default-400">
+                        {item.label}
+                      </span>
+                      <span className="text-neutral-600 dark:text-default-500">
+                        {item.value}
+                      </span>
                     </div>
                   ))}
                 </div>
