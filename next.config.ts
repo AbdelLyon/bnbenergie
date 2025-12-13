@@ -5,7 +5,6 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   compress: true,
-  trailingSlash: true,
   reactCompiler: true,
   serverExternalPackages: [
     'esbuild',
