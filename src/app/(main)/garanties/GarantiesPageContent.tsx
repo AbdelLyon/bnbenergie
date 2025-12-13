@@ -203,7 +203,7 @@ export default function GarantiesPageContent({
             phoneNumber={siteSettings.contactPhone || '07 81 25 11 25'}
             primaryButton={{
               text: 'Demander mon devis',
-              href: '/contact',
+              href: '/contact#contact-form',
             }}
             variant="gradient"
           />

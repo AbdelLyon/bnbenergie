@@ -11,6 +11,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { ProjectCard } from '@/components/shared/ui/ProjectCard';
 import type { Project } from '@/payload-types';
+import Link from 'next/link';
 
 interface RealisationsData {
   header: {
@@ -68,13 +69,13 @@ export function RealisationsClient({ data }: { data: RealisationsData }) {
             <div className="absolute inset-0 rounded-full bg-linear-to-r from-amber-500 to-orange-500 opacity-20 blur-2xl" />
 
             <Button
-              as="a"
-              href="/contact"
               size="lg"
               className="relative overflow-hidden rounded-full border-2 border-amber-500/20 bg-linear-to-r from-amber-500 to-orange-500 px-10 py-7 font-bold text-white shadow-xl shadow-amber-500/10 transition-all hover:shadow-amber-500/20"
-              endContent={<ArrowRight className="h-6 w-6" />}
+              endContent={<ArrowRight className="size-6" />}
             >
-              <span className="relative z-10">{data.cta}</span>
+              <Link href="/contact#contact-form" className="relative z-10">
+                {data.cta}
+              </Link>
             </Button>
           </div>
 

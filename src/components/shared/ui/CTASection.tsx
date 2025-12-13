@@ -100,7 +100,7 @@ export function CTASection({
             )}
 
             {phoneNumber && (
-              <a
+              <Link
                 href={`tel:${phoneNumber.replace(/\s/g, '')}`}
                 className={cn(
                   'group flex w-full items-center justify-center gap-2 rounded-full border-2 px-8 py-4 text-base font-bold transition-all duration-300 hover:scale-105 sm:w-auto',
@@ -111,7 +111,7 @@ export function CTASection({
               >
                 <Phone className="h-5 w-5" />
                 {phoneNumber}
-              </a>
+              </Link>
             )}
 
             {secondaryButton && (

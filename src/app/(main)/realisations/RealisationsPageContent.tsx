@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight, Phone, Star } from 'lucide-react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import {
   PageHeader,
@@ -20,6 +20,7 @@ import type {
   PageHeader as PageHeaderType,
   SiteSetting,
 } from '@/payload-types';
+import Link from 'next/link';
 
 interface RealisationsPageContentProps {
   projects: Project[];
@@ -39,6 +40,18 @@ export default function RealisationsPageContent({
   siteSettings,
 }: RealisationsPageContentProps) {
   const [selectedFilter, setSelectedFilter] = useState<string>('all');
+  const projectRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+  const scrollToProject = (power: string) => {
+    setSelectedFilter(power);
+
+    requestAnimationFrame(() => {
+      projectRefs.current[power]?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    });
+  };
 
   const powers = ['all', '3 kWc', '4.5 kWc', '6 kWc', '7.5 kWc', '9 kWc'];
 
@@ -99,24 +112,31 @@ export default function RealisationsPageContent({
               Découvrez quelques-unes de nos installations certifiées RGE
               QualiPV.
             </p>
+            <div className="mb-20 space-y-20">
+              {powers
+                .filter((p) => p !== 'all')
+                .map((power) => (
+                  <div
+                    key={power}
+                    ref={(el) => {
+                      projectRefs.current[power] = el;
+                    }}
+                  >
+                    <h3 className="mb-8 text-2xl font-bold">{power}</h3>
 
-            {/* Filtres */}
-            <div className="flex flex-wrap justify-center gap-3">
-              {powers.map((power) => (
-                <motion.button
-                  key={power}
-                  onClick={() => setSelectedFilter(power)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300 ${
-                    selectedFilter === power
-                      ? 'bg-linear-to-r from-blue-500 to-cyan-500 text-white shadow-lg'
-                      : 'bg-neutral-100 dark:bg-content2 text-neutral-700 dark:text-default-700 hover:bg-neutral-200 dark:hover:bg-content3'
-                  }`}
-                >
-                  {power === 'all' ? 'Tous les projets' : power}
-                </motion.button>
-              ))}
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                      {projects
+                        .filter((p) => p.power === power)
+                        .map((project, index) => (
+                          <ProjectCard
+                            key={project.id}
+                            project={project}
+                            index={index}
+                          />
+                        ))}
+                    </div>
+                  </div>
+                ))}
             </div>
           </motion.div>
 
@@ -167,6 +187,7 @@ export default function RealisationsPageContent({
               ].map((testimonial, index) => (
                 <motion.div
                   key={testimonial.name}
+                  onClick={() => scrollToProject(testimonial.project)}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -225,28 +246,33 @@ export default function RealisationsPageContent({
                 installation de qualité certifiée RGE QualiPV
               </p>
               <div className="flex flex-col justify-center gap-4 sm:flex-row">
-                <motion.a
-                  href="/contact"
+                <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-white dark:bg-content1 px-8 py-4 text-lg font-bold text-blue-600 dark:text-blue-400 shadow-lg transition-all duration-300 hover:bg-blue-50 dark:hover:bg-content2 hover:shadow-xl"
                 >
-                  Demander mon devis
-                  <ArrowRight className="h-5 w-5" />
-                </motion.a>
-                <motion.a
-                  href={`tel:${
-                    siteSettings.contactPhone?.replace(/\s/g, '') ||
-                    '0781251125'
-                  }`}
+                  <Link
+                    href="/contact#contact-form"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-white dark:bg-content1 px-8 py-4 text-lg font-bold text-blue-600 dark:text-blue-400 shadow-lg transition-all duration-300 hover:bg-blue-50 dark:hover:bg-content2 hover:shadow-xl"
+                  >
+                    Demander mon devis
+                    <ArrowRight className="h-5 w-5" />
+                  </Link>
+                </motion.div>
+                <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white dark:border-content2/30 bg-white/10 px-8 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 dark:bg-content1/20 dark:hover:bg-content1/30"
                 >
-                  <Phone className="h-5 w-5" />
-                  Appelez-nous :{' '}
-                  {siteSettings.contactPhone || '07 81 25 11 25'}
-                </motion.a>
+                  <Link
+                    href={`tel:${
+                      siteSettings.contactPhone?.replace(/\s/g, '') ||
+                      '0781251125'
+                    }`}
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary border-2 border-white dark:border-content2/30 px-8 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-content2 dark:bg-content1/20 dark:hover:bg-content1/30"
+                  >
+                    <Phone className="h-5 w-5" />
+                    {siteSettings.contactPhone || '07 81 25 11 25'}
+                  </Link>
+                </motion.div>
               </div>
             </motion.div>
           </SectionContainer>

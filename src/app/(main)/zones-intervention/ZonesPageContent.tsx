@@ -246,7 +246,7 @@ export default function ZonesPageContent({
             phoneNumber={siteSettings.contactPhone || '07 81 25 11 25'}
             primaryButton={{
               text: 'Demander un devis gratuit',
-              href: '/contact',
+              href: '/contact#contact-form',
             }}
             variant="gradient"
           />

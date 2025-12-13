@@ -252,23 +252,22 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                 </motion.div>
               ))}
 
-              {}
               <Button
-                as="a"
-                href={data.cta.phoneHref}
                 size="sm"
                 radius="full"
-                className="ml-2 bg-linear-to-r from-blue-600 to-cyan-600 font-bold text-white shadow-md shadow-blue-500/20 transition-all hover:scale-105 hover:shadow-lg"
                 startContent={<Phone className="h-4 w-4" />}
               >
-                {data.cta.label}
+                <Link
+                  className="ml-2 bg-linear-to-r from-blue-600 to-cyan-600 font-bold text-white shadow-md shadow-blue-500/20 transition-all hover:scale-105 hover:shadow-lg"
+                  href={data.cta.phoneHref}
+                >
+                  {data.cta.label}
+                </Link>
               </Button>
               <div className="ml-2">
                 <ThemeSwitcher />
               </div>
             </div>
-
-            {}
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={toggleMenu}
@@ -286,7 +285,9 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                   >
                     <Menu
                       className={`h-6 w-6 ${
-                        isScrolled ? 'text-gray-900 dark:text-white' : 'text-white'
+                        isScrolled
+                          ? 'text-gray-900 dark:text-white'
+                          : 'text-white'
                       }`}
                     />
                   </motion.div>
@@ -312,12 +313,12 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
 
             {}
             <motion.div
-                initial={{ x: '100%' }}
-                animate={{ x: 0 }}
-                exit={{ x: '100%' }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="fixed top-0 right-0 bottom-0 z-50 flex w-full flex-col overflow-hidden bg-white dark:bg-content1 sm:max-w-md lg:hidden"
-              >
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed top-0 right-0 bottom-0 z-50 flex w-full flex-col overflow-hidden bg-white dark:bg-content1 sm:max-w-md lg:hidden"
+            >
               {}
               <div className="relative bg-black/90 px-6 py-6">
                 {}

@@ -6,8 +6,15 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   compress: true,
   trailingSlash: true,
-
-  serverExternalPackages: ['esbuild', 'drizzle-kit', 'pg', 'pg-native', 'payload', '@payloadcms/db-postgres'],
+  reactCompiler: true,
+  serverExternalPackages: [
+    'esbuild',
+    'drizzle-kit',
+    'pg',
+    'pg-native',
+    'payload',
+    '@payloadcms/db-postgres',
+  ],
 
   images: {
     formats: ['image/avif', 'image/webp'],

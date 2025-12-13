@@ -142,7 +142,7 @@ export default function CityPageContent({
           phoneNumber={siteSettings.contactPhone}
           primaryButton={{
             text: 'Demander mon devis gratuit',
-            href: '/contact',
+            href: '/contact#contact-form',
           }}
           variant="gradient"
         />

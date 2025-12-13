@@ -97,10 +97,10 @@ export function PageMainWrapper({
           {/* Dot pattern très discret */}
           <div
             className="absolute inset-0 pointer-events-none
-            [background-image:radial-gradient(circle,_#9991_0.6px,_transparent_1px)]
-            [background-size:32px_32px]
-            [background-position:0_0,_16px_16px]
-            [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,_black_40%,_transparent_100%)]"
+            bg-[radial-gradient(circle,#9991_0.6px,transparent_1px)]
+            bg-size-[32px_32px]
+            bg-position-[0_0,16px_16px]
+            mask-[radial-gradient(ellipse_70%_60%_at_50%_0%,black_40%,transparent_100%)]"
           />
         </div>
       )}

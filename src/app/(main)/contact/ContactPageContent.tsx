@@ -123,7 +123,10 @@ export default function ContactPageContent({
               </div>
             </div>
 
-            <div className="bg-white dark:bg-content1 px-8 py-12 lg:col-span-3 lg:px-12 lg:py-16">
+            <div
+              className="bg-white dark:bg-content1 px-8 py-12 lg:col-span-3 lg:px-12 lg:py-16"
+              id="contact-form"
+            >
               <div className="max-w-lg mx-auto lg:mx-0 lg:max-w-none">
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
                   Envoyez-nous un message

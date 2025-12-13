@@ -101,12 +101,14 @@ export const Footer = async () => {
               <h3 className="mb-2 text-sm font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                 Email
               </h3>
-              <a
-                href={`mailto:${siteSettings.contactEmail || 'contact@bnb-energie.fr'}`}
+              <Link
+                href={`mailto:${
+                  siteSettings.contactEmail || 'contact@bnb-energie.fr'
+                }`}
                 className="text-lg font-semibold text-neutral-900 dark:text-white transition-colors hover:text-amber-600 dark:hover:text-amber-400"
               >
                 {siteSettings.contactEmail || 'contact@bnb-energie.fr'}
-              </a>
+              </Link>
             </CardBody>
           </Card>
 
@@ -135,15 +137,13 @@ export const Footer = async () => {
             </h3>
             <ul className="space-y-3">
               {navigationLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="group inline-flex items-center text-neutral-700 dark:text-neutral-300 transition-colors hover:text-amber-600 dark:hover:text-amber-400"
-                  >
-                    <span className="mr-2 h-1.5 w-1.5 rounded-full bg-amber-500 opacity-0 transition-opacity group-hover:opacity-100" />
-                    {link.label}
-                  </Link>
-                </li>
+                <Link
+                  href={link.href}
+                  className="group inline-flex items-center text-neutral-700 dark:text-neutral-300 transition-colors hover:text-amber-600 dark:hover:text-amber-400"
+                >
+                  <span className="mr-2 h-1.5 w-1.5 rounded-full bg-amber-500 opacity-0 transition-opacity group-hover:opacity-100" />
+                  {link.label}
+                </Link>
               ))}
             </ul>
           </div>
