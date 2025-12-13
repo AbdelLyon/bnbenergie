@@ -8,8 +8,6 @@ import { PageMainWrapper } from '@/components/shared/layout/PageMainWrapper';
 import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
 import { Metadata } from 'next';
 
-// ISR - Incremental Static Regeneration
-// Page d'accueil avec forte fréquence de mise à jour (HIGH_FREQUENCY)
 export const revalidate = 60;
 
 export async function generateMetadata(): Promise<Metadata> {

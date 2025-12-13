@@ -7,8 +7,7 @@ import {
 } from '@/lib/payload-queries';
 import { Metadata } from 'next';
 
-// ISR - Incremental Static Regeneration
-export const revalidate = 60; // MEDIUM_FREQUENCY
+export const revalidate = 60;
 
 export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataHelper({

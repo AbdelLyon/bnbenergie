@@ -15,11 +15,9 @@ export async function About() {
     getPageHeader('about'),
   ]);
 
-  // Image de fallback si Payload n'a pas d'image configurée
   const fallbackImage =
     'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=2070&auto=format&fit=crop';
 
-  // Extraire l'image depuis Payload ou utiliser le fallback
   let headerImage = fallbackImage;
   if (aboutHeader?.singleImage) {
     const media = aboutHeader.singleImage as Media;
@@ -31,7 +29,8 @@ export async function About() {
       badge: aboutHeader?.badge || 'QUI SOMMES-NOUS',
       title: aboutHeader?.title || 'Votre Partenaire Solaire de Confiance',
       subtitle:
-        aboutHeader?.subtitle || "Une expertise locale reconnue dans tout l'Ain",
+        aboutHeader?.subtitle ||
+        "Une expertise locale reconnue dans tout l'Ain",
       description:
         aboutHeader?.description ||
         'BNB ÉNERGIE est votre expert local en solutions photovoltaïques. Basés à Bourg-en-Bresse, nous accompagnons les particuliers et professionnels dans leur transition énergétique avec des installations sur-mesure, performantes et durables.',

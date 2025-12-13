@@ -8,7 +8,6 @@ import {
   OrganizationStructuredData,
   WebSiteStructuredData,
 } from '@/components/shared/SEO/StructuredData';
-import { defaultMetadata } from '@/config/metadata';
 import { Providers } from '../providers';
 
 const openSans = Open_Sans({
@@ -21,8 +20,6 @@ const openSans = Open_Sans({
   adjustFontFallback: false,
 });
 
-export const metadata = defaultMetadata;
-
 export default function MainLayout({
   children,
 }: {
@@ -34,7 +31,11 @@ export default function MainLayout({
         <meta httpEquiv="content-language" content="fr" />
         <meta name="referrer" content="strict-origin-when-cross-origin" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>
       <body
