@@ -256,13 +256,9 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                 size="sm"
                 radius="full"
                 startContent={<Phone className="h-4 w-4" />}
+                className="ml-2 bg-linear-to-r from-blue-600 to-cyan-600 font-bold text-white shadow-md shadow-blue-500/20 transition-all hover:scale-105 hover:shadow-lg"
               >
-                <Link
-                  className="ml-2 bg-linear-to-r from-blue-600 to-cyan-600 font-bold text-white shadow-md shadow-blue-500/20 transition-all hover:scale-105 hover:shadow-lg"
-                  href={data.cta.phoneHref}
-                >
-                  {data.cta.label}
-                </Link>
+                <Link href={data.cta.phoneHref}>{data.cta.label}</Link>
               </Button>
               <div className="ml-2">
                 <ThemeSwitcher />
