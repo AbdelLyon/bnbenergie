@@ -1,15 +1,11 @@
 import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
 import { Metadata } from 'next';
-import {
-  getPageHeader,
-  getSiteSettings,
-} from '@/lib/payload-queries';
+import { getPageHeader, getSiteSettings } from '@/lib/payload-queries';
 import NosPacksPageContent from './NosPacksPageContent';
 import { PricingStructuredData } from '@/components/shared/SEO/StructuredData';
 import { Pricing } from '@/app/(main)/_components/Pricing/Pricing';
 
-// ISR - Incremental Static Regeneration
-export const revalidate = 60; // MEDIUM_FREQUENCY
+export const revalidate = 60;
 
 export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataHelper({
@@ -40,10 +36,7 @@ export default async function NosPacksPage() {
 
   return (
     <>
-      <NosPacksPageContent
-        header={header}
-        siteSettings={siteSettings}
-      >
+      <NosPacksPageContent header={header} siteSettings={siteSettings}>
         <Pricing />
       </NosPacksPageContent>
       <PricingStructuredData />

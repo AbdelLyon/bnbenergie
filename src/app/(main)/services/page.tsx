@@ -8,14 +8,13 @@ import {
 } from '@/lib/payload-queries';
 import { Metadata } from 'next';
 
-// ISR - Incremental Static Regeneration (MEDIUM_FREQUENCY)
 export const revalidate = 60;
 
 export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataHelper({
     title: 'Services Installation Solaire Clé en Main Ain (01)',
     description:
-      "Installation panneaux solaires clé en main Ain : étude gratuite, pose RGE, démarches, Consuel et Enedis. Garantie décennale. Devis 48h.",
+      'Installation panneaux solaires clé en main Ain : étude gratuite, pose RGE, démarches, Consuel et Enedis. Garantie décennale. Devis 48h.',
     path: '/services',
     keywords: [
       'installation panneaux solaires',
