@@ -34,7 +34,7 @@ export async function generateMetadata({
     };
   }
 
-  const canonicalUrl = `${siteSettings.domain}/zones-intervention/${city}`;
+  const canonicalUrl = `${siteSettings.domain}zones-intervention/${city}`;
 
   return {
     title: `Installation Panneaux Solaires à ${cityName} | Devis Gratuit`,
