@@ -6,9 +6,7 @@ import {
   SectionWrapper,
 } from '@/components/shared/layout/SectionWrapper';
 import { SPACING } from '@/config/constants';
-import { Button } from '@heroui/button';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
 import { ProjectCard } from '@/components/shared/ui/ProjectCard';
 import type { Project } from '@/payload-types';
 import Link from 'next/link';
@@ -57,37 +55,30 @@ export function RealisationsClient({ data }: { data: RealisationsData }) {
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
-
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-16 text-center"
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className="mt-16 flex justify-center"
         >
-          <div className="relative inline-block">
-            <div className="absolute inset-0 rounded-full bg-linear-to-r from-amber-500 to-orange-500 opacity-20 blur-2xl" />
-
-            <Button
-              size="lg"
-              className="relative overflow-hidden rounded-full border-2 border-amber-500/20 bg-linear-to-r from-amber-500 to-orange-500 px-10 py-7 font-bold text-white shadow-xl shadow-amber-500/10 transition-all hover:shadow-amber-500/20"
-              endContent={<ArrowRight className="size-6" />}
-            >
-              <Link href="/contact#contact-form" className="relative z-10">
-                {data.cta}
-              </Link>
-            </Button>
-          </div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-4 text-sm text-neutral-600 dark:text-neutral-400"
+          <Link
+            href="/realisations"
+            className="
+                group inline-flex items-center gap-3
+                rounded-xl border-2 border-primary
+                px-8 py-3
+                text-lg font-bold text-primary
+                transition-all duration-300
+                hover:bg-primary hover:text-white
+                hover:shadow-xl
+              "
           >
-            Rejoignez nos clients satisfaits et passez à l'énergie solaire
-          </motion.p>
+            Voir toutes nos réalisations
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </Link>
         </motion.div>
       </SectionContainer>
     </SectionWrapper>

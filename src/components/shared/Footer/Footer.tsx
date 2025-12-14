@@ -135,15 +135,17 @@ export const Footer = async () => {
               <ChevronRight className="h-5 w-5 text-amber-500" />
               Navigation
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 flex flex-col">
               {navigationLinks.map((link) => (
-                <Link
-                  href={link.href}
-                  className="group inline-flex items-center text-neutral-700 dark:text-neutral-300 transition-colors hover:text-amber-600 dark:hover:text-amber-400"
-                >
-                  <span className="mr-2 h-1.5 w-1.5 rounded-full bg-amber-500 opacity-0 transition-opacity group-hover:opacity-100" />
-                  {link.label}
-                </Link>
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="group inline-flex items-center text-neutral-700 dark:text-neutral-300 transition-colors hover:text-amber-600 dark:hover:text-amber-400"
+                  >
+                    <span className="mr-2 size-1 rounded-full bg-amber-500 transition-opacity" />
+                    {link.label}
+                  </Link>
+                </li>
               ))}
             </ul>
           </div>
@@ -180,10 +182,7 @@ export const Footer = async () => {
             </h3>
             <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-neutral-600 dark:text-neutral-400 md:grid-cols-3">
               {cities.map((city, index) => (
-                <p
-                  key={`${city}-${index}`}
-                  className="flex items-center gap-2 transition-colors hover:text-amber-600 dark:hover:text-amber-400"
-                >
+                <p key={`${city}-${index}`} className="flex items-center gap-2">
                   <span className="h-1 w-1 rounded-full bg-amber-500" />
                   {city}
                 </p>

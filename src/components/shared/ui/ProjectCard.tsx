@@ -23,9 +23,9 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="group relative overflow-hidden rounded-2xl border-2 border-amber-200/30 dark:border-amber-500/20 bg-white dark:bg-content1 shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/5 hover:border-amber-300 dark:hover:border-amber-500/40"
+      className="group relative overflow-hidden rounded-2xl border border-default/80 hover:border-default dark:border-amber-500/20 hover:dark:border-amber-500/30 bg-white dark:bg-content1 shadow-lg transition-all duration-500 hover:shadow-xl "
     >
-      <div className="relative h-72 overflow-hidden bg-neutral-100 dark:bg-content2">
+      <div className="relative h-64 overflow-hidden bg-neutral-100 dark:bg-content2">
         <motion.div
           className="h-full w-full"
           whileHover={{
@@ -54,8 +54,8 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
       </div>
 
-      <div className="relative p-7">
-        <h3 className="font-display mb-4 text-2xl font-black text-neutral-900 dark:text-foreground transition-colors group-hover:text-amber-700 dark:group-hover:text-amber-400">
+      <div className="relative p-4">
+        <h3 className="font-display mb-4 text-xl font-black text-neutral-900 dark:text-foreground transition-colors">
           {project.title}
         </h3>
 

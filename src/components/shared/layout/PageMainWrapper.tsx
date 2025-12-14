@@ -93,15 +93,6 @@ export function PageMainWrapper({
               className={`absolute bottom-20 right-1/4 h-80 w-80 rounded-full bg-linear-to-br ${colors.orbs[2]} blur-2xl`}
             />
           )}
-
-          {/* Dot pattern très discret */}
-          <div
-            className="absolute inset-0 pointer-events-none
-            bg-[radial-gradient(circle,#9991_0.6px,transparent_1px)]
-            bg-size-[32px_32px]
-            bg-position-[0_0,16px_16px]
-            mask-[radial-gradient(ellipse_70%_60%_at_50%_0%,black_40%,transparent_100%)]"
-          />
         </div>
       )}
 

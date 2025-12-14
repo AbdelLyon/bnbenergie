@@ -17,11 +17,11 @@ export const ANIMATION_DURATIONS = {
  */
 export const SPACING = {
   section: {
-    py: 'py-12 md:py-16 lg:py-20',
+    py: 'py-4 md:py-10 lg:py-14',
     px: 'px-4 sm:px-6 lg:px-8',
   },
   header: {
-    mb: 'mb-8 md:mb-12 lg:mb-14',
+    mb: 'mb-6 md:mb-10 lg:mb-12',
   },
   card: {
     p: 'p-6 md:p-8',
@@ -112,4 +112,3 @@ export const ORCHESTRATION = {
   cardsStart: 0.2,
   backgroundEffects: 0.4,
 } as const;
-
