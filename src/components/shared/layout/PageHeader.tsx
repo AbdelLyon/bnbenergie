@@ -1,8 +1,8 @@
 'use client';
 
+import { LazyMotionDiv } from '@/components/LazyComponents';
 import { HeaderBackground } from '@/components/shared/effects/HeaderBackground';
 import { ParticlesEffect } from '@/components/shared/effects/ParticlesEffect';
-import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
 
 interface PageHeaderProps {
@@ -63,14 +63,14 @@ export function PageHeader({
 
         {}
         {bottomElement && (
-          <motion.div
+          <LazyMotionDiv
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
             className="absolute bottom-4 left-1/2 -translate-x-1/2 sm:bottom-8"
           >
             {bottomElement}
-          </motion.div>
+          </LazyMotionDiv>
         )}
       </div>
     </section>

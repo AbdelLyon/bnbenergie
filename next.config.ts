@@ -43,17 +43,16 @@ const nextConfig: NextConfig = {
         ? ['@heroui/react', 'lucide-react', 'framer-motion']
         : [],
     optimizeCss: process.env['NODE_ENV'] === 'production',
+    webpackBuildWorker: true,
   },
 
   async headers() {
-    // En production seulement pour éviter les recompilations en dev
     if (process.env['NODE_ENV'] !== 'production') {
       return [];
     }
 
     return [
       {
-        // Pages HTML - cache court avec revalidation
         source: '/:path*',
         headers: [
           {
@@ -74,7 +73,6 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        // Assets statiques - cache long
         source: '/_next/static/:path*',
         headers: [
           {
@@ -84,7 +82,6 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        // Images - cache moyen
         source: '/images/:path*',
         headers: [
           {

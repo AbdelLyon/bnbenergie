@@ -11,7 +11,6 @@ import {
   CTASection,
 } from '@/components';
 
-import { motion } from 'framer-motion';
 import { MapPin } from 'lucide-react';
 import Link from 'next/link';
 import { slugify } from '@/utils/slugify';
@@ -20,6 +19,12 @@ import type {
   PageHeader as PageHeaderType,
   SiteSetting,
 } from '@/payload-types';
+import {
+  LazyMotionDiv,
+  LazyMotionH2,
+  LazyMotionH3,
+  LazyMotionP,
+} from '@/components/LazyComponents';
 
 interface ZonesPageContentProps {
   zones: InterventionZone[];
@@ -41,14 +46,14 @@ export default function ZonesPageContent({
             title={header?.title.split(' ') || ["Zones d'Intervention"]}
             subtitle={header?.subtitle || ''}
           />
-          <motion.p
+          <LazyMotionP
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.15 }}
             className="max-w-4xl px-4 text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
           >
             {header?.description || ''}
-          </motion.p>
+          </LazyMotionP>
         </PageHeader>
 
         <SectionContainer>
@@ -77,8 +82,7 @@ export default function ZonesPageContent({
           />
 
           {/* Introduction */}
-          {/* Introduction */}
-          <motion.div
+          <LazyMotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -103,11 +107,11 @@ export default function ZonesPageContent({
                 className="mb-0"
               />
             </div>
-          </motion.div>
+          </LazyMotionDiv>
 
           {/* Zones principales */}
           <div className="mb-20">
-            <motion.h2
+            <LazyMotionH2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -115,11 +119,11 @@ export default function ZonesPageContent({
               className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
             >
               Nos Secteurs d'Intervention
-            </motion.h2>
+            </LazyMotionH2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {zones.map((group, index) => {
                 return (
-                  <motion.div
+                  <LazyMotionDiv
                     key={group.id}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -153,7 +157,7 @@ export default function ZonesPageContent({
                         </Link>
                       ))}
                     </div>
-                  </motion.div>
+                  </LazyMotionDiv>
                 );
               })}
             </div>
@@ -161,7 +165,7 @@ export default function ZonesPageContent({
 
           {/* Autres villes (statique pour l'instant car non migré dans une collection spécifique) */}
           <div className="mb-20">
-            <motion.h3
+            <LazyMotionH3
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -169,8 +173,8 @@ export default function ZonesPageContent({
               className="font-display mb-8 text-center text-2xl font-bold text-neutral-900 dark:text-foreground md:text-3xl"
             >
               Également présents dans les départements limitrophes
-            </motion.h3>
-            <motion.div
+            </LazyMotionH3>
+            <LazyMotionDiv
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -192,12 +196,12 @@ export default function ZonesPageContent({
                   {dept}
                 </div>
               ))}
-            </motion.div>
+            </LazyMotionDiv>
           </div>
 
           {/* Avantages local */}
           <div className="mb-20">
-            <motion.h2
+            <LazyMotionH2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -205,7 +209,7 @@ export default function ZonesPageContent({
               className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
             >
               Pourquoi Choisir un Installateur Local ?
-            </motion.h2>
+            </LazyMotionH2>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {[
                 {

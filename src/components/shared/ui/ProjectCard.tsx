@@ -1,10 +1,10 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { MapPin, BoltIcon, Shield } from 'lucide-react';
 import type { Project, Media } from '@/payload-types';
 import { TRANSITIONS } from '@/config/constants';
+import { LazyMotionDiv } from '@/components/LazyComponents';
 
 interface ProjectCardProps {
   project: Project;
@@ -18,7 +18,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       : '/images/placeholder-project.jpg';
 
   return (
-    <motion.div
+    <LazyMotionDiv
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: '-50px' }}
@@ -26,7 +26,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       className="group relative overflow-hidden rounded-2xl border border-default/80 hover:border-default dark:border-amber-500/20 hover:dark:border-amber-500/30 bg-white dark:bg-content1 shadow-lg transition-all duration-500 hover:shadow-xl "
     >
       <div className="relative h-64 overflow-hidden bg-neutral-100 dark:bg-content2">
-        <motion.div
+        <LazyMotionDiv
           className="h-full w-full"
           whileHover={{
             scale: 1.12,
@@ -42,7 +42,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             loading={index < 3 ? 'eager' : 'lazy'}
             priority={index < 2}
           />
-        </motion.div>
+        </LazyMotionDiv>
 
         <div className="absolute top-4 right-4 overflow-hidden rounded-full border border-white/30 bg-white/95 dark:bg-black/90 px-4 py-2 shadow-xl backdrop-blur-md">
           <div className="flex items-center gap-2">
@@ -87,6 +87,6 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           </span>
         </div>
       </div>
-    </motion.div>
+    </LazyMotionDiv>
   );
 }

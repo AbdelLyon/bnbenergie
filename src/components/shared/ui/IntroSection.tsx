@@ -1,7 +1,7 @@
 'use client';
 
+import { LazyMotionDiv } from '@/components/LazyComponents';
 import { ANIMATION_DURATIONS } from '@/config/constants';
-import { motion } from 'framer-motion';
 
 interface IntroSectionProps {
   title: string;
@@ -15,7 +15,7 @@ export function IntroSection({
   className = '',
 }: IntroSectionProps) {
   return (
-    <motion.div
+    <LazyMotionDiv
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -28,6 +28,6 @@ export function IntroSection({
       <p className="text-base leading-relaxed text-neutral-600 dark:text-default-500 md:text-lg">
         {description}
       </p>
-    </motion.div>
+    </LazyMotionDiv>
   );
 }

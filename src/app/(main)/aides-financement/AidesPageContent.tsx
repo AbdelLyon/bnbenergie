@@ -9,8 +9,12 @@ import {
   SectionContainer,
   Title,
 } from '@/components';
+import {
+  LazyMotionDiv,
+  LazyMotionH2,
+  LazyMotionP,
+} from '@/components/LazyComponents';
 import { StatsGrid } from '@/components/shared/ui/StatsGrid';
-import { motion } from 'framer-motion';
 import type {
   FinancialAid,
   PageHeader as PageHeaderType,
@@ -41,14 +45,14 @@ export default function AidesPageContent({
           title={header?.title.split(' ') || ['Aides Financement']}
           subtitle={header?.subtitle || ''}
         />
-        <motion.p
+        <LazyMotionP
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 0.15 }}
           className="max-w-4xl px-4 text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
         >
           {header?.description || ''}
-        </motion.p>
+        </LazyMotionP>
       </PageHeader>
 
       <div className="relative z-10">
@@ -77,16 +81,13 @@ export default function AidesPageContent({
             ]}
           />
 
-          {/* Introduction */}
-          {/* Introduction */}
-          <motion.div
+          <LazyMotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             className="relative mb-24 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 shadow-xl border border-neutral-100 dark:border-white/5"
           >
-            {/* Pattern decoratif subtil */}
             <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
               <div
                 className="absolute inset-0"
@@ -104,12 +105,12 @@ export default function AidesPageContent({
                 className="mb-0"
               />
             </div>
-          </motion.div>
+          </LazyMotionDiv>
 
           {/* Aides principales */}
           {aids.main.length > 0 && (
             <div className="mb-20">
-              <motion.h2
+              <LazyMotionH2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -117,7 +118,7 @@ export default function AidesPageContent({
                 className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
               >
                 Les Principales Aides Disponibles
-              </motion.h2>
+              </LazyMotionH2>
               <div className="space-y-8">
                 {aids.main.map((aid, index) => (
                   <AidCard
@@ -150,7 +151,7 @@ export default function AidesPageContent({
 
           {aids.local.length > 0 && (
             <div className="mb-20">
-              <motion.h2
+              <LazyMotionH2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -158,7 +159,7 @@ export default function AidesPageContent({
                 className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
               >
                 Aides Locales & Complémentaires
-              </motion.h2>
+              </LazyMotionH2>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                 {aids.local.map((aid) => (
                   <div
@@ -179,7 +180,7 @@ export default function AidesPageContent({
 
           {aids.financing.length > 0 && (
             <div className="mb-20">
-              <motion.h2
+              <LazyMotionH2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -187,7 +188,7 @@ export default function AidesPageContent({
                 className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
               >
                 Solutions de Financement
-              </motion.h2>
+              </LazyMotionH2>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                 {aids.financing.map((option) => (
                   <div

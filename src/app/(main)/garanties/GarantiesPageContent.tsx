@@ -12,12 +12,16 @@ import {
   CTASection,
 } from '@/components';
 
-import { motion } from 'framer-motion';
 import type {
   Warranty,
   PageHeader as PageHeaderType,
   SiteSetting,
 } from '@/payload-types';
+import {
+  LazyMotionDiv,
+  LazyMotionH2,
+  LazyMotionP,
+} from '@/components/LazyComponents';
 
 interface GarantiesPageContentProps {
   warranties: {
@@ -43,14 +47,14 @@ export default function GarantiesPageContent({
           title={header?.title.split(' ') || ['Nos Garanties']}
           subtitle={header?.subtitle || ''}
         />
-        <motion.p
+        <LazyMotionP
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 0.15 }}
           className="max-w-4xl text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
         >
           {header?.description || ''}
-        </motion.p>
+        </LazyMotionP>
       </PageHeader>
 
       <div className="relative z-10">
@@ -80,7 +84,7 @@ export default function GarantiesPageContent({
           />
 
           {/* Introduction avec background amélioré */}
-          <motion.div
+          <LazyMotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -105,12 +109,12 @@ export default function GarantiesPageContent({
                 className="mb-0"
               />
             </div>
-          </motion.div>
+          </LazyMotionDiv>
 
           {/* Certifications */}
           {warranties.certifications.length > 0 && (
             <div className="mb-20">
-              <motion.h2
+              <LazyMotionH2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -118,7 +122,7 @@ export default function GarantiesPageContent({
                 className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
               >
                 Nos Certifications Professionnelles
-              </motion.h2>
+              </LazyMotionH2>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {warranties.certifications.map((cert, index) => (
                   <FeatureCard
@@ -137,7 +141,7 @@ export default function GarantiesPageContent({
           {/* Garanties Produits */}
           {warranties.products.length > 0 && (
             <div className="mb-20">
-              <motion.h2
+              <LazyMotionH2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -145,7 +149,7 @@ export default function GarantiesPageContent({
                 className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
               >
                 Garanties Constructeurs & Matériel
-              </motion.h2>
+              </LazyMotionH2>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 {warranties.products.map((product, index) => (
                   <WarrantyCard
@@ -172,7 +176,7 @@ export default function GarantiesPageContent({
           {/* Engagements */}
           {warranties.commitments.length > 0 && (
             <div className="mb-20">
-              <motion.h2
+              <LazyMotionH2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -180,7 +184,7 @@ export default function GarantiesPageContent({
                 className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
               >
                 Nos Engagements Qualité
-              </motion.h2>
+              </LazyMotionH2>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {warranties.commitments.map((commitment, index) => (
                   <FeatureCard

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { LazyMotionDiv } from '@/components/LazyComponents';
 import { useEffect, useState } from 'react';
 
 interface BackgroundEffectsProps {
@@ -39,8 +39,8 @@ export function BackgroundEffects({
   if (variant === 'default') {
     return (
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="bg-primary-500/5 absolute top-0 right-0 h-[500px] w-[500px] translate-x-1/3 -translate-y-1/2 rounded-full blur-3xl" />
-        <div className="bg-secondary-500/5 absolute bottom-0 left-0 h-[500px] w-[500px] -translate-x-1/4 translate-y-1/3 rounded-full blur-3xl" />
+        <div className="bg-primary-500/5 absolute top-0 right-0 h-125 w-200 translate-x-1/3 -translate-y-1/2 rounded-full blur-3xl" />
+        <div className="bg-secondary-500/5 absolute bottom-0 left-0 h-125 w-200 -translate-x-1/4 translate-y-1/3 rounded-full blur-3xl" />
       </div>
     );
   }
@@ -51,7 +51,7 @@ export function BackgroundEffects({
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.03),transparent_50%)]" />
 
       {/* Orbes flous animés */}
-      <motion.div
+      <LazyMotionDiv
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.5, 0.3],
@@ -61,10 +61,10 @@ export function BackgroundEffects({
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        className="bg-primary-500/5 absolute top-0 right-0 h-[800px] w-[800px] translate-x-1/3 -translate-y-1/2 rounded-full blur-[100px]"
+        className="bg-primary-500/5 absolute top-0 right-0 h-200 w-200 translate-x-1/3 -translate-y-1/2 rounded-full blur-[100px]"
       />
 
-      <motion.div
+      <LazyMotionDiv
         animate={{
           scale: [1.2, 1, 1.2],
           opacity: [0.3, 0.5, 0.3],
@@ -74,12 +74,12 @@ export function BackgroundEffects({
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        className="bg-secondary-500/5 absolute bottom-0 left-0 h-[800px] w-[800px] -translate-x-1/4 translate-y-1/3 rounded-full blur-[100px]"
+        className="bg-secondary-500/5 absolute bottom-0 left-0 h-200 w-200 -translate-x-1/4 translate-y-1/3 rounded-full blur-[100px]"
       />
 
       {/* Particules flottantes */}
       {particles.map((particle) => (
-        <motion.div
+        <LazyMotionDiv
           key={particle.id}
           initial={{
             x: particle.initialX,

@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Phone, Star } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
@@ -21,6 +20,7 @@ import type {
   PageHeader as PageHeaderType,
   SiteSetting,
 } from '@/payload-types';
+import { LazyMotionDiv, LazyMotionP } from '@/components/LazyComponents';
 
 /* =========================================================
    CONSTANTES
@@ -121,14 +121,14 @@ export default function RealisationsPageContent({
             subtitle={header?.subtitle || ''}
           />
 
-          <motion.p
+          <LazyMotionP
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.15 }}
             className="max-w-4xl px-4 text-base leading-relaxed text-white/80 sm:text-lg md:text-xl"
           >
             {header?.description || ''}
-          </motion.p>
+          </LazyMotionP>
         </PageHeader>
 
         <SectionContainer>
@@ -142,7 +142,7 @@ export default function RealisationsPageContent({
           </div>
 
           {/* ================= INTRO ================= */}
-          <motion.div
+          <LazyMotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -156,7 +156,7 @@ export default function RealisationsPageContent({
               Découvrez quelques-unes de nos installations certifiées RGE
               QualiPV, classées par puissance.
             </p>
-          </motion.div>
+          </LazyMotionDiv>
 
           {/* ================= FILTER ================= */}
           <div className="mb-6 flex flex-wrap gap-3">
@@ -192,7 +192,7 @@ export default function RealisationsPageContent({
           </section>
 
           {/* ================= TESTIMONIALS ================= */}
-          <motion.div
+          <LazyMotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -205,7 +205,7 @@ export default function RealisationsPageContent({
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {TESTIMONIALS.map((testimonial) => (
-                <motion.div
+                <LazyMotionDiv
                   key={testimonial.name}
                   onClick={() =>
                     handleSelectPower(testimonial.project as PowerFilter)
@@ -229,10 +229,10 @@ export default function RealisationsPageContent({
                     <span>{testimonial.name}</span>
                     <span className="text-primary">{testimonial.project}</span>
                   </div>
-                </motion.div>
+                </LazyMotionDiv>
               ))}
             </div>
-          </motion.div>
+          </LazyMotionDiv>
         </SectionContainer>
 
         {/* ================= CTA ================= */}

@@ -7,15 +7,15 @@ import {
 } from '@/components/shared/layout/SectionWrapper';
 import { SPACING } from '@/config/constants';
 import type { PricingData } from '@/types';
-import { motion } from 'framer-motion';
 import { PricingCard } from './components/PricingCard';
 import { PricingFooter } from './components/PricingFooter';
+import { LazyMotionDiv } from '@/components/LazyComponents';
 
 export function PricingClient({ data }: { data: PricingData }) {
   return (
     <SectionWrapper id="pricing" background="gray" className="overflow-x-clip">
       <SectionContainer>
-        <motion.div
+        <LazyMotionDiv
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -26,7 +26,7 @@ export function PricingClient({ data }: { data: PricingData }) {
             title={data.header.title}
             subtitle={data.header.subtitle}
           />
-        </motion.div>
+        </LazyMotionDiv>
 
         <div className={`grid items-center md:grid-cols-3 ${SPACING.grid.gap}`}>
           {data.packs.map((pack, index) => (

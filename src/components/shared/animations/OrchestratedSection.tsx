@@ -1,7 +1,11 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { ORCHESTRATION, ANIMATION_DURATIONS, TRANSITIONS } from '@/config/constants';
+import { LazyMotionSection } from '@/components/LazyComponents';
+import {
+  ORCHESTRATION,
+  ANIMATION_DURATIONS,
+  TRANSITIONS,
+} from '@/config/constants';
 import type { ReactNode } from 'react';
 
 interface OrchestratedSectionProps {
@@ -24,7 +28,7 @@ export const OrchestratedSection = ({
   className,
 }: OrchestratedSectionProps) => {
   return (
-    <motion.section
+    <LazyMotionSection
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: '-100px' }}
@@ -36,6 +40,6 @@ export const OrchestratedSection = ({
       className={className}
     >
       {children}
-    </motion.section>
+    </LazyMotionSection>
   );
 };

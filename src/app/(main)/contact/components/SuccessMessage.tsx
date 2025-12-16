@@ -1,8 +1,7 @@
 'use client';
-
-import { motion } from 'framer-motion';
 import { CheckCircle2 } from 'lucide-react';
 import { Button } from '@heroui/button';
+import { LazyMotionDiv } from '@/components/LazyComponents';
 
 interface SuccessMessageProps {
   message: string;
@@ -10,7 +9,7 @@ interface SuccessMessageProps {
 
 export function SuccessMessage({ message }: SuccessMessageProps) {
   return (
-    <motion.div
+    <LazyMotionDiv
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       className="flex flex-col items-center justify-center rounded-2xl border border-green-100 bg-green-50/50 py-16 text-center"
@@ -31,6 +30,6 @@ export function SuccessMessage({ message }: SuccessMessageProps) {
       >
         Envoyer un autre message
       </Button>
-    </motion.div>
+    </LazyMotionDiv>
   );
 }
