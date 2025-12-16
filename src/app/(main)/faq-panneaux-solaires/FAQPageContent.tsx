@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { Accordion, AccordionItem } from '@heroui/accordion';
@@ -16,7 +15,7 @@ import {
   Title,
 } from '@/components';
 import { LazyMotionDiv, LazyMotionP } from '@/components/LazyComponents';
-import type { FC, SVGProps } from 'react';
+import type { FC, SVGProps, ReactNode } from 'react';
 import React from 'react';
 import { getLucideIcon } from '@/utils/getLucideIcon';
 
@@ -57,7 +56,7 @@ const FAQAccordionTitle: FC<{ faq: Faq; Icon: FC<SVGProps<SVGSVGElement>> }> =
   ));
 
 const FAQItemMotion: FC<{ faq: Faq; index: number }> = React.memo(
-  ({ faq, index }): any => {
+  ({ faq, index }): ReactNode => {
     const iconName: string = faq.category
       ? categoryIcons[faq.category] || 'HelpCircle'
       : 'HelpCircle';

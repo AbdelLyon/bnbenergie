@@ -21,7 +21,7 @@ export function LazySection({
   const { ref, isInView } = useInView({ threshold, rootMargin, triggerOnce: true });
 
   return (
-    <section ref={ref as any} className={className}>
+    <section ref={ref} className={className}>
       {isInView ? children : fallback}
     </section>
   );

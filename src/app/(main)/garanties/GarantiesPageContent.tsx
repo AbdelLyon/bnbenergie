@@ -159,13 +159,13 @@ export default function GarantiesPageContent({
                     description={product.description}
                     gradient={product.gradient || 'from-blue-500 to-cyan-500'}
                     warranties={
-                      product.warrantyDetails?.map((w: any) => ({
+                      product.warrantyDetails?.map((w) => ({
                         label: w.label,
                         duration: w.duration,
-                        description: w.description,
+                        description: w.description ?? '',
                       })) || []
                     }
-                    features={product.features?.map((f: any) => f.text) || []}
+                    features={product.features?.map((f) => f.text) || []}
                     index={index}
                   />
                 ))}

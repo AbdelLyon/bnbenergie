@@ -1,13 +1,14 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { ComponentType } from 'react';
+import type { HTMLMotionProps } from 'framer-motion';
+import type { ComponentType } from 'react';
 
 // Lazy load des composants lourds avec Framer Motion
 export const LazyMotionDiv = dynamic(
   () =>
     import('framer-motion').then((mod) => ({
-      default: mod.motion.div as ComponentType<any>,
+      default: mod.motion.div as ComponentType<HTMLMotionProps<'div'>>,
     })),
   {
     ssr: false,
@@ -18,7 +19,7 @@ export const LazyMotionDiv = dynamic(
 export const LazyMotionSection = dynamic(
   () =>
     import('framer-motion').then((mod) => ({
-      default: mod.motion.section as ComponentType<any>,
+      default: mod.motion.section as ComponentType<HTMLMotionProps<'section'>>,
     })),
   {
     ssr: false,
@@ -29,7 +30,7 @@ export const LazyMotionSection = dynamic(
 export const LazyMotionSpan = dynamic(
   () =>
     import('framer-motion').then((mod) => ({
-      default: mod.motion.span as ComponentType<any>,
+      default: mod.motion.span as ComponentType<HTMLMotionProps<'span'>>,
     })),
   {
     ssr: false,
@@ -39,7 +40,7 @@ export const LazyMotionSpan = dynamic(
 export const LazyMotionP = dynamic(
   () =>
     import('framer-motion').then((mod) => ({
-      default: mod.motion.p as ComponentType<any>,
+      default: mod.motion.p as ComponentType<HTMLMotionProps<'p'>>,
     })),
   {
     ssr: false,
@@ -49,7 +50,7 @@ export const LazyMotionP = dynamic(
 export const LazyMotionH2 = dynamic(
   () =>
     import('framer-motion').then((mod) => ({
-      default: mod.motion.h2 as ComponentType<any>,
+      default: mod.motion.h2 as ComponentType<HTMLMotionProps<'h2'>>,
     })),
   {
     ssr: false,
@@ -59,7 +60,7 @@ export const LazyMotionH2 = dynamic(
 export const LazyMotionH3 = dynamic(
   () =>
     import('framer-motion').then((mod) => ({
-      default: mod.motion.h3 as ComponentType<any>,
+      default: mod.motion.h3 as ComponentType<HTMLMotionProps<'h3'>>,
     })),
   {
     ssr: false,
@@ -69,7 +70,7 @@ export const LazyMotionH3 = dynamic(
 export const LazyMotionArticle = dynamic(
   () =>
     import('framer-motion').then((mod) => ({
-      default: mod.motion.article as ComponentType<any>,
+      default: mod.motion.article as ComponentType<HTMLMotionProps<'article'>>,
     })),
   {
     ssr: false,
@@ -79,7 +80,7 @@ export const LazyMotionArticle = dynamic(
 export const LazyMotionHeader = dynamic(
   () =>
     import('framer-motion').then((mod) => ({
-      default: mod.motion.header as ComponentType<any>,
+      default: mod.motion.header as ComponentType<HTMLMotionProps<'header'>>,
     })),
   {
     ssr: false,
@@ -90,7 +91,7 @@ export const LazyMotionHeader = dynamic(
 export const LazyMotionButton  = dynamic(
   () =>
     import('framer-motion').then((mod) => ({
-      default: mod.motion.button as ComponentType<any>,
+      default: mod.motion.button as ComponentType<HTMLMotionProps<'button'>>,
     })),
   {
     ssr: false,

@@ -147,7 +147,7 @@ export default function ZonesPageContent({
 
                     {/* Liste des communes cliquables */}
                     <div className="flex flex-wrap gap-2">
-                      {group.communes?.map((commune: any) => (
+                      {group.communes?.map((commune) => (
                         <Link
                           key={commune.name}
                           href={`/zones-intervention/${slugify(commune.name)}`}
