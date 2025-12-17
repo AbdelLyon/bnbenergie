@@ -26,7 +26,6 @@ export async function sendContactEmail(
   _prevState: ContactState,
   formData: FormData
 ): Promise<ContactState> {
-  // Simulate delay for better UX
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   const validatedFields = contactSchema.safeParse({
