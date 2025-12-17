@@ -15,7 +15,7 @@ import {
   Title,
 } from '@/components';
 import { LazyMotionDiv, LazyMotionP } from '@/components/LazyComponents';
-import type { FC, SVGProps, ReactNode } from 'react';
+import type { FC, SVGProps } from 'react';
 import React from 'react';
 import { getLucideIcon } from '@/utils/getLucideIcon';
 
@@ -55,37 +55,25 @@ const FAQAccordionTitle: FC<{ faq: Faq; Icon: FC<SVGProps<SVGSVGElement>> }> =
     </div>
   ));
 
-const FAQItemMotion: FC<{ faq: Faq; index: number }> = React.memo(
-  ({ faq, index }): ReactNode => {
-    const iconName: string = faq.category
-      ? categoryIcons[faq.category] || 'HelpCircle'
-      : 'HelpCircle';
-    const Icon: FC<SVGProps<SVGSVGElement>> = getLucideIcon(iconName);
-    const questionLabel: string = faq.question;
-    const answerText: string = faq.answer;
+const FAQItem: FC<{ faq: Faq }> = React.memo(({ faq }) => {
+  const iconName: string = faq.category
+    ? categoryIcons[faq.category] || 'HelpCircle'
+    : 'HelpCircle';
+  const Icon: FC<SVGProps<SVGSVGElement>> = getLucideIcon(iconName);
+  const questionLabel: string = faq.question;
+  const answerText: string = faq.answer;
 
-    return (
-      <LazyMotionDiv
-        initial={{ opacity: 0, x: -10 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: '-50px' }}
-        transition={{ duration: 0.3, delay: index * 0.03 }}
-        className="group"
-      >
-        <Accordion variant="splitted" className="px-2">
-          <AccordionItem
-            className="shadow-md hover:shadow-lg transition-shadow duration-300 rounded-2xl border border-neutral-100 dark:border-white/5 bg-white dark:bg-content1 px-2"
-            key={faq.id}
-            aria-label={questionLabel}
-            title={<FAQAccordionTitle faq={faq} Icon={Icon} />}
-          >
-            <p>{answerText}</p>
-          </AccordionItem>
-        </Accordion>
-      </LazyMotionDiv>
-    );
-  }
-);
+  return (
+    <AccordionItem
+      className="shadow-md hover:shadow-lg transition-shadow duration-300 rounded-2xl border border-neutral-100 dark:border-white/5 bg-white dark:bg-content1 px-2 group"
+      key={faq.id}
+      aria-label={questionLabel}
+      title={<FAQAccordionTitle faq={faq} Icon={Icon} />}
+    >
+      <p>{answerText}</p>
+    </AccordionItem>
+  );
+});
 
 // ------------------- Composant principal -------------------
 export default function FAQPageContent({
@@ -102,6 +90,8 @@ export default function FAQPageContent({
       acceptedAnswer: { '@type': 'Answer', text: faq.answer },
     })),
   };
+
+  const accordionVariant = 'splitted' as const;
 
   return (
     <PageMainWrapper variant="purple">
@@ -160,11 +150,14 @@ export default function FAQPageContent({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.3 }}
-            className="space-y-3 mb-20"
+            className="mb-20"
           >
-            {faqs.map((faq, index) => (
-              <FAQItemMotion key={faq.id} faq={faq} index={index} />
-            ))}
+            {/* @ts-expect-error - HeroUI Accordion variant prop causes complex union type */}
+            <Accordion variant={accordionVariant} className="px-2 space-y-3">
+              {faqs.map((faq) => (
+                <FAQItem key={faq.id} faq={faq} />
+              ))}
+            </Accordion>
           </LazyMotionDiv>
 
           <CTASection
