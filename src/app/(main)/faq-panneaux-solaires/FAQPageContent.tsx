@@ -15,7 +15,7 @@ import {
 } from '@/components';
 import { LazyMotionDiv, LazyMotionP } from '@/components/LazyComponents';
 import type { FC, SVGProps } from 'react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { getLucideIcon } from '@/utils/getLucideIcon';
 import { ChevronDown } from 'lucide-react';
 

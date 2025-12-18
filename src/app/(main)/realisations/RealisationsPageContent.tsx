@@ -21,7 +21,7 @@ import type {
   SiteSetting,
 } from '@/payload-types';
 import { LazyMotionDiv, LazyMotionP } from '@/components/LazyComponents';
-import { Phone, Star } from 'lucide-react';
+import { Phone } from 'lucide-react';
 
 /* =========================================================
    CONSTANTES
