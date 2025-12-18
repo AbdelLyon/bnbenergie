@@ -11,7 +11,11 @@ import {
   CTASection,
   ServiceStep,
 } from '@/components';
-import { motion } from 'framer-motion';
+import {
+  LazyMotionDiv,
+  LazyMotionH2,
+  LazyMotionP,
+} from '@/components/LazyComponents';
 import type {
   Service,
   PageHeader as PageHeaderType,
@@ -40,14 +44,14 @@ export default function ServicesPageContent({
           title={header?.title.split(' ') || ['Nos Services']}
           subtitle={header?.subtitle || ''}
         />
-        <motion.p
+        <LazyMotionP
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 0.15 }}
           className="max-w-4xl px-4 text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
         >
           {header?.description || ''}
-        </motion.p>
+        </LazyMotionP>
       </PageHeader>
 
       <div className="relative z-10">
@@ -62,7 +66,7 @@ export default function ServicesPageContent({
             }))}
           />
 
-          <motion.div
+          <LazyMotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -94,7 +98,7 @@ export default function ServicesPageContent({
                 maintenance.
               </p>
             </div>
-          </motion.div>
+          </LazyMotionDiv>
 
           <div className="mb-20 space-y-12">
             {steps.map((step, index) => (
@@ -120,7 +124,7 @@ export default function ServicesPageContent({
 
           {guarantees.length > 0 && (
             <div className="mb-20">
-              <motion.h2
+              <LazyMotionH2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -128,7 +132,7 @@ export default function ServicesPageContent({
                 className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
               >
                 Nos Engagements Qualité
-              </motion.h2>
+              </LazyMotionH2>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {guarantees.map((service, index) => (
                   <FeatureCard

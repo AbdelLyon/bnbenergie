@@ -1,7 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Phone, Star } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 
@@ -15,12 +13,15 @@ import {
   SectionWrapper,
   BackgroundEffects,
 } from '@/components';
+import { ReviewsSection } from '@/components/shared/ui/ReviewsSection';
 
 import type {
   Project,
   PageHeader as PageHeaderType,
   SiteSetting,
 } from '@/payload-types';
+import { LazyMotionDiv, LazyMotionP } from '@/components/LazyComponents';
+import { Phone, Star } from 'lucide-react';
 
 /* =========================================================
    CONSTANTES
@@ -31,6 +32,12 @@ const STATS = [
   { value: '15+', label: "Ans d'Expérience", icon: 'Award' },
   { value: '100%', label: 'Clients Satisfaits', icon: 'Star' },
 ] as const;
+
+// TESTIMONIALS supprimés - maintenant gérés par ReviewsSection avec les vraies données Google
+
+/* =========================================================
+   HELPERS
+========================================================= */
 
 const TESTIMONIALS = [
   {
@@ -55,10 +62,6 @@ const TESTIMONIALS = [
     project: '3 kWc',
   },
 ] as const;
-
-/* =========================================================
-   HELPERS
-========================================================= */
 
 const extractKw = (value?: string | number | null): number | null => {
   if (!value) return null;
@@ -112,7 +115,7 @@ export default function RealisationsPageContent({
   }, [projects, selectedPower]);
 
   return (
-    <PageMainWrapper variant="blue">
+    <PageMainWrapper variant="transparent">
       <div className="relative z-10">
         {/* ================= HEADER ================= */}
         <PageHeader variant="simple" height="medium">
@@ -121,14 +124,14 @@ export default function RealisationsPageContent({
             subtitle={header?.subtitle || ''}
           />
 
-          <motion.p
+          <LazyMotionP
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.15 }}
             className="max-w-4xl px-4 text-base leading-relaxed text-white/80 sm:text-lg md:text-xl"
           >
             {header?.description || ''}
-          </motion.p>
+          </LazyMotionP>
         </PageHeader>
 
         <SectionContainer>
@@ -142,7 +145,7 @@ export default function RealisationsPageContent({
           </div>
 
           {/* ================= INTRO ================= */}
-          <motion.div
+          <LazyMotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -156,7 +159,7 @@ export default function RealisationsPageContent({
               Découvrez quelques-unes de nos installations certifiées RGE
               QualiPV, classées par puissance.
             </p>
-          </motion.div>
+          </LazyMotionDiv>
 
           {/* ================= FILTER ================= */}
           <div className="mb-6 flex flex-wrap gap-3">
@@ -180,7 +183,12 @@ export default function RealisationsPageContent({
           <section className="mx-auto max-w-7xl">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {filteredProjects.map((project, index) => (
-                <ProjectCard key={project.id} project={project} index={index} />
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  index={index}
+                  page="Realisations"
+                />
               ))}
             </div>
 
@@ -192,7 +200,16 @@ export default function RealisationsPageContent({
           </section>
 
           {/* ================= TESTIMONIALS ================= */}
-          <motion.div
+          <div className="my-32">
+            <ReviewsSection
+              title="Ce Que Disent Nos Clients"
+              subtitle="Découvrez les avis de nos clients satisfaits dans l'Ain"
+              showStats={true}
+              autoPlay={true}
+              autoPlayInterval={10000}
+            />
+          </div>
+          <LazyMotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -205,7 +222,7 @@ export default function RealisationsPageContent({
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {TESTIMONIALS.map((testimonial) => (
-                <motion.div
+                <LazyMotionDiv
                   key={testimonial.name}
                   onClick={() =>
                     handleSelectPower(testimonial.project as PowerFilter)
@@ -229,10 +246,10 @@ export default function RealisationsPageContent({
                     <span>{testimonial.name}</span>
                     <span className="text-primary">{testimonial.project}</span>
                   </div>
-                </motion.div>
+                </LazyMotionDiv>
               ))}
             </div>
-          </motion.div>
+          </LazyMotionDiv>
         </SectionContainer>
 
         {/* ================= CTA ================= */}
@@ -250,7 +267,7 @@ export default function RealisationsPageContent({
               <div className="flex flex-col justify-center gap-4 sm:flex-row">
                 <Link
                   href="/contact#contact-form"
-                  className="rounded-xl bg-white px-8 py-4 font-bold text-primary"
+                  className="rounded-xl bg-content1 px-8 py-4 font-bold text-primary border border-primary/70"
                 >
                   Demander mon devis
                 </Link>

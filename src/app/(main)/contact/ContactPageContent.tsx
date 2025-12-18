@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useActionState } from 'react';
 import { sendContactEmail } from '@/actions/contact';
 import type {
@@ -17,6 +16,7 @@ import { ContactForm } from './components/ContactForm';
 import { ContactInfo } from './components/ContactInfo';
 import { ContactMap } from './components/ContactMap';
 import { SuccessMessage } from './components/SuccessMessage';
+import { LazyMotionDiv, LazyMotionP } from '@/components/LazyComponents';
 
 interface ContactPageContentProps {
   header: PageHeaderType | null;
@@ -77,19 +77,19 @@ export default function ContactPageContent({
           subtitle={header?.subtitle ?? ''}
         />
 
-        <motion.p
+        <LazyMotionP
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 0.15 }}
           className="max-w-4xl px-4 text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
         >
           {header?.description || ''}
-        </motion.p>
+        </LazyMotionP>
       </PageHeader>
 
       <div id="contact-section" className="relative z-10 -mt-24 pb-24">
         <SectionContainer>
-          <motion.div
+          <LazyMotionDiv
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -147,11 +147,11 @@ export default function ContactPageContent({
                 )}
               </div>
             </div>
-          </motion.div>
+          </LazyMotionDiv>
         </SectionContainer>
       </div>
 
-      <div className="w-full h-[500px] relative z-0">
+      <div className="w-full h-125 relative z-0">
         <ContactMap
           latitude={parseFloat(siteSettings.geoLatitude || '46.2059')}
           longitude={parseFloat(siteSettings.geoLongitude || '5.2255')}

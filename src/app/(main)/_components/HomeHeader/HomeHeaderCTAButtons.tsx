@@ -1,7 +1,7 @@
 'use client';
 
+import { LazyMotionDiv } from '@/components/LazyComponents';
 import { Button } from '@heroui/button';
-import { motion } from 'framer-motion';
 import { ArrowRight, Phone } from 'lucide-react';
 import Link from 'next/link';
 
@@ -19,13 +19,13 @@ export function HomeHeaderCTAButtons({
   secondaryHref,
 }: HeroCTAButtonsProps) {
   return (
-    <motion.div
+    <LazyMotionDiv
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
       className="flex w-full flex-col gap-3 px-4 sm:w-auto sm:flex-row sm:gap-4 sm:px-0"
     >
-      <motion.div whileTap={{ scale: 0.96 }} whileHover={{ scale: 1.02 }}>
+      <LazyMotionDiv whileTap={{ scale: 0.96 }} whileHover={{ scale: 1.02 }}>
         <Button
           href={primaryHref}
           size="md"
@@ -35,9 +35,9 @@ export function HomeHeaderCTAButtons({
         >
           <Link href={primaryHref}>{primaryText}</Link>
         </Button>
-      </motion.div>
+      </LazyMotionDiv>
 
-      <motion.div whileTap={{ scale: 0.96 }} whileHover={{ scale: 1.02 }}>
+      <LazyMotionDiv whileTap={{ scale: 0.96 }} whileHover={{ scale: 1.02 }}>
         <Button
           size="md"
           variant="bordered"
@@ -47,7 +47,7 @@ export function HomeHeaderCTAButtons({
         >
           <Link href={secondaryHref}>{secondaryText}</Link>
         </Button>
-      </motion.div>
-    </motion.div>
+      </LazyMotionDiv>
+    </LazyMotionDiv>
   );
 }

@@ -1,11 +1,11 @@
 'use client';
 
 import { useImageCarousel } from '@/hooks';
-import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { HomeHeaderCTAButtons } from './HomeHeaderCTAButtons';
 import { PageHeader, ScrollDownButton, Stats, Title } from '@/components';
 import type { Stat } from '@/payload-types';
+import { LazyMotionDiv } from '@/components/LazyComponents';
 
 interface HeaderData {
   title: string[];
@@ -50,7 +50,7 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
         <div className="space-y-4 text-center">
           <Title title={data.title} />
 
-          <motion.div
+          <LazyMotionDiv
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -62,10 +62,10 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
             <p className="px-4 text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl">
               {data.description}
             </p>
-          </motion.div>
+          </LazyMotionDiv>
         </div>
 
-        <motion.div
+        <LazyMotionDiv
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
@@ -76,16 +76,16 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
             secondaryText={data.cta2}
             secondaryHref={data.cta2_href}
           />
-        </motion.div>
+        </LazyMotionDiv>
 
-        <motion.div
+        <LazyMotionDiv
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.8 }}
           className="w-full"
         >
           <Stats stats={data.stats} />
-        </motion.div>
+        </LazyMotionDiv>
       </div>
     </PageHeader>
   );

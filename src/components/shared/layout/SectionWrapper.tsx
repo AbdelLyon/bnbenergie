@@ -1,13 +1,9 @@
 'use client';
 
+import { LazyMotionHeader } from '@/components/LazyComponents';
 import { ANIMATION_DURATIONS, SPACING } from '@/config/constants';
-import type {
-  SectionBackground,
-  SectionWidth,
-  TextAlignment,
-} from '@/types';
+import type { SectionBackground, SectionWidth, TextAlignment } from '@/types';
 import { cn } from '@heroui/theme';
-import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
 
 interface SectionWrapperProps {
@@ -26,7 +22,8 @@ export function SectionWrapper({
   const backgrounds: Record<SectionBackground, string> = {
     white: 'bg-[var(--bg-card)]',
     gray: 'bg-[var(--bg-section)]',
-    gradient: 'bg-gradient-to-br from-primary-50 to-accent-50 dark:from-transparent dark:to-transparent',
+    gradient:
+      'bg-gradient-to-br from-primary-50 to-accent-50 dark:from-transparent dark:to-transparent',
     dark: 'bg-neutral-900 text-white dark:bg-background',
   };
 
@@ -94,7 +91,7 @@ export function SectionHeader({
   };
 
   return (
-    <motion.header
+    <LazyMotionHeader
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -111,14 +108,10 @@ export function SectionHeader({
           {badge}
         </span>
       )}
-      <h2 className="font-display mb-4 text-3xl font-black text-neutral-900 dark:text-foreground sm:text-4xl md:mb-6 md:text-5xl lg:text-6xl">
-        {title}
-      </h2>
+      <h2 className="mb-4 text-3xl font-bold md:text-4xl">{title}</h2>
       {subtitle && (
-        <p className="text-base leading-relaxed text-neutral-600 dark:text-default-500 md:text-lg lg:text-xl">
-          {subtitle}
-        </p>
+        <p className="mx-auto max-w-2xl text-lg opacity-80">{subtitle}</p>
       )}
-    </motion.header>
+    </LazyMotionHeader>
   );
 }

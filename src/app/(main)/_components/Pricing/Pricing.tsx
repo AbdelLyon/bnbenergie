@@ -1,16 +1,17 @@
 import { getPricingPacks } from '@/lib/payload-queries';
 import { PricingClient } from './PricingClient';
+import type { PricingPack } from '@/payload-types';
 
 export async function Pricing() {
   const packsList = await getPricingPacks();
 
-  const packs = packsList.map((pack: any) => ({
+  const packs = packsList.map((pack: PricingPack) => ({
     name: pack.name,
     panels: pack.panels,
     price: pack.price,
-    originalPrice: pack.originalPrice,
-    features: pack.features.map((f: any) => f.feature),
-    popular: pack.popular,
+    originalPrice: pack.originalPrice ?? undefined,
+    features: pack.features.map((f) => f.feature),
+    popular: pack.popular ?? undefined,
     cta: pack.cta,
   }));
 

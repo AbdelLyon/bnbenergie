@@ -1,8 +1,8 @@
 'use client';
 
+import { LazyMotionDiv } from '@/components/LazyComponents';
 import { ANIMATION_DURATIONS } from '@/config/constants';
 import { cn } from '@heroui/theme';
-import { motion } from 'framer-motion';
 import { ArrowRight, Phone } from 'lucide-react';
 import Link from 'next/link';
 
@@ -32,9 +32,11 @@ export function CTASection({
   className,
 }: CTASectionProps) {
   const variants = {
-    gradient: 'bg-linear-to-br from-blue-600 via-blue-700 to-cyan-600 dark:from-blue-700 dark:via-blue-800 dark:to-cyan-700',
+    gradient:
+      'bg-linear-to-br from-blue-600 via-blue-700 to-cyan-600 dark:from-blue-700 dark:via-blue-800 dark:to-cyan-700',
     solid: 'bg-neutral-900 dark:bg-neutral-950',
-    minimal: 'bg-neutral-50 dark:bg-content1 border border-neutral-200 dark:border-content2',
+    minimal:
+      'bg-neutral-50 dark:bg-content1 border border-neutral-200 dark:border-content2',
   };
 
   const textColors = {
@@ -44,7 +46,7 @@ export function CTASection({
   };
 
   return (
-    <motion.div
+    <LazyMotionDiv
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -130,6 +132,6 @@ export function CTASection({
           </div>
         </div>
       </div>
-    </motion.div>
+    </LazyMotionDiv>
   );
 }

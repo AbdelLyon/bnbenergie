@@ -1,6 +1,5 @@
 'use client';
-
-import { motion } from 'framer-motion';
+import { LazyMotionButton } from '@/components/LazyComponents';
 import { ArrowDown } from 'lucide-react';
 
 interface ScrollDownButtonProps {
@@ -22,7 +21,7 @@ export function ScrollDownButton({ onClick }: ScrollDownButtonProps) {
 
   return (
     <div className="flex w-full items-center justify-center">
-      <motion.button
+      <LazyMotionButton
         onClick={handleClick}
         initial={{ opacity: 1 }}
         animate={{ opacity: 1, y: [0, 10, 0] }}
@@ -31,7 +30,7 @@ export function ScrollDownButton({ onClick }: ScrollDownButtonProps) {
         aria-label="Scroll to next section"
       >
         <ArrowDown className="h-5 w-5 text-white md:h-6 md:w-6" />
-      </motion.button>
+      </LazyMotionButton>
     </div>
   );
 }

@@ -1,8 +1,8 @@
 'use client';
 
+import { LazyMotionArticle } from '@/components/LazyComponents';
 import type { BaseCardProps, IconCard } from '@/types';
 import { getLucideIcon } from '@/utils/getLucideIcon';
-import { motion } from 'framer-motion';
 
 interface AboutCardProps extends BaseCardProps, IconCard {}
 
@@ -18,7 +18,7 @@ export function AboutCard({
   const Icon = getLucideIcon(icon);
 
   return (
-    <motion.article
+    <LazyMotionArticle
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
@@ -47,13 +47,11 @@ export function AboutCard({
         </div>
 
         {/* Titre et contenu */}
-        <h3 className="group-hover:text-amber-700 dark:group-hover:text-amber-400 mb-5 text-2xl font-black text-neutral-900 dark:text-foreground transition-colors duration-300">
+        <h3 className="group-hover:text-amber-700 dark:group-hover:text-amber-400 mb-5 text-2xl font-black transition-colors duration-300">
           {title}
         </h3>
-        <p className="text-base leading-relaxed text-neutral-700 dark:text-default-400">
-          {content}
-        </p>
+        <p className="leading-relaxed text-base opacity-70">{content}</p>
       </div>
-    </motion.article>
+    </LazyMotionArticle>
   );
 }

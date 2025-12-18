@@ -1,7 +1,29 @@
 import { getSiteSettings } from '@/lib/payload-queries';
+import { GOOGLE_REVIEWS, REVIEWS_STATS } from '@/data/google-reviews-data';
 
 export async function LocalBusinessStructuredData() {
   const siteConfig = await getSiteSettings();
+
+  // Utiliser les vraies données Google depuis notre fichier de données
+  const rating = REVIEWS_STATS.average;
+  const reviewCount = REVIEWS_STATS.total;
+
+  // Formater les 5 meilleurs avis pour Schema.org
+  const reviews = GOOGLE_REVIEWS.slice(0, 5).map((review) => ({
+    '@type': 'Review' as const,
+    reviewRating: {
+      '@type': 'Rating' as const,
+      ratingValue: review.rating.toString(),
+      bestRating: '5',
+      worstRating: '1',
+    },
+    author: {
+      '@type': 'Person' as const,
+      name: review.author,
+    },
+    reviewBody: review.text,
+    datePublished: review.date,
+  }));
 
   const schema = {
     '@context': 'https://schema.org',
@@ -66,13 +88,17 @@ export async function LocalBusinessStructuredData() {
       Boolean
     ),
 
+    // Données réelles des avis Google pour le SEO
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '5',
-      reviewCount: '127',
+      ratingValue: rating.toString(),
+      reviewCount: reviewCount.toString(),
       bestRating: '5',
       worstRating: '1',
     },
+
+    // Ajouter les avis individuels pour les rich snippets
+    ...(reviews.length > 0 && { review: reviews }),
 
     hasOfferCatalog: {
       '@type': 'OfferCatalog',

@@ -1,10 +1,10 @@
 'use client';
 
+import { LazyMotionDiv } from '@/components/LazyComponents';
 import { ANIMATION_DURATIONS } from '@/config/constants';
 import type { BaseCardProps } from '@/types';
 
 import { getLucideIcon } from '@/utils/getLucideIcon';
-import { motion } from 'framer-motion';
 import { CheckCircle2 } from 'lucide-react';
 
 interface AidAmount {
@@ -41,7 +41,7 @@ export function AidCard({
   const Icon = getLucideIcon(icon);
 
   return (
-    <motion.div
+    <LazyMotionDiv
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
@@ -83,7 +83,7 @@ export function AidCard({
               </h4>
               <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
                 {conditions.map((condition, idx) => (
-                  <motion.div
+                  <LazyMotionDiv
                     key={idx}
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -98,7 +98,7 @@ export function AidCard({
                     <span className="text-sm text-neutral-700 dark:text-default-600">
                       {condition}
                     </span>
-                  </motion.div>
+                  </LazyMotionDiv>
                 ))}
               </div>
             </div>
@@ -128,6 +128,6 @@ export function AidCard({
           )}
         </div>
       </div>
-    </motion.div>
+    </LazyMotionDiv>
   );
 }

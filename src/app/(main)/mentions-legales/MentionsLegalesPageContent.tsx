@@ -1,12 +1,12 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import {
   PageHeader,
   PageMainWrapper,
   SectionContainer,
   Title,
 } from '@/components';
+import { LazyMotionDiv } from '@/components/LazyComponents';
 import { Building2, Globe } from 'lucide-react';
 
 export default function MentionsLegalesPageContent() {
@@ -105,7 +105,7 @@ export default function MentionsLegalesPageContent() {
           {sections.map((section, idx) => {
             const Icon = section.icon;
             return (
-              <motion.div
+              <LazyMotionDiv
                 key={section.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -155,7 +155,7 @@ export default function MentionsLegalesPageContent() {
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </LazyMotionDiv>
             );
           })}
         </div>
@@ -163,7 +163,7 @@ export default function MentionsLegalesPageContent() {
         {/* Sections légales */}
         <div className="space-y-6 mt-10">
           {legalSections.map((section, idx) => (
-            <motion.div
+            <LazyMotionDiv
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -177,7 +177,7 @@ export default function MentionsLegalesPageContent() {
               <p className="text-sm sm:text-base text-neutral-700 dark:text-default-400 leading-relaxed whitespace-pre-line">
                 {section.content}
               </p>
-            </motion.div>
+            </LazyMotionDiv>
           ))}
         </div>
 

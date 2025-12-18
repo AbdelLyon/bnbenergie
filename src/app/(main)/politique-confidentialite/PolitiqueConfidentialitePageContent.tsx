@@ -6,7 +6,8 @@ import {
   SectionContainer,
   Title,
 } from '@/components';
-import { motion } from 'framer-motion';
+import { LazyMotionDiv, LazyMotionP } from '@/components/LazyComponents';
+
 import type { SiteSetting } from '@/payload-types';
 import {
   Shield,
@@ -207,14 +208,14 @@ export default function PolitiqueConfidentialitePageContent({
           title={['Politique ', 'de confidentialité']}
           subtitle="Protection de vos données personnelles"
         />
-        <motion.p
+        <LazyMotionP
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 0.15 }}
           className="max-w-3xl px-4 text-base font-normal leading-relaxed text-white/80 sm:text-lg md:text-xl"
         >
           Conformément au RGPD et à la loi Informatique et Libertés
-        </motion.p>
+        </LazyMotionP>
       </PageHeader>
 
       {/* ---------------- SECTIONS ---------------- */}
@@ -222,7 +223,7 @@ export default function PolitiqueConfidentialitePageContent({
         {sections.map((section, idx) => {
           const Icon = section.icon;
           return (
-            <motion.div
+            <LazyMotionDiv
               key={section.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -272,12 +273,12 @@ export default function PolitiqueConfidentialitePageContent({
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </LazyMotionDiv>
           );
         })}
 
         {/* ---------------- FOOTER ---------------- */}
-        <motion.div
+        <LazyMotionDiv
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -287,7 +288,7 @@ export default function PolitiqueConfidentialitePageContent({
           <p className="text-sm text-neutral-600 dark:text-default-400">
             Date de dernière mise à jour : 10 octobre 2025
           </p>
-        </motion.div>
+        </LazyMotionDiv>
       </SectionContainer>
     </PageMainWrapper>
   );

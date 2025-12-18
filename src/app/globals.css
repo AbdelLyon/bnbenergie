@@ -1,13 +1,14 @@
 @import 'tailwindcss';
 @plugin '../config/hero.ts';
 @source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@import '../styles/optimized-animations.css';
 
 @variant dark (.dark &);
 
 @theme inline {
-  --font-sans: var(--font-open-sans);
+  --font-sans: var(--font-jakarta);
   --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-open-sans);
+  --font-display: var(--font-outfit);
 
   /* ============================================
      🎨 PALETTE
@@ -140,6 +141,15 @@
     var(--color-secondary-800) 50%,
     var(--color-accent-900) 100%
   );
+}
+
+/* Force font application */
+.font-sans {
+  font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.font-display {
+  font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 /* ============================================

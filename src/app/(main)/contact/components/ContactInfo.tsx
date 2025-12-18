@@ -1,6 +1,5 @@
 'use client';
-
-import { motion } from 'framer-motion';
+import { LazyMotionDiv } from '@/components/LazyComponents';
 import { getLucideIcon } from '@/utils/getLucideIcon';
 
 interface ContactInfoItem {
@@ -21,7 +20,7 @@ export function ContactInfo({ items }: ContactInfoProps) {
       {items.map((item, index) => {
         const Icon = getLucideIcon(item.icon);
         return (
-          <motion.div
+          <LazyMotionDiv
             key={item.label}
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -44,15 +43,13 @@ export function ContactInfo({ items }: ContactInfoProps) {
                   {item.value}
                 </a>
               ) : (
-                <p className="text-xl font-medium text-white">
-                  {item.value}
-                </p>
+                <p className="text-xl font-medium text-white">{item.value}</p>
               )}
               <p className="mt-1.5 text-sm text-slate-300/80 leading-relaxed font-light">
                 {item.description}
               </p>
             </div>
-          </motion.div>
+          </LazyMotionDiv>
         );
       })}
     </div>
