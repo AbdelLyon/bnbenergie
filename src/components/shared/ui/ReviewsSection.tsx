@@ -40,14 +40,10 @@ export function ReviewsSection({
         transition={{ duration: 0.4 }}
         className="mb-12 text-center"
       >
-        <h2 className="mb-4 text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl">
-          {title}
-        </h2>
+        <h2 className="mb-4 text-3xl font-bold md:text-4xl">{title}</h2>
 
         {subtitle && (
-          <p className="mx-auto max-w-2xl text-lg text-neutral-600 dark:text-default-500">
-            {subtitle}
-          </p>
+          <p className="mx-auto max-w-2xl text-lg opacity-80">{subtitle}</p>
         )}
 
         {/* Statistiques */}

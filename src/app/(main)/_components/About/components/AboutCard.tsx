@@ -47,12 +47,10 @@ export function AboutCard({
         </div>
 
         {/* Titre et contenu */}
-        <h3 className="group-hover:text-amber-700 dark:group-hover:text-amber-400 mb-5 text-2xl font-black text-neutral-900 dark:text-foreground transition-colors duration-300">
+        <h3 className="group-hover:text-amber-700 dark:group-hover:text-amber-400 mb-5 text-2xl font-black transition-colors duration-300">
           {title}
         </h3>
-        <p className="text-lg leading-relaxed text-neutral-700 dark:text-default-400">
-          {content}
-        </p>
+        <p className="leading-relaxed text-base opacity-70">{content}</p>
       </div>
     </LazyMotionArticle>
   );

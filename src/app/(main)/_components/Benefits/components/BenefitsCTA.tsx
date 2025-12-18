@@ -26,9 +26,8 @@ export function BenefitsCTA({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-      className="relative mb-20"
     >
-      <div className="from-primary-600 to-primary-800 shadow-primary-500/30 relative overflow-hidden rounded-3xl bg-linear-to-br p-10 text-white shadow-2xl md:p-12">
+      <div className="from-primary-800 to-primary-900 shadow-primary-500/30 relative overflow-hidden rounded-3xl bg-linear-to-br p-10 text-white shadow-2xl md:p-12">
         <div className="absolute inset-0 opacity-10">
           <div
             className="absolute inset-0"

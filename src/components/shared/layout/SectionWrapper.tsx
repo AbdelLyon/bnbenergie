@@ -108,13 +108,9 @@ export function SectionHeader({
           {badge}
         </span>
       )}
-      <h2 className="font-display mb-4 text-2xl font-black text-neutral-900 dark:text-foreground sm:text-3xl md:mb-6 md:text-4xl lg:text-5xl">
-        {title}
-      </h2>
+      <h2 className="mb-4 text-3xl font-bold md:text-4xl">{title}</h2>
       {subtitle && (
-        <p className="text-lg leading-relaxed text-neutral-600 dark:text-default-500 md:text-xl lg:text-2xl">
-          {subtitle}
-        </p>
+        <p className="mx-auto max-w-2xl text-lg opacity-80">{subtitle}</p>
       )}
     </LazyMotionHeader>
   );

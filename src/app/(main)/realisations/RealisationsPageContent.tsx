@@ -21,7 +21,7 @@ import type {
   SiteSetting,
 } from '@/payload-types';
 import { LazyMotionDiv, LazyMotionP } from '@/components/LazyComponents';
-import { Star } from 'lucide-react';
+import { Phone, Star } from 'lucide-react';
 
 /* =========================================================
    CONSTANTES
@@ -38,6 +38,30 @@ const STATS = [
 /* =========================================================
    HELPERS
 ========================================================= */
+
+const TESTIMONIALS = [
+  {
+    name: 'M. et Mme Durand',
+    location: 'Bourg-en-Bresse',
+    rating: 5,
+    comment: 'Installation impeccable, équipe professionnelle.',
+    project: '6 kWc',
+  },
+  {
+    name: 'M. Lefebvre',
+    location: 'Oyonnax',
+    rating: 5,
+    comment: 'Service de qualité du début à la fin.',
+    project: '9 kWc',
+  },
+  {
+    name: 'Mme Rousseau',
+    location: 'Viriat',
+    rating: 5,
+    comment: 'Très satisfaite de mon installation.',
+    project: '3 kWc',
+  },
+] as const;
 
 const extractKw = (value?: string | number | null): number | null => {
   if (!value) return null;
