@@ -1,9 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
 import { ReviewsCarousel } from './ReviewsCarousel';
 import { GOOGLE_REVIEWS, REVIEWS_STATS } from '@/data/google-reviews-data';
+import { LazyMotionDiv } from '@/components/LazyComponents';
 
 interface ReviewsSectionProps {
   title?: string;
@@ -21,8 +21,8 @@ export function ReviewsSection({
   autoPlayInterval = 5000,
 }: ReviewsSectionProps) {
   return (
-    <section className="w-full py-4">
-      <motion.div
+    <>
+      <LazyMotionDiv
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -36,7 +36,7 @@ export function ReviewsSection({
         )}
 
         {showStats && (
-          <motion.div
+          <LazyMotionDiv
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -59,9 +59,9 @@ export function ReviewsSection({
             <p className="text-sm text-neutral-600 dark:text-default-500">
               Basé sur {REVIEWS_STATS.total} avis Google
             </p>
-          </motion.div>
+          </LazyMotionDiv>
         )}
-      </motion.div>
+      </LazyMotionDiv>
 
       <ReviewsCarousel
         reviews={GOOGLE_REVIEWS}
@@ -69,7 +69,7 @@ export function ReviewsSection({
         autoPlayInterval={autoPlayInterval || 10000}
       />
 
-      <motion.div
+      <LazyMotionDiv
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -90,7 +90,7 @@ export function ReviewsSection({
           </svg>
           Voir tous nos avis sur Google
         </a>
-      </motion.div>
-    </section>
+      </LazyMotionDiv>
+    </>
   );
 }

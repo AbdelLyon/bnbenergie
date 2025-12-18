@@ -25,7 +25,7 @@ export function ProjectCard({ project, index, page, href }: ProjectCardProps) {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
+      transition={{ duration: 0.4, delay: index * 0.2 }}
       whileHover={{ scale: 1.02, transition: TRANSITIONS.smooth }}
       className="group relative overflow-hidden rounded-xl border border-neutral-200/50 dark:border-content2 bg-white dark:bg-content1 shadow-sm hover:shadow-md transition-all duration-300"
     >
@@ -47,7 +47,6 @@ export function ProjectCard({ project, index, page, href }: ProjectCardProps) {
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              loading={index < 3 ? 'eager' : 'lazy'}
               priority={index < 2}
             />
           </LazyMotionDiv>

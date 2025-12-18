@@ -1,6 +1,5 @@
 'use client';
 
-import { Accordion, AccordionItem } from '@heroui/accordion';
 import type {
   Faq,
   PageHeader as PageHeaderType,
@@ -16,8 +15,9 @@ import {
 } from '@/components';
 import { LazyMotionDiv, LazyMotionP } from '@/components/LazyComponents';
 import type { FC, SVGProps } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import { getLucideIcon } from '@/utils/getLucideIcon';
+import { ChevronDown } from 'lucide-react';
 
 interface FAQPageContentProps {
   faqs: Faq[];
@@ -38,42 +38,52 @@ const categoryIcons: Record<string, string> = {
   Technique: 'Home',
 };
 
-const FAQAccordionTitle: FC<{ faq: Faq; Icon: FC<SVGProps<SVGSVGElement>> }> =
-  React.memo(({ faq, Icon }) => (
-    <div className="flex items-start gap-2">
-      <span className="shrink-0 text-xl transition-transform duration-200 ease-out group-hover:scale-110 lg:text-2xl">
-        <Icon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-      </span>
-      <div className="flex-1">
-        <div className="text-sm font-semibold text-blue-600 dark:text-blue-400">
-          {faq.category}
-        </div>
-        <h3 className="text-base font-bold text-gray-900 dark:text-foreground transition-colors duration-200 ease-out group-hover:text-blue-600 dark:group-hover:text-blue-400 md:text-lg">
-          {faq.question}
-        </h3>
-      </div>
-    </div>
-  ));
-
-const FAQItem: FC<{ faq: Faq }> = React.memo(({ faq }) => {
+const FAQItem: FC<{ faq: Faq }> = ({ faq }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const iconName: string = faq.category
     ? categoryIcons[faq.category] || 'HelpCircle'
     : 'HelpCircle';
   const Icon: FC<SVGProps<SVGSVGElement>> = getLucideIcon(iconName);
-  const questionLabel: string = faq.question;
-  const answerText: string = faq.answer;
 
   return (
-    <AccordionItem
-      className="shadow-md hover:shadow-lg transition-shadow duration-300 rounded-2xl border border-neutral-100 dark:border-white/5 bg-white dark:bg-content1 px-2 group"
-      key={faq.id}
-      aria-label={questionLabel}
-      title={<FAQAccordionTitle faq={faq} Icon={Icon} />}
-    >
-      <p>{answerText}</p>
-    </AccordionItem>
+    <div className="shadow-md hover:shadow-lg transition-shadow duration-300 rounded-2xl border  border-neutral-100 dark:border-white/5 bg-white dark:bg-content1 group">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full px-4 py-4 text-left flex items-center justify-between gap-4 cursor-pointer"
+        aria-expanded={isOpen}
+        aria-label={faq.question}
+      >
+        <div className="flex items-start gap-2 cusor-pointer flex-1">
+          <span className="shrink-0 text-xl transition-transform duration-200 ease-out group-hover:scale-110 lg:text-2xl">
+            <Icon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+          </span>
+          <div className="flex-1">
+            <div className="text-sm font-semibold text-blue-600 dark:text-blue-400">
+              {faq.category}
+            </div>
+            <h3 className="text-base font-bold transition-colors duration-200 ease-out group-hover:opacity-70  md:text-lg">
+              {faq.question}
+            </h3>
+          </div>
+        </div>
+        <ChevronDown
+          className={`h-5 w-5 text-gray-500 cursor-pointer dark:text-gray-400 transition-transform duration-200 shrink-0 ${
+            isOpen ? 'rotate-180' : ''
+          }`}
+        />
+      </button>
+      <div
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+          isOpen ? 'max-h-125 opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <p className="text-gray-700 px-4 pb-4 dark:text-gray-300">
+          {faq.answer}
+        </p>
+      </div>
+    </div>
   );
-});
+};
 
 // ------------------- Composant principal -------------------
 export default function FAQPageContent({
@@ -90,8 +100,6 @@ export default function FAQPageContent({
       acceptedAnswer: { '@type': 'Answer', text: faq.answer },
     })),
   };
-
-  const accordionVariant = 'splitted' as const;
 
   return (
     <PageMainWrapper variant="purple">
@@ -152,12 +160,11 @@ export default function FAQPageContent({
             transition={{ duration: 0.3 }}
             className="mb-20"
           >
-            {/* @ts-expect-error - HeroUI Accordion variant prop causes complex union type */}
-            <Accordion variant={accordionVariant} className="px-2 space-y-3">
+            <div className="px-2 space-y-3">
               {faqs.map((faq) => (
                 <FAQItem key={faq.id} faq={faq} />
               ))}
-            </Accordion>
+            </div>
           </LazyMotionDiv>
 
           <CTASection

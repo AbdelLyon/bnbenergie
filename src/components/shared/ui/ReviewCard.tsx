@@ -1,9 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Star, MapPin } from 'lucide-react';
 import type { Review } from '@/data/google-reviews-data';
 import { TRANSITIONS } from '@/config/constants';
+import { LazyMotionArticle } from '@/components/LazyComponents';
 
 interface ReviewCardProps {
   review: Review;
@@ -18,7 +18,7 @@ export function ReviewCard({ review, index, onClick }: ReviewCardProps) {
   });
 
   return (
-    <motion.article
+    <LazyMotionArticle
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
@@ -85,6 +85,6 @@ export function ReviewCard({ review, index, onClick }: ReviewCardProps) {
           </div>
         )}
       </div>
-    </motion.article>
+    </LazyMotionArticle>
   );
 }

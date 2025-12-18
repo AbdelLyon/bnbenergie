@@ -149,7 +149,6 @@ export default function ContactPageContent({
             </div>
           </LazyMotionDiv>
         </SectionContainer>
-      </div>
 
       <div className="w-full h-125 relative z-0">
         <ContactMap
@@ -157,6 +156,7 @@ export default function ContactPageContent({
           longitude={parseFloat(siteSettings.geoLongitude || '5.2255')}
           address={mapAddress}
         />
+      </div>
       </div>
     </PageMainWrapper>
   );

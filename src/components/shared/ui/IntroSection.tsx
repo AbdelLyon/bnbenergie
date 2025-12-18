@@ -20,9 +20,9 @@ export function IntroSection({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: ANIMATION_DURATIONS.normal }}
-      className={`mx-auto mb-20 max-w-4xl text-center ${className}`}
+      className={`mx-auto max-w-4xl text-center ${className}`}
     >
-      <h2 className="font-display mb-6 text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl">
+      <h2 className="font-display text-3xl mb-4 font-bold text-neutral-900 dark:text-foreground md:text-4xl">
         {title}
       </h2>
       <p className="text-base leading-relaxed text-neutral-600 dark:text-default-500 md:text-lg">

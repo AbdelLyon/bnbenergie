@@ -71,24 +71,15 @@ export default function ServicesPageContent({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="relative mx-auto mb-24 max-w-5xl overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 shadow-xl border border-neutral-100 dark:border-white/5"
+            className="relative mx-auto mb-20 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 border border-neutral-100 dark:border-white/5"
           >
-            <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                  backgroundSize: '32px 32px',
-                }}
-              />
-            </div>
-
             <div className="relative z-10 text-center">
               <IntroSection
                 title="Un Accompagnement Complet de A à Z"
                 description=""
-                className="mb-0"
+                className="mb-0 w-full "
               />
+
               <p className="mb-4 text-xl font-medium text-neutral-700 dark:text-default-600">
                 Notre mission : transformer votre projet solaire en réalité
               </p>
@@ -100,7 +91,7 @@ export default function ServicesPageContent({
             </div>
           </LazyMotionDiv>
 
-          <div className="mb-20 space-y-12">
+          <div className="mb-10 space-y-12">
             {steps.map((step, index) => (
               <ServiceStep
                 key={step.id}
