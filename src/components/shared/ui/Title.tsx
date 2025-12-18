@@ -1,7 +1,7 @@
 'use client';
 
+import { LazyMotionDiv, LazyMotionSpan } from '@/components/LazyComponents';
 import { ANIMATION_DURATIONS, TRANSITIONS } from '@/config/constants';
-import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 interface TitleProps {
@@ -43,14 +43,14 @@ export function Title({ title }: TitleProps) {
   }, [displayText, isDeleting, fullText]);
 
   return (
-    <motion.div
+    <LazyMotionDiv
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
       className="text-center"
     >
-      <h1 className="font-display px-4 text-3xl font-extrabold   sm:text-4xl md:text-5xl lg:text-6xl">
-        <motion.span
+      <h1 className="px-4 text-4xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+        <LazyMotionSpan
           className="inline-block text-white mr-4 [text-shadow:0_2px_20px_rgba(0,0,0,0.4),0_4px_40px_rgba(0,0,0,0.3)]"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -61,12 +61,12 @@ export function Title({ title }: TitleProps) {
           }}
         >
           {title[0]}
-        </motion.span>
+        </LazyMotionSpan>
         <span className="inline-block bg-[linear-gradient(to_right,#fbbf24,#f59e0b,#f97316,#3b82f6,#2563eb)] bg-clip-text pb-2 text-transparent drop-shadow-sm">
           {displayText}
           <span className="animate-pulse">|</span>
         </span>
       </h1>
-    </motion.div>
+    </LazyMotionDiv>
   );
 }

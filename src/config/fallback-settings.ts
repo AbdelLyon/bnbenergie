@@ -1,5 +1,7 @@
+import type { SiteSetting } from '@/payload-types';
+
 export const FALLBACK_SITE_SETTINGS = {
-  id: 'fallback',
+  id: 0,
   // Informations business
   siteName: 'BNB Énergie 01 - Panneaux Solaires Photovoltaïques Ain',
   businessName: 'BNB Énergie 01',
@@ -35,39 +37,17 @@ export const FALLBACK_SITE_SETTINGS = {
   seoKeywords: [],
 };
 
-export type SiteSettings = {
-  siteName?: string | null;
-  businessName?: string | null;
-  domain?: string | null;
-  contactPhone?: string | null;
-  contactPhoneHref?: string | null;
-  contactEmail?: string | null;
-  contactEmailHref?: string | null;
-  addressStreet?: string | null;
-  addressCity?: string | null;
-  addressLocality?: string | null;
-  addressRegion?: string | null;
-  addressZip?: string | null;
-  addressCountry?: string | null;
-  geoLatitude?: string | null;
-  geoLongitude?: string | null;
-  socialFacebook?: string | null;
-  socialInstagram?: string | null;
-  socialLinkedin?: string | null;
-  socialTwitter?: string | null;
-  seoTitle?: string | null;
-  seoTitleTemplate?: string | null;
-  seoDescription?: string | null;
-  seoKeywords?: Array<{ keyword?: string | null }> | null;
+export type SiteSettings = Omit<SiteSetting, 'id' | 'updatedAt' | 'createdAt' | 'globalType'> & {
+  id?: number;
 };
 
-export function mergeSiteSettings(payloadSettings: SiteSettings | null) {
+export function mergeSiteSettings(payloadSettings: Partial<SiteSetting> | null) {
   if (!payloadSettings) {
     return FALLBACK_SITE_SETTINGS;
   }
 
   return {
-    id: (payloadSettings as any).id || FALLBACK_SITE_SETTINGS.id,
+    id: payloadSettings.id || FALLBACK_SITE_SETTINGS.id,
     siteName: payloadSettings.siteName || FALLBACK_SITE_SETTINGS.siteName,
     businessName:
       payloadSettings.businessName || FALLBACK_SITE_SETTINGS.businessName,

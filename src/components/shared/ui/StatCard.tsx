@@ -1,8 +1,8 @@
 'use client';
 
+import { LazyMotionDiv } from '@/components/LazyComponents';
 import type { BaseCardProps } from '@/types';
 import { getLucideIcon } from '@/utils/getLucideIcon';
-import { motion } from 'framer-motion';
 
 interface StatCardProps extends BaseCardProps {
   icon: string;
@@ -23,10 +23,10 @@ export function StatCard({
   const Icon = getLucideIcon(icon);
 
   return (
-    <motion.div
+    <LazyMotionDiv
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
       className={`group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-neutral-100 bg-white p-5 text-center shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 hover:shadow-[0_8px_24px_-6px_rgba(0,0,0,0.08)] dark:border-neutral-800 dark:bg-neutral-900 ${className}`}
     >
@@ -54,7 +54,7 @@ export function StatCard({
           {description}
         </p>
       )}
-    </motion.div>
+    </LazyMotionDiv>
   );
 }
 

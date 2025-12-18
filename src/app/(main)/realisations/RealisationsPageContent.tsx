@@ -1,7 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Phone } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 
@@ -22,6 +20,8 @@ import type {
   PageHeader as PageHeaderType,
   SiteSetting,
 } from '@/payload-types';
+import { LazyMotionDiv, LazyMotionP } from '@/components/LazyComponents';
+import { Star } from 'lucide-react';
 
 /* =========================================================
    CONSTANTES
@@ -100,14 +100,14 @@ export default function RealisationsPageContent({
             subtitle={header?.subtitle || ''}
           />
 
-          <motion.p
+          <LazyMotionP
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.15 }}
             className="max-w-4xl px-4 text-base leading-relaxed text-white/80 sm:text-lg md:text-xl"
           >
             {header?.description || ''}
-          </motion.p>
+          </LazyMotionP>
         </PageHeader>
 
         <SectionContainer>
@@ -121,7 +121,7 @@ export default function RealisationsPageContent({
           </div>
 
           {/* ================= INTRO ================= */}
-          <motion.div
+          <LazyMotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -135,7 +135,7 @@ export default function RealisationsPageContent({
               Découvrez quelques-unes de nos installations certifiées RGE
               QualiPV, classées par puissance.
             </p>
-          </motion.div>
+          </LazyMotionDiv>
 
           {/* ================= FILTER ================= */}
           <div className="mb-6 flex flex-wrap gap-3">
@@ -180,6 +180,47 @@ export default function RealisationsPageContent({
               autoPlayInterval={10000}
             />
           </div>
+          <LazyMotionDiv
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="my-32"
+          >
+            <h2 className="mb-12 text-center text-3xl font-bold md:text-4xl">
+              Ce Que Disent Nos Clients
+            </h2>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              {TESTIMONIALS.map((testimonial) => (
+                <LazyMotionDiv
+                  key={testimonial.name}
+                  onClick={() =>
+                    handleSelectPower(testimonial.project as PowerFilter)
+                  }
+                  whileHover={{ scale: 1.02 }}
+                  className="cursor-pointer relative rounded-2xl bg-white border border-default/80 hover:border-default dark:border-amber-500/20 p-8 shadow-lg dark:bg-content1"
+                >
+                  <div className="mb-4 flex gap-1">
+                    {Array.from({ length: testimonial.rating }).map((_, i) => (
+                      <Star
+                        key={i}
+                        className="h-5 w-5 fill-amber-400 text-amber-400"
+                      />
+                    ))}
+                  </div>
+
+                  <p className="mb-6 italic opacity-80">
+                    “{testimonial.comment}”
+                  </p>
+                  <div className="flex justify-between absolute bottom-4 gap-2 right-4 text-sm font-bold opacity-70">
+                    <span>{testimonial.name}</span>
+                    <span className="text-primary">{testimonial.project}</span>
+                  </div>
+                </LazyMotionDiv>
+              ))}
+            </div>
+          </LazyMotionDiv>
         </SectionContainer>
 
         {/* ================= CTA ================= */}

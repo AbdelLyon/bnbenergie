@@ -1,9 +1,8 @@
 'use client';
 
+import { LazyMotionDiv } from '@/components/LazyComponents';
 import { Stat } from '@/payload-types';
 import { getLucideIcon } from '@/utils/getLucideIcon';
-import { motion } from 'framer-motion';
-
 
 interface StatsProps {
   stats: Stat[];
@@ -12,7 +11,7 @@ interface StatsProps {
 export function Stats({ stats }: StatsProps) {
   return (
     <div className="w-full">
-      <motion.div
+      <LazyMotionDiv
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.9 }}
@@ -24,7 +23,7 @@ export function Stats({ stats }: StatsProps) {
           const displayGradient = stat.color;
 
           return (
-            <motion.div
+            <LazyMotionDiv
               key={stat.label}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -44,10 +43,10 @@ export function Stats({ stats }: StatsProps) {
               <div className="text-sm font-medium uppercase tracking-wider text-white/70 md:text-base">
                 {stat.label}
               </div>
-            </motion.div>
+            </LazyMotionDiv>
           );
         })}
-      </motion.div>
+      </LazyMotionDiv>
     </div>
   );
 }

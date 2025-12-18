@@ -1,6 +1,10 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import {
+  LazyMotionDiv,
+  LazyMotionH3,
+  LazyMotionP,
+} from '@/components/LazyComponents';
 import Link from 'next/link';
 
 interface BenefitsCTAProps {
@@ -17,7 +21,7 @@ export function BenefitsCTA({
   button2,
 }: BenefitsCTAProps) {
   return (
-    <motion.div
+    <LazyMotionDiv
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -36,7 +40,7 @@ export function BenefitsCTA({
         </div>
 
         <div className="relative z-10">
-          <motion.h3
+          <LazyMotionH3
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -44,8 +48,8 @@ export function BenefitsCTA({
             className="mb-6 text-3xl font-black drop-shadow-lg md:text-4xl"
           >
             {title}
-          </motion.h3>
-          <motion.p
+          </LazyMotionH3>
+          <LazyMotionP
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -53,25 +57,31 @@ export function BenefitsCTA({
             className="mb-10 text-lg text-white/90 drop-shadow"
           >
             {description}
-          </motion.p>
+          </LazyMotionP>
 
           <div className="flex flex-col gap-5 sm:flex-row">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+            <LazyMotionDiv
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
               <Link
                 href="/nos-packs"
                 className="text-primary-600 inline-flex items-center justify-center rounded-full bg-white px-8 py-4 font-extrabold shadow-xl transition-all duration-300 hover:bg-neutral-50 hover:shadow-2xl"
               >
                 {button1}
               </Link>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+            </LazyMotionDiv>
+            <LazyMotionDiv
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
               <Link
                 href="/faq-panneaux-solaires"
                 className="inline-flex items-center justify-center rounded-full border-2 border-white/40 bg-white/10 px-8 py-4 font-extrabold text-white backdrop-blur-xl transition-all duration-300 hover:border-white/60 hover:bg-white/20 hover:shadow-xl"
               >
                 {button2}
               </Link>
-            </motion.div>
+            </LazyMotionDiv>
           </div>
         </div>
 
@@ -84,6 +94,6 @@ export function BenefitsCTA({
           style={{ animationDuration: '5s', animationDelay: '1s' }}
         />
       </div>
-    </motion.div>
+    </LazyMotionDiv>
   );
 }

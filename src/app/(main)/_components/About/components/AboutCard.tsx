@@ -1,8 +1,8 @@
 'use client';
 
+import { LazyMotionArticle } from '@/components/LazyComponents';
 import type { BaseCardProps, IconCard } from '@/types';
 import { getLucideIcon } from '@/utils/getLucideIcon';
-import { motion } from 'framer-motion';
 
 interface AboutCardProps extends BaseCardProps, IconCard {}
 
@@ -18,7 +18,7 @@ export function AboutCard({
   const Icon = getLucideIcon(icon);
 
   return (
-    <motion.article
+    <LazyMotionArticle
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
@@ -54,6 +54,6 @@ export function AboutCard({
           {content}
         </p>
       </div>
-    </motion.article>
+    </LazyMotionArticle>
   );
 }

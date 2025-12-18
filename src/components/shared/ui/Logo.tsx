@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { LazyMotionDiv } from '@/components/LazyComponents';
 import { Zap } from 'lucide-react';
 
 interface LogoProps {
@@ -36,7 +36,7 @@ export function Logo({
 
   const LogoContent = (
     <div className="relative inline-block">
-      <motion.div
+      <LazyMotionDiv
         whileHover={animated ? { rotate: 180, scale: 1.1 } : {}}
         transition={{ duration: 0.4 }}
         className={`rounded-xl transition-all duration-300 ease-out ${
@@ -48,7 +48,7 @@ export function Logo({
         }`}
       >
         <Zap className={sizeClasses[size]} color="#FBBF24" />
-      </motion.div>
+      </LazyMotionDiv>
       {showRGEBadge && (
         <div
           className={`absolute -right-2.5 -bottom-2 rounded-full font-bold uppercase ${

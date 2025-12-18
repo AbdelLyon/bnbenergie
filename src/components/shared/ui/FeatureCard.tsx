@@ -1,10 +1,10 @@
 'use client';
 
+import { LazyMotionDiv } from '@/components/LazyComponents';
 import { TRANSITIONS } from '@/config/constants';
 import type { BaseCardProps } from '@/types';
 import { getLucideIcon } from '@/utils/getLucideIcon';
 import { cn } from '@heroui/theme';
-import { motion } from 'framer-motion';
 
 interface FeatureCardProps extends BaseCardProps {
   icon: string;
@@ -28,7 +28,7 @@ export function FeatureCard({
   const Icon = getLucideIcon(icon);
 
   return (
-    <motion.div
+    <LazyMotionDiv
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
@@ -38,7 +38,7 @@ export function FeatureCard({
         className
       )}
     >
-      <motion.div
+      <LazyMotionDiv
         className={`mb-6 inline-flex rounded-xl bg-linear-to-br ${gradient} p-4`}
         whileHover={{
           scale: 1.1,
@@ -47,7 +47,7 @@ export function FeatureCard({
         }}
       >
         <Icon className="h-8 w-8 text-white" />
-      </motion.div>
+      </LazyMotionDiv>
 
       <h3 className="font-display mb-4 text-xl font-bold text-neutral-900 dark:text-foreground">
         {title}
@@ -73,6 +73,6 @@ export function FeatureCard({
           ))}
         </ul>
       )}
-    </motion.div>
+    </LazyMotionDiv>
   );
 }

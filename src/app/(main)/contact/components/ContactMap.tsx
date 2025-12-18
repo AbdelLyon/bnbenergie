@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { LazyMotionDiv } from '@/components/LazyComponents';
 
 interface ContactMapProps {
   latitude: number;
@@ -10,7 +10,7 @@ interface ContactMapProps {
 
 export function ContactMap({ latitude, longitude, address }: ContactMapProps) {
   return (
-    <motion.div
+    <LazyMotionDiv
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -18,7 +18,7 @@ export function ContactMap({ latitude, longitude, address }: ContactMapProps) {
       className="mt-12"
     >
       <div className="overflow-hidden rounded-3xl border border-white dark:border-content2/60 bg-white dark:bg-content1/70 p-3 shadow-xl backdrop-blur-xl">
-        <div className="relative h-[450px] w-full overflow-hidden rounded-2xl">
+        <div className="relative h-125.5 w-full overflow-hidden rounded-2xl">
           <iframe
             src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2761.5!2d${longitude}!3d${latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDbCsDEyJzIxLjIiTiA1wrAxMyczMS44IkU!5e0!3m2!1sfr!2sfr!4v1234567890`}
             width="100%"
@@ -41,6 +41,6 @@ export function ContactMap({ latitude, longitude, address }: ContactMapProps) {
           </div>
         </div>
       </div>
-    </motion.div>
+    </LazyMotionDiv>
   );
 }

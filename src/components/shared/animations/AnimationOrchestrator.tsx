@@ -1,7 +1,9 @@
 'use client';
-
-import { motion } from 'framer-motion';
-import { createContainerVariants, createItemVariants } from '@/utils/animations';
+import { LazyMotionDiv } from '@/components/LazyComponents';
+import {
+  createContainerVariants,
+  createItemVariants,
+} from '@/utils/animations';
 import type { ReactNode } from 'react';
 
 interface AnimationOrchestratorProps {
@@ -36,7 +38,7 @@ export const AnimationOrchestrator = ({
   const itemVariants = createItemVariants(direction, distance);
 
   return (
-    <motion.div
+    <LazyMotionDiv
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -45,11 +47,11 @@ export const AnimationOrchestrator = ({
     >
       {Array.isArray(children)
         ? children.map((child, index) => (
-            <motion.div key={index} variants={itemVariants}>
+            <LazyMotionDiv key={index} variants={itemVariants}>
               {child}
-            </motion.div>
+            </LazyMotionDiv>
           ))
         : children}
-    </motion.div>
+    </LazyMotionDiv>
   );
 };

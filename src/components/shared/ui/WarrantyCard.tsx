@@ -1,9 +1,9 @@
 'use client';
 
+import { LazyMotionDiv } from '@/components/LazyComponents';
 import type { BaseCardProps } from '@/types';
 
 import { getLucideIcon } from '@/utils/getLucideIcon';
-import { motion } from 'framer-motion';
 import { CheckCircle2 } from 'lucide-react';
 
 interface Warranty {
@@ -34,7 +34,7 @@ export function WarrantyCard({
   const Icon = getLucideIcon(icon);
 
   return (
-    <motion.div
+    <LazyMotionDiv
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
@@ -86,6 +86,6 @@ export function WarrantyCard({
           </div>
         ))}
       </div>
-    </motion.div>
+    </LazyMotionDiv>
   );
 }

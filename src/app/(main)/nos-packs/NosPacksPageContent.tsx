@@ -9,7 +9,8 @@ import {
   IntroSection,
   CTASection,
 } from '@/components';
-import { motion } from 'framer-motion';
+import { LazyMotionDiv, LazyMotionP } from '@/components/LazyComponents';
+
 import type {
   PageHeader as PageHeaderType,
   SiteSetting,
@@ -35,7 +36,7 @@ export default function NosPacksPageContent({
           title={header?.title?.split(' ') || ['Nos', 'Packs']}
           subtitle={header?.subtitle || 'Des Solutions Adaptées à Vos Besoins'}
         />
-        <motion.p
+        <LazyMotionP
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 0.15 }}
@@ -43,7 +44,7 @@ export default function NosPacksPageContent({
         >
           {header?.description ||
             "Découvrez nos packs d'installation de panneaux solaires personnalisés pour répondre à tous vos besoins énergétiques dans l'Ain. Tarifs transparents, garanties incluses et accompagnement personnalisé."}
-        </motion.p>
+        </LazyMotionP>
       </PageHeader>
 
       <div className="relative z-10">
@@ -73,7 +74,7 @@ export default function NosPacksPageContent({
           />
 
           {/* Introduction avec background amélioré */}
-          <motion.div
+          <LazyMotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -98,7 +99,7 @@ export default function NosPacksPageContent({
                 className="mb-0"
               />
             </div>
-          </motion.div>
+          </LazyMotionDiv>
 
           {/* Section Pricing - Passée en children depuis le serveur */}
           {children}

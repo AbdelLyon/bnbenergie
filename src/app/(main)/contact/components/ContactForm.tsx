@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@heroui/button';
-import { motion } from 'framer-motion';
 import { Send, AlertCircle } from 'lucide-react';
 import type { ContactState } from '@/actions/contact';
+import { LazyMotionDiv } from '@/components/LazyComponents';
 
 interface ContactFormProps {
   formAction: (formData: FormData) => void;
@@ -166,7 +166,7 @@ function FormField({
   }`;
 
   return (
-    <motion.div
+    <LazyMotionDiv
       initial={{ opacity: 0, x: slideFrom === 'left' ? -20 : 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay }}
@@ -202,6 +202,6 @@ function FormField({
         />
       )}
       {error && <p className="mt-1 ml-1 text-xs text-red-500">{error}</p>}
-    </motion.div>
+    </LazyMotionDiv>
   );
 }

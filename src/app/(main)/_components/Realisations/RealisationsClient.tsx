@@ -6,10 +6,10 @@ import {
   SectionWrapper,
 } from '@/components/shared/layout/SectionWrapper';
 import { SPACING } from '@/config/constants';
-import { motion } from 'framer-motion';
 import { ProjectCard } from '@/components/shared/ui/ProjectCard';
 import type { Project } from '@/payload-types';
 import Link from 'next/link';
+import { LazyMotionDiv } from '@/components/LazyComponents';
 
 interface RealisationsData {
   header: {
@@ -29,13 +29,13 @@ export function RealisationsClient({ data }: { data: RealisationsData }) {
       className="overflow-x-clip"
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 right-0 h-[600px] w-[600px] rounded-full bg-linear-to-br from-amber-400/10 to-orange-500/10 blur-3xl" />
-        <div className="absolute bottom-0 left-0 h-[500px] w-[500px] rounded-full bg-linear-to-tr from-blue-400/10 to-cyan-500/10 blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-300/5 blur-3xl" />
+        <div className="absolute top-0 right-0 h-150 w-150 rounded-full bg-linear-to-br from-amber-400/10 to-orange-500/10 blur-3xl" />
+        <div className="absolute bottom-0 left-0 h-125 w-125 rounded-full bg-linear-to-tr from-blue-400/10 to-cyan-500/10 blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 h-100 w-100 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-300/5 blur-3xl" />
       </div>
 
       <SectionContainer>
-        <motion.div
+        <LazyMotionDiv
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -46,7 +46,7 @@ export function RealisationsClient({ data }: { data: RealisationsData }) {
             title={data.header.title}
             subtitle={data.header.subtitle}
           />
-        </motion.div>
+        </LazyMotionDiv>
 
         <div
           className={`grid auto-rows-[1fr] items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3 ${SPACING.grid.gap}`}
@@ -55,9 +55,9 @@ export function RealisationsClient({ data }: { data: RealisationsData }) {
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
-        <motion.div
+        <LazyMotionDiv
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: 0.1 }}
           className="mt-16 flex justify-center"
@@ -79,7 +79,7 @@ export function RealisationsClient({ data }: { data: RealisationsData }) {
               →
             </span>
           </Link>
-        </motion.div>
+        </LazyMotionDiv>
       </SectionContainer>
     </SectionWrapper>
   );

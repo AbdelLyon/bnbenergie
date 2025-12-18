@@ -1,10 +1,10 @@
 'use client';
 
+import { LazyMotionDiv } from '@/components/LazyComponents';
 import { ANIMATION_DURATIONS } from '@/config/constants';
 import type { BaseCardProps } from '@/types';
 import { SCROLL_VIEWPORT } from '@/utils/animations';
 import { getLucideIcon } from '@/utils/getLucideIcon';
-import { motion } from 'framer-motion';
 import { CheckCircle2, Clock } from 'lucide-react';
 
 interface ServiceStepProps extends BaseCardProps {
@@ -34,7 +34,7 @@ export function ServiceStep({
   const Icon = getLucideIcon(icon);
 
   return (
-    <motion.div
+    <LazyMotionDiv
       initial={{ opacity: 0, x: isEven ? -40 : 40 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={SCROLL_VIEWPORT}
@@ -45,13 +45,12 @@ export function ServiceStep({
         <div className="flex flex-col gap-8 md:flex-row md:items-start">
           {/* Numéro et icône */}
           <div className="shrink-0">
-
-              <div
-                className={`relative z-10 rounded-2xl bg-linear-to-br ${gradient} p-6 text-white`}
-              >
-                <Icon className="h-12 w-12" />
-              </div>
+            <div
+              className={`relative z-10 rounded-2xl bg-linear-to-br ${gradient} p-6 text-white`}
+            >
+              <Icon className="h-12 w-12" />
             </div>
+          </div>
 
           {/* Contenu */}
           <div className="flex-1">
@@ -81,7 +80,9 @@ export function ServiceStep({
                 {items.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-green-500" />
-                    <span className="text-sm text-neutral-700 dark:text-default-600">{item}</span>
+                    <span className="text-sm text-neutral-700 dark:text-default-600">
+                      {item}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -89,6 +90,6 @@ export function ServiceStep({
           </div>
         </div>
       </div>
-    </motion.div>
+    </LazyMotionDiv>
   );
 }
