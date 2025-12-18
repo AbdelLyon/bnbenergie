@@ -27,7 +27,7 @@ export function ReviewsSection({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
-        className="mb-6 text-center"
+        className="text-center"
       >
         <h2 className="mb-4 text-3xl font-bold md:text-4xl">{title}</h2>
 
@@ -35,7 +35,6 @@ export function ReviewsSection({
           <p className="mx-auto max-w-2xl text-lg opacity-80">{subtitle}</p>
         )}
 
-        {/* Statistiques */}
         {showStats && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -64,20 +63,18 @@ export function ReviewsSection({
         )}
       </motion.div>
 
-      {/* Carousel moderne */}
       <ReviewsCarousel
         reviews={GOOGLE_REVIEWS}
         autoPlay={autoPlay}
         autoPlayInterval={autoPlayInterval || 10000}
       />
 
-      {/* Lien Google Business */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4, delay: 0.2 }}
-        className="mt-8 text-center"
+        className="text-center"
       >
         <a
           href="https://g.page/r/YOUR_GOOGLE_PLACE_ID/review"

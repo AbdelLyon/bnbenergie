@@ -11,10 +11,6 @@ interface ReviewCardProps {
   onClick?: () => void;
 }
 
-/**
- * Composant ReviewCard - Carte d'avis client moderne et compacte
- * Design épuré qui respecte le thème light/dark du site
- */
 export function ReviewCard({ review, index, onClick }: ReviewCardProps) {
   const formattedDate = new Date(review.date).toLocaleDateString('fr-FR', {
     month: 'short',
@@ -29,16 +25,15 @@ export function ReviewCard({ review, index, onClick }: ReviewCardProps) {
       transition={{ duration: 0.4, delay: index * 0.1 }}
       onClick={onClick}
       whileHover={{ scale: 1.02, transition: TRANSITIONS.smooth }}
-    className={`
-        group relative flex h-[260px] flex-col overflow-hidden rounded-xl
+      className={`
+        group relative flex h-65 flex-col overflow-hidden rounded-xl
         border border-neutral-200/50 dark:border-content2
         bg-white dark:bg-content1
-        p-5 shadow-xl hover:shadow-md
+        p-5 shadow:sm
         transition-all duration-300
         ${onClick ? 'cursor-pointer' : ''}
       `}
     >
-      {/* En-tête compact : étoiles + date */}
       <div className="mb-3 flex items-center justify-between">
         <div className="flex gap-0.5">
           {Array.from({ length: 5 }).map((_, i) => (
@@ -57,15 +52,12 @@ export function ReviewCard({ review, index, onClick }: ReviewCardProps) {
         </span>
       </div>
 
-      {/* Texte de l'avis - plus compact avec hauteur fixe */}
       <p className="mb-4 flex-1 overflow-hidden text-sm leading-relaxed text-neutral-600 dark:text-default-500 line-clamp-5">
         {review.text}
       </p>
 
-      {/* Pied compact : Auteur + Localisation + Projet */}
       <div className="mt-auto flex items-center justify-between gap-2">
         <div className="flex min-w-0 flex-1 items-center gap-2">
-          {/* Avatar initiale */}
           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-amber-400 to-amber-600 text-xs font-bold text-white">
             {review.author.charAt(0)}
           </div>
@@ -85,7 +77,6 @@ export function ReviewCard({ review, index, onClick }: ReviewCardProps) {
           </div>
         </div>
 
-        {/* Badge projet compact */}
         {review.project && (
           <div className="shrink-0 rounded-md bg-amber-50 dark:bg-amber-900/20 px-2 py-1">
             <span className="text-xs font-bold text-amber-600 dark:text-amber-400">

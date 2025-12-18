@@ -12,10 +12,6 @@ interface ReviewsCarouselProps {
   autoPlayInterval?: number;
 }
 
-/**
- * Carousel moderne et responsive pour les avis
- * Desktop: 3 cartes | Tablette: 2 cartes | Mobile: 1 carte
- */
 export function ReviewsCarousel({
   reviews,
   autoPlay = true,
@@ -31,11 +27,11 @@ export function ReviewsCarousel({
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        setCardsPerView(1); // Mobile
+        setCardsPerView(1);
       } else if (window.innerWidth < 1024) {
-        setCardsPerView(2); // Tablette
+        setCardsPerView(2);
       } else {
-        setCardsPerView(3); // Desktop
+        setCardsPerView(3);
       }
     };
 
@@ -64,7 +60,6 @@ export function ReviewsCarousel({
     [currentIndex]
   );
 
-  // Auto-play
   useEffect(() => {
     if (!autoPlay || isPaused) return;
 
@@ -83,9 +78,8 @@ export function ReviewsCarousel({
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Conteneur du carousel */}
       <div className="relative overflow-hidden">
-        <div className="flex gap-6 p-2">
+        <div className="flex gap-6 px-2 py-6">
           <AnimatePresence initial={false} custom={direction}>
             {visibleReviews.map((review, idx) => (
               <motion.div
