@@ -111,11 +111,11 @@ export function SectionHeader({
           {badge}
         </span>
       )}
-      <h2 className="font-display mb-4 text-3xl font-black text-neutral-900 dark:text-foreground sm:text-4xl md:mb-6 md:text-5xl lg:text-6xl">
+      <h2 className="font-display mb-4 text-2xl font-black text-neutral-900 dark:text-foreground sm:text-3xl md:mb-6 md:text-4xl lg:text-5xl">
         {title}
       </h2>
       {subtitle && (
-        <p className="text-base leading-relaxed text-neutral-600 dark:text-default-500 md:text-lg lg:text-xl">
+        <p className="text-lg leading-relaxed text-neutral-600 dark:text-default-500 md:text-xl lg:text-2xl">
           {subtitle}
         </p>
       )}

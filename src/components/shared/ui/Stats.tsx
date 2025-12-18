@@ -37,7 +37,7 @@ export function Stats({ stats }: StatsProps) {
                 >
                   <Icon className="h-5 w-5 text-white" />
                 </div>
-                <div className="text-3xl font-black text-white md:text-4xl lg:text-5xl">
+                <div className="font-display text-3xl font-black text-white md:text-4xl lg:text-5xl">
                   {displayValue}
                 </div>
               </div>

@@ -51,7 +51,7 @@ export function RealisationsClient({ data }: { data: RealisationsData }) {
         <div
           className={`grid auto-rows-[1fr] items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3 ${SPACING.grid.gap}`}
         >
-          {data.projects.map((project, index) => (
+          {data.projects.slice(0, 3).map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>

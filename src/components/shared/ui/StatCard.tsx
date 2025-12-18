@@ -28,31 +28,34 @@ export function StatCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className={`group relative rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-sm transition-all duration-200 hover:shadow-md hover:border-neutral-300 dark:hover:border-neutral-700 ${className}`}
+      className={`group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-neutral-100 bg-white p-5 text-center shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 hover:shadow-[0_8px_24px_-6px_rgba(0,0,0,0.08)] dark:border-neutral-800 dark:bg-neutral-900 ${className}`}
     >
-      <div className="relative flex h-full flex-col items-center justify-center p-6 text-center">
-        {/* Icon simple */}
-        <div className="mb-4 inline-flex rounded-xl bg-neutral-100 dark:bg-neutral-800 p-3">
-          <Icon className="size-7 text-neutral-700 dark:text-neutral-300" strokeWidth={2.5} />
-        </div>
+      {/* Decorative background gradient blob */}
+      <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-primary-50/50 blur-2xl transition-all group-hover:bg-primary-100/50 dark:bg-primary-900/10" />
 
-        {/* Value */}
-        <div className="font-display mb-2 text-3xl font-black tracking-tight text-neutral-900 dark:text-white md:text-4xl">
-          {value}
-        </div>
-
-        {/* Label */}
-        <div className="text-sm font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
-          {label}
-        </div>
-
-        {/* Optional description */}
-        {description && (
-          <p className="mt-4 text-sm font-medium leading-relaxed text-neutral-600 dark:text-neutral-400">
-            {description}
-          </p>
-        )}
+      {/* Icon */}
+      <div className="relative mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-primary-50 text-primary-600 transition-colors group-hover:bg-primary-100 group-hover:scale-110 group-hover:text-primary-700 dark:bg-primary-900/20 dark:text-primary-400">
+        <Icon className="h-6 w-6" strokeWidth={2.5} />
       </div>
+
+      {/* Value */}
+      <div className="font-display relative mb-1 text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">
+        {value}
+      </div>
+
+      {/* Label */}
+      <div className="relative text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+        {label}
+      </div>
+
+      {/* Optional description */}
+      {description && (
+        <p className="relative mt-3 text-sm font-medium leading-relaxed text-neutral-600 dark:text-neutral-400">
+          {description}
+        </p>
+      )}
     </motion.div>
   );
 }
+
+export default StatCard;

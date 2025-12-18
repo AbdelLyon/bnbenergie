@@ -1,5 +1,6 @@
 import { About } from '@/app/(main)/_components/About/About';
 import { Benefits } from '@/app/(main)/_components/Benefits/Benefits';
+import { GoogleReviewsWrapper } from '@/app/(main)/_components/GoogleReviews/GoogleReviewsWrapper';
 import { HomeHeader } from '@/app/(main)/_components/HomeHeader/HomeHeader';
 import { Pricing } from '@/app/(main)/_components/Pricing/Pricing';
 import { Realisations } from '@/app/(main)/_components/Realisations/Realisations';
@@ -36,6 +37,9 @@ export default function Home() {
         <HomeHeader />
         <About />
         <Benefits />
+      </PageMainWrapper>
+      <GoogleReviewsWrapper />
+      <PageMainWrapper variant="amber">
         <Realisations />
         <Pricing />
       </PageMainWrapper>

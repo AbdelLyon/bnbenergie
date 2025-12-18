@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Phone, Star } from 'lucide-react';
+import { Phone } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 
@@ -15,6 +15,7 @@ import {
   SectionWrapper,
   BackgroundEffects,
 } from '@/components';
+import { ReviewsSection } from '@/components/shared/ui/ReviewsSection';
 
 import type {
   Project,
@@ -32,29 +33,7 @@ const STATS = [
   { value: '100%', label: 'Clients Satisfaits', icon: 'Star' },
 ] as const;
 
-const TESTIMONIALS = [
-  {
-    name: 'M. et Mme Durand',
-    location: 'Bourg-en-Bresse',
-    rating: 5,
-    comment: 'Installation impeccable, équipe professionnelle.',
-    project: '6 kWc',
-  },
-  {
-    name: 'M. Lefebvre',
-    location: 'Oyonnax',
-    rating: 5,
-    comment: 'Service de qualité du début à la fin.',
-    project: '9 kWc',
-  },
-  {
-    name: 'Mme Rousseau',
-    location: 'Viriat',
-    rating: 5,
-    comment: 'Très satisfaite de mon installation.',
-    project: '3 kWc',
-  },
-] as const;
+// TESTIMONIALS supprimés - maintenant gérés par ReviewsSection avec les vraies données Google
 
 /* =========================================================
    HELPERS
@@ -112,7 +91,7 @@ export default function RealisationsPageContent({
   }, [projects, selectedPower]);
 
   return (
-    <PageMainWrapper variant="blue">
+    <PageMainWrapper variant="transparent">
       <div className="relative z-10">
         {/* ================= HEADER ================= */}
         <PageHeader variant="simple" height="medium">
@@ -192,47 +171,15 @@ export default function RealisationsPageContent({
           </section>
 
           {/* ================= TESTIMONIALS ================= */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="my-32"
-          >
-            <h2 className="mb-12 text-center text-3xl font-bold md:text-4xl">
-              Ce Que Disent Nos Clients
-            </h2>
-
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              {TESTIMONIALS.map((testimonial) => (
-                <motion.div
-                  key={testimonial.name}
-                  onClick={() =>
-                    handleSelectPower(testimonial.project as PowerFilter)
-                  }
-                  whileHover={{ scale: 1.02 }}
-                  className="cursor-pointer relative rounded-2xl bg-white border border-default/80 hover:border-default dark:border-amber-500/20 p-8 shadow-lg dark:bg-content1"
-                >
-                  <div className="mb-4 flex gap-1">
-                    {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <Star
-                        key={i}
-                        className="h-5 w-5 fill-amber-400 text-amber-400"
-                      />
-                    ))}
-                  </div>
-
-                  <p className="mb-6 italic opacity-80">
-                    “{testimonial.comment}”
-                  </p>
-                  <div className="flex justify-between absolute bottom-4 gap-2 right-4 text-sm font-bold opacity-70">
-                    <span>{testimonial.name}</span>
-                    <span className="text-primary">{testimonial.project}</span>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+          <div className="my-32">
+            <ReviewsSection
+              title="Ce Que Disent Nos Clients"
+              subtitle="Découvrez les avis de nos clients satisfaits dans l'Ain"
+              showStats={true}
+              autoPlay={true}
+              autoPlayInterval={10000}
+            />
+          </div>
         </SectionContainer>
 
         {/* ================= CTA ================= */}
@@ -250,7 +197,7 @@ export default function RealisationsPageContent({
               <div className="flex flex-col justify-center gap-4 sm:flex-row">
                 <Link
                   href="/contact#contact-form"
-                  className="rounded-xl bg-white px-8 py-4 font-bold text-primary"
+                  className="rounded-xl bg-content1 px-8 py-4 font-bold text-primary border border-primary/70"
                 >
                   Demander mon devis
                 </Link>

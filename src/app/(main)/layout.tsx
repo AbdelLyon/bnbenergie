@@ -1,6 +1,6 @@
-import { Open_Sans } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Outfit, Plus_Jakarta_Sans } from 'next/font/google';
 import { Footer } from '@/components/shared/Footer/Footer';
 import { Navbar } from '@/components/shared/Navigation/Navbar';
 import {
@@ -10,14 +10,16 @@ import {
 } from '@/components/shared/SEO/StructuredData';
 import { Providers } from '../providers';
 
-const openSans = Open_Sans({
-  weight: ['300', '400', '500', '600', '700', '800'],
-  variable: '--font-open-sans',
+const outfit = Outfit({
   subsets: ['latin'],
+  variable: '--font-outfit',
   display: 'swap',
-  preload: true,
-  fallback: ['system-ui', 'arial'],
-  adjustFontFallback: false,
+});
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-jakarta',
+  display: 'swap',
 });
 
 export default function MainLayout({
@@ -27,19 +29,9 @@ export default function MainLayout({
 }) {
   return (
     <html lang="fr" suppressHydrationWarning>
-      <head>
-        <meta httpEquiv="content-language" content="fr" />
-        <meta name="referrer" content="strict-origin-when-cross-origin" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-      </head>
+
       <body
-        className={`${openSans.variable} antialiased`}
+        className={`${jakarta.variable} ${outfit.variable} antialiased font-sans`}
         suppressHydrationWarning
       >
         <Providers>

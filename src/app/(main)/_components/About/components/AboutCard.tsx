@@ -50,7 +50,7 @@ export function AboutCard({
         <h3 className="group-hover:text-amber-700 dark:group-hover:text-amber-400 mb-5 text-2xl font-black text-neutral-900 dark:text-foreground transition-colors duration-300">
           {title}
         </h3>
-        <p className="text-base leading-relaxed text-neutral-700 dark:text-default-400">
+        <p className="text-lg leading-relaxed text-neutral-700 dark:text-default-400">
           {content}
         </p>
       </div>
