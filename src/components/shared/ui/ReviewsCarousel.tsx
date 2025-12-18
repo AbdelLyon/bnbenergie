@@ -56,10 +56,13 @@ export function ReviewsCarousel({
     setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
   }, [maxIndex]);
 
-  const goToSlide = useCallback((index: number) => {
-    setDirection(index > currentIndex ? 1 : -1);
-    setCurrentIndex(index);
-  }, [currentIndex]);
+  const goToSlide = useCallback(
+    (index: number) => {
+      setDirection(index > currentIndex ? 1 : -1);
+      setCurrentIndex(index);
+    },
+    [currentIndex]
+  );
 
   // Auto-play
   useEffect(() => {
@@ -69,7 +72,10 @@ export function ReviewsCarousel({
     return () => clearInterval(interval);
   }, [autoPlay, autoPlayInterval, isPaused, goToNext]);
 
-  const visibleReviews = reviews.slice(currentIndex, currentIndex + cardsPerView);
+  const visibleReviews = reviews.slice(
+    currentIndex,
+    currentIndex + cardsPerView
+  );
 
   return (
     <div
@@ -79,7 +85,7 @@ export function ReviewsCarousel({
     >
       {/* Conteneur du carousel */}
       <div className="relative overflow-hidden">
-        <div className="flex gap-6">
+        <div className="flex gap-6 p-2">
           <AnimatePresence initial={false} custom={direction}>
             {visibleReviews.map((review, idx) => (
               <motion.div
@@ -106,34 +112,30 @@ export function ReviewsCarousel({
         </div>
       </div>
 
-      {/* Boutons de navigation - Design moderne */}
       {maxIndex > 0 && (
         <>
           <motion.button
-            whileHover={{ scale: 1.1, x: -4 }}
             whileTap={{ scale: 0.9 }}
             onClick={goToPrev}
-            className="absolute -left-4 top-1/2 z-10 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full border border-neutral-200 dark:border-content2 bg-white/90 dark:bg-content1/90 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="absolute -left-4 top-1/2 z-10 -translate-y-1/2 cursor-pointer flex size-10 items-center justify-center rounded-full border border-neutral-200 dark:border-content2 bg-white/90 dark:bg-content1/90 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20 disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={currentIndex === 0 && !autoPlay}
             aria-label="Avis précédent"
           >
-            <ChevronLeft className="h-6 w-6 text-neutral-700 dark:text-default-500" />
+            <ChevronLeft className="size-6 text-neutral-700 dark:text-default-500" />
           </motion.button>
 
           <motion.button
-            whileHover={{ scale: 1.1, x: 4 }}
             whileTap={{ scale: 0.9 }}
             onClick={goToNext}
-            className="absolute -right-4 top-1/2 z-10 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full border border-neutral-200 dark:border-content2 bg-white/90 dark:bg-content1/90 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="absolute -right-4 top-1/2 z-10 -translate-y-1/2 flex size-10 cursor-pointer items-center justify-center rounded-full border border-neutral-200 dark:border-content2 bg-white/90 dark:bg-content1/90 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20 disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={currentIndex === maxIndex && !autoPlay}
             aria-label="Avis suivant"
           >
-            <ChevronRight className="h-6 w-6 text-neutral-700 dark:text-default-500" />
+            <ChevronRight className="size-6 text-neutral-700 dark:text-default-500" />
           </motion.button>
         </>
       )}
 
-      {/* Dots de navigation - Ultra modernes */}
       {maxIndex > 0 && (
         <div className="mt-8 flex items-center justify-center gap-2">
           {Array.from({ length: maxIndex + 1 }).map((_, idx) => (

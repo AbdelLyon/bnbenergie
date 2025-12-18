@@ -13,16 +13,6 @@ interface ReviewsSectionProps {
   autoPlayInterval?: number;
 }
 
-/**
- * Composant ReviewsSection - Section d'avis clients avec carousel moderne
- * Respecte le système de thème light/dark du site
- *
- * @param title - Titre de la section (par défaut: "Ce Que Disent Nos Clients")
- * @param subtitle - Sous-titre optionnel
- * @param showStats - Afficher les statistiques d'avis (par défaut: true)
- * @param autoPlay - Activer le défilement automatique (par défaut: true)
- * @param autoPlayInterval - Intervalle de défilement en ms (par défaut: 5000)
- */
 export function ReviewsSection({
   title = 'Ce Que Disent Nos Clients',
   subtitle,
@@ -31,14 +21,13 @@ export function ReviewsSection({
   autoPlayInterval = 5000,
 }: ReviewsSectionProps) {
   return (
-    <section className="w-full">
-      {/* En-tête */}
+    <section className="w-full py-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
-        className="mb-12 text-center"
+        className="mb-6 text-center"
       >
         <h2 className="mb-4 text-3xl font-bold md:text-4xl">{title}</h2>
 
@@ -67,10 +56,10 @@ export function ReviewsSection({
               <p className="text-2xl font-bold text-neutral-900 dark:text-foreground">
                 {REVIEWS_STATS.average.toFixed(1)}/5
               </p>
-              <p className="text-sm text-neutral-600 dark:text-default-500">
-                Basé sur {REVIEWS_STATS.total} avis Google
-              </p>
             </div>
+            <p className="text-sm text-neutral-600 dark:text-default-500">
+              Basé sur {REVIEWS_STATS.total} avis Google
+            </p>
           </motion.div>
         )}
       </motion.div>
