@@ -46,7 +46,7 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
       bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
       backgroundVariant="clean"
     >
-      <div className="flex max-w-5xl flex-col items-center gap-10 md:gap-12 lg:gap-14">
+      <div className="flex max-w-6xl flex-col items-center gap-10 md:gap-12 lg:gap-14">
         <div className="space-y-4 text-center">
           <Title title={data.title} />
 
@@ -56,7 +56,7 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="mx-auto max-w-4xl space-y-2"
           >
-            <p className="px-4 text-lg font-medium uppercase leading-relaxed tracking-wide text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-xl md:text-2xl lg:text-3xl">
+            <p className="px-4 text-lg font-medium uppercase leading-relaxed text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-xl md:text-2xl lg:text-3xl">
               {data.subtitle}
             </p>
             <p className="px-4 text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl">

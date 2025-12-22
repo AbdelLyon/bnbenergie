@@ -6,9 +6,9 @@
 @variant dark (.dark &);
 
 @theme inline {
-  --font-sans: var(--font-jakarta);
+  --font-sans: var(--font-open-sans);
   --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-outfit);
+  --font-display: var(--font-montserrat);
 
   /* ============================================
      🎨 PALETTE
@@ -90,7 +90,12 @@
      ============================================ */
 
   /* Backgrounds */
-  --bg-page: linear-gradient(180deg, var(--color-neutral-50) 0%, var(--color-white) 50%, var(--color-sky-50) 100%);
+  --bg-page: linear-gradient(
+    180deg,
+    var(--color-neutral-50) 0%,
+    var(--color-white) 50%,
+    var(--color-sky-50) 100%
+  );
   --bg-card: var(--color-white);
   --bg-section: var(--color-neutral-50);
   --bg-section-alt: var(--color-white);
@@ -145,11 +150,15 @@
 
 /* Force font application */
 .font-sans {
-  font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family:
+    var(--font-open-sans), ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 .font-display {
-  font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family:
+    var(--font-montserrat), ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 /* ============================================
@@ -168,14 +177,24 @@ body {
   @apply antialiased text-foreground;
   background: var(--bg-page);
   min-height: 100vh;
-  font-feature-settings: 'kern' 1, 'liga' 1;
+  font-feature-settings:
+    'kern' 1,
+    'liga' 1;
   letter-spacing: -0.01em;
-  transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
+  transition:
+    background 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s ease;
 }
 
 .dark {
   /* Dark mode semantic tokens */
-  --bg-page: linear-gradient(180deg, #0a0a0b 0%, #111113 30%, #18181b 70%, #0f1419 100%);
+  --bg-page: linear-gradient(
+    180deg,
+    #0a0a0b 0%,
+    #111113 30%,
+    #18181b 70%,
+    #0f1419 100%
+  );
   --bg-card: #18181b;
   --bg-section: #0a0a0b;
   --bg-section-alt: #18181b;
@@ -328,14 +347,14 @@ body {
 @keyframes solarGlow {
   0%,
   100% {
-    box-shadow: 0 0 20px
-        color-mix(in srgb, var(--color-secondary-400), transparent 70%),
+    box-shadow:
+      0 0 20px color-mix(in srgb, var(--color-secondary-400), transparent 70%),
       0 0 40px color-mix(in srgb, var(--color-secondary-400), transparent 80%);
     opacity: 0.8;
   }
   50% {
-    box-shadow: 0 0 35px
-        color-mix(in srgb, var(--color-secondary-400), transparent 50%),
+    box-shadow:
+      0 0 35px color-mix(in srgb, var(--color-secondary-400), transparent 50%),
       0 0 70px color-mix(in srgb, var(--color-secondary-400), transparent 60%);
     opacity: 1;
   }
@@ -533,8 +552,8 @@ body {
 
 .hover-lift-solar:hover {
   transform: translateY(-12px) scale(1.02);
-  box-shadow: 0 25px 50px -12px color-mix(in srgb, var(--color-secondary-400), transparent
-        75%);
+  box-shadow: 0 25px 50px -12px
+    color-mix(in srgb, var(--color-secondary-400), transparent 75%);
 }
 
 .hover-glow-solar {
@@ -542,8 +561,8 @@ body {
 }
 
 .hover-glow-solar:hover {
-  box-shadow: 0 0 35px
-      color-mix(in srgb, var(--color-secondary-400), transparent 40%),
+  box-shadow:
+    0 0 35px color-mix(in srgb, var(--color-secondary-400), transparent 40%),
     0 0 70px color-mix(in srgb, var(--color-secondary-400), transparent 60%);
   filter: brightness(1.15);
 }

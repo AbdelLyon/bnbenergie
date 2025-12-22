@@ -40,7 +40,7 @@ export function AboutCard({
             <div className="bg-linear-to-r from-amber-600 to-amber-500 dark:from-amber-400 dark:to-amber-300 bg-clip-text text-4xl font-black text-transparent">
               {stat}
             </div>
-            <div className="mt-1 text-xs font-bold tracking-widest text-amber-600/70 dark:text-amber-400/70 uppercase">
+            <div className="mt-1 text-xs font-bold text-amber-600/70 dark:text-amber-400/70 uppercase">
               {statLabel}
             </div>
           </div>

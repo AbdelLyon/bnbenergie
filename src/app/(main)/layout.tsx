@@ -1,6 +1,6 @@
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { Outfit, Plus_Jakarta_Sans } from 'next/font/google';
+import { Open_Sans, Montserrat } from 'next/font/google';
 import { Footer } from '@/components/shared/Footer/Footer';
 import { Navbar } from '@/components/shared/Navigation/Navbar';
 import {
@@ -10,15 +10,15 @@ import {
 } from '@/components/shared/SEO/StructuredData';
 import { Providers } from '../providers';
 
-const outfit = Outfit({
+const openSans = Open_Sans({
   subsets: ['latin'],
-  variable: '--font-outfit',
+  variable: '--font-open-sans',
   display: 'swap',
 });
 
-const jakarta = Plus_Jakarta_Sans({
+const montserrat = Montserrat({
   subsets: ['latin'],
-  variable: '--font-jakarta',
+  variable: '--font-montserrat',
   display: 'swap',
 });
 
@@ -29,9 +29,8 @@ export default function MainLayout({
 }) {
   return (
     <html lang="fr" suppressHydrationWarning>
-
       <body
-        className={`${jakarta.variable} ${outfit.variable} antialiased font-sans`}
+        className={`${openSans.variable} ${montserrat.variable} antialiased font-sans`}
         suppressHydrationWarning
       >
         <Providers>

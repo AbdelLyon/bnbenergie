@@ -40,7 +40,7 @@ export function Stats({ stats }: StatsProps) {
                   {displayValue}
                 </div>
               </div>
-              <div className="text-sm font-medium uppercase tracking-wider text-white/70 md:text-base">
+              <div className="text-sm font-medium uppercase text-white/70 md:text-base">
                 {stat.label}
               </div>
             </LazyMotionDiv>

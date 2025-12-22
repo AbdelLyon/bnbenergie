@@ -152,7 +152,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
 
                   <AnimatePresence>
                     {item.type === 'mega' && activeMega === item.label && (
-                      <div className="absolute top-full left-1/2 z-50 w-[580px] -translate-x-1/2 pt-2">
+                      <div className="absolute top-full left-1/2 z-50 w-145 -translate-x-1/2 pt-2">
                         <div className="overflow-hidden rounded-xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-content1 shadow-xl shadow-black/5">
                           <div className="grid grid-cols-2 gap-0 p-5">
                             {item.sections?.map((section, idx) => (
@@ -164,7 +164,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                                     : 'pl-5'
                                 }
                               >
-                                <h3 className="mb-3 px-1 text-[10px] font-bold tracking-wider text-gray-400 uppercase">
+                                <h3 className="mb-3 px-1 text-[10px] font-bold text-gray-400 uppercase">
                                   {section.title}
                                 </h3>
 
@@ -389,7 +389,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                                 />
                               );
                             })()}
-                            <span className="text-xs font-bold tracking-wider text-gray-500 uppercase">
+                            <span className="text-xs font-bold text-gray-500 uppercase">
                               {item.label}
                             </span>
                           </div>

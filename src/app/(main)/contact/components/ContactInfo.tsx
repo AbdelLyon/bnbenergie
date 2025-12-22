@@ -32,7 +32,7 @@ export function ContactInfo({ items }: ContactInfoProps) {
               <Icon className="h-6 w-6" />
             </div>
             <div className="flex-1">
-              <h3 className="text-xs font-bold tracking-widest text-blue-200/80 uppercase mb-1">
+              <h3 className="text-xs font-bold text-blue-200/80 uppercase mb-1">
                 {item.label}
               </h3>
               {item.href ? (

@@ -81,7 +81,7 @@ export const Footer = async () => {
               <div className="mb-4 rounded-full bg-linear-to-br from-amber-500 to-amber-600 p-4 shadow-lg shadow-amber-500/30 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-amber-500/50">
                 <Phone size={28} className="text-white" />
               </div>
-              <h3 className="mb-2 text-sm font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+              <h3 className="mb-2 text-sm font-bold uppercase  text-neutral-500 dark:text-neutral-400">
                 Téléphone
               </h3>
               <a
@@ -98,7 +98,7 @@ export const Footer = async () => {
               <div className="mb-4 rounded-full bg-linear-to-br from-amber-500 to-amber-600 p-4 shadow-lg shadow-amber-500/30 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-amber-500/50">
                 <Mail size={28} className="text-white" />
               </div>
-              <h3 className="mb-2 text-sm font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+              <h3 className="mb-2 text-sm font-bold uppercase  text-neutral-500 dark:text-neutral-400">
                 Email
               </h3>
               <Link
@@ -117,7 +117,7 @@ export const Footer = async () => {
               <div className="mb-4 rounded-full bg-linear-to-br from-amber-500 to-amber-600 p-4 shadow-lg shadow-amber-500/30 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-amber-500/50">
                 <MapPin size={28} className="text-white" />
               </div>
-              <h3 className="mb-2 text-sm font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+              <h3 className="mb-2 text-sm font-bold uppercase  text-neutral-500 dark:text-neutral-400">
                 Adresse
               </h3>
               <p className="text-center text-lg font-semibold text-neutral-900 dark:text-white">
