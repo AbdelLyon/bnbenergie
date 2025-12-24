@@ -64,7 +64,6 @@ export function Title({ title }: TitleProps) {
         </LazyMotionSpan>
         <span className="inline-block bg-[linear-gradient(to_right,#fbbf24,#f59e0b,#f97316,#3b82f6,#2563eb)] bg-clip-text pb-2 text-transparent drop-shadow-sm">
           {displayText}
-          <span className="animate-pulse">|</span>
         </span>
       </h1>
     </LazyMotionDiv>

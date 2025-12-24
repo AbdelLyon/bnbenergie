@@ -1,13 +1,12 @@
 'use client';
 
-import { HeroUIProvider,  } from '@heroui/system';
+import { HeroUIProvider } from '@heroui/system';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
 import { REACT_QUERY_CONFIG } from '@/config/cache';
 import { ThemeProvider } from 'next-themes';
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  // Créer une instance de QueryClient par session
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -17,8 +16,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
             gcTime: REACT_QUERY_CONFIG.GC_TIME,
             retry: REACT_QUERY_CONFIG.RETRY_COUNT,
             retryDelay: REACT_QUERY_CONFIG.RETRY_DELAY,
-            refetchOnWindowFocus: false, // Désactiver le refetch sur focus pour économiser les requêtes
-            refetchOnReconnect: true, // Refetch quand la connexion est rétablie
+            refetchOnWindowFocus: false,
+            refetchOnReconnect: true,
           },
           mutations: {
             retry: REACT_QUERY_CONFIG.RETRY_COUNT,
@@ -33,7 +32,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <HeroUIProvider>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           storageKey="bnb-theme"
         >
