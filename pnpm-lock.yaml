@@ -8,21 +8,24 @@ importers:
 
   .:
     dependencies:
+      '@emotion/is-prop-valid':
+        specifier: ^1.4.0
+        version: 1.4.0
       '@heroui/accordion':
         specifier: ^2.2.25
-        version: 2.2.25(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 2.2.25(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@heroui/button':
         specifier: ^2.2.28
-        version: 2.2.28(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 2.2.28(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@heroui/card':
         specifier: ^2.2.26
-        version: 2.2.26(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 2.2.26(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@heroui/image':
         specifier: ^2.2.18
-        version: 2.2.18(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 2.2.18(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@heroui/system':
         specifier: 2.4.23
-        version: 2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@heroui/theme':
         specifier: 2.4.23
         version: 2.4.23(tailwindcss@4.1.18)
@@ -58,7 +61,7 @@ importers:
         version: 7.0.3
       framer-motion:
         specifier: 12.23.24
-        version: 12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       graphql:
         specifier: ^16.12.0
         version: 16.12.0
@@ -409,6 +412,9 @@ packages:
 
   '@emotion/hash@0.9.2':
     resolution: {integrity: sha512-MyqliTZGuOm3+5ZRSaaBGP3USLw6+EGykkwZns2EPC5g8jJ4z9OrdZY9apkl3+UP9+sdz76YYkwCKP5gh8iY3g==}
+
+  '@emotion/is-prop-valid@1.4.0':
+    resolution: {integrity: sha512-QgD4fyscGcbbKwJmqNvUMSE02OsHUa+lAWKdEUIJKgqe5IwRSKd7+KhibEWdaKwgjLj0DRSHA9biAIqGBk05lw==}
 
   '@emotion/memoize@0.9.0':
     resolution: {integrity: sha512-30FAj7/EoJ5mwVPOWhAyCX+FPfMDrVecJAM+Iw9NRoSl4BBAQeqj4cApHHUXOVvIPgLVDsCFoz/hGD+5QQD1GQ==}
@@ -5237,6 +5243,10 @@ snapshots:
 
   '@emotion/hash@0.9.2': {}
 
+  '@emotion/is-prop-valid@1.4.0':
+    dependencies:
+      '@emotion/memoize': 0.9.0
+
   '@emotion/memoize@0.9.0': {}
 
   '@emotion/react@11.14.0(@types/react@19.1.8)(react@19.0.0)':
@@ -5546,16 +5556,16 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@heroui/accordion@2.2.25(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@heroui/accordion@2.2.25(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
-      '@heroui/aria-utils': 2.2.25(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@heroui/aria-utils': 2.2.25(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@heroui/divider': 2.2.21(@heroui/theme@2.4.23(tailwindcss@4.1.18))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      '@heroui/dom-animation': 2.1.10(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
-      '@heroui/framer-utils': 2.1.24(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@heroui/dom-animation': 2.1.10(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
+      '@heroui/framer-utils': 2.1.24(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@heroui/react-utils': 2.1.14(react@19.0.0)
       '@heroui/shared-icons': 2.1.10(react@19.0.0)
       '@heroui/shared-utils': 2.1.12
-      '@heroui/system': 2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@heroui/system': 2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@heroui/theme': 2.4.23(tailwindcss@4.1.18)
       '@heroui/use-aria-accordion': 2.2.18(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@react-aria/focus': 3.21.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -5563,13 +5573,13 @@ snapshots:
       '@react-stately/tree': 3.9.3(react@19.0.0)
       '@react-types/accordion': 3.0.0-alpha.26(react@19.0.0)
       '@react-types/shared': 3.32.1(react@19.0.0)
-      framer-motion: 12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      framer-motion: 12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
-  '@heroui/aria-utils@2.2.25(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@heroui/aria-utils@2.2.25(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
-      '@heroui/system': 2.4.24(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@heroui/system': 2.4.24(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@react-aria/utils': 3.31.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@react-stately/collections': 3.12.8(react@19.0.0)
       '@react-types/overlays': 3.9.2(react@19.0.0)
@@ -5580,34 +5590,34 @@ snapshots:
       - '@heroui/theme'
       - framer-motion
 
-  '@heroui/button@2.2.28(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@heroui/button@2.2.28(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@heroui/react-utils': 2.1.14(react@19.0.0)
-      '@heroui/ripple': 2.2.21(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@heroui/ripple': 2.2.21(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@heroui/shared-utils': 2.1.12
-      '@heroui/spinner': 2.2.25(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      '@heroui/system': 2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@heroui/spinner': 2.2.25(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@heroui/system': 2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@heroui/theme': 2.4.23(tailwindcss@4.1.18)
       '@heroui/use-aria-button': 2.2.20(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@react-aria/focus': 3.21.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@react-aria/interactions': 3.25.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@react-types/shared': 3.32.1(react@19.0.0)
-      framer-motion: 12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      framer-motion: 12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
-  '@heroui/card@2.2.26(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@heroui/card@2.2.26(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@heroui/react-utils': 2.1.14(react@19.0.0)
-      '@heroui/ripple': 2.2.21(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@heroui/ripple': 2.2.21(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@heroui/shared-utils': 2.1.12
-      '@heroui/system': 2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@heroui/system': 2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@heroui/theme': 2.4.23(tailwindcss@4.1.18)
       '@heroui/use-aria-button': 2.2.20(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@react-aria/focus': 3.21.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@react-aria/interactions': 3.25.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@react-types/shared': 3.32.1(react@19.0.0)
-      framer-motion: 12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      framer-motion: 12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
@@ -5620,25 +5630,25 @@ snapshots:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
-  '@heroui/dom-animation@2.1.10(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
+  '@heroui/dom-animation@2.1.10(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
     dependencies:
-      framer-motion: 12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      framer-motion: 12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
 
-  '@heroui/framer-utils@2.1.24(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@heroui/framer-utils@2.1.24(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
-      '@heroui/system': 2.4.24(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@heroui/system': 2.4.24(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@heroui/use-measure': 2.1.8(react@19.0.0)
-      framer-motion: 12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      framer-motion: 12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
     transitivePeerDependencies:
       - '@heroui/theme'
 
-  '@heroui/image@2.2.18(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@heroui/image@2.2.18(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@heroui/react-utils': 2.1.14(react@19.0.0)
       '@heroui/shared-utils': 2.1.12
-      '@heroui/system': 2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@heroui/system': 2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@heroui/theme': 2.4.23(tailwindcss@4.1.18)
       '@heroui/use-image': 2.1.13(react@19.0.0)
       react: 19.0.0
@@ -5654,13 +5664,13 @@ snapshots:
       '@heroui/shared-utils': 2.1.12
       react: 19.0.0
 
-  '@heroui/ripple@2.2.21(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@heroui/ripple@2.2.21(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
-      '@heroui/dom-animation': 2.1.10(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
+      '@heroui/dom-animation': 2.1.10(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       '@heroui/shared-utils': 2.1.12
-      '@heroui/system': 2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@heroui/system': 2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@heroui/theme': 2.4.23(tailwindcss@4.1.18)
-      framer-motion: 12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      framer-motion: 12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
@@ -5670,10 +5680,10 @@ snapshots:
 
   '@heroui/shared-utils@2.1.12': {}
 
-  '@heroui/spinner@2.2.25(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@heroui/spinner@2.2.25(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@heroui/shared-utils': 2.1.12
-      '@heroui/system': 2.4.24(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@heroui/system': 2.4.24(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@heroui/system-rsc': 2.3.21(@heroui/theme@2.4.23(tailwindcss@4.1.18))(react@19.0.0)
       '@heroui/theme': 2.4.23(tailwindcss@4.1.18)
       react: 19.0.0
@@ -5694,27 +5704,27 @@ snapshots:
       '@react-types/shared': 3.32.1(react@19.0.0)
       react: 19.0.0
 
-  '@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@heroui/react-utils': 2.1.14(react@19.0.0)
       '@heroui/system-rsc': 2.3.20(@heroui/theme@2.4.23(tailwindcss@4.1.18))(react@19.0.0)
       '@react-aria/i18n': 3.12.13(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@react-aria/overlays': 3.30.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@react-aria/utils': 3.31.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      framer-motion: 12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      framer-motion: 12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
     transitivePeerDependencies:
       - '@heroui/theme'
 
-  '@heroui/system@2.4.24(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@heroui/system@2.4.24(@heroui/theme@2.4.23(tailwindcss@4.1.18))(framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@heroui/react-utils': 2.1.14(react@19.0.0)
       '@heroui/system-rsc': 2.3.21(@heroui/theme@2.4.23(tailwindcss@4.1.18))(react@19.0.0)
       '@react-aria/i18n': 3.12.13(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@react-aria/overlays': 3.30.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@react-aria/utils': 3.31.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      framer-motion: 12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      framer-motion: 12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
     transitivePeerDependencies:
@@ -8205,12 +8215,13 @@ snapshots:
     dependencies:
       fd-package-json: 2.0.0
 
-  framer-motion@12.23.24(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  framer-motion@12.23.24(@emotion/is-prop-valid@1.4.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       motion-dom: 12.23.23
       motion-utils: 12.23.6
       tslib: 2.8.1
     optionalDependencies:
+      '@emotion/is-prop-valid': 1.4.0
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 

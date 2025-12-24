@@ -9,6 +9,10 @@ import {
   WebSiteStructuredData,
 } from '@/components/shared/SEO/StructuredData';
 import { Providers } from '../providers';
+import { defaultMetadata } from '@/config/metadata';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = defaultMetadata;
 
 const openSans = Open_Sans({
   subsets: ['latin'],

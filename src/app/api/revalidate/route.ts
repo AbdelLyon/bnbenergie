@@ -91,8 +91,19 @@ export async function POST(request: NextRequest) {
       now: Date.now(),
     });
   } catch (err) {
+    // Log l'erreur en interne pour le débogage
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Revalidation error:', err);
+    }
+
+    // Ne pas exposer les détails de l'erreur en production
     return NextResponse.json(
-      { message: 'Error revalidating', error: err },
+      {
+        message: 'Error revalidating',
+        ...(process.env.NODE_ENV === 'development' && {
+          error: err instanceof Error ? err.message : String(err)
+        })
+      },
       { status: 500 }
     );
   }
