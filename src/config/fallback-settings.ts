@@ -28,11 +28,11 @@ export const FALLBACK_SITE_SETTINGS = {
   socialTwitter: '',
 
   seoTitle:
-    'Installateur Panneaux Solaires Bourg-en-Bresse | Expert RGE QualiPV Ain',
+    'Installation Panneaux Solaires Bourg-en-Bresse | RGE QualiPV',
   seoTitleTemplate:
-    '%s | BNB Énergie - Installateur Panneaux Solaires Bourg-en-Bresse',
+    '%s | BNB Énergie Bourg-en-Bresse',
   seoDescription:
-    "N°1 installateur panneaux solaires à Bourg-en-Bresse (01). Entreprise RGE QualiPV certifiée. Devis gratuit 48h, installation 3-9kWc, MaPrimeRénov'. Expert photovoltaïque Ain.",
+    "N°1 installateur panneaux solaires à Bourg-en-Bresse (01000). Entreprise RGE QualiPV certifiée dans l'Ain. Devis gratuit 48h, installation 3-9kWc, MaPrimeRénov'. Expert photovoltaïque local.",
 
   seoKeywords: [],
 };
