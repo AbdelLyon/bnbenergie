@@ -1,146 +1,115 @@
-/**
- * Avis Google réels de BNB ENERGIE
- * Ces données sont mises à jour manuellement depuis le profil Google Business
- * Dernière mise à jour : Décembre 2024
- */
-
 export interface Review {
   id: string;
   author: string;
   location?: string;
   rating: 5 | 4 | 3 | 2 | 1;
-  date: string; // Format ISO: "2024-12-15"
+  date: string;
   text: string;
-  project?: string; // Ex: "6 kWc", "Installation photovoltaïque"
+  project?: string;
   verified?: boolean;
 }
 
-/**
- * Avis Google de BNB ENERGIE
- * ⚠️ À mettre à jour manuellement depuis votre profil Google Business
- *
- * Pour mettre à jour :
- * 1. Allez sur votre profil Google Business
- * 2. Copiez les nouveaux avis
- * 3. Ajoutez-les ici avec le même format
- */
 export const GOOGLE_REVIEWS: Review[] = [
   {
     id: '1',
-    author: 'Marie Dubois',
-    location: 'Bourg-en-Bresse',
+    author: 'Wissem Landoulsi',
     rating: 5,
-    date: '2024-11-20',
-    text: 'Installation de panneaux solaires 6 kWc réalisée avec professionnalisme. L\'équipe de BNB Energie est très compétente et à l\'écoute. Je recommande vivement leurs services !',
-    project: '6 kWc',
+    date: '2024-10-15',
+    text: `Je suis très satisfait(e) du service proposé par BNB ÉNERGIE. 
+L’équipe a été professionnelle du début à la fin : explications claires, accompagnement dans les démarches administratives et installation rapide et soignée.
+
+Les techniciens ont pris le temps de tout vérifier et de répondre à mes questions. Depuis la mise en service, mes panneaux fonctionnent parfaitement et je constate déjà une belle réduction sur ma facture d’électricité.
+
+Je recommande vivement BNB ÉNERGIE à toute personne souhaitant passer à l’énergie solaire en toute sérénité.`,
     verified: true,
   },
   {
     id: '2',
-    author: 'Jean-Pierre Martin',
-    location: 'Oyonnax',
+    author: 'Marius Peyrot',
     rating: 5,
-    date: '2024-11-10',
-    text: 'Excellent travail pour l\'installation de mes panneaux solaires. Devis clair, installation rapide et soignée. Production conforme aux prévisions. Très satisfait !',
-    project: '9 kWc',
+    date: '2024-08-10',
+    text: `Merci à Nabil et à son équipe ! Je suis très satisfait du service proposé car au-delà de l’installation qui fonctionne parfaitement, j’ai bénéficié d’un véritable accompagnement tout au long du projet. Je recommande !`,
     verified: true,
   },
   {
     id: '3',
-    author: 'Sophie Bernard',
-    location: 'Viriat',
+    author: 'M2F',
     rating: 5,
-    date: '2024-10-28',
-    text: 'Entreprise sérieuse et professionnelle. Installation 3 kWc parfaitement réalisée. Accompagnement de A à Z, même pour les démarches administratives. Je recommande !',
-    project: '3 kWc',
+    date: '2024-10-05',
+    text: `Entreprise au top qui vous accompagne tout au long de votre projet avec un très grand professionnalisme. 
+           Un grand merci à Nabil pour sa disponibilité et sa gentillesse. Merci également au poseur.`,
     verified: true,
   },
   {
     id: '4',
-    author: 'Thomas Laurent',
-    location: 'Bourg-en-Bresse',
+    author: 'Maximus titus',
     rating: 5,
-    date: '2024-10-15',
-    text: 'Installation photovoltaïque au top ! Équipe réactive, travail soigné, respect des délais. Mon installation produit même mieux que prévu. Merci BNB Energie !',
-    project: '6 kWc',
+    date: '2024-10-12',
+    text: `Merci les gars pour votre boulot très soigné, très propre, impeccable. Tout est fonctionnel. 
+           Vous êtes de vraies personnes comme on en voit plus… à l’écoute du client et ça c’est rare. 
+           Merci beaucoup, ma femme est très contente.`,
     verified: true,
   },
   {
     id: '5',
-    author: 'Catherine Rousseau',
-    location: 'Belley',
+    author: 'Yahya Bensmara',
     rating: 5,
-    date: '2024-09-30',
-    text: 'Très bonne expérience avec BNB Energie. Installation 9 kWc impeccable, personnel compétent et sympathique. Je suis ravie de mon investissement solaire !',
-    project: '9 kWc',
+    date: '2024-10-08',
+    text: `Compétent, efficace, équipe avec un bon relationnel et un bon accompagnement. 
+           Installation bien réalisée, très satisfaite du résultat. 
+           Je recommande BNB ÉNERGIE ⚡️`,
     verified: true,
   },
   {
     id: '6',
-    author: 'Michel Petit',
-    location: 'Ambérieu-en-Bugey',
+    author: 'Zenio Oublie',
     rating: 5,
-    date: '2024-09-18',
-    text: 'Installation rapide et professionnelle. Les techniciens sont très compétents. Mon installation fonctionne parfaitement depuis 3 mois. Excellent rapport qualité-prix.',
-    project: '6 kWc',
+    date: '2024-10-06',
+    text: `Franchement très satisfait du travail professionnel fourni par l’équipe et du résultat sur ma consommation. Un grand merci.`,
     verified: true,
   },
   {
     id: '7',
-    author: 'Isabelle Moreau',
-    location: 'Nantua',
+    author: 'Omayma Majdoub',
     rating: 5,
-    date: '2024-08-25',
-    text: 'Je recommande BNB Energie pour leur sérieux et leur expertise. Installation 3 kWc réalisée dans les règles de l\'art. Suivi irréprochable après installation.',
-    project: '3 kWc',
+    date: '2024-04-15',
+    text: `Équipe chaleureuse, bon relationnel et bon accompagnement. 
+           Pose de panneaux 6 kWc bien installée, très satisfaite du résultat.`,
+    project: '6 kWc',
     verified: true,
   },
   {
     id: '8',
-    author: 'François Durand',
-    location: 'Bourg-en-Bresse',
+    author: 'Fadoua Laroubi',
     rating: 5,
-    date: '2024-08-10',
-    text: 'Entreprise locale de confiance. Installation photovoltaïque parfaite, équipe pro et à l\'heure. Mes factures d\'électricité ont considérablement baissé. Merci !',
-    project: '6 kWc',
+    date: '2024-10-01',
+    text: `Très bonne expérience avec BNB ÉNERGIE. Installation réalisée en octobre, équipe professionnelle et sérieuse.`,
     verified: true,
   },
 ];
 
-/**
- * Statistiques des avis Google
- */
 export const REVIEWS_STATS = {
   average: 5.0,
   total: GOOGLE_REVIEWS.length,
   distribution: {
-    5: GOOGLE_REVIEWS.filter(r => r.rating === 5).length,
-    4: GOOGLE_REVIEWS.filter(r => r.rating === 4).length,
-    3: GOOGLE_REVIEWS.filter(r => r.rating === 3).length,
-    2: GOOGLE_REVIEWS.filter(r => r.rating === 2).length,
-    1: GOOGLE_REVIEWS.filter(r => r.rating === 1).length,
+    5: GOOGLE_REVIEWS.filter((r) => r.rating === 5).length,
+    4: GOOGLE_REVIEWS.filter((r) => r.rating === 4).length,
+    3: GOOGLE_REVIEWS.filter((r) => r.rating === 3).length,
+    2: GOOGLE_REVIEWS.filter((r) => r.rating === 2).length,
+    1: GOOGLE_REVIEWS.filter((r) => r.rating === 1).length,
   },
 };
 
-/**
- * Récupère les N derniers avis
- */
 export function getLatestReviews(count: number = 3): Review[] {
   return GOOGLE_REVIEWS.slice(0, count);
 }
 
-/**
- * Récupère les avis triés par date (plus récents en premier)
- */
 export function getReviewsSortedByDate(): Review[] {
-  return [...GOOGLE_REVIEWS].sort((a, b) =>
-    new Date(b.date).getTime() - new Date(a.date).getTime()
+  return [...GOOGLE_REVIEWS].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 }
 
-/**
- * Récupère les avis filtrés par projet
- */
 export function getReviewsByProject(project: string): Review[] {
-  return GOOGLE_REVIEWS.filter(r => r.project === project);
+  return GOOGLE_REVIEWS.filter((r) => r.project === project);
 }

@@ -1,10 +1,8 @@
-/**
- * Wrapper pour la section des avis Google sur la page d'accueil
- * Utilise le nouveau composant ReviewsSection avec les vraies données
- */
-
 import { ReviewsSection } from '@/components/shared/ui/ReviewsSection';
-import { SectionWrapper, SectionContainer } from '@/components/shared/layout/SectionWrapper';
+import {
+  SectionWrapper,
+  SectionContainer,
+} from '@/components/shared/layout/SectionWrapper';
 
 export function GoogleReviewsWrapper() {
   return (
