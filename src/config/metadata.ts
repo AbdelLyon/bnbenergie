@@ -21,7 +21,7 @@ export async function generateMetadata({
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
   const url = `${baseUrl}${cleanPath}`;
   const defaultImage = {
-    url: `${baseUrl}/opengraph-image`,
+    url: '/opengraph-image',
     width: 1200,
     height: 630,
     alt: title,

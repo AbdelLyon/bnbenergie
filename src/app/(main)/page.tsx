@@ -13,19 +13,20 @@ export const revalidate = 60;
 
 export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataHelper({
-    title: 'Installation Panneaux Solaires Ain | Expert RGE QualiPV',
+    title: 'Installation Panneaux Solaires Bourg-en-Bresse | RGE QualiPV',
     description:
-      'Installateur panneaux solaires Bourg-en-Bresse & Ain. RGE QualiPV certifié. Devis gratuit 48h, installation pro 3-9kWc clé en main.',
+      'N°1 Installateur panneaux solaires à Bourg-en-Bresse. Entreprise RGE QualiPV certifiée. Devis gratuit 48h, installation pro 3-9kWc clé en main dans l\'Ain.',
     path: '/',
     keywords: [
+      'installation panneaux solaires Bourg-en-Bresse',
+      'installateur panneaux solaires Bourg-en-Bresse',
+      'panneaux solaires Bourg-en-Bresse',
+      'photovoltaïque Bourg-en-Bresse',
+      'entreprise RGE Bourg-en-Bresse',
+      'installateur RGE QualiPV Bourg-en-Bresse',
+      'devis panneaux solaires Bourg-en-Bresse gratuit',
       'panneaux solaires Ain',
       'installation photovoltaïque Ain 01',
-      'entreprise RGE QualiPV Ain',
-      'installateur panneaux solaires Bourg-en-Bresse',
-      'devis gratuit panneaux solaires',
-      'installation solaire clé en main',
-      'autoconsommation solaire Ain',
-      'photovoltaïque Bourg-en-Bresse',
     ],
   });
 }

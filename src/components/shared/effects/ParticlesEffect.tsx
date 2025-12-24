@@ -4,6 +4,45 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useRef, useMemo } from 'react';
 import * as THREE from 'three';
 
+// ============================================================================
+// CONSTANTES DE CONFIGURATION
+// ============================================================================
+
+// StarField constants
+const STAR_COUNT = 800;
+const STAR_BASE_RADIUS = 15;
+const STAR_RADIUS_VARIANCE = 20;
+const STAR_SIZE_MIN = 0.2;
+const STAR_SIZE_MAX = 0.5;
+const STAR_ROTATION_Y_SPEED = 0.01;
+const STAR_ROTATION_X_SPEED = 0.005;
+const STAR_OPACITY = 0.6;
+const STAR_SIZE = 0.3;
+
+// ParticleWeb constants
+const PARTICLE_DENSITY = 12000;
+const RING_PARTICLE_RATIO = 0.2;
+const PLANET_RADIUS = 5;
+const RING_INNER_RADIUS = 6;
+const RING_OUTER_RADIUS = 8;
+const RING_TILT_ANGLE = Math.PI / 6;
+const RING_THICKNESS_VARIANCE = 0.3;
+const CONNECT_DISTANCE = 1.5;
+const LINE_OPACITY = 0.18;
+const GLOW_SCALE = 1.3;
+const SPHERE_WIREFRAME_OPACITY = 0.08;
+
+// Animation constants
+const PULSE_SPEED_PRIMARY = 0.4;
+const PULSE_AMPLITUDE_PRIMARY = 0.08;
+const PULSE_SPEED_SECONDARY = 0.65;
+const PULSE_AMPLITUDE_SECONDARY = 0.05;
+const ROTATION_SPEED_X = 0.05;
+const ROTATION_SPEED_Y = 0.08;
+const ROTATION_SPEED_Z = 0.03;
+const INDIVIDUAL_PULSE_AMPLITUDE = 0.2;
+const FLOAT_MULTIPLIER = 2.5;
+
 interface ParticleData {
   baseX: number;
   baseY: number;
@@ -20,14 +59,13 @@ function StarField() {
   const starsRef = useRef<THREE.Points>(null);
 
   const starGeometry = useMemo(() => {
-    const starCount = 800;
-    const positions = new Float32Array(starCount * 3);
-    const colors = new Float32Array(starCount * 3);
-    const sizes = new Float32Array(starCount);
+    const positions = new Float32Array(STAR_COUNT * 3);
+    const colors = new Float32Array(STAR_COUNT * 3);
+    const sizes = new Float32Array(STAR_COUNT);
 
-    for (let i = 0; i < starCount; i++) {
+    for (let i = 0; i < STAR_COUNT; i++) {
       // Distribution sphérique éloignée
-      const radius = 15 + Math.random() * 20;
+      const radius = STAR_BASE_RADIUS + Math.random() * STAR_RADIUS_VARIANCE;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
 
@@ -51,7 +89,7 @@ function StarField() {
         colors[i * 3 + 2] = 0.8;
       }
 
-      sizes[i] = Math.random() * 0.5 + 0.2;
+      sizes[i] = Math.random() * STAR_SIZE_MAX + STAR_SIZE_MIN;
     }
 
     return { positions, colors, sizes };
@@ -59,8 +97,8 @@ function StarField() {
 
   useFrame((state) => {
     if (starsRef.current) {
-      starsRef.current.rotation.y = state.clock.elapsedTime * 0.01;
-      starsRef.current.rotation.x = state.clock.elapsedTime * 0.005;
+      starsRef.current.rotation.y = state.clock.elapsedTime * STAR_ROTATION_Y_SPEED;
+      starsRef.current.rotation.x = state.clock.elapsedTime * STAR_ROTATION_X_SPEED;
     }
   });
 
@@ -92,8 +130,8 @@ function StarField() {
       <pointsMaterial
         vertexColors
         transparent
-        opacity={0.6}
-        size={0.3}
+        opacity={STAR_OPACITY}
+        size={STAR_SIZE}
         sizeAttenuation={true}
         depthWrite={false}
         blending={THREE.AdditiveBlending}
@@ -113,8 +151,8 @@ function ParticleWeb() {
   const { size } = useThree();
 
   const { particles, positions, colors, sizes } = useMemo(() => {
-    const sphereParticleCount = Math.floor((size.width * size.height) / 12000); // Nombre modéré de particules bien distribuées
-    const ringParticleCount = Math.floor(sphereParticleCount * 0.2); // 20% de particules pour l'anneau
+    const sphereParticleCount = Math.floor((size.width * size.height) / PARTICLE_DENSITY);
+    const ringParticleCount = Math.floor(sphereParticleCount * RING_PARTICLE_RATIO);
     const particleCount = sphereParticleCount + ringParticleCount;
 
     const colorPalette = [
@@ -133,14 +171,13 @@ function ParticleWeb() {
     let index = 0;
 
     // Créer les particules à l'INTÉRIEUR de la sphère (planète)
-    const planetRadius = 5; // Rayon de la planète
     for (let i = 0; i < sphereParticleCount; i++) {
       // Position aléatoire à l'intérieur de la sphère
       const u = Math.random();
       const v = Math.random();
       const theta = u * 2 * Math.PI;
       const phi = Math.acos(2 * v - 1);
-      const r = Math.cbrt(Math.random()) * planetRadius; // Distribution volumique uniforme
+      const r = Math.cbrt(Math.random()) * PLANET_RADIUS; // Distribution volumique uniforme
 
       // Conversion en coordonnées cartésiennes
       const x = r * Math.sin(phi) * Math.cos(theta);
@@ -186,24 +223,21 @@ function ParticleWeb() {
 
     // Créer l'anneau (comme Saturne)
     for (let i = 0; i < ringParticleCount; i++) {
-      const ringInnerRadius = 6; // Rayon intérieur de l'anneau
-      const ringOuterRadius = 8; // Rayon extérieur de l'anneau
       const ringRadius =
-        ringInnerRadius + Math.random() * (ringOuterRadius - ringInnerRadius);
+        RING_INNER_RADIUS + Math.random() * (RING_OUTER_RADIUS - RING_INNER_RADIUS);
 
       const theta = Math.random() * Math.PI * 2; // Angle autour de la planète
-      const ringThickness = (Math.random() - 0.5) * 0.3; // Épaisseur de l'anneau
+      const ringThickness = (Math.random() - 0.5) * RING_THICKNESS_VARIANCE;
 
       // Anneau incliné (tilt)
-      const tiltAngle = Math.PI / 6; // Inclinaison de 30 degrés
 
       const x = ringRadius * Math.cos(theta);
       const y = ringThickness;
       const z = ringRadius * Math.sin(theta);
 
       // Appliquer la rotation pour l'inclinaison
-      const yRotated = y * Math.cos(tiltAngle) - z * Math.sin(tiltAngle);
-      const zRotated = y * Math.sin(tiltAngle) + z * Math.cos(tiltAngle);
+      const yRotated = y * Math.cos(RING_TILT_ANGLE) - z * Math.sin(RING_TILT_ANGLE);
+      const zRotated = y * Math.sin(RING_TILT_ANGLE) + z * Math.cos(RING_TILT_ANGLE);
 
       // Couleurs plus lumineuses pour l'anneau
       const ringColorIndex = Math.random() < 0.5 ? 0 : 1; // Cyan ou bleu
@@ -250,21 +284,21 @@ function ParticleWeb() {
     // Effet de pulsation organique (respiration de la planète) - Plus lent
     pulseRef.current =
       1 +
-      Math.sin(timeRef.current * 0.4) * 0.08 +
-      Math.sin(timeRef.current * 0.65) * 0.05;
+      Math.sin(timeRef.current * PULSE_SPEED_PRIMARY) * PULSE_AMPLITUDE_PRIMARY +
+      Math.sin(timeRef.current * PULSE_SPEED_SECONDARY) * PULSE_AMPLITUDE_SECONDARY;
 
     // Appliquer la pulsation au glow
     if (glowRef.current) {
-      glowRef.current.scale.setScalar(pulseRef.current * 1.3);
+      glowRef.current.scale.setScalar(pulseRef.current * GLOW_SCALE);
     }
 
     // Sphère en position fixe au centre
     groupRef.current.position.set(0, 0, 0);
 
     // Rotation très lente et constante
-    groupRef.current.rotation.x += 0.05 * delta;
-    groupRef.current.rotation.y += 0.08 * delta;
-    groupRef.current.rotation.z += 0.03 * delta;
+    groupRef.current.rotation.x += ROTATION_SPEED_X * delta;
+    groupRef.current.rotation.y += ROTATION_SPEED_Y * delta;
+    groupRef.current.rotation.z += ROTATION_SPEED_Z * delta;
 
     const posAttr = pointsRef.current.geometry.attributes[
       'position'
@@ -273,25 +307,23 @@ function ParticleWeb() {
       'size'
     ] as THREE.BufferAttribute;
 
-    const planetRadius = 5; // Rayon de la planète (même que lors de la création)
-
     particles.forEach((particle, i) => {
       const floatX =
         Math.sin(timeRef.current * particle.floatSpeed + particle.pulsePhase) *
         particle.floatRange *
-        2.5;
+        FLOAT_MULTIPLIER;
       const floatY =
         Math.cos(
           timeRef.current * particle.floatSpeed * 0.8 + particle.pulsePhase
         ) *
         particle.floatRange *
-        2.5;
+        FLOAT_MULTIPLIER;
       const floatZ =
         Math.sin(
           timeRef.current * particle.floatSpeed * 0.6 + particle.pulsePhase
         ) *
         particle.floatRange *
-        2.5;
+        FLOAT_MULTIPLIER;
 
       let newX = particle.baseX + floatX;
       let newY = particle.baseY + floatY;
@@ -299,8 +331,8 @@ function ParticleWeb() {
 
       // Contraindre la particule à rester à l'intérieur de la sphère
       const distance = Math.sqrt(newX * newX + newY * newY + newZ * newZ);
-      if (distance > planetRadius) {
-        const scale = planetRadius / distance;
+      if (distance > PLANET_RADIUS) {
+        const scale = PLANET_RADIUS / distance;
         newX *= scale;
         newY *= scale;
         newZ *= scale;
@@ -310,7 +342,7 @@ function ParticleWeb() {
 
       // Pulsation individuelle des particules combinée avec la pulsation globale - Plus lent
       const individualPulse =
-        1 + Math.sin(timeRef.current * 1 + particle.pulsePhase) * 0.2;
+        1 + Math.sin(timeRef.current * 1 + particle.pulsePhase) * INDIVIDUAL_PULSE_AMPLITUDE;
       sizeAttr.setX(i, particle.size * individualPulse * pulseRef.current);
     });
 
@@ -319,7 +351,6 @@ function ParticleWeb() {
 
     const linePositions: number[] = [];
     const lineColors: number[] = [];
-    const connectDistance = 1.5; // Distance modérée pour les connexions
 
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
@@ -329,9 +360,9 @@ function ParticleWeb() {
 
         const distSq = dx * dx + dy * dy + dz * dz;
 
-        if (distSq < connectDistance * connectDistance) {
+        if (distSq < CONNECT_DISTANCE * CONNECT_DISTANCE) {
           const dist = Math.sqrt(distSq);
-          const opacity = (1 - dist / connectDistance) * 0.18; // Opacité équilibrée
+          const opacity = (1 - dist / CONNECT_DISTANCE) * LINE_OPACITY;
 
           if (opacity > 0) {
             const p1 = particles[i];
@@ -416,11 +447,11 @@ function ParticleWeb() {
 
       {/* Contour de la sphère (wireframe uniquement) - Plus rond et visible */}
       <mesh>
-        <sphereGeometry args={[5, 64, 64]} />
+        <sphereGeometry args={[PLANET_RADIUS, 64, 64]} />
         <meshBasicMaterial
           color="#60a5fa"
           transparent
-          opacity={0.08}
+          opacity={SPHERE_WIREFRAME_OPACITY}
           wireframe={true}
         />
       </mesh>

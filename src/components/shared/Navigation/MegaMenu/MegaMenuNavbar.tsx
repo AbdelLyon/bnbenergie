@@ -38,13 +38,13 @@ type MegaMenuData = {
   };
 };
 
-type LogoPrpos = {
+type LogoProps = {
   isScrolled: boolean;
   subtitle: string;
   className?: string;
 };
 
-const Logo = ({ isScrolled, subtitle, className }: LogoPrpos) => {
+const Logo = ({ isScrolled, subtitle, className }: LogoProps) => {
   return (
     <Link href="/" className={`group flex items-center gap-2 ${className}`}>
       <LogoIcon isScrolled={isScrolled} showRGEBadge={true} size="md" />
