@@ -16,7 +16,12 @@ export async function OrganizationStructuredData() {
     logo: {
       '@type': 'ImageObject',
       url: `${siteConfig.domain}/logo.svg`,
+      width: '512',
+      height: '512',
+      caption: 'Logo BNB ÉNERGIE',
     },
+    description:
+      "Installation de panneaux solaires photovoltaïques à Bourg-EN-Bress et dans l'Ain (01). Entreprise RGE QualiPV certifiée.",
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: siteConfig.contactPhone,
