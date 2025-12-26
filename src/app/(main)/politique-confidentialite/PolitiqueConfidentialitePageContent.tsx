@@ -261,12 +261,12 @@ export default function PolitiqueConfidentialitePageContent({
                   {section.content.map((item) => (
                     <div
                       key={item.label}
-                      className="flex justify-between border-b border-neutral-100 dark:border-white/5 py-1"
+                      className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-neutral-100 dark:border-white/5 py-3 sm:py-2"
                     >
                       <span className="font-medium text-neutral-700 dark:text-default-400">
                         {item.label}
                       </span>
-                      <span className="text-neutral-600 dark:text-default-500">
+                      <span className="text-neutral-600 dark:text-default-500 sm:text-right">
                         {item.value}
                       </span>
                     </div>
