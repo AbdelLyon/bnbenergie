@@ -7,8 +7,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     getSiteSettings(),
     getInterventionZones(),
   ]);
+  
+  const baseUrl = (siteConfig.domain?.replace(/\/$/, '') ?? 'https://bnbenergie01.com');
 
-  const baseUrl = siteConfig.domain?.replace(/\/$/, '') + '/';
   const currentDate = new Date();
 
   const cityUrls = zones.flatMap((zone) =>
