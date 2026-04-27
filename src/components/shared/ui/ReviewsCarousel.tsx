@@ -79,6 +79,17 @@ export function ReviewsCarousel({
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
+      <ul className="sr-only" aria-label="Avis clients BNB ÉNERGIE">
+        {reviews.map((review) => (
+          <li key={review.id}>
+            <span>{review.author}</span>
+            {review.location && <span>, {review.location}</span>}
+            <span> — {review.rating}/5 étoiles — </span>
+            <span>{review.text}</span>
+          </li>
+        ))}
+      </ul>
+
       <div className="relative overflow-hidden">
         <div className="flex gap-6 px-2 py-6">
           <AnimatePresence initial={false} custom={direction}>
@@ -92,12 +103,7 @@ export function ReviewsCarousel({
                   duration: 0.5,
                   ease: [0.25, 0.46, 0.45, 0.94],
                 }}
-                className={`
-                  ${cardsPerView === 1 ? 'w-full' : ''}
-                  ${cardsPerView === 2 ? 'w-[calc(50%-12px)]' : ''}
-                  ${cardsPerView === 3 ? 'w-[calc(33.333%-16px)]' : ''}
-                  shrink-0
-                `}
+                className={`${cardsPerView === 1 ? 'w-full' : ''} ${cardsPerView === 2 ? 'w-[calc(50%-12px)]' : ''} ${cardsPerView === 3 ? 'w-[calc(33.333%-16px)]' : ''} shrink-0`}
               >
                 <ReviewCard review={review} index={idx} />
               </LazyMotionDiv>
@@ -143,17 +149,9 @@ export function ReviewsCarousel({
             >
               {/* Dot background */}
               <div
-                className={`
-                  h-2 rounded-full transition-all duration-300
-                  ${
-                    idx === currentIndex
-                      ? 'w-8 bg-amber-500 dark:bg-amber-400'
-                      : 'w-2 bg-neutral-300 dark:bg-content2 group-hover:bg-amber-300 dark:group-hover:bg-amber-600'
-                  }
-                `}
+                className={`h-2 rounded-full transition-all duration-300 ${idx === currentIndex ? 'w-8 bg-amber-500 dark:bg-amber-400' : 'w-2 bg-neutral-300 dark:bg-content2 group-hover:bg-amber-300 dark:group-hover:bg-amber-600'}`}
               />
 
-              {/* Glow effect au hover */}
               {idx === currentIndex && (
                 <LazyMotionDiv
                   layoutId="activeSlide"

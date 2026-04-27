@@ -9,6 +9,7 @@ import { LazyMotionDiv } from '@/components/LazyComponents';
 
 interface HeaderData {
   title: string[];
+  seoTitle: string;
   subtitle: string;
   description: string;
   cta1: string;
@@ -48,7 +49,7 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
     >
       <div className="flex max-w-6xl flex-col items-center gap-10 md:gap-12 lg:gap-14">
         <div className="space-y-4 text-center">
-          <Title title={data.title} />
+          <Title title={data.title} seoTitle={data.seoTitle} />
 
           <LazyMotionDiv
             initial={{ opacity: 0 }}
@@ -56,10 +57,10 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="mx-auto max-w-4xl space-y-2"
           >
-            <p className="px-4 text-lg font-medium uppercase leading-relaxed text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-xl md:text-2xl lg:text-3xl">
+            <h2 className="px-4 text-lg font-medium text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl lg:text-2xl">
               {data.subtitle}
-            </p>
-            <p className="px-4 text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl">
+            </h2>
+            <p className="px-4 text-base font-normal text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-base md:text-lg">
               {data.description}
             </p>
           </LazyMotionDiv>

@@ -1,13 +1,13 @@
-import type { Metadata } from 'next';
-import { SITE_CONFIG } from './site';
-import { SEO_KEYWORDS } from './seo-keywords';
+import type { Metadata } from "next";
+import { SITE_CONFIG } from "./site";
+import { SEO_KEYWORDS } from "./seo-keywords";
 
-const BASE_URL = SITE_CONFIG.url.replace(/\/$/, '');
+const BASE_URL = SITE_CONFIG.url.replace(/\/$/, "");
 
 export function generateMetadata({
   title,
   description,
-  path = '',
+  path = "",
   keywords = [],
   images = [],
 }: {
@@ -17,11 +17,11 @@ export function generateMetadata({
   keywords?: string[];
   images?: Array<{ url: string; width: number; height: number; alt: string }>;
 }): Metadata {
-  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  const cleanPath = path.startsWith("/") ? path.slice(1) : path;
   const url = cleanPath ? `${BASE_URL}/${cleanPath}` : BASE_URL;
 
   const defaultImage = {
-    url: '/opengraph-image',
+    url: "/opengraph-image",
     width: 1200,
     height: 630,
     alt: title,
@@ -40,8 +40,8 @@ export function generateMetadata({
     },
 
     openGraph: {
-      type: 'website',
-      locale: 'fr_FR',
+      type: "website",
+      locale: "fr_FR",
       url,
       title,
       description,
@@ -50,7 +50,7 @@ export function generateMetadata({
     },
 
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title,
       description,
       images:
@@ -63,9 +63,9 @@ export function generateMetadata({
       googleBot: {
         index: true,
         follow: true,
-        'max-snippet': -1,
-        'max-image-preview': 'large',
-        'max-video-preview': -1,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+        "max-video-preview": -1,
       },
     },
   };
@@ -74,19 +74,19 @@ export function generateMetadata({
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'Installateur Panneaux Solaires Bourg-en-Bresse | BNB ÉNERGIE',
-    template: '%s | BNB ÉNERGIE',
+    default: "Installateur Solaire Bourg-en-Bresse | BNB ÉNERGIE",
+    template: "%s | BNB ÉNERGIE",
   },
   description:
     "Installateur panneaux solaires & photovoltaïques à Bourg-en-Bresse, certifié RGE QualiPV. Devis gratuit 48h, installation clé en main 3-9 kWc dans l'Ain (01).",
   keywords: SEO_KEYWORDS,
-  authors: [{ name: 'BNB ÉNERGIE' }],
-  creator: 'BNB ÉNERGIE',
-  publisher: 'BNB ÉNERGIE',
+  authors: [{ name: "BNB ÉNERGIE" }],
+  creator: "BNB ÉNERGIE",
+  publisher: "BNB ÉNERGIE",
 
   icons: {
-    icon: '/logo.svg',
-    apple: '/logo.svg',
+    icon: "/logo.svg",
+    apple: "/logo.svg",
   },
 
   formatDetection: {
@@ -96,21 +96,21 @@ export const defaultMetadata: Metadata = {
   },
 
   openGraph: {
-    type: 'website',
-    locale: 'fr_FR',
+    type: "website",
+    locale: "fr_FR",
     siteName: SITE_CONFIG.name,
     images: [
       {
-        url: '/opengraph-image',
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: 'BNB ÉNERGIE - Installateur Panneaux Solaires Bourg-en-Bresse',
+        alt: "BNB ÉNERGIE - Installateur Panneaux Solaires Bourg-en-Bresse",
       },
     ],
   },
 
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
   },
 
   robots: {
@@ -119,16 +119,16 @@ export const defaultMetadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-snippet': -1,
-      'max-image-preview': 'large',
-      'max-video-preview': -1,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
     },
   },
 
   other: {
-    'geo.region': SITE_CONFIG.geo.region,
-    'geo.placename': SITE_CONFIG.address.city,
-    'geo.position': `${SITE_CONFIG.geo.latitude};${SITE_CONFIG.geo.longitude}`,
-    'ICBM': `${SITE_CONFIG.geo.latitude}, ${SITE_CONFIG.geo.longitude}`,
+    "geo.region": SITE_CONFIG.geo.region,
+    "geo.placename": SITE_CONFIG.address.city,
+    "geo.position": `${SITE_CONFIG.geo.latitude};${SITE_CONFIG.geo.longitude}`,
+    ICBM: `${SITE_CONFIG.geo.latitude}, ${SITE_CONFIG.geo.longitude}`,
   },
 };

@@ -25,14 +25,7 @@ export function ReviewCard({ review, index, onClick }: ReviewCardProps) {
       transition={{ duration: 0.4, delay: index * 0.1 }}
       onClick={onClick}
       whileHover={{ scale: 1.02, transition: TRANSITIONS.smooth }}
-      className={`
-        group relative flex h-65 flex-col overflow-hidden rounded-xl
-        border border-neutral-200/50 dark:border-content2
-        bg-white dark:bg-content1
-        p-5 shadow:sm
-        transition-all duration-300
-        ${onClick ? 'cursor-pointer' : ''}
-      `}
+      className={`group relative flex h-65 flex-col overflow-hidden rounded-xl border border-neutral-200/50 dark:border-content2 bg-white dark:bg-content1 p-5 shadow:sm transition-all duration-300 ${onClick ? 'cursor-pointer' : ''}`}
     >
       <div className="mb-3 flex items-center justify-between">
         <div className="flex gap-0.5">

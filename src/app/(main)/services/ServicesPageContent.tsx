@@ -80,9 +80,9 @@ export default function ServicesPageContent({
                 className="mb-0 w-full "
               />
 
-              <p className="mb-4 text-xl font-medium text-neutral-700 dark:text-default-600">
+              <h3 className="mb-4 text-xl font-medium text-neutral-700 dark:text-default-600">
                 Notre mission : transformer votre projet solaire en réalité
-              </p>
+              </h3>
               <p className="leading-relaxed text-neutral-500 dark:text-default-400 max-w-2xl mx-auto">
                 Chez BNB ÉNERGIE, nous gérons l'intégralité de votre projet
                 d'installation de panneaux solaires, de l'étude initiale à la

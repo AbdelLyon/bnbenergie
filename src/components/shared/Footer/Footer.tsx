@@ -1,4 +1,4 @@
-import { Card, CardBody } from '@heroui/card';
+import { Card, CardBody } from "@heroui/card";
 import {
   Phone,
   Mail,
@@ -7,15 +7,15 @@ import {
   Shield,
   Award,
   ChevronRight,
-} from 'lucide-react';
+} from "lucide-react";
 import {
   Facebook,
   Instagram,
   Linkedin,
-} from '@/components/shared/ui/SocialIcons';
-import Link from 'next/link';
-import { slugify } from '@/utils/slugify';
-import { getSiteSettings, getInterventionZones } from '@/lib/payload-queries';
+} from "@/components/shared/ui/SocialIcons";
+import Link from "next/link";
+import { slugify } from "@/utils/slugify";
+import { getSiteSettings, getInterventionZones } from "@/lib/payload-queries";
 
 export const Footer = async () => {
   const [siteSettings, interventionZones] = await Promise.all([
@@ -29,18 +29,18 @@ export const Footer = async () => {
     .sort();
 
   const navigationLinks = [
-    { label: 'Accueil', href: '/' },
-    { label: 'Services', href: '/services' },
-    { label: 'Réalisations', href: '/realisations' },
-    { label: 'Aides & Financement', href: '/aides-financement' },
-    { label: 'Contact', href: '/contact' },
+    { label: "Page d'accueil", href: "/" },
+    { label: "Services", href: "/services" },
+    { label: "Réalisations", href: "/realisations" },
+    { label: "Aides & Financement", href: "/aides-financement" },
+    { label: "Nous contacter", href: "/contact" },
   ];
 
   const legalLinks = [
-    { label: 'Mentions légales', href: '/mentions-legales' },
+    { label: "Mentions légales", href: "/mentions-legales" },
     {
-      label: 'Politique de confidentialité',
-      href: '/politique-confidentialite',
+      label: "Politique de confidentialité",
+      href: "/politique-confidentialite",
     },
   ];
 
@@ -52,7 +52,7 @@ export const Footer = async () => {
         className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]"
         style={{
           backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
-          backgroundSize: '40px 40px',
+          backgroundSize: "40px 40px",
         }}
       />
 
@@ -64,7 +64,7 @@ export const Footer = async () => {
               <Sun className="relative h-12 w-12 text-amber-500 dark:text-amber-400" />
             </div>
             <h2 className="bg-linear-to-r from-amber-600 to-amber-500 dark:from-amber-400 dark:to-amber-300 bg-clip-text text-3xl font-bold text-transparent">
-              {siteSettings.businessName || 'BNB ÉNERGIE'}
+              {siteSettings.businessName || "BNB ÉNERGIE"}
             </h2>
           </div>
           <p className="mx-auto max-w-2xl text-lg font-medium text-neutral-700 dark:text-neutral-300">
@@ -86,10 +86,10 @@ export const Footer = async () => {
                 Téléphone
               </h3>
               <a
-                href={`tel:${siteSettings.contactPhone || '0781251125'}`}
+                href={`tel:${siteSettings.contactPhone || "0781251125"}`}
                 className="text-lg font-semibold text-neutral-900 dark:text-white transition-colors hover:text-amber-600 dark:hover:text-amber-400"
               >
-                {siteSettings.contactPhone || '07 81 25 11 25'}
+                {siteSettings.contactPhone || "07 81 25 11 25"}
               </a>
             </CardBody>
           </Card>
@@ -104,11 +104,11 @@ export const Footer = async () => {
               </h3>
               <Link
                 href={`mailto:${
-                  siteSettings.contactEmail || 'contact@bnb-energie.fr'
+                  siteSettings.contactEmail || "contact@bnb-energie.fr"
                 }`}
                 className="text-lg font-semibold text-neutral-900 dark:text-white transition-colors hover:text-amber-600 dark:hover:text-amber-400"
               >
-                {siteSettings.contactEmail || 'contact@bnb-energie.fr'}
+                {siteSettings.contactEmail || "contact@bnb-energie.fr"}
               </Link>
             </CardBody>
           </Card>
@@ -124,7 +124,7 @@ export const Footer = async () => {
               <p className="text-center text-lg font-semibold text-neutral-900 dark:text-white">
                 {siteSettings.addressStreet
                   ? `${siteSettings.addressStreet}, ${siteSettings.addressZip} ${siteSettings.addressCity}`
-                  : 'Bourg-en-Bresse, Ain (01)'}
+                  : "Bourg-en-Bresse, Ain (01)"}
               </p>
             </CardBody>
           </Card>
@@ -252,10 +252,10 @@ export const Footer = async () => {
 
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-center text-sm text-neutral-600 dark:text-neutral-400">
-            © {new Date().getFullYear()}{' '}
+            © {new Date().getFullYear()}{" "}
             <span className="font-semibold text-neutral-900 dark:text-white">
-              {siteSettings.businessName || 'BNB ÉNERGIE'}
-            </span>{' '}
+              {siteSettings.businessName || "BNB ÉNERGIE"}
+            </span>{" "}
             - Tous droits réservés
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">

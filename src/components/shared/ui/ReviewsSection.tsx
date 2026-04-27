@@ -77,7 +77,7 @@ export function ReviewsSection({
         className="text-center"
       >
         <a
-          href="https://g.page/r/YOUR_GOOGLE_PLACE_ID/review"
+          href="https://www.google.com/search?q=BNB+Énergie+Bourg-en-Bresse+avis"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-sm text-neutral-600 hover:text-primary dark:text-default-500 dark:hover:text-primary transition-colors"

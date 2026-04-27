@@ -1,31 +1,31 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { MapPin, BoltIcon, Shield } from 'lucide-react';
-import type { Project, Media } from '@/payload-types';
-import { TRANSITIONS } from '@/config/constants';
-import { LazyMotionDiv } from '@/components/LazyComponents';
-import Link from 'next/link';
-import { slugify } from '@/utils/slugify';
+import Image from "next/image";
+import { MapPin, BoltIcon, Shield } from "lucide-react";
+import type { Project, Media } from "@/payload-types";
+import { TRANSITIONS } from "@/config/constants";
+import { LazyMotionDiv } from "@/components/LazyComponents";
+import Link from "next/link";
+import { slugify } from "@/utils/slugify";
 
 interface ProjectCardProps {
   project: Project;
   index: number;
-  page: 'home' | 'Realisations';
+  page: "home" | "Realisations";
   href?: string;
 }
 
 export function ProjectCard({ project, index, page, href }: ProjectCardProps) {
   const imageUrl =
-    typeof project.image === 'object' && project.image !== null
-      ? (project.image as Media).url || '/images/placeholder-project.jpg'
-      : '/images/placeholder-project.jpg';
+    typeof project.image === "object" && project.image !== null
+      ? (project.image as Media).url || "/images/placeholder-project.jpg"
+      : "/images/placeholder-project.jpg";
 
   return (
     <LazyMotionDiv
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: '-50px' }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: index * 0.2 }}
       whileHover={{ scale: 1.02, transition: TRANSITIONS.smooth }}
       className="group relative overflow-hidden rounded-xl border border-neutral-200/50 dark:border-content2 bg-white dark:bg-content1 shadow-sm hover:shadow-md transition-all duration-300"
@@ -33,7 +33,7 @@ export function ProjectCard({ project, index, page, href }: ProjectCardProps) {
       {/* Image cliquable vers la réalisation */}
       <Link
         className="relative block h-64 overflow-hidden bg-neutral-100 dark:bg-content2"
-        href={href ?? '#'}
+        href={href ?? "#"}
         tabIndex={-1}
         aria-hidden="true"
       >
@@ -64,7 +64,10 @@ export function ProjectCard({ project, index, page, href }: ProjectCardProps) {
       {/* Informations — séparé de l'image pour pouvoir mettre un lien sur la localisation */}
       <div className="relative p-4">
         <h3 className="font-display mb-3 text-lg font-bold text-neutral-900 dark:text-foreground transition-colors">
-          <Link href={href ?? '#'} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          <Link
+            href={href ?? "#"}
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          >
             {project.title}
           </Link>
         </h3>
@@ -78,7 +81,7 @@ export function ProjectCard({ project, index, page, href }: ProjectCardProps) {
             <div className="rounded-md bg-blue-50 dark:bg-blue-900/20 p-1.5">
               <MapPin className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             </div>
-            <span className="text-sm font-medium">{project.location}</span>
+            <span className="text-sm font-medium">Voir {project.location}</span>
           </Link>
           <div className="flex items-center gap-2 text-neutral-700 dark:text-default-400">
             <div className="rounded-md bg-green-50 dark:bg-green-900/20 p-1.5">
@@ -89,7 +92,7 @@ export function ProjectCard({ project, index, page, href }: ProjectCardProps) {
         </div>
 
         <p
-          className={`mb-3 text-sm leading-relaxed text-neutral-600 dark:text-default-500 ${page === 'home' ? 'line-clamp-2' : ''}`}
+          className={`mb-3 text-sm leading-relaxed text-neutral-600 dark:text-default-500 ${page === "home" ? "line-clamp-2" : ""}`}
         >
           {project.description}
         </p>
