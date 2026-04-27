@@ -191,7 +191,7 @@ export default function ZonesPageContent({
               ].map((dept) => (
                 <div
                   key={dept}
-                  className="rounded-full border border-neutral-200 dark:border-divider bg-white dark:bg-content1 px-4 py-2 text-sm font-medium text-neutral-700 dark:text-default-600 transition-all duration-300 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700"
+                  className="rounded-full border border-neutral-200 dark:border-divider bg-white dark:bg-content1 px-4 py-2 text-sm font-medium text-neutral-700 dark:text-default-600"
                 >
                   {dept}
                 </div>
@@ -251,6 +251,10 @@ export default function ZonesPageContent({
             primaryButton={{
               text: 'Demander un devis gratuit',
               href: '/contact#contact-form',
+            }}
+            secondaryButton={{
+              text: 'Découvrir nos services',
+              href: '/services',
             }}
             variant="gradient"
           />

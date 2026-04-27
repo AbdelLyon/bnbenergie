@@ -1,75 +1,154 @@
-export const BOURG_EN_BRESSE_KEYWORDS = [
+// Mots-clés primaires — requêtes exactes à cibler en priorité absolue
+// Ranking possible sans "Ain (01)" grâce aux signaux locaux (adresse, structured data, GBP)
+export const PRIMARY_KEYWORDS = [
   'installateur panneaux solaires Bourg-en-Bresse',
+  'installateur panneaux photovoltaïques Bourg-en-Bresse',
   'installation panneaux solaires Bourg-en-Bresse',
+  'installation panneaux photovoltaïques Bourg-en-Bresse',
   'panneaux solaires Bourg-en-Bresse',
-  'installateur photovoltaïque Bourg-en-Bresse',
+  'photovoltaïque Bourg-en-Bresse',
+] as const;
+
+// Variations orthographiques et requêtes sans accent/tiret (fréquentes sur mobile)
+// Google comprend ces variantes mais les inclure renforce la pertinence sémantique
+export const BOURG_EN_BRESSE_KEYWORDS = [
+  ...PRIMARY_KEYWORDS,
+  'panneau solaire bourg en bresse',
+  'photovoltaique bourg en bresse',
+  'installateur solaire Bourg-en-Bresse',
   'entreprise panneaux solaires Bourg-en-Bresse',
-
   'installateur RGE Bourg-en-Bresse',
-  'panneaux solaires RGE Bourg-en-Bresse',
+  'installateur RGE QualiPV Bourg-en-Bresse',
   'devis panneaux solaires Bourg-en-Bresse gratuit',
-] as const;
-
-export const AIN_DEPARTMENT_KEYWORDS = [
-  'installateur panneaux solaires ain 01',
-  'installation photovoltaïque ain',
-  'panneaux solaires ain',
-  'entreprise panneaux solaires ain certifiée',
-] as const;
-
-export const LONG_TAIL_KEYWORDS = [
   'prix panneaux solaires Bourg-en-Bresse',
+  'pose panneaux solaires Bourg-en-Bresse',
+  'energie solaire Bourg-en-Bresse',
+] as const;
+
+// Requêtes transactionnelles à haute conversion — les utilisateurs prêts à acheter
+export const TRANSACTIONAL_KEYWORDS = [
+  'devis panneaux solaires Bourg-en-Bresse',
+  'devis installation solaire Bourg-en-Bresse',
+  'prix installation panneaux solaires Bourg-en-Bresse',
+  'tarif panneaux solaires Bourg-en-Bresse',
+  'demander devis photovoltaïque Bourg-en-Bresse',
+] as const;
+
+// Requêtes départementales — couverture complémentaire (Ain/01 optionnel pour l'utilisateur)
+export const AIN_DEPARTMENT_KEYWORDS = [
+  'installateur panneaux solaires Ain',
+  'installateur panneaux photovoltaïques Ain',
+  'installation panneaux solaires Ain',
+  'panneaux solaires Ain',
+  'entreprise panneaux solaires Ain certifiée',
+] as const;
+
+// Longue traîne — intention transactionnelle forte, concurrence plus faible
+export const LONG_TAIL_KEYWORDS = [
   'meilleur installateur panneaux solaires Bourg-en-Bresse',
-  'panneaux photovoltaïques Bourg-en-Bresse 01000',
+  'installateur certifié panneaux solaires Bourg-en-Bresse',
+  'autoconsommation panneaux solaires Bourg-en-Bresse',
+  'installation solaire clé en main Bourg-en-Bresse',
+  'réduire facture électricité panneaux solaires Bourg-en-Bresse',
+  'economies energie solaire Bourg-en-Bresse',
+  'rentabilite panneaux solaires Bourg-en-Bresse',
+] as const;
+
+// Signaux E-E-A-T (Expertise, Expérience, Autorité, Confiance)
+export const EEAT_KEYWORDS = [
+  'installateur RGE QualiPV Bourg-en-Bresse',
+  'entreprise RGE certifiée Bourg-en-Bresse',
+  'garantie décennale panneaux solaires',
+  'certification QualiPV installateur',
+  'MaPrimeRénov panneaux solaires Bourg-en-Bresse',
 ] as const;
 
 export const SEO_KEYWORDS: string[] = [
   ...BOURG_EN_BRESSE_KEYWORDS,
-  ...AIN_DEPARTMENT_KEYWORDS,
+  ...TRANSACTIONAL_KEYWORDS,
   ...LONG_TAIL_KEYWORDS,
+  ...EEAT_KEYWORDS,
+  ...AIN_DEPARTMENT_KEYWORDS,
 ];
 
-export const KEYWORD_STATS = {
-  total: SEO_KEYWORDS.length,
-  bourgEnBresse: BOURG_EN_BRESSE_KEYWORDS.length,
-  ain: AIN_DEPARTMENT_KEYWORDS.length,
-  longTail: LONG_TAIL_KEYWORDS.length,
-
-  estimatedTraffic: {
-    bourgEnBresse: 1320,
-    ain: 1660,
-    longTail: 130,
-    total: 3110,
-  },
-} as const;
-
+// Mots-clés spécifiques par page
 export const PAGE_SPECIFIC_KEYWORDS = {
   home: SEO_KEYWORDS,
 
   services: [
-    'installation panneaux solaires Bourg-en-Bresse',
-    'services photovoltaïques Bourg-en-Bresse',
-    'maintenance panneaux solaires ain',
+    'installateur panneaux solaires Bourg-en-Bresse',
+    'installation panneaux photovoltaïques clé en main Bourg-en-Bresse',
+    'processus installation solaire Ain',
+    'étude gratuite panneaux solaires Bourg-en-Bresse',
+    'installation RGE QualiPV Bourg-en-Bresse',
+    'raccordement Enedis panneaux solaires',
+    'Consuel photovoltaïque Ain',
+    'démarches administratives panneaux solaires',
+    'garantie décennale installation solaire Ain',
+    'service clé en main photovoltaïque Bourg-en-Bresse',
   ],
 
   aidesFinancement: [
-    'aides panneaux solaires Bourg-en-Bresse',
-    'MaPrimeRénov panneaux solaires ain',
-    'CEE photovoltaïque Bourg-en-Bresse',
+    'aides panneaux solaires 2025 Ain',
+    'aides panneaux solaires 2025 Bourg-en-Bresse',
+    'prime autoconsommation photovoltaïque',
+    'MaPrimeRénov panneaux solaires Ain',
+    'CEE certificats économies énergie photovoltaïque',
+    'TVA réduite panneaux solaires 10%',
+    'éco-prêt taux zéro solaire',
+    'financement panneaux solaires Bourg-en-Bresse',
+    'subventions photovoltaïque 2025',
   ],
 
   contact: [
     'devis panneaux solaires Bourg-en-Bresse gratuit',
-    'installateur RGE Bourg-en-Bresse',
+    'devis gratuit installation photovoltaïque Ain',
+    'contact installateur RGE Bourg-en-Bresse',
+    'demander devis panneaux solaires Ain',
+    'estimation prix panneaux solaires Bourg-en-Bresse',
   ],
 
   realisations: [
     'réalisations panneaux solaires Bourg-en-Bresse',
-    'installateur panneaux solaires Bourg-en-Bresse',
+    'installations photovoltaïques Ain 01',
+    'projets solaires Oyonnax',
+    'photos installation solaire Bourg-en-Bresse',
+    'portfolio installateur RGE QualiPV Ain',
+    'références panneaux solaires installés Ain',
+  ],
+
+  nosPacks: [
+    'pack panneaux solaires Bourg-en-Bresse',
+    'tarif installation panneaux photovoltaïques Ain',
+    'prix pack photovoltaïque 3kWc 6kWc 9kWc',
+    'pack autoconsommation Bourg-en-Bresse',
+    'offre panneaux solaires RGE Ain',
+    'prix installation solaire clé en main Bourg-en-Bresse',
+  ],
+
+  garanties: [
+    'garantie décennale panneaux solaires Ain',
+    'certification RGE QualiPV installateur',
+    'assurance installation photovoltaïque',
+    'garantie constructeur panneaux 25 ans',
+    'SAV panneaux solaires Bourg-en-Bresse',
+    'entreprise certifiée RGE Ain',
+  ],
+
+  faq: [
+    'FAQ panneaux solaires Bourg-en-Bresse',
+    'questions panneaux photovoltaïques Ain',
+    'prix rentabilité panneaux solaires',
+    'aides installation solaire',
+    'conseils installation photovoltaïque Ain',
   ],
 
   zonesIntervention: [
-    'installateur panneaux solaires ain 01',
-    'zones intervention photovoltaïque ain',
+    'zone intervention installateur solaire Ain',
+    'installateur panneaux solaires Oyonnax',
+    'installation photovoltaïque Bellegarde Ain',
+    'panneaux solaires Gex Ain',
+    'couverture géographique installateur Ain 01',
+    'déplacement gratuit installation solaire Ain',
   ],
 } as const;

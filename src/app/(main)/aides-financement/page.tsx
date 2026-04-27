@@ -9,20 +9,21 @@ import { Metadata } from 'next';
 
 export const revalidate = 60;
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-    title: 'Aides & Financement Panneaux Solaires 2025 Ain',
+    title: 'Aides Panneaux Solaires 2025 Ain | MaPrimeRénov & CEE',
     description:
-      'Prime autoconsommation, MaPrimeRénov, CEE, TVA 10%, éco-PTZ. Aides panneaux solaires 2025 Ain. Accompagnement démarches inclus.',
+      "Toutes les aides pour vos panneaux solaires 2025 dans l'Ain : prime autoconsommation, MaPrimeRénov, CEE, TVA 10%, éco-PTZ. Accompagnement démarches offert à Bourg-en-Bresse.",
     path: '/aides-financement',
     keywords: [
-      'aides panneaux solaires 2025',
-      'prime autoconsommation',
-      'MaPrimeRénov panneaux solaires',
-      'CEE certificats économies énergie',
-      'TVA réduite panneaux solaires',
+      'aides panneaux solaires 2025 Bourg-en-Bresse',
+      'aides panneaux solaires 2025 Ain',
+      'prime autoconsommation photovoltaïque',
+      'MaPrimeRénov panneaux solaires Ain',
+      'CEE certificats économies énergie photovoltaïque',
+      'TVA réduite panneaux solaires 10%',
       'éco-prêt taux zéro solaire',
-      'financement panneaux solaires Ain',
+      'financement panneaux solaires Bourg-en-Bresse',
       'subventions photovoltaïque 2025',
     ],
   });

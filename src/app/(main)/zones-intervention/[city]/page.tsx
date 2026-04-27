@@ -1,4 +1,5 @@
 import { getInterventionZones, getSiteSettings } from '@/lib/payload-queries';
+import { SITE_CONFIG } from '@/config/site';
 import { slugify } from '@/utils/slugify';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -26,41 +27,38 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { city } = await params;
   const cityName = await findCityName(city);
-  const siteSettings = await getSiteSettings();
 
   if (!cityName) {
-    return {
-      title: 'Zone non trouvée',
-    };
+    return { title: 'Zone non trouvée' };
   }
 
-  const canonicalUrl = `${siteSettings.domain}zones-intervention/${city}`;
+  const canonicalUrl = `${SITE_CONFIG.url}/zones-intervention/${city}`;
 
   return {
-    title: `Installation Panneaux Solaires à ${cityName} | Devis Gratuit`,
-    description: `Installateur de panneaux solaires à ${cityName} et ses environs. Entreprise RGE locale, devis gratuit, intervention rapide et garantie décennale.`,
+    title: `Installateur Panneaux Solaires ${cityName} | Devis Gratuit`,
+    description: `Installateur panneaux solaires & photovoltaïques à ${cityName}. Entreprise RGE QualiPV locale, devis gratuit 48h, intervention rapide et garantie décennale dans l'Ain.`,
     keywords: [
-      `panneaux solaires ${cityName}`,
-      `installation photovoltaïque ${cityName}`,
-      `installateur solaire ${cityName}`,
+      `installateur panneaux solaires ${cityName}`,
+      `installateur panneaux photovoltaïques ${cityName}`,
+      `installation solaire ${cityName}`,
       `entreprise RGE ${cityName}`,
-      `devis panneaux solaires ${cityName}`,
+      `devis panneaux solaires ${cityName} gratuit`,
     ],
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: `Installation Panneaux Solaires à ${cityName} | BNB ÉNERGIE`,
-      description: `Votre expert local en panneaux solaires à ${cityName}. Installation clé en main, autoconsommation et économies d'énergie.`,
+      title: `Installateur Panneaux Solaires ${cityName} | BNB ÉNERGIE`,
+      description: `Votre installateur local certifié RGE panneaux solaires à ${cityName}. Installation clé en main, autoconsommation et économies d'énergie.`,
       url: canonicalUrl,
       type: 'website',
       locale: 'fr_FR',
-      siteName: 'BNB ÉNERGIE',
+      siteName: SITE_CONFIG.name,
     },
     twitter: {
       card: 'summary_large_image',
-      title: `Installation Panneaux Solaires à ${cityName} | BNB ÉNERGIE`,
-      description: `Votre expert local en panneaux solaires à ${cityName}. Installation clé en main, autoconsommation et économies d'énergie.`,
+      title: `Installateur Panneaux Solaires ${cityName} | BNB ÉNERGIE`,
+      description: `Votre installateur local certifié RGE panneaux solaires à ${cityName}. Installation clé en main, autoconsommation et économies d'énergie.`,
     },
     robots: {
       index: true,
@@ -98,11 +96,18 @@ export default async function CityPage({
     ? { ...cityGroup, gradient: cityGroup.gradient ?? undefined }
     : undefined;
 
+  // Villes de la même zone (hors ville courante) pour le maillage interne
+  const relatedCities = (cityGroup?.communes ?? [])
+    .filter((c) => c.name !== cityName)
+    .map((c) => ({ name: c.name, slug: slugify(c.name) }))
+    .slice(0, 10);
+
   return (
     <CityPageContent
       cityName={cityName}
       cityGroup={mappedCityGroup}
       siteSettings={siteSettings}
+      relatedCities={relatedCities}
     />
   );
 }

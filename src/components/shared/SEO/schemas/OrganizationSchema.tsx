@@ -1,9 +1,5 @@
 import { getSiteSettings } from '@/lib/payload-queries';
 
-/**
- * Schéma Organization pour SEO structuré
- * Informations sur l'organisation et les points de contact
- */
 export async function OrganizationStructuredData() {
   const siteConfig = await getSiteSettings();
 
@@ -21,7 +17,7 @@ export async function OrganizationStructuredData() {
       caption: 'Logo BNB ÉNERGIE',
     },
     description:
-      "Installation de panneaux solaires photovoltaïques à Bourg-EN-Bress et dans l'Ain (01). Entreprise RGE QualiPV certifiée.",
+      "Installation de panneaux solaires photovoltaïques à Bourg-en-Bresse et dans l'Ain (01). Entreprise RGE QualiPV certifiée.",
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: siteConfig.contactPhone,

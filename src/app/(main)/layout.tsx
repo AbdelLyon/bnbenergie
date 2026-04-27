@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Open_Sans, Montserrat } from 'next/font/google';
+import { Suspense } from 'react';
 import { Footer } from '@/components/shared/Footer/Footer';
 import { Navbar } from '@/components/shared/Navigation/Navbar';
 import {
@@ -45,8 +46,10 @@ export default function MainLayout({
         <LocalBusinessStructuredData />
         <WebSiteStructuredData />
         <OrganizationStructuredData />
-        <Analytics />
-        <SpeedInsights />
+        <Suspense fallback={null}>
+          <Analytics />
+          <SpeedInsights />
+        </Suspense>
       </body>
     </html>
   );

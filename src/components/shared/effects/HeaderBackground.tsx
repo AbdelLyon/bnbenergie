@@ -1,6 +1,7 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useScroll, useTransform } from 'framer-motion';
+import { LazyMotionDiv } from '@/components/LazyComponents';
 import Image from 'next/image';
 import { useRef } from 'react';
 import { ANIMATION_DURATIONS, TRANSITIONS } from '@/config/constants';
@@ -26,7 +27,7 @@ export function HeaderBackground({
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
 
   return (
-    <motion.div
+    <LazyMotionDiv
       ref={ref}
       className="absolute inset-0"
       initial={{ opacity: 0 }}
@@ -38,7 +39,7 @@ export function HeaderBackground({
     >
       {/* Images de fond avec transitions orchestrées */}
       {images.map((image, index) => (
-        <motion.div
+        <LazyMotionDiv
           key={`${image}-${index}`}
           initial={{ opacity: 0, scale: 1, filter: 'blur(20px)' }}
           animate={{
@@ -78,7 +79,7 @@ export function HeaderBackground({
             className="object-cover"
             loading={index === 0 ? 'eager' : 'lazy'}
           />
-        </motion.div>
+        </LazyMotionDiv>
       ))}
 
       {/* Overlay principal - Plus sombre pour meilleur contraste */}
@@ -91,7 +92,7 @@ export function HeaderBackground({
       {variant === 'default' && (
         <>
           {/* Gradient overlay animé */}
-          <motion.div
+          <LazyMotionDiv
             className="absolute inset-0 bg-linear-to-r from-blue-600 via-cyan-500 to-blue-700"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.15 }}
@@ -103,7 +104,7 @@ export function HeaderBackground({
           />
 
           {/* Orbe bleu - anime avec mouvement fluide */}
-          <motion.div
+          <LazyMotionDiv
             className="absolute top-1/3 left-0 rounded-full bg-blue-500 blur-3xl will-change-transform"
             style={{
               width: '400px',
@@ -125,7 +126,7 @@ export function HeaderBackground({
           />
 
           {/* Orbe cyan - mouvement coordonné inversé */}
-          <motion.div
+          <LazyMotionDiv
             className="absolute right-0 bottom-1/3 rounded-full bg-cyan-400 blur-3xl will-change-transform"
             style={{
               width: '400px',
@@ -147,7 +148,7 @@ export function HeaderBackground({
           />
 
           {/* Orbe jaune central - pulsation synchronisée */}
-          <motion.div
+          <LazyMotionDiv
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-yellow-400 blur-3xl will-change-transform"
             style={{
               width: '300px',
@@ -168,7 +169,7 @@ export function HeaderBackground({
           />
 
           {/* Grille avec fade-in */}
-          <motion.div
+          <LazyMotionDiv
             className="absolute inset-0 bg-[linear-linear(rgba(255,255,255,0.02)_1px,transparent_1px),linear-linear(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-size-[100px_100px]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -180,6 +181,6 @@ export function HeaderBackground({
           />
         </>
       )}
-    </motion.div>
+    </LazyMotionDiv>
   );
 }

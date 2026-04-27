@@ -1,8 +1,10 @@
-import { Metadata } from 'next';
-import { getSiteSettings } from '@/lib/payload-queries';
+import type { Metadata } from 'next';
+import { SITE_CONFIG } from './site';
 import { SEO_KEYWORDS } from './seo-keywords';
 
-export async function generateMetadata({
+const BASE_URL = SITE_CONFIG.url.replace(/\/$/, '');
+
+export function generateMetadata({
   title,
   description,
   path = '',
@@ -14,12 +16,10 @@ export async function generateMetadata({
   path?: string;
   keywords?: string[];
   images?: Array<{ url: string; width: number; height: number; alt: string }>;
-}): Promise<Metadata> {
-  const siteConfig = await getSiteSettings();
-  const baseUrl = siteConfig.domain?.replace(/\/$/, '') + '/';
-  // Remove leading slash from path if present to avoid double slash
+}): Metadata {
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-  const url = `${baseUrl}${cleanPath}`;
+  const url = cleanPath ? `${BASE_URL}/${cleanPath}` : BASE_URL;
+
   const defaultImage = {
     url: '/opengraph-image',
     width: 1200,
@@ -27,12 +27,13 @@ export async function generateMetadata({
     alt: title,
   };
 
-  const seoKeywords = [...SEO_KEYWORDS];
+  const allKeywords =
+    keywords.length > 0 ? [...keywords, ...SEO_KEYWORDS] : SEO_KEYWORDS;
 
   return {
     title,
     description,
-    keywords: keywords.length > 0 ? [...keywords, ...seoKeywords] : seoKeywords,
+    keywords: allKeywords,
 
     alternates: {
       canonical: url,
@@ -44,7 +45,7 @@ export async function generateMetadata({
       url,
       title,
       description,
-      siteName: siteConfig.siteName,
+      siteName: SITE_CONFIG.name,
       images: images.length > 0 ? images : [defaultImage],
     },
 
@@ -70,15 +71,14 @@ export async function generateMetadata({
   };
 }
 
-import { env } from '@/lib/env';
 export const defaultMetadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL || 'https://bnbenergie01.com'),
+  metadataBase: new URL(BASE_URL),
   title: {
-    default: 'BNB ÉNERGIE | Installation Panneaux Solaires',
+    default: 'Installateur Panneaux Solaires Bourg-en-Bresse | BNB ÉNERGIE',
     template: '%s | BNB ÉNERGIE',
   },
   description:
-    "Expert en installation de panneaux solaires photovoltaïques dans l'Ain (01). Devis gratuit, entreprise RGE QualiPV.",
+    "Installateur panneaux solaires & photovoltaïques à Bourg-en-Bresse, certifié RGE QualiPV. Devis gratuit 48h, installation clé en main 3-9 kWc dans l'Ain (01).",
   keywords: SEO_KEYWORDS,
   authors: [{ name: 'BNB ÉNERGIE' }],
   creator: 'BNB ÉNERGIE',
@@ -98,13 +98,13 @@ export const defaultMetadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    siteName: 'BNB ÉNERGIE',
+    siteName: SITE_CONFIG.name,
     images: [
       {
         url: '/opengraph-image',
         width: 1200,
         height: 630,
-        alt: 'BNB ÉNERGIE - Installation Panneaux Solaires',
+        alt: 'BNB ÉNERGIE - Installateur Panneaux Solaires Bourg-en-Bresse',
       },
     ],
   },
@@ -126,6 +126,9 @@ export const defaultMetadata: Metadata = {
   },
 
   other: {
-    'geo.region': 'FR-01',
+    'geo.region': SITE_CONFIG.geo.region,
+    'geo.placename': SITE_CONFIG.address.city,
+    'geo.position': `${SITE_CONFIG.geo.latitude};${SITE_CONFIG.geo.longitude}`,
+    'ICBM': `${SITE_CONFIG.geo.latitude}, ${SITE_CONFIG.geo.longitude}`,
   },
 };

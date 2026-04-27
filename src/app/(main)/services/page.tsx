@@ -10,23 +10,22 @@ import { Metadata } from 'next';
 
 export const revalidate = 60;
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-    title: 'Services Installation Solaire Clé en Main Ain (01)',
+    title: 'Installation Panneaux Solaires Clé en Main Bourg-en-Bresse',
     description:
-      'Installation panneaux solaires clé en main Ain : étude gratuite, pose RGE, démarches, Consuel et Enedis. Garantie décennale. Devis 48h.',
+      'Installateur panneaux photovoltaïques certifié RGE à Bourg-en-Bresse : étude gratuite, pose, démarches Enedis & Consuel. Garantie décennale. Devis 48h.',
     path: '/services',
     keywords: [
-      'installation panneaux solaires',
-      'processus installation solaire',
-      'étude gratuite panneaux solaires',
-      'installation RGE QualiPV',
-      'raccordement Enedis',
-      'Consuel photovoltaïque',
+      'installateur panneaux solaires Bourg-en-Bresse',
+      'installation panneaux photovoltaïques clé en main Bourg-en-Bresse',
+      'étude gratuite panneaux solaires Ain',
+      'installation RGE QualiPV Bourg-en-Bresse',
+      'raccordement Enedis panneaux solaires Ain',
+      'Consuel photovoltaïque Ain',
       'démarches administratives panneaux solaires',
-      'installation solaire Bourg-en-Bresse',
-      'entreprise RGE Ain',
-      'service clé en main photovoltaïque',
+      'garantie décennale installation solaire Ain',
+      'service clé en main photovoltaïque Bourg-en-Bresse',
     ],
   });
 }

@@ -1,18 +1,11 @@
 import { getSiteSettings } from '@/lib/payload-queries';
 import { GOOGLE_REVIEWS, REVIEWS_STATS } from '@/data/google-reviews-data';
 
-/**
- * Schéma LocalBusiness pour SEO structuré
- * Inclut les avis Google, les horaires d'ouverture, et les services
- */
 export async function LocalBusinessStructuredData() {
   const siteConfig = await getSiteSettings();
-
-  // Utiliser les vraies données Google depuis notre fichier de données
   const rating = REVIEWS_STATS.average;
   const reviewCount = REVIEWS_STATS.total;
 
-  // Formater les 5 meilleurs avis pour Schema.org
   const reviews = GOOGLE_REVIEWS.slice(0, 5).map((review) => ({
     '@type': 'Review' as const,
     reviewRating: {
@@ -35,7 +28,8 @@ export async function LocalBusinessStructuredData() {
     '@id': siteConfig.domain,
     name: siteConfig.siteName,
     alternateName: siteConfig.businessName,
-    description: siteConfig.seoDescription,
+    description:
+      "Installateur de panneaux solaires photovoltaïques à Bourg-en-Bresse et dans l'Ain (01). Entreprise RGE QualiPV certifiée.",
     url: siteConfig.domain,
     telephone: siteConfig.contactPhone,
     email: siteConfig.contactEmail,
@@ -88,7 +82,7 @@ export async function LocalBusinessStructuredData() {
           longitude: siteConfig.geoLongitude,
         },
         geoRadius: '50000',
-        description: 'Bourg-en-Bresse et agglomération, rayon 50km dans l\'Ain',
+        description: "Bourg-en-Bresse et agglomération, rayon 50km dans l'Ain",
       },
     ],
 
@@ -103,7 +97,6 @@ export async function LocalBusinessStructuredData() {
       Boolean
     ),
 
-    // Données réelles des avis Google pour le SEO
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: rating.toString(),
@@ -112,7 +105,6 @@ export async function LocalBusinessStructuredData() {
       worstRating: '1',
     },
 
-    // Ajouter les avis individuels pour les rich snippets
     ...(reviews.length > 0 && { review: reviews }),
 
     hasOfferCatalog: {

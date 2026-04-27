@@ -9,24 +9,24 @@ import { PageMainWrapper } from '@/components/shared/layout/PageMainWrapper';
 import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
 import { Metadata } from 'next';
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-    title: 'Installation Panneaux Solaires Bourg-en-Bresse | RGE QualiPV',
+    title: 'Installateur Panneaux Solaires Bourg-en-Bresse | BNB ÉNERGIE',
     description:
-      'N°1 Installateur panneaux solaires à Bourg-en-Bresse. Entreprise RGE QualiPV certifiée. Devis gratuit 48h, installation pro 3-9kWc clé en main dans l\'Ain.',
+      "Installateur panneaux solaires & photovoltaïques certifié RGE QualiPV à Bourg-en-Bresse. Devis gratuit 48h, installation 3-9 kWc clé en main dans l'Ain. Économisez sur vos factures.",
     path: '/',
     keywords: [
-      'installation panneaux solaires Bourg-en-Bresse',
       'installateur panneaux solaires Bourg-en-Bresse',
+      'installateur panneaux photovoltaïques Bourg-en-Bresse',
+      'installation panneaux solaires Bourg-en-Bresse',
       'panneaux solaires Bourg-en-Bresse',
       'photovoltaïque Bourg-en-Bresse',
-      'entreprise RGE Bourg-en-Bresse',
       'installateur RGE QualiPV Bourg-en-Bresse',
       'devis panneaux solaires Bourg-en-Bresse gratuit',
-      'panneaux solaires Ain',
-      'installation photovoltaïque Ain 01',
+      'installation solaire Ain 01',
+      'autoconsommation panneaux solaires Ain',
     ],
   });
 }

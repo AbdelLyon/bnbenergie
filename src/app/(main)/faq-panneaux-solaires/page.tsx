@@ -10,20 +10,19 @@ import {
 // ISR - Incremental Static Regeneration
 export const revalidate = 60; // MEDIUM_FREQUENCY
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-    title: 'FAQ Panneaux Solaires Ain - Questions Fréquentes',
+    title: 'FAQ Panneaux Solaires Bourg-en-Bresse | Questions & Réponses',
     description:
-      "Réponses à vos questions sur les panneaux solaires : prix, rentabilité, aides, installation. FAQ complète photovoltaïque. Conseils d'expert Ain.",
+      "Toutes les réponses sur les panneaux solaires à Bourg-en-Bresse : prix, rentabilité, aides, installation. FAQ complète par votre installateur RGE QualiPV dans l'Ain.",
     path: '/faq-panneaux-solaires',
     keywords: [
-      'faq panneaux solaires',
-      'questions fréquentes photovoltaïque',
-      'prix panneaux solaires',
-      'rentabilité installation solaire',
-      'questions aides panneaux solaires',
-      'conseils installation photovoltaïque',
-      'FAQ solaire Ain',
+      'FAQ panneaux solaires Bourg-en-Bresse',
+      'questions panneaux photovoltaïques Ain',
+      'prix rentabilité panneaux solaires',
+      'aides installation solaire Bourg-en-Bresse',
+      'conseils installateur photovoltaïque Ain',
+      'questions installateur RGE QualiPV Bourg-en-Bresse',
     ],
   });
 }

@@ -9,20 +9,20 @@ import { Metadata } from 'next';
 
 export const revalidate = 60
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-    title: 'Garanties RGE QualiPV & Certifications Ain',
+    title: 'Garanties & Certifications RGE QualiPV | BNB ÉNERGIE Ain',
     description:
-      'Garantie décennale, assurance RC, certification RGE QualiPV. ✓ Garanties constructeur 25 ans. ✓ SAV réactif. Installateur certifié panneaux solaires Ain.',
+      "Garantie décennale, assurance RC pro, certification RGE QualiPV. Garantie constructeur 25 ans, SAV réactif. Installateur certifié panneaux solaires Bourg-en-Bresse.",
     path: '/garanties',
     keywords: [
-      'garantie décennale panneaux solaires',
-      'assurance installation photovoltaïque',
-      'certification RGE QualiPV',
-      'garantie constructeur panneaux solaires',
-      'SAV panneaux solaires Ain',
-      'garanties installation solaire',
+      'garantie décennale panneaux solaires Bourg-en-Bresse',
+      'certification RGE QualiPV installateur Ain',
+      'assurance installation photovoltaïque Bourg-en-Bresse',
+      'garantie constructeur panneaux 25 ans',
+      'SAV panneaux solaires Bourg-en-Bresse',
       'entreprise certifiée RGE Ain',
+      'installateur panneaux solaires certifié Bourg-en-Bresse',
     ],
   });
 }

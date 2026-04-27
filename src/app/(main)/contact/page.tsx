@@ -6,22 +6,19 @@ import { getPageHeader, getSiteSettings } from '@/lib/payload-queries';
 // ISR - Incremental Static Regeneration
 export const revalidate = 60; // MEDIUM_FREQUENCY
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-    title: 'Contact - Devis Gratuit Panneaux Solaires',
+    title: 'Devis Gratuit Panneaux Solaires Bourg-en-Bresse | Réponse 48h',
     description:
-      'Devis gratuit 48h panneaux solaires. Installation RGE QualiPV Bourg-en-Bresse. Tél : 07 81 25 11 25. Réponse rapide garantie.',
+      'Demandez votre devis panneaux solaires gratuit à Bourg-en-Bresse. Réponse en 48h. Installateur RGE QualiPV certifié dans l\'Ain. Tél : 07 81 25 11 25.',
     path: '/contact',
     keywords: [
-      'devis panneaux solaires gratuit',
-      'contact installation solaire',
-      'devis gratuit photovoltaïque',
-      'demande devis panneaux solaires',
-      'contact BNB ÉNERGIE',
-      'installateur panneaux solaires Ain',
-      'devis installation solaire Bourg-en-Bresse',
-      'estimation prix panneaux solaires',
-      'rendez-vous installation solaire',
+      'devis panneaux solaires Bourg-en-Bresse gratuit',
+      'devis gratuit installation photovoltaïque Ain',
+      'contact installateur RGE Bourg-en-Bresse',
+      'demander devis panneaux solaires Ain',
+      'estimation prix panneaux solaires Bourg-en-Bresse',
+      'rendez-vous installation solaire Ain',
     ],
   });
 }

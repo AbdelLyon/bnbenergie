@@ -28,11 +28,11 @@ import { en } from '@payloadcms/translations/languages/en';
 export default buildConfig({
   i18n: {
     supportedLanguages: { fr, en },
-    fallbackLanguage: 'fr', // Défaut en français
+    fallbackLanguage: 'fr',
   },
   admin: {
     user: Users.slug,
-    theme: 'dark', // Force le mode sombre par défaut
+    theme: 'dark',
     importMap: {
       baseDir: path.resolve(dirname),
     },
@@ -138,7 +138,6 @@ export default buildConfig({
         },
       ],
     },
-    // Projects / Réalisations
     {
       slug: 'projects',
       labels: {
@@ -193,7 +192,6 @@ export default buildConfig({
         },
       ],
     },
-    // Stats
     {
       slug: 'stats',
       labels: {
@@ -237,7 +235,6 @@ export default buildConfig({
         },
       ],
     },
-    // About Cards
     {
       slug: 'about-cards',
       labels: {
@@ -290,7 +287,6 @@ export default buildConfig({
         },
       ],
     },
-    // Benefits
     {
       slug: 'benefits',
       labels: {
@@ -319,7 +315,6 @@ export default buildConfig({
         },
       ],
     },
-    // FAQs
     {
       slug: 'faqs',
       labels: {
@@ -371,7 +366,6 @@ export default buildConfig({
       idleTimeoutMillis: DATABASE_POOL_CONFIG.idleTimeoutMillis,
       connectionTimeoutMillis: DATABASE_POOL_CONFIG.connectionTimeoutMillis,
     },
-    // Logging des requêtes en développement
     logger: isDevelopment,
   }),
   sharp,

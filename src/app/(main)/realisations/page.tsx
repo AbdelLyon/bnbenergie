@@ -9,21 +9,20 @@ import { Metadata } from 'next';
 
 export const revalidate = 60;
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-    title: 'Réalisations Panneaux Solaires Ain (01)',
+    title: 'Réalisations Panneaux Solaires Ain | Photos Installations',
     description:
-      "Découvrez nos installations de panneaux solaires dans l'Ain : Bourg-en-Bresse, Oyonnax, Bellegarde. Projets 3 à 9 kWc. ✓ Entreprise RGE QualiPV certifiée.",
+      "Découvrez nos installations panneaux solaires dans l'Ain : Bourg-en-Bresse, Oyonnax, Bellegarde. Projets 3-9 kWc. Installateur RGE QualiPV certifié.",
     path: '/realisations',
     keywords: [
-      'réalisations panneaux solaires Ain',
-      'installations photovoltaïques Bourg-en-Bresse',
-      'projets solaires Oyonnax',
-      'panneaux solaires réalisés Ain',
-      'photos installation solaire',
-      'entreprise RGE réalisations',
-      'portfolio panneaux solaires',
+      'réalisations panneaux solaires Bourg-en-Bresse',
       'installations photovoltaïques Ain 01',
+      'projets solaires Oyonnax Ain',
+      'photos installation solaire Bourg-en-Bresse',
+      'portfolio installateur RGE QualiPV Ain',
+      'références panneaux solaires installés Ain',
+      'installateur panneaux solaires Bourg-en-Bresse',
     ],
   });
 }

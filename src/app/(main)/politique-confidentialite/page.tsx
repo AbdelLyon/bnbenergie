@@ -5,18 +5,15 @@ import { getSiteSettings } from '@/lib/payload-queries';
 
 export const revalidate = 3600;
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-    title: 'Politique de Confidentialité',
+    title: 'Politique de Confidentialité RGPD | BNB ÉNERGIE',
     description:
-      'Politique de confidentialité et protection des données personnelles de BNB Énergie - Conformité RGPD.',
+      "Politique de confidentialité et protection des données personnelles de BNB ÉNERGIE, installateur panneaux solaires Bourg-en-Bresse. Conformité RGPD.",
     path: '/politique-confidentialite',
     keywords: [
-      'politique de confidentialité',
-      'protection des données',
-      'RGPD',
-      'données personnelles',
-      'vie privée',
+      'politique de confidentialité BNB ÉNERGIE',
+      'protection données personnelles RGPD',
     ],
   });
 }

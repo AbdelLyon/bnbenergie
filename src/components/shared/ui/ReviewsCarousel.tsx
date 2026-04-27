@@ -1,6 +1,7 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
+import { LazyMotionDiv, LazyMotionButton } from '@/components/LazyComponents';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect, useCallback } from 'react';
 import { ReviewCard } from './ReviewCard';
@@ -82,7 +83,7 @@ export function ReviewsCarousel({
         <div className="flex gap-6 px-2 py-6">
           <AnimatePresence initial={false} custom={direction}>
             {visibleReviews.map((review, idx) => (
-              <motion.div
+              <LazyMotionDiv
                 key={review.id}
                 custom={direction}
                 animate={{ opacity: 1, x: 0 }}
@@ -99,7 +100,7 @@ export function ReviewsCarousel({
                 `}
               >
                 <ReviewCard review={review} index={idx} />
-              </motion.div>
+              </LazyMotionDiv>
             ))}
           </AnimatePresence>
         </div>
@@ -107,7 +108,7 @@ export function ReviewsCarousel({
 
       {maxIndex > 0 && (
         <>
-          <motion.button
+          <LazyMotionButton
             whileTap={{ scale: 0.9 }}
             onClick={goToPrev}
             className="absolute -left-4 top-1/2 z-10 -translate-y-1/2 cursor-pointer flex size-10 items-center justify-center rounded-full border border-neutral-200 dark:border-content2 bg-white/90 dark:bg-content1/90 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -115,9 +116,9 @@ export function ReviewsCarousel({
             aria-label="Avis précédent"
           >
             <ChevronLeft className="size-6 text-neutral-700 dark:text-default-500" />
-          </motion.button>
+          </LazyMotionButton>
 
-          <motion.button
+          <LazyMotionButton
             whileTap={{ scale: 0.9 }}
             onClick={goToNext}
             className="absolute -right-4 top-1/2 z-10 -translate-y-1/2 flex size-10 cursor-pointer items-center justify-center rounded-full border border-neutral-200 dark:border-content2 bg-white/90 dark:bg-content1/90 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -125,14 +126,14 @@ export function ReviewsCarousel({
             aria-label="Avis suivant"
           >
             <ChevronRight className="size-6 text-neutral-700 dark:text-default-500" />
-          </motion.button>
+          </LazyMotionButton>
         </>
       )}
 
       {maxIndex > 0 && (
         <div className="mt-8 flex items-center justify-center gap-2">
           {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
-            <motion.button
+            <LazyMotionButton
               key={idx}
               onClick={() => goToSlide(idx)}
               className="group relative"
@@ -154,7 +155,7 @@ export function ReviewsCarousel({
 
               {/* Glow effect au hover */}
               {idx === currentIndex && (
-                <motion.div
+                <LazyMotionDiv
                   layoutId="activeSlide"
                   className="absolute inset-0 -z-10 rounded-full bg-amber-400/30 blur-md"
                   transition={{
@@ -164,7 +165,7 @@ export function ReviewsCarousel({
                   }}
                 />
               )}
-            </motion.button>
+            </LazyMotionButton>
           ))}
         </div>
       )}

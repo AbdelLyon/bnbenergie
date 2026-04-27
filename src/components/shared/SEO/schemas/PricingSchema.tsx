@@ -1,9 +1,5 @@
 import { getSiteSettings } from '@/lib/payload-queries';
 
-/**
- * Schéma de tarification des packs panneaux solaires pour SEO
- * Inclut les 3 packs avec avis, prix et détails de livraison
- */
 export async function PricingStructuredData() {
   const siteConfig = await getSiteSettings();
 

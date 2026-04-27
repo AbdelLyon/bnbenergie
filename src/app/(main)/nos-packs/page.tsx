@@ -7,23 +7,20 @@ import { Pricing } from '@/app/(main)/_components/Pricing/Pricing';
 
 export const revalidate = 60;
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-    title: 'Nos Packs Photovoltaïques - Tarifs Installation Solaire Ain (01)',
+    title: 'Tarifs Panneaux Solaires Bourg-en-Bresse 2025 | Devis Gratuit',
     description:
-      "Packs installation panneaux solaires adaptés à vos besoins dans l'Ain. Tarifs transparents, garantie décennale. Devis gratuit sous 48h.",
+      "Packs installation panneaux photovoltaïques à Bourg-en-Bresse : 3, 6 ou 9 kWc. Tarifs transparents, garantie décennale, aides MaPrimeRénov incluses. Devis gratuit 48h.",
     path: '/nos-packs',
     keywords: [
-      'pack panneaux solaires',
-      'tarif installation solaire',
-      'prix panneaux photovoltaïques',
-      'pack photovoltaïque Ain',
-      'devis panneaux solaires',
-      'installation solaire prix',
-      'pack solaire résidentiel',
-      'tarif RGE QualiPV',
-      'prix installation Bourg-en-Bresse',
-      'pack autoconsommation',
+      'tarif panneaux solaires Bourg-en-Bresse',
+      'prix installation panneaux photovoltaïques Ain',
+      'pack panneaux solaires 3kWc 6kWc 9kWc Bourg-en-Bresse',
+      'pack autoconsommation photovoltaïque Ain',
+      'offre installation solaire RGE Bourg-en-Bresse',
+      'devis panneaux solaires Bourg-en-Bresse',
+      'prix installation solaire clé en main Ain',
     ],
   });
 }

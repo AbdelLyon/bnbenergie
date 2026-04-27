@@ -1,9 +1,5 @@
 import { getSiteSettings } from '@/lib/payload-queries';
 
-/**
- * Schéma WebSite pour SEO structuré
- * Inclut les informations de base du site et l'action de recherche
- */
 export async function WebSiteStructuredData() {
   const siteConfig = await getSiteSettings();
 
@@ -13,7 +9,9 @@ export async function WebSiteStructuredData() {
     '@id': `${siteConfig.domain}/#website`,
     url: siteConfig.domain,
     name: siteConfig.siteName,
-    description: siteConfig.seoDescription,
+    // Description hardcodée — ne pas utiliser siteConfig.seoDescription (géré en dur pour le SEO)
+    description:
+      "Installateur panneaux solaires photovoltaïques à Bourg-en-Bresse et dans l'Ain (01). Entreprise RGE QualiPV certifiée. Devis gratuit 48h.",
     inLanguage: 'fr-FR',
     publisher: {
       '@id': siteConfig.domain,

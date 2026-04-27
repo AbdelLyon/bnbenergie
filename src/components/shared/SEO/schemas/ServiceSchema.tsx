@@ -1,9 +1,5 @@
 import { getSiteSettings } from '@/lib/payload-queries';
 
-/**
- * Schéma Service pour SEO structuré
- * Détails des services d'installation de panneaux solaires
- */
 export async function ServiceStructuredData() {
   const siteConfig = await getSiteSettings();
 

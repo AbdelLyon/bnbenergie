@@ -4,7 +4,8 @@ import { Sun, Moon } from 'lucide-react';
 import { Button } from '@heroui/button';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
+import { LazyMotionDiv } from '@/components/LazyComponents';
 
 export function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
@@ -45,7 +46,7 @@ export function ThemeSwitcher() {
     >
       <AnimatePresence mode="wait" initial={false}>
         {resolvedTheme === 'dark' ? (
-          <motion.div
+          <LazyMotionDiv
             key="sun"
             initial={{ y: -20, opacity: 0, rotate: -90 }}
             animate={{ y: 0, opacity: 1, rotate: 0 }}
@@ -53,9 +54,9 @@ export function ThemeSwitcher() {
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           >
             <Sun className="h-5 w-5 text-amber-500" />
-          </motion.div>
+          </LazyMotionDiv>
         ) : (
-          <motion.div
+          <LazyMotionDiv
             key="moon"
             initial={{ y: -20, opacity: 0, rotate: -90 }}
             animate={{ y: 0, opacity: 1, rotate: 0 }}
@@ -63,7 +64,7 @@ export function ThemeSwitcher() {
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           >
             <Moon className="h-5 w-5 text-blue-600" />
-          </motion.div>
+          </LazyMotionDiv>
         )}
       </AnimatePresence>
     </Button>

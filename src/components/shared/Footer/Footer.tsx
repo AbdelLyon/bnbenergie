@@ -14,6 +14,7 @@ import {
   Linkedin,
 } from '@/components/shared/ui/SocialIcons';
 import Link from 'next/link';
+import { slugify } from '@/utils/slugify';
 import { getSiteSettings, getInterventionZones } from '@/lib/payload-queries';
 
 export const Footer = async () => {
@@ -180,13 +181,25 @@ export const Footer = async () => {
               <MapPin className="h-5 w-5 text-amber-500" />
               Zones d&apos;Intervention
             </h3>
-            <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-neutral-600 dark:text-neutral-400 md:grid-cols-3">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm md:grid-cols-3">
               {cities.map((city, index) => (
-                <p key={`${city}-${index}`} className="flex items-center gap-2">
-                  <span className="h-1 w-1 rounded-full bg-amber-500" />
+                <Link
+                  key={`${city}-${index}`}
+                  href={`/zones-intervention/${slugify(city)}`}
+                  className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400 transition-colors hover:text-amber-600 dark:hover:text-amber-400"
+                >
+                  <span className="h-1 w-1 rounded-full bg-amber-500 shrink-0" />
                   {city}
-                </p>
+                </Link>
               ))}
+            </div>
+            <div className="mt-4 text-center">
+              <Link
+                href="/zones-intervention"
+                className="text-xs font-medium text-amber-600 dark:text-amber-400 hover:underline"
+              >
+                Voir toutes nos zones →
+              </Link>
             </div>
           </div>
         </div>

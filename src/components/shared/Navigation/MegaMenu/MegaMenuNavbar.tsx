@@ -1,6 +1,11 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
+import {
+  LazyMotionDiv,
+  LazyMotionButton,
+  LazyMotionNav,
+} from '@/components/LazyComponents';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X, Phone, ChevronDown } from 'lucide-react';
@@ -86,7 +91,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
 
   return (
     <>
-      <motion.nav
+      <LazyMotionNav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -104,7 +109,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
             {}
             <div className="hidden items-center gap-1 lg:flex">
               {data.menuCategories.map((item, index) => (
-                <motion.div
+                <LazyMotionDiv
                   key={item.label}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -249,7 +254,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                       </div>
                     )}
                   </AnimatePresence>
-                </motion.div>
+                </LazyMotionDiv>
               ))}
 
               <Button
@@ -264,7 +269,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                 <ThemeSwitcher />
               </div>
             </div>
-            <motion.button
+            <LazyMotionButton
               whileTap={{ scale: 0.95 }}
               onClick={toggleMenu}
               className="relative z-50 flex items-center justify-center rounded-xl transition-all lg:hidden"
@@ -272,7 +277,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
             >
               <AnimatePresence mode="wait">
                 {!isOpen ? (
-                  <motion.div
+                  <LazyMotionDiv
                     key="menu"
                     initial={{ rotate: 90, opacity: 0 }}
                     animate={{ rotate: 0, opacity: 1 }}
@@ -286,19 +291,19 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                           : 'text-white'
                       }`}
                     />
-                  </motion.div>
+                  </LazyMotionDiv>
                 ) : null}
               </AnimatePresence>
-            </motion.button>
+            </LazyMotionButton>
           </div>
         </div>
-      </motion.nav>
+      </LazyMotionNav>
 
       <AnimatePresence>
         {isOpen && (
           <>
             {}
-            <motion.div
+            <LazyMotionDiv
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -308,7 +313,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
             />
 
             {}
-            <motion.div
+            <LazyMotionDiv
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -318,14 +323,14 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
               {}
               <div className="relative bg-black/90 px-6 py-6">
                 {}
-                <motion.button
+                <LazyMotionButton
                   whileTap={{ scale: 0.9 }}
                   onClick={toggleMenu}
                   className="absolute top-2 right-2 z-50 flex size-7 cursor-pointer items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-all hover:bg-white/30"
                   aria-label="Close menu"
                 >
                   <X className="size-5 text-white" />
-                </motion.button>
+                </LazyMotionButton>
 
                 <Logo isScrolled={isScrolled} subtitle={data.logo.subtitle} />
 
@@ -336,7 +341,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
               <nav className="flex-1 overflow-y-auto bg-gray-100 dark:bg-content2 px-6 py-6">
                 <div className="space-y-3">
                   {data.menuCategories.map((item, index) => (
-                    <motion.div
+                    <LazyMotionDiv
                       key={item.label}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -447,13 +452,13 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                           </div>
                         </div>
                       )}
-                    </motion.div>
+                    </LazyMotionDiv>
                   ))}
                 </div>
               </nav>
 
               <div className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-content1 px-6 py-5">
-                <motion.div
+                <LazyMotionDiv
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.3 }}
@@ -475,9 +480,9 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                   <p className="text-center text-xs text-gray-500">
                     Devis gratuit • Sans engagement • Réponse en 24h
                   </p>
-                </motion.div>
+                </LazyMotionDiv>
               </div>
-            </motion.div>
+            </LazyMotionDiv>
           </>
         )}
       </AnimatePresence>
