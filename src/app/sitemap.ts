@@ -2,13 +2,15 @@ import { MetadataRoute } from 'next';
 import { slugify } from '@/utils/slugify';
 import { getSiteSettings, getInterventionZones } from '@/lib/payload-queries';
 
+//sitemap
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [siteConfig, zones] = await Promise.all([
     getSiteSettings(),
     getInterventionZones(),
   ]);
 
-  const baseUrl = siteConfig.domain?.replace(/\/$/, '') ?? 'https://bnbenergie01.com';
+  const baseUrl =
+    siteConfig.domain?.replace(/\/$/, '') ?? 'https://bnbenergie01.com';
   const currentDate = new Date();
 
   const cityUrls = zones.flatMap((zone) =>
