@@ -1,25 +1,26 @@
-'use client';
+"use client";
 
 import {
   AidCard,
   CTASection,
+  FeatureCard,
   IntroSection,
   PageHeader,
   PageMainWrapper,
   SectionContainer,
   Title,
-} from '@/components';
+} from "@/components";
 import {
   LazyMotionDiv,
   LazyMotionH2,
   LazyMotionP,
-} from '@/components/LazyComponents';
-import { StatsGrid } from '@/components/shared/ui/StatsGrid';
+} from "@/components/LazyComponents";
+import { StatsGrid } from "@/components/shared/ui/StatsGrid";
 import type {
   FinancialAid,
   PageHeader as PageHeaderType,
   SiteSetting,
-} from '@/payload-types';
+} from "@/payload-types";
 
 interface AidesPageContentProps {
   aids: {
@@ -42,8 +43,9 @@ export default function AidesPageContent({
       {/* Header */}
       <PageHeader variant="simple" height="medium">
         <Title
-          title={header?.title.split(' ') || ['Aides Financement']}
-          subtitle={header?.subtitle || ''}
+          staticText={header?.title.split(" ")[0] || "Aides"}
+          animatedText={header?.title.split(" ")[1] || "Financement"}
+          subtitle={header?.subtitle || ""}
         />
         <LazyMotionP
           initial={{ opacity: 0 }}
@@ -51,7 +53,7 @@ export default function AidesPageContent({
           transition={{ duration: 0.3, delay: 0.15 }}
           className="max-w-4xl px-4 text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
         >
-          {header?.description || ''}
+          {header?.description || ""}
         </LazyMotionP>
       </PageHeader>
 
@@ -62,21 +64,21 @@ export default function AidesPageContent({
             stats={[
               {
                 value: "Jusqu'à 2 520€",
-                label: 'Prime Autoconsommation',
-                icon: 'DollarSign',
-                gradient: 'from-green-500 to-emerald-500',
+                label: "Prime Autoconsommation",
+                icon: "DollarSign",
+                gradient: "from-green-500 to-emerald-500",
               },
               {
-                value: '0,13€/kWh',
-                label: 'Tarif de Rachat EDF',
-                icon: 'TrendingUp',
-                gradient: 'from-blue-500 to-cyan-500',
+                value: "0,13€/kWh",
+                label: "Tarif de Rachat EDF",
+                icon: "TrendingUp",
+                gradient: "from-blue-500 to-cyan-500",
               },
               {
-                value: '20-30%',
+                value: "20-30%",
                 label: "Économies d'Électricité",
-                icon: 'PiggyBank',
-                gradient: 'from-orange-500 to-yellow-500',
+                icon: "PiggyBank",
+                gradient: "from-orange-500 to-yellow-500",
               },
             ]}
           />
@@ -93,7 +95,7 @@ export default function AidesPageContent({
                 className="absolute inset-0"
                 style={{
                   backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                  backgroundSize: '32px 32px',
+                  backgroundSize: "32px 32px",
                 }}
               />
             </div>
@@ -124,14 +126,14 @@ export default function AidesPageContent({
                   <AidCard
                     key={aid.id}
                     icon={aid.icon}
-                    badge={aid.badge || ''}
+                    badge={aid.badge || ""}
                     title={aid.title}
-                    subtitle={aid.subtitle || ''}
+                    subtitle={aid.subtitle || ""}
                     description={aid.description}
-                    gradient={aid.gradient || 'from-green-500 to-emerald-500'}
+                    gradient={aid.gradient || "from-green-500 to-emerald-500"}
                     conditions={
                       aid.conditions?.map(
-                        (c: { text?: string }) => c.text ?? ''
+                        (c: { text?: string }) => c.text ?? "",
                       ) || []
                     }
                     amounts={
@@ -161,18 +163,15 @@ export default function AidesPageContent({
                 Aides Locales & Complémentaires
               </LazyMotionH2>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-                {aids.local.map((aid) => (
-                  <div
+                {aids.local.map((aid, index) => (
+                  <FeatureCard
                     key={aid.id}
-                    className="rounded-2xl border border-neutral-100 dark:border-white/5 bg-white dark:bg-content1 p-8 shadow-md hover:shadow-lg transition-all duration-300"
-                  >
-                    <h3 className="mb-4 text-xl font-bold text-neutral-900 dark:text-foreground">
-                      {aid.title}
-                    </h3>
-                    <p className="text-neutral-600 dark:text-default-500 leading-relaxed">
-                      {aid.description}
-                    </p>
-                  </div>
+                    icon={aid.icon || "MapPin"}
+                    title={aid.title}
+                    description={aid.description}
+                    gradient="from-green-500 to-emerald-500"
+                    index={index}
+                  />
                 ))}
               </div>
             </div>
@@ -190,34 +189,20 @@ export default function AidesPageContent({
                 Solutions de Financement
               </LazyMotionH2>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-                {aids.financing.map((option) => (
-                  <div
+                {aids.financing.map((option, index) => (
+                  <FeatureCard
                     key={option.id}
-                    className="rounded-2xl border border-neutral-100 dark:border-white/5 bg-white dark:bg-content1 p-8 shadow-md hover:shadow-lg transition-all duration-300"
-                  >
-                    <h3 className="mb-4 text-xl font-bold text-neutral-900 dark:text-foreground">
-                      {option.title}
-                    </h3>
-                    <div className="mb-6 text-neutral-600 dark:text-default-500 leading-relaxed">
-                      {option.features && option.features.length > 0 && (
-                        <ul className="space-y-3">
-                          {option.features.map(
-                            (feature: { text?: string }, idx: number) => (
-                              <li
-                                key={idx}
-                                className="flex items-start text-sm text-neutral-600 dark:text-default-500"
-                              >
-                                <span className="mr-3 text-green-500 dark:text-green-400 font-bold">
-                                  ✓
-                                </span>
-                                {feature.text}
-                              </li>
-                            )
-                          )}
-                        </ul>
-                      )}
-                    </div>
-                  </div>
+                    icon={option.icon || "CreditCard"}
+                    title={option.title}
+                    description={option.description || ""}
+                    items={
+                      option.features?.map(
+                        (f: { text?: string }) => f.text || "",
+                      ) || []
+                    }
+                    gradient="from-purple-500 to-indigo-500"
+                    index={index}
+                  />
                 ))}
               </div>
             </div>
@@ -226,10 +211,10 @@ export default function AidesPageContent({
           <CTASection
             title="Calculez Vos Aides et Économies"
             description="Demandez votre étude personnalisée gratuite et découvrez combien vous pouvez économiser"
-            phoneNumber={siteSettings.contactPhone || '07 81 25 11 25'}
+            phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
             primaryButton={{
-              text: 'Demander mon devis',
-              href: '/contact#contact-form',
+              text: "Demander mon devis",
+              href: "/contact#contact-form",
             }}
             variant="gradient"
           />

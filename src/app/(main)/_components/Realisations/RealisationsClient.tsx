@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
 import {
   SectionContainer,
   SectionHeader,
   SectionWrapper,
-} from '@/components/shared/layout/SectionWrapper';
-import { SPACING } from '@/config/constants';
-import { ProjectCard } from '@/components/shared/ui/ProjectCard';
-import type { Project } from '@/payload-types';
-import Link from 'next/link';
-import { LazyMotionDiv } from '@/components/LazyComponents';
+} from "@/components/shared/layout/SectionWrapper";
+import { SPACING } from "@/config/constants";
+import { ProjectCard } from "@/components/shared/ui/ProjectCard";
+import type { Project } from "@/payload-types";
+import Link from "next/link";
+import { LazyMotionDiv } from "@/components/LazyComponents";
 
 interface RealisationsData {
   header: {
@@ -36,10 +36,10 @@ export function RealisationsClient({ data }: { data: RealisationsData }) {
 
       <SectionContainer>
         <LazyMotionDiv
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -8 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-30px" }}
+          transition={{ duration: 0.3 }}
         >
           <SectionHeader
             badge={data.header.badge}
@@ -49,7 +49,7 @@ export function RealisationsClient({ data }: { data: RealisationsData }) {
         </LazyMotionDiv>
 
         <div
-          className={`grid auto-rows-[1fr] items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3 ${SPACING.grid.gap}`}
+          className={`mt-8 grid auto-rows-[1fr] items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3 ${SPACING.grid.gap}`}
         >
           {data.projects.slice(0, 3).map((project, index) => (
             <ProjectCard
@@ -62,18 +62,18 @@ export function RealisationsClient({ data }: { data: RealisationsData }) {
           ))}
         </div>
         <LazyMotionDiv
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.1 }}
-          className="mt-16 flex justify-center"
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-20px" }}
+          transition={{ duration: 0.3, delay: 0.03 }}
+          className="mt-12 flex justify-center"
         >
           <Link
             href="/realisations"
-            className="group inline-flex items-center gap-3 rounded-xl border-2 border-primary px-8 py-3 text-lg font-bold text-primary transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-xl"
+            className="group inline-flex items-center gap-3 rounded-xl border-2 border-primary px-8 py-4 text-lg font-bold text-primary transition-all duration-200 hover:bg-primary hover:text-white hover:shadow-lg hover:-translate-y-0.5"
           >
             Voir toutes nos réalisations
-            <span className="transition-transform duration-300 group-hover:translate-x-1">
+            <span className="transition-transform duration-200 group-hover:translate-x-0.5">
               →
             </span>
           </Link>

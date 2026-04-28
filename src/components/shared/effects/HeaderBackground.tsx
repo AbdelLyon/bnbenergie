@@ -1,186 +1,229 @@
-'use client';
+"use client";
 
-import { useScroll, useTransform } from 'framer-motion';
-import { LazyMotionDiv } from '@/components/LazyComponents';
-import Image from 'next/image';
-import { useRef } from 'react';
-import { ANIMATION_DURATIONS, TRANSITIONS } from '@/config/constants';
+import { LazyMotionDiv } from "@/components/LazyComponents";
+import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export interface HeaderBackgroundProps {
   images: string[];
+  imageAlts?: string[];
   currentSlide: number;
-  variant?: 'default' | 'clean';
+  variant?: "default" | "clean";
+}
+
+/**
+ * 4 shots cinématiques 3D cohérents.
+ *
+ * Principe de cohérence physique :
+ *   - Image qui se déplace vers la DROITE (x croissant) = caméra à gauche, regarde à droite
+ *     → côté droit du sujet vers le spectateur → rotateY finit NÉGATIF
+ *   - Image qui monte (y décroissant) = caméra en bas qui regarde vers le haut
+ *     → rotateX finit POSITIF (haut de l'image vers spectateur)
+ *   - Push-in (scale croissant) = caméra qui s'approche, se stabilise
+ *     → rotateX part positif (légère plongée), revient à 0
+ *
+ * Règle critique : `animate` pointe TOUJOURS vers la destination finale.
+ * La `key` gère le reset au moment où le slide redevient actif.
+ * → Jamais de mouvement en arrière pendant le fondu de sortie.
+ */
+const SHOTS = [
+  // ─── Shot A : Drone approach ────────────────────────────────────────────
+  // Caméra avance vers le sujet en se stabilisant (ouverture de spot TV)
+  {
+    initial: {
+      scale: 1.0,
+      x: "0%",
+      y: "2.5%",
+      rotateX: 3,
+      rotateY: 0,
+      transformPerspective: 1300,
+    },
+    animate: {
+      scale: 1.20,
+      x: "0%",
+      y: "-0.5%",
+      rotateX: -0.4,
+      rotateY: 0,
+      transformPerspective: 1300,
+    },
+    duration: 14,
+    ease: [0.08, 0, 0.42, 1] as const,
+  },
+
+  // ─── Shot B : Orbital sweep ──────────────────────────────────────────────
+  // Panoramique de droite vers gauche. Image part à droite (x=+7%) → va à gauche (x=-5%).
+  // Caméra part de la gauche (regarde à droite = rotateY +3.5)
+  // → arrive à droite (regarde à gauche = rotateY -2.5)
+  {
+    initial: {
+      scale: 1.08,
+      x: "7%",
+      y: "0.5%",
+      rotateY: 3.5,
+      rotateX: 0.8,
+      transformPerspective: 950,
+    },
+    animate: {
+      scale: 1.14,
+      x: "-5%",
+      y: "-0.5%",
+      rotateY: -2.5,
+      rotateX: -0.3,
+      transformPerspective: 950,
+    },
+    duration: 13,
+    ease: [0.15, 0, 0.80, 1] as const,
+  },
+
+  // ─── Shot C : Tilt-up reveal ─────────────────────────────────────────────
+  // Image part basse (y=+6%), caméra regarde en bas → rotateX négatif (haut s'éloigne).
+  // Monte vers y=-2% : caméra regarde vers le haut → rotateX positif (haut se rapproche).
+  {
+    initial: {
+      scale: 1.06,
+      x: "1.5%",
+      y: "6%",
+      rotateX: -3.2,
+      rotateY: 1.2,
+      transformPerspective: 1050,
+    },
+    animate: {
+      scale: 1.17,
+      x: "-1%",
+      y: "-2%",
+      rotateX: 0.6,
+      rotateY: -0.5,
+      transformPerspective: 1050,
+    },
+    duration: 13,
+    ease: [0.12, 0, 0.65, 1] as const,
+  },
+
+  // ─── Shot D : Pull-back drift ────────────────────────────────────────────
+  // Recule (scale 1.24→1.02) en dérivant vers la droite (x: -2%→+3%).
+  // Caméra part à droite (regarde à gauche = rotateY -2) → finit à gauche (regarde à droite = rotateY +1.5).
+  {
+    initial: {
+      scale: 1.24,
+      x: "-2%",
+      y: "1%",
+      rotateX: 1.8,
+      rotateY: -2,
+      transformPerspective: 1100,
+    },
+    animate: {
+      scale: 1.02,
+      x: "3%",
+      y: "-0.5%",
+      rotateX: 0,
+      rotateY: 1.5,
+      transformPerspective: 1100,
+    },
+    duration: 12,
+    ease: [0.0, 0, 0.55, 1] as const,
+  },
+] as const;
+
+function CinematicSlide({
+  image,
+  alt,
+  index,
+  isActive,
+}: {
+  image: string;
+  alt: string;
+  index: number;
+  isActive: boolean;
+}) {
+  // Incrémenté uniquement quand le slide (re)devient actif → remet l'image à initial
+  const [animKey, setAnimKey] = useState(0);
+
+  useEffect(() => {
+    if (isActive) setAnimKey((k) => k + 1);
+  }, [isActive]);
+
+  const shot = SHOTS[index % SHOTS.length] ?? SHOTS[0];
+
+  return (
+    /* Couche opacity : entrée franche (0.45s), dissolution lente (1.1s) */
+    <LazyMotionDiv
+      initial={{ opacity: 0 }}
+      animate={{ opacity: isActive ? 1 : 0 }}
+      transition={{
+        opacity: {
+          duration: isActive ? 0.45 : 1.1,
+          ease: isActive ? [0.0, 0, 0.25, 1] : [0.55, 0, 1, 1],
+        },
+      }}
+      className="absolute inset-0"
+    >
+      {/*
+       * Zone élargie → les rotations 3D ne dévoilent jamais les bords noirs.
+       * `animate` pointe TOUJOURS vers shot.animate, jamais en arrière.
+       * La key gère seule le reset vers shot.initial lors du prochain passage.
+       */}
+      <LazyMotionDiv
+        key={`${index}-${animKey}`}
+        className="absolute inset-[-18%] w-[136%] h-[136%]"
+        initial={shot.initial}
+        animate={shot.animate}
+        transition={{ duration: shot.duration, ease: shot.ease }}
+        style={{ transformStyle: "preserve-3d" }}
+      >
+        <Image
+          src={image}
+          alt={alt}
+          fill
+          fetchPriority={index === 0 ? "high" : undefined}
+          quality={90}
+          sizes="100vw"
+          className="object-cover"
+          loading={index === 0 ? "eager" : "lazy"}
+        />
+      </LazyMotionDiv>
+    </LazyMotionDiv>
+  );
 }
 
 export function HeaderBackground({
   images,
+  imageAlts,
   currentSlide,
-  variant = 'default',
+  variant = "default",
 }: HeaderBackgroundProps) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start start', 'end start'],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const overlayStyle =
+    variant === "clean"
+      ? [
+          "linear-gradient(rgba(0,0,0,0.48), rgba(0,0,0,0.48))",
+          "radial-gradient(ellipse at 50% 42%, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.52) 80%)",
+          "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.18) 30%, transparent 55%)",
+          "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, transparent 22%)",
+        ].join(", ")
+      : [
+          "linear-gradient(rgba(0,0,0,0.50), rgba(0,0,0,0.50))",
+          "radial-gradient(ellipse at 50% 42%, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.48) 80%)",
+          "linear-gradient(to top, rgba(0,0,0,0.60) 0%, transparent 45%)",
+        ].join(", ");
 
   return (
-    <LazyMotionDiv
-      ref={ref}
-      className="absolute inset-0"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{
-        duration: ANIMATION_DURATIONS.slowest,
-        ...TRANSITIONS.easeOut,
-      }}
-    >
-      {/* Images de fond avec transitions orchestrées */}
+    <div className="absolute inset-0 overflow-hidden bg-black">
       {images.map((image, index) => (
-        <LazyMotionDiv
-          key={`${image}-${index}`}
-          initial={{ opacity: 0, scale: 1, filter: 'blur(20px)' }}
-          animate={{
-            opacity:
-              currentSlide === index ? (variant === 'clean' ? 1 : 0.7) : 0,
-            scale: currentSlide === index ? 1.1 : 1,
-            filter: currentSlide === index ? 'blur(0px)' : 'blur(10px)',
-          }}
-          style={{
-            y: currentSlide === index ? y : 0,
-          }}
-          transition={{
-            opacity: {
-              duration: ANIMATION_DURATIONS.slowest * 2,
-              ...TRANSITIONS.easeInOut,
-            },
-            scale: {
-              duration: 10,
-              ease: 'linear',
-            },
-            filter: {
-              duration: ANIMATION_DURATIONS.slowest * 1.5,
-              ...TRANSITIONS.easeOut,
-            },
-          }}
-          className="absolute inset-0 will-change-transform"
-        >
-          <Image
-            src={image}
-            alt={
-              `Installation de panneaux solaires photovoltaïques par BNB ÉNERGIE à Bourg-en-Bresse - Vue ${index + 1}`
-            }
-            fill
-            priority={index === 0}
-            quality={75}
-            sizes="100vw"
-            className="object-cover"
-            loading={index === 0 ? 'eager' : 'lazy'}
-          />
-        </LazyMotionDiv>
+        <CinematicSlide
+          key={image}
+          image={image}
+          alt={
+            imageAlts?.[index] ??
+            `BNB ÉNERGIE — Installation panneaux solaires Bourg-en-Bresse — Vue ${index + 1}`
+          }
+          index={index}
+          isActive={currentSlide === index}
+        />
       ))}
 
-      {/* Overlay principal - Plus sombre pour meilleur contraste */}
       <div
-        className="absolute inset-0 bg-black"
-        style={{ opacity: variant === 'clean' ? 0.85 : 0.7 }}
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: overlayStyle }}
       />
-
-      {/* Effets additionnels orchestrés (seulement si default) */}
-      {variant === 'default' && (
-        <>
-          {/* Gradient overlay animé */}
-          <LazyMotionDiv
-            className="absolute inset-0 bg-linear-to-r from-blue-600 via-cyan-500 to-blue-700"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.15 }}
-            transition={{
-              duration: ANIMATION_DURATIONS.slowest,
-              delay: 0.3,
-              ...TRANSITIONS.easeOut,
-            }}
-          />
-
-          {/* Orbe bleu - anime avec mouvement fluide */}
-          <LazyMotionDiv
-            className="absolute top-1/3 left-0 rounded-full bg-blue-500 blur-3xl will-change-transform"
-            style={{
-              width: '400px',
-              height: '400px',
-            }}
-            initial={{ opacity: 0, scale: 0.8, x: -100 }}
-            animate={{
-              opacity: [0, 0.3, 0.25, 0.3],
-              scale: [0.8, 1, 1.1, 1],
-              x: [-100, 0, 20, 0],
-            }}
-            transition={{
-              duration: 8,
-              delay: 0.4,
-              repeat: Infinity,
-              repeatType: 'reverse',
-              ease: 'easeInOut',
-            }}
-          />
-
-          {/* Orbe cyan - mouvement coordonné inversé */}
-          <LazyMotionDiv
-            className="absolute right-0 bottom-1/3 rounded-full bg-cyan-400 blur-3xl will-change-transform"
-            style={{
-              width: '400px',
-              height: '400px',
-            }}
-            initial={{ opacity: 0, scale: 0.8, x: 100 }}
-            animate={{
-              opacity: [0, 0.25, 0.3, 0.25],
-              scale: [0.8, 1.1, 1, 1.1],
-              x: [100, 0, -20, 0],
-            }}
-            transition={{
-              duration: 10,
-              delay: 0.6,
-              repeat: Infinity,
-              repeatType: 'reverse',
-              ease: 'easeInOut',
-            }}
-          />
-
-          {/* Orbe jaune central - pulsation synchronisée */}
-          <LazyMotionDiv
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-yellow-400 blur-3xl will-change-transform"
-            style={{
-              width: '300px',
-              height: '300px',
-            }}
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{
-              opacity: [0, 0.2, 0.15, 0.2],
-              scale: [0.5, 1, 1.2, 1],
-            }}
-            transition={{
-              duration: 6,
-              delay: 0.8,
-              repeat: Infinity,
-              repeatType: 'reverse',
-              ease: 'easeInOut',
-            }}
-          />
-
-          {/* Grille avec fade-in */}
-          <LazyMotionDiv
-            className="absolute inset-0 bg-[linear-linear(rgba(255,255,255,0.02)_1px,transparent_1px),linear-linear(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-size-[100px_100px]"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{
-              duration: ANIMATION_DURATIONS.slow,
-              delay: 1,
-              ...TRANSITIONS.easeOut,
-            }}
-          />
-        </>
-      )}
-    </LazyMotionDiv>
+    </div>
   );
 }

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   StatsGrid,
@@ -10,17 +10,17 @@ import {
   FeatureCard,
   CTASection,
   ServiceStep,
-} from '@/components';
+} from "@/components";
 import {
   LazyMotionDiv,
   LazyMotionH2,
   LazyMotionP,
-} from '@/components/LazyComponents';
+} from "@/components/LazyComponents";
 import type {
   Service,
   PageHeader as PageHeaderType,
   SiteSetting,
-} from '@/payload-types';
+} from "@/payload-types";
 
 interface ServicesPageContentProps {
   services: Service[];
@@ -41,8 +41,9 @@ export default function ServicesPageContent({
       {/* Header */}
       <PageHeader variant="simple" height="medium">
         <Title
-          title={header?.title.split(' ') || ['Nos Services']}
-          subtitle={header?.subtitle || ''}
+          staticText={header?.title.split(" ")[0] || "Nos"}
+          animatedText={header?.title.split(" ")[1] || "Services"}
+          subtitle={header?.subtitle || ""}
         />
         <LazyMotionP
           initial={{ opacity: 0 }}
@@ -50,7 +51,7 @@ export default function ServicesPageContent({
           transition={{ duration: 0.3, delay: 0.15 }}
           className="max-w-4xl px-4 text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
         >
-          {header?.description || ''}
+          {header?.description || ""}
         </LazyMotionP>
       </PageHeader>
 
@@ -62,7 +63,7 @@ export default function ServicesPageContent({
               value: step.number,
               label: step.title,
               icon: step.icon,
-              gradient: 'from-blue-500 to-cyan-500',
+              gradient: "from-blue-500 to-cyan-500",
             }))}
           />
 
@@ -102,7 +103,7 @@ export default function ServicesPageContent({
                 description={step.description}
                 items={
                   step.highlights?.map(
-                    (h: { text?: string }) => h.text || ''
+                    (h: { text?: string }) => h.text || "",
                   ) || []
                 }
                 duration={step.duration}
@@ -142,10 +143,10 @@ export default function ServicesPageContent({
           <CTASection
             title="Prêt à Passer à l'Énergie Solaire ?"
             description="Demandez votre étude gratuite et recevez votre devis personnalisé sous 48h"
-            phoneNumber={siteSettings.contactPhone || '07 81 25 11 25'}
+            phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
             primaryButton={{
-              text: 'Obtenir un devis',
-              href: '/contact#contact-form',
+              text: "Obtenir un devis",
+              href: "/contact#contact-form",
             }}
             variant="gradient"
           />

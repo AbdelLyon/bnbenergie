@@ -1,6 +1,6 @@
 import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
 import ServicesPageContent from './ServicesPageContent';
-import { ServiceStructuredData } from '@/components/shared/SEO/StructuredData';
+import { ServiceStructuredData, BreadcrumbStructuredData } from '@/components/shared/SEO/StructuredData';
 import {
   getServices,
   getPageHeader,
@@ -45,6 +45,10 @@ export default async function ServicesPage() {
         siteSettings={siteSettings}
       />
       <ServiceStructuredData />
+      <BreadcrumbStructuredData items={[
+        { name: 'Accueil', path: '/' },
+        { name: 'Nos Services', path: '/services' },
+      ]} />
     </>
   );
 }

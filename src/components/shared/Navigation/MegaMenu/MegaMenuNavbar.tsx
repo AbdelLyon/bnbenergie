@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from "framer-motion";
 import {
   LazyMotionDiv,
   LazyMotionButton,
   LazyMotionNav,
-} from '@/components/LazyComponents';
-import Link from 'next/link';
-import { useState } from 'react';
-import { Menu, X, Phone, ChevronDown } from 'lucide-react';
-import { Button } from '@heroui/button';
-import { useScrollPosition, useBodyScrollLock } from '@/hooks';
-import { getLucideIcon } from '@/utils/getLucideIcon';
-import { Logo as LogoIcon } from '@/components/shared/ui/Logo';
-import { ThemeSwitcher } from '@/components/shared/ThemeSwitcher';
+} from "@/components/LazyComponents";
+import Link from "next/link";
+import { useState } from "react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import { Button } from "@heroui/button";
+import { useScrollPosition, useBodyScrollLock } from "@/hooks";
+import { getLucideIcon } from "@/utils/getLucideIcon";
+import { Logo as LogoIcon } from "@/components/shared/ui/Logo";
+import { ThemeSwitcher } from "@/components/shared/ThemeSwitcher";
 
 type MegaMenuData = {
   logo: {
@@ -22,7 +22,7 @@ type MegaMenuData = {
   };
   menuCategories: Array<{
     label: string;
-    type: 'link' | 'mega';
+    type: "link" | "mega";
     href?: string;
     icon: string;
     description?: string;
@@ -56,10 +56,10 @@ const Logo = ({ isScrolled, subtitle, className }: LogoProps) => {
       <div>
         <div
           className={`font-display text-xl font-bold transition-all duration-300 ease-out ${
-            isScrolled ? 'text-gray-900 dark:text-white' : 'text-white'
+            isScrolled ? "text-gray-900 dark:text-white" : "text-white"
           }`}
         >
-          BNB{' '}
+          BNB{" "}
           <span
             className={`bg-linear-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent`}
           >
@@ -68,7 +68,7 @@ const Logo = ({ isScrolled, subtitle, className }: LogoProps) => {
         </div>
         <p
           className={`font-display ml-1 text-[10px] transition-all duration-300 ease-out ${
-            isScrolled ? 'text-gray-600' : 'text-white/80'
+            isScrolled ? "text-gray-600" : "text-white/80"
           }`}
         >
           {subtitle}
@@ -97,8 +97,8 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ease-out ${
           isScrolled
-            ? 'bg-white dark:bg-content1 shadow-lg shadow-black/5'
-            : 'bg-black/10 backdrop-blur-md'
+            ? "bg-white dark:bg-content1 shadow-lg shadow-black/5"
+            : "bg-black/40 backdrop-blur-md"
         }`}
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-32">
@@ -116,17 +116,17 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                   transition={{ duration: 0.4, delay: index * 0.05 }}
                   className="relative"
                   onMouseEnter={() =>
-                    item.type === 'mega' && setActiveMega(item.label)
+                    item.type === "mega" && setActiveMega(item.label)
                   }
                   onMouseLeave={() => setActiveMega(null)}
                 >
-                  {item.type === 'link' ? (
+                  {item.type === "link" ? (
                     <Link
                       href={item.href!}
                       className={`group relative rounded-lg px-4 py-2 text-sm font-semibold transition-all ${
                         isScrolled
-                          ? 'text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400'
-                          : 'text-white/90 hover:text-white'
+                          ? "text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400"
+                          : "text-white/90 hover:text-white"
                       }`}
                     >
                       {item.label}
@@ -136,27 +136,27 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                     <button
                       className={`group flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-semibold transition-all ${
                         isScrolled
-                          ? 'text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400'
-                          : 'text-white/90 hover:text-white'
+                          ? "text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400"
+                          : "text-white/90 hover:text-white"
                       } ${
                         activeMega === item.label
                           ? isScrolled
-                            ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
-                            : 'bg-white/10 text-white'
-                          : ''
+                            ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
+                            : "bg-white/10 text-white"
+                          : ""
                       }`}
                     >
                       {item.label}
                       <ChevronDown
                         className={`h-4 w-4 transition-transform ${
-                          activeMega === item.label ? 'rotate-180' : ''
+                          activeMega === item.label ? "rotate-180" : ""
                         }`}
                       />
                     </button>
                   )}
 
                   <AnimatePresence>
-                    {item.type === 'mega' && activeMega === item.label && (
+                    {item.type === "mega" && activeMega === item.label && (
                       <div className="absolute top-full left-1/2 z-50 w-145 -translate-x-1/2 pt-2">
                         <div className="overflow-hidden rounded-xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-content1 shadow-xl shadow-black/5">
                           <div className="grid grid-cols-2 gap-0 p-5">
@@ -165,8 +165,8 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                                 key={idx}
                                 className={
                                   idx % 2 === 0
-                                    ? 'border-r border-gray-100 dark:border-gray-800 pr-5'
-                                    : 'pl-5'
+                                    ? "border-r border-gray-100 dark:border-gray-800 pr-5"
+                                    : "pl-5"
                                 }
                               >
                                 <h3 className="mb-3 px-1 text-[10px] font-bold text-gray-400 uppercase">
@@ -183,7 +183,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                                     >
                                       {(() => {
                                         const IconComponent = getLucideIcon(
-                                          link.icon
+                                          link.icon,
                                         );
 
                                         const iconColors: Record<
@@ -191,22 +191,22 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                                           string
                                         > = {
                                           Settings:
-                                            'bg-linear-to-br from-blue-500 to-cyan-500',
+                                            "bg-linear-to-br from-blue-500 to-cyan-500",
                                           Camera:
-                                            'bg-linear-to-br from-purple-500 to-pink-500',
+                                            "bg-linear-to-br from-purple-500 to-pink-500",
                                           DollarSign:
-                                            'bg-linear-to-br from-green-500 to-emerald-500',
+                                            "bg-linear-to-br from-green-500 to-emerald-500",
                                           Shield:
-                                            'bg-linear-to-br from-amber-500 to-orange-500',
-                                          Euro: 'bg-linear-to-br from-indigo-500 to-blue-500',
+                                            "bg-linear-to-br from-amber-500 to-orange-500",
+                                          Euro: "bg-linear-to-br from-indigo-500 to-blue-500",
                                           MapPin:
-                                            'bg-linear-to-br from-red-500 to-rose-500',
+                                            "bg-linear-to-br from-red-500 to-rose-500",
                                           HelpCircle:
-                                            'bg-linear-to-br from-teal-500 to-cyan-500',
+                                            "bg-linear-to-br from-teal-500 to-cyan-500",
                                         };
                                         const bgColor =
                                           iconColors[link.icon] ||
-                                          'bg-linear-to-br from-gray-500 to-gray-600';
+                                          "bg-linear-to-br from-gray-500 to-gray-600";
 
                                         return (
                                           <div
@@ -287,8 +287,8 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                     <Menu
                       className={`h-6 w-6 ${
                         isScrolled
-                          ? 'text-gray-900 dark:text-white'
-                          : 'text-white'
+                          ? "text-gray-900 dark:text-white"
+                          : "text-white"
                       }`}
                     />
                   </LazyMotionDiv>
@@ -314,9 +314,9 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
 
             {}
             <LazyMotionDiv
-              initial={{ x: '100%' }}
+              initial={{ x: "100%" }}
               animate={{ x: 0 }}
-              exit={{ x: '100%' }}
+              exit={{ x: "100%" }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="fixed top-0 right-0 bottom-0 z-50 flex w-full flex-col overflow-hidden bg-white dark:bg-content1 sm:max-w-md lg:hidden"
             >
@@ -347,7 +347,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.1 + index * 0.05 }}
                     >
-                      {item.type === 'link' ? (
+                      {item.type === "link" ? (
                         <Link
                           href={item.href!}
                           onClick={toggleMenu}
@@ -356,12 +356,12 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                           {(() => {
                             const IconComponent = getLucideIcon(item.icon);
                             const iconColors: Record<string, string> = {
-                              Home: 'from-blue-500 to-cyan-500',
-                              Mail: 'from-purple-500 to-pink-500',
+                              Home: "from-blue-500 to-cyan-500",
+                              Mail: "from-purple-500 to-pink-500",
                             };
                             const gradient =
                               iconColors[item.icon] ||
-                              'from-gray-500 to-gray-600';
+                              "from-gray-500 to-gray-600";
 
                             return (
                               <div
@@ -410,21 +410,21 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                                 >
                                   {(() => {
                                     const IconComponent = getLucideIcon(
-                                      link.icon
+                                      link.icon,
                                     );
                                     const iconColors: Record<string, string> = {
-                                      Settings: 'from-blue-500 to-cyan-500',
-                                      Camera: 'from-purple-500 to-pink-500',
+                                      Settings: "from-blue-500 to-cyan-500",
+                                      Camera: "from-purple-500 to-pink-500",
                                       DollarSign:
-                                        'from-green-500 to-emerald-500',
-                                      Shield: 'from-amber-500 to-orange-500',
-                                      Euro: 'from-indigo-500 to-blue-500',
-                                      MapPin: 'from-red-500 to-rose-500',
-                                      HelpCircle: 'from-teal-500 to-cyan-500',
+                                        "from-green-500 to-emerald-500",
+                                      Shield: "from-amber-500 to-orange-500",
+                                      Euro: "from-indigo-500 to-blue-500",
+                                      MapPin: "from-red-500 to-rose-500",
+                                      HelpCircle: "from-teal-500 to-cyan-500",
                                     };
                                     const gradient =
                                       iconColors[link.icon] ||
-                                      'from-gray-500 to-gray-600';
+                                      "from-gray-500 to-gray-600";
 
                                     return (
                                       <div
@@ -447,7 +447,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                                   </div>
                                   <ChevronDown className="mt-0.5 h-4 w-4 shrink-0 -rotate-90 text-gray-300 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
                                 </Link>
-                              ))
+                              )),
                             )}
                           </div>
                         </div>

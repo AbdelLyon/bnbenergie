@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { LazyMotionHeader } from '@/components/LazyComponents';
-import { ANIMATION_DURATIONS, SPACING } from '@/config/constants';
-import type { SectionBackground, SectionWidth, TextAlignment } from '@/types';
-import { cn } from '@heroui/theme';
-import { ReactNode } from 'react';
+import { LazyMotionHeader } from "@/components/LazyComponents";
+import { ANIMATION_DURATIONS, SPACING } from "@/config/constants";
+import type { SectionBackground, SectionWidth, TextAlignment } from "@/types";
+import { cn } from "@heroui/theme";
+import { ReactNode } from "react";
 
 interface SectionWrapperProps {
   children: ReactNode;
@@ -17,24 +17,24 @@ export function SectionWrapper({
   children,
   id,
   className,
-  background = 'white',
+  background = "white",
 }: SectionWrapperProps) {
   const backgrounds: Record<SectionBackground, string> = {
-    white: 'bg-[var(--bg-card)]',
-    gray: 'bg-[var(--bg-section)]',
+    white: "bg-[var(--bg-card)]",
+    gray: "bg-[var(--bg-section)]",
     gradient:
-      'bg-gradient-to-br from-primary-50 to-accent-50 dark:from-transparent dark:to-transparent',
-    dark: 'bg-neutral-900 text-white dark:bg-background',
+      "bg-gradient-to-br from-primary-50 to-accent-50 dark:from-transparent dark:to-transparent",
+    dark: "bg-neutral-900 text-white dark:bg-background",
   };
 
   return (
     <section
       id={id}
       className={cn(
-        'relative overflow-hidden',
+        "relative overflow-hidden",
         SPACING.section.py,
         backgrounds[background],
-        className
+        className,
       )}
     >
       {children}
@@ -51,18 +51,18 @@ interface SectionContainerProps {
 export function SectionContainer({
   children,
   className,
-  width = 'default',
+  width = "default",
 }: SectionContainerProps) {
   const widths: Record<SectionWidth, string> = {
-    default: 'max-w-7xl',
-    narrow: 'max-w-4xl',
-    wide: 'max-w-[1400px]',
-    full: 'max-w-full',
+    default: "max-w-7xl",
+    narrow: "max-w-4xl",
+    wide: "max-w-[1400px]",
+    full: "max-w-full",
   };
 
   return (
     <div
-      className={cn('mx-auto', SPACING.section.px, widths[width], className)}
+      className={cn("mx-auto", SPACING.section.px, widths[width], className)}
     >
       {children}
     </div>
@@ -81,36 +81,40 @@ export function SectionHeader({
   badge,
   title,
   subtitle,
-  align = 'center',
+  align = "center",
   className,
 }: SectionHeaderProps) {
   const alignments: Record<TextAlignment, string> = {
-    left: 'text-left',
-    center: 'text-center mx-auto',
-    right: 'text-right ml-auto',
+    left: "text-left",
+    center: "text-center mx-auto",
+    right: "text-right ml-auto",
   };
 
   return (
     <LazyMotionHeader
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: ANIMATION_DURATIONS.medium }}
+      viewport={{ once: true, margin: "-30px" }}
+      transition={{ duration: ANIMATION_DURATIONS.normal }}
       className={cn(
-        'max-w-3xl',
+        "max-w-3xl",
         SPACING.header.mb,
         alignments[align],
-        className
+        className,
       )}
     >
       {badge && (
-        <span className="border-primary-500/30 bg-primary-500/10 text-primary-700 dark:text-primary-400 shadow-primary-500/10 mb-4 inline-block rounded-full border px-4 py-2 text-xs font-bold shadow-lg backdrop-blur-md md:mb-6 md:px-6 md:py-3 md:text-sm">
+        <span className="border-primary-500/30 bg-primary-500/10 text-primary-700 dark:text-primary-400 shadow-primary-500/10 mb-5 inline-block rounded-full border px-4 py-2 text-xs font-bold shadow-lg backdrop-blur-md md:mb-6 md:px-6 md:py-3 md:text-sm">
           {badge}
         </span>
       )}
-      <h2 className="mb-4 text-3xl font-bold md:text-4xl">{title}</h2>
+      <h2 className="mb-5 text-3xl font-bold md:text-4xl lg:text-5xl">
+        {title}
+      </h2>
       {subtitle && (
-        <p className="mx-auto max-w-2xl text-lg opacity-80">{subtitle}</p>
+        <p className="mx-auto max-w-2xl text-lg leading-relaxed opacity-80 md:text-xl">
+          {subtitle}
+        </p>
       )}
     </LazyMotionHeader>
   );

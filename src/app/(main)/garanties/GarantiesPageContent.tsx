@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { Title } from '@/components/shared/ui/Title';
+import { Title } from "@/components/shared/ui/Title";
 import {
   PageHeader,
   PageMainWrapper,
@@ -10,18 +10,18 @@ import {
   FeatureCard,
   WarrantyCard,
   CTASection,
-} from '@/components';
+} from "@/components";
 
 import type {
   Warranty,
   PageHeader as PageHeaderType,
   SiteSetting,
-} from '@/payload-types';
+} from "@/payload-types";
 import {
   LazyMotionDiv,
   LazyMotionH2,
   LazyMotionP,
-} from '@/components/LazyComponents';
+} from "@/components/LazyComponents";
 
 interface GarantiesPageContentProps {
   warranties: {
@@ -44,8 +44,9 @@ export default function GarantiesPageContent({
       {/* Header */}
       <PageHeader variant="simple" height="medium">
         <Title
-          title={header?.title.split(' ') || ['Nos Garanties']}
-          subtitle={header?.subtitle || ''}
+          staticText={header?.title.split(" ")[0] || "Nos"}
+          animatedText={header?.title.split(" ")[1] || "Garanties"}
+          subtitle={header?.subtitle || ""}
         />
         <LazyMotionP
           initial={{ opacity: 0 }}
@@ -53,7 +54,7 @@ export default function GarantiesPageContent({
           transition={{ duration: 0.3, delay: 0.15 }}
           className="max-w-4xl text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
         >
-          {header?.description || ''}
+          {header?.description || ""}
         </LazyMotionP>
       </PageHeader>
 
@@ -63,22 +64,22 @@ export default function GarantiesPageContent({
           <StatsGrid
             stats={[
               {
-                value: '10 ans',
-                label: 'Garantie Décennale',
-                icon: 'Shield',
-                gradient: 'from-blue-500 to-cyan-500',
+                value: "10 ans",
+                label: "Garantie Décennale",
+                icon: "Shield",
+                gradient: "from-blue-500 to-cyan-500",
               },
               {
-                value: '25 ans',
-                label: 'Garantie Panneaux',
-                icon: 'Award',
-                gradient: 'from-green-500 to-emerald-500',
+                value: "25 ans",
+                label: "Garantie Panneaux",
+                icon: "Award",
+                gradient: "from-green-500 to-emerald-500",
               },
               {
-                value: 'RGE',
-                label: 'Certifié QualiPV',
-                icon: 'CheckCircle2',
-                gradient: 'from-orange-500 to-yellow-500',
+                value: "RGE",
+                label: "Certifié QualiPV",
+                icon: "CheckCircle2",
+                gradient: "from-orange-500 to-yellow-500",
               },
             ]}
           />
@@ -97,7 +98,7 @@ export default function GarantiesPageContent({
                 className="absolute inset-0"
                 style={{
                   backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                  backgroundSize: '32px 32px',
+                  backgroundSize: "32px 32px",
                 }}
               />
             </div>
@@ -130,7 +131,7 @@ export default function GarantiesPageContent({
                     icon={cert.icon}
                     title={cert.title}
                     description={cert.description}
-                    gradient={cert.gradient || 'from-blue-500 to-cyan-500'}
+                    gradient={cert.gradient || "from-blue-500 to-cyan-500"}
                     index={index}
                   />
                 ))}
@@ -157,12 +158,12 @@ export default function GarantiesPageContent({
                     icon={product.icon}
                     title={product.title}
                     description={product.description}
-                    gradient={product.gradient || 'from-blue-500 to-cyan-500'}
+                    gradient={product.gradient || "from-blue-500 to-cyan-500"}
                     warranties={
                       product.warrantyDetails?.map((w) => ({
                         label: w.label,
                         duration: w.duration,
-                        description: w.description ?? '',
+                        description: w.description ?? "",
                       })) || []
                     }
                     features={product.features?.map((f) => f.text) || []}
@@ -204,10 +205,10 @@ export default function GarantiesPageContent({
           <CTASection
             title="Des Questions sur Nos Garanties ?"
             description="Notre équipe est à votre disposition pour vous expliquer en détail toutes nos garanties et certifications"
-            phoneNumber={siteSettings.contactPhone || '07 81 25 11 25'}
+            phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
             primaryButton={{
-              text: 'Demander mon devis',
-              href: '/contact#contact-form',
+              text: "Demander mon devis",
+              href: "/contact#contact-form",
             }}
             variant="gradient"
           />

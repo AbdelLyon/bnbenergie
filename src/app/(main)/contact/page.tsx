@@ -1,4 +1,5 @@
 import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
+import { BreadcrumbStructuredData } from '@/components/shared/SEO/StructuredData';
 import ContactPageContent from './ContactPageContent';
 import { Metadata } from 'next';
 import { getPageHeader, getSiteSettings } from '@/lib/payload-queries';
@@ -29,5 +30,13 @@ export default async function ContactPage() {
     getSiteSettings(),
   ]);
 
-  return <ContactPageContent header={header} siteSettings={siteSettings} />;
+  return (
+    <>
+      <ContactPageContent header={header} siteSettings={siteSettings} />
+      <BreadcrumbStructuredData items={[
+        { name: 'Accueil', path: '/' },
+        { name: 'Devis Gratuit', path: '/contact' },
+      ]} />
+    </>
+  );
 }

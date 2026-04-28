@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Title,
@@ -9,22 +9,21 @@ import {
   IntroSection,
   FeatureCard,
   CTASection,
-} from '@/components';
+} from "@/components";
 
-import { MapPin } from 'lucide-react';
-import Link from 'next/link';
-import { slugify } from '@/utils/slugify';
+import Link from "next/link";
+import { slugify } from "@/utils/slugify";
 import type {
   InterventionZone,
   PageHeader as PageHeaderType,
   SiteSetting,
-} from '@/payload-types';
+} from "@/payload-types";
 import {
   LazyMotionDiv,
   LazyMotionH2,
   LazyMotionH3,
   LazyMotionP,
-} from '@/components/LazyComponents';
+} from "@/components/LazyComponents";
 
 interface ZonesPageContentProps {
   zones: InterventionZone[];
@@ -43,8 +42,9 @@ export default function ZonesPageContent({
         {/* Header */}
         <PageHeader variant="simple" height="medium">
           <Title
-            title={header?.title.split(' ') || ["Zones d'Intervention"]}
-            subtitle={header?.subtitle || ''}
+            staticText={header?.title.split(" ")[0] || "Zones"}
+            animatedText={header?.title.split(" ")[1] || "d'Intervention"}
+            subtitle={header?.subtitle || ""}
           />
           <LazyMotionP
             initial={{ opacity: 0 }}
@@ -52,7 +52,7 @@ export default function ZonesPageContent({
             transition={{ duration: 0.3, delay: 0.15 }}
             className="max-w-4xl px-4 text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
           >
-            {header?.description || ''}
+            {header?.description || ""}
           </LazyMotionP>
         </PageHeader>
 
@@ -61,22 +61,22 @@ export default function ZonesPageContent({
           <StatsGrid
             stats={[
               {
-                value: '50 km',
+                value: "50 km",
                 label: "Rayon d'Intervention",
-                icon: 'Map',
-                gradient: 'from-blue-500 to-cyan-500',
+                icon: "Map",
+                gradient: "from-blue-500 to-cyan-500",
               },
               {
-                value: '48h',
-                label: 'Délai de Réponse',
-                icon: 'Clock',
-                gradient: 'from-green-500 to-emerald-500',
+                value: "48h",
+                label: "Délai de Réponse",
+                icon: "Clock",
+                gradient: "from-green-500 to-emerald-500",
               },
               {
-                value: '100%',
-                label: 'Proximité Client',
-                icon: 'Users',
-                gradient: 'from-orange-500 to-yellow-500',
+                value: "100%",
+                label: "Proximité Client",
+                icon: "Users",
+                gradient: "from-orange-500 to-yellow-500",
               },
             ]}
           />
@@ -95,7 +95,7 @@ export default function ZonesPageContent({
                 className="absolute inset-0"
                 style={{
                   backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                  backgroundSize: '32px 32px',
+                  backgroundSize: "32px 32px",
                 }}
               />
             </div>
@@ -121,45 +121,29 @@ export default function ZonesPageContent({
               Nos Secteurs d'Intervention
             </LazyMotionH2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {zones.map((group, index) => {
-                return (
-                  <LazyMotionDiv
-                    key={group.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="group relative overflow-hidden rounded-2xl border border-neutral-200 dark:border-divider bg-white dark:bg-content1 p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
-                  >
-                    {/* Icône */}
-                    <div
-                      className={`mb-6 inline-flex rounded-xl bg-linear-to-br ${
-                        group.gradient || 'from-blue-500 to-cyan-500'
-                      } p-4`}
-                    >
-                      <MapPin className="h-8 w-8 text-white" />
-                    </div>
-
-                    {/* Titre */}
-                    <h3 className="font-display mb-2 text-xl font-bold text-neutral-900 dark:text-foreground">
-                      {group.zone}
-                    </h3>
-
-                    {/* Liste des communes cliquables */}
-                    <div className="flex flex-wrap gap-2">
-                      {group.communes?.map((commune) => (
-                        <Link
-                          key={commune.name}
-                          href={`/zones-intervention/${slugify(commune.name)}`}
-                          className="rounded-lg border border-neutral-200 dark:border-divider bg-neutral-50 dark:bg-content2 px-3 py-1.5 text-sm font-medium text-neutral-700 dark:text-default-600 transition-all duration-200 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 hover:shadow-md"
-                        >
-                          {commune.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </LazyMotionDiv>
-                );
-              })}
+              {zones.map((group, index) => (
+                <FeatureCard
+                  key={group.id}
+                  icon="MapPin"
+                  title={group.zone}
+                  description=""
+                  gradient={group.gradient || "from-blue-500 to-cyan-500"}
+                  index={index}
+                  className="[&_.feature-card-items]:mt-4"
+                >
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {group.communes?.map((commune) => (
+                      <Link
+                        key={commune.name}
+                        href={`/zones-intervention/${slugify(commune.name)}`}
+                        className="rounded-lg border border-neutral-200 dark:border-divider bg-neutral-50 dark:bg-content2 px-3 py-1.5 text-sm font-medium text-neutral-700 dark:text-default-600 transition-all duration-200 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 hover:shadow-md"
+                      >
+                        {commune.name}
+                      </Link>
+                    ))}
+                  </div>
+                </FeatureCard>
+              ))}
             </div>
           </div>
 
@@ -182,12 +166,12 @@ export default function ZonesPageContent({
               className="flex flex-wrap justify-center gap-3"
             >
               {[
-                'Saône-et-Loire (71)',
-                'Jura (39)',
-                'Rhône (69)',
-                'Isère (38)',
-                'Savoie (73)',
-                'Haute-Savoie (74)',
+                "Saône-et-Loire (71)",
+                "Jura (39)",
+                "Rhône (69)",
+                "Isère (38)",
+                "Savoie (73)",
+                "Haute-Savoie (74)",
               ].map((dept) => (
                 <div
                   key={dept}
@@ -213,22 +197,22 @@ export default function ZonesPageContent({
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {[
                 {
-                  title: 'Réactivité Maximale',
-                  icon: 'Zap',
+                  title: "Réactivité Maximale",
+                  icon: "Zap",
                   description:
-                    'Intervention rapide en cas de panne ou de besoin de maintenance.',
+                    "Intervention rapide en cas de panne ou de besoin de maintenance.",
                 },
                 {
-                  title: 'Connaissance du Terrain',
-                  icon: 'Map',
+                  title: "Connaissance du Terrain",
+                  icon: "Map",
                   description:
-                    'Maîtrise des spécificités climatiques et administratives locales.',
+                    "Maîtrise des spécificités climatiques et administratives locales.",
                 },
                 {
-                  title: 'Relation de Confiance',
-                  icon: 'Heart',
+                  title: "Relation de Confiance",
+                  icon: "Heart",
                   description:
-                    'Un interlocuteur unique et disponible près de chez vous.',
+                    "Un interlocuteur unique et disponible près de chez vous.",
                 },
               ].map((advantage, index) => (
                 <FeatureCard
@@ -247,14 +231,14 @@ export default function ZonesPageContent({
           <CTASection
             title="Votre Projet Solaire Commence Ici"
             description="Vérifiez si vous êtes dans notre zone d'intervention et demandez votre devis gratuit"
-            phoneNumber={siteSettings.contactPhone || '07 81 25 11 25'}
+            phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
             primaryButton={{
-              text: 'Demander un devis gratuit',
-              href: '/contact#contact-form',
+              text: "Demander un devis gratuit",
+              href: "/contact#contact-form",
             }}
             secondaryButton={{
-              text: 'Découvrir nos services',
-              href: '/services',
+              text: "Découvrir nos services",
+              href: "/services",
             }}
             variant="gradient"
           />

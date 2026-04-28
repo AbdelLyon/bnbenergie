@@ -1,17 +1,18 @@
-'use client';
+"use client";
 
 import {
   Title,
   PageHeader,
+  PageMainWrapper,
   SectionContainer,
   CTASection,
   FeatureCard,
   IntroSection,
   StatsGrid,
-} from '@/components';
-import { LazyMotionDiv } from '@/components/LazyComponents';
-import { SiteSetting } from '@/payload-types';
-import Link from 'next/link';
+} from "@/components";
+import { LazyMotionDiv } from "@/components/LazyComponents";
+import { SiteSetting } from "@/payload-types";
+import Link from "next/link";
 
 interface CityGroup {
   gradient?: string;
@@ -32,22 +33,22 @@ interface CityPageContentProps {
 
 const WHY_LOCAL_ITEMS = [
   {
-    icon: 'MapPin',
-    title: 'Proximité & Réactivité',
+    icon: "MapPin",
+    title: "Proximité & Réactivité",
     description:
       "Basés dans l'Ain, nous intervenons rapidement pour l'installation et le SAV. Un interlocuteur unique proche de chez vous.",
   },
   {
-    icon: 'ShieldCheck',
-    title: 'Garanties Locales',
+    icon: "ShieldCheck",
+    title: "Garanties Locales",
     description:
-      'Toutes nos assurances et garanties sont valables en France. Nous connaissons les spécificités climatiques de la région.',
+      "Toutes nos assurances et garanties sont valables en France. Nous connaissons les spécificités climatiques de la région.",
   },
   {
-    icon: 'Users',
-    title: 'Accompagnement',
+    icon: "Users",
+    title: "Accompagnement",
     description:
-      'Nous gérons toutes les démarches administratives (Mairie, Enedis, Consuel) pour vous simplifier la vie.',
+      "Nous gérons toutes les démarches administratives (Mairie, Enedis, Consuel) pour vous simplifier la vie.",
   },
 ];
 
@@ -58,10 +59,11 @@ export default function CityPageContent({
   relatedCities = [],
 }: CityPageContentProps) {
   return (
-    <main className="min-h-screen bg-linear-to-b from-white via-gray-50/30 to-white dark:from-background dark:via-content1 dark:to-background">
+    <PageMainWrapper variant="teal">
       <PageHeader variant="simple" height="medium">
         <Title
-          title={['Installation', `à ${cityName}`]}
+          staticText="Installation"
+          animatedText={`à ${cityName}`}
           subtitle="Votre expert photovoltaïque local"
         />
         <p className="max-w-4xl px-4 text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl">
@@ -76,22 +78,22 @@ export default function CityPageContent({
         <StatsGrid
           stats={[
             {
-              value: 'Local',
+              value: "Local",
               label: `Intervention à ${cityName}`,
-              icon: 'MapPin',
-              gradient: cityGroup?.gradient || 'from-blue-500 to-cyan-500',
+              icon: "MapPin",
+              gradient: cityGroup?.gradient || "from-blue-500 to-cyan-500",
             },
             {
-              value: '< 30 min',
+              value: "< 30 min",
               label: "Temps d'Intervention",
-              icon: 'Clock',
-              gradient: 'from-blue-500 to-cyan-500',
+              icon: "Clock",
+              gradient: "from-blue-500 to-cyan-500",
             },
             {
-              value: 'RGE',
-              label: 'Certifié QualiPV',
-              icon: 'Award',
-              gradient: 'from-blue-500 to-cyan-500',
+              value: "RGE",
+              label: "Certifié QualiPV",
+              icon: "Award",
+              gradient: "from-blue-500 to-cyan-500",
             },
           ]}
         />
@@ -110,7 +112,7 @@ export default function CityPageContent({
               className="absolute inset-0"
               style={{
                 backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                backgroundSize: '32px 32px',
+                backgroundSize: "32px 32px",
               }}
             />
           </div>
@@ -136,7 +138,7 @@ export default function CityPageContent({
                 icon={item.icon}
                 title={item.title}
                 description={item.description}
-                gradient={cityGroup?.gradient || 'from-blue-500 to-cyan-500'}
+                gradient={cityGroup?.gradient || "from-blue-500 to-cyan-500"}
                 index={index}
               />
             ))}
@@ -195,7 +197,10 @@ export default function CityPageContent({
               ))}
             </div>
             <p className="mt-4 text-center text-xs text-neutral-500 dark:text-neutral-500">
-              <Link href="/zones-intervention" className="font-medium hover:text-amber-600 dark:hover:text-amber-400 hover:underline">
+              <Link
+                href="/zones-intervention"
+                className="font-medium hover:text-amber-600 dark:hover:text-amber-400 hover:underline"
+              >
                 Voir toutes nos zones d&apos;intervention →
               </Link>
             </p>
@@ -208,16 +213,16 @@ export default function CityPageContent({
           description="Demandez votre devis gratuit et sans engagement. Nous nous déplaçons chez vous pour étudier votre projet."
           phoneNumber={siteSettings.contactPhone}
           primaryButton={{
-            text: 'Demander mon devis gratuit',
-            href: '/contact#contact-form',
+            text: "Demander mon devis gratuit",
+            href: "/contact#contact-form",
           }}
           secondaryButton={{
-            text: 'Nos garanties RGE',
-            href: '/garanties',
+            text: "Nos garanties RGE",
+            href: "/garanties",
           }}
           variant="gradient"
         />
       </SectionContainer>
-    </main>
+    </PageMainWrapper>
   );
 }

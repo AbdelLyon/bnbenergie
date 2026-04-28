@@ -4,12 +4,12 @@ export const ANIMATION_DURATIONS = {
   carousel: 5000,
   scroll: 500,
   instant: 0.15,
-  fast: 0.3,
-  normal: 0.4,
-  medium: 0.5,
-  slow: 0.6,
-  slower: 0.8,
-  slowest: 1.0,
+  fast: 0.2,
+  normal: 0.25,
+  medium: 0.3,
+  slow: 0.35,
+  slower: 0.4,
+  slowest: 0.5,
 } as const;
 
 /**
@@ -17,22 +17,22 @@ export const ANIMATION_DURATIONS = {
  */
 export const SPACING = {
   section: {
-    py: 'py-4 md:py-10 lg:py-14',
-    px: 'px-4 sm:px-6 lg:px-8',
+    py: "py-16 md:py-24 lg:py-32",
+    px: "px-4 sm:px-6 lg:px-8",
   },
   header: {
-    mb: 'mb-6 md:mb-10 lg:mb-12',
+    mb: "mb-8 md:mb-12 lg:mb-16",
   },
   card: {
-    p: 'p-6 md:p-8',
-    gap: 'gap-4 md:gap-6',
+    p: "p-6 md:p-8 lg:p-10",
+    gap: "gap-4 md:gap-6 lg:gap-8",
   },
   grid: {
-    gap: 'gap-4 lg:gap-6',
+    gap: "gap-6 lg:gap-8 xl:gap-10",
   },
   content: {
-    mb: 'mb-4 md:mb-6',
-    mt: 'mt-4 md:mt-6',
+    mb: "mb-6 md:mb-8 lg:mb-10",
+    mt: "mt-6 md:mt-8 lg:mt-10",
   },
 } as const;
 
@@ -46,22 +46,22 @@ export const SPACING = {
 export const TRANSITIONS = {
   // Spring physics - natural, bouncy motion
   smooth: {
-    type: 'spring',
+    type: "spring",
     stiffness: 100,
     damping: 15,
   },
   snappy: {
-    type: 'spring',
+    type: "spring",
     stiffness: 200,
     damping: 20,
   },
   gentle: {
-    type: 'spring',
+    type: "spring",
     stiffness: 80,
     damping: 12,
   },
   bounce: {
-    type: 'spring',
+    type: "spring",
     bounce: 0.4,
   },
 

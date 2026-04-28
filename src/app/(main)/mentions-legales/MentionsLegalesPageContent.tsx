@@ -1,88 +1,88 @@
-'use client';
+"use client";
 
 import {
   PageHeader,
   PageMainWrapper,
   SectionContainer,
   Title,
-} from '@/components';
-import { LazyMotionDiv } from '@/components/LazyComponents';
-import { Building2, Globe } from 'lucide-react';
+} from "@/components";
+import { LazyMotionDiv } from "@/components/LazyComponents";
+import { Building2, Globe } from "lucide-react";
 
 export default function MentionsLegalesPageContent() {
   const sections = [
     {
       icon: Building2,
-      title: 'Éditeur du Site',
-      gradient: 'from-blue-500 to-cyan-500',
+      title: "Éditeur du Site",
+      gradient: "from-blue-500 to-cyan-500",
       content: [
-        { label: 'Raison sociale', value: 'BNB ENERGIE SAS' },
+        { label: "Raison sociale", value: "BNB ENERGIE SAS" },
         {
-          label: 'Forme juridique',
-          value: 'Société par Actions Simplifiée (SAS)',
+          label: "Forme juridique",
+          value: "Société par Actions Simplifiée (SAS)",
         },
-        { label: 'Capital social', value: '100,00 €' },
+        { label: "Capital social", value: "100,00 €" },
         {
-          label: 'Siège social',
-          value: '2159 route Nationale 75, 01250 TOSSIAT, France',
+          label: "Siège social",
+          value: "2159 route Nationale 75, 01250 TOSSIAT, France",
         },
-        { label: 'SIREN', value: '951 599 760' },
-        { label: 'SIRET', value: '951 599 760 00026' },
-        { label: 'Numéro de TVA', value: 'FR52951599760' },
-        { label: 'RCS', value: '951 599 760 R.C.S. Bourg-en-Bresse' },
+        { label: "SIREN", value: "951 599 760" },
+        { label: "SIRET", value: "951 599 760 00026" },
+        { label: "Numéro de TVA", value: "FR52951599760" },
+        { label: "RCS", value: "951 599 760 R.C.S. Bourg-en-Bresse" },
       ],
     },
     {
       icon: Globe,
-      title: 'Directeur & Hébergement',
-      gradient: 'from-purple-500 to-pink-500',
+      title: "Directeur & Hébergement",
+      gradient: "from-purple-500 to-pink-500",
       content: [
-        { label: 'Nom', value: 'Représentant légal de BNB ENERGIE SAS' },
-        { label: 'Responsable de la rédaction', value: 'BNB ENERGIE' },
-        { label: 'Téléphone', value: '07 81 25 11 25' },
-        { label: 'Email', value: 'bnbenergie@gmail.com' },
-        { label: 'Hébergeur', value: 'Vercel Inc.' },
+        { label: "Nom", value: "Représentant légal de BNB ENERGIE SAS" },
+        { label: "Responsable de la rédaction", value: "BNB ENERGIE" },
+        { label: "Téléphone", value: "07 81 25 11 25" },
+        { label: "Email", value: "bnbenergie@gmail.com" },
+        { label: "Hébergeur", value: "Vercel Inc." },
         {
-          label: 'Adresse',
-          value: '440 N Barranca Avenue #4133, Covina, CA 91723, États-Unis',
+          label: "Adresse",
+          value: "440 N Barranca Avenue #4133, Covina, CA 91723, États-Unis",
         },
-        { label: 'Email hébergeur', value: 'privacy@vercel.com' },
-        { label: 'Site web', value: 'https://vercel.com' },
+        { label: "Email hébergeur", value: "privacy@vercel.com" },
+        { label: "Site web", value: "https://vercel.com" },
       ],
     },
   ];
 
   const legalSections = [
     {
-      title: 'Propriété intellectuelle',
+      title: "Propriété intellectuelle",
       content: `Tout le contenu du site www.bnbenergie.fr est protégé par le droit d’auteur, le droit des marques et le droit des bases de données. Toute reproduction ou utilisation sans autorisation est interdite.`,
     },
     {
-      title: 'Protection des données personnelles',
+      title: "Protection des données personnelles",
       content: `Conformément au RGPD et à la loi Informatique et Libertés, vous disposez d’un droit d’accès, de rectification, d’effacement et de portabilité de vos données. Pour exercer vos droits, contactez-nous par email : bnbenergie@gmail.com ou par courrier : 2159 route Nationale 75, 01250 TOSSIAT.`,
     },
     {
-      title: 'Cookies',
+      title: "Cookies",
       content: `Le site utilise des cookies pour améliorer l’expérience utilisateur et réaliser des statistiques de visites. Vous pouvez configurer votre navigateur pour refuser les cookies.`,
     },
     {
-      title: 'Responsabilité',
+      title: "Responsabilité",
       content: `BNB ENERGIE s’efforce d’assurer la disponibilité du site 24h/24, 7j/7. Elle ne saurait être tenue responsable des interruptions temporaires ou des dommages directs/indirects.`,
     },
     {
-      title: 'Droit applicable et juridiction',
+      title: "Droit applicable et juridiction",
       content: `Les présentes mentions légales sont régies par le droit français. En cas de litige, le tribunal compétent sera celui du ressort de la société.`,
     },
     {
-      title: 'Activité professionnelle',
+      title: "Activité professionnelle",
       content: `Installation et maintenance de panneaux solaires, conseil en énergie renouvelable, accompagnement administratif.`,
     },
     {
-      title: 'Crédits',
+      title: "Crédits",
       content: `Création du site web : BNB ENERGIE. Photographies : BNB ENERGIE et banques d’images libres de droits.`,
     },
     {
-      title: 'Modification des mentions légales',
+      title: "Modification des mentions légales",
       content: `BNB ENERGIE se réserve le droit de modifier les présentes mentions légales à tout moment.`,
     },
   ];
@@ -91,7 +91,8 @@ export default function MentionsLegalesPageContent() {
     <PageMainWrapper variant="transparent">
       <PageHeader variant="simple" height="medium">
         <Title
-          title={['Mentions', 'légales']}
+          staticText="Mentions"
+          animatedText="légales"
           subtitle="Informations légales et éditoriales"
         />
         <p className="max-w-4xl px-4 text-base text-white/80 sm:text-lg md:text-xl leading-relaxed">
@@ -121,8 +122,8 @@ export default function MentionsLegalesPageContent() {
                     className="absolute inset-0"
                     style={{
                       backgroundImage:
-                        'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)',
-                      backgroundSize: '32px 32px',
+                        "radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)",
+                      backgroundSize: "32px 32px",
                     }}
                   />
                 </div>

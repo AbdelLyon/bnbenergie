@@ -1,4 +1,5 @@
 import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
+import { BreadcrumbStructuredData } from '@/components/shared/SEO/StructuredData';
 import GarantiesPageContent from './GarantiesPageContent';
 import {
   getWarrantiesByCategory,
@@ -35,10 +36,16 @@ export default async function GarantiesPage() {
   ]);
 
   return (
-    <GarantiesPageContent
-      warranties={warranties}
-      header={header}
-      siteSettings={siteSettings}
-    />
+    <>
+      <GarantiesPageContent
+        warranties={warranties}
+        header={header}
+        siteSettings={siteSettings}
+      />
+      <BreadcrumbStructuredData items={[
+        { name: 'Accueil', path: '/' },
+        { name: 'Garanties & Certifications', path: '/garanties' },
+      ]} />
+    </>
   );
 }

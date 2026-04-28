@@ -1,89 +1,26 @@
-'use client';
+"use client";
 
 import type {
   Faq,
   PageHeader as PageHeaderType,
   SiteSetting,
-} from '@/payload-types';
+} from "@/payload-types";
 import {
   CTASection,
+  FAQItem,
   PageHeader,
   PageMainWrapper,
   SectionContainer,
   StatCard,
   Title,
-} from '@/components';
-import { LazyMotionDiv, LazyMotionP } from '@/components/LazyComponents';
-import type { FC, SVGProps } from 'react';
-import { useState } from 'react';
-import { getLucideIcon } from '@/utils/getLucideIcon';
-import { ChevronDown } from 'lucide-react';
+} from "@/components";
+import { LazyMotionDiv, LazyMotionP } from "@/components/LazyComponents";
 
 interface FAQPageContentProps {
   faqs: Faq[];
   header: PageHeaderType | null;
   siteSettings: SiteSetting;
 }
-
-const categoryIcons: Record<string, string> = {
-  'Prix & Budget': 'DollarSign',
-  'Aides & Financement': 'Gift',
-  Installation: 'Wrench',
-  Rentabilité: 'LineChart',
-  'Notre Entreprise': 'Building',
-  Dimensionnement: 'Zap',
-  Entretien: 'Brush',
-  Devis: 'FileText',
-  Production: 'Sun',
-  Technique: 'Home',
-};
-
-const FAQItem: FC<{ faq: Faq }> = ({ faq }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const iconName: string = faq.category
-    ? categoryIcons[faq.category] || 'HelpCircle'
-    : 'HelpCircle';
-  const Icon: FC<SVGProps<SVGSVGElement>> = getLucideIcon(iconName);
-
-  return (
-    <div className="shadow-md hover:shadow-lg transition-shadow duration-300 rounded-2xl border  border-neutral-100 dark:border-white/5 bg-white dark:bg-content1 group">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-4 py-4 text-left flex items-center justify-between gap-4 cursor-pointer"
-        aria-expanded={isOpen}
-        aria-label={faq.question}
-      >
-        <div className="flex items-start gap-2 cusor-pointer flex-1">
-          <span className="shrink-0 text-xl transition-transform duration-200 ease-out group-hover:scale-110 lg:text-2xl">
-            <Icon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-          </span>
-          <div className="flex-1">
-            <div className="text-sm font-semibold text-blue-600 dark:text-blue-400">
-              {faq.category}
-            </div>
-            <h3 className="text-base font-bold transition-colors duration-200 ease-out group-hover:opacity-70  md:text-lg">
-              {faq.question}
-            </h3>
-          </div>
-        </div>
-        <ChevronDown
-          className={`h-5 w-5 text-gray-500 cursor-pointer dark:text-gray-400 transition-transform duration-200 shrink-0 ${
-            isOpen ? 'rotate-180' : ''
-          }`}
-        />
-      </button>
-      <div
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? 'max-h-125 opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <p className="text-gray-700 px-4 pb-4 dark:text-gray-300">
-          {faq.answer}
-        </p>
-      </div>
-    </div>
-  );
-};
 
 // ------------------- Composant principal -------------------
 export default function FAQPageContent({
@@ -92,12 +29,12 @@ export default function FAQPageContent({
   siteSettings,
 }: FAQPageContentProps) {
   const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
     mainEntity: faqs.map((faq) => ({
-      '@type': 'Question',
+      "@type": "Question",
       name: faq.question,
-      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
     })),
   };
 
@@ -111,8 +48,9 @@ export default function FAQPageContent({
 
         <PageHeader variant="simple" height="medium">
           <Title
-            title={header?.title.split(' ') || ['Questions Fréquentes']}
-            subtitle={header?.subtitle || ''}
+            staticText={header?.title.split(" ")[0] || "Questions"}
+            animatedText={header?.title.split(" ")[1] || "Fréquentes"}
+            subtitle={header?.subtitle || ""}
           />
 
           <LazyMotionP
@@ -121,7 +59,7 @@ export default function FAQPageContent({
             transition={{ duration: 0.3, delay: 0.15 }}
             className="max-w-4xl px-4 text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
           >
-            {header?.description || ''}
+            {header?.description || ""}
           </LazyMotionP>
         </PageHeader>
 
@@ -131,15 +69,15 @@ export default function FAQPageContent({
               {[
                 {
                   value: faqs.length.toString(),
-                  label: 'Questions',
-                  icon: 'HelpCircle',
+                  label: "Questions",
+                  icon: "HelpCircle",
                 },
                 {
-                  value: '100%',
-                  label: 'Réponses Détaillées',
-                  icon: 'CheckCircle2',
+                  value: "100%",
+                  label: "Réponses Détaillées",
+                  icon: "CheckCircle2",
                 },
-                { value: '24/7', label: 'Support Disponible', icon: 'Zap' },
+                { value: "24/7", label: "Support Disponible", icon: "Zap" },
               ].map((stat, index) => (
                 <StatCard
                   key={stat.label}
@@ -162,7 +100,12 @@ export default function FAQPageContent({
           >
             <div className="px-2 space-y-3">
               {faqs.map((faq) => (
-                <FAQItem key={faq.id} faq={faq} />
+                <FAQItem
+                  key={faq.id}
+                  question={faq.question}
+                  answer={faq.answer}
+                  category={faq.category || undefined}
+                />
               ))}
             </div>
           </LazyMotionDiv>
@@ -170,10 +113,10 @@ export default function FAQPageContent({
           <CTASection
             title="Vous ne trouvez pas votre réponse ?"
             description="Notre équipe d'experts est à votre disposition pour répondre à toutes vos questions sur votre projet de panneaux solaires."
-            phoneNumber={siteSettings.contactPhone || '07 81 25 11 25'}
+            phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
             primaryButton={{
-              text: 'Demander mon devis',
-              href: '/contact#contact-form',
+              text: "Demander mon devis",
+              href: "/contact#contact-form",
             }}
           />
         </SectionContainer>

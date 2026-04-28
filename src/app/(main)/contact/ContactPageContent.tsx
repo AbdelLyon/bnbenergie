@@ -1,22 +1,22 @@
-'use client';
+"use client";
 
-import { useActionState } from 'react';
-import { sendContactEmail } from '@/actions/contact';
+import { useActionState } from "react";
+import { sendContactEmail } from "@/actions/contact";
 import type {
   PageHeader as PageHeaderType,
   SiteSetting,
-} from '@/payload-types';
+} from "@/payload-types";
 import {
   PageHeader,
   PageMainWrapper,
   SectionContainer,
   Title,
-} from '@/components';
-import { ContactForm } from './components/ContactForm';
-import { ContactInfo } from './components/ContactInfo';
-import { ContactMap } from './components/ContactMap';
-import { SuccessMessage } from './components/SuccessMessage';
-import { LazyMotionDiv, LazyMotionP } from '@/components/LazyComponents';
+} from "@/components";
+import { ContactForm } from "./components/ContactForm";
+import { ContactInfo } from "./components/ContactInfo";
+import { ContactMap } from "./components/ContactMap";
+import { SuccessMessage } from "./components/SuccessMessage";
+import { LazyMotionDiv, LazyMotionP } from "@/components/LazyComponents";
 
 interface ContactPageContentProps {
   header: PageHeaderType | null;
@@ -25,7 +25,7 @@ interface ContactPageContentProps {
 
 const initialState = {
   success: false,
-  message: '',
+  message: "",
   errors: {},
 };
 
@@ -35,46 +35,48 @@ export default function ContactPageContent({
 }: ContactPageContentProps) {
   const [state, formAction, isPending] = useActionState(
     sendContactEmail,
-    initialState
+    initialState,
   );
 
   const contactInfoItems = [
     {
-      icon: 'Phone',
-      label: 'TÉLÉPHONE',
-      value: siteSettings.contactPhone || '07 81 25 11 25',
+      icon: "Phone",
+      label: "TÉLÉPHONE",
+      value: siteSettings.contactPhone || "07 81 25 11 25",
       href: `tel:${
-        siteSettings.contactPhone?.replace(/\s/g, '') || '0781251125'
+        siteSettings.contactPhone?.replace(/\s/g, "") || "0781251125"
       }`,
-      description: 'Du lundi au vendredi, 8h-19h',
+      description: "Du lundi au vendredi, 8h-19h",
     },
     {
-      icon: 'Mail',
-      label: 'EMAIL',
-      value: siteSettings.contactEmail || 'contact@bnb-energie.fr',
-      href: `mailto:${siteSettings.contactEmail || 'contact@bnb-energie.fr'}`,
-      description: 'Réponse sous 24h ouvrées',
+      icon: "Mail",
+      label: "EMAIL",
+      value: siteSettings.contactEmail || "contact@bnb-energie.fr",
+      href: `mailto:${siteSettings.contactEmail || "contact@bnb-energie.fr"}`,
+      description: "Réponse sous 24h ouvrées",
     },
     {
-      icon: 'MapPin',
-      label: 'ADRESSE',
+      icon: "MapPin",
+      label: "ADRESSE",
       value: siteSettings.addressStreet
         ? `${siteSettings.addressStreet}, ${siteSettings.addressZip} ${siteSettings.addressCity}`
-        : 'Bourg-en-Bresse, Ain (01)',
+        : "Bourg-en-Bresse, Ain (01)",
       description: "Intervention dans tout l'Ain (01)",
     },
   ];
 
   const mapAddress = siteSettings.addressStreet
     ? `${siteSettings.addressStreet}, ${siteSettings.addressZip} ${siteSettings.addressCity}`
-    : 'Bourg-en-Bresse, Ain (01)';
+    : "Bourg-en-Bresse, Ain (01)";
 
   return (
     <PageMainWrapper variant="teal">
       <PageHeader variant="simple" height="medium">
         <Title
-          title={header?.title.split(' ') ?? ['Contactez-nous']}
-          subtitle={header?.subtitle ?? ''}
+          staticText={header?.title.split("-")?.[0] || "Contactez"}
+          animatedText={`-${header?.title.split("-")?.[1] || "-nous"}`}
+          subtitle={header?.subtitle ?? ""}
+          spaceX=""
         />
 
         <LazyMotionP
@@ -83,7 +85,7 @@ export default function ContactPageContent({
           transition={{ duration: 0.3, delay: 0.15 }}
           className="max-w-4xl px-4 text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
         >
-          {header?.description || ''}
+          {header?.description || ""}
         </LazyMotionP>
       </PageHeader>
 
@@ -150,13 +152,13 @@ export default function ContactPageContent({
           </LazyMotionDiv>
         </SectionContainer>
 
-      <div className="w-full h-125 relative z-0">
-        <ContactMap
-          latitude={parseFloat(siteSettings.geoLatitude || '46.2059')}
-          longitude={parseFloat(siteSettings.geoLongitude || '5.2255')}
-          address={mapAddress}
-        />
-      </div>
+        <div className="w-full h-125 relative z-0">
+          <ContactMap
+            latitude={parseFloat(siteSettings.geoLatitude || "46.2059")}
+            longitude={parseFloat(siteSettings.geoLongitude || "5.2255")}
+            address={mapAddress}
+          />
+        </div>
       </div>
     </PageMainWrapper>
   );

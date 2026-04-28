@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
 import {
   LazyMotionDiv,
   LazyMotionH3,
   LazyMotionP,
-} from '@/components/LazyComponents';
-import Link from 'next/link';
+} from "@/components/LazyComponents";
+import Link from "next/link";
 
 interface BenefitsCTAProps {
   title: string;
@@ -22,10 +22,10 @@ export function BenefitsCTA({
 }: BenefitsCTAProps) {
   return (
     <LazyMotionDiv
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+      initial={{ opacity: 0, x: 15 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-20px" }}
+      transition={{ duration: 0.35, delay: 0.15 }}
     >
       <div className="from-primary-800 to-primary-900 shadow-primary-500/30 relative overflow-hidden rounded-3xl bg-linear-to-br p-10 text-white shadow-2xl md:p-12">
         <div className="absolute inset-0 opacity-10">
@@ -33,17 +33,17 @@ export function BenefitsCTA({
             className="absolute inset-0"
             style={{
               backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-              backgroundSize: '50px 50px',
+              backgroundSize: "50px 50px",
             }}
           />
         </div>
 
         <div className="relative z-10">
           <LazyMotionH3
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.5 }}
+            transition={{ delay: 0.2, duration: 0.3 }}
             className="mb-6 text-3xl font-black drop-shadow-lg md:text-4xl"
           >
             {title}
@@ -52,7 +52,7 @@ export function BenefitsCTA({
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.5 }}
+            transition={{ delay: 0.25, duration: 0.3 }}
             className="mb-10 text-lg text-white/90 drop-shadow"
           >
             {description}
@@ -86,11 +86,11 @@ export function BenefitsCTA({
 
         <div
           className="absolute -right-10 -bottom-10 h-60 w-60 animate-pulse rounded-full bg-white/10 blur-3xl"
-          style={{ animationDuration: '4s' }}
+          style={{ animationDuration: "4s" }}
         />
         <div
           className="bg-accent-400/20 absolute -top-10 -left-10 h-60 w-60 animate-pulse rounded-full blur-3xl"
-          style={{ animationDuration: '5s', animationDelay: '1s' }}
+          style={{ animationDuration: "5s", animationDelay: "1s" }}
         />
       </div>
     </LazyMotionDiv>

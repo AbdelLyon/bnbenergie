@@ -1,4 +1,5 @@
 import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
+import { BreadcrumbStructuredData } from '@/components/shared/SEO/StructuredData';
 import ZonesPageContent from './ZonesPageContent';
 import {
   getInterventionZones,
@@ -36,10 +37,16 @@ export default async function ZonesInterventionPage() {
   ]);
 
   return (
-    <ZonesPageContent
-      zones={zones}
-      header={header}
-      siteSettings={siteSettings}
-    />
+    <>
+      <ZonesPageContent
+        zones={zones}
+        header={header}
+        siteSettings={siteSettings}
+      />
+      <BreadcrumbStructuredData items={[
+        { name: 'Accueil', path: '/' },
+        { name: "Zones d'Intervention", path: '/zones-intervention' },
+      ]} />
+    </>
   );
 }

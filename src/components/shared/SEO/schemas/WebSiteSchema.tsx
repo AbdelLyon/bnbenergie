@@ -14,15 +14,7 @@ export async function WebSiteStructuredData() {
       "Installateur panneaux solaires photovoltaïques à Bourg-en-Bresse et dans l'Ain (01). Entreprise RGE QualiPV certifiée. Devis gratuit 48h.",
     inLanguage: 'fr-FR',
     publisher: {
-      '@id': siteConfig.domain,
-    },
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${siteConfig.domain}/?s={search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
+      '@id': `${siteConfig.domain}/#organization`,
     },
   };
 

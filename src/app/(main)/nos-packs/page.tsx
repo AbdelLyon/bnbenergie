@@ -2,7 +2,7 @@ import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
 import { Metadata } from 'next';
 import { getPageHeader, getSiteSettings } from '@/lib/payload-queries';
 import NosPacksPageContent from './NosPacksPageContent';
-import { PricingStructuredData } from '@/components/shared/SEO/StructuredData';
+import { PricingStructuredData, BreadcrumbStructuredData } from '@/components/shared/SEO/StructuredData';
 import { Pricing } from '@/app/(main)/_components/Pricing/Pricing';
 
 export const revalidate = 60;
@@ -37,6 +37,10 @@ export default async function NosPacksPage() {
         <Pricing />
       </NosPacksPageContent>
       <PricingStructuredData />
+      <BreadcrumbStructuredData items={[
+        { name: 'Accueil', path: '/' },
+        { name: 'Nos Packs', path: '/nos-packs' },
+      ]} />
     </>
   );
 }

@@ -11,4 +11,7 @@ export {
   OrganizationStructuredData,
   ServiceStructuredData,
   PricingStructuredData,
+  FAQStructuredData,
+  BreadcrumbStructuredData,
 } from './schemas';
+export type { BreadcrumbItem } from './schemas';

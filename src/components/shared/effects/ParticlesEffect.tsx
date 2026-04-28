@@ -1,138 +1,133 @@
-'use client';
+"use client";
 
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useRef, useMemo } from 'react';
-import * as THREE from 'three';
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useRef, useMemo } from "react";
+import * as THREE from "three";
 
-// ============================================================================
-// CONSTANTES DE CONFIGURATION
-// ============================================================================
+const PARTICLE_COUNT = 280;
+const FIELD_RADIUS = 28;
+const FIELD_DEPTH = 120;
+const BASE_SPEED = 2.2;
+const CAMERA_Z = 6;
 
-// StarField constants
-const STAR_COUNT = 800;
-const STAR_BASE_RADIUS = 15;
-const STAR_RADIUS_VARIANCE = 20;
-const STAR_SIZE_MIN = 0.2;
-const STAR_SIZE_MAX = 0.5;
-const STAR_ROTATION_Y_SPEED = 0.01;
-const STAR_ROTATION_X_SPEED = 0.005;
-const STAR_OPACITY = 0.6;
-const STAR_SIZE = 0.3;
+const STREAK_COUNT = 18;
 
-// ParticleWeb constants
-const PARTICLE_DENSITY = 12000;
-const RING_PARTICLE_RATIO = 0.2;
-const PLANET_RADIUS = 5;
-const RING_INNER_RADIUS = 6;
-const RING_OUTER_RADIUS = 8;
-const RING_TILT_ANGLE = Math.PI / 6;
-const RING_THICKNESS_VARIANCE = 0.3;
-const CONNECT_DISTANCE = 1.5;
-const LINE_OPACITY = 0.18;
-const GLOW_SCALE = 1.3;
-const SPHERE_WIREFRAME_OPACITY = 0.08;
+function SpaceDrift() {
+  const ref = useRef<THREE.Points>(null);
 
-// Animation constants
-const PULSE_SPEED_PRIMARY = 0.4;
-const PULSE_AMPLITUDE_PRIMARY = 0.08;
-const PULSE_SPEED_SECONDARY = 0.65;
-const PULSE_AMPLITUDE_SECONDARY = 0.05;
-const ROTATION_SPEED_X = 0.05;
-const ROTATION_SPEED_Y = 0.08;
-const ROTATION_SPEED_Z = 0.03;
-const INDIVIDUAL_PULSE_AMPLITUDE = 0.2;
-const FLOAT_MULTIPLIER = 2.5;
+  const { positions, colors, baseSizes, speeds } = useMemo(() => {
+    const positions = new Float32Array(PARTICLE_COUNT * 3);
+    const colors = new Float32Array(PARTICLE_COUNT * 3);
+    const baseSizes = new Float32Array(PARTICLE_COUNT);
+    const speeds = new Float32Array(PARTICLE_COUNT);
 
-interface ParticleData {
-  baseX: number;
-  baseY: number;
-  baseZ: number;
-  size: number;
-  color: THREE.Color;
-  floatSpeed: number;
-  floatRange: number;
-  pulsePhase: number;
-}
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const radius = Math.sqrt(Math.random()) * FIELD_RADIUS;
+      positions[i * 3] = Math.cos(angle) * radius;
+      positions[i * 3 + 1] = Math.sin(angle) * radius;
+      positions[i * 3 + 2] = -(Math.random() * FIELD_DEPTH);
 
-// Composant pour les étoiles en arrière-plan
-function StarField() {
-  const starsRef = useRef<THREE.Points>(null);
-
-  const starGeometry = useMemo(() => {
-    const positions = new Float32Array(STAR_COUNT * 3);
-    const colors = new Float32Array(STAR_COUNT * 3);
-    const sizes = new Float32Array(STAR_COUNT);
-
-    for (let i = 0; i < STAR_COUNT; i++) {
-      // Distribution sphérique éloignée
-      const radius = STAR_BASE_RADIUS + Math.random() * STAR_RADIUS_VARIANCE;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
-
-      positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
-      positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-      positions[i * 3 + 2] = radius * Math.cos(phi);
-
-      // Couleurs variées (blanc, bleu clair, jaune clair)
-      const colorChoice = Math.random();
-      if (colorChoice < 0.7) {
-        colors[i * 3] = 1;
-        colors[i * 3 + 1] = 1;
+      const t = Math.random();
+      if (t < 0.55) {
+        // blanc bleuté
+        colors[i * 3] = 0.88;
+        colors[i * 3 + 1] = 0.94;
         colors[i * 3 + 2] = 1;
-      } else if (colorChoice < 0.85) {
-        colors[i * 3] = 0.8;
-        colors[i * 3 + 1] = 0.9;
+      } else if (t < 0.8) {
+        // bleu cyan
+        colors[i * 3] = 0.3;
+        colors[i * 3 + 1] = 0.65;
         colors[i * 3 + 2] = 1;
       } else {
+        // doré ambré
         colors[i * 3] = 1;
-        colors[i * 3 + 1] = 1;
-        colors[i * 3 + 2] = 0.8;
+        colors[i * 3 + 1] = 0.8;
+        colors[i * 3 + 2] = 0.2;
       }
 
-      sizes[i] = Math.random() * STAR_SIZE_MAX + STAR_SIZE_MIN;
+      baseSizes[i] = Math.random() * 1.6 + 0.4;
+      speeds[i] = Math.random() * 1.5 + 0.5;
     }
 
-    return { positions, colors, sizes };
+    return { positions, colors, baseSizes, speeds };
   }, []);
 
-  useFrame((state) => {
-    if (starsRef.current) {
-      starsRef.current.rotation.y = state.clock.elapsedTime * STAR_ROTATION_Y_SPEED;
-      starsRef.current.rotation.x = state.clock.elapsedTime * STAR_ROTATION_X_SPEED;
+  useFrame((_, dt) => {
+    if (!ref.current) return;
+    const pa = ref.current.geometry.attributes[
+      "position"
+    ] as THREE.BufferAttribute;
+    const sa = ref.current.geometry.attributes["size"] as THREE.BufferAttribute;
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      let z = pa.getZ(i) + (speeds[i] ?? 0) * BASE_SPEED * dt;
+
+      if (z > CAMERA_Z) {
+        const angle = Math.random() * Math.PI * 2;
+        const radius = Math.sqrt(Math.random()) * FIELD_RADIUS;
+        pa.setX(i, Math.cos(angle) * radius);
+        pa.setY(i, Math.sin(angle) * radius);
+        z = -FIELD_DEPTH;
+      }
+
+      pa.setZ(i, z);
+
+      const depth = (z + FIELD_DEPTH) / (FIELD_DEPTH + CAMERA_Z);
+      sa.setX(i, (baseSizes[i] ?? 0) * (0.04 + depth * depth * depth * 3.5));
     }
+
+    pa.needsUpdate = true;
+    sa.needsUpdate = true;
   });
 
+  const tex = useMemo(() => {
+    const cv = document.createElement("canvas");
+    cv.width = cv.height = 64;
+    const ctx = cv.getContext("2d")!;
+    const g = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    g.addColorStop(0, "rgba(255,255,255,1)");
+    g.addColorStop(0.12, "rgba(255,255,255,0.9)");
+    g.addColorStop(0.45, "rgba(255,255,255,0.2)");
+    g.addColorStop(1, "rgba(255,255,255,0)");
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, 64, 64);
+    const t = new THREE.CanvasTexture(cv);
+    t.premultiplyAlpha = true;
+    return t;
+  }, []);
+
   return (
-    <points ref={starsRef}>
+    <points ref={ref}>
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={starGeometry.positions.length / 3}
-          array={starGeometry.positions}
+          count={PARTICLE_COUNT}
+          array={positions}
           itemSize={3}
-          args={[starGeometry.positions, 3]}
+          args={[positions, 3]}
         />
         <bufferAttribute
           attach="attributes-color"
-          count={starGeometry.colors.length / 3}
-          array={starGeometry.colors}
+          count={PARTICLE_COUNT}
+          array={colors}
           itemSize={3}
-          args={[starGeometry.colors, 3]}
+          args={[colors, 3]}
         />
         <bufferAttribute
           attach="attributes-size"
-          count={starGeometry.sizes.length}
-          array={starGeometry.sizes}
+          count={PARTICLE_COUNT}
+          array={baseSizes}
           itemSize={1}
-          args={[starGeometry.sizes, 1]}
+          args={[baseSizes, 1]}
         />
       </bufferGeometry>
       <pointsMaterial
+        map={tex}
         vertexColors
         transparent
-        opacity={STAR_OPACITY}
-        size={STAR_SIZE}
-        sizeAttenuation={true}
+        opacity={0.9}
+        sizeAttenuation
         depthWrite={false}
         blending={THREE.AdditiveBlending}
       />
@@ -140,401 +135,259 @@ function StarField() {
   );
 }
 
-function ParticleWeb() {
-  const groupRef = useRef<THREE.Group>(null);
-  const pointsRef = useRef<THREE.Points>(null);
-  const linesRef = useRef<THREE.LineSegments>(null);
-  const glowRef = useRef<THREE.Mesh>(null);
-  const timeRef = useRef(0);
-  const pulseRef = useRef(1);
+function WarpStreaks() {
+  const ref = useRef<THREE.LineSegments>(null);
 
-  const { size } = useThree();
+  const { positions, colors, speeds, lengths } = useMemo(() => {
+    const positions = new Float32Array(STREAK_COUNT * 6);
+    const colors = new Float32Array(STREAK_COUNT * 6);
+    const speeds = new Float32Array(STREAK_COUNT);
+    const lengths = new Float32Array(STREAK_COUNT);
 
-  const { particles, positions, colors, sizes } = useMemo(() => {
-    const sphereParticleCount = Math.floor((size.width * size.height) / PARTICLE_DENSITY);
-    const ringParticleCount = Math.floor(sphereParticleCount * RING_PARTICLE_RATIO);
-    const particleCount = sphereParticleCount + ringParticleCount;
+    for (let i = 0; i < STREAK_COUNT; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const radius = Math.sqrt(Math.random()) * FIELD_RADIUS * 0.85;
+      const x = Math.cos(angle) * radius;
+      const y = Math.sin(angle) * radius;
+      const z = -(Math.random() * FIELD_DEPTH);
+      const l = Math.random() * 0.9 + 0.15;
 
-    const colorPalette = [
-      new THREE.Color('#22d3ee').multiplyScalar(0.8),
-      new THREE.Color('#3b82f6').multiplyScalar(0.8),
-      new THREE.Color('#10b981').multiplyScalar(0.8),
-      new THREE.Color('#fbbf24').multiplyScalar(0.9),
-      new THREE.Color('#f59e0b').multiplyScalar(0.9),
-    ];
+      positions[i * 6] = x;
+      positions[i * 6 + 1] = y;
+      positions[i * 6 + 2] = z;
+      positions[i * 6 + 3] = x;
+      positions[i * 6 + 4] = y;
+      positions[i * 6 + 5] = z + l;
 
-    const particles: ParticleData[] = [];
-    const positions = new Float32Array(particleCount * 3);
-    const colors = new Float32Array(particleCount * 3);
-    const sizes = new Float32Array(particleCount);
+      const warm = Math.random() < 0.25;
+      const r = warm ? 1 : 0.4,
+        g = warm ? 0.78 : 0.72,
+        b = warm ? 0.15 : 1;
+      colors[i * 6] = r;
+      colors[i * 6 + 1] = g;
+      colors[i * 6 + 2] = b;
+      colors[i * 6 + 3] = r;
+      colors[i * 6 + 4] = g;
+      colors[i * 6 + 5] = b;
 
-    let index = 0;
-
-    // Créer les particules à l'INTÉRIEUR de la sphère (planète)
-    for (let i = 0; i < sphereParticleCount; i++) {
-      // Position aléatoire à l'intérieur de la sphère
-      const u = Math.random();
-      const v = Math.random();
-      const theta = u * 2 * Math.PI;
-      const phi = Math.acos(2 * v - 1);
-      const r = Math.cbrt(Math.random()) * PLANET_RADIUS; // Distribution volumique uniforme
-
-      // Conversion en coordonnées cartésiennes
-      const x = r * Math.sin(phi) * Math.cos(theta);
-      const y = r * Math.sin(phi) * Math.sin(theta);
-      const z = r * Math.cos(phi);
-
-      const rand = Math.random();
-      let colorIndex;
-
-      if (rand < 0.4) {
-        colorIndex = Math.floor(Math.random() * 2);
-      } else if (rand < 0.7) {
-        colorIndex = 3 + Math.floor(Math.random() * 2);
-      } else {
-        colorIndex = 2;
-      }
-
-      const color = colorPalette[colorIndex] || new THREE.Color('#ffffff');
-      const size = Math.random() * 1.5 + 0.5;
-
-      particles.push({
-        baseX: x,
-        baseY: y,
-        baseZ: z,
-        size: size,
-        color: color,
-        floatSpeed: Math.random() * 0.15 + 0.08,
-        floatRange: Math.random() * 0.15 + 0.08,
-        pulsePhase: Math.random() * Math.PI * 2,
-      });
-
-      positions[index * 3] = x;
-      positions[index * 3 + 1] = y;
-      positions[index * 3 + 2] = z;
-
-      colors[index * 3] = color.r;
-      colors[index * 3 + 1] = color.g;
-      colors[index * 3 + 2] = color.b;
-
-      sizes[index] = size;
-      index++;
+      speeds[i] = Math.random() * 2.2 + 0.8;
+      lengths[i] = l;
     }
 
-    // Créer l'anneau (comme Saturne)
-    for (let i = 0; i < ringParticleCount; i++) {
-      const ringRadius =
-        RING_INNER_RADIUS + Math.random() * (RING_OUTER_RADIUS - RING_INNER_RADIUS);
-
-      const theta = Math.random() * Math.PI * 2; // Angle autour de la planète
-      const ringThickness = (Math.random() - 0.5) * RING_THICKNESS_VARIANCE;
-
-      // Anneau incliné (tilt)
-
-      const x = ringRadius * Math.cos(theta);
-      const y = ringThickness;
-      const z = ringRadius * Math.sin(theta);
-
-      // Appliquer la rotation pour l'inclinaison
-      const yRotated = y * Math.cos(RING_TILT_ANGLE) - z * Math.sin(RING_TILT_ANGLE);
-      const zRotated = y * Math.sin(RING_TILT_ANGLE) + z * Math.cos(RING_TILT_ANGLE);
-
-      // Couleurs plus lumineuses pour l'anneau
-      const ringColorIndex = Math.random() < 0.5 ? 0 : 1; // Cyan ou bleu
-      const color = colorPalette[ringColorIndex] || new THREE.Color('#ffffff');
-      const size = Math.random() * 1.2 + 0.3;
-
-      particles.push({
-        baseX: x,
-        baseY: yRotated,
-        baseZ: zRotated,
-        size: size,
-        color: color,
-        floatSpeed: Math.random() * 0.12 + 0.06,
-        floatRange: Math.random() * 0.12 + 0.06,
-        pulsePhase: Math.random() * Math.PI * 2,
-      });
-
-      positions[index * 3] = x;
-      positions[index * 3 + 1] = yRotated;
-      positions[index * 3 + 2] = zRotated;
-
-      colors[index * 3] = color.r;
-      colors[index * 3 + 1] = color.g;
-      colors[index * 3 + 2] = color.b;
-
-      sizes[index] = size;
-      index++;
-    }
-
-    return { particles, positions, colors, sizes };
-  }, [size.width, size.height]);
-
-  useFrame((_state, delta) => {
-    if (
-      !groupRef.current ||
-      !pointsRef.current ||
-      !linesRef.current ||
-      !glowRef.current
-    )
-      return;
-
-    timeRef.current += delta;
-
-    // Effet de pulsation organique (respiration de la planète) - Plus lent
-    pulseRef.current =
-      1 +
-      Math.sin(timeRef.current * PULSE_SPEED_PRIMARY) * PULSE_AMPLITUDE_PRIMARY +
-      Math.sin(timeRef.current * PULSE_SPEED_SECONDARY) * PULSE_AMPLITUDE_SECONDARY;
-
-    // Appliquer la pulsation au glow
-    if (glowRef.current) {
-      glowRef.current.scale.setScalar(pulseRef.current * GLOW_SCALE);
-    }
-
-    // Sphère en position fixe au centre
-    groupRef.current.position.set(0, 0, 0);
-
-    // Rotation très lente et constante
-    groupRef.current.rotation.x += ROTATION_SPEED_X * delta;
-    groupRef.current.rotation.y += ROTATION_SPEED_Y * delta;
-    groupRef.current.rotation.z += ROTATION_SPEED_Z * delta;
-
-    const posAttr = pointsRef.current.geometry.attributes[
-      'position'
-    ] as THREE.BufferAttribute;
-    const sizeAttr = pointsRef.current.geometry.attributes[
-      'size'
-    ] as THREE.BufferAttribute;
-
-    particles.forEach((particle, i) => {
-      const floatX =
-        Math.sin(timeRef.current * particle.floatSpeed + particle.pulsePhase) *
-        particle.floatRange *
-        FLOAT_MULTIPLIER;
-      const floatY =
-        Math.cos(
-          timeRef.current * particle.floatSpeed * 0.8 + particle.pulsePhase
-        ) *
-        particle.floatRange *
-        FLOAT_MULTIPLIER;
-      const floatZ =
-        Math.sin(
-          timeRef.current * particle.floatSpeed * 0.6 + particle.pulsePhase
-        ) *
-        particle.floatRange *
-        FLOAT_MULTIPLIER;
-
-      let newX = particle.baseX + floatX;
-      let newY = particle.baseY + floatY;
-      let newZ = particle.baseZ + floatZ;
-
-      // Contraindre la particule à rester à l'intérieur de la sphère
-      const distance = Math.sqrt(newX * newX + newY * newY + newZ * newZ);
-      if (distance > PLANET_RADIUS) {
-        const scale = PLANET_RADIUS / distance;
-        newX *= scale;
-        newY *= scale;
-        newZ *= scale;
-      }
-
-      posAttr.setXYZ(i, newX, newY, newZ);
-
-      // Pulsation individuelle des particules combinée avec la pulsation globale - Plus lent
-      const individualPulse =
-        1 + Math.sin(timeRef.current * 1 + particle.pulsePhase) * INDIVIDUAL_PULSE_AMPLITUDE;
-      sizeAttr.setX(i, particle.size * individualPulse * pulseRef.current);
-    });
-
-    posAttr.needsUpdate = true;
-    sizeAttr.needsUpdate = true;
-
-    const linePositions: number[] = [];
-    const lineColors: number[] = [];
-
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = posAttr.getX(i) - posAttr.getX(j);
-        const dy = posAttr.getY(i) - posAttr.getY(j);
-        const dz = posAttr.getZ(i) - posAttr.getZ(j);
-
-        const distSq = dx * dx + dy * dy + dz * dz;
-
-        if (distSq < CONNECT_DISTANCE * CONNECT_DISTANCE) {
-          const dist = Math.sqrt(distSq);
-          const opacity = (1 - dist / CONNECT_DISTANCE) * LINE_OPACITY;
-
-          if (opacity > 0) {
-            const p1 = particles[i];
-            const p2 = particles[j];
-
-            if (p1 && p2) {
-              linePositions.push(
-                posAttr.getX(i),
-                posAttr.getY(i),
-                posAttr.getZ(i),
-                posAttr.getX(j),
-                posAttr.getY(j),
-                posAttr.getZ(j)
-              );
-
-              const c1 = p1.color;
-              const c2 = p2.color;
-
-              lineColors.push(c1.r, c1.g, c1.b);
-              lineColors.push(c2.r, c2.g, c2.b);
-            }
-          }
-        }
-      }
-    }
-
-    linesRef.current.geometry.setAttribute(
-      'position',
-      new THREE.Float32BufferAttribute(linePositions, 3)
-    );
-    linesRef.current.geometry.setAttribute(
-      'color',
-      new THREE.Float32BufferAttribute(lineColors, 3)
-    );
-  });
-
-  const texture = useMemo(() => {
-    const canvas = document.createElement('canvas');
-    canvas.width = 64;
-    canvas.height = 64;
-    const ctx = canvas.getContext('2d')!;
-
-    const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-    grad.addColorStop(0, 'rgba(255,255,255,1)');
-    grad.addColorStop(0.2, 'rgba(255,255,255,0.8)');
-    grad.addColorStop(0.5, 'rgba(255,255,255,0.2)');
-    grad.addColorStop(1, 'rgba(255,255,255,0)');
-
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, 64, 64);
-
-    const tex = new THREE.CanvasTexture(canvas);
-    tex.premultiplyAlpha = true;
-    return tex;
+    return { positions, colors, speeds, lengths };
   }, []);
 
+  useFrame((_, dt) => {
+    if (!ref.current) return;
+    const pa = ref.current.geometry.attributes[
+      "position"
+    ] as THREE.BufferAttribute;
+
+    for (let i = 0; i < STREAK_COUNT; i++) {
+      const spd = speeds[i] ?? 0;
+      const len = lengths[i] ?? 0;
+      let z = pa.getZ(i * 2) + spd * BASE_SPEED * dt;
+
+      if (z > CAMERA_Z) {
+        const angle = Math.random() * Math.PI * 2;
+        const radius = Math.sqrt(Math.random()) * FIELD_RADIUS * 0.85;
+        const nx = Math.cos(angle) * radius;
+        const ny = Math.sin(angle) * radius;
+        z = -FIELD_DEPTH;
+        pa.setXYZ(i * 2, nx, ny, z);
+        pa.setXYZ(i * 2 + 1, nx, ny, z + len);
+      } else {
+        pa.setZ(i * 2, z);
+        pa.setZ(i * 2 + 1, z + len);
+      }
+    }
+
+    pa.needsUpdate = true;
+  });
+
   return (
-    <group ref={groupRef}>
-      {/* Aura lumineuse autour de la planète (glow effect) */}
-      <mesh ref={glowRef}>
-        <sphereGeometry args={[5.5, 64, 64]} />
+    <lineSegments ref={ref}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          count={STREAK_COUNT * 2}
+          array={positions}
+          itemSize={3}
+          args={[positions, 3]}
+        />
+        <bufferAttribute
+          attach="attributes-color"
+          count={STREAK_COUNT * 2}
+          array={colors}
+          itemSize={3}
+          args={[colors, 3]}
+        />
+      </bufferGeometry>
+      <lineBasicMaterial
+        vertexColors
+        transparent
+        opacity={0.35}
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+      />
+    </lineSegments>
+  );
+}
+
+function NebulaGlow() {
+  const refs = useRef<(THREE.Mesh | null)[]>([]);
+  const t = useRef(0);
+
+  const blobs = useMemo(
+    () => [
+      { x: -8, y: 5, z: -45, r: 12, color: "#3b82f6", speed: 0.03 },
+      { x: 9, y: -4, z: -50, r: 10, color: "#f59e0b", speed: 0.025 },
+    ],
+    [],
+  );
+
+  useFrame((_, dt) => {
+    t.current += dt;
+    refs.current.forEach((mesh, i) => {
+      if (!mesh) return;
+      const b = blobs[i]!;
+      mesh.position.x = b.x + Math.sin(t.current * b.speed) * 2.5;
+      mesh.position.y = b.y + Math.cos(t.current * b.speed * 0.8) * 1.8;
+    });
+  });
+
+  return (
+    <>
+      {blobs.map((b, i) => (
+        <mesh
+          key={i}
+          ref={(el) => {
+            refs.current[i] = el;
+          }}
+          position={[b.x, b.y, b.z]}
+        >
+          <sphereGeometry args={[b.r, 12, 12]} />
+          <meshBasicMaterial
+            color={b.color}
+            transparent
+            opacity={0.035}
+            depthWrite={false}
+            blending={THREE.AdditiveBlending}
+          />
+        </mesh>
+      ))}
+    </>
+  );
+}
+
+const GLOBE_RADIUS = 380;
+
+function GiantGlobe() {
+  const globeRef = useRef<THREE.Mesh>(null);
+  const gridRef = useRef<THREE.Mesh>(null);
+  const atmoRef = useRef<THREE.Mesh>(null);
+
+  useFrame((state) => {
+    if (!globeRef.current || !gridRef.current || !atmoRef.current) return;
+    const t = state.clock.elapsedTime;
+
+    const rotSpeed = 0.025;
+    globeRef.current.rotation.y = t * rotSpeed;
+    gridRef.current.rotation.y = t * rotSpeed;
+
+    globeRef.current.rotation.x = Math.sin(t * 0.01) * 0.03;
+    gridRef.current.rotation.x = Math.sin(t * 0.01) * 0.03;
+
+    const pulse = 1 + Math.sin(t * 0.04) * 0.015;
+    atmoRef.current.scale.setScalar(pulse);
+  });
+
+  return (
+    <group position={[0, 0, -120]}>
+      <mesh ref={globeRef}>
+        <sphereGeometry args={[GLOBE_RADIUS, 48, 48]} />
+        <meshBasicMaterial color="#0f1a2e" transparent opacity={0.15} />
+      </mesh>
+
+      <mesh ref={gridRef}>
+        <sphereGeometry args={[GLOBE_RADIUS * 1.008, 40, 40]} />
         <meshBasicMaterial
           color="#3b82f6"
           transparent
-          opacity={0.05}
+          opacity={0.12}
+          wireframe
+        />
+      </mesh>
+
+      {[0, 0.3, 0.6].map((offset, i) => (
+        <mesh key={i} rotation={[Math.PI / 2, offset, 0]}>
+          <torusGeometry
+            args={[GLOBE_RADIUS * (0.96 - i * 0.08), 1.2, 2, 120]}
+          />
+          <meshBasicMaterial
+            color={i === 0 ? "#60a5fa" : "#f59e0b"}
+            transparent
+            opacity={i === 0 ? 0.2 : 0.08}
+            blending={THREE.AdditiveBlending}
+          />
+        </mesh>
+      ))}
+
+      <mesh ref={atmoRef}>
+        <sphereGeometry args={[GLOBE_RADIUS * 1.04, 32, 32]} />
+        <meshBasicMaterial
+          color="#3b82f6"
+          transparent
+          opacity={0.08}
           side={THREE.BackSide}
           blending={THREE.AdditiveBlending}
         />
       </mesh>
-
-      {/* Deuxième couche de glow pour l'effet de profondeur */}
-      <mesh>
-        <sphereGeometry args={[6, 64, 64]} />
-        <meshBasicMaterial
-          color="#22d3ee"
-          transparent
-          opacity={0.03}
-          side={THREE.BackSide}
-          blending={THREE.AdditiveBlending}
-        />
-      </mesh>
-
-      {/* Contour de la sphère (wireframe uniquement) - Plus rond et visible */}
-      <mesh>
-        <sphereGeometry args={[PLANET_RADIUS, 64, 64]} />
-        <meshBasicMaterial
-          color="#60a5fa"
-          transparent
-          opacity={SPHERE_WIREFRAME_OPACITY}
-          wireframe={true}
-        />
-      </mesh>
-
-      <points ref={pointsRef}>
-        <bufferGeometry>
-          <bufferAttribute
-            attach="attributes-position"
-            count={particles.length}
-            array={positions}
-            itemSize={3}
-            args={[positions, 3]}
-          />
-          <bufferAttribute
-            attach="attributes-color"
-            count={particles.length}
-            array={colors}
-            itemSize={3}
-            args={[colors, 3]}
-          />
-          <bufferAttribute
-            attach="attributes-size"
-            count={particles.length}
-            array={sizes}
-            itemSize={1}
-            args={[sizes, 1]}
-          />
-        </bufferGeometry>
-        <pointsMaterial
-          map={texture}
-          vertexColors
-          transparent
-          opacity={0.8}
-          size={0.5}
-          sizeAttenuation={true}
-          depthWrite={false}
-          blending={THREE.AdditiveBlending}
-        />
-      </points>
-
-      <lineSegments ref={linesRef}>
-        <bufferGeometry />
-        <lineBasicMaterial
-          vertexColors
-          transparent
-          opacity={0.2}
-          depthWrite={false}
-          blending={THREE.AdditiveBlending}
-        />
-      </lineSegments>
     </group>
   );
+}
+
+function CameraWander() {
+  useFrame((state) => {
+    const t = state.clock.elapsedTime;
+
+    const axialRoll = t * 0.057;
+    state.camera.up.set(Math.sin(axialRoll), Math.cos(axialRoll), 0);
+
+    const x = Math.sin(t * 0.038) * 0.9;
+    const y = Math.cos(t * 0.031) * 0.6;
+    const z = CAMERA_Z + Math.sin(t * 0.025) * 0.5;
+    state.camera.position.set(x, y, z);
+
+    state.camera.lookAt(
+      Math.sin(t * 0.018) * 1.2,
+      Math.cos(t * 0.022) * 0.8,
+      -30,
+    );
+  });
+  return null;
 }
 
 export function ParticlesEffect() {
   return (
     <div
       className="pointer-events-none absolute inset-0 z-2"
-      style={{ opacity: 0.4 }}
+      style={{ opacity: 0.55 }}
     >
       <Canvas
-        camera={{ position: [0, 0, 5], fov: 60 }}
+        camera={{ position: [0, 0, CAMERA_Z], fov: 75 }}
         gl={{
           alpha: true,
           antialias: true,
-          powerPreference: 'high-performance',
+          powerPreference: "high-performance",
         }}
-        style={{ background: 'transparent' }}
+        style={{ background: "transparent" }}
       >
-        {/* Étoiles en arrière-plan pour la profondeur spatiale */}
-        <StarField />
-
-        {/* Lumière ambiante subtile pour donner de la profondeur */}
-        <ambientLight intensity={0.2} />
-        <pointLight position={[10, 10, 10]} intensity={0.5} color="#3b82f6" />
-        <pointLight
-          position={[-10, -10, -10]}
-          intensity={0.3}
-          color="#22d3ee"
-        />
-
-        {/* La planète principale avec ses particules */}
-        <ParticleWeb />
+        <GiantGlobe />
+        <NebulaGlow />
+        <SpaceDrift />
+        <WarpStreaks />
+        <CameraWander />
       </Canvas>
     </div>
   );

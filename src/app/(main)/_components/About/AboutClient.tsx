@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { BackgroundEffects } from '@/components/shared/effects/BackgroundEffects';
+import { BackgroundEffects } from "@/components/shared/effects/BackgroundEffects";
 import {
   SectionContainer,
   SectionHeader,
   SectionWrapper,
-} from '@/components/shared/layout/SectionWrapper';
-import { SPACING } from '@/config/constants';
-import type { AboutData } from '@/types';
-import { AboutCard } from './components/AboutCard';
+} from "@/components/shared/layout/SectionWrapper";
+import { FeatureCard } from "@/components/shared/ui/FeatureCard";
+import { SPACING } from "@/config/constants";
+import type { AboutData } from "@/types";
 
 export function AboutClient({ data }: { data: AboutData }) {
   return (
@@ -20,7 +20,7 @@ export function AboutClient({ data }: { data: AboutData }) {
           badge={data.header.badge}
           title={
             Array.isArray(data.header.title)
-              ? data.header.title.join(' ')
+              ? data.header.title.join(" ")
               : data.header.title
           }
           subtitle={data.header.description}
@@ -28,11 +28,12 @@ export function AboutClient({ data }: { data: AboutData }) {
 
         <div className={`grid grid-cols-1 lg:grid-cols-2 ${SPACING.grid.gap}`}>
           {data.seoContent?.map((item, index) => (
-            <AboutCard
+            <FeatureCard
               key={item.title}
               icon={item.icon}
               title={item.title}
-              content={item.content}
+              description={item.content}
+              gradient="from-amber-400 to-amber-600"
               stat={item.stat}
               statLabel={item.statLabel}
               index={index}

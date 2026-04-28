@@ -1,4 +1,5 @@
 import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
+import { BreadcrumbStructuredData } from '@/components/shared/SEO/StructuredData';
 import RealisationsPageContent from './RealisationsPageContent';
 import {
   getProjects,
@@ -35,10 +36,16 @@ export default async function RealisationsPage() {
   ]);
 
   return (
-    <RealisationsPageContent
-      projects={projects}
-      header={header}
-      siteSettings={siteSettings}
-    />
+    <>
+      <RealisationsPageContent
+        projects={projects}
+        header={header}
+        siteSettings={siteSettings}
+      />
+      <BreadcrumbStructuredData items={[
+        { name: 'Accueil', path: '/' },
+        { name: 'Nos Réalisations', path: '/realisations' },
+      ]} />
+    </>
   );
 }

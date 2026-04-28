@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { BackgroundEffects } from '@/components/shared/effects/BackgroundEffects';
+import { BackgroundEffects } from "@/components/shared/effects/BackgroundEffects";
+import { CTASection } from "@/components/shared/ui/CTASection";
 import {
   SectionContainer,
   SectionHeader,
   SectionWrapper,
-} from '@/components/shared/layout/SectionWrapper';
-import { SPACING } from '@/config/constants';
-import type { BenefitsData } from '@/types';
-import { BenefitsCTA } from './components/BenefitsCTA';
-import { BenefitsList } from './components/BenefitsList';
+} from "@/components/shared/layout/SectionWrapper";
+import { SPACING } from "@/config/constants";
+import type { BenefitsData } from "@/types";
+import { BenefitsList } from "./components/BenefitsList";
 
 export function BenefitsClient({ data }: { data: BenefitsData }) {
   return (
@@ -23,13 +23,24 @@ export function BenefitsClient({ data }: { data: BenefitsData }) {
           subtitle="Découvrez pourquoi choisir BNB ÉNERGIE pour votre installation solaire"
         />
 
-        <div className={`grid grid-cols-1 items-center lg:grid-cols-2 ${SPACING.grid.gap}`}>
+        <div
+          className={`grid grid-cols-1 items-center lg:grid-cols-2 ${SPACING.grid.gap}`}
+        >
           <BenefitsList benefits={data.benefits.list} />
-          <BenefitsCTA
+          <CTASection
             title={data.cta.title}
             description={data.cta.description}
-            button1={data.cta.button1}
-            button2={data.cta.button2}
+            phoneNumber="07 81 25 11 25"
+            primaryButton={{
+              text: data.cta.button1,
+              href: "/contact#contact-form",
+            }}
+            secondaryButton={{
+              text: data.cta.button2,
+              href: "/faq-panneaux-solaires",
+            }}
+            variant="gradient"
+            className="h-full"
           />
         </div>
       </SectionContainer>

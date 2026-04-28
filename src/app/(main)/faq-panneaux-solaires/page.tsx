@@ -1,4 +1,5 @@
 import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
+import { FAQStructuredData, BreadcrumbStructuredData } from '@/components/shared/SEO/StructuredData';
 import { Metadata } from 'next';
 import FAQPageContent from './FAQPageContent';
 import {
@@ -35,6 +36,13 @@ export default async function FAQPage() {
   ]);
 
   return (
-    <FAQPageContent faqs={faqs} header={header} siteSettings={siteSettings} />
+    <>
+      <FAQPageContent faqs={faqs} header={header} siteSettings={siteSettings} />
+      <FAQStructuredData faqs={faqs.map((f) => ({ question: f.question, answer: f.answer }))} />
+      <BreadcrumbStructuredData items={[
+        { name: 'Accueil', path: '/' },
+        { name: 'FAQ Panneaux Solaires', path: '/faq-panneaux-solaires' },
+      ]} />
+    </>
   );
 }

@@ -25,7 +25,7 @@ export async function LocalBusinessStructuredData() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    '@id': siteConfig.domain,
+    '@id': `${siteConfig.domain}/#localbusiness`,
     name: siteConfig.siteName,
     alternateName: siteConfig.businessName,
     description:
@@ -96,6 +96,10 @@ export async function LocalBusinessStructuredData() {
     sameAs: [siteConfig.socialFacebook, siteConfig.socialInstagram].filter(
       Boolean
     ),
+
+    parentOrganization: {
+      '@id': `${siteConfig.domain}/#organization`,
+    },
 
     aggregateRating: {
       '@type': 'AggregateRating',

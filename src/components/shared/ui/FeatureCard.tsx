@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import { LazyMotionDiv } from '@/components/LazyComponents';
-import { TRANSITIONS } from '@/config/constants';
-import type { BaseCardProps } from '@/types';
-import { getLucideIcon } from '@/utils/getLucideIcon';
-import { cn } from '@heroui/theme';
+import { LazyMotionDiv } from "@/components/LazyComponents";
+import { TRANSITIONS } from "@/config/constants";
+import type { BaseCardProps } from "@/types";
+import { getLucideIcon } from "@/utils/getLucideIcon";
+import { cn } from "@heroui/theme";
+import { ReactNode } from "react";
 
 interface FeatureCardProps extends BaseCardProps {
   icon: string;
@@ -13,6 +14,9 @@ interface FeatureCardProps extends BaseCardProps {
   items?: string[];
   gradient?: string;
   iconColor?: string;
+  children?: ReactNode;
+  stat?: string;
+  statLabel?: string;
 }
 
 export function FeatureCard({
@@ -20,10 +24,13 @@ export function FeatureCard({
   title,
   description,
   items,
-  gradient = 'from-blue-500 to-cyan-500',
-  iconColor = 'text-blue-600',
+  gradient = "from-blue-500 to-cyan-500",
+  iconColor = "text-blue-600",
   index,
   className,
+  children,
+  stat,
+  statLabel,
 }: FeatureCardProps) {
   const Icon = getLucideIcon(icon);
 
@@ -31,11 +38,11 @@ export function FeatureCard({
     <LazyMotionDiv
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
       className={cn(
-        'group relative overflow-hidden rounded-2xl border border-neutral-200 dark:border-content2 bg-white dark:bg-content1 p-8 shadow-lg transition-shadow duration-300 hover:shadow-2xl',
-        className
+        "group relative overflow-hidden rounded-2xl border border-neutral-200 dark:border-content2 bg-white dark:bg-content1 p-8 shadow-lg transition-shadow duration-300 hover:shadow-2xl",
+        className,
       )}
     >
       <LazyMotionDiv
@@ -53,6 +60,21 @@ export function FeatureCard({
         {title}
       </h3>
 
+      {stat && (
+        <div className="absolute top-8 right-8">
+          <div className="text-right">
+            <div className="bg-linear-to-r from-amber-600 to-amber-500 dark:from-amber-400 dark:to-amber-300 bg-clip-text text-4xl font-black text-transparent">
+              {stat}
+            </div>
+            {statLabel && (
+              <div className="mt-1 text-xs font-bold text-amber-600/70 dark:text-amber-400/70 uppercase">
+                {statLabel}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       <p className="mb-6 text-base leading-relaxed text-neutral-600 dark:text-default-500">
         {description}
       </p>
@@ -62,7 +84,7 @@ export function FeatureCard({
           {items.map((item, idx) => (
             <li key={idx} className="flex items-start gap-3">
               <div
-                className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-${iconColor.replace('text-', '')}-100`}
+                className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-${iconColor.replace("text-", "")}-100`}
               >
                 <span className={`text-xs ${iconColor}`}>✓</span>
               </div>
@@ -73,6 +95,8 @@ export function FeatureCard({
           ))}
         </ul>
       )}
+
+      {children}
     </LazyMotionDiv>
   );
 }

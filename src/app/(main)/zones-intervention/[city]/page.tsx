@@ -1,4 +1,5 @@
 import { getInterventionZones, getSiteSettings } from '@/lib/payload-queries';
+import { BreadcrumbStructuredData } from '@/components/shared/SEO/StructuredData';
 import { SITE_CONFIG } from '@/config/site';
 import { slugify } from '@/utils/slugify';
 import { Metadata } from 'next';
@@ -103,11 +104,18 @@ export default async function CityPage({
     .slice(0, 10);
 
   return (
-    <CityPageContent
-      cityName={cityName}
-      cityGroup={mappedCityGroup}
-      siteSettings={siteSettings}
-      relatedCities={relatedCities}
-    />
+    <>
+      <CityPageContent
+        cityName={cityName}
+        cityGroup={mappedCityGroup}
+        siteSettings={siteSettings}
+        relatedCities={relatedCities}
+      />
+      <BreadcrumbStructuredData items={[
+        { name: 'Accueil', path: '/' },
+        { name: "Zones d'Intervention", path: '/zones-intervention' },
+        { name: `Installateur Solaire ${cityName}`, path: `/zones-intervention/${city}` },
+      ]} />
+    </>
   );
 }

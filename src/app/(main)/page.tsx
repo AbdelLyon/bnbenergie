@@ -4,7 +4,6 @@ import { GoogleReviewsWrapper } from "@/app/(main)/_components/GoogleReviews/Goo
 import { HomeHeader } from "@/app/(main)/_components/HomeHeader/HomeHeader";
 import { Pricing } from "@/app/(main)/_components/Pricing/Pricing";
 import { Realisations } from "@/app/(main)/_components/Realisations/Realisations";
-import { PricingStructuredData } from "@/components/shared/SEO/StructuredData";
 import { PageMainWrapper } from "@/components/shared/layout/PageMainWrapper";
 import { generateMetadata as generateMetadataHelper } from "@/config/metadata";
 import { Metadata } from "next";
@@ -44,7 +43,6 @@ export default function Home() {
         <Realisations />
         <Pricing />
       </PageMainWrapper>
-      <PricingStructuredData />
     </>
   );
 }

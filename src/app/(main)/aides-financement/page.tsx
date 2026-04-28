@@ -1,4 +1,5 @@
 import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
+import { BreadcrumbStructuredData } from '@/components/shared/SEO/StructuredData';
 import AidesPageContent from './AidesPageContent';
 import {
   getFinancialAidsByCategory,
@@ -37,6 +38,12 @@ export default async function AidesFinancementPage() {
   ]);
 
   return (
-    <AidesPageContent aids={aids} header={header} siteSettings={siteSettings} />
+    <>
+      <AidesPageContent aids={aids} header={header} siteSettings={siteSettings} />
+      <BreadcrumbStructuredData items={[
+        { name: 'Accueil', path: '/' },
+        { name: 'Aides & Financement', path: '/aides-financement' },
+      ]} />
+    </>
   );
 }

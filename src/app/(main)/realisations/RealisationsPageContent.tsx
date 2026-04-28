@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState } from "react";
 
 import {
   PageHeader,
@@ -10,24 +10,24 @@ import {
   StatCard,
   ProjectCard,
   CTASection,
-} from '@/components';
-import { ReviewsSection } from '@/components/shared/ui/ReviewsSection';
+} from "@/components";
+import { ReviewsSection } from "@/components/shared/ui/ReviewsSection";
 
 import type {
   Project,
   PageHeader as PageHeaderType,
   SiteSetting,
-} from '@/payload-types';
-import { LazyMotionDiv, LazyMotionP } from '@/components/LazyComponents';
+} from "@/payload-types";
+import { LazyMotionDiv, LazyMotionP } from "@/components/LazyComponents";
 
 /* =========================================================
    CONSTANTES
 ========================================================= */
 
 const STATS = [
-  { value: '100+', label: 'Installations Réalisées', icon: 'CircleCheck' },
-  { value: '15+', label: "Ans d'Expérience", icon: 'Award' },
-  { value: '100%', label: 'Clients Satisfaits', icon: 'Star' },
+  { value: "100+", label: "Installations Réalisées", icon: "CircleCheck" },
+  { value: "15+", label: "Ans d'Expérience", icon: "Award" },
+  { value: "100%", label: "Clients Satisfaits", icon: "Star" },
 ] as const;
 
 /* =========================================================
@@ -36,7 +36,7 @@ const STATS = [
 
 const extractKw = (value?: string | number | null): number | null => {
   if (!value) return null;
-  if (typeof value === 'number') return value;
+  if (typeof value === "number") return value;
 
   const match = value.match(/([\d.]+)/);
   return match ? Number(match[1]) : null;
@@ -61,10 +61,10 @@ export default function RealisationsPageContent({
   header,
   siteSettings,
 }: RealisationsPageContentProps) {
-  const POWERS = ['all', ...projects.map((project) => project.power)] as const;
+  const POWERS = ["all", ...projects.map((project) => project.power)] as const;
   type PowerFilter = (typeof POWERS)[number];
 
-  const [selectedPower, setSelectedPower] = useState<PowerFilter>('all');
+  const [selectedPower, setSelectedPower] = useState<PowerFilter>("all");
 
   /* ------------------ FILTER HANDLER ------------------ */
   const handleSelectPower = (power: PowerFilter) => {
@@ -73,7 +73,7 @@ export default function RealisationsPageContent({
 
   /* ------------------ FILTERED PROJECTS ------------------ */
   const filteredProjects = useMemo(() => {
-    if (selectedPower === 'all') return projects;
+    if (selectedPower === "all") return projects;
 
     const selectedKw = extractKw(selectedPower);
     if (!selectedKw) return projects;
@@ -91,8 +91,9 @@ export default function RealisationsPageContent({
         {/* ================= HEADER ================= */}
         <PageHeader variant="simple" height="medium">
           <Title
-            title={header?.title.split(' ') || ['Nos', 'Réalisations']}
-            subtitle={header?.subtitle || ''}
+            staticText={header?.title.split(" ")[0] || "Nos"}
+            animatedText={header?.title.split(" ")[1] || "Réalisations"}
+            subtitle={header?.subtitle || ""}
           />
 
           <LazyMotionP
@@ -101,7 +102,7 @@ export default function RealisationsPageContent({
             transition={{ duration: 0.3, delay: 0.15 }}
             className="max-w-4xl px-4 text-base leading-relaxed text-white/80 sm:text-lg md:text-xl"
           >
-            {header?.description || ''}
+            {header?.description || ""}
           </LazyMotionP>
         </PageHeader>
 
@@ -141,11 +142,11 @@ export default function RealisationsPageContent({
                 className={`rounded-full px-5 py-2 text-sm font-bold transition-all
                   ${
                     selectedPower === power
-                      ? 'bg-primary text-white'
-                      : 'bg-neutral-200 hover:bg-neutral-200 dark:bg-content1'
+                      ? "bg-primary text-white"
+                      : "bg-neutral-200 hover:bg-neutral-200 dark:bg-content1"
                   }`}
               >
-                {power === 'all' ? 'Tous les projets' : power}
+                {power === "all" ? "Tous les projets" : power}
               </button>
             ))}
           </div>
@@ -181,10 +182,10 @@ export default function RealisationsPageContent({
           <CTASection
             title="Prêt à Passer à l'Énergie Solaire ?"
             description="Demandez votre étude gratuite et recevez votre devis personnalisé sous 48h"
-            phoneNumber={siteSettings.contactPhone || '07 81 25 11 25'}
+            phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
             primaryButton={{
-              text: 'Obtenir un devis',
-              href: '/contact#contact-form',
+              text: "Obtenir un devis",
+              href: "/contact#contact-form",
             }}
             variant="gradient"
           />

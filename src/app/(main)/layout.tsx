@@ -1,30 +1,32 @@
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import { Open_Sans, Montserrat } from 'next/font/google';
-import { Suspense } from 'react';
-import { Footer } from '@/components/shared/Footer/Footer';
-import { Navbar } from '@/components/shared/Navigation/Navbar';
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Inter } from "next/font/google";
+import { Suspense } from "react";
+import { Footer } from "@/components/shared/Footer/Footer";
+import { Navbar } from "@/components/shared/Navigation/Navbar";
 import {
   LocalBusinessStructuredData,
   OrganizationStructuredData,
   WebSiteStructuredData,
-} from '@/components/shared/SEO/StructuredData';
-import { Providers } from '../providers';
-import { defaultMetadata } from '@/config/metadata';
-import type { Metadata } from 'next';
+} from "@/components/shared/SEO/StructuredData";
+import { Providers } from "../providers";
+import { defaultMetadata } from "@/config/metadata";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = defaultMetadata;
 
-const openSans = Open_Sans({
-  subsets: ['latin'],
-  variable: '--font-open-sans',
-  display: 'swap',
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  variable: '--font-montserrat',
-  display: 'swap',
+const plusJakartaSans = Inter({
+  subsets: ["latin"],
+  variable: "--font-plus-jakarta-sans",
+  display: "swap",
+  fallback: ["system-ui", "arial"],
+  weight: "400",
 });
 
 export default function MainLayout({
@@ -35,7 +37,7 @@ export default function MainLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <body
-        className={`${openSans.variable} ${montserrat.variable} antialiased font-sans`}
+        className={`${inter.variable} ${plusJakartaSans.variable}  antialiased`}
         suppressHydrationWarning
       >
         <Providers>

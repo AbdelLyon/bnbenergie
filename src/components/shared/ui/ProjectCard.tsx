@@ -23,12 +23,15 @@ export function ProjectCard({ project, index, page, href }: ProjectCardProps) {
 
   return (
     <LazyMotionDiv
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.4, delay: index * 0.2 }}
-      whileHover={{ scale: 1.02, transition: TRANSITIONS.smooth }}
-      className="group relative overflow-hidden rounded-xl border border-neutral-200/50 dark:border-content2 bg-white dark:bg-content1 shadow-sm hover:shadow-md transition-all duration-300"
+      initial={{
+        opacity: 0,
+        x: index % 3 === 0 ? -10 : index % 3 === 1 ? 0 : 10,
+      }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-30px" }}
+      transition={{ duration: 0.35, delay: index * 0.04 }}
+      whileHover={{ scale: 1.01, transition: TRANSITIONS.smooth }}
+      className="group relative overflow-hidden rounded-xl border border-neutral-200/50 dark:border-content2 bg-white dark:bg-content1 shadow-sm hover:shadow-md transition-all duration-200"
     >
       {/* Image cliquable vers la réalisation */}
       <Link
@@ -39,7 +42,7 @@ export function ProjectCard({ project, index, page, href }: ProjectCardProps) {
       >
         <LazyMotionDiv
           className="h-full w-full"
-          whileHover={{ scale: 1.08, transition: TRANSITIONS.smooth }}
+          whileHover={{ scale: 1.05, transition: TRANSITIONS.smooth }}
         >
           <Image
             src={imageUrl}
