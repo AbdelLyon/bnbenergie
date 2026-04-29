@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useImageCarousel } from "@/hooks";
-import { useEffect } from "react";
-import { HomeHeaderCTAButtons } from "./HomeHeaderCTAButtons";
-import { PageHeader, ScrollDownButton, Stats, Title } from "@/components";
-import type { Stat } from "@/payload-types";
-import { LazyMotionDiv } from "@/components/LazyComponents";
+import { useImageCarousel } from '@/hooks';
+import { useEffect } from 'react';
+import { HomeHeaderCTAButtons } from './HomeHeaderCTAButtons';
+import { PageHeader, ScrollDownButton, Stats, Title } from '@/components';
+import type { Stat } from '@/payload-types';
+import { LazyMotionDiv } from '@/components/LazyComponents';
 
 interface HeaderData {
   title: string[];
@@ -24,16 +24,16 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
   const currentSlide = useImageCarousel(data.heroImages.length, 10000);
 
   useEffect(() => {
-    if ("scrollRestoration" in history) {
-      history.scrollRestoration = "manual";
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
   }, []);
 
   const scrollToNextSection = () => {
-    const section = document.getElementById("pricing");
+    const section = document.getElementById('pricing');
     if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -47,11 +47,11 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
       bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
       backgroundVariant="clean"
     >
-      <div className="flex max-w-6xl flex-col items-center gap-12 md:gap-16 lg:gap-20">
+      <div className="flex max-w-6xl flex-col mt-20 items-center gap-12 md:gap-16 lg:gap-20">
         <div className="space-y-6 text-center">
           <Title
-            staticText={data.title[0] ?? "Contactez"}
-            animatedText={data.title[1] ?? "nous"}
+            staticText={data.title[0] ?? 'BNB'}
+            animatedText={data.title[1] ?? 'ÉNERGIE'}
             seoTitle={data.seoTitle}
           />
 
@@ -61,7 +61,7 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
             transition={{ duration: 0.35, delay: 0.15 }}
             className="mx-auto max-w-4xl space-y-3"
           >
-            <h2 className="px-4 text-lg font-medium text-white  sm:text-xl md:text-2xl lg:text-3xl">
+            <h2 className="px-4 text-lg font-medium text-white sm:text-xl md:text-2xl lg:text-3xl">
               {data.subtitle}
             </h2>
             <p className="px-4 text-base font-normal text-white sm:text-base md:text-lg">

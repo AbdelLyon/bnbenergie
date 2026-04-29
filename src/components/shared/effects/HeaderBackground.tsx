@@ -174,11 +174,11 @@ function CinematicSlide({
           src={image}
           alt={alt}
           fill
-          fetchPriority={index === 0 ? "high" : undefined}
+          priority={index === 0}
           quality={90}
-          sizes="100vw"
-          className="object-cover"
-          loading={index === 0 ? "eager" : "lazy"}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+          className="object-cover object-center"
+          style={{ willChange: "transform" }}
         />
       </LazyMotionDiv>
     </LazyMotionDiv>
@@ -194,15 +194,15 @@ export function HeaderBackground({
   const overlayStyle =
     variant === "clean"
       ? [
-          "linear-gradient(rgba(0,0,0,0.48), rgba(0,0,0,0.48))",
-          "radial-gradient(ellipse at 50% 42%, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.52) 80%)",
-          "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.18) 30%, transparent 55%)",
-          "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, transparent 22%)",
+          "linear-gradient(rgba(0,0,0,0.60), rgba(0,0,0,0.60))",
+          "radial-gradient(ellipse at 50% 42%, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.62) 80%)",
+          "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.28) 30%, transparent 55%)",
+          "linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, transparent 22%)",
         ].join(", ")
       : [
-          "linear-gradient(rgba(0,0,0,0.50), rgba(0,0,0,0.50))",
-          "radial-gradient(ellipse at 50% 42%, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.48) 80%)",
-          "linear-gradient(to top, rgba(0,0,0,0.60) 0%, transparent 45%)",
+          "linear-gradient(rgba(0,0,0,0.62), rgba(0,0,0,0.62))",
+          "radial-gradient(ellipse at 50% 42%, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.58) 80%)",
+          "linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 45%)",
         ].join(", ");
 
   return (

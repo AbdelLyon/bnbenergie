@@ -12,20 +12,20 @@ export const revalidate = 60;
 
 export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-    title: 'Aides Panneaux Solaires 2025 Ain | MaPrimeRénov & CEE',
+    title: 'Aides Panneaux Solaires 2026 Ain | Prime Autoconsommation & éco-PTZ',
     description:
-      "Toutes les aides pour vos panneaux solaires 2025 dans l'Ain : prime autoconsommation, MaPrimeRénov, CEE, TVA 10%, éco-PTZ. Accompagnement démarches offert à Bourg-en-Bresse.",
+      "Toutes les aides pour vos panneaux solaires 2026 dans l'Ain : prime autoconsommation (80€/kWc), TVA 5,5%, éco-PTZ, CEE. Installateur RGE QualiPV à Bourg-en-Bresse.",
     path: '/aides-financement',
     keywords: [
-      'aides panneaux solaires 2025 Bourg-en-Bresse',
-      'aides panneaux solaires 2025 Ain',
-      'prime autoconsommation photovoltaïque',
-      'MaPrimeRénov panneaux solaires Ain',
-      'CEE certificats économies énergie photovoltaïque',
-      'TVA réduite panneaux solaires 10%',
+      'aides panneaux solaires 2026 Bourg-en-Bresse',
+      'aides panneaux solaires 2026 Ain',
+      'prime autoconsommation photovoltaïque 2026',
+      'TVA 5,5% panneaux solaires 2026',
       'éco-prêt taux zéro solaire',
+      'CEE certificats économies énergie photovoltaïque',
       'financement panneaux solaires Bourg-en-Bresse',
-      'subventions photovoltaïque 2025',
+      'subventions photovoltaïque 2026',
+      'tarif rachat surplus EDF OA 2026',
     ],
   });
 }

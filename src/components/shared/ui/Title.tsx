@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { LazyMotionDiv, LazyMotionSpan } from "@/components/LazyComponents";
-import { ANIMATION_DURATIONS, TRANSITIONS } from "@/config/constants";
-import { useEffect, useState } from "react";
+import { LazyMotionDiv, LazyMotionSpan } from '@/components/LazyComponents';
+import { ANIMATION_DURATIONS, TRANSITIONS } from '@/config/constants';
+import { useEffect, useState } from 'react';
 
 interface TitleProps {
   staticText: string;
@@ -12,57 +12,57 @@ interface TitleProps {
   spaceX?: string;
 }
 
-type Phase = "typing" | "full" | "deleting" | "empty" | "typo" | "correct";
+type Phase = 'typing' | 'full' | 'deleting' | 'empty' | 'typo' | 'correct';
 
 // Touches adjacentes sur clavier AZERTY pour simuler une vraie faute de frappe
 const ADJACENT_KEYS: Record<string, string> = {
-  a: "z",
-  b: "v",
-  c: "x",
-  d: "f",
-  e: "r",
-  f: "g",
-  g: "h",
-  h: "j",
-  i: "o",
-  j: "k",
-  k: "l",
-  l: "m",
-  m: "n",
-  n: "b",
-  o: "p",
-  p: "o",
-  q: "a",
-  r: "t",
-  s: "d",
-  t: "y",
-  u: "i",
-  v: "b",
-  w: "x",
-  x: "c",
-  y: "u",
-  z: "a",
+  a: 'z',
+  b: 'v',
+  c: 'x',
+  d: 'f',
+  e: 'r',
+  f: 'g',
+  g: 'h',
+  h: 'j',
+  i: 'o',
+  j: 'k',
+  k: 'l',
+  l: 'm',
+  m: 'n',
+  n: 'b',
+  o: 'p',
+  p: 'o',
+  q: 'a',
+  r: 't',
+  s: 'd',
+  t: 'y',
+  u: 'i',
+  v: 'b',
+  w: 'x',
+  x: 'c',
+  y: 'u',
+  z: 'a',
 };
 
 function typoFor(char: string): string {
   const lower = char.toLowerCase();
-  const adj = ADJACENT_KEYS[lower] ?? (lower === "e" ? "r" : "e");
+  const adj = ADJACENT_KEYS[lower] ?? (lower === 'e' ? 'r' : 'e');
   return char !== char.toLowerCase() ? adj.toUpperCase() : adj;
 }
 
 export function Title({
   staticText,
   animatedText,
-  spaceX = "space-x-4",
+  spaceX = 'space-x-4',
 }: TitleProps) {
   const [displayed, setDisplayed] = useState(animatedText);
-  const [phase, setPhase] = useState<Phase>("full");
-  const [typoChar, setTypoChar] = useState("");
+  const [phase, setPhase] = useState<Phase>('full');
+  const [typoChar, setTypoChar] = useState('');
   const [hasHydrated, setHasHydrated] = useState(false);
 
   useEffect(() => {
-    setDisplayed("");
-    setPhase("typing");
+    setDisplayed('');
+    setPhase('typing');
     setHasHydrated(true);
   }, []);
 
@@ -72,13 +72,13 @@ export function Title({
     let t: NodeJS.Timeout;
     const len = displayed.length;
 
-    if (phase === "typing") {
+    if (phase === 'typing') {
       if (len >= animatedText.length) {
-        t = setTimeout(() => setPhase("full"), 50);
+        t = setTimeout(() => setPhase('full'), 50);
         return () => clearTimeout(t);
       }
 
-      const isWordBoundary = len === 0 || animatedText[len - 1] === " ";
+      const isWordBoundary = len === 0 || animatedText[len - 1] === ' ';
       const burstMode = !isWordBoundary && Math.random() < 0.15;
       const thinkPause = !burstMode && Math.random() < 0.05;
 
@@ -94,47 +94,47 @@ export function Title({
         Math.random() < 0.09 &&
         len > 1 &&
         len < animatedText.length - 1 &&
-        /[a-zA-Z]/.test(animatedText[len] ?? "");
+        /[a-zA-Z]/.test(animatedText[len] ?? '');
 
       t = setTimeout(() => {
         if (makeTypo) {
-          setTypoChar(typoFor(animatedText[len] ?? ""));
-          setPhase("typo");
+          setTypoChar(typoFor(animatedText[len] ?? ''));
+          setPhase('typo');
         } else {
           setDisplayed(animatedText.slice(0, len + 1));
         }
       }, delay);
-    } else if (phase === "typo") {
+    } else if (phase === 'typo') {
       // Affiche la faute un court instant avant de "réaliser"
-      t = setTimeout(() => setPhase("correct"), Math.random() * 180 + 160);
-    } else if (phase === "correct") {
+      t = setTimeout(() => setPhase('correct'), Math.random() * 180 + 160);
+    } else if (phase === 'correct') {
       // Courte hésitation après la correction, puis frappe la bonne touche
       t = setTimeout(
         () => {
           setDisplayed(animatedText.slice(0, len + 1));
-          setPhase("typing");
+          setPhase('typing');
         },
-        Math.random() * 130 + 180,
+        Math.random() * 130 + 180
       );
-    } else if (phase === "full") {
-      t = setTimeout(() => setPhase("deleting"), 2200);
-    } else if (phase === "deleting") {
+    } else if (phase === 'full') {
+      t = setTimeout(() => setPhase('deleting'), 2200);
+    } else if (phase === 'deleting') {
       if (len > 0) {
         t = setTimeout(
           () => setDisplayed(animatedText.slice(0, len - 1)),
-          Math.random() * 30 + 22,
+          Math.random() * 30 + 22
         );
       } else {
-        setPhase("empty");
+        setPhase('empty');
       }
-    } else if (phase === "empty") {
-      t = setTimeout(() => setPhase("typing"), 600);
+    } else if (phase === 'empty') {
+      t = setTimeout(() => setPhase('typing'), 600);
     }
 
     return () => clearTimeout(t);
   }, [displayed, phase, animatedText, hasHydrated]);
 
-  const visibleText = phase === "typo" ? displayed + typoChar : displayed;
+  const visibleText = phase === 'typo' ? displayed + typoChar : displayed;
 
   return (
     <LazyMotionDiv
@@ -144,7 +144,7 @@ export function Title({
       className="text-center"
     >
       <h1
-        className={`px-4 text-4xl font-display font-extrabold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl  ${spaceX}`}
+        className={`px-4 text-4xl font-display font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl  ${spaceX}`}
       >
         <LazyMotionSpan
           className="inline-block text-white "

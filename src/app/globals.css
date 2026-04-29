@@ -8,7 +8,7 @@
 @theme inline {
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-plus-jakarta-sans);
+  --font-display: var(--font-montserrat);
 
   /* ============================================
      🎨 PALETTE
@@ -157,7 +157,7 @@
 
 .font-display {
   font-family:
-    var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif,
+    var(--font-montserrat), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 

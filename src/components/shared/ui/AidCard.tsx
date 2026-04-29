@@ -107,7 +107,7 @@ export function AidCard({
           {amounts && amounts.length > 0 && (
             <div className="mb-4 rounded-xl bg-linear-to-br from-neutral-50 to-blue-50 dark:from-content2 dark:to-blue-900/20 p-6">
               <h4 className="mb-4 text-sm font-bold text-neutral-900 dark:text-foreground">
-                Montants 2025 :
+                Montants 2026 :
               </h4>
               <div className="space-y-3">
                 {amounts.map((amount, idx) => (

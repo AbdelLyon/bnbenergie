@@ -1,9 +1,10 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Inter } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import { Suspense } from "react";
 import { Footer } from "@/components/shared/Footer/Footer";
 import { Navbar } from "@/components/shared/Navigation/Navbar";
+import { ChatBot } from "@/components/shared/ui/ChatBot";
 import {
   LocalBusinessStructuredData,
   OrganizationStructuredData,
@@ -21,12 +22,11 @@ const inter = Inter({
   display: "swap",
 });
 
-const plusJakartaSans = Inter({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-plus-jakarta-sans",
+  variable: "--font-montserrat",
   display: "swap",
-  fallback: ["system-ui", "arial"],
-  weight: "400",
+  weight: ["400", "600", "700", "800"],
 });
 
 export default function MainLayout({
@@ -37,13 +37,14 @@ export default function MainLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${plusJakartaSans.variable}  antialiased`}
+        className={`${inter.variable} ${montserrat.variable} antialiased`}
         suppressHydrationWarning
       >
         <Providers>
           <Navbar />
           {children}
           <Footer />
+          <ChatBot />
         </Providers>
         <LocalBusinessStructuredData />
         <WebSiteStructuredData />

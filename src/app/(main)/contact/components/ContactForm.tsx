@@ -5,6 +5,7 @@ import { Button } from '@heroui/button';
 import { Send, AlertCircle } from 'lucide-react';
 import type { ContactState } from '@/actions/contact';
 import { LazyMotionDiv } from '@/components/LazyComponents';
+import { getInputClasses } from '@/utils/classenames';
 
 interface ContactFormProps {
   formAction: (formData: FormData) => void;
@@ -159,12 +160,6 @@ function FormField({
   delay = 0,
   slideFrom = 'left',
 }: FormFieldProps) {
-  const inputClasses = `w-full rounded-lg border bg-white dark:bg-neutral-800/50 px-5 py-3 text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-neutral-500 transition-all duration-300 focus:shadow-lg focus:shadow-blue-100 dark:focus:shadow-blue-900/20 focus:outline-none ${
-    error
-      ? 'border-red-300 focus:border-red-500 dark:border-red-900 dark:focus:border-red-500'
-      : 'border-slate-200 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-400'
-  }`;
-
   return (
     <LazyMotionDiv
       initial={{ opacity: 0, x: slideFrom === 'left' ? -20 : 20 }}
@@ -187,7 +182,7 @@ function FormField({
           required={required}
           rows={rows}
           placeholder={placeholder}
-          className={`${inputClasses} min-h-[150px] resize-none`}
+          className={`${getInputClasses(error)} min-h-[150px] resize-none`}
         />
       ) : (
         <input
@@ -198,7 +193,7 @@ function FormField({
           onChange={onChange}
           required={required}
           placeholder={placeholder}
-          className={inputClasses}
+          className={getInputClasses(error)}
         />
       )}
       {error && <p className="mt-1 ml-1 text-xs text-red-500">{error}</p>}

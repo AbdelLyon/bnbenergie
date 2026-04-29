@@ -60,7 +60,7 @@ export const EEAT_KEYWORDS = [
   'entreprise RGE certifiée Bourg-en-Bresse',
   'garantie décennale panneaux solaires',
   'certification QualiPV installateur',
-  'MaPrimeRénov panneaux solaires Bourg-en-Bresse',
+  'prime autoconsommation 2026 Bourg-en-Bresse',
 ] as const;
 
 export const SEO_KEYWORDS: string[] = [
@@ -89,15 +89,16 @@ export const PAGE_SPECIFIC_KEYWORDS = {
   ],
 
   aidesFinancement: [
-    'aides panneaux solaires 2025 Ain',
-    'aides panneaux solaires 2025 Bourg-en-Bresse',
-    'prime autoconsommation photovoltaïque',
-    'MaPrimeRénov panneaux solaires Ain',
+    'aides panneaux solaires 2026 Ain',
+    'aides panneaux solaires 2026 Bourg-en-Bresse',
+    'prime autoconsommation photovoltaïque 2026',
+    'prime autoconsommation 80 euros kWc',
     'CEE certificats économies énergie photovoltaïque',
-    'TVA réduite panneaux solaires 10%',
+    'TVA 5,5% panneaux solaires 2026',
     'éco-prêt taux zéro solaire',
     'financement panneaux solaires Bourg-en-Bresse',
-    'subventions photovoltaïque 2025',
+    'subventions photovoltaïque 2026',
+    'tarif rachat surplus EDF OA 2026',
   ],
 
   contact: [

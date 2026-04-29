@@ -63,20 +63,20 @@ export default function AidesPageContent({
           <StatsGrid
             stats={[
               {
-                value: "Jusqu'à 2 520€",
-                label: "Prime Autoconsommation",
+                value: "80 €/kWc",
+                label: "Prime Autoconsommation 2026",
                 icon: "DollarSign",
                 gradient: "from-green-500 to-emerald-500",
               },
               {
-                value: "0,13€/kWh",
-                label: "Tarif de Rachat EDF",
+                value: "TVA 5,5 %",
+                label: "Taux réduit sous conditions",
                 icon: "TrendingUp",
                 gradient: "from-blue-500 to-cyan-500",
               },
               {
-                value: "20-30%",
-                label: "Économies d'Électricité",
+                value: "Jusqu'à 70 %",
+                label: "Économies sur votre facture",
                 icon: "PiggyBank",
                 gradient: "from-orange-500 to-yellow-500",
               },
@@ -102,8 +102,8 @@ export default function AidesPageContent({
 
             <div className="relative z-10 text-center max-w-4xl mx-auto">
               <IntroSection
-                title="Des Aides Attractives pour Votre Transition Énergétique"
-                description="L'État français encourage fortement l'installation de panneaux solaires en proposant plusieurs dispositifs d'aides financières. BNB ÉNERGIE, certifié RGE QualiPV, vous permet de bénéficier de toutes ces aides et vous accompagne dans les démarches administratives."
+                title="Des Aides Attractives pour Votre Transition Énergétique en 2026"
+                description="En 2026, l'État français maintient des dispositifs d'aide pour l'installation de panneaux solaires : prime à l'autoconsommation (80 €/kWc), TVA réduite à 5,5 % sous conditions, éco-PTZ jusqu'à 50 000 € et tarif de rachat du surplus garanti 20 ans. BNB ÉNERGIE, certifié RGE QualiPV, vous accompagne dans toutes les démarches administratives pour obtenir ces aides."
                 className="mb-0"
               />
             </div>
