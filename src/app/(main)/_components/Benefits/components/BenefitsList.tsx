@@ -19,7 +19,7 @@ export function BenefitsList({ benefits }: BenefitsListProps) {
             viewport={{ once: true, margin: "-20px" }}
             transition={{
               duration: 0.3,
-              delay: 0.1 + index * 0.02,
+              delay: 0,
             }}
             className="group relative flex w-max cursor-pointer items-center gap-3 p-3 overflow-hidden rounded-2xl transition-all duration-200 hover:scale-[1.01]"
           >

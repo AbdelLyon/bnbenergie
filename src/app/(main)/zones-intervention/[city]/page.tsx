@@ -93,10 +93,6 @@ export default async function CityPage({
     zone.communes.some((c) => c.name === cityName)
   );
 
-  const mappedCityGroup = cityGroup
-    ? { ...cityGroup, gradient: cityGroup.gradient ?? undefined }
-    : undefined;
-
   // Villes de la même zone (hors ville courante) pour le maillage interne
   const relatedCities = (cityGroup?.communes ?? [])
     .filter((c) => c.name !== cityName)
@@ -107,7 +103,7 @@ export default async function CityPage({
     <>
       <CityPageContent
         cityName={cityName}
-        cityGroup={mappedCityGroup}
+        zoneName={cityGroup?.zone ?? ''}
         siteSettings={siteSettings}
         relatedCities={relatedCities}
       />

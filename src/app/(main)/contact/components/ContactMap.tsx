@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { LazyMotionDiv } from '@/components/LazyComponents';
+import { LazyMotionDiv } from "@/components/LazyComponents";
 
 interface ContactMapProps {
   latitude: number;
@@ -14,7 +14,7 @@ export function ContactMap({ latitude, longitude, address }: ContactMapProps) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: 0.2 }}
+      transition={{ duration: 0.6, delay: 0 }}
       className="mt-12"
     >
       <div className="overflow-hidden rounded-3xl border border-white dark:border-content2/60 bg-white dark:bg-content1/70 p-3 shadow-xl backdrop-blur-xl">

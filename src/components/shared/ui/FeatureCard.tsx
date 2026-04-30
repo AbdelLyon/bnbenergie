@@ -26,7 +26,6 @@ export function FeatureCard({
   items,
   gradient = "from-blue-500 to-cyan-500",
   iconColor = "text-blue-600",
-  index,
   className,
   children,
   stat,
@@ -39,7 +38,7 @@ export function FeatureCard({
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
+      transition={{ duration: 0.4, delay: 0 }}
       className={cn(
         "group relative overflow-hidden rounded-2xl border border-neutral-200 dark:border-content2 bg-white dark:bg-content1 p-8 shadow-lg transition-shadow duration-300 hover:shadow-2xl",
         className,

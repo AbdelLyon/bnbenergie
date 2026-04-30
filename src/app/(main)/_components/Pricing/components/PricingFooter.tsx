@@ -1,5 +1,5 @@
-import { LazyMotionDiv } from '@/components/LazyComponents';
-import { ANIMATION_DURATIONS } from '@/config/constants';
+import { LazyMotionDiv } from "@/components/LazyComponents";
+import { ANIMATION_DURATIONS } from "@/config/constants";
 
 interface PricingFooterProps {
   note: string;
@@ -12,7 +12,7 @@ export function PricingFooter({ note, tags }: PricingFooterProps) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: ANIMATION_DURATIONS.slow, delay: 0.4 }}
+      transition={{ duration: ANIMATION_DURATIONS.slow, delay: 0 }}
       className="my-16 text-center"
     >
       <p className="mb-8 text-lg text-neutral-600 dark:text-default-500">

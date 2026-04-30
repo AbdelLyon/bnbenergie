@@ -108,12 +108,12 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
 
             {}
             <div className="hidden items-center gap-1 lg:flex">
-              {data.menuCategories.map((item, index) => (
+              {data.menuCategories.map((item) => (
                 <LazyMotionDiv
                   key={item.label}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  transition={{ duration: 0.4, delay: 0 }}
                   className="relative"
                   onMouseEnter={() =>
                     item.type === "mega" && setActiveMega(item.label)
@@ -122,7 +122,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                 >
                   {item.type === "link" ? (
                     <Link
-                      href={item.href!}
+                      href={item.href ?? "#"}
                       className={`group relative rounded-lg px-4 py-2 text-sm font-semibold transition-all ${
                         isScrolled
                           ? "text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400"
@@ -177,7 +177,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                                   {section.links.map((link) => (
                                     <Link
                                       key={link.href}
-                                      href={link.href}
+                                      href={link.href ?? "#"}
                                       className="group flex items-center gap-3 rounded-lg p-2.5 transition-all duration-200 hover:bg-gray-50 dark:hover:bg-white/5"
                                       onClick={() => setActiveMega(null)}
                                     >
@@ -340,16 +340,16 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
 
               <nav className="flex-1 overflow-y-auto bg-gray-100 dark:bg-content2 px-6 py-6">
                 <div className="space-y-3">
-                  {data.menuCategories.map((item, index) => (
+                  {data.menuCategories.map((item) => (
                     <LazyMotionDiv
                       key={item.label}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 0.1 + index * 0.05 }}
+                      transition={{ duration: 0.4, delay: 0 }}
                     >
                       {item.type === "link" ? (
                         <Link
-                          href={item.href!}
+                          href={item.href ?? "#"}
                           onClick={toggleMenu}
                           className="group flex items-start gap-3 rounded-xl border border-amber-600/30 bg-white dark:bg-content1 p-3.5 transition-all duration-300 hover:border-blue-300 hover:shadow-md"
                         >
@@ -403,8 +403,8 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                             {item.sections?.map((section) =>
                               section.links.map((link) => (
                                 <Link
-                                  key={link.href}
-                                  href={link.href}
+                                  key={link.href ?? ""}
+                                  href={link.href ?? "#"}
                                   onClick={toggleMenu}
                                   className="group flex items-start gap-3 rounded-xl border border-amber-600/30 bg-white dark:bg-content1 p-3.5 transition-all duration-300 hover:border-blue-300 hover:shadow-md"
                                 >
@@ -461,7 +461,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                 <LazyMotionDiv
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.3 }}
+                  transition={{ duration: 0.4, delay: 0 }}
                   className="space-y-3"
                 >
                   <Button

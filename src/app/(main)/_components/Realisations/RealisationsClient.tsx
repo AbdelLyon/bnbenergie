@@ -65,7 +65,7 @@ export function RealisationsClient({ data }: { data: RealisationsData }) {
           initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-20px" }}
-          transition={{ duration: 0.3, delay: 0.03 }}
+          transition={{ duration: 0.3, delay: 0 }}
           className="mt-12 flex justify-center"
         >
           <Link

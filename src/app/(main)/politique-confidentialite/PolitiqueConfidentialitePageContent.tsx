@@ -6,7 +6,7 @@ import {
   SectionContainer,
   Title,
 } from "@/components";
-import { LazyMotionDiv, LazyMotionP } from "@/components/LazyComponents";
+import { LazyMotionDiv } from "@/components/LazyComponents";
 
 import type { SiteSetting } from "@/payload-types";
 import {
@@ -204,24 +204,26 @@ export default function PolitiqueConfidentialitePageContent({
     <PageMainWrapper variant="transparent">
       {/* ---------------- HEADER ---------------- */}
       <PageHeader variant="simple" height="medium">
-        <Title
-          staticText="Politique "
-          animatedText="de confidentialité"
-          subtitle="Protection de vos données personnelles"
-        />
-        <LazyMotionP
+        <LazyMotionDiv
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.3, delay: 0.15 }}
-          className="max-w-3xl px-4 text-base font-normal leading-relaxed text-white/80 sm:text-lg md:text-xl"
+          transition={{ duration: 43, delay: 0 }}
+          className="flex max-w-6xl flex-col items-center gap-6"
         >
-          Conformément au RGPD et à la loi Informatique et Libertés
-        </LazyMotionP>
+          <Title
+            staticText="Politique "
+            animatedText="de confidentialité"
+            subtitle="Protection de vos données personnelles"
+          />
+          <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
+            Conformément au RGPD et à la loi Informatique et Libertés
+          </p>
+        </LazyMotionDiv>
       </PageHeader>
 
       {/* ---------------- SECTIONS ---------------- */}
       <SectionContainer className="pb-24 -mt-24 relative z-10">
-        {sections.map((section, idx) => {
+        {sections.map((section) => {
           const Icon = section.icon;
           return (
             <LazyMotionDiv
@@ -229,7 +231,7 @@ export default function PolitiqueConfidentialitePageContent({
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              transition={{ duration: 0.5, delay: 0 }}
               className="group relative overflow-hidden rounded-3xl bg-white dark:bg-content1 p-8 shadow-xl border border-neutral-100 dark:border-white/5 mb-8"
             >
               <div

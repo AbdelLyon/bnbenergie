@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { LazyMotionDiv } from '@/components/LazyComponents';
-import { ANIMATION_DURATIONS } from '@/config/constants';
-import type { BaseCardProps } from '@/types';
+import { LazyMotionDiv } from "@/components/LazyComponents";
+import { ANIMATION_DURATIONS } from "@/config/constants";
+import type { BaseCardProps } from "@/types";
 
-import { getLucideIcon } from '@/utils/getLucideIcon';
-import { CheckCircle2 } from 'lucide-react';
+import { getLucideIcon } from "@/utils/getLucideIcon";
+import { CheckCircle2 } from "lucide-react";
 
 interface AidAmount {
   range?: string;
@@ -35,8 +35,7 @@ export function AidCard({
   gradient,
   conditions,
   amounts,
-  index,
-  className = '',
+  className = "",
 }: AidCardProps) {
   const Icon = getLucideIcon(icon);
 
@@ -44,8 +43,8 @@ export function AidCard({
     <LazyMotionDiv
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.4, delay: 0 }}
       className={`rounded-2xl border border-neutral-100 dark:border-content2 bg-white dark:bg-content1 p-8 shadow-lg transition-all duration-300 hover:shadow-xl ${className}`}
     >
       <div className="flex flex-col gap-6 md:flex-row">
@@ -90,7 +89,7 @@ export function AidCard({
                     viewport={{ once: true }}
                     transition={{
                       duration: ANIMATION_DURATIONS.fast,
-                      delay: idx * 0.05,
+                      delay: 0,
                     }}
                     className="flex items-start gap-2"
                   >

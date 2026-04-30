@@ -11,12 +11,14 @@ import {
   PageMainWrapper,
   SectionContainer,
   Title,
+  HomeHeaderCTAButtons,
 } from "@/components";
 import { ContactForm } from "./components/ContactForm";
 import { ContactInfo } from "./components/ContactInfo";
 import { ContactMap } from "./components/ContactMap";
 import { SuccessMessage } from "./components/SuccessMessage";
-import { LazyMotionDiv, LazyMotionP } from "@/components/LazyComponents";
+import { LazyMotionDiv } from "@/components/LazyComponents";
+import { SITE_CONFIG } from "@/config/site";
 
 interface ContactPageContentProps {
   header: PageHeaderType | null;
@@ -72,21 +74,31 @@ export default function ContactPageContent({
   return (
     <PageMainWrapper variant="teal">
       <PageHeader variant="simple" height="medium">
-        <Title
-          staticText={header?.title.split("-")?.[0] || "Contactez"}
-          animatedText={`-${header?.title.split("-")?.[1] || "-nous"}`}
-          subtitle={header?.subtitle ?? ""}
-          spaceX=""
-        />
-
-        <LazyMotionP
+        <LazyMotionDiv
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.3, delay: 0.15 }}
-          className="max-w-4xl px-4 text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
+          transition={{ duration: 3, delay: 0 }}
+          className="flex max-w-6xl flex-col items-center gap-6"
         >
-          {header?.description || ""}
-        </LazyMotionP>
+          <Title
+            staticText={header?.title.split("-")?.[0] || "Contactez"}
+            animatedText={`-${header?.title.split("-")?.[1] || "-nous"}`}
+            subtitle={header?.subtitle ?? ""}
+            spaceX=""
+          />
+
+          <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
+            {header?.description || ""}
+          </p>
+
+          <HomeHeaderCTAButtons
+            primaryText="Devis gratuit"
+            primaryHref="/contact#contact-form"
+            secondaryText={SITE_CONFIG.contact.phone}
+            secondaryHref={SITE_CONFIG.contact.phoneHref}
+            primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
+          />
+        </LazyMotionDiv>
       </PageHeader>
 
       <div id="contact-section" className="relative z-10 -mt-24 pb-24">

@@ -20,17 +20,15 @@ export function ScrollDownButton({ onClick }: ScrollDownButtonProps) {
   };
 
   return (
-    <div className="flex w-full items-center justify-center">
-      <LazyMotionButton
-        onClick={handleClick}
-        initial={{ opacity: 1 }}
-        animate={{ opacity: 1, y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-        className="flex w-max cursor-pointer items-center justify-center rounded-full bg-linear-to-r from-blue-500/40 via-cyan-500/20 to-yellow-400/20 p-2 transition-all hover:from-blue-500/60 hover:via-cyan-500/40 hover:to-yellow-400/40"
-        aria-label="Scroll to next section"
-      >
-        <ArrowDown className="h-5 w-5 text-white md:h-6 md:w-6" />
-      </LazyMotionButton>
-    </div>
+    <LazyMotionButton
+      onClick={handleClick}
+      initial={{ opacity: 1 }}
+      animate={{ opacity: 1, y: [0, 10, 0] }}
+      transition={{ duration: 2, repeat: Infinity, delay: 0 }}
+      className="flex w-max cursor-pointer items-center justify-center rounded-full bg-linear-to-r from-blue-500/40 via-cyan-500/20 to-yellow-400/20 p-2 transition-all hover:from-blue-500/60 hover:via-cyan-500/40 hover:to-yellow-400/40"
+      aria-label="Scroll to next section"
+    >
+      <ArrowDown className="h-5 w-5 text-white md:h-6 md:w-6" />
+    </LazyMotionButton>
   );
 }

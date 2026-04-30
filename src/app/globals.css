@@ -191,14 +191,14 @@ body {
   /* Dark mode semantic tokens */
   --bg-page: linear-gradient(
     180deg,
-    #0a0a0b 0%,
-    #111113 30%,
-    #18181b 70%,
-    #0f1419 100%
+    #121214 0%,
+    #18181c 30%,
+    #1e1e22 70%,
+    #181820 100%
   );
-  --bg-card: #18181b;
-  --bg-section: #0a0a0b;
-  --bg-section-alt: #18181b;
+  --bg-card: #222226;
+  --bg-section: #121214;
+  --bg-section-alt: #1c1c20;
 
   --text-primary: #fafafa;
   --text-secondary: #d4d4d8;

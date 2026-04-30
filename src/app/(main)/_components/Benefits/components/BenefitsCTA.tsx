@@ -25,7 +25,7 @@ export function BenefitsCTA({
       initial={{ opacity: 0, x: 15 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-20px" }}
-      transition={{ duration: 0.35, delay: 0.15 }}
+      transition={{ duration: 0.35, delay: 0 }}
     >
       <div className="from-primary-800 to-primary-900 shadow-primary-500/30 relative overflow-hidden rounded-3xl bg-linear-to-br p-10 text-white shadow-2xl md:p-12">
         <div className="absolute inset-0 opacity-10">
@@ -43,7 +43,7 @@ export function BenefitsCTA({
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.3 }}
+            transition={{ delay: 0, duration: 0.3 }}
             className="mb-6 text-3xl font-black drop-shadow-lg md:text-4xl"
           >
             {title}
@@ -52,7 +52,7 @@ export function BenefitsCTA({
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.25, duration: 0.3 }}
+            transition={{ delay: 0, duration: 0.3 }}
             className="mb-10 text-lg text-white/90 drop-shadow"
           >
             {description}

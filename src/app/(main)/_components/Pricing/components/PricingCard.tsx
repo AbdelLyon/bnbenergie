@@ -23,7 +23,7 @@ export function PricingCard({ pack, index, className }: PricingCardProps) {
     viewport: SCROLL_VIEWPORT,
     transition: {
       duration: ANIMATION_DURATIONS.normal,
-      delay: index * 0.03,
+      delay: 0,
     },
   };
 

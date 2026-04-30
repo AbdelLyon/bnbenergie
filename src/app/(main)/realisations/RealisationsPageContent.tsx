@@ -10,6 +10,7 @@ import {
   StatCard,
   ProjectCard,
   CTASection,
+  HomeHeaderCTAButtons,
 } from "@/components";
 import { ReviewsSection } from "@/components/shared/ui/ReviewsSection";
 
@@ -18,7 +19,7 @@ import type {
   PageHeader as PageHeaderType,
   SiteSetting,
 } from "@/payload-types";
-import { LazyMotionDiv, LazyMotionP } from "@/components/LazyComponents";
+import { LazyMotionDiv } from "@/components/LazyComponents";
 
 /* =========================================================
    CONSTANTES
@@ -90,20 +91,30 @@ export default function RealisationsPageContent({
       <div className="relative z-10">
         {/* ================= HEADER ================= */}
         <PageHeader variant="simple" height="medium">
-          <Title
-            staticText={header?.title.split(" ")[0] || "Nos"}
-            animatedText={header?.title.split(" ")[1] || "Réalisations"}
-            subtitle={header?.subtitle || ""}
-          />
-
-          <LazyMotionP
+          <LazyMotionDiv
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.15 }}
-            className="max-w-4xl px-4 text-base leading-relaxed text-white/80 sm:text-lg md:text-xl"
+            transition={{ duration: 3, delay: 0 }}
+            className="flex max-w-6xl flex-col items-center gap-6"
           >
-            {header?.description || ""}
-          </LazyMotionP>
+            <Title
+              staticText={header?.title.split(" ")[0] || "Nos"}
+              animatedText={header?.title.split(" ")[1] || "Réalisations"}
+              subtitle={header?.subtitle || ""}
+            />
+
+            <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
+              {header?.description || ""}
+            </p>
+
+            <HomeHeaderCTAButtons
+              primaryText="Devis gratuit"
+              primaryHref="/contact#contact-form"
+              secondaryText="07 81 25 11 25"
+              secondaryHref="tel:0781251125"
+              primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
+            />
+          </LazyMotionDiv>
         </PageHeader>
 
         <SectionContainer>

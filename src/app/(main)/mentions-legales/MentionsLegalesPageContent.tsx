@@ -90,20 +90,27 @@ export default function MentionsLegalesPageContent() {
   return (
     <PageMainWrapper variant="transparent">
       <PageHeader variant="simple" height="medium">
-        <Title
-          staticText="Mentions"
-          animatedText="légales"
-          subtitle="Informations légales et éditoriales"
-        />
-        <p className="max-w-4xl px-4 text-base text-white/80 sm:text-lg md:text-xl leading-relaxed">
-          Conformément à la loi pour la Confiance dans l'Économie Numérique
-          (LCEN)
-        </p>
+        <LazyMotionDiv
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 3, delay: 0 }}
+          className="flex max-w-6xl flex-col items-center gap-6"
+        >
+          <Title
+            staticText="Mentions"
+            animatedText="légales"
+            subtitle="Informations légales et éditoriales"
+          />
+          <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
+            Conformément à la loi pour la Confiance dans l'Économie Numérique
+            (LCEN)
+          </p>
+        </LazyMotionDiv>
       </PageHeader>
 
       <SectionContainer className="pb-20 -mt-20 relative z-10">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {sections.map((section, idx) => {
+          {sections.map((section) => {
             const Icon = section.icon;
             return (
               <LazyMotionDiv
@@ -111,7 +118,7 @@ export default function MentionsLegalesPageContent() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                transition={{ duration: 0.5, delay: 0 }}
                 className="group relative overflow-hidden rounded-3xl bg-white dark:bg-content1 p-8 shadow-xl border border-neutral-100 dark:border-white/5 mb-8"
               >
                 <div
@@ -169,7 +176,7 @@ export default function MentionsLegalesPageContent() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.05 }}
+              transition={{ duration: 0.5, delay: 0 }}
               className="rounded-2xl bg-white dark:bg-content1 p-6 border border-neutral-100 dark:border-white/5"
             >
               <h3 className="text-lg font-semibold mb-2 text-neutral-900 dark:text-white">

@@ -29,7 +29,7 @@ export function ProjectCard({ project, index, page, href }: ProjectCardProps) {
       }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-30px" }}
-      transition={{ duration: 0.35, delay: index * 0.04 }}
+      transition={{ duration: 0.35, delay: 0 }}
       whileHover={{ scale: 1.01, transition: TRANSITIONS.smooth }}
       className="group relative overflow-hidden rounded-xl border border-neutral-200/50 dark:border-content2 bg-white dark:bg-content1 shadow-sm hover:shadow-md transition-all duration-200"
     >

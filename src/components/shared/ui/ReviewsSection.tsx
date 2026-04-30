@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { Star } from 'lucide-react';
-import { ReviewsCarousel } from './ReviewsCarousel';
-import { GOOGLE_REVIEWS, REVIEWS_STATS } from '@/data/google-reviews-data';
-import { LazyMotionDiv } from '@/components/LazyComponents';
+import { Star } from "lucide-react";
+import { ReviewsCarousel } from "./ReviewsCarousel";
+import { GOOGLE_REVIEWS, REVIEWS_STATS } from "@/data/google-reviews-data";
+import { LazyMotionDiv } from "@/components/LazyComponents";
 
 interface ReviewsSectionProps {
   title?: string;
@@ -14,7 +14,7 @@ interface ReviewsSectionProps {
 }
 
 export function ReviewsSection({
-  title = 'Ce Que Disent Nos Clients',
+  title = "Ce Que Disent Nos Clients",
   subtitle,
   showStats = true,
   autoPlay = true,
@@ -40,7 +40,7 @@ export function ReviewsSection({
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.1 }}
+            transition={{ duration: 0.4, delay: 0 }}
             className="mt-6 flex items-center justify-center gap-3"
           >
             <div className="flex gap-1">
@@ -73,7 +73,7 @@ export function ReviewsSection({
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.4, delay: 0.2 }}
+        transition={{ duration: 0.4, delay: 0 }}
         className="text-center"
       >
         <a

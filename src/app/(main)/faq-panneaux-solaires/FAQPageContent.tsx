@@ -15,8 +15,9 @@ import {
   SectionContainer,
   StatCard,
   Title,
+  HomeHeaderCTAButtons,
 } from "@/components";
-import { LazyMotionDiv, LazyMotionP } from "@/components/LazyComponents";
+import { LazyMotionDiv } from "@/components/LazyComponents";
 import { getLucideIcon } from "@/utils/getLucideIcon";
 
 interface FAQPageContentProps {
@@ -60,7 +61,7 @@ const categoryMeta: Record<string, CategoryMeta> = {
     ringColor: "ring-amber-200 dark:ring-amber-800/50",
     description: "Tarifs, retour sur investissement et économies",
   },
-  "Technique": {
+  Technique: {
     icon: "Cpu",
     gradient: "from-blue-500 to-indigo-600",
     labelColor: "text-blue-700",
@@ -100,7 +101,7 @@ export default function FAQPageContent({
     if (items.length > 0) grouped.push({ category: cat, items });
   }
   const others = faqs.filter(
-    (f) => !f.category || !CATEGORY_ORDER.includes(f.category)
+    (f) => !f.category || !CATEGORY_ORDER.includes(f.category),
   );
   if (others.length > 0) grouped.push({ category: "Général", items: others });
 
@@ -108,28 +109,45 @@ export default function FAQPageContent({
     <PageMainWrapper variant="purple">
       <div className="relative z-10">
         <PageHeader variant="simple" height="medium">
-          <Title
-            staticText={header?.title.split(" ")[0] || "Questions"}
-            animatedText={header?.title.split(" ")[1] || "Fréquentes"}
-            subtitle={header?.subtitle || ""}
-          />
-          <LazyMotionP
+          <LazyMotionDiv
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.15 }}
-            className="max-w-4xl px-4 text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
+            transition={{ duration: 3, delay: 0 }}
+            className="flex max-w-6xl flex-col items-center gap-6"
           >
-            {header?.description || ""}
-          </LazyMotionP>
+            <Title
+              staticText={header?.title.split(" ")[0] || "Questions"}
+              animatedText={header?.title.split(" ")[1] || "Fréquentes"}
+              subtitle={header?.subtitle || ""}
+            />
+            <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
+              {header?.description || ""}
+            </p>
+
+            <HomeHeaderCTAButtons
+              primaryText="Devis gratuit"
+              primaryHref="/contact#contact-form"
+              secondaryText="07 81 25 11 25"
+              secondaryHref="tel:0781251125"
+              primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
+            />
+          </LazyMotionDiv>
         </PageHeader>
 
         <SectionContainer>
-          {/* Stats */}
           <div className="relative z-20 -mt-20 mb-16">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {[
-                { value: faqs.length.toString(), label: "Questions", icon: "HelpCircle" },
-                { value: "100%", label: "Réponses Détaillées", icon: "CheckCircle2" },
+                {
+                  value: faqs.length.toString(),
+                  label: "Questions",
+                  icon: "HelpCircle",
+                },
+                {
+                  value: "100%",
+                  label: "Réponses Détaillées",
+                  icon: "CheckCircle2",
+                },
                 { value: "24/7", label: "Support Disponible", icon: "Zap" },
               ].map((stat, index) => (
                 <StatCard
@@ -145,7 +163,7 @@ export default function FAQPageContent({
 
           {/* Accordéons par catégorie */}
           <div className="mb-20 space-y-4">
-            {grouped.map(({ category, items }, groupIndex) => {
+            {grouped.map(({ category, items }) => {
               const meta = categoryMeta[category] ?? defaultMeta;
               const HeaderIcon = getLucideIcon(meta.icon);
               const isOpen = openCategory === category;
@@ -156,7 +174,7 @@ export default function FAQPageContent({
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: groupIndex * 0.06 }}
+                  transition={{ duration: 0.35, delay: 0 }}
                   className={`rounded-2xl border bg-white dark:bg-content1 overflow-hidden transition-all duration-300 ${
                     isOpen
                       ? `shadow-lg ring-2 ${meta.ringColor} border-transparent`
@@ -178,7 +196,9 @@ export default function FAQPageContent({
 
                     {/* Titre + description */}
                     <div className="flex-1 min-w-0">
-                      <h2 className={`text-base font-bold md:text-lg ${meta.labelColor} ${meta.labelColorDark}`}>
+                      <h2
+                        className={`text-base font-bold md:text-lg ${meta.labelColor} ${meta.labelColorDark}`}
+                      >
                         {category}
                       </h2>
                       {meta.description && (
@@ -216,7 +236,9 @@ export default function FAQPageContent({
                   {/* Contenu accordéon */}
                   <div
                     className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                      isOpen ? "max-h-[9999px] opacity-100" : "max-h-0 opacity-0"
+                      isOpen
+                        ? "max-h-[9999px] opacity-100"
+                        : "max-h-0 opacity-0"
                     }`}
                   >
                     <div className="px-6 pb-6 space-y-3 border-t border-neutral-100 dark:border-white/5 pt-4">

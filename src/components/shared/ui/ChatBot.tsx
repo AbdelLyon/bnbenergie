@@ -119,7 +119,7 @@ export function ChatBot() {
         aria-label={
           isOpen ? 'Fermer le chat' : "Ouvrir l'assistant BNB ÉNERGIE"
         }
-        className="fixed bottom-6 cursor-pointer right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-linear-to-br from-amber-400 to-orange-500 shadow-lg shadow-orange-500/30 transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-orange-500/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+        className="fixed bottom-6 cursor-pointer right-6 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-linear-to-br from-amber-400 to-orange-500 shadow-lg shadow-orange-500/30 transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-orange-500/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
       >
         {hasUnread && !isOpen && (
           <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
@@ -135,12 +135,11 @@ export function ChatBot() {
 
       {/* 💬 CHAT */}
       <div
-        className={`fixed bottom-24 right-6 z-50 flex w-[calc(100vw-1.5rem)] md:w-95 flex-col overflow-hidden rounded-lg border border-neutral-200 bg-white shadow-2xl shadow-black/20 transition-all duration-300 dark:border-white/10 dark:bg-neutral-900 ${
+        className={`fixed inset-0 md:inset-auto md:bottom-24 md:right-6 z-50 flex w-full md:w-95 h-dvh md:h-130 flex-col overflow-hidden rounded-none md:rounded-lg border-0 md:border border-neutral-200 bg-white shadow-2xl shadow-black/20 transition-all duration-300 dark:border-white/10 dark:bg-neutral-900 ${
           isOpen
             ? 'pointer-events-auto opacity-100 translate-y-0'
             : 'pointer-events-none opacity-0 translate-y-4'
         }`}
-        style={{ height: '520px' }}
       >
         {/* HEADER */}
         <div className="flex items-center gap-3 border-b border-neutral-200 dark:border-white/10 px-4 py-3 ">

@@ -24,7 +24,7 @@ export function AboutCard({
       viewport={{ once: true, margin: "-30px" }}
       transition={{
         duration: 0.35,
-        delay: index * 0.03,
+        delay: 0,
         ease: [0.22, 1, 0.36, 1],
       }}
       className={`group relative h-full ${className || ""}`}

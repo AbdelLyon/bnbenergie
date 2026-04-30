@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { LazyMotionDiv } from '@/components/LazyComponents';
-import { ANIMATION_DURATIONS } from '@/config/constants';
-import type { BaseCardProps } from '@/types';
-import { SCROLL_VIEWPORT } from '@/utils/animations';
-import { getLucideIcon } from '@/utils/getLucideIcon';
-import { CheckCircle2, Clock } from 'lucide-react';
+import { LazyMotionDiv } from "@/components/LazyComponents";
+import { ANIMATION_DURATIONS } from "@/config/constants";
+import type { BaseCardProps } from "@/types";
+import { SCROLL_VIEWPORT } from "@/utils/animations";
+import { getLucideIcon } from "@/utils/getLucideIcon";
+import { CheckCircle2, Clock } from "lucide-react";
 
 interface ServiceStepProps extends BaseCardProps {
   number: string;
@@ -26,10 +26,9 @@ export function ServiceStep({
   description,
   items,
   duration,
-  gradient = 'from-blue-500 to-cyan-500',
+  gradient = "from-blue-500 to-cyan-500",
   isEven = false,
-  index,
-  className = '',
+  className = "",
 }: ServiceStepProps) {
   const Icon = getLucideIcon(icon);
 
@@ -38,7 +37,7 @@ export function ServiceStep({
       initial={{ opacity: 0, x: isEven ? -40 : 40 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={SCROLL_VIEWPORT}
-      transition={{ duration: ANIMATION_DURATIONS.medium, delay: index * 0.1 }}
+      transition={{ duration: ANIMATION_DURATIONS.medium, delay: 0 }}
       className={`group relative ${className}`}
     >
       <div className="rounded-3xl border border-neutral-200 dark:border-divider bg-white dark:bg-content1 p-8 shadow-lg transition-all duration-300 hover:shadow-2xl md:p-10">

@@ -45,10 +45,7 @@ const nextConfig: NextConfig = {
   },
 
   experimental: {
-    optimizePackageImports:
-      process.env['NODE_ENV'] === 'production'
-        ? ['@heroui/react', 'lucide-react', 'framer-motion']
-        : [],
+    optimizePackageImports: ['@heroui/react', 'lucide-react', 'framer-motion'],
     optimizeCss: process.env['NODE_ENV'] === 'production',
     webpackBuildWorker: true,
   },

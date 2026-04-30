@@ -1,6 +1,6 @@
-'use client';
-import { LazyMotionDiv } from '@/components/LazyComponents';
-import { getLucideIcon } from '@/utils/getLucideIcon';
+"use client";
+import { LazyMotionDiv } from "@/components/LazyComponents";
+import { getLucideIcon } from "@/utils/getLucideIcon";
 
 interface ContactInfoItem {
   icon: string;
@@ -17,7 +17,7 @@ interface ContactInfoProps {
 export function ContactInfo({ items }: ContactInfoProps) {
   return (
     <div className="space-y-10">
-      {items.map((item, index) => {
+      {items.map((item) => {
         const Icon = getLucideIcon(item.icon);
         return (
           <LazyMotionDiv
@@ -25,7 +25,7 @@ export function ContactInfo({ items }: ContactInfoProps) {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            transition={{ duration: 0.5, delay: 0 }}
             className="flex gap-6 group"
           >
             <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-white backdrop-blur-md transition-all duration-300 group-hover:bg-white/20 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-white/10">

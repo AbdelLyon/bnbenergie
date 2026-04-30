@@ -8,8 +8,9 @@ import {
   StatsGrid,
   IntroSection,
   CTASection,
+  HomeHeaderCTAButtons,
 } from "@/components";
-import { LazyMotionDiv, LazyMotionP } from "@/components/LazyComponents";
+import { LazyMotionDiv } from "@/components/LazyComponents";
 
 import type {
   PageHeader as PageHeaderType,
@@ -32,20 +33,32 @@ export default function NosPacksPageContent({
     <PageMainWrapper variant="blue">
       {/* Header */}
       <PageHeader variant="simple" height="medium">
-        <Title
-          staticText={header?.title?.split(" ")[0] || "Nos"}
-          animatedText={header?.title?.split(" ")[1] || "Packs"}
-          subtitle={header?.subtitle || "Des Solutions Adaptées à Vos Besoins"}
-        />
-        <LazyMotionP
+        <LazyMotionDiv
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.3, delay: 0.15 }}
-          className="max-w-4xl px-4 text-base font-normal leading-relaxed text-white/80 [text-shadow:0_2px_12px_rgba(0,0,0,0.7)] sm:text-lg md:text-xl"
+          transition={{ duration: 3, delay: 0 }}
+          className="flex max-w-6xl flex-col items-center gap-6"
         >
-          {header?.description ||
-            "Découvrez nos packs d'installation de panneaux solaires personnalisés pour répondre à tous vos besoins énergétiques dans l'Ain. Tarifs transparents, garanties incluses et accompagnement personnalisé."}
-        </LazyMotionP>
+          <Title
+            staticText={header?.title?.split(" ")[0] || "Nos"}
+            animatedText={header?.title?.split(" ")[1] || "Packs"}
+            subtitle={
+              header?.subtitle || "Des Solutions Adaptées à Vos Besoins"
+            }
+          />
+          <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
+            {header?.description ||
+              "Découvrez nos packs d'installation de panneaux solaires personnalisés pour répondre à tous vos besoins énergétiques dans l'Ain. Tarifs transparents, garanties incluses et accompagnement personnalisé."}
+          </p>
+
+          <HomeHeaderCTAButtons
+            primaryText="Devis gratuit"
+            primaryHref="/contact#contact-form"
+            secondaryText="07 81 25 11 25"
+            secondaryHref="tel:0781251125"
+            primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
+          />
+        </LazyMotionDiv>
       </PageHeader>
 
       <div className="relative z-10">

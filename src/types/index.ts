@@ -97,14 +97,14 @@ export interface BaseCardProps {
 /**
  * Section wrapper background variants
  */
-export type SectionBackground = 'white' | 'gray' | 'gradient' | 'dark';
+export type SectionBackground = "white" | "gray" | "gradient" | "dark";
 
 /**
  * Section container width variants
  */
-export type SectionWidth = 'default' | 'narrow' | 'wide' | 'full';
+export type SectionWidth = "default" | "narrow" | "wide" | "full";
 
 /**
  * Text alignment options
  */
-export type TextAlignment = 'left' | 'center' | 'right';
+export type TextAlignment = "left" | "center" | "right";

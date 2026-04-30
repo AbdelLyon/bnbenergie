@@ -1,9 +1,12 @@
-'use client';
+"use client";
 
-import { LazyMotionDiv } from '@/components/LazyComponents';
-import type { HTMLMotionProps } from 'framer-motion';
+import { LazyMotionDiv } from "@/components/LazyComponents";
+import type { HTMLMotionProps } from "framer-motion";
 
-interface AnimatedCardProps extends Omit<HTMLMotionProps<'div'>, 'initial' | 'whileInView' | 'viewport' | 'transition'> {
+interface AnimatedCardProps extends Omit<
+  HTMLMotionProps<"div">,
+  "initial" | "whileInView" | "viewport" | "transition"
+> {
   index?: number;
   delay?: number;
   duration?: number;
@@ -26,11 +29,11 @@ export function AnimatedCard({
   delay,
   duration = 0.4,
   initialY = 20,
-  viewportMargin = '-50px',
+  viewportMargin = "-50px",
   className,
   ...motionProps
 }: AnimatedCardProps) {
-  const computedDelay = delay !== undefined ? delay : index * 0.1;
+  const computedDelay = 0;
 
   return (
     <LazyMotionDiv

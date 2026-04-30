@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { AnimatePresence } from 'framer-motion';
-import { LazyMotionDiv, LazyMotionButton } from '@/components/LazyComponents';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState, useEffect, useCallback } from 'react';
-import { ReviewCard } from './ReviewCard';
-import type { Review } from '@/data/google-reviews-data';
+import { AnimatePresence } from "framer-motion";
+import { LazyMotionDiv, LazyMotionButton } from "@/components/LazyComponents";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { ReviewCard } from "./ReviewCard";
+import type { Review } from "@/data/google-reviews-data";
 
 interface ReviewsCarouselProps {
   reviews: Review[];
@@ -37,8 +37,8 @@ export function ReviewsCarousel({
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const maxIndex = Math.max(0, reviews.length - cardsPerView);
@@ -58,7 +58,7 @@ export function ReviewsCarousel({
       setDirection(index > currentIndex ? 1 : -1);
       setCurrentIndex(index);
     },
-    [currentIndex]
+    [currentIndex],
   );
 
   useEffect(() => {
@@ -70,7 +70,7 @@ export function ReviewsCarousel({
 
   const visibleReviews = reviews.slice(
     currentIndex,
-    currentIndex + cardsPerView
+    currentIndex + cardsPerView,
   );
 
   return (
@@ -93,7 +93,7 @@ export function ReviewsCarousel({
       <div className="relative overflow-hidden">
         <div className="flex gap-6 px-2 py-6">
           <AnimatePresence initial={false} custom={direction}>
-            {visibleReviews.map((review, idx) => (
+            {visibleReviews.map((review) => (
               <LazyMotionDiv
                 key={review.id}
                 custom={direction}
@@ -103,9 +103,9 @@ export function ReviewsCarousel({
                   duration: 0.5,
                   ease: [0.25, 0.46, 0.45, 0.94],
                 }}
-                className={`${cardsPerView === 1 ? 'w-full' : ''} ${cardsPerView === 2 ? 'w-[calc(50%-12px)]' : ''} ${cardsPerView === 3 ? 'w-[calc(33.333%-16px)]' : ''} shrink-0`}
+                className={`${cardsPerView === 1 ? "w-full" : ""} ${cardsPerView === 2 ? "w-[calc(50%-12px)]" : ""} ${cardsPerView === 3 ? "w-[calc(33.333%-16px)]" : ""} shrink-0`}
               >
-                <ReviewCard review={review} index={idx} />
+                <ReviewCard review={review} />
               </LazyMotionDiv>
             ))}
           </AnimatePresence>
@@ -149,7 +149,7 @@ export function ReviewsCarousel({
             >
               {/* Dot background */}
               <div
-                className={`h-2 rounded-full transition-all duration-300 ${idx === currentIndex ? 'w-8 bg-amber-500 dark:bg-amber-400' : 'w-2 bg-neutral-300 dark:bg-content2 group-hover:bg-amber-300 dark:group-hover:bg-amber-600'}`}
+                className={`h-2 rounded-full transition-all duration-300 ${idx === currentIndex ? "w-8 bg-amber-500 dark:bg-amber-400" : "w-2 bg-neutral-300 dark:bg-content2 group-hover:bg-amber-300 dark:group-hover:bg-amber-600"}`}
               />
 
               {idx === currentIndex && (
@@ -157,7 +157,7 @@ export function ReviewsCarousel({
                   layoutId="activeSlide"
                   className="absolute inset-0 -z-10 rounded-full bg-amber-400/30 blur-md"
                   transition={{
-                    type: 'spring',
+                    type: "spring",
                     stiffness: 500,
                     damping: 30,
                   }}

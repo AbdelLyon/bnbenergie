@@ -1,31 +1,30 @@
-'use client';
+"use client";
 
-import { Star, MapPin } from 'lucide-react';
-import type { Review } from '@/data/google-reviews-data';
-import { TRANSITIONS } from '@/config/constants';
-import { LazyMotionArticle } from '@/components/LazyComponents';
+import { Star, MapPin } from "lucide-react";
+import type { Review } from "@/data/google-reviews-data";
+import { TRANSITIONS } from "@/config/constants";
+import { LazyMotionArticle } from "@/components/LazyComponents";
 
 interface ReviewCardProps {
   review: Review;
-  index: number;
   onClick?: () => void;
 }
 
-export function ReviewCard({ review, index, onClick }: ReviewCardProps) {
-  const formattedDate = new Date(review.date).toLocaleDateString('fr-FR', {
-    month: 'short',
-    year: 'numeric',
+export function ReviewCard({ review, onClick }: ReviewCardProps) {
+  const formattedDate = new Date(review.date).toLocaleDateString("fr-FR", {
+    month: "short",
+    year: "numeric",
   });
 
   return (
     <LazyMotionArticle
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.4, delay: 0 }}
       onClick={onClick}
       whileHover={{ scale: 1.02, transition: TRANSITIONS.smooth }}
-      className={`group relative flex h-65 flex-col overflow-hidden rounded-xl border border-neutral-200/50 dark:border-content2 bg-white dark:bg-content1 p-5 shadow:sm transition-all duration-300 ${onClick ? 'cursor-pointer' : ''}`}
+      className={`group relative flex h-65 flex-col overflow-hidden rounded-xl border border-neutral-200/50 dark:border-content2 bg-white dark:bg-content1 p-5 shadow:sm transition-all duration-300 ${onClick ? "cursor-pointer" : ""}`}
     >
       <div className="mb-3 flex items-center justify-between">
         <div className="flex gap-0.5">
@@ -34,8 +33,8 @@ export function ReviewCard({ review, index, onClick }: ReviewCardProps) {
               key={i}
               className={`h-3.5 w-3.5 ${
                 i < review.rating
-                  ? 'fill-amber-400 text-amber-400'
-                  : 'fill-neutral-200 text-neutral-200 dark:fill-neutral-700 dark:text-neutral-700'
+                  ? "fill-amber-400 text-amber-400"
+                  : "fill-neutral-200 text-neutral-200 dark:fill-neutral-700 dark:text-neutral-700"
               }`}
             />
           ))}
