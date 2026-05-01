@@ -58,16 +58,11 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
             staticText={data.title[0] ?? "BNB"}
             animatedText={data.title[1] ?? "ÉNERGIE"}
             seoTitle={data.seoTitle}
+          subtitle={data.subtitle }
           />
-
-          <div className="mx-auto max-w-4xl space-y-2 lg:space-y-6">
-            <h2 className="px-4 font-medium text-white text-lg lg:text-2xl xl:text-3xl">
-              {data.subtitle}
-            </h2>
             <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
               {data.description}
             </p>
-          </div>
         </div>
 
         <HomeHeaderCTAButtons

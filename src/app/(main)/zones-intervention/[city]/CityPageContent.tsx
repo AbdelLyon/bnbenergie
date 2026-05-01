@@ -58,12 +58,11 @@ export default function CityPageContent({
             {zone.label}
           </span>
 
-          <Title staticText="Installation" animatedText={`à ${cityName}`} />
-
-          <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
-            {tagline}
-          </p>
-
+          <Title staticText="Installation" animatedText={`à ${cityName}`} 
+          
+          subtitle={tagline}
+          />
+          
           <HomeHeaderCTAButtons
             primaryText={`Devis gratuit à ${cityName}`}
             primaryHref="/contact#contact-form"

@@ -148,7 +148,6 @@ function MobileStaticText({ staticText, animatedText }: MobileStaticTextProps) {
           <span style={{ color: "#fbbf24" }}>{firstStatic}</span>
           <span style={{ color: "white" }}>{restStatic}</span>
         </span>
-        <span style={{ color: "rgba(255,255,255,0.15)", margin: "0 6px", fontWeight: 300 }}>·</span>
         <span>
           <span style={{ color: "#60a5fa" }}>{firstAnimated}</span>
           <span style={{ color: "white" }}>{restAnimated}</span>
@@ -205,7 +204,7 @@ export function Title({
             className={`px-4 text-4xl sm:text-5xl lg:text-6xl xl:text-6xl font-display font-bold tracking-tight leading-tight ${spaceX}`}
           >
             <span className="inline text-white drop-shadow-sm">
-              {staticText.toLocaleUpperCase()}{" "}
+              {staticText.toLocaleUpperCase()}
             </span>
             <AnimatedText animatedText={animatedText} />
           </h1>
