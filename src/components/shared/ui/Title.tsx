@@ -122,22 +122,22 @@ export function Title({
   staticText,
   animatedText,
   subtitle,
-  spaceX = "space-x-2",
+  spaceX = "space-x-1",
 }: TitleProps) {
   const isMobile = useIsMobile();
 
   return (
     <div className="text-center">
       <h1
-        className={`px-4 text-3xl sm:text-4xl lg:text-6xl xl:text-6xl font-display font-bold tracking-tight leading-tight ${spaceX}`}
+        className={`px-4 text-4xl sm:text-5xl lg:text-6xl xl:text-6xl font-display font-bold tracking-tight leading-tight ${spaceX}`}
       >
-        <span className="inline text-white">
-          {staticText.toLocaleUpperCase()}{" "}
+        <span className="inline text-white drop-shadow-sm">
+          {staticText.toLocaleUpperCase()}
         </span>
 
         {isMobile ? (
           // Statique sur mobile — pas de layout shift
-          <span className="inline bg-[linear-gradient(to_right,#fbbf24,#f59e0b,#f97316,#3b82f6,#2563eb)] bg-clip-text text-transparent drop-shadow-sm">
+          <span className="inline text-white drop-shadow-sm">
             {animatedText.toLocaleUpperCase()}
           </span>
         ) : (
@@ -147,7 +147,7 @@ export function Title({
       </h1>
 
       {subtitle && (
-        <h2 className="px-4 font-medium text-white text-base sm:text-lg lg:text-2xl xl:text-3xl mt-3 lg:mt-5">
+        <h2 className="px-4 font-medium text-white text-lg sm:text-xl lg:text-2xl xl:text-3xl mt-3 lg:mt-5">
           {subtitle}
         </h2>
       )}
