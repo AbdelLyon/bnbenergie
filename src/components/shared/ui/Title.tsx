@@ -20,6 +20,7 @@ const ADJACENT_KEYS: Record<string, string> = {
 };
 
 function typoFor(char: string): string {
+  if (!char) return "";
   const lower = char.toLowerCase();
   const adj = ADJACENT_KEYS[lower] ?? (lower === "e" ? "r" : "e");
   return char !== char.toLowerCase() ? adj.toUpperCase() : adj;
@@ -95,7 +96,10 @@ function AnimatedText({ animatedText }: { animatedText: string }) {
       t = setTimeout(() => setPhase("deleting"), 2200);
     } else if (phase === "deleting") {
       if (len > 0) {
-        t = setTimeout(() => setDisplayed(animatedText.slice(0, len - 1)), Math.random() * 30 + 22);
+        t = setTimeout(
+          () => setDisplayed(animatedText.slice(0, len - 1)),
+          Math.random() * 30 + 22,
+        );
       } else {
         setPhase("empty");
       }
@@ -115,33 +119,43 @@ function AnimatedText({ animatedText }: { animatedText: string }) {
   );
 }
 
-interface MobileStaticTextProps {
+interface TitleTextProps {
   staticText: string;
   animatedText: string;
+  subtitle?: string;
+  desktop?: boolean;
 }
 
-function MobileStaticText({ staticText, animatedText }: MobileStaticTextProps) {
-  const firstStatic = staticText[0]?.toUpperCase();
+function TitleContent({ staticText, animatedText, subtitle, desktop = false }: TitleTextProps) {
+  const firstStatic = staticText[0]?.toUpperCase() ?? "";
   const restStatic = staticText.slice(1).toUpperCase();
-  const firstAnimated = animatedText[0]?.toUpperCase();
+  const firstAnimated = animatedText[0]?.toUpperCase() ?? "";
   const restAnimated = animatedText.slice(1).toUpperCase();
+
+  const titleSize = desktop
+    ? "clamp(3rem, 6vw, 4.5rem)"
+    : "clamp(2rem, 8vw, 2.5rem)";
 
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+
+      {/* Ligne dégradée */}
       <div style={{
-        width: "32px",
+        width: desktop ? "48px" : "32px",
         height: "2px",
         background: "linear-gradient(to right, #fbbf24, #3b82f6)",
         borderRadius: "999px",
-        marginBottom: "10px",
+        marginBottom: desktop ? "16px" : "10px",
       }} />
+
+      {/* Titre */}
       <h1 style={{
-        fontSize: "clamp(2rem, 8vw, 2.5rem)",
+        fontSize: titleSize,
         fontWeight: 800,
         letterSpacing: "-0.02em",
         lineHeight: 1.15,
         margin: 0,
-        padding: "0 1.25rem",
+        padding: desktop ? "0 2rem" : "0 1.25rem",
         textAlign: "center",
       }}>
         <span>
@@ -149,11 +163,38 @@ function MobileStaticText({ staticText, animatedText }: MobileStaticTextProps) {
           <span style={{ color: "white" }}>{restStatic}</span>
         </span>
         {" "}
-        <span>
-          <span style={{ color: "#60a5fa" }}>{firstAnimated}</span>
-          <span style={{ color: "white" }}>{restAnimated}</span>
-        </span>
+        {desktop ? (
+          <AnimatedText animatedText={animatedText} />
+        ) : (
+          <span>
+            <span style={{ color: "#60a5fa" }}>{firstAnimated}</span>
+            <span style={{ color: "white" }}>{restAnimated}</span>
+          </span>
+        )}
       </h1>
+
+      {/* Séparateur subtitle */}
+      {subtitle && (
+        <>
+          <div style={{
+            width: desktop ? "64px" : "48px",
+            height: "1px",
+            background: "rgba(255,255,255,0.12)",
+            margin: desktop ? "20px auto" : "14px auto",
+          }} />
+          <p style={{
+            fontSize: desktop ? "0.8rem" : "0.75rem",
+            fontWeight: 400,
+            color: "rgba(255,255,255,0.45)",
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            margin: 0,
+            padding: desktop ? "0 2rem" : "0 1.5rem",
+          }}>
+            {subtitle}
+          </p>
+        </>
+      )}
     </div>
   );
 }
@@ -163,59 +204,19 @@ export function Title({
   animatedText,
   subtitle,
   seoTitle,
-  spaceX = "space-x-1",
 }: TitleProps) {
   const isMobile = useIsMobile();
 
   return (
     <div className="text-center">
-      {/* SEO title caché visuellement */}
-      {seoTitle && (
-        <span className="sr-only">{seoTitle}</span>
-      )}
+      {seoTitle && <span className="sr-only">{seoTitle}</span>}
 
-      {isMobile ? (
-        <div style={{ textAlign: "center", width: "100%" }}>
-          <MobileStaticText staticText={staticText} animatedText={animatedText} />
-          {subtitle && (
-            <>
-              <div style={{
-                width: "48px",
-                height: "1px",
-                background: "rgba(255,255,255,0.15)",
-                margin: "14px auto",
-              }} />
-              <p style={{
-                fontSize: "0.875rem",
-                fontWeight: 400,
-                color: "rgba(255,255,255,0.55)",
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                margin: 0,
-                padding: "0 1.5rem",
-              }}>
-                {subtitle}
-              </p>
-            </>
-          )}
-        </div>
-      ) : (
-        <div style={{ textAlign: "center" }}>
-          <h1
-            className={`px-4 text-4xl sm:text-5xl lg:text-6xl xl:text-6xl font-display font-bold tracking-tight leading-tight ${spaceX}`}
-          >
-            <span className="inline text-white drop-shadow-sm">
-              {staticText.toLocaleUpperCase()}
-            </span>
-            <AnimatedText animatedText={animatedText} />
-          </h1>
-          {subtitle && (
-            <h2 className="px-4 font-medium text-white text-lg sm:text-xl lg:text-2xl xl:text-3xl mt-3 lg:mt-5">
-              {subtitle}
-            </h2>
-          )}
-        </div>
-      )}
+      <TitleContent
+        staticText={staticText}
+        animatedText={animatedText}
+        subtitle={subtitle}
+        desktop={!isMobile}
+      />
     </div>
   );
 }
