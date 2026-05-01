@@ -161,18 +161,12 @@ function TitleContent({ staticText, animatedText, subtitle, desktop = false }: T
 
       {/* Subtitle */}
       {subtitle && (
-        <>
-          <div className={`
-            bg-white/40 mx-auto
-            ${desktop ? "w-16 h-px mt-5" : "w-12 h-px mt-3.5"}
-          `} />
           <p className={`
             uppercase tracking-widest text-white/80 font-normal
             ${desktop ? "text-sm lg:text-[0.9rem] mt-2.5 px-8" : "text-xs mt-1.5 px-6"}
           `}>
             {subtitle}
           </p>
-        </>
       )}
     </div>
   );
