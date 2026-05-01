@@ -139,7 +139,7 @@ function TitleContent({ staticText, animatedText, subtitle, desktop = false }: T
       <h1 className={`
         font-display font-extrabold tracking-tight leading-tight text-center
         ${desktop
-          ? "text-5xl lg:text-6xl xl:text-7xl px-8"
+          ? "text-4xl lg:text-5xl xl:text-6xl px-8"
           : "text-[clamp(2rem,8vw,2.5rem)] px-5"
         }
       `}>
