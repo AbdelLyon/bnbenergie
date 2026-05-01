@@ -37,6 +37,9 @@ function useIsMobile(): boolean {
 }
 
 function AnimatedText({ animatedText }: { animatedText: string }) {
+  const firstChar = animatedText[0]?.toUpperCase() ?? "";
+  const restText = animatedText.slice(1);
+
   const [displayed, setDisplayed] = useState<string>("");
   const [phase, setPhase] = useState<Phase>("typing");
   const [typoChar, setTypoChar] = useState<string>("");
@@ -50,66 +53,69 @@ function AnimatedText({ animatedText }: { animatedText: string }) {
     const len = displayed.length;
 
     if (phase === "typing") {
-      if (len >= animatedText.length) {
+      if (len >= restText.length) {
         t = setTimeout(() => setPhase("full"), 50);
         return () => clearTimeout(t);
       }
-      const isWordBoundary = len === 0 || animatedText[len - 1] === " ";
+      const isWordBoundary = len === 0 || restText[len - 1] === " ";
       const burstMode = !isWordBoundary && Math.random() < 0.15;
       const thinkPause = !burstMode && Math.random() < 0.05;
       let delay = burstMode
-        ? Math.random() * 20 + 15
+        ? Math.random() * 40 + 30          
         : isWordBoundary
-        ? Math.random() * 90 + 130
-        : Math.random() * 70 + 55;
-      if (thinkPause) delay += Math.random() * 350 + 250;
+        ? Math.random() * 140 + 180      
+        : Math.random() * 100 + 90;        
+      if (thinkPause) delay += Math.random() * 500 + 350; 
       const makeTypo =
         Math.random() < 0.09 &&
         len > 1 &&
-        len < animatedText.length - 1 &&
-        /[a-zA-Z]/.test(animatedText[len] ?? "");
+        len < restText.length - 1 &&
+        /[a-zA-Z]/.test(restText[len] ?? "");
       t = setTimeout(() => {
         if (makeTypo) {
-          setTypoChar(typoFor(animatedText[len] ?? ""));
+          setTypoChar(typoFor(restText[len] ?? ""));
           setPhase("typo");
         } else {
-          setDisplayed(animatedText.slice(0, len + 1));
+          setDisplayed(restText.slice(0, len + 1));
         }
       }, delay);
     } else if (phase === "typo") {
-      t = setTimeout(() => setPhase("correct"), Math.random() * 180 + 160);
+      t = setTimeout(() => setPhase("correct"), Math.random() * 200 + 180);
     } else if (phase === "correct") {
       t = setTimeout(() => {
-        setDisplayed(animatedText.slice(0, len + 1));
+        setDisplayed(restText.slice(0, len + 1));
         setPhase("typing");
-      }, Math.random() * 130 + 180);
+      }, Math.random() * 160 + 200);
     } else if (phase === "full") {
-      t = setTimeout(() => setPhase("deleting"), 2200);
+      t = setTimeout(() => setPhase("deleting"), 2800);   
     } else if (phase === "deleting") {
       if (len > 0) {
         t = setTimeout(
-          () => setDisplayed(animatedText.slice(0, len - 1)),
-          Math.random() * 30 + 22,
+          () => setDisplayed(restText.slice(0, len - 1)),
+          Math.random() * 45 + 35,                        
         );
       } else {
         setPhase("empty");
       }
     } else if (phase === "empty") {
-      t = setTimeout(() => setPhase("typing"), 600);
+      t = setTimeout(() => setPhase("typing"), 800);     
     }
 
     return () => clearTimeout(t);
-  }, [displayed, phase, animatedText, hasHydrated]);
+  }, [displayed, phase, restText, hasHydrated]);
 
   const visibleText = phase === "typo" ? displayed + typoChar : displayed;
 
   return (
-    <span
-      suppressHydrationWarning
-      className="inline bg-[linear-gradient(to_right,#fbbf24,#f59e0b,#f97316,#3b82f6,#2563eb)] bg-clip-text text-transparent"
-    >
-      {visibleText.toLocaleUpperCase()}
-    </span>
+    <>
+      <span className="text-blue-400">{firstChar}</span>
+      <span
+        suppressHydrationWarning
+        className="inline bg-[linear-gradient(to_right,#fbbf24,#f59e0b,#f97316,#3b82f6,#2563eb)] bg-clip-text text-transparent"
+      >
+        {visibleText.toLocaleUpperCase()}
+      </span>
+    </>
   );
 }
 
