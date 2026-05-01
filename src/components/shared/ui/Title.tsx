@@ -179,13 +179,13 @@ function TitleContent({ staticText, animatedText, subtitle, desktop = false }: T
           <div style={{
             width: desktop ? "64px" : "48px",
             height: "1px",
-            background: "rgba(255,255,255,0.12)",
-            margin: desktop ? "20px auto" : "14px auto",
+            background: "rgba(255, 255, 255, 0.39)",
+            margin: desktop ? "22px auto" : "14px auto",
           }} />
           <p style={{
             fontSize: desktop ? "0.8rem" : "0.75rem",
             fontWeight: 400,
-            color: "rgba(255,255,255,0.45)",
+            color: "rgba(255, 255, 255, 0.81)",
             letterSpacing: "0.12em",
             textTransform: "uppercase",
             margin: 0,

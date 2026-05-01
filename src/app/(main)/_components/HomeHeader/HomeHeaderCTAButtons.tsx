@@ -29,7 +29,7 @@ export function HomeHeaderCTAButtons({
   secondaryClassName,
 }: HeroCTAButtonsProps) {
   return (
-    <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:gap-4 sm:px-0 justify-center">
+    <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:px-0 justify-center">
       <LazyMotionDiv whileTap={{ scale: 0.96 }} whileHover={{ scale: 1.02 }}>
         <Button
           href={primaryHref}
