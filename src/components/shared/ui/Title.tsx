@@ -125,7 +125,7 @@ function MobileStaticText({ staticText, animatedText }) {
   );
 }
 
-export default function Title({
+export  function Title({
   staticText = "Gestion",
   animatedText = "Locative",
   subtitle = "La plateforme pour vos locations",
