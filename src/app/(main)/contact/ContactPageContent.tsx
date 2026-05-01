@@ -82,9 +82,8 @@ export default function ContactPageContent({
         >
           <Title
             staticText={header?.title.split("-")?.[0] || "Contactez"}
-            animatedText={`-${header?.title.split("-")?.[1] || "-nous"}`}
+            animatedText={header?.title.split("-")?.[1] || "-nous"}
             subtitle={header?.subtitle ?? ""}
-            spaceX=""
           />
 
           <p className="px-4 text-base font-normal text-white/80 lg:text-lg">

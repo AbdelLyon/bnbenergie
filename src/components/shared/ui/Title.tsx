@@ -7,7 +7,6 @@ interface TitleProps {
   animatedText: string;
   subtitle?: string;
   seoTitle?: string;
-  spaceX?: string;
 }
 
 type Phase = "typing" | "full" | "deleting" | "empty" | "typo" | "correct";
