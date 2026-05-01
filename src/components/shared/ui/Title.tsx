@@ -111,7 +111,7 @@ function AnimatedText({ animatedText }: { animatedText: string }) {
       <span className="text-blue-400">{firstChar}</span>
       <span
         suppressHydrationWarning
-        className="inline bg-[linear-gradient(to_right,#fbbf24,#f59e0b,#f97316,#3b82f6,#2563eb)] bg-clip-text text-transparent"
+       className="inline bg-[linear-gradient(to_right,#3b82f6,#fbbf24)] bg-clip-text text-transparent"
       >
         {visibleText.toLocaleUpperCase()}
       </span>
