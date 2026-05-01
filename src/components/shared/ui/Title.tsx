@@ -37,14 +37,6 @@ function useIsMobile(): boolean {
   return isMobile;
 }
 
-const gradientStyle: React.CSSProperties = {
-  background: "linear-gradient(to right, #fbbf24, #f59e0b, #f97316, #3b82f6, #2563eb)",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  backgroundClip: "text",
-  display: "inline",
-};
-
 function AnimatedText({ animatedText }: { animatedText: string }) {
   const [displayed, setDisplayed] = useState<string>("");
   const [phase, setPhase] = useState<Phase>("typing");
@@ -113,84 +105,71 @@ function AnimatedText({ animatedText }: { animatedText: string }) {
   const visibleText = phase === "typo" ? displayed + typoChar : displayed;
 
   return (
-    <span suppressHydrationWarning style={gradientStyle}>
+    <span
+      suppressHydrationWarning
+      className="inline bg-[linear-gradient(to_right,#fbbf24,#f59e0b,#f97316,#3b82f6,#2563eb)] bg-clip-text text-transparent"
+    >
       {visibleText.toLocaleUpperCase()}
     </span>
   );
 }
 
-interface TitleTextProps {
+interface TitleContentProps {
   staticText: string;
   animatedText: string;
   subtitle?: string;
   desktop?: boolean;
 }
 
-function TitleContent({ staticText, animatedText, subtitle, desktop = false }: TitleTextProps) {
+function TitleContent({ staticText, animatedText, subtitle, desktop = false }: TitleContentProps) {
   const firstStatic = staticText[0]?.toUpperCase() ?? "";
   const restStatic = staticText.slice(1).toUpperCase();
   const firstAnimated = animatedText[0]?.toUpperCase() ?? "";
   const restAnimated = animatedText.slice(1).toUpperCase();
 
-  const titleSize = desktop
-    ? "clamp(3rem, 6vw, 4.5rem)"
-    : "clamp(2rem, 8vw, 2.5rem)";
-
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <div className="flex flex-col items-center">
 
       {/* Ligne dégradée */}
-      <div style={{
-        width: desktop ? "64px" : "48px",
-        height: desktop ? "3px" : "2px",
-        background: "linear-gradient(to right, #fbbf24, #3b82f6)",
-        borderRadius: "999px",
-        marginBottom: desktop ? "20px" : "14px",
-      }} />
+      <div className={`
+        bg-[linear-gradient(to_right,#fbbf24,#3b82f6)] rounded-full
+        ${desktop ? "w-16 h-[3px] mb-5" : "w-12 h-[2px] mb-3.5"}
+      `} />
 
       {/* Titre */}
-      <h1 style={{
-        fontSize: titleSize,
-        fontWeight: 800,
-        letterSpacing: "-0.02em",
-        lineHeight: 1.15,
-        margin: 0,
-        padding: desktop ? "0 2rem" : "0 1.25rem",
-        textAlign: "center",
-      }}>
+      <h1 className={`
+        font-display font-extrabold tracking-tight leading-tight text-center
+        ${desktop
+          ? "text-5xl lg:text-6xl xl:text-7xl px-8"
+          : "text-[clamp(2rem,8vw,2.5rem)] px-5"
+        }
+      `}>
         <span>
-          <span style={{ color: "#fbbf24" }}>{firstStatic}</span>
-          <span style={{ color: "white" }}>{restStatic}</span>
+          <span className="text-amber-400">{firstStatic}</span>
+          <span className="text-white">{restStatic}</span>
         </span>
         {" "}
         {desktop ? (
           <AnimatedText animatedText={animatedText} />
         ) : (
           <span>
-            <span style={{ color: "#60a5fa" }}>{firstAnimated}</span>
-            <span style={{ color: "white" }}>{restAnimated}</span>
+            <span className="text-blue-400">{firstAnimated}</span>
+            <span className="text-white">{restAnimated}</span>
           </span>
         )}
       </h1>
 
-      {/* Séparateur subtitle */}
+      {/* Subtitle */}
       {subtitle && (
         <>
-          <div style={{
-            width: desktop ? "64px" : "48px",
-            height: "1px",
-            background: "rgba(255, 255, 255, 0.39)",
-            margin: desktop ? "20px auto" : "14px auto",
-          }} />
-          <p style={{
-            fontSize: desktop ? "0.9rem" : "0.75rem",
-            fontWeight: 400,
-            color: "rgba(255, 255, 255, 0.81)",
-            letterSpacing: "0.10em",
-            textTransform: "uppercase",
-            margin: 0,
-            padding: desktop ? "0 2rem" : "0 1.5rem",
-          }}>
+          <div className={`
+            bg-white/40 mx-auto
+            ${desktop ? "w-16 h-px mt-5" : "w-12 h-px mt-3.5"}
+          `} />
+          <p className={`
+            uppercase tracking-widest text-white/80 font-normal
+            ${desktop ? "text-sm lg:text-[0.9rem] mt-2.5 px-8" : "text-xs mt-1.5 px-6"}
+          `}>
             {subtitle}
           </p>
         </>
@@ -210,7 +189,6 @@ export function Title({
   return (
     <div className="text-center">
       {seoTitle && <span className="sr-only">{seoTitle}</span>}
-
       <TitleContent
         staticText={staticText}
         animatedText={animatedText}
