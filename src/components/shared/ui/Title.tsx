@@ -148,6 +148,7 @@ function MobileStaticText({ staticText, animatedText }: MobileStaticTextProps) {
           <span style={{ color: "#fbbf24" }}>{firstStatic}</span>
           <span style={{ color: "white" }}>{restStatic}</span>
         </span>
+        {" "}
         <span>
           <span style={{ color: "#60a5fa" }}>{firstAnimated}</span>
           <span style={{ color: "white" }}>{restAnimated}</span>
