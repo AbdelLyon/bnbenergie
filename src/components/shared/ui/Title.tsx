@@ -141,11 +141,11 @@ function TitleContent({ staticText, animatedText, subtitle, desktop = false }: T
 
       {/* Ligne dégradée */}
       <div style={{
-        width: desktop ? "48px" : "32px",
-        height: "2px",
+        width: desktop ? "64px" : "48px",
+        height: desktop ? "3px" : "2px",
         background: "linear-gradient(to right, #fbbf24, #3b82f6)",
         borderRadius: "999px",
-        marginBottom: desktop ? "16px" : "10px",
+        marginBottom: desktop ? "20px" : "14px",
       }} />
 
       {/* Titre */}
@@ -180,13 +180,13 @@ function TitleContent({ staticText, animatedText, subtitle, desktop = false }: T
             width: desktop ? "64px" : "48px",
             height: "1px",
             background: "rgba(255, 255, 255, 0.39)",
-            margin: desktop ? "22px auto" : "14px auto",
+            margin: desktop ? "20px auto" : "14px auto",
           }} />
           <p style={{
-            fontSize: desktop ? "0.8rem" : "0.75rem",
+            fontSize: desktop ? "0.9rem" : "0.75rem",
             fontWeight: 400,
             color: "rgba(255, 255, 255, 0.81)",
-            letterSpacing: "0.12em",
+            letterSpacing: "0.10em",
             textTransform: "uppercase",
             margin: 0,
             padding: desktop ? "0 2rem" : "0 1.5rem",
