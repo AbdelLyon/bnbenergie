@@ -253,7 +253,7 @@ const getInterventionZonesUncached = async (
   );
 };
 
-export const getInterventionZones = (options?: QueryOptions) =>
+export const getInterventionZones = (options?: QueryOptions) :  Promise<InterventionZone[]> =>
   unstable_cache(
     async () => getInterventionZonesUncached(options),
     ['intervention-zones', JSON.stringify(options)],

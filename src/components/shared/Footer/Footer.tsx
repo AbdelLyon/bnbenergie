@@ -28,11 +28,13 @@ export const Footer = async () => {
     .slice(0, 24)
     .sort();
 
-  const navigationLinks = [
+const navigationLinks = [
     { label: "Page d'accueil", href: "/" },
     { label: "Services", href: "/services" },
     { label: "Réalisations", href: "/realisations" },
     { label: "Aides & Financement", href: "/aides-financement" },
+    { label: "Zones d'intervention", href: "/zones-intervention" },
+    { label: "FAQ", href: "/faq-panneaux-solaires" },
     { label: "Nous contacter", href: "/contact" },
   ];
 
