@@ -12,7 +12,7 @@ export const revalidate = 3600;
 
 export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-    title: "Installateur Panneaux Solaires Bourg-en-Bresse | BNB Énergie",
+    title: "Installateur Panneaux Solaires Bourg-en-Bresse (ain) | BNB Énergie",
     description:
       "Installateur panneaux solaires certifié RGE QualiPV à Bourg-en-Bresse. Devis gratuit 48h, installation clé en main dans l'Ain.",
     path: "/",
@@ -25,7 +25,9 @@ export function generateMetadata(): Metadata {
       "installateur RGE QualiPV Bourg-en-Bresse",
       "devis panneaux solaires Bourg-en-Bresse gratuit",
       "installation solaire Ain 01",
-      "autoconsommation panneaux solaires Ain",
+      "installateur panneaux solaires Ain 01",
+      "installateur panneaux photovoltaïques Ain 01",
+      "autoconsommation panneaux solaires Ain 01",
     ],
   });
 }

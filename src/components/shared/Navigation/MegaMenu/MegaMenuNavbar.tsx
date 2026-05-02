@@ -68,7 +68,7 @@ const Logo = ({ isScrolled, subtitle, className }: LogoProps) => {
         </div>
         <p
           className={`font-display ml-1 text-[10px] transition-all duration-300 ease-out ${
-            isScrolled ? "text-gray-600" : "text-white/80"
+            isScrolled ? "text-gray-600" : "text-white/90"
           }`}
         >
           {subtitle}
