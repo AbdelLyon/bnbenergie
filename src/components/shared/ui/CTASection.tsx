@@ -32,7 +32,7 @@ export function CTASection({
   className,
 }: CTASectionProps) {
   const variants = {
-    gradient: "bg-linear-to-br from-primary-800 to-primary-900 ",
+    gradient: "bg-linear-to-br from-primary-400 to-primary-700 ",
     solid: "bg-neutral-900 dark:bg-neutral-950",
     minimal:
       "bg-neutral-50 dark:bg-content1 border border-neutral-200 dark:border-content2",
@@ -43,7 +43,7 @@ export function CTASection({
     solid: "text-white",
     minimal: "text-neutral-900 dark:text-foreground",
   };
-
+  
   return (
     <LazyMotionDiv
       initial={{ opacity: 0, y: 20 }}
@@ -56,8 +56,6 @@ export function CTASection({
         className,
       )}
     >
-      <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-
       <div className="relative z-10">
         <div className="mx-auto max-w-3xl text-center">
           <h2
