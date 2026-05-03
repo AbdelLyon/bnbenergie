@@ -32,7 +32,7 @@ export const FALLBACK_SITE_SETTINGS = {
   seoTitleTemplate:
     '%s | BNB Énergie Bourg-en-Bresse',
   seoDescription:
-    "N°1 installateur panneaux solaires à Bourg-en-Bresse (01000). Entreprise RGE QualiPV certifiée dans l'Ain. Devis gratuit 48h, installation 3-9kWc, MaPrimeRénov'. Expert photovoltaïque local.",
+    "Installateur panneaux solaires à Bourg-en-Bresse (01000). Entreprise RGE QualiPV certifiée dans l'Ain. Devis gratuit 48h, installation 3-9kWc, MaPrimeRénov'. Expert photovoltaïque local.",
 
   seoKeywords: [],
 };
