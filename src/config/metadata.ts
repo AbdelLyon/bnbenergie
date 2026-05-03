@@ -73,6 +73,11 @@ export function generateMetadata({
 
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(BASE_URL),
+
+  alternates: {
+    canonical: BASE_URL,
+  },
+
   title: {
     default: "Installateur Solaire Bourg-en-Bresse | BNB ÉNERGIE",
     template: "%s | BNB ÉNERGIE",
