@@ -6,6 +6,9 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import CityPageContent from './CityPageContent';
 
+// ✅ BASE_URL sans slash final — évite les doubles slashes dans toutes les URLs
+const BASE_URL = SITE_CONFIG.url.replace(/\/$/, "");
+
 // Helper to find city name from slug
 async function findCityName(slug: string): Promise<string | undefined> {
   const zones = await getInterventionZones();
@@ -33,7 +36,7 @@ export async function generateMetadata({
     return { title: 'Zone non trouvée' };
   }
 
-  const canonicalUrl = `${SITE_CONFIG.url}/zones-intervention/${city}`;
+  const canonicalUrl = `${BASE_URL}/zones-intervention/${city}`;
 
   return {
     title: `Installateur Panneaux Solaires ${cityName} | Devis Gratuit`,
