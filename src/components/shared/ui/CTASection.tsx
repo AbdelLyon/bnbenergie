@@ -32,7 +32,7 @@ export function CTASection({
   className,
 }: CTASectionProps) {
   const variants = {
-    gradient: "bg-linear-to-br from-primary-400 to-primary-700 ",
+    gradient: "bg-linear-to-br from-primary-600 to-cyan-700 ",
     solid: "bg-neutral-900 dark:bg-neutral-950",
     minimal:
       "bg-neutral-50 dark:bg-content1 border border-neutral-200 dark:border-content2",
@@ -43,7 +43,7 @@ export function CTASection({
     solid: "text-white",
     minimal: "text-neutral-900 dark:text-foreground",
   };
-  
+
   return (
     <LazyMotionDiv
       initial={{ opacity: 0, y: 20 }}
