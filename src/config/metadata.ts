@@ -76,7 +76,7 @@ export const defaultMetadata: Metadata = {
   metadataBase: new URL(BASE_URL),
 
   alternates: {
-    canonical: BASE_URL,
+    canonical: `${BASE_URL}/`,
   },
 
   title: {
