@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SITE_CONFIG } from "./site";
 import { SEO_KEYWORDS } from "./seo-keywords";
 
+
 const BASE_URL = SITE_CONFIG.url.replace(/\/$/, "");
 
 export function generateMetadata({
