@@ -18,6 +18,8 @@ export function generateMetadata({
   images?: Array<{ url: string; width: number; height: number; alt: string }>;
 }): Metadata {
   const cleanPath = path.startsWith("/") ? path.slice(1) : path;
+
+
   const url = cleanPath ? `${BASE_URL}/${cleanPath}` : `${BASE_URL}/`;
 
   const defaultImage = {
@@ -72,7 +74,8 @@ export function generateMetadata({
 }
 
 export const defaultMetadata: Metadata = {
-  metadataBase: new URL(BASE_URL),
+ 
+  metadataBase: new URL(`${BASE_URL}/`),
 
   alternates: {
     canonical: `${BASE_URL}/`,
