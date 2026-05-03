@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { SITE_CONFIG } from "./site";
 import { SEO_KEYWORDS } from "./seo-keywords";
 
-
 const BASE_URL = SITE_CONFIG.url.replace(/\/$/, "");
 
 export function generateMetadata({
@@ -19,7 +18,7 @@ export function generateMetadata({
   images?: Array<{ url: string; width: number; height: number; alt: string }>;
 }): Metadata {
   const cleanPath = path.startsWith("/") ? path.slice(1) : path;
-  const url = cleanPath ? `${BASE_URL}/${cleanPath}` : BASE_URL;
+  const url = cleanPath ? `${BASE_URL}/${cleanPath}` : `${BASE_URL}/`;
 
   const defaultImage = {
     url: "/opengraph-image",
@@ -76,7 +75,7 @@ export const defaultMetadata: Metadata = {
   metadataBase: new URL(BASE_URL),
 
   alternates: {
-    canonical: BASE_URL,
+    canonical: `${BASE_URL}/`,
   },
 
   title: {
