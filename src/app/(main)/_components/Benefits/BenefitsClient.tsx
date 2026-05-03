@@ -40,7 +40,7 @@ export function BenefitsClient({ data }: { data: BenefitsData }) {
               href: "/faq-panneaux-solaires",
             }}
             variant="gradient"
-            className="h-full"
+            className="h-full lg:col-span-2"
           />
         </div>
       </SectionContainer>
