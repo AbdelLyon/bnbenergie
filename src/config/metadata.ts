@@ -18,8 +18,6 @@ export function generateMetadata({
   images?: Array<{ url: string; width: number; height: number; alt: string }>;
 }): Metadata {
   const cleanPath = path.startsWith("/") ? path.slice(1) : path;
-
-
   const url = cleanPath ? `${BASE_URL}/${cleanPath}` : `${BASE_URL}/`;
 
   const defaultImage = {
@@ -74,12 +72,12 @@ export function generateMetadata({
 }
 
 export const defaultMetadata: Metadata = {
- 
-  metadataBase: new URL(`${BASE_URL}/`),
+  // ✅ metadataBase sans slash — Next.js résout les URLs relatives correctement
+  metadataBase: new URL(BASE_URL),
 
-  alternates: {
-    canonical: `${BASE_URL}/`,
-  },
+  // ✅ PAS de alternates.canonical ici — on laisse chaque page définir le sien
+  // Le canonical du layout parent écrase celui des pages enfants dans Next.js
+  // donc on le supprime complètement du defaultMetadata
 
   title: {
     default: "Installateur Solaire Bourg-en-Bresse | BNB ÉNERGIE",
