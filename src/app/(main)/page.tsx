@@ -11,25 +11,36 @@ import { Metadata } from "next";
 export const revalidate = 3600;
 
 export function generateMetadata(): Metadata {
-  return generateMetadataHelper({
-    title: "Installateur Panneaux Solaires Bourg-en-Bresse (ain) | BNB Énergie",
-    description:
-      "Installateur panneaux solaires certifié RGE QualiPV à Bourg-en-Bresse. Devis gratuit 48h, installation clé en main dans l'Ain.",
-    path: "/",
-    keywords: [
-      "installateur panneaux solaires Bourg-en-Bresse",
-      "installateur panneaux photovoltaïques Bourg-en-Bresse",
-      "installation panneaux solaires Bourg-en-Bresse",
-      "panneaux solaires Bourg-en-Bresse",
-      "photovoltaïque Bourg-en-Bresse",
-      "installateur RGE QualiPV Bourg-en-Bresse",
-      "devis panneaux solaires Bourg-en-Bresse gratuit",
-      "installation solaire Ain 01",
-      "installateur panneaux solaires Ain 01",
-      "installateur panneaux photovoltaïques Ain 01",
-      "autoconsommation panneaux solaires Ain 01",
-    ],
-  });
+  return {
+    ...generateMetadataHelper({
+
+      title: "Installateur Panneaux Solaires Bourg-en-Bresse | BNB Énergie",
+
+      description:
+        "Installateur RGE QualiPV à Bourg-en-Bresse et dans l'Ain. Devis gratuit 48h ✓ Installation clé en main ✓ Garantie 10 ans. Appelez-nous !",
+
+      path: "/",
+  
+      keywords: [
+        "installateur panneaux solaires Bourg-en-Bresse",
+        "installation photovoltaïque Bourg-en-Bresse",
+        "installateur RGE QualiPV Bourg-en-Bresse",
+        "panneaux solaires Bourg-en-Bresse",
+        "devis panneaux solaires Bourg-en-Bresse",
+        "installateur panneaux solaires Ain",
+        "installation photovoltaïque Ain 01",
+        "installateur RGE QualiPV Ain",
+        "panneaux solaires Ain 01",
+        "autoconsommation solaire Bourg-en-Bresse",
+        "entreprise panneaux solaires certifiée Ain",
+        "garantie décennale installation solaire",
+      ],
+    }),
+
+    alternates: {
+      canonical: "https://bnbenergie01.com/",
+    },
+  };
 }
 
 export default function Home() {
