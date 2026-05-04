@@ -16,6 +16,13 @@ export { Heading } from "./shared/ui/Heading";
 export { HomeHeaderCTAButtons } from "../app/(main)/_components/HomeHeader/HomeHeaderCTAButtons";
 export { WarrantyCard } from "./shared/ui/WarrantyCard";
 
+export { Badge } from "./shared/ui/Badge";
+export { Button } from "./shared/ui/Button";
+export { Card } from "./shared/ui/Card";
+export { IconWrapper } from "./shared/ui/IconWrapper";
+export { Input } from "./shared/ui/Input";
+export { Modal } from "./shared/ui/Modal";
+
 // Theme-aware Components (Client-safe)
 export { ThemeText } from "./shared/ui/ThemeText";
 

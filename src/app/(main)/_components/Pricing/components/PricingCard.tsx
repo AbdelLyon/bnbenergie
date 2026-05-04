@@ -38,7 +38,7 @@ export function PricingCard({ pack, index, className }: PricingCardProps) {
       }`}
     >
       <div
-        className={`group relative flex h-full flex-col justify-between rounded-2xl bg-white dark:bg-content1 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${
+        className={`group ds-card relative flex h-full flex-col justify-between transition-all duration-200 hover:-translate-y-0.5 ${
           pack.popular
             ? "border border-blue-400/50 p-8 shadow-2xl ring-1 shadow-blue-500/20 ring-blue-400/50 md:min-h-[440px]"
             : isSpecialPrice

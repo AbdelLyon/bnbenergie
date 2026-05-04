@@ -41,7 +41,7 @@ export function ServiceStep({
       transition={{ duration: ANIMATION_DURATIONS.medium, delay: 0 }}
       className={`group relative ${className}`}
     >
-      <div className="rounded-3xl border border-neutral-200 dark:border-divider bg-white dark:bg-content1 p-8 shadow-lg transition-all duration-300 hover:shadow-2xl md:p-10">
+      <div className="ds-card ds-card-hover rounded-[var(--radius-xl)] p-8 md:p-10">
         <div className="flex flex-col gap-8 md:flex-row md:items-start">
           {/* Numéro et icône */}
           <div className="shrink-0">

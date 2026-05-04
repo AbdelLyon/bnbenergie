@@ -30,7 +30,7 @@ export function AboutCard({
       }}
       className={`group relative h-full ${className || ""}`}
     >
-      <div className="relative h-full rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-10 shadow-sm transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 hover:border-neutral-300 dark:hover:border-neutral-700">
+      <div className="relative ds-card h-full p-10 transition-all duration-200 hover:-translate-y-0.5 hover:border-neutral-300 dark:hover:border-neutral-700">
         <div className="absolute inset-0 bg-linear-to-br from-amber-500/0 via-amber-500/0 to-amber-500/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
         <div className="relative mb-8 inline-flex">

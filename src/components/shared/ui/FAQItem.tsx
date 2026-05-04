@@ -85,7 +85,7 @@ export function FAQItem({ question, answer, category, categoryIcon }: FAQItemPro
 
   return (
     <div
-      className={`group overflow-hidden rounded-2xl border bg-white dark:bg-content1 transition-all duration-300 border-l-4 ${
+      className={`group ds-card overflow-hidden transition-all duration-300 border-l-4 ${
         isOpen
           ? `shadow-lg border-neutral-100 dark:border-white/5 ${config.openBorder}`
           : 'shadow-sm hover:shadow-md border-neutral-100 dark:border-white/5 border-l-transparent hover:border-l-neutral-200 dark:hover:border-l-white/10'

@@ -26,7 +26,7 @@ export function StatCard({
       initial={{ opacity: 0, y: 100 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.1 }}
-      className={`group relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-neutral-200/80 bg-white p-5 text-center shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 hover:shadow-[0_8px_24px_-6px_rgba(0,0,0,0.08)] dark:border-neutral-800 dark:bg-neutral-900 ${className}`}
+      className={`group ds-card relative flex flex-col items-center justify-center overflow-hidden p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-primary-100 ${className}`}
     >
       <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-primary-50/50 blur-2xl transition-all group-hover:bg-primary-100/50 dark:bg-primary-900/10" />
 

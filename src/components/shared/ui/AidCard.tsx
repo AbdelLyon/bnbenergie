@@ -7,6 +7,8 @@ import type { BaseCardProps } from "@/types";
 import { getLucideIcon } from "@/utils/getLucideIcon";
 import { CheckCircle2 } from "lucide-react";
 import { Heading } from "@/components/shared/ui/Heading";
+import { Badge } from "@/components/shared/ui/Badge";
+import { IconWrapper } from "@/components/shared/ui/IconWrapper";
 
 interface AidAmount {
   range?: string;
@@ -46,22 +48,18 @@ export function AidCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: 0 }}
-      className={`rounded-2xl border border-neutral-100 dark:border-content2 bg-white dark:bg-content1 p-8 shadow-lg transition-all duration-300 hover:shadow-xl ${className}`}
+      className={`p-8 transition-all duration-300 hover:shadow-xl ${className}`}
     >
       <div className="flex flex-col gap-6 md:flex-row">
-        <div
-          className={`shrink-0 self-start rounded-xl bg-linear-to-br ${gradient} p-6 text-white`}
+        <IconWrapper
+          className={`shrink-0 self-start bg-linear-to-br ${gradient} p-6 text-white`}
         >
           <Icon className="h-12 w-12" />
-        </div>
+        </IconWrapper>
 
         <div className="flex-1">
           <div className="mb-4">
-            <span
-              className={`mb-2 inline-block bg-linear-to-r ${gradient} bg-clip-text text-xs font-bold text-transparent`}
-            >
-              {badge}
-            </span>
+            <Badge className="mb-2" variant="primary">{badge}</Badge>
             <Heading as="h3" className="mb-2 text-2xl text-neutral-900 dark:text-foreground">
               {title}
             </Heading>

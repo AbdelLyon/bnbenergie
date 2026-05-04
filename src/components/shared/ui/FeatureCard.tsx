@@ -3,6 +3,7 @@
 import { LazyMotionDiv } from "@/components/LazyComponents";
 import { TRANSITIONS } from "@/config/constants";
 import { Heading } from "@/components/shared/ui/Heading";
+import { IconWrapper } from "@/components/shared/ui/IconWrapper";
 import type { BaseCardProps } from "@/types";
 import { getLucideIcon } from "@/utils/getLucideIcon";
 import { cn } from "@heroui/theme";
@@ -40,13 +41,10 @@ export function FeatureCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: 0 }}
-      className={cn(
-        "group relative overflow-hidden rounded-2xl border border-neutral-200 dark:border-content2 bg-white dark:bg-content1 p-8 shadow-lg transition-shadow duration-300 hover:shadow-2xl",
-        className,
-      )}
+      className={cn("group relative overflow-hidden p-8 transition-shadow duration-300 hover:shadow-2xl", className)}
     >
-      <LazyMotionDiv
-        className={`mb-6 inline-flex rounded-xl bg-linear-to-br ${gradient} p-4`}
+      <IconWrapper
+        className={`mb-6 bg-linear-to-br ${gradient} p-4 text-white`}
         whileHover={{
           scale: 1.1,
           rotate: 5,
@@ -54,7 +52,7 @@ export function FeatureCard({
         }}
       >
         <Icon className="h-8 w-8 text-white" />
-      </LazyMotionDiv>
+      </IconWrapper>
 
       <Heading as="h3" className="mb-4 text-xl text-neutral-900 dark:text-foreground">
         {title}
