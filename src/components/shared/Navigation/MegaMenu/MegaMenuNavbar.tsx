@@ -101,7 +101,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ease-out ${
+        className={`fixed top-0 right-0 left-0 z-50 transition-colors duration-500 ease-out ${
           isScrolled
             ? "bg-white dark:bg-content1 shadow-lg shadow-black/5"
             : "bg-black/40 backdrop-blur-md"
