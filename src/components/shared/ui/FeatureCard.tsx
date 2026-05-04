@@ -43,16 +43,18 @@ export function FeatureCard({
       transition={{ duration: 0.4, delay: 0 }}
       className={cn("group relative overflow-hidden p-8 transition-shadow duration-300 hover:shadow-2xl", className)}
     >
-      <IconWrapper
-        className={`mb-6 bg-linear-to-br ${gradient} p-4 text-white`}
+      <LazyMotionDiv
         whileHover={{
           scale: 1.1,
           rotate: 5,
           transition: TRANSITIONS.smooth,
         }}
+        className="mb-6 inline-flex"
       >
-        <Icon className="h-8 w-8 text-white" />
-      </IconWrapper>
+        <IconWrapper className={`bg-linear-to-br ${gradient} p-4 text-white`}>
+          <Icon className="h-8 w-8 text-white" />
+        </IconWrapper>
+      </LazyMotionDiv>
 
       <Heading as="h3" className="mb-4 text-xl text-neutral-900 dark:text-foreground">
         {title}
