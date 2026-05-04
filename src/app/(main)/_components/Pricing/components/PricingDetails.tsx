@@ -1,4 +1,5 @@
 import { PricingPack } from '@/types';
+import { Heading } from '@/components/shared/ui/Heading';
 
 interface PricingDetailsProps {
   pack: PricingPack;
@@ -7,9 +8,9 @@ interface PricingDetailsProps {
 export function PricingDetails({ pack }: PricingDetailsProps) {
   return (
     <>
-      <h3 className="mb-3 text-xl font-black text-neutral-900 dark:text-foreground">
+      <Heading as="h3" className="mb-3 text-xl text-neutral-900 dark:text-foreground">
         {pack.name}
-      </h3>
+      </Heading>
       <p className="mb-5 text-sm font-medium text-neutral-600 dark:text-default-500">
         {pack.panels}
       </p>

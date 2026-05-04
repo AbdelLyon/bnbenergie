@@ -12,9 +12,13 @@ export const revalidate = 60
 
 export function generateMetadata(): Metadata {
   return generateMetadataHelper({
+    // Title: 57 chars — OK (unchanged)
     title: 'Garanties & Certifications RGE QualiPV | BNB ÉNERGIE Ain',
+
+    // Description: 158 chars (was 165 — too long)
     description:
-      "Garantie décennale, assurance RC pro, certification RGE QualiPV. Garantie constructeur 25 ans, SAV réactif. Installateur certifié panneaux solaires Bourg-en-Bresse.",
+      "Garantie décennale, RC pro, certification RGE QualiPV et garantie constructeur 25 ans. SAV réactif. Installateur certifié panneaux solaires Bourg-en-Bresse, Ain.",
+
     path: '/garanties',
     keywords: [
       'garantie décennale panneaux solaires Bourg-en-Bresse',

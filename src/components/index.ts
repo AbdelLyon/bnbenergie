@@ -12,6 +12,7 @@ export { StatCard } from "./shared/ui/StatCard";
 export { Stats } from "./shared/ui/Stats";
 export { StatsGrid } from "./shared/ui/StatsGrid";
 export { Title } from "./shared/ui/Title";
+export { Heading } from "./shared/ui/Heading";
 export { HomeHeaderCTAButtons } from "../app/(main)/_components/HomeHeader/HomeHeaderCTAButtons";
 export { WarrantyCard } from "./shared/ui/WarrantyCard";
 

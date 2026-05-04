@@ -7,6 +7,8 @@ import {
   LazyMotionNav,
 } from "@/components/LazyComponents";
 import Link from "next/link";
+import { Heading } from "@/components/shared/ui/Heading";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@heroui/button";
@@ -82,6 +84,10 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeMega, setActiveMega] = useState<string | null>(null);
   const isScrolled = useScrollPosition(20);
+  const pathname = usePathname();
+
+  const isActive = (href?: string) =>
+    href ? pathname === href || (href !== "/" && pathname.startsWith(href)) : false;
 
   useBodyScrollLock(isOpen);
 
@@ -124,13 +130,19 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                     <Link
                       href={item.href ?? "#"}
                       className={`group relative rounded-lg px-4 py-2 text-sm font-semibold transition-all ${
-                        isScrolled
-                          ? "text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400"
-                          : "text-white/90 hover:text-white"
+                        isActive(item.href)
+                          ? isScrolled
+                            ? "text-blue-600 dark:text-blue-400"
+                            : "text-white"
+                          : isScrolled
+                            ? "text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400"
+                            : "text-white/90 hover:text-white"
                       }`}
                     >
                       {item.label}
-                      <span className="absolute bottom-1 left-1/2 h-0.5 w-0 -translate-x-1/2 bg-linear-to-r from-blue-600 to-cyan-600 transition-all duration-300 group-hover:w-3/4" />
+                      <span className={`absolute bottom-1 left-1/2 h-0.5 -translate-x-1/2 bg-linear-to-r from-blue-600 to-cyan-600 transition-all duration-300 ${
+                        isActive(item.href) ? "w-3/4" : "w-0 group-hover:w-3/4"
+                      }`} />
                     </Link>
                   ) : (
                     <button
@@ -169,9 +181,9 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                                     : "pl-5"
                                 }
                               >
-                                <h3 className="mb-3 px-1 text-[10px] font-bold text-gray-400 uppercase">
+                                <Heading as="h3" className="mb-3 px-1 text-[10px] text-gray-400">
                                   {section.title}
-                                </h3>
+                                </Heading>
 
                                 <div className="space-y-0.5">
                                   {section.links.map((link) => (
@@ -351,7 +363,11 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                         <Link
                           href={item.href ?? "#"}
                           onClick={toggleMenu}
-                          className="group flex items-start gap-3 rounded-xl border border-amber-600/30 bg-white dark:bg-content1 p-3.5 transition-all duration-300 hover:border-blue-300 hover:shadow-md"
+                          className={`group flex items-start gap-3 rounded-xl border p-3.5 transition-all duration-300 hover:shadow-md ${
+                            isActive(item.href)
+                              ? "border-blue-400 bg-blue-50 dark:bg-blue-900/20 shadow-sm"
+                              : "border-amber-600/30 bg-white dark:bg-content1 hover:border-blue-300"
+                          }`}
                         >
                           {(() => {
                             const IconComponent = getLucideIcon(item.icon);
@@ -375,7 +391,11 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                             );
                           })()}
                           <div className="min-w-0 flex-1">
-                            <div className="text-sm leading-tight font-semibold text-gray-900 dark:text-white">
+                            <div className={`text-sm leading-tight font-semibold ${
+                              isActive(item.href)
+                                ? "text-blue-600 dark:text-blue-400"
+                                : "text-gray-900 dark:text-white"
+                            }`}>
                               {item.label}
                             </div>
                           </div>

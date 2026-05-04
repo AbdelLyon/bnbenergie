@@ -10,7 +10,6 @@ import {
   CTASection,
   HomeHeaderCTAButtons,
 } from "@/components";
-import { LazyMotionDiv } from "@/components/LazyComponents";
 
 import type {
   PageHeader as PageHeaderType,
@@ -21,7 +20,7 @@ import { ReactNode } from "react";
 interface NosPacksPageContentProps {
   header: PageHeaderType | null;
   siteSettings: SiteSetting;
-  children: ReactNode; // Pricing component from server
+  children: ReactNode;
 }
 
 export default function NosPacksPageContent({
@@ -33,12 +32,7 @@ export default function NosPacksPageContent({
     <PageMainWrapper variant="blue">
       {/* Header */}
       <PageHeader variant="simple" height="medium">
-        <LazyMotionDiv
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 3, delay: 0 }}
-          className="flex max-w-6xl flex-col items-center gap-6"
-        >
+        <div className="flex max-w-6xl flex-col items-center gap-6">
           <Title
             staticText={header?.title?.split(" ")[0] || "Nos"}
             animatedText={header?.title?.split(" ")[1] || "Packs"}
@@ -58,12 +52,12 @@ export default function NosPacksPageContent({
             secondaryHref="tel:0781251125"
             primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
           />
-        </LazyMotionDiv>
+        </div>
       </PageHeader>
 
       <div className="relative z-10">
         <SectionContainer>
-          {/* Stats - 3 cards qui remontent (EN DUR comme dans contact) */}
+
           <StatsGrid
             stats={[
               {
@@ -87,15 +81,9 @@ export default function NosPacksPageContent({
             ]}
           />
 
-          {/* Introduction avec background amélioré */}
-          <LazyMotionDiv
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="relative mb-24 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 shadow-xl border border-neutral-100 dark:border-white/5"
-          >
-            {/* Pattern decoratif subtil */}
+
+          <div className="relative mb-24 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 shadow-xl border border-neutral-100 dark:border-white/5">
+
             <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
               <div
                 className="absolute inset-0"
@@ -113,12 +101,12 @@ export default function NosPacksPageContent({
                 className="mb-0"
               />
             </div>
-          </LazyMotionDiv>
+          </div>
 
-          {/* Section Pricing - Passée en children depuis le serveur */}
+
           {children}
 
-          {/* Call-to-Action */}
+
           <CTASection
             title="Prêt à Investir dans l'Énergie Solaire ?"
             description="Demandez votre étude gratuite et recevez votre devis personnalisé sous 48h"

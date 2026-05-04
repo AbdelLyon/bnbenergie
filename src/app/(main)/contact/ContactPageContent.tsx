@@ -11,13 +11,13 @@ import {
   PageMainWrapper,
   SectionContainer,
   Title,
+  Heading,
   HomeHeaderCTAButtons,
 } from "@/components";
 import { ContactForm } from "./components/ContactForm";
 import { ContactInfo } from "./components/ContactInfo";
 import { ContactMap } from "./components/ContactMap";
 import { SuccessMessage } from "./components/SuccessMessage";
-import { LazyMotionDiv } from "@/components/LazyComponents";
 import { SITE_CONFIG } from "@/config/site";
 
 interface ContactPageContentProps {
@@ -74,12 +74,7 @@ export default function ContactPageContent({
   return (
     <PageMainWrapper variant="teal">
       <PageHeader variant="simple" height="medium">
-        <LazyMotionDiv
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 3, delay: 0 }}
-          className="flex max-w-6xl flex-col items-center gap-6"
-        >
+        <div className="flex max-w-6xl flex-col items-center gap-6">
           <Title
             staticText={header?.title.split("-")?.[0] || "Contactez"}
             animatedText={header?.title.split("-")?.[1] || "-nous"}
@@ -97,18 +92,12 @@ export default function ContactPageContent({
             secondaryHref={SITE_CONFIG.contact.phoneHref}
             primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
           />
-        </LazyMotionDiv>
+        </div>
       </PageHeader>
 
       <div id="contact-section" className="relative z-10 -mt-24 pb-24">
         <SectionContainer>
-          <LazyMotionDiv
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="overflow-hidden rounded-2xl shadow-2xl lg:grid lg:grid-cols-5"
-          >
+          <div className="overflow-hidden rounded-2xl shadow-2xl lg:grid lg:grid-cols-5">
             <div className="relative bg-slate-900 dark:bg-black px-8 py-12 lg:col-span-2 lg:px-12 lg:py-16 overflow-hidden">
               <div className="absolute inset-0 bg-linear-to-br from-blue-900/20 to-slate-900/50" />
               <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-blue-500/20 blur-3xl" />
@@ -116,9 +105,9 @@ export default function ContactPageContent({
 
               <div className="relative z-10 h-full flex flex-col justify-between">
                 <div>
-                  <h2 className="text-3xl font-display font-bold text-white mb-6">
+                  <Heading className="text-3xl text-white mb-6">
                     Discutons de votre projet
-                  </h2>
+                  </Heading>
                   <p className="text-slate-300 mb-12 leading-relaxed text-lg">
                     Notre équipe d'experts est à votre écoute pour étudier vos
                     besoins et vous proposer la solution solaire la plus
@@ -141,9 +130,9 @@ export default function ContactPageContent({
               id="contact-form"
             >
               <div className="max-w-lg mx-auto lg:mx-0 lg:max-w-none">
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                <Heading className="text-2xl text-slate-900 dark:text-white mb-2">
                   Envoyez-nous un message
-                </h2>
+                </Heading>
                 <p className="text-slate-500 dark:text-default-500 mb-8">
                   Remplissez le formulaire ci-dessous, nous vous répondrons sous
                   24h.
@@ -160,7 +149,7 @@ export default function ContactPageContent({
                 )}
               </div>
             </div>
-          </LazyMotionDiv>
+          </div>
         </SectionContainer>
 
         <div className="w-full h-125 relative z-0">

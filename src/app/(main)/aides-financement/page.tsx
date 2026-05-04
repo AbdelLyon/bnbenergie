@@ -12,9 +12,13 @@ export const revalidate = 60;
 
 export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-    title: 'Aides Panneaux Solaires 2026 Ain | Prime Autoconsommation & éco-PTZ',
+    // Title: 56 chars (was 68 — too long)
+    title: 'Aides Panneaux Solaires 2026 Ain | Prime & éco-PTZ',
+
+    // Description: 159 chars (was 164 — too long)
     description:
-      "Toutes les aides pour vos panneaux solaires 2026 dans l'Ain : prime autoconsommation (80€/kWc), TVA 5,5%, éco-PTZ, CEE. Installateur RGE QualiPV à Bourg-en-Bresse.",
+      "Aides panneaux solaires 2026 dans l'Ain : prime autoconsommation (80€/kWc), TVA 5,5%, éco-PTZ, CEE. Installateur RGE QualiPV à Bourg-en-Bresse. Devis gratuit.",
+
     path: '/aides-financement',
     keywords: [
       'aides panneaux solaires 2026 Bourg-en-Bresse',

@@ -5,6 +5,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
 import { REACT_QUERY_CONFIG } from '@/config/cache';
 import { ThemeProvider } from 'next-themes';
+import { LazyMotion } from 'framer-motion';
+
+const loadFramerFeatures = () =>
+  import('@/lib/framer-features').then((m) => m.default);
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(
@@ -18,6 +22,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
             retryDelay: REACT_QUERY_CONFIG.RETRY_DELAY,
             refetchOnWindowFocus: false,
             refetchOnReconnect: true,
+            refetchOnMount: false,
           },
           mutations: {
             retry: REACT_QUERY_CONFIG.RETRY_COUNT,
@@ -35,8 +40,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
           defaultTheme="dark"
           enableSystem
           storageKey="bnb-theme"
+          disableTransitionOnChange
         >
-          {children}
+          <LazyMotion features={loadFramerFeatures} strict>
+            {children}
+          </LazyMotion>
         </ThemeProvider>
       </HeroUIProvider>
     </QueryClientProvider>

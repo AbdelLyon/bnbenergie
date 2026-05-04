@@ -2,6 +2,7 @@
 import { CheckCircle2 } from 'lucide-react';
 import { Button } from '@heroui/button';
 import { LazyMotionDiv } from '@/components/LazyComponents';
+import { Heading } from '@/components/shared/ui/Heading';
 
 interface SuccessMessageProps {
   message: string;
@@ -17,9 +18,9 @@ export function SuccessMessage({ message }: SuccessMessageProps) {
       <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100 shadow-inner">
         <CheckCircle2 className="h-10 w-10 text-green-600" />
       </div>
-      <h3 className="mb-3 text-2xl font-bold text-slate-800 dark:text-foreground">
+      <Heading as="h3" className="mb-3 text-2xl text-slate-800 dark:text-foreground">
         Message envoyé !
-      </h3>
+      </Heading>
       <p className="mx-auto max-w-md text-slate-600 dark:text-default-500">
         {message ||
           'Merci de nous avoir contactés. Nous vous répondrons dans les plus brefs délais.'}

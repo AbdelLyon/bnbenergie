@@ -2,6 +2,7 @@
 
 import { LazyMotionDiv } from "@/components/LazyComponents";
 import { ANIMATION_DURATIONS } from "@/config/constants";
+import { Heading } from "@/components/shared/ui/Heading";
 import type { BaseCardProps } from "@/types";
 import { SCROLL_VIEWPORT } from "@/utils/animations";
 import { getLucideIcon } from "@/utils/getLucideIcon";
@@ -59,9 +60,9 @@ export function ServiceStep({
               >
                 {subtitle}
               </span>
-              <h3 className="font-display mb-2 text-2xl font-bold text-neutral-900 dark:text-foreground md:text-3xl">
+              <Heading as="h3" className="mb-2 text-2xl text-neutral-900 dark:text-foreground md:text-3xl">
                 {title}
-              </h3>
+              </Heading>
               {duration && (
                 <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-default-500">
                   <Clock className="h-4 w-4" />

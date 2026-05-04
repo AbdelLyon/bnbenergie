@@ -3,17 +3,41 @@ import { getSiteSettings } from '@/lib/payload-queries';
 export async function ServiceStructuredData() {
   const siteConfig = await getSiteSettings();
 
+  const domain = siteConfig.domain.replace(/\/$/, '');
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
+    '@id': `${domain}/#service`,
     name: 'Installation de Panneaux Solaires Photovoltaïques',
     description:
-      "Service complet d'installation de panneaux solaires photovoltaïques dans l'Ain (01)",
+      "Service complet d'installation de panneaux solaires photovoltaïques dans l'Ain (01) : étude gratuite, démarches Enedis, Consuel, mise en service.",
     provider: {
       '@type': 'LocalBusiness',
+      '@id': `${domain}/#localbusiness`,
       name: siteConfig.siteName,
-      url: siteConfig.domain,
+      url: domain,
     },
+
+    serviceArea: [
+      {
+        '@type': 'City',
+        name: 'Bourg-en-Bresse',
+        containedIn: {
+          '@type': 'AdministrativeArea',
+          name: "Ain",
+        },
+      },
+      {
+        '@type': 'GeoCircle',
+        geoMidpoint: {
+          '@type': 'GeoCoordinates',
+          latitude: siteConfig.geoLatitude,
+          longitude: siteConfig.geoLongitude,
+        },
+        geoRadius: '50000',
+      },
+    ],
     areaServed: {
       '@type': 'GeoCircle',
       geoMidpoint: {

@@ -5,6 +5,7 @@ import type { BaseCardProps } from "@/types";
 
 import { getLucideIcon } from "@/utils/getLucideIcon";
 import { CheckCircle2 } from "lucide-react";
+import { Heading } from "@/components/shared/ui/Heading";
 
 interface Warranty {
   label: string;
@@ -48,9 +49,9 @@ export function WarrantyCard({
           <Icon className="h-8 w-8" />
         </div>
         <div className="flex-1">
-          <h3 className="font-display mb-1 text-xl font-bold text-neutral-900 dark:text-foreground">
+          <Heading as="h3" className="mb-1 text-xl text-neutral-900 dark:text-foreground">
             {title}
-          </h3>
+          </Heading>
           <p className="text-sm text-neutral-600 dark:text-default-500">
             {description}
           </p>

@@ -2,16 +2,17 @@ import { getSiteSettings } from '@/lib/payload-queries';
 
 export async function OrganizationStructuredData() {
   const siteConfig = await getSiteSettings();
+  const domain = siteConfig.domain.replace(/\/$/, '');
 
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    '@id': `${siteConfig.domain}/#organization`,
+    '@id': `${domain}/#organization`,
     name: siteConfig.siteName,
-    url: siteConfig.domain,
+    url: domain,
     logo: {
       '@type': 'ImageObject',
-      url: `${siteConfig.domain}/logo.svg`,
+      url: `${domain}/logo.svg`,
       width: '512',
       height: '512',
       caption: 'Logo BNB ÉNERGIE',

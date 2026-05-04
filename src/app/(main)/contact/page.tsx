@@ -9,9 +9,13 @@ export const revalidate = 60; // MEDIUM_FREQUENCY
 
 export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-    title: 'Devis Gratuit Panneaux Solaires Bourg-en-Bresse | Réponse 48h',
+    // Title: 57 chars (was 62 — too long)
+    title: 'Devis Gratuit Panneaux Solaires Bourg-en-Bresse | 48h',
+
+    // Description: 150 chars (was 150 — borderline, now solidified)
     description:
-      'Demandez votre devis panneaux solaires gratuit à Bourg-en-Bresse. Réponse en 48h. Installateur RGE QualiPV certifié dans l\'Ain. Tél : 07 81 25 11 25.',
+      "Demandez votre devis panneaux solaires gratuit à Bourg-en-Bresse dans l'Ain (01). Réponse en 48h. Installateur RGE QualiPV certifié. Tél : 07 81 25 11 25.",
+
     path: '/contact',
     keywords: [
       'devis panneaux solaires Bourg-en-Bresse gratuit',

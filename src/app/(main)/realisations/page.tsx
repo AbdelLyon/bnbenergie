@@ -12,9 +12,12 @@ export const revalidate = 60;
 
 export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-    title: 'Réalisations Panneaux Solaires Ain | Photos Installations',
+
+    title: 'Réalisations Panneaux Solaires Bourg-en-Bresse | Ain',
+
     description:
-      "Découvrez nos installations panneaux solaires dans l'Ain : Bourg-en-Bresse, Oyonnax, Bellegarde. Projets 3-9 kWc. Installateur RGE QualiPV certifié.",
+      "Découvrez nos installations panneaux solaires dans l'Ain : Bourg-en-Bresse, Oyonnax, Bellegarde. Projets 3-9 kWc par BNB Énergie, installateur RGE QualiPV.",
+
     path: '/realisations',
     keywords: [
       'réalisations panneaux solaires Bourg-en-Bresse',

@@ -2,6 +2,7 @@
 
 import {
   Title,
+  Heading,
   PageHeader,
   PageMainWrapper,
   SectionContainer,
@@ -19,11 +20,6 @@ import type {
   PageHeader as PageHeaderType,
   SiteSetting,
 } from "@/payload-types";
-import {
-  LazyMotionDiv,
-  LazyMotionH2,
-  LazyMotionH3,
-} from "@/components/LazyComponents";
 
 interface ZonesPageContentProps {
   zones: InterventionZone[];
@@ -41,12 +37,7 @@ export default function ZonesPageContent({
       <div className="relative z-10">
         {/* Header */}
         <PageHeader variant="simple" height="medium">
-          <LazyMotionDiv
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 3, delay: 0 }}
-            className="flex max-w-6xl flex-col items-center gap-6"
-          >
+          <div className="flex max-w-6xl flex-col items-center gap-6">
             <Title
               staticText={header?.title.split(" ")[0] || "Zones"}
               animatedText={header?.title.split(" ")[1] || "d'Intervention"}
@@ -63,7 +54,7 @@ export default function ZonesPageContent({
               secondaryHref="tel:0781251125"
               primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
             />
-          </LazyMotionDiv>
+          </div>
         </PageHeader>
 
         <SectionContainer>
@@ -92,13 +83,7 @@ export default function ZonesPageContent({
           />
 
           {/* Introduction */}
-          <LazyMotionDiv
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="relative mb-24 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 shadow-xl border border-neutral-100 dark:border-white/5"
-          >
+          <div className="relative mb-24 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 shadow-xl border border-neutral-100 dark:border-white/5">
             {/* Pattern decoratif subtil */}
             <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
               <div
@@ -117,19 +102,13 @@ export default function ZonesPageContent({
                 className="mb-0"
               />
             </div>
-          </LazyMotionDiv>
+          </div>
 
           {/* Zones principales */}
           <div className="mb-20">
-            <LazyMotionH2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
-              className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
-            >
+            <Heading className="mb-12 text-center text-3xl text-neutral-900 dark:text-foreground md:text-4xl">
               Nos Secteurs d'Intervention
-            </LazyMotionH2>
+            </Heading>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {zones.map((group, index) => (
                 <FeatureCard
@@ -159,22 +138,10 @@ export default function ZonesPageContent({
 
           {/* Autres villes (statique pour l'instant car non migré dans une collection spécifique) */}
           <div className="mb-20">
-            <LazyMotionH3
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
-              className="font-display mb-8 text-center text-2xl font-bold text-neutral-900 dark:text-foreground md:text-3xl"
-            >
+            <Heading as="h3" className="mb-8 text-center text-2xl text-neutral-900 dark:text-foreground md:text-3xl">
               Également présents dans les départements limitrophes
-            </LazyMotionH3>
-            <LazyMotionDiv
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
-              className="hidden lg:flex flex-wrap justify-center gap-3"
-            >
+            </Heading>
+            <div className="hidden lg:flex flex-wrap justify-center gap-3">
               {[
                 "Saône-et-Loire (71)",
                 "Jura (39)",
@@ -190,20 +157,14 @@ export default function ZonesPageContent({
                   {dept}
                 </div>
               ))}
-            </LazyMotionDiv>
+            </div>
           </div>
 
           {/* Avantages local */}
           <div className="mb-20">
-            <LazyMotionH2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
-              className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
-            >
+            <Heading className="mb-12 text-center text-3xl text-neutral-900 dark:text-foreground md:text-4xl">
               Pourquoi Choisir un Installateur Local ?
-            </LazyMotionH2>
+            </Heading>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {[
                 {

@@ -6,6 +6,7 @@ import type { Project, Media } from "@/payload-types";
 import { TRANSITIONS } from "@/config/constants";
 import { LazyMotionDiv } from "@/components/LazyComponents";
 import Link from "next/link";
+import { Heading } from "@/components/shared/ui/Heading";
 import { slugify } from "@/utils/slugify";
 
 interface ProjectCardProps {
@@ -66,14 +67,14 @@ export function ProjectCard({ project, index, page, href }: ProjectCardProps) {
 
       {/* Informations — séparé de l'image pour pouvoir mettre un lien sur la localisation */}
       <div className="relative p-4">
-        <h3 className="font-display mb-3 text-lg font-bold text-neutral-900 dark:text-foreground transition-colors">
+        <Heading as="h3" className="mb-3 text-lg text-neutral-900 dark:text-foreground transition-colors">
           <Link
             href={href ?? "#"}
             className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
           >
             {project.title}
           </Link>
-        </h3>
+        </Heading>
 
         <div className="mb-3 flex items-center gap-4">
           <Link

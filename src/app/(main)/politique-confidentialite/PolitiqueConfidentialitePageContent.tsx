@@ -5,6 +5,7 @@ import {
   PageMainWrapper,
   SectionContainer,
   Title,
+  Heading,
 } from "@/components";
 import { LazyMotionDiv } from "@/components/LazyComponents";
 
@@ -255,9 +256,9 @@ export default function PolitiqueConfidentialitePageContent({
                   >
                     <Icon className="h-5 w-5 text-white" />
                   </div>
-                  <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">
+                  <Heading className="text-2xl text-neutral-900 dark:text-white">
                     {section.title}
-                  </h2>
+                  </Heading>
                 </div>
 
                 <div className="space-y-2">

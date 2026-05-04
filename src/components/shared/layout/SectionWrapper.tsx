@@ -2,6 +2,7 @@
 
 import { LazyMotionHeader } from "@/components/LazyComponents";
 import { ANIMATION_DURATIONS, SPACING } from "@/config/constants";
+import { Heading } from "@/components/shared/ui/Heading";
 import type { SectionBackground, SectionWidth, TextAlignment } from "@/types";
 import { cn } from "@heroui/theme";
 import { ReactNode } from "react";
@@ -108,9 +109,9 @@ export function SectionHeader({
           {badge}
         </span>
       )}
-      <h2 className="mb-5 text-3xl font-bold md:text-4xl lg:text-5xl">
+      <Heading className="mb-5 text-3xl md:text-4xl lg:text-5xl">
         {title}
-      </h2>
+      </Heading>
       {subtitle && (
         <p className="mx-auto max-w-2xl text-lg leading-relaxed opacity-80 md:text-xl">
           {subtitle}

@@ -2,6 +2,7 @@
 
 import { LazyMotionDiv } from '@/components/LazyComponents';
 import { ANIMATION_DURATIONS } from '@/config/constants';
+import { Heading } from '@/components/shared/ui/Heading';
 
 interface IntroSectionProps {
   title: string;
@@ -22,9 +23,9 @@ export function IntroSection({
       transition={{ duration: ANIMATION_DURATIONS.normal }}
       className={`mx-auto max-w-4xl text-center ${className}`}
     >
-      <h2 className="font-display text-3xl mb-4 font-bold text-neutral-900 dark:text-foreground md:text-4xl">
+      <Heading className="text-3xl mb-4 text-neutral-900 dark:text-foreground md:text-4xl">
         {title}
-      </h2>
+      </Heading>
       <p className="text-base leading-relaxed text-neutral-600 dark:text-default-500 md:text-lg">
         {description}
       </p>

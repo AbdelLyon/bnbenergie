@@ -6,6 +6,7 @@ import type { BaseCardProps } from "@/types";
 
 import { getLucideIcon } from "@/utils/getLucideIcon";
 import { CheckCircle2 } from "lucide-react";
+import { Heading } from "@/components/shared/ui/Heading";
 
 interface AidAmount {
   range?: string;
@@ -61,9 +62,9 @@ export function AidCard({
             >
               {badge}
             </span>
-            <h3 className="font-display mb-2 text-2xl font-bold text-neutral-900 dark:text-foreground">
+            <Heading as="h3" className="mb-2 text-2xl text-neutral-900 dark:text-foreground">
               {title}
-            </h3>
+            </Heading>
             <p
               className={`mb-4 bg-linear-to-r ${gradient} bg-clip-text text-sm font-semibold text-transparent`}
             >
@@ -77,9 +78,9 @@ export function AidCard({
 
           {conditions && conditions.length > 0 && (
             <div className="mb-6">
-              <h4 className="mb-3 text-sm font-bold text-neutral-900 dark:text-foreground">
+              <Heading as="h4" className="mb-3 text-sm text-neutral-900 dark:text-foreground">
                 Conditions d&apos;éligibilité :
-              </h4>
+              </Heading>
               <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
                 {conditions.map((condition, idx) => (
                   <LazyMotionDiv
@@ -105,9 +106,9 @@ export function AidCard({
 
           {amounts && amounts.length > 0 && (
             <div className="mb-4 rounded-xl bg-linear-to-br from-neutral-50 to-blue-50 dark:from-content2 dark:to-blue-900/20 p-6">
-              <h4 className="mb-4 text-sm font-bold text-neutral-900 dark:text-foreground">
+              <Heading as="h4" className="mb-4 text-sm text-neutral-900 dark:text-foreground">
                 Montants 2026 :
-              </h4>
+              </Heading>
               <div className="space-y-3">
                 {amounts.map((amount, idx) => (
                   <div

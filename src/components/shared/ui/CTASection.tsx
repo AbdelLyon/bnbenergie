@@ -3,6 +3,7 @@
 import { LazyMotionDiv } from "@/components/LazyComponents";
 import { ANIMATION_DURATIONS } from "@/config/constants";
 import { cn } from "@heroui/theme";
+import { Heading } from "@/components/shared/ui/Heading";
 import { ArrowRight, Phone } from "lucide-react";
 import Link from "next/link";
 
@@ -58,14 +59,14 @@ export function CTASection({
     >
       <div className="relative z-10">
         <div className="mx-auto max-w-3xl text-center">
-          <h2
+          <Heading
             className={cn(
-              "font-display mb-3 text-2xl font-bold md:text-3xl lg:text-4xl",
+              "mb-3 text-2xl md:text-3xl lg:text-4xl",
               textColors[variant],
             )}
           >
             {title}
-          </h2>
+          </Heading>
 
           <p
             className={cn(

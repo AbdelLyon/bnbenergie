@@ -1,5 +1,4 @@
-// Mots-clés primaires — requêtes exactes à cibler en priorité absolue
-// Ranking possible sans "Ain (01)" grâce aux signaux locaux (adresse, structured data, GBP)
+
 export const PRIMARY_KEYWORDS = [
   'installateur panneaux solaires Bourg-en-Bresse',
   'installateur panneaux photovoltaïques Bourg-en-Bresse',
@@ -9,8 +8,7 @@ export const PRIMARY_KEYWORDS = [
   'photovoltaïque Bourg-en-Bresse',
 ] as const;
 
-// Variations orthographiques et requêtes sans accent/tiret (fréquentes sur mobile)
-// Google comprend ces variantes mais les inclure renforce la pertinence sémantique
+
 export const BOURG_EN_BRESSE_KEYWORDS = [
   ...PRIMARY_KEYWORDS,
   'panneau solaire bourg en bresse',
@@ -23,27 +21,40 @@ export const BOURG_EN_BRESSE_KEYWORDS = [
   'prix panneaux solaires Bourg-en-Bresse',
   'pose panneaux solaires Bourg-en-Bresse',
   'energie solaire Bourg-en-Bresse',
+  'autoconsommation solaire Bourg-en-Bresse',
+  'surplus électricité panneaux solaires Bourg-en-Bresse',
 ] as const;
 
-// Requêtes transactionnelles à haute conversion — les utilisateurs prêts à acheter
 export const TRANSACTIONAL_KEYWORDS = [
   'devis panneaux solaires Bourg-en-Bresse',
   'devis installation solaire Bourg-en-Bresse',
   'prix installation panneaux solaires Bourg-en-Bresse',
   'tarif panneaux solaires Bourg-en-Bresse',
   'demander devis photovoltaïque Bourg-en-Bresse',
+  'devis gratuit panneaux solaires Ain',
 ] as const;
 
-// Requêtes départementales — couverture complémentaire (Ain/01 optionnel pour l'utilisateur)
+
 export const AIN_DEPARTMENT_KEYWORDS = [
   'installateur panneaux solaires Ain',
   'installateur panneaux photovoltaïques Ain',
   'installation panneaux solaires Ain',
   'panneaux solaires Ain',
   'entreprise panneaux solaires Ain certifiée',
+  'installateur solaire Ain 01',
+  'photovoltaïque Ain 01',
 ] as const;
 
-// Longue traîne — intention transactionnelle forte, concurrence plus faible
+export const CITY_KEYWORDS = [
+  'installateur panneaux solaires Oyonnax',
+  'panneaux solaires Oyonnax',
+  'installation photovoltaïque Bellegarde-sur-Valserine',
+  'panneaux solaires Gex',
+  'installateur solaire Ferney-Voltaire',
+  'panneaux solaires Ambérieu-en-Bugey',
+  'installation solaire Trévoux Ain',
+] as const;
+
 export const LONG_TAIL_KEYWORDS = [
   'meilleur installateur panneaux solaires Bourg-en-Bresse',
   'installateur certifié panneaux solaires Bourg-en-Bresse',
@@ -52,15 +63,19 @@ export const LONG_TAIL_KEYWORDS = [
   'réduire facture électricité panneaux solaires Bourg-en-Bresse',
   'economies energie solaire Bourg-en-Bresse',
   'rentabilite panneaux solaires Bourg-en-Bresse',
+  'revente surplus électricité EDF OA Ain',
+  'MaPrimeRénov panneaux solaires Bourg-en-Bresse',
+  'financement panneaux solaires sans avance de frais Ain',
 ] as const;
 
-// Signaux E-E-A-T (Expertise, Expérience, Autorité, Confiance)
 export const EEAT_KEYWORDS = [
   'installateur RGE QualiPV Bourg-en-Bresse',
   'entreprise RGE certifiée Bourg-en-Bresse',
   'garantie décennale panneaux solaires',
   'certification QualiPV installateur',
   'prime autoconsommation 2026 Bourg-en-Bresse',
+  'avis clients installateur solaire Bourg-en-Bresse',
+  'certifié RGE QualiPV Ain 01',
 ] as const;
 
 export const SEO_KEYWORDS: string[] = [
@@ -69,9 +84,10 @@ export const SEO_KEYWORDS: string[] = [
   ...LONG_TAIL_KEYWORDS,
   ...EEAT_KEYWORDS,
   ...AIN_DEPARTMENT_KEYWORDS,
+  ...CITY_KEYWORDS,
 ];
 
-// Mots-clés spécifiques par page
+
 export const PAGE_SPECIFIC_KEYWORDS = {
   home: SEO_KEYWORDS,
 
@@ -99,6 +115,7 @@ export const PAGE_SPECIFIC_KEYWORDS = {
     'financement panneaux solaires Bourg-en-Bresse',
     'subventions photovoltaïque 2026',
     'tarif rachat surplus EDF OA 2026',
+    'MaPrimeRénov panneaux solaires 2026',
   ],
 
   contact: [
@@ -107,6 +124,7 @@ export const PAGE_SPECIFIC_KEYWORDS = {
     'contact installateur RGE Bourg-en-Bresse',
     'demander devis panneaux solaires Ain',
     'estimation prix panneaux solaires Bourg-en-Bresse',
+    'rendez-vous installation solaire Ain',
   ],
 
   realisations: [
@@ -125,6 +143,7 @@ export const PAGE_SPECIFIC_KEYWORDS = {
     'pack autoconsommation Bourg-en-Bresse',
     'offre panneaux solaires RGE Ain',
     'prix installation solaire clé en main Bourg-en-Bresse',
+    'tarifs transparents installation solaire 2026',
   ],
 
   garanties: [

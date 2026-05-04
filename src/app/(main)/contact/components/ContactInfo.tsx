@@ -1,5 +1,6 @@
 "use client";
 import { LazyMotionDiv } from "@/components/LazyComponents";
+import { Heading } from "@/components/shared/ui/Heading";
 import { getLucideIcon } from "@/utils/getLucideIcon";
 
 interface ContactInfoItem {
@@ -32,9 +33,9 @@ export function ContactInfo({ items }: ContactInfoProps) {
               <Icon className="h-6 w-6" />
             </div>
             <div className="flex-1">
-              <h3 className="text-xs font-bold text-blue-200/80 uppercase mb-1">
+              <Heading as="h3" className="text-xs text-blue-200/80 mb-1">
                 {item.label}
-              </h3>
+              </Heading>
               {item.href ? (
                 <a
                   href={item.href}

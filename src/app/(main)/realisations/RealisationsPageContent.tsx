@@ -7,6 +7,7 @@ import {
   PageMainWrapper,
   SectionContainer,
   Title,
+  Heading,
   StatCard,
   ProjectCard,
   CTASection,
@@ -19,11 +20,8 @@ import type {
   PageHeader as PageHeaderType,
   SiteSetting,
 } from "@/payload-types";
-import { LazyMotionDiv } from "@/components/LazyComponents";
 
-/* =========================================================
-   CONSTANTES
-========================================================= */
+
 
 const STATS = [
   { value: "100+", label: "Installations Réalisées", icon: "CircleCheck" },
@@ -31,9 +29,7 @@ const STATS = [
   { value: "100%", label: "Clients Satisfaits", icon: "Star" },
 ] as const;
 
-/* =========================================================
-   HELPERS
-========================================================= */
+
 
 const extractKw = (value?: string | number | null): number | null => {
   if (!value) return null;
@@ -43,9 +39,6 @@ const extractKw = (value?: string | number | null): number | null => {
   return match ? Number(match[1]) : null;
 };
 
-/* =========================================================
-   TYPES
-========================================================= */
 
 interface RealisationsPageContentProps {
   projects: Project[];
@@ -53,9 +46,7 @@ interface RealisationsPageContentProps {
   siteSettings: SiteSetting;
 }
 
-/* =========================================================
-   COMPONENT
-========================================================= */
+
 
 export default function RealisationsPageContent({
   projects,
@@ -67,12 +58,11 @@ export default function RealisationsPageContent({
 
   const [selectedPower, setSelectedPower] = useState<PowerFilter>("all");
 
-  /* ------------------ FILTER HANDLER ------------------ */
+
   const handleSelectPower = (power: PowerFilter) => {
     setSelectedPower(power);
   };
 
-  /* ------------------ FILTERED PROJECTS ------------------ */
   const filteredProjects = useMemo(() => {
     if (selectedPower === "all") return projects;
 
@@ -89,14 +79,9 @@ export default function RealisationsPageContent({
   return (
     <PageMainWrapper variant="blue">
       <div className="relative z-10">
-        {/* ================= HEADER ================= */}
+
         <PageHeader variant="simple" height="medium">
-          <LazyMotionDiv
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 3, delay: 0 }}
-            className="flex max-w-6xl flex-col items-center gap-6"
-          >
+          <div className="flex max-w-6xl flex-col items-center gap-6">
             <Title
               staticText={header?.title.split(" ")[0] || "Nos"}
               animatedText={header?.title.split(" ")[1] || "Réalisations"}
@@ -114,11 +99,11 @@ export default function RealisationsPageContent({
               secondaryHref="tel:0781251125"
               primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
             />
-          </LazyMotionDiv>
+          </div>
         </PageHeader>
 
         <SectionContainer>
-          {/* ================= STATS ================= */}
+
           <div className="relative z-20 -mt-20 mb-20">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {STATS.map((stat, index) => (
@@ -127,24 +112,18 @@ export default function RealisationsPageContent({
             </div>
           </div>
 
-          {/* ================= INTRO ================= */}
-          <LazyMotionDiv
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="mx-auto mb-16 max-w-4xl text-center"
-          >
-            <h2 className="mb-6 text-3xl font-bold md:text-4xl">
+
+          <div className="mx-auto mb-16 max-w-4xl text-center">
+            <Heading className="mb-6 text-3xl md:text-4xl">
               Nos Projets Photovoltaïques dans l&apos;Ain
-            </h2>
+            </Heading>
             <p className="text-lg text-neutral-600 dark:text-default-500">
               Découvrez quelques-unes de nos installations certifiées RGE
               QualiPV, classées par puissance.
             </p>
-          </LazyMotionDiv>
+          </div>
 
-          {/* ================= FILTER ================= */}
+     
           <div className="mb-6 flex flex-wrap gap-3">
             {POWERS.map((power) => (
               <button
