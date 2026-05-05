@@ -45,8 +45,7 @@ export function CTAGroupButtons({
         const btn = (
           <Button
             key={i}
-            href={item.href as any}
-            onClick={item.onClick}
+            href={item.href}
             variant={item.variant ?? "primary"}
             size={item.size ?? "md"}
             startIcon={item.iconLeft}

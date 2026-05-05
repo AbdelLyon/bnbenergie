@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { forwardRef, ReactNode } from "react";
+import { ReactNode } from "react";
 import clsx from "clsx";
 
 type Variant = "primary" | "secondary";
 type Size = "sm" | "md" | "lg";
 
-type ButtonBaseProps = {
+type SharedProps = {
   children: ReactNode;
   className?: string;
   variant?: Variant;
@@ -17,17 +17,19 @@ type ButtonBaseProps = {
   fullWidth?: boolean;
 };
 
-type ButtonProps =
-  | (ButtonBaseProps & {
-      href: string;
-      onClick?: never;
-      type?: never;
-    })
-  | (ButtonBaseProps & {
-      href?: never;
-      onClick?: () => void;
-      type?: "button" | "submit" | "reset";
-    });
+type LinkButtonProps = SharedProps & {
+  href: string;
+  onClick?: never;
+  type?: never;
+};
+
+type NativeButtonProps = SharedProps & {
+  href?: never;
+  onClick?: () => void;
+  type?: "button" | "submit" | "reset";
+};
+
+export type ButtonProps = LinkButtonProps | NativeButtonProps;
 
 const VARIANTS: Record<Variant, string> = {
   primary:
@@ -41,11 +43,12 @@ const SIZES: Record<Size, string> = {
   lg: "px-8 py-4 text-base",
 };
 
-export const Button = forwardRef<
-  HTMLButtonElement | HTMLAnchorElement,
-  ButtonProps
->(function Button(
-  {
+function isLink(props: ButtonProps): props is LinkButtonProps {
+  return "href" in props;
+}
+
+export function Button(props: ButtonProps) {
+  const {
     children,
     className,
     variant = "primary",
@@ -53,10 +56,8 @@ export const Button = forwardRef<
     startIcon,
     endIcon,
     fullWidth,
-    ...props
-  },
-  ref,
-) {
+  } = props;
+
   const base =
     "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300";
 
@@ -68,9 +69,10 @@ export const Button = forwardRef<
     className,
   );
 
-  if ("href" in props && props.href) {
+  // 👉 LINK
+  if (isLink(props)) {
     return (
-      <Link href={props.href} className={classes} ref={ref as any}>
+      <Link href={props.href} className={classes}>
         {startIcon}
         {children}
         {endIcon}
@@ -78,10 +80,8 @@ export const Button = forwardRef<
     );
   }
 
-  // 👉 BUTTON
   return (
     <button
-      ref={ref as any}
       className={classes}
       onClick={props.onClick}
       type={props.type ?? "button"}
@@ -91,4 +91,4 @@ export const Button = forwardRef<
       {endIcon}
     </button>
   );
-});
+}

@@ -65,7 +65,7 @@ export default function CityPageContent({
             animated
             items={[
               {
-                label: `Devis gratuit à ${cityName}`,
+                label: "Devis gratuit",
                 href: "/contact#contact-form",
                 variant: "primary",
                 size: "md",
