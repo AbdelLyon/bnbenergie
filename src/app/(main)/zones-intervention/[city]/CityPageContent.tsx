@@ -67,16 +67,16 @@ export default function CityPageContent({
               {
                 label: "Devis gratuit",
                 href: "/contact#contact-form",
-                variant: "primary",
-                size: "md",
+                variant: "default",
+                size: "sm",
                 iconRight: <ArrowRight className="h-4 w-4" />,
                 className: `bg-linear-to-r ${accentClass} text-white`,
               },
               {
                 label: phone,
                 href: phoneHref,
-                variant: "secondary",
-                size: "md",
+                variant: "outline",
+                size: "sm",
                 iconLeft: <Phone className="h-4 w-4" />,
               },
             ]}

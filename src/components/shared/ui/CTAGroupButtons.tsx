@@ -8,7 +8,7 @@ type CTAItem = {
   label: string;
   href?: string;
   onClick?: () => void;
-  variant?: "primary" | "secondary";
+  variant?: "default" | "outline";
   size?: "sm" | "md" | "lg";
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
@@ -46,8 +46,8 @@ export function CTAGroupButtons({
           <Button
             key={i}
             href={item.href}
-            variant={item.variant ?? "primary"}
-            size={item.size ?? "md"}
+            variant={item.variant}
+            size={item.size}
             startIcon={item.iconLeft}
             endIcon={item.iconRight}
             className={item.className}

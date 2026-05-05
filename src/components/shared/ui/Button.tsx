@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import clsx from "clsx";
 
-type Variant = "primary" | "secondary";
+type Variant = "default" | "outline";
 type Size = "sm" | "md" | "lg";
 
 type SharedProps = {
@@ -32,9 +32,8 @@ type NativeButtonProps = SharedProps & {
 export type ButtonProps = LinkButtonProps | NativeButtonProps;
 
 const VARIANTS: Record<Variant, string> = {
-  primary:
-    "border-2 border-primary-500 bg-primary-500 text-white hover:bg-primary-600",
-  secondary: "border border-white/30 bg-white/5 text-white hover:bg-white/10",
+  default: "bg-primary-500 text-white hover:bg-primary-600",
+  outline: "border border-white/30 bg-white/5 text-white hover:bg-white/10",
 };
 
 const SIZES: Record<Size, string> = {
@@ -51,7 +50,7 @@ export function Button(props: ButtonProps) {
   const {
     children,
     className,
-    variant = "primary",
+    variant = "default",
     size = "md",
     startIcon,
     endIcon,
