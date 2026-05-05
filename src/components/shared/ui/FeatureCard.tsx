@@ -5,7 +5,7 @@ import { TRANSITIONS } from "@/config/constants";
 import { Heading } from "@/components/shared/ui/Heading";
 import type { BaseCardProps } from "@/types";
 import { getLucideIcon } from "@/utils/getLucideIcon";
-import { cn } from "@heroui/theme";
+import { cn } from "@/utils/cn";
 import { ReactNode } from "react";
 
 interface FeatureCardProps extends BaseCardProps {
@@ -75,7 +75,7 @@ export function FeatureCard({
         </div>
       )}
 
-      <p className="mb-6 text-base leading-relaxed text-neutral-600 dark:text-default-500">
+      <p className="mb-6 text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
         {description}
       </p>
 
@@ -88,7 +88,7 @@ export function FeatureCard({
               >
                 <span className={`text-xs ${iconColor}`}>✓</span>
               </div>
-              <span className="text-sm text-neutral-700 dark:text-default-600">
+              <span className="text-sm text-neutral-700 dark:text-neutral-300">
                 {item}
               </span>
             </li>

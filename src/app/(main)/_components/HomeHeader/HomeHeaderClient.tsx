@@ -2,10 +2,11 @@
 
 import { useImageCarousel } from "@/hooks";
 import { useEffect } from "react";
-import { HomeHeaderCTAButtons } from "./HomeHeaderCTAButtons";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
 import { PageHeader, ScrollDownButton, Stats, Title } from "@/components";
 import type { Stat } from "@/payload-types";
 import { LazyMotionDiv } from "@/components/LazyComponents";
+import { ArrowRight, Phone } from "lucide-react";
 
 interface HeaderData {
   title: string[];
@@ -65,11 +66,25 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
             </p>
         </div>
 
-        <HomeHeaderCTAButtons
-          primaryText={data.cta1}
-          primaryHref="/contact#contact-form"
-          secondaryText={data.cta2}
-          secondaryHref={data.cta2_href}
+        <CTAGroupButtons
+          align="center"
+          animated
+          items={[
+            {
+              label: data.cta1,
+              href: "/contact#contact-form",
+              variant: "default",
+              size: "lg",
+              iconRight: <ArrowRight className="size-4" />,
+            },
+            {
+              label: data.cta2,
+              href: data.cta2_href,
+              variant: "outline",
+              size: "lg",
+              iconLeft: <Phone className="size-4" />,
+            },
+          ]}
         />
 
         <LazyMotionDiv

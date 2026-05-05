@@ -12,8 +12,9 @@ import {
   SectionContainer,
   Title,
   Heading,
-  HomeHeaderCTAButtons,
 } from "@/components";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
+import { ArrowRight, Phone } from "lucide-react";
 import { ContactForm } from "./components/ContactForm";
 import { ContactInfo } from "./components/ContactInfo";
 import { ContactMap } from "./components/ContactMap";
@@ -85,12 +86,25 @@ export default function ContactPageContent({
             {header?.description || ""}
           </p>
 
-          <HomeHeaderCTAButtons
-            primaryText="Devis gratuit"
-            primaryHref="/contact#contact-form"
-            secondaryText={SITE_CONFIG.contact.phone}
-            secondaryHref={SITE_CONFIG.contact.phoneHref}
-            primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
+          <CTAGroupButtons
+            align="center"
+            animated
+            items={[
+              {
+                label: "Devis gratuit",
+                href: "/contact#contact-form",
+                variant: "default",
+                size: "lg",
+                iconRight: <ArrowRight className="size-4" />,
+              },
+              {
+                label: SITE_CONFIG.contact.phone,
+                href: SITE_CONFIG.contact.phoneHref,
+                variant: "outline",
+                size: "lg",
+                iconLeft: <Phone className="size-4" />,
+              },
+            ]}
           />
         </div>
       </PageHeader>
@@ -133,7 +147,7 @@ export default function ContactPageContent({
                 <Heading className="text-2xl text-slate-900 dark:text-white mb-2">
                   Envoyez-nous un message
                 </Heading>
-                <p className="text-slate-500 dark:text-default-500 mb-8">
+                <p className="text-slate-500 dark:text-neutral-400 mb-8">
                   Remplissez le formulaire ci-dessous, nous vous répondrons sous
                   24h.
                 </p>

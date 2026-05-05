@@ -312,7 +312,7 @@ export default function CityPageContent({
                   <Link
                     key={city.slug ?? city.name}
                     href={`/zones-intervention/${city.slug}`}
-                    className="rounded-lg border border-neutral-200 dark:border-divider bg-neutral-50 dark:bg-content2 px-3 py-1.5 text-sm font-medium text-neutral-700 dark:text-default-600 transition-all duration-200 hover:bg-neutral-100 dark:hover:bg-content3"
+                    className="rounded-lg border border-neutral-200 dark:border-divider bg-neutral-50 dark:bg-content2 px-3 py-1.5 text-sm font-medium text-neutral-700 dark:text-neutral-300 transition-all duration-200 hover:bg-neutral-100 dark:hover:bg-content3"
                   >
                     {city.name}
                   </Link>

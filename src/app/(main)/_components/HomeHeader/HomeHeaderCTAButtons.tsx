@@ -1,9 +1,8 @@
 "use client";
 
 import { LazyMotionDiv } from "@/components/LazyComponents";
-import { Button } from "@heroui/button";
+import { Button } from "@/components/shared/ui/Button";
 import { ArrowRight, Phone } from "lucide-react";
-import Link from "next/link";
 
 interface HeroCTAButtonsProps {
   primaryText: string;
@@ -33,24 +32,21 @@ export function HomeHeaderCTAButtons({
       <LazyMotionDiv whileTap={{ scale: 0.96 }} whileHover={{ scale: 1.02 }}>
         <Button
           href={primaryHref}
-          size="sm"
-          radius="full"
           className={primaryClassName ?? DEFAULT_PRIMARY}
-          endContent={<ArrowRight className="size-4" />}
+          endIcon={<ArrowRight className="size-4" />}
         >
-          <Link href={primaryHref}>{primaryText}</Link>
+          {primaryText}
         </Button>
       </LazyMotionDiv>
 
       <LazyMotionDiv whileTap={{ scale: 0.96 }} whileHover={{ scale: 1.02 }}>
         <Button
-          size="sm"
-          radius="full"
-          variant="bordered"
+          href={secondaryHref}
+          variant="outline"
           className={secondaryClassName ?? DEFAULT_SECONDARY}
-          startContent={<Phone className="size-4" />}
+          startIcon={<Phone className="size-4" />}
         >
-          <Link href={secondaryHref}>{secondaryText}</Link>
+          {secondaryText}
         </Button>
       </LazyMotionDiv>
     </div>

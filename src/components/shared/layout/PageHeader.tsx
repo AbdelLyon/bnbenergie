@@ -65,7 +65,7 @@ export function PageHeader({
 
       {backgroundVariant === 'default' && <ParticlesEffect />}
 
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 text-center sm:px-6 py-28">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 text-center sm:px-6 py-16 sm:py-20 md:py-28">
         <div className="flex flex-col items-center justify-center gap-5 sm:gap-7 md:gap-8">
           {children}
         </div>

@@ -52,9 +52,9 @@ export function PricingHeader({ pack, isSpecialPrice }: PricingHeaderProps) {
             >
               {pack.price}
             </span>
-            <span className="text-xl font-semibold text-neutral-600 dark:text-default-500">€</span>
+            <span className="text-xl font-semibold text-neutral-600 dark:text-neutral-400">€</span>
           </div>
-          <div className="mt-0.5 text-xs font-medium text-neutral-500 dark:text-default-400">
+          <div className="mt-0.5 text-xs font-medium text-neutral-500 dark:text-neutral-500">
             TTC
           </div>
         </div>

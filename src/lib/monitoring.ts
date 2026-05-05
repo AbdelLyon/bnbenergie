@@ -220,44 +220,4 @@ export async function withPerformanceTracking<T>(
   }
 }
 
-/**
- * Wrapper synchrone pour mesurer la durée d'exécution
- */
-export function withPerformanceTrackingSync<T>(
-  name: string,
-  type: MetricType,
-  fn: () => T,
-  metadata?: Record<string, unknown>
-): T {
-  const start = Date.now();
-  try {
-    const result = fn();
-    const duration = Date.now() - start;
-    trackPerformance(name, type, duration, metadata);
-    return result;
-  } catch (error) {
-    const duration = Date.now() - start;
-    trackPerformance(name, type, duration, { ...metadata, error: true });
-
-    if (error instanceof Error) {
-      trackError(error, { name, type, ...metadata });
-    }
-
-    throw error;
-  }
-}
-
-/**
- * Récupère les statistiques de performance
- */
-export function getPerformanceStats() {
-  return {
-    dbQueryAvg: monitoring.getAverageDuration('db_query'),
-    apiCallAvg: monitoring.getAverageDuration('api_call'),
-    totalMetrics: monitoring.getMetrics().length,
-    totalErrors: monitoring.getErrors().length,
-  };
-}
-
-// Export l'instance pour accès direct si nécessaire
 export { monitoring };

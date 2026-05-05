@@ -83,32 +83,4 @@ export const TRANSITIONS = {
   },
 } as const;
 
-/**
- * Stagger configurations for orchestrated animations
- */
-export const STAGGER = {
-  instant: 0.05,
-  fast: 0.08,
-  normal: 0.1,
-  medium: 0.15,
-  slow: 0.2,
-} as const;
 
-/**
- * Page-level animation orchestration timings
- * Defines when different sections should start animating
- */
-export const ORCHESTRATION = {
-  // Header sequence
-  headerBackground: 0,
-  headerLogo: 0.2,
-  headerTitle: 0.4,
-  headerSubtitle: 0.6,
-  headerCTA: 0.8,
-  headerScrollIndicator: 1.0,
-
-  // Content sections (relative to when section enters viewport)
-  sectionDelay: 0.1,
-  cardsStart: 0.2,
-  backgroundEffects: 0.4,
-} as const;

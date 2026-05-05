@@ -1,7 +1,5 @@
 'use client';
 
-import { LazyMotionDiv } from '@/components/LazyComponents';
-
 interface BackgroundEffectsProps {
   variant?: 'default' | 'gradient' | 'subtle' | 'full';
   particleCount?: number;
@@ -70,21 +68,3 @@ export function BackgroundEffects({
   );
 }
 
-export function BackgroundEffectsFull() {
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.03),transparent_50%)]" />
-
-      <LazyMotionDiv
-        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        className="bg-primary-500/5 absolute top-0 right-0 h-200 w-200 translate-x-1/3 -translate-y-1/2 rounded-full blur-[100px]"
-      />
-      <LazyMotionDiv
-        animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-        className="bg-secondary-500/5 absolute bottom-0 left-0 h-200 w-200 -translate-x-1/4 translate-y-1/3 rounded-full blur-[100px]"
-      />
-    </div>
-  );
-}

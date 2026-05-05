@@ -72,7 +72,7 @@ export function AidCard({
             </p>
           </div>
 
-          <p className="mb-6 leading-relaxed text-neutral-600 dark:text-default-500">
+          <p className="mb-6 leading-relaxed text-neutral-600 dark:text-neutral-400">
             {description}
           </p>
 
@@ -95,7 +95,7 @@ export function AidCard({
                     className="flex items-start gap-2"
                   >
                     <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green-500" />
-                    <span className="text-sm text-neutral-700 dark:text-default-600">
+                    <span className="text-sm text-neutral-700 dark:text-neutral-300">
                       {condition}
                     </span>
                   </LazyMotionDiv>
@@ -115,7 +115,7 @@ export function AidCard({
                     key={idx}
                     className="flex items-center justify-between border-b border-neutral-200 dark:border-content3 pb-3 last:border-0"
                   >
-                    <span className="text-sm text-neutral-700 dark:text-default-600">
+                    <span className="text-sm text-neutral-700 dark:text-neutral-300">
                       {amount.range}
                     </span>
                     <span className="text-base font-bold text-blue-600 dark:text-blue-400">

@@ -1,6 +1,6 @@
 'use client';
 
-import StatCard from './StatCard';
+import { StatCard } from './StatCard';
 
 interface Stat {
   icon: string;

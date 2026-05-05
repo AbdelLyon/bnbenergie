@@ -510,18 +510,3 @@ export const getFaqs = (category?: string, options?: QueryOptions) =>
     }
   )();
 
-// ===== HELPER: Get all data for a specific page =====
-export async function getPageData(pageSlug: string) {
-  // Paralléliser les requêtes pour de meilleures performances
-  const [header, siteSettings, navigation] = await Promise.all([
-    getPageHeader(pageSlug),
-    getSiteSettings(),
-    getNavigation(),
-  ]);
-
-  return {
-    header,
-    siteSettings,
-    navigation,
-  };
-}

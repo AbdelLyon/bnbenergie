@@ -121,7 +121,7 @@ export function ReviewsCarousel({
             disabled={currentIndex === 0 && !autoPlay}
             aria-label="Avis précédent"
           >
-            <ChevronLeft className="size-6 text-neutral-700 dark:text-default-500" />
+            <ChevronLeft className="size-6 text-neutral-700 dark:text-neutral-400" />
           </LazyMotionButton>
 
           <LazyMotionButton
@@ -131,7 +131,7 @@ export function ReviewsCarousel({
             disabled={currentIndex === maxIndex && !autoPlay}
             aria-label="Avis suivant"
           >
-            <ChevronRight className="size-6 text-neutral-700 dark:text-default-500" />
+            <ChevronRight className="size-6 text-neutral-700 dark:text-neutral-400" />
           </LazyMotionButton>
         </>
       )}

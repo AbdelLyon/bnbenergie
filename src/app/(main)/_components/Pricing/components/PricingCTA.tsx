@@ -15,7 +15,7 @@ export function PricingCTA({ pack, isSpecialPrice }: PricingCTAProps) {
           ? 'bg-linear-to-r from-blue-600 to-cyan-600 text-white'
           : isSpecialPrice
           ? 'bg-linear-to-r from-amber-500 to-orange-500 text-white'
-          : 'border-2 border-neutral-300 dark:border-default-200 bg-white dark:bg-content1 text-neutral-800 dark:text-foreground hover:border-blue-500 hover:bg-linear-to-r hover:from-blue-600 hover:to-cyan-600 hover:text-white'
+          : 'border-2 border-neutral-300 dark:border-neutral-700 bg-white dark:bg-content1 text-neutral-800 dark:text-foreground hover:border-blue-500 hover:bg-linear-to-r hover:from-blue-600 hover:to-cyan-600 hover:text-white'
       }`}
     >
       <span className="relative z-10 flex items-center justify-center gap-2">

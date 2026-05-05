@@ -39,22 +39,4 @@ export const QUERY_LIMITS = {
   PAGINATED: 20,
 } as const;
 
-/**
- * Configuration du logging des requêtes
- */
-export const QUERY_LOGGING = {
-  /** Activer le logging en développement */
-  enableInDevelopment: true,
-
-  /** Seuil de temps pour logger les requêtes lentes (ms) */
-  slowQueryThreshold: 1000,
-
-  /** Logger toutes les requêtes */
-  logAllQueries: false,
-} as const;
-
-/**
- * Limite par défaut des requêtes
- * Export séparé pour compatibilité
- */
 export const DEFAULT_QUERY_LIMIT = QUERY_LIMITS.DEFAULT;

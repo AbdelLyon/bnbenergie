@@ -11,7 +11,7 @@ export function PricingDetails({ pack }: PricingDetailsProps) {
       <Heading as="h3" className="mb-3 text-xl text-neutral-900 dark:text-foreground">
         {pack.name}
       </Heading>
-      <p className="mb-5 text-sm font-medium text-neutral-600 dark:text-default-500">
+      <p className="mb-5 text-sm font-medium text-neutral-600 dark:text-neutral-400">
         {pack.panels}
       </p>
 
@@ -22,7 +22,7 @@ export function PricingDetails({ pack }: PricingDetailsProps) {
               <span className="text-2xl font-bold text-neutral-400 line-through">
                 {pack.originalPrice}
               </span>
-              <span className="text-lg text-neutral-400 dark:text-default-400">€</span>
+              <span className="text-lg text-neutral-400 dark:text-neutral-500">€</span>
             </div>
             <span className="inline-flex items-center gap-1 rounded-full bg-linear-to-r from-green-500 to-emerald-500 px-3 py-1 text-xs font-bold text-white">
               <svg

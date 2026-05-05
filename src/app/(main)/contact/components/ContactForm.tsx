@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Button } from '@heroui/button';
 import { Send, AlertCircle } from 'lucide-react';
 import type { ContactState } from '@/actions/contact';
 import { LazyMotionDiv } from '@/components/LazyComponents';
@@ -109,16 +108,17 @@ export function ContactForm({
         rows={6}
         required
       />
+
       <div className="flex justify-end w-full">
-        <Button
+        <button
           type="submit"
-          size="lg"
           disabled={isPending}
-          className="rounded-xl bg-linear-to-r w-max  from-blue-600 via-sky-500 to-cyan-500 py-7 text-lg font-bold text-white shadow-md shadow-sky-500/25 transition-all duration-300 hover:shadow-lg hover:shadow-sky-500/40 disabled:cursor-not-allowed disabled:opacity-70"
-          endContent={!isPending && <Send className="h-5 w-5" />}
+          className="inline-flex items-center gap-2 rounded-xl bg-linear-to-r w-max from-blue-600 via-sky-500 to-cyan-500 px-8 py-4 text-lg font-bold text-white shadow-md shadow-sky-500/25 transition-all duration-300 hover:shadow-lg hover:shadow-sky-500/40 disabled:cursor-not-allowed disabled:opacity-70"
         >
-          {isPending ? 'Envoi en cours...' : 'Envoyer ma demande'}
-        </Button>
+          {isPending ? 'Envoi en cours...' : (
+            <>Envoyer ma demande <Send className="h-5 w-5" /></>
+          )}
+        </button>
       </div>
 
       {state.message && !state.success && (
@@ -169,7 +169,7 @@ function FormField({
     >
       <label
         htmlFor={name}
-        className="mb-2 ml-1 block text-sm font-bold text-slate-700 dark:text-default-700 transition-colors group-focus-within:text-blue-600 dark:group-focus-within:text-blue-400"
+        className="mb-2 ml-1 block text-sm font-bold text-slate-700 dark:text-neutral-300 transition-colors group-focus-within:text-blue-600 dark:group-focus-within:text-blue-400"
       >
         {label} {required && <span className="text-amber-500">*</span>}
       </label>

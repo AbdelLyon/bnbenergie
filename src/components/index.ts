@@ -1,8 +1,10 @@
 // UI Components (Client-safe)
 export { AidCard } from "./shared/ui/AidCard";
+export { CTAGroupButtons } from "./shared/ui/CTAGroupButtons";
 export { CTASection } from "./shared/ui/CTASection";
 export { FAQItem } from "./shared/ui/FAQItem";
 export { FeatureCard } from "./shared/ui/FeatureCard";
+export { Heading } from "./shared/ui/Heading";
 export { IntroSection } from "./shared/ui/IntroSection";
 export { Logo } from "./shared/ui/Logo";
 export { ProjectCard } from "./shared/ui/ProjectCard";
@@ -12,12 +14,7 @@ export { StatCard } from "./shared/ui/StatCard";
 export { Stats } from "./shared/ui/Stats";
 export { StatsGrid } from "./shared/ui/StatsGrid";
 export { Title } from "./shared/ui/Title";
-export { Heading } from "./shared/ui/Heading";
-export { HomeHeaderCTAButtons } from "../app/(main)/_components/HomeHeader/HomeHeaderCTAButtons";
 export { WarrantyCard } from "./shared/ui/WarrantyCard";
-
-// Theme-aware Components (Client-safe)
-export { ThemeText } from "./shared/ui/ThemeText";
 
 // Layout Components (Client-safe)
 export { PageHeader } from "./shared/layout/PageHeader";
@@ -31,12 +28,6 @@ export {
 export { BackgroundEffects } from "./shared/effects/BackgroundEffects";
 export { HeaderBackground } from "./shared/effects/HeaderBackground";
 export { ParticlesEffect } from "./shared/effects/ParticlesEffect";
-
-// Animations (Client-side)
-export {
-  AnimationOrchestrator,
-  OrchestratedSection,
-} from "./shared/animations";
 
 // NOTE: Footer and Navbar are server components that use Payload queries
 // Import them directly from their files:

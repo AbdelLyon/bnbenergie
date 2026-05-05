@@ -11,8 +11,9 @@ import {
   FeatureCard,
   CTASection,
   ServiceStep,
-  HomeHeaderCTAButtons,
 } from "@/components";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
+import { ArrowRight, Phone } from "lucide-react";
 import type {
   Service,
   PageHeader as PageHeaderType,
@@ -47,12 +48,25 @@ export default function ServicesPageContent({
             {header?.description || ""}
           </p>
 
-          <HomeHeaderCTAButtons
-            primaryText="Devis gratuit"
-            primaryHref="/contact#contact-form"
-            secondaryText="07 81 25 11 25"
-            secondaryHref="tel:0781251125"
-            primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
+          <CTAGroupButtons
+            align="center"
+            animated
+            items={[
+              {
+                label: "Devis gratuit",
+                href: "/contact#contact-form",
+                variant: "default",
+                size: "lg",
+                iconRight: <ArrowRight className="size-4" />,
+              },
+              {
+                label: "07 81 25 11 25",
+                href: "tel:0781251125",
+                variant: "outline",
+                size: "lg",
+                iconLeft: <Phone className="size-4" />,
+              },
+            ]}
           />
         </div>
       </PageHeader>
@@ -77,10 +91,10 @@ export default function ServicesPageContent({
                 className="mb-0 w-full "
               />
 
-              <Heading as="h3" className="mb-4 text-xl text-neutral-700 dark:text-default-600">
+              <Heading as="h3" className="mb-4 text-xl text-neutral-700 dark:text-neutral-300">
                 Notre mission : transformer votre projet solaire en réalité
               </Heading>
-              <p className="leading-relaxed text-neutral-500 dark:text-default-400 max-w-2xl mx-auto">
+              <p className="leading-relaxed text-neutral-500 dark:text-neutral-500 max-w-2xl mx-auto">
                 Chez BNB ÉNERGIE, nous gérons l'intégralité de votre projet
                 d'installation de panneaux solaires, de l'étude initiale à la
                 maintenance.

@@ -52,21 +52,3 @@ export const REVALIDATION_TIMEOUT = 5000; // 5 secondes
 
 
 
-/**
- * Configuration React Query (client-side caching)
- */
-export const REACT_QUERY_CONFIG = {
-  /** Temps avant qu'une donnée soit considérée comme obsolète */
-  STALE_TIME: 60 * 1000, // 1 minute
-
-  /** Temps avant le garbage collection des données */
-  GC_TIME: 5 * 60 * 1000, // 5 minutes
-
-  /** Nombre de tentatives en cas d'échec */
-  RETRY_COUNT: 3,
-
-  /** Délai entre les tentatives (exponentiel) */
-  RETRY_DELAY: (attemptIndex: number) => Math.min(1000 * 2 ** attemptIndex, 30000),
-} as const;
-
-

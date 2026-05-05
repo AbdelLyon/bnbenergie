@@ -37,10 +37,6 @@ export const FALLBACK_SITE_SETTINGS = {
   seoKeywords: [],
 };
 
-export type SiteSettings = Omit<SiteSetting, 'id' | 'updatedAt' | 'createdAt' | 'globalType'> & {
-  id?: number;
-};
-
 export function mergeSiteSettings(payloadSettings: Partial<SiteSetting> | null) {
   if (!payloadSettings) {
     return FALLBACK_SITE_SETTINGS;

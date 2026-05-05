@@ -39,12 +39,12 @@ export function ReviewCard({ review, onClick }: ReviewCardProps) {
             />
           ))}
         </div>
-        <span className="text-xs text-neutral-400 dark:text-default-300">
+        <span className="text-xs text-neutral-400 dark:text-neutral-300">
           {formattedDate}
         </span>
       </div>
 
-      <p className="mb-4 flex-1 overflow-hidden text-sm leading-relaxed text-neutral-600 dark:text-default-500 line-clamp-5">
+      <p className="mb-4 flex-1 overflow-hidden text-sm leading-relaxed text-neutral-600 dark:text-neutral-400 line-clamp-5">
         {review.text}
       </p>
 
@@ -60,8 +60,8 @@ export function ReviewCard({ review, onClick }: ReviewCardProps) {
             </p>
             {review.location && (
               <div className="flex items-center gap-1">
-                <MapPin className="h-3 w-3 text-neutral-400 dark:text-default-400" />
-                <p className="truncate text-xs text-neutral-500 dark:text-default-400">
+                <MapPin className="h-3 w-3 text-neutral-400 dark:text-neutral-500" />
+                <p className="truncate text-xs text-neutral-500 dark:text-neutral-500">
                   {review.location}
                 </p>
               </div>

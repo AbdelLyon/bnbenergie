@@ -13,13 +13,6 @@
  * }
  */
 
-export interface RateLimitConfig {
-  /** Nombre maximum de requêtes */
-  limit: number;
-  /** Fenêtre de temps en millisecondes */
-  window: number;
-}
-
 export interface RateLimitResult {
   /** Si la requête est autorisée */
   success: boolean;

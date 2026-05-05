@@ -1,4 +1,3 @@
-import { Card, CardBody } from "@heroui/card";
 import {
   Phone,
   Mail,
@@ -80,8 +79,8 @@ const navigationLinks = [
         </div>
 
         <div className="mb-16 grid grid-cols-1 gap-6 md:grid-cols-3">
-          <Card className="group relative overflow-hidden rounded-2xl border border-amber-500/30 dark:border-amber-500/10 bg-white dark:bg-neutral-900 transition-all duration-300 hover:-translate-y-1">
-            <CardBody className="relative flex flex-col items-center justify-center p-6">
+          <div className="group relative overflow-hidden rounded-2xl border border-amber-500/30 dark:border-amber-500/10 bg-white dark:bg-neutral-900 transition-all duration-300 hover:-translate-y-1">
+            <div className="relative flex flex-col items-center justify-center p-6">
               <div className="mb-4 rounded-full bg-linear-to-br from-amber-500 to-amber-600 p-4 shadow-lg shadow-amber-500/30 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-amber-500/50">
                 <Phone size={28} className="text-white" />
               </div>
@@ -94,11 +93,11 @@ const navigationLinks = [
               >
                 {siteSettings.contactPhone || "07 81 25 11 25"}
               </a>
-            </CardBody>
-          </Card>
+            </div>
+          </div>
 
-          <Card className="group relative overflow-hidden rounded-2xl border border-amber-500/30 dark:border-amber-500/10 bg-white dark:bg-neutral-900 transition-all duration-300 hover:-translate-y-1">
-            <CardBody className="relative flex flex-col items-center justify-center p-6">
+          <div className="group relative overflow-hidden rounded-2xl border border-amber-500/30 dark:border-amber-500/10 bg-white dark:bg-neutral-900 transition-all duration-300 hover:-translate-y-1">
+            <div className="relative flex flex-col items-center justify-center p-6">
               <div className="mb-4 rounded-full bg-linear-to-br from-amber-500 to-amber-600 p-4 shadow-lg shadow-amber-500/30 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-amber-500/50">
                 <Mail size={28} className="text-white" />
               </div>
@@ -113,11 +112,11 @@ const navigationLinks = [
               >
                 {siteSettings.contactEmail || "contact@bnb-energie.fr"}
               </Link>
-            </CardBody>
-          </Card>
+            </div>
+          </div>
 
-          <Card className="group relative overflow-hidden rounded-2xl border border-amber-500/30 dark:border-amber-500/10 bg-white dark:bg-neutral-900 transition-all duration-300 hover:-translate-y-1">
-            <CardBody className="relative flex flex-col items-center justify-center p-6">
+          <div className="group relative overflow-hidden rounded-2xl border border-amber-500/30 dark:border-amber-500/10 bg-white dark:bg-neutral-900 transition-all duration-300 hover:-translate-y-1">
+            <div className="relative flex flex-col items-center justify-center p-6">
               <div className="mb-4 rounded-full bg-linear-to-br from-amber-500 to-amber-600 p-4 shadow-lg shadow-amber-500/30 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-amber-500/50">
                 <MapPin size={28} className="text-white" />
               </div>
@@ -129,8 +128,8 @@ const navigationLinks = [
                   ? `${siteSettings.addressStreet}, ${siteSettings.addressZip} ${siteSettings.addressCity}`
                   : "Bourg-en-Bresse, Ain (01)"}
               </p>
-            </CardBody>
-          </Card>
+            </div>
+          </div>
         </div>
 
         <div className="mb-12 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">

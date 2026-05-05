@@ -133,18 +133,3 @@ export const REVIEWS_STATS = {
   },
 };
 
-export function getLatestReviews(count: number = 3): Review[] {
-  return GOOGLE_REVIEWS.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  ).slice(0, count);
-}
-
-export function getReviewsSortedByDate(): Review[] {
-  return [...GOOGLE_REVIEWS].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
-}
-
-export function getReviewsByProject(project: string): Review[] {
-  return GOOGLE_REVIEWS.filter((r) => r.project === project);
-}

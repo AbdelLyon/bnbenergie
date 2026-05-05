@@ -52,7 +52,7 @@ export function WarrantyCard({
           <Heading as="h3" className="mb-1 text-xl text-neutral-900 dark:text-foreground">
             {title}
           </Heading>
-          <p className="text-sm text-neutral-600 dark:text-default-500">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
             {description}
           </p>
         </div>
@@ -69,7 +69,7 @@ export function WarrantyCard({
                 {warranty.duration}
               </span>
             </div>
-            <p className="text-xs text-neutral-600 dark:text-default-500">
+            <p className="text-xs text-neutral-600 dark:text-neutral-400">
               {warranty.description}
             </p>
           </div>
@@ -80,7 +80,7 @@ export function WarrantyCard({
         {features.map((feature, idx) => (
           <div key={idx} className="flex items-start gap-2">
             <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-blue-600 dark:text-blue-400" />
-            <span className="text-xs text-neutral-700 dark:text-default-600">
+            <span className="text-xs text-neutral-700 dark:text-neutral-300">
               {feature}
             </span>
           </div>

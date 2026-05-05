@@ -79,7 +79,7 @@ export function ProjectCard({ project, index, page, href }: ProjectCardProps) {
         <div className="mb-3 flex items-center gap-4">
           <Link
             href={`/zones-intervention/${slugify(project.location)}`}
-            className="flex items-center gap-2 text-neutral-700 dark:text-default-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            className="flex items-center gap-2 text-neutral-700 dark:text-neutral-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             title={`Voir nos interventions à ${project.location}`}
           >
             <div className="rounded-md bg-blue-50 dark:bg-blue-900/20 p-1.5">
@@ -87,7 +87,7 @@ export function ProjectCard({ project, index, page, href }: ProjectCardProps) {
             </div>
             <span className="text-sm font-medium">Voir {project.location}</span>
           </Link>
-          <div className="flex items-center gap-2 text-neutral-700 dark:text-default-400">
+          <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-500">
             <div className="rounded-md bg-green-50 dark:bg-green-900/20 p-1.5">
               <Shield className="h-4 w-4 text-green-600 dark:text-green-400" />
             </div>
@@ -96,7 +96,7 @@ export function ProjectCard({ project, index, page, href }: ProjectCardProps) {
         </div>
 
         <p
-          className={`mb-3 text-sm leading-relaxed text-neutral-600 dark:text-default-500 ${page === "home" ? "line-clamp-2" : ""}`}
+          className={`mb-3 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400 ${page === "home" ? "line-clamp-2" : ""}`}
         >
           {project.description}
         </p>

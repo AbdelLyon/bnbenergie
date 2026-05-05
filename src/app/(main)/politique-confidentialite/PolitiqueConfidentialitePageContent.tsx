@@ -267,10 +267,10 @@ export default function PolitiqueConfidentialitePageContent({
                       key={item.label}
                       className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-neutral-100 dark:border-white/5 py-3 sm:py-2"
                     >
-                      <span className="font-medium text-neutral-700 dark:text-default-400">
+                      <span className="font-medium text-neutral-700 dark:text-neutral-500">
                         {item.label}
                       </span>
-                      <span className="text-neutral-600 dark:text-default-500 sm:text-right">
+                      <span className="text-neutral-600 dark:text-neutral-400 sm:text-right">
                         {item.value}
                       </span>
                     </div>
@@ -289,7 +289,7 @@ export default function PolitiqueConfidentialitePageContent({
           transition={{ duration: 0.5 }}
           className="mt-12 rounded-2xl bg-linear-to-br from-purple-50 to-violet-50 dark:from-purple-950/30 dark:to-violet-950/30 p-8 text-center border border-purple-100 dark:border-purple-900/50"
         >
-          <p className="text-sm text-neutral-600 dark:text-default-400">
+          <p className="text-sm text-neutral-600 dark:text-neutral-500">
             Date de dernière mise à jour : 10 octobre 2025
           </p>
         </LazyMotionDiv>

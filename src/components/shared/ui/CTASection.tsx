@@ -2,7 +2,7 @@
 
 import { LazyMotionDiv } from "@/components/LazyComponents";
 import { ANIMATION_DURATIONS } from "@/config/constants";
-import { cn } from "@heroui/theme";
+import { cn } from "@/utils/cn";
 import { Heading } from "@/components/shared/ui/Heading";
 import { ArrowRight, Phone } from "lucide-react";
 import Link from "next/link";
@@ -72,7 +72,7 @@ export function CTASection({
             className={cn(
               "mb-10 text-base leading-relaxed md:text-lg",
               variant === "minimal"
-                ? "text-neutral-600 dark:text-default-500"
+                ? "text-neutral-600 dark:text-neutral-400"
                 : "text-white/90",
             )}
           >
@@ -101,7 +101,7 @@ export function CTASection({
                 className={cn(
                   "group flex w-full items-center justify-center gap-2 rounded-full border-2 px-5 py-3 text-base font-bold transition-all duration-300 hover:scale-105 sm:w-auto",
                   variant === "minimal"
-                    ? "border-neutral-300 dark:border-default-200 bg-white dark:bg-content1 text-neutral-900 dark:text-foreground hover:border-neutral-400 dark:hover:border-default-300"
+                    ? "border-neutral-300 dark:border-neutral-700 bg-white dark:bg-content1 text-neutral-900 dark:text-foreground hover:border-neutral-400 dark:hover:border-neutral-600"
                     : "border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20",
                 )}
               >
@@ -116,7 +116,7 @@ export function CTASection({
                 className={cn(
                   "group flex w-full items-center justify-center gap-2 rounded-full border-2 px-5 py-3 text-base font-bold transition-all duration-300 hover:scale-105 sm:w-auto",
                   variant === "minimal"
-                    ? "border-neutral-300 dark:border-default-200 text-neutral-700 dark:text-default-600 hover:border-neutral-400 dark:hover:border-default-300 hover:bg-neutral-100 dark:hover:bg-content2"
+                    ? "border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-100 dark:hover:bg-content2"
                     : "border-white/30 text-white hover:bg-white/10",
                 )}
               >

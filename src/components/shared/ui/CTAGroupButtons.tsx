@@ -3,12 +3,13 @@
 import { ReactNode } from "react";
 import { LazyMotionDiv } from "@/components/LazyComponents";
 import { Button } from "./Button";
+import type { Variant } from "./Button";
 
 type CTAItem = {
   label: string;
   href?: string;
   onClick?: () => void;
-  variant?: "default" | "outline";
+  variant?: Variant;
   size?: "sm" | "md" | "lg";
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
@@ -35,32 +36,46 @@ export function CTAGroupButtons({
         ? "justify-end"
         : "justify-center";
 
+  const isRow = direction === "row";
+
   return (
     <div
-      className={`flex gap-4 ${
-        direction === "row" ? "flex-row" : "flex-col"
-      } ${justify}`}
+      className={`flex gap-4 ${isRow ? "flex-col sm:flex-row" : "flex-col"} ${justify}`}
     >
       {items.map((item, i) => {
-        const btn = (
-          <Button
-            key={i}
-            href={item.href}
-            variant={item.variant}
-            size={item.size}
-            startIcon={item.iconLeft}
-            endIcon={item.iconRight}
-            className={item.className}
-          >
+        const sharedProps = {
+          variant: item.variant,
+          size: item.size,
+          startIcon: item.iconLeft,
+          endIcon: item.iconRight,
+          fullWidth: isRow,
+          className: item.className,
+        };
+
+        const btn = item.href ? (
+          <Button href={item.href} {...sharedProps}>
+            {item.label}
+          </Button>
+        ) : (
+          <Button onClick={item.onClick} {...sharedProps}>
             {item.label}
           </Button>
         );
 
-        if (!animated) return btn;
+        const wrapperClass = isRow ? "w-full sm:w-auto" : undefined;
+
+        if (!animated) {
+          return (
+            <div key={i} className={wrapperClass}>
+              {btn}
+            </div>
+          );
+        }
 
         return (
           <LazyMotionDiv
             key={i}
+            className={wrapperClass}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.96 }}
           >

@@ -57,7 +57,7 @@ export function ReviewsSection({
                 {REVIEWS_STATS.average.toFixed(1)}/5
               </p>
             </div>
-            <p className="text-sm text-neutral-600 dark:text-default-500">
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
               Basé sur {REVIEWS_STATS.total} avis Google
             </p>
           </LazyMotionDiv>

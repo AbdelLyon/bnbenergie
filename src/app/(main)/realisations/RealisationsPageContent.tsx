@@ -11,8 +11,9 @@ import {
   StatCard,
   ProjectCard,
   CTASection,
-  HomeHeaderCTAButtons,
 } from "@/components";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
+import { ArrowRight, Phone } from "lucide-react";
 import { ReviewsSection } from "@/components/shared/ui/ReviewsSection";
 
 import type {
@@ -92,12 +93,25 @@ export default function RealisationsPageContent({
               {header?.description || ""}
             </p>
 
-            <HomeHeaderCTAButtons
-              primaryText="Devis gratuit"
-              primaryHref="/contact#contact-form"
-              secondaryText="07 81 25 11 25"
-              secondaryHref="tel:0781251125"
-              primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
+            <CTAGroupButtons
+              align="center"
+              animated
+              items={[
+                {
+                  label: "Devis gratuit",
+                  href: "/contact#contact-form",
+                  variant: "default",
+                  size: "lg",
+                  iconRight: <ArrowRight className="size-4" />,
+                },
+                {
+                  label: "07 81 25 11 25",
+                  href: "tel:0781251125",
+                  variant: "outline",
+                  size: "lg",
+                  iconLeft: <Phone className="size-4" />,
+                },
+              ]}
             />
           </div>
         </PageHeader>
@@ -117,7 +131,7 @@ export default function RealisationsPageContent({
             <Heading className="mb-6 text-3xl md:text-4xl">
               Nos Projets Photovoltaïques dans l&apos;Ain
             </Heading>
-            <p className="text-lg text-neutral-600 dark:text-default-500">
+            <p className="text-lg text-neutral-600 dark:text-neutral-400">
               Découvrez quelques-unes de nos installations certifiées RGE
               QualiPV, classées par puissance.
             </p>
@@ -132,7 +146,7 @@ export default function RealisationsPageContent({
                 className={`rounded-full px-5 py-2 text-sm font-bold transition-all
                   ${
                     selectedPower === power
-                      ? "bg-primary text-white"
+                      ? "bg-primary-500 text-white"
                       : "bg-neutral-200 hover:bg-neutral-200 dark:bg-content1"
                   }`}
               >

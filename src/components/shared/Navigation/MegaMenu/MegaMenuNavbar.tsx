@@ -11,7 +11,6 @@ import { Heading } from "@/components/shared/ui/Heading";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
-import { Button } from "@heroui/button";
 import { useScrollPosition, useBodyScrollLock } from "@/hooks";
 import { getLucideIcon } from "@/utils/getLucideIcon";
 import { Logo as LogoIcon } from "@/components/shared/ui/Logo";
@@ -269,14 +268,13 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                 </LazyMotionDiv>
               ))}
 
-              <Button
-                size="sm"
-                radius="full"
-                startContent={<Phone className="h-4 w-4" />}
-                className="ml-2 bg-linear-to-r from-blue-600 to-cyan-600 font-bold text-white shadow-md shadow-blue-500/20 transition-all hover:scale-105 hover:shadow-lg"
+              <Link
+                href={data.cta.phoneHref}
+                className="ml-2 inline-flex items-center gap-1.5 rounded-full bg-linear-to-r from-blue-600 to-cyan-600 px-4 py-2 text-sm font-bold text-white shadow-md shadow-blue-500/20 transition-all hover:scale-105 hover:shadow-lg"
               >
-                <Link href={data.cta.phoneHref}>{data.cta.label}</Link>
-              </Button>
+                <Phone className="h-4 w-4" />
+                {data.cta.label}
+              </Link>
               <div className="ml-2">
                 <ThemeSwitcher />
               </div>
@@ -484,16 +482,13 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                   transition={{ duration: 0.4, delay: 0 }}
                   className="space-y-3"
                 >
-                  <Button
-                    as="a"
+                  <a
                     href={data.cta.phoneHref}
-                    size="lg"
-                    radius="full"
-                    className="w-full bg-linear-to-r from-blue-600 to-cyan-600 font-bold text-white shadow-lg shadow-blue-500/30 transition-all hover:scale-[1.02] hover:shadow-xl"
-                    startContent={<Phone className="h-5 w-5" />}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-linear-to-r from-blue-600 to-cyan-600 px-6 py-4 font-bold text-white shadow-lg shadow-blue-500/30 transition-all hover:scale-[1.02] hover:shadow-xl"
                   >
+                    <Phone className="h-5 w-5" />
                     {data.cta.label}
-                  </Button>
+                  </a>
                   <div className="flex justify-center pt-2">
                     <ThemeSwitcher />
                   </div>

@@ -70,7 +70,7 @@ export function RealisationsClient({ data }: { data: RealisationsData }) {
         >
           <Link
             href="/realisations"
-            className="group inline-flex items-center gap-3 rounded-xl border border-primary px-8 py-4 text-lg font-bold text-primary transition-all duration-200 hover:bg-primary hover:text-white hover:shadow-lg hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-3 rounded-xl border border-primary-500 px-8 py-4 text-lg font-bold text-primary-500 transition-all duration-200 hover:bg-primary-500 hover:text-white hover:shadow-lg hover:-translate-y-0.5"
           >
             Voir toutes nos réalisations
             <span className="transition-transform duration-200 group-hover:translate-x-0.5">

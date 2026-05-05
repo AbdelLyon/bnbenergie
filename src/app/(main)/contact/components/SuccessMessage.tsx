@@ -1,6 +1,5 @@
 'use client';
 import { CheckCircle2 } from 'lucide-react';
-import { Button } from '@heroui/button';
 import { LazyMotionDiv } from '@/components/LazyComponents';
 import { Heading } from '@/components/shared/ui/Heading';
 
@@ -18,19 +17,20 @@ export function SuccessMessage({ message }: SuccessMessageProps) {
       <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100 shadow-inner">
         <CheckCircle2 className="h-10 w-10 text-green-600" />
       </div>
-      <Heading as="h3" className="mb-3 text-2xl text-slate-800 dark:text-foreground">
+      <Heading as="h3" className="mb-3 text-2xl text-slate-800 dark:text-neutral-100">
         Message envoyé !
       </Heading>
-      <p className="mx-auto max-w-md text-slate-600 dark:text-default-500">
+      <p className="mx-auto max-w-md text-slate-600 dark:text-neutral-400">
         {message ||
           'Merci de nous avoir contactés. Nous vous répondrons dans les plus brefs délais.'}
       </p>
-      <Button
-        className="mt-6 bg-white dark:bg-content1 text-slate-600 dark:text-default-500 shadow-sm hover:bg-slate-50"
+      <button
+        type="button"
+        className="mt-6 rounded-xl bg-white dark:bg-neutral-900 px-5 py-2.5 text-sm text-slate-600 dark:text-neutral-400 shadow-sm transition-colors hover:bg-neutral-50 dark:hover:bg-neutral-800"
         onClick={() => window.location.reload()}
       >
         Envoyer un autre message
-      </Button>
+      </button>
     </LazyMotionDiv>
   );
 }

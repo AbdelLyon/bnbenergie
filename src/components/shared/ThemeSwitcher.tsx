@@ -1,7 +1,6 @@
 'use client';
 
 import { Sun, Moon } from 'lucide-react';
-import { Button } from '@heroui/button';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
@@ -11,7 +10,6 @@ export function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
   const { setTheme, resolvedTheme } = useTheme();
 
-  // Éviter les problèmes d'hydratation
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -20,29 +18,24 @@ export function ThemeSwitcher() {
     setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
   };
 
-  // Afficher un placeholder pendant le chargement
   if (!mounted) {
     return (
-      <Button
-        isIconOnly
-        variant="light"
-        radius="full"
+      <button
+        type="button"
         aria-label="Toggle theme"
-        className="text-default-500"
+        className="flex h-9 w-9 items-center justify-center rounded-full"
       >
         <div className="h-5 w-5" />
-      </Button>
+      </button>
     );
   }
 
   return (
-    <Button
-      isIconOnly
-      variant="light"
-      radius="full"
+    <button
+      type="button"
       aria-label={`Passer au mode ${resolvedTheme === 'dark' ? 'clair' : 'sombre'}`}
-      onPress={toggleTheme}
-      className="relative overflow-hidden text-default-500 hover:bg-default-100 dark:hover:bg-default-50/10 transition-all duration-300"
+      onClick={toggleTheme}
+      className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full text-neutral-500 transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
     >
       <AnimatePresence mode="wait" initial={false}>
         {resolvedTheme === 'dark' ? (
@@ -67,6 +60,6 @@ export function ThemeSwitcher() {
           </LazyMotionDiv>
         )}
       </AnimatePresence>
-    </Button>
+    </button>
   );
 }

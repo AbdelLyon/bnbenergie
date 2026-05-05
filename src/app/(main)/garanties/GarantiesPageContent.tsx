@@ -11,8 +11,9 @@ import {
   FeatureCard,
   WarrantyCard,
   CTASection,
-  HomeHeaderCTAButtons,
 } from "@/components";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
+import { ArrowRight, Phone } from "lucide-react";
 
 import type {
   Warranty,
@@ -51,12 +52,25 @@ export default function GarantiesPageContent({
             {header?.description || ""}
           </p>
 
-          <HomeHeaderCTAButtons
-            primaryText="Devis gratuit"
-            primaryHref="/contact#contact-form"
-            secondaryText="07 81 25 11 25"
-            secondaryHref="tel:0781251125"
-            primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
+          <CTAGroupButtons
+            align="center"
+            animated
+            items={[
+              {
+                label: "Devis gratuit",
+                href: "/contact#contact-form",
+                variant: "default",
+                size: "lg",
+                iconRight: <ArrowRight className="size-4" />,
+              },
+              {
+                label: "07 81 25 11 25",
+                href: "tel:0781251125",
+                variant: "outline",
+                size: "lg",
+                iconLeft: <Phone className="size-4" />,
+              },
+            ]}
           />
         </div>
       </PageHeader>

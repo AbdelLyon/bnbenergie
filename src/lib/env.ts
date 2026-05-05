@@ -88,11 +88,6 @@ export const isProduction = env.NODE_ENV === 'production';
 export const isDevelopment = env.NODE_ENV === 'development';
 
 /**
- * Vérifie si nous sommes en environnement de test
- */
-export const isTest = env.NODE_ENV === 'test';
-
-/**
  * Vérifie si la configuration SMTP est complète
  */
 export const hasSmtpConfig = Boolean(

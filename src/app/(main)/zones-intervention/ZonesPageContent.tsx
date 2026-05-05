@@ -10,8 +10,9 @@ import {
   IntroSection,
   FeatureCard,
   CTASection,
-  HomeHeaderCTAButtons,
 } from "@/components";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
+import { ArrowRight, Phone } from "lucide-react";
 
 import Link from "next/link";
 import { slugify } from "@/utils/slugify";
@@ -47,12 +48,25 @@ export default function ZonesPageContent({
               {header?.description || ""}
             </p>
 
-            <HomeHeaderCTAButtons
-              primaryText="Devis gratuit"
-              primaryHref="/contact#contact-form"
-              secondaryText="07 81 25 11 25"
-              secondaryHref="tel:0781251125"
-              primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
+            <CTAGroupButtons
+              align="center"
+              animated
+              items={[
+                {
+                  label: "Devis gratuit",
+                  href: "/contact#contact-form",
+                  variant: "default",
+                  size: "lg",
+                  iconRight: <ArrowRight className="size-4" />,
+                },
+                {
+                  label: "07 81 25 11 25",
+                  href: "tel:0781251125",
+                  variant: "outline",
+                  size: "lg",
+                  iconLeft: <Phone className="size-4" />,
+                },
+              ]}
             />
           </div>
         </PageHeader>
@@ -125,7 +139,7 @@ export default function ZonesPageContent({
                       <Link
                         key={commune.name}
                         href={`/zones-intervention/${slugify(commune.name)}`}
-                        className="rounded-lg border border-neutral-200 dark:border-divider bg-neutral-50 dark:bg-content2 px-3 py-1.5 text-sm font-medium text-neutral-700 dark:text-default-600 transition-all duration-200 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 hover:shadow-md"
+                        className="rounded-lg border border-neutral-200 dark:border-divider bg-neutral-50 dark:bg-content2 px-3 py-1.5 text-sm font-medium text-neutral-700 dark:text-neutral-300 transition-all duration-200 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 hover:shadow-md"
                       >
                         {commune.name}
                       </Link>
@@ -152,7 +166,7 @@ export default function ZonesPageContent({
               ].map((dept) => (
                 <div
                   key={dept}
-                  className="rounded-full border border-neutral-200 dark:border-divider bg-white dark:bg-content1 px-4 py-2 text-sm font-medium text-neutral-700 dark:text-default-600"
+                  className="rounded-full border border-neutral-200 dark:border-divider bg-white dark:bg-content1 px-4 py-2 text-sm font-medium text-neutral-700 dark:text-neutral-300"
                 >
                   {dept}
                 </div>

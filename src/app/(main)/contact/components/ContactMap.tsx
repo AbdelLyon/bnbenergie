@@ -36,7 +36,7 @@ export function ContactMap({ latitude, longitude, address }: ContactMapProps) {
             <Heading as="h3" className="mb-1 text-lg text-slate-800 dark:text-foreground">
               Nous Trouver
             </Heading>
-            <p className="text-sm text-slate-600 dark:text-default-500">
+            <p className="text-sm text-slate-600 dark:text-neutral-400">
               {address}
             </p>
           </div>

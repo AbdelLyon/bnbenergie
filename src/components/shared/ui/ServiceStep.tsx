@@ -64,14 +64,14 @@ export function ServiceStep({
                 {title}
               </Heading>
               {duration && (
-                <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-default-500">
+                <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
                   <Clock className="h-4 w-4" />
                   <span>{duration}</span>
                 </div>
               )}
             </div>
 
-            <p className="mb-6 leading-relaxed text-neutral-600 dark:text-default-500">
+            <p className="mb-6 leading-relaxed text-neutral-600 dark:text-neutral-400">
               {description}
             </p>
 
@@ -80,7 +80,7 @@ export function ServiceStep({
                 {items.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-green-500" />
-                    <span className="text-sm text-neutral-700 dark:text-default-600">
+                    <span className="text-sm text-neutral-700 dark:text-neutral-300">
                       {item}
                     </span>
                   </li>
