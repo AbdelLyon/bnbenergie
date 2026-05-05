@@ -25,36 +25,33 @@ export function Logo({
   const containerSizeClasses = {
     sm: 'p-1.5',
     md: 'p-2',
-    lg: 'p-3',
+    lg: 'p-2.5',
   };
 
-  const badgeSizeClasses = {
-    sm: 'text-[7px] px-1 py-0.5',
-    md: 'text-[8px] px-1.5 py-0.5',
-    lg: 'text-[9px] px-2 py-0.5',
-  };
-
-  const LogoContent = (
+  return (
     <div className="relative inline-block">
       <LazyMotionDiv
-        whileHover={animated ? { rotate: 180, scale: 1.1 } : {}}
-        transition={{ duration: 0.4 }}
-        className={`rounded-xl transition-all duration-300 ease-out ${
-          containerSizeClasses[size]
-        } ${
+        whileHover={animated ? { scale: 1.08 } : {}}
+        transition={{ duration: 0.2 }}
+        className={`rounded-xl transition-all duration-300 ${containerSizeClasses[size]} ${
           isScrolled
-            ? 'bg-linear-to-br from-blue-600 via-cyan-500 to-blue-600'
+            ? 'bg-secondary/15'
             : 'border border-white/20 bg-white/10 backdrop-blur-sm'
         }`}
       >
-        <Zap className={sizeClasses[size]} color="#FBBF24" />
+        <Zap
+          className={`${sizeClasses[size]} ${isScrolled ? 'text-secondary' : 'text-amber-300'}`}
+          strokeWidth={2.5}
+          fill={isScrolled ? 'rgb(245 158 11 / 0.3)' : 'rgb(252 211 77 / 0.2)'}
+        />
       </LazyMotionDiv>
+
       {showRGEBadge && (
         <div
-          className={`absolute -right-2.5 -bottom-2 rounded-full font-bold uppercase ${
-            badgeSizeClasses[size]
-          } ${
-            isScrolled ? 'bg-amber-500 text-white' : 'bg-amber-400 text-black'
+          className={`absolute -right-2 -bottom-1.5 rounded-full text-[7px] font-black tracking-wide uppercase px-1.5 py-0.5 ${
+            isScrolled
+              ? 'bg-secondary text-white'
+              : 'bg-amber-400/90 text-black'
           }`}
         >
           RGE
@@ -62,6 +59,4 @@ export function Logo({
       )}
     </div>
   );
-
-  return LogoContent;
 }

@@ -45,12 +45,9 @@ export default function GarantiesPageContent({
           <Title
             staticText={header?.title.split(" ")[0] || "Nos"}
             animatedText={header?.title.split(" ")[1] || "Garanties"}
-            subtitle={header?.subtitle || ""}
+            subtitle={header?.description || ""}
             seoTitle="Garanties Panneaux Solaires Photovoltaïques — Certification RGE QualiPV & Garantie Décennale | BNB Énergie"
           />
-          <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
-            {header?.description || ""}
-          </p>
 
           <CTAGroupButtons
             align="center"
@@ -60,14 +57,15 @@ export default function GarantiesPageContent({
                 label: "Devis gratuit",
                 href: "/contact#contact-form",
                 variant: "default",
-                size: "lg",
+                size: "sm",
                 iconRight: <ArrowRight className="size-4" />,
+                className: "bg-gradient-to-r from-secondary to-secondary-400",
               },
               {
                 label: "07 81 25 11 25",
                 href: "tel:0781251125",
                 variant: "outline",
-                size: "lg",
+                size: "sm",
                 iconLeft: <Phone className="size-4" />,
               },
             ]}

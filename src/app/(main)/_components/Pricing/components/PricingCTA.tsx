@@ -10,32 +10,24 @@ export function PricingCTA({ pack, isSpecialPrice }: PricingCTAProps) {
   return (
     <Link
       href="/contact#contact-form"
-      className={`group/btn relative mt-6 block overflow-hidden rounded-xl px-6 py-4 text-center text-sm font-bold transition-all duration-300 ${
+      className={`group/btn mt-6 flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-200 hover:-translate-y-px ${
         pack.popular
-          ? 'bg-linear-to-r from-blue-600 to-cyan-600 text-white'
+          ? "bg-primary text-white hover:bg-primary-600 hover:shadow-medium"
           : isSpecialPrice
-          ? 'bg-linear-to-r from-amber-500 to-orange-500 text-white'
-          : 'border-2 border-neutral-300 dark:border-neutral-700 bg-white dark:bg-content1 text-neutral-800 dark:text-foreground hover:border-blue-500 hover:bg-linear-to-r hover:from-blue-600 hover:to-cyan-600 hover:text-white'
+            ? "bg-secondary text-white hover:bg-secondary-600"
+            : "border border-default-200 bg-background text-foreground hover:border-default-300 hover:bg-default-50"
       }`}
     >
-      <span className="relative z-10 flex items-center justify-center gap-2">
-        {pack.cta}
-        <svg
-          className="h-5 w-5 transition-transform duration-300 group-hover/btn:translate-x-1"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2.5}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M13 7l5 5m0 0l-5 5m5-5H6"
-          />
-        </svg>
-      </span>
-      {/* Effet de brillance au survol du bouton */}
-      <div className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/30 to-transparent transition-transform duration-500 group-hover/btn:translate-x-full" />
+      {pack.cta}
+      <svg
+        className="h-4 w-4 transition-transform duration-200 group-hover/btn:translate-x-0.5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={2.5}
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+      </svg>
     </Link>
   );
 }

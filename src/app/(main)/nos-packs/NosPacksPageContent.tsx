@@ -37,14 +37,9 @@ export default function NosPacksPageContent({
           <Title
             staticText={header?.title?.split(" ")[0] || "Nos"}
             animatedText={header?.title?.split(" ")[1] || "Packs"}
-            subtitle={
-              header?.subtitle || "Des Solutions Adaptées à Vos Besoins"
-            }
+            seoTitle="Des Solutions Adaptées à Vos Besoins"
+            subtitle={header?.description || ""}
           />
-          <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
-            {header?.description ||
-              "Découvrez nos packs d'installation de panneaux solaires personnalisés pour répondre à tous vos besoins énergétiques dans l'Ain. Tarifs transparents, garanties incluses et accompagnement personnalisé."}
-          </p>
 
           <CTAGroupButtons
             align="center"
@@ -54,14 +49,15 @@ export default function NosPacksPageContent({
                 label: "Devis gratuit",
                 href: "/contact#contact-form",
                 variant: "default",
-                size: "lg",
+                size: "sm",
                 iconRight: <ArrowRight className="size-4" />,
+                className: "bg-gradient-to-r from-secondary to-secondary-400",
               },
               {
                 label: "07 81 25 11 25",
                 href: "tel:0781251125",
                 variant: "outline",
-                size: "lg",
+                size: "sm",
                 iconLeft: <Phone className="size-4" />,
               },
             ]}
@@ -71,7 +67,6 @@ export default function NosPacksPageContent({
 
       <div className="relative z-10">
         <SectionContainer>
-
           <StatsGrid
             stats={[
               {
@@ -95,9 +90,7 @@ export default function NosPacksPageContent({
             ]}
           />
 
-
           <div className="relative mb-24 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 shadow-xl border border-neutral-100 dark:border-white/5">
-
             <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
               <div
                 className="absolute inset-0"
@@ -117,9 +110,7 @@ export default function NosPacksPageContent({
             </div>
           </div>
 
-
           {children}
-
 
           <CTASection
             title="Prêt à Investir dans l'Énergie Solaire ?"

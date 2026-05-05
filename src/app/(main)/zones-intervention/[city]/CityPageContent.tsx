@@ -58,6 +58,8 @@ export default function CityPageContent({
             staticText="SOLAIRE"
             animatedText={cityName}
             subtitle={tagline}
+            //todo ajouter seo title
+            seoTitle=""
           />
 
           <CTAGroupButtons

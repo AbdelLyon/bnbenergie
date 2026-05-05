@@ -9,32 +9,24 @@ interface PricingFooterProps {
 export function PricingFooter({ note, tags }: PricingFooterProps) {
   return (
     <LazyMotionDiv
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: ANIMATION_DURATIONS.slow, delay: 0 }}
-      className="my-16 text-center"
+      transition={{ duration: ANIMATION_DURATIONS.slow }}
+      className="mt-12 text-center"
     >
-      <p className="mb-8 text-lg text-neutral-600 dark:text-neutral-400">
-        {note}
-      </p>
-      <div className="flex flex-wrap justify-center gap-4">
+      <p className="mb-6 text-sm text-default-400">{note}</p>
+      <div className="flex flex-wrap justify-center gap-2.5">
         {tags.map((tag) => (
-          <LazyMotionDiv
+          <div
             key={tag}
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-2 rounded-full border border-green-500/60 px-5 py-2.5 transition-all hover:shadow-xl"
+            className="flex items-center gap-2 rounded-full border border-success/20 bg-success/5 px-4 py-1.5"
           >
-            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-green-500 text-xs font-bold text-white">
+            <div className="flex h-4 w-4 items-center justify-center rounded-full bg-success text-white text-[10px] font-bold">
               ✓
-            </span>
-            <span className="text-sm font-semibold text-neutral-800 dark:text-neutral-300">
-              {tag}
-            </span>
-          </LazyMotionDiv>
+            </div>
+            <span className="text-xs font-medium text-foreground">{tag}</span>
+          </div>
         ))}
       </div>
     </LazyMotionDiv>

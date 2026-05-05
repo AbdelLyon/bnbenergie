@@ -11,14 +11,8 @@ interface CTASectionProps {
   title: string;
   description: string;
   phoneNumber: string;
-  primaryButton?: {
-    text: string;
-    href: string;
-  };
-  secondaryButton?: {
-    text: string;
-    href: string;
-  };
+  primaryButton?: { text: string; href: string };
+  secondaryButton?: { text: string; href: string };
   variant?: "gradient" | "solid" | "minimal";
   className?: string;
 }
@@ -29,101 +23,63 @@ export function CTASection({
   phoneNumber,
   primaryButton,
   secondaryButton,
-  variant = "gradient",
   className,
 }: CTASectionProps) {
-  const variants = {
-    gradient: "bg-linear-to-br from-primary-600 to-cyan-700 ",
-    solid: "bg-neutral-900 dark:bg-neutral-950",
-    minimal:
-      "bg-neutral-50 dark:bg-content1 border border-neutral-200 dark:border-content2",
-  };
-
-  const textColors = {
-    gradient: "text-white",
-    solid: "text-white",
-    minimal: "text-neutral-900 dark:text-foreground",
-  };
-
   return (
     <LazyMotionDiv
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: ANIMATION_DURATIONS.normal }}
       className={cn(
-        "relative overflow-hidden rounded-3xl p-4 shadow-2xl md:p-8 lg:p-12 mb-10",
-        variants[variant],
+        "relative overflow-hidden rounded-2xl border border-default-200 bg-content1 p-7 shadow-small",
         className,
       )}
     >
-      <div className="relative z-10">
-        <div className="mx-auto max-w-3xl text-center">
-          <Heading
-            className={cn(
-              "mb-3 text-2xl md:text-3xl lg:text-4xl",
-              textColors[variant],
-            )}
-          >
+      <div className="flex h-full flex-col justify-between gap-8">
+        <div>
+          <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-secondary/10">
+            <Phone className="h-5 w-5 text-secondary" />
+          </div>
+
+          <Heading className="mb-2 text-base font-bold text-foreground">
             {title}
           </Heading>
 
-          <p
-            className={cn(
-              "mb-10 text-base leading-relaxed md:text-lg",
-              variant === "minimal"
-                ? "text-neutral-600 dark:text-neutral-400"
-                : "text-white/90",
-            )}
-          >
+          <p className="text-sm leading-relaxed text-default-500">
             {description}
           </p>
+        </div>
 
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            {primaryButton && (
-              <Link
-                href={primaryButton.href ?? "#"}
-                className={cn(
-                  "group flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-base font-bold transition-all duration-300 hover:scale-105 hover:shadow-xl sm:w-auto",
-                  variant === "minimal"
-                    ? "bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
-                    : "bg-white text-blue-600 hover:bg-blue-50 dark:bg-white dark:text-blue-600",
-                )}
-              >
-                {primaryButton.text}
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Link>
-            )}
+        <div className="flex flex-col gap-3 sm:flex-row">
+          {primaryButton && (
+            <Link
+              href={primaryButton.href}
+              className="group flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 sm:w-auto"
+            >
+              {primaryButton.text}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          )}
 
-            {phoneNumber && (
-              <Link
-                href={`tel:${phoneNumber.replace(/\s/g, "")}`}
-                className={cn(
-                  "group flex w-full items-center justify-center gap-2 rounded-full border-2 px-5 py-3 text-base font-bold transition-all duration-300 hover:scale-105 sm:w-auto",
-                  variant === "minimal"
-                    ? "border-neutral-300 dark:border-neutral-700 bg-white dark:bg-content1 text-neutral-900 dark:text-foreground hover:border-neutral-400 dark:hover:border-neutral-600"
-                    : "border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20",
-                )}
-              >
-                <Phone className="h-5 w-5" />
-                {phoneNumber}
-              </Link>
-            )}
+          {phoneNumber && (
+            <Link
+              href={`tel:${phoneNumber.replace(/\s/g, "")}`}
+              className="group flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-default-200 px-5 py-2.5 text-sm font-semibold text-foreground transition-all duration-200 hover:border-default-300 hover:bg-default-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-default-400 focus-visible:ring-offset-2 sm:w-auto"
+            >
+              <Phone className="h-4 w-4" />
+              {phoneNumber}
+            </Link>
+          )}
 
-            {secondaryButton && (
-              <Link
-                href={secondaryButton.href ?? "#"}
-                className={cn(
-                  "group flex w-full items-center justify-center gap-2 rounded-full border-2 px-5 py-3 text-base font-bold transition-all duration-300 hover:scale-105 sm:w-auto",
-                  variant === "minimal"
-                    ? "border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-100 dark:hover:bg-content2"
-                    : "border-white/30 text-white hover:bg-white/10",
-                )}
-              >
-                {secondaryButton.text}
-              </Link>
-            )}
-          </div>
+          {secondaryButton && (
+            <Link
+              href={secondaryButton.href}
+              className="flex min-h-11 w-full cursor-pointer items-center justify-center rounded-full border border-default-200 px-5 py-2.5 text-sm font-semibold text-default-600 transition-all duration-200 hover:bg-default-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-default-400 focus-visible:ring-offset-2 sm:w-auto"
+            >
+              {secondaryButton.text}
+            </Link>
+          )}
         </div>
       </div>
     </LazyMotionDiv>

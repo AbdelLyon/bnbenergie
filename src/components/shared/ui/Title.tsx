@@ -1,238 +1,151 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from "react";
+import { Heading } from "./Heading";
 
 interface TitleProps {
   staticText: string;
   animatedText: string;
-  subtitle?: string;
   seoTitle?: string;
+  subtitle?: string;
 }
 
-type Phase = 'typing' | 'full' | 'deleting' | 'empty' | 'typo' | 'correct';
+type Phase = "typing" | "full" | "deleting" | "empty";
 
-const ADJACENT_KEYS: Record<string, string> = {
-  a: 'z',
-  b: 'v',
-  c: 'x',
-  d: 'f',
-  e: 'r',
-  f: 'g',
-  g: 'h',
-  h: 'j',
-  i: 'o',
-  j: 'k',
-  k: 'l',
-  l: 'm',
-  m: 'n',
-  n: 'b',
-  o: 'p',
-  p: 'o',
-  q: 'a',
-  r: 't',
-  s: 'd',
-  t: 'y',
-  u: 'i',
-  v: 'b',
-  w: 'x',
-  x: 'c',
-  y: 'u',
-  z: 'a',
-};
+/* 📱 hook desktop propre */
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(false);
 
-function typoFor(char: string): string {
-  if (!char) return '';
-  const lower = char.toLowerCase();
-  const adj = ADJACENT_KEYS[lower] ?? (lower === 'e' ? 'r' : 'e');
-  return char !== char.toLowerCase() ? adj.toUpperCase() : adj;
-}
-
-function useIsMobile(): boolean {
-  const [isMobile, setIsMobile] = useState<boolean>(false);
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 1024);
+    const check = () => setIsDesktop(window.innerWidth >= 1024);
     check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
   }, []);
-  return isMobile;
+
+  return isDesktop;
 }
 
-function AnimatedText({ animatedText }: { animatedText: string }) {
-  const firstChar = animatedText[0]?.toUpperCase() ?? '';
-  const restText = animatedText.slice(1);
-
-  const [displayed, setDisplayed] = useState<string>('');
-  const [phase, setPhase] = useState<Phase>('typing');
-  const [typoChar, setTypoChar] = useState<string>('');
-  const [hasHydrated, setHasHydrated] = useState<boolean>(false);
+/* ⌨️ typewriter optimisé (moins de re-render) */
+function useTypewriter(text: string) {
+  const [displayed, setDisplayed] = useState("");
+  const [phase, setPhase] = useState<Phase>("typing");
 
   useEffect(() => {
-    setHasHydrated(true);
-  }, []);
-
-  useEffect(() => {
-    if (!hasHydrated) return;
     let t: NodeJS.Timeout;
     const len = displayed.length;
 
-    if (phase === 'typing') {
-      if (len >= restText.length) {
-        t = setTimeout(() => setPhase('full'), 50);
-        return () => clearTimeout(t);
+    if (phase === "typing") {
+      if (len >= text.length) {
+        t = setTimeout(() => setPhase("full"), 900);
+      } else {
+        const delay =
+          len === 0 || text[len - 1] === " "
+            ? Math.random() * 120 + 140
+            : Math.random() * 70 + 60;
+
+        t = setTimeout(() => {
+          setDisplayed(text.slice(0, len + 1));
+        }, delay);
       }
-      const isWordBoundary = len === 0 || restText[len - 1] === ' ';
-      const burstMode = !isWordBoundary && Math.random() < 0.15;
-      const thinkPause = !burstMode && Math.random() < 0.05;
-      let delay = burstMode
-        ? Math.random() * 40 + 30
-        : isWordBoundary
-          ? Math.random() * 140 + 180
-          : Math.random() * 100 + 90;
-      if (thinkPause) delay += Math.random() * 500 + 350;
-      const makeTypo =
-        Math.random() < 0.09 &&
-        len > 1 &&
-        len < restText.length - 1 &&
-        /[a-zA-Z]/.test(restText[len] ?? '');
-      t = setTimeout(() => {
-        if (makeTypo) {
-          setTypoChar(typoFor(restText[len] ?? ''));
-          setPhase('typo');
-        } else {
-          setDisplayed(restText.slice(0, len + 1));
-        }
-      }, delay);
-    } else if (phase === 'typo') {
-      t = setTimeout(() => setPhase('correct'), Math.random() * 200 + 180);
-    } else if (phase === 'correct') {
-      t = setTimeout(
-        () => {
-          setDisplayed(restText.slice(0, len + 1));
-          setPhase('typing');
-        },
-        Math.random() * 160 + 200
-      );
-    } else if (phase === 'full') {
-      t = setTimeout(() => setPhase('deleting'), 2800);
-    } else if (phase === 'deleting') {
+    }
+
+    if (phase === "full") {
+      t = setTimeout(() => setPhase("deleting"), 2500);
+    }
+
+    if (phase === "deleting") {
       if (len > 0) {
         t = setTimeout(
-          () => setDisplayed(restText.slice(0, len - 1)),
-          Math.random() * 45 + 35
+          () => {
+            setDisplayed(text.slice(0, len - 1));
+          },
+          Math.random() * 30 + 20,
         );
       } else {
-        setPhase('empty');
+        setPhase("empty");
       }
-    } else if (phase === 'empty') {
-      t = setTimeout(() => setPhase('typing'), 800);
+    }
+
+    if (phase === "empty") {
+      t = setTimeout(() => {
+        setDisplayed("");
+        setPhase("typing");
+      }, 600);
     }
 
     return () => clearTimeout(t);
-  }, [displayed, phase, restText, hasHydrated]);
+  }, [displayed, phase, text]);
 
-  const visibleText = phase === 'typo' ? displayed + typoChar : displayed;
-
-  return (
-    <>
-      <span className="text-blue-400">{firstChar}</span>
-      <span
-        suppressHydrationWarning
-        className="inline bg-[linear-gradient(to_right,#3b82f6,#fbbf24)] bg-clip-text text-transparent"
-      >
-        {visibleText.toLocaleUpperCase()}
-      </span>
-    </>
-  );
+  return displayed;
 }
 
-interface TitleContentProps {
-  staticText: string;
-  animatedText: string;
-  subtitle?: string;
-  seoTitle?: string;
-  desktop?: boolean;
-}
-
-function TitleContent({
-  staticText,
-  animatedText,
-  subtitle,
-  seoTitle,
-  desktop = false,
-}: TitleContentProps) {
-  const firstStatic = staticText[0]?.toUpperCase() ?? '';
-  const restStatic = staticText.slice(1).toUpperCase();
-  const firstAnimated = animatedText[0]?.toUpperCase() ?? '';
-  const restAnimated = animatedText.slice(1).toUpperCase();
-
-  return (
-    <div className="flex flex-col items-center">
-      <div
-        className={`
-        bg-[linear-gradient(to_right,#fbbf24,#3b82f6)] rounded-full
-        ${desktop ? 'w-16 h-[3px] mb-5' : 'w-12 h-[2px] mb-3.5'}
-      `}
-      />
-
-      <h1
-        className={`
-        font-display font-extrabold tracking-wider uppercase leading-tight text-center text-white/80
-        ${
-          desktop
-            ? 'text-4xl lg:text-5xl xl:text-6xl px-8'
-            : 'text-[clamp(2rem,8vw,2.5rem)] px-5'
-        }
-      `}
-      >
-        {seoTitle && <span className="sr-only">{seoTitle}</span>}
-        <span aria-hidden="true">
-          <span className="text-amber-400">{firstStatic}</span>
-          <span className="text-white">{restStatic}</span>
-        </span>{' '}
-        {desktop ? (
-          <span aria-hidden="true">
-            <AnimatedText animatedText={animatedText} />
-          </span>
-        ) : (
-          <span aria-hidden="true">
-            <span className="text-blue-400">{firstAnimated}</span>
-            <span className="text-white">{restAnimated}</span>
-          </span>
-        )}
-      </h1>
-
-      {subtitle && (
-        <p
-          className={`
-            uppercase tracking-widest text-white/80
-            ${desktop ? 'text-sm lg:text-[1.1rem] mt-2.5 px-8' : 'text-xs mt-1.5 px-6'}
-          `}
-        >
-          {subtitle}
-        </p>
-      )}
-    </div>
-  );
+/* 🎯 clean string util */
+function splitFirstLetter(text: string) {
+  return {
+    first: text?.[0] ?? "",
+    rest: text?.slice(1) ?? "",
+  };
 }
 
 export function Title({
   staticText,
   animatedText,
-  subtitle,
   seoTitle,
+  subtitle,
 }: TitleProps) {
-  const isMobile = useIsMobile();
+  const isDesktop = useIsDesktop();
+  const animated = useTypewriter(animatedText.toUpperCase());
+  const upper = useMemo(() => animatedText.toUpperCase(), [animatedText]);
+
+  const staticSplit = splitFirstLetter(staticText.toUpperCase());
+  const animatedSplit = splitFirstLetter(animated);
+  const fallbackSplit = splitFirstLetter(upper);
+
+  const showAnimated = isDesktop;
 
   return (
-    <div className="text-center">
-      <TitleContent
-        staticText={staticText}
-        animatedText={animatedText}
-        subtitle={subtitle}
-        seoTitle={seoTitle}
-        desktop={!isMobile}
-      />
+    <div className="flex flex-col items-center text-center">
+      <h1 className="font-display font-black uppercase leading-[0.9] tracking-tight [text-shadow:0_2px_12px_rgba(0,0,0,0.6)]">
+        {seoTitle && <span className="sr-only">{seoTitle}</span>}
+        {/* 🧱 SINGLE LINE WRAPPER (IMPORTANT FIX) */}
+        <span className="inline-block whitespace-nowrap text-[clamp(2.2rem,6vw,4.6rem)]">
+          {/* STATIC PART */}
+          <span>
+            <span className="text-secondary">{staticSplit.first}</span>
+            <span className="text-white">{staticSplit.rest}</span>
+          </span>
+
+          {/* SPACE */}
+          <span className="mx-2" />
+
+          {/* ANIMATED PART */}
+          <span className="text-white">
+            {showAnimated ? (
+              <>
+                <span className="text-primary">{animatedSplit.first}</span>
+                {animatedSplit.rest}
+                <span className="ml-1 inline-block h-1 w-8 rounded-full bg-white/80 animate-[blink_1s_step-end_infinite]" />
+              </>
+            ) : (
+              <>
+                <span className="text-primary">{fallbackSplit.first}</span>
+                {fallbackSplit.rest}
+              </>
+            )}
+          </span>
+        </span>
+      </h1>
+
+      {/* SUBTITLE */}
+      {subtitle && (
+        <Heading
+          as="h2"
+          className="mt-4 md:text-xl opacity-90 text-white/70 font-medium lowercase!"
+        >
+          {subtitle}
+        </Heading>
+      )}
     </div>
   );
 }

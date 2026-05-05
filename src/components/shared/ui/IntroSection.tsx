@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { LazyMotionDiv } from '@/components/LazyComponents';
-import { ANIMATION_DURATIONS } from '@/config/constants';
-import { Heading } from '@/components/shared/ui/Heading';
+import { LazyMotionDiv } from "@/components/LazyComponents";
+import { ANIMATION_DURATIONS } from "@/config/constants";
+import { Heading } from "@/components/shared/ui/Heading";
 
 interface IntroSectionProps {
   title: string;
@@ -13,7 +13,7 @@ interface IntroSectionProps {
 export function IntroSection({
   title,
   description,
-  className = '',
+  className = "",
 }: IntroSectionProps) {
   return (
     <LazyMotionDiv
@@ -23,10 +23,10 @@ export function IntroSection({
       transition={{ duration: ANIMATION_DURATIONS.normal }}
       className={`mx-auto max-w-4xl text-center ${className}`}
     >
-      <Heading className="text-3xl mb-4 text-neutral-900 dark:text-foreground md:text-4xl">
+      <Heading className="text-2xl mb-4 text-foreground md:text-3xl">
         {title}
       </Heading>
-      <p className="text-base leading-relaxed text-neutral-600 dark:text-neutral-400 md:text-lg">
+      <p className="text-base leading-relaxed text-default-600 md:text-lg">
         {description}
       </p>
     </LazyMotionDiv>

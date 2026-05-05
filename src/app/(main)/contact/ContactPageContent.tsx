@@ -79,13 +79,10 @@ export default function ContactPageContent({
           <Title
             staticText={header?.title.split("-")?.[0] || "Contactez"}
             animatedText={header?.title.split("-")?.[1] || "-nous"}
-            subtitle={header?.subtitle ?? ""}
+            subtitle={header?.description ?? ""}
+            //todo ajouter seo title
+            seoTitle=""
           />
-
-          <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
-            {header?.description || ""}
-          </p>
-
           <CTAGroupButtons
             align="center"
             animated
@@ -94,14 +91,15 @@ export default function ContactPageContent({
                 label: "Devis gratuit",
                 href: "/contact#contact-form",
                 variant: "default",
-                size: "lg",
+                size: "sm",
                 iconRight: <ArrowRight className="size-4" />,
+                className: "bg-gradient-to-r from-secondary to-secondary-400",
               },
               {
                 label: SITE_CONFIG.contact.phone,
                 href: SITE_CONFIG.contact.phoneHref,
                 variant: "outline",
-                size: "lg",
+                size: "sm",
                 iconLeft: <Phone className="size-4" />,
               },
             ]}

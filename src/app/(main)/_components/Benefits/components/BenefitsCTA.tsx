@@ -65,7 +65,7 @@ export function BenefitsCTA({
             >
               <Link
                 href="/nos-packs"
-                className="text-primary-600 inline-flex items-center justify-center rounded-full bg-white px-8 py-4 font-extrabold shadow-xl transition-all duration-300 hover:bg-neutral-50 hover:shadow-2xl"
+                className="text-primary inline-flex items-center justify-center rounded-full bg-white px-8 py-4 font-extrabold shadow-xl transition-all duration-300 hover:bg-default-50 hover:shadow-2xl"
               >
                 {button1}
               </Link>
@@ -84,14 +84,8 @@ export function BenefitsCTA({
           </div>
         </div>
 
-        <div
-          className="absolute -right-10 -bottom-10 h-60 w-60 animate-pulse rounded-full bg-white/10 blur-3xl"
-          style={{ animationDuration: "4s" }}
-        />
-        <div
-          className="bg-accent-400/20 absolute -top-10 -left-10 h-60 w-60 animate-pulse rounded-full blur-3xl"
-          style={{ animationDuration: "5s", animationDelay: "1s" }}
-        />
+        <div className="absolute -right-10 -bottom-10 h-60 w-60 rounded-full bg-white/5 blur-3xl" />
+        <div className="absolute -top-10 -left-10 h-60 w-60 rounded-full bg-primary/10 blur-3xl" />
       </div>
     </LazyMotionDiv>
   );

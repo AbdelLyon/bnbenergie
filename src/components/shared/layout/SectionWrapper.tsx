@@ -6,6 +6,7 @@ import { Heading } from "@/components/shared/ui/Heading";
 import type { SectionBackground, SectionWidth, TextAlignment } from "@/types";
 import { cn } from "@/utils/cn";
 import { ReactNode } from "react";
+import { Badge } from "../ui/Badge";
 
 interface SectionWrapperProps {
   children: ReactNode;
@@ -21,11 +22,10 @@ export function SectionWrapper({
   background = "white",
 }: SectionWrapperProps) {
   const backgrounds: Record<SectionBackground, string> = {
-    white: "bg-[var(--bg-card)]",
-    gray: "bg-[var(--bg-section)]",
-    gradient:
-      "bg-gradient-to-br from-primary-50 to-accent-50 dark:from-transparent dark:to-transparent",
-    dark: "bg-neutral-900 text-white dark:bg-background",
+    white: "bg-background dark:bg-background",
+    gray: "bg-default-50 dark:bg-background",
+    gradient: "bg-default-50 dark:bg-background",
+    dark: "bg-default-900 text-white dark:bg-default-900",
   };
 
   return (
@@ -104,16 +104,12 @@ export function SectionHeader({
         className,
       )}
     >
-      {badge && (
-        <span className="border-primary-500/30 bg-primary-500/10 text-primary-700 dark:text-primary-400 shadow-primary-500/10 mb-5 inline-block rounded-full border px-4 py-2 text-xs font-bold shadow-lg backdrop-blur-md md:mb-6 md:px-6 md:py-3 md:text-sm">
-          {badge}
-        </span>
-      )}
-      <Heading className="mb-5 text-3xl md:text-4xl lg:text-5xl">
+      {badge && <Badge variant="warning">{badge}</Badge>}
+      <Heading className="my-3 text-2xl md:text-3xl lg:text-4xl">
         {title}
       </Heading>
       {subtitle && (
-        <p className="mx-auto max-w-2xl text-lg leading-relaxed opacity-80 md:text-xl">
+        <p className="mx-auto max-w-2xl text-sm leading-relaxed text-default-500 md:text-base">
           {subtitle}
         </p>
       )}

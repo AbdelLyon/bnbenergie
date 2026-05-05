@@ -12,7 +12,7 @@ import type { AboutData } from "@/types";
 
 export function AboutClient({ data }: { data: AboutData }) {
   return (
-    <SectionWrapper id="entreprise" background="gradient">
+    <SectionWrapper id="entreprise" background="gray">
       <BackgroundEffects variant="full" particleCount={20} />
 
       <SectionContainer>
@@ -33,7 +33,7 @@ export function AboutClient({ data }: { data: AboutData }) {
               icon={item.icon}
               title={item.title}
               description={item.content}
-              gradient="from-amber-400 to-amber-600"
+              gradient="primary"
               stat={item.stat}
               statLabel={item.statLabel}
               index={index}

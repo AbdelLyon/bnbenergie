@@ -1,5 +1,5 @@
-import { getNavigation, getSiteSettings } from '@/lib/payload-queries';
-import { MegaMenuNavbar } from './MegaMenu/MegaMenuNavbar';
+import { getNavigation, getSiteSettings } from "@/lib/payload-queries";
+import { MegaMenuNavbar } from "./MegaMenu/MegaMenuNavbar";
 
 export async function Navbar() {
   const [navData, siteSettings] = await Promise.all([
@@ -7,20 +7,19 @@ export async function Navbar() {
     getSiteSettings(),
   ]);
 
-  // Transformer les données pour correspondre à la structure attendue par MegaMenuNavbar
   const menuCategories = [
     ...(navData.mainNav?.map((item) => ({
       label: item.label,
       href: item.href,
-      type: 'link' as const,
-      icon: item.icon || 'Circle',
+      type: "link" as const,
+      icon: item.icon || "Circle",
       order: item.order || 0,
     })) || []),
     ...(navData.megaMenu?.map((item) => ({
       label: item.title,
-      type: 'mega' as const,
-      icon: item.icon || 'Grid',
-      description: item.description || '',
+      type: "mega" as const,
+      icon: item.icon || "Grid",
+      description: item.description || "",
       sections:
         item.sections?.map((section) => ({
           title: section.title,
@@ -28,8 +27,8 @@ export async function Navbar() {
             section.links?.map((link) => ({
               label: link.label,
               href: link.href,
-              description: link.description || '',
-              icon: link.icon || 'ArrowRight',
+              description: link.description || "",
+              icon: link.icon || "ArrowRight",
             })) || [],
         })) || [],
       order: item.order || 0,
@@ -38,13 +37,13 @@ export async function Navbar() {
 
   const data = {
     logo: {
-      title: siteSettings.siteName || 'BNB ÉNERGIE',
-      subtitle: siteSettings.businessName || 'Certifié RGE QualiPV',
+      title: siteSettings.siteName || "BNB ÉNERGIE",
+      subtitle: siteSettings.businessName || "Certifié RGE QualiPV",
     },
     menuCategories,
     cta: {
-      label: siteSettings.contactPhone || '07 81 25 11 25',
-      phoneHref: siteSettings.contactPhoneHref || 'tel:0781251125',
+      label: siteSettings.contactPhone || "07 81 25 11 25",
+      phoneHref: siteSettings.contactPhoneHref || "tel:0781251125",
     },
   };
 

@@ -42,11 +42,10 @@ export default function ZonesPageContent({
             <Title
               staticText={header?.title.split(" ")[0] || "Zones"}
               animatedText={header?.title.split(" ")[1] || "d'Intervention"}
-              subtitle={header?.subtitle || ""}
+              subtitle={header?.description || ""}
+              //todo ajouter seo title
+              seoTitle=""
             />
-            <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
-              {header?.description || ""}
-            </p>
 
             <CTAGroupButtons
               align="center"
@@ -56,14 +55,15 @@ export default function ZonesPageContent({
                   label: "Devis gratuit",
                   href: "/contact#contact-form",
                   variant: "default",
-                  size: "lg",
+                  size: "sm",
                   iconRight: <ArrowRight className="size-4" />,
+                  className: "bg-gradient-to-r from-secondary to-secondary-400",
                 },
                 {
                   label: "07 81 25 11 25",
                   href: "tel:0781251125",
                   variant: "outline",
-                  size: "lg",
+                  size: "sm",
                   iconLeft: <Phone className="size-4" />,
                 },
               ]}
@@ -152,7 +152,10 @@ export default function ZonesPageContent({
 
           {/* Autres villes (statique pour l'instant car non migré dans une collection spécifique) */}
           <div className="mb-20">
-            <Heading as="h3" className="mb-8 text-center text-2xl text-neutral-900 dark:text-foreground md:text-3xl">
+            <Heading
+              as="h3"
+              className="mb-8 text-center text-2xl text-neutral-900 dark:text-foreground md:text-3xl"
+            >
               Également présents dans les départements limitrophes
             </Heading>
             <div className="hidden lg:flex flex-wrap justify-center gap-3">

@@ -44,11 +44,10 @@ export default function AidesPageContent({
           <Title
             staticText={header?.title.split(" ")[0] || "Aides"}
             animatedText={header?.title.split(" ")[1] || "Financement"}
-            subtitle={header?.subtitle || ""}
+            subtitle={header?.description || ""}
+            //todo ajouter seo title
+            seoTitle=""
           />
-          <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
-            {header?.description || ""}
-          </p>
 
           <CTAGroupButtons
             align="center"
@@ -58,14 +57,15 @@ export default function AidesPageContent({
                 label: "Devis gratuit",
                 href: "/contact#contact-form",
                 variant: "default",
-                size: "lg",
+                size: "sm",
                 iconRight: <ArrowRight className="size-4" />,
+                className: "bg-gradient-to-r from-secondary to-secondary-400",
               },
               {
                 label: "07 81 25 11 25",
                 href: "tel:0781251125",
                 variant: "outline",
-                size: "lg",
+                size: "sm",
                 iconLeft: <Phone className="size-4" />,
               },
             ]}

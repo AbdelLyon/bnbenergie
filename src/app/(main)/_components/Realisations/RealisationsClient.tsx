@@ -5,18 +5,14 @@ import {
   SectionHeader,
   SectionWrapper,
 } from "@/components/shared/layout/SectionWrapper";
-import { SPACING } from "@/config/constants";
 import { ProjectCard } from "@/components/shared/ui/ProjectCard";
 import type { Project } from "@/payload-types";
 import Link from "next/link";
 import { LazyMotionDiv } from "@/components/LazyComponents";
+import { ArrowRight } from "lucide-react";
 
 interface RealisationsData {
-  header: {
-    badge: string;
-    title: string;
-    subtitle: string;
-  };
+  header: { badge: string; title: string; subtitle: string };
   projects: Project[];
   cta: string;
 }
@@ -28,12 +24,6 @@ export function RealisationsClient({ data }: { data: RealisationsData }) {
       background="gray"
       className="overflow-x-clip"
     >
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 right-0 h-150 w-150 rounded-full bg-linear-to-br from-amber-400/10 to-orange-500/10 blur-3xl" />
-        <div className="absolute bottom-0 left-0 h-125 w-125 rounded-full bg-linear-to-tr from-blue-400/10 to-cyan-500/10 blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 h-100 w-100 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-300/5 blur-3xl" />
-      </div>
-
       <SectionContainer>
         <LazyMotionDiv
           initial={{ opacity: 0, y: -8 }}
@@ -49,7 +39,7 @@ export function RealisationsClient({ data }: { data: RealisationsData }) {
         </LazyMotionDiv>
 
         <div
-          className={`mt-8 grid auto-rows-[1fr] items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3 ${SPACING.grid.gap}`}
+          className={`mt-8 grid auto-rows-[1fr] items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3`}
         >
           {data.projects.slice(0, 3).map((project, index) => (
             <ProjectCard
@@ -61,21 +51,20 @@ export function RealisationsClient({ data }: { data: RealisationsData }) {
             />
           ))}
         </div>
+
         <LazyMotionDiv
           initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-20px" }}
-          transition={{ duration: 0.3, delay: 0 }}
-          className="mt-12 flex justify-center"
+          transition={{ duration: 0.3 }}
+          className="mt-10 flex justify-center"
         >
           <Link
             href="/realisations"
-            className="group inline-flex items-center gap-3 rounded-xl border border-primary-500 px-8 py-4 text-lg font-bold text-primary-500 transition-all duration-200 hover:bg-primary-500 hover:text-white hover:shadow-lg hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-2 rounded-full border border-default-200 bg-background px-6 py-2.5 text-sm font-semibold text-foreground transition-all duration-200 hover:border-default-300 hover:shadow-small"
           >
             Voir toutes nos réalisations
-            <span className="transition-transform duration-200 group-hover:translate-x-0.5">
-              →
-            </span>
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
           </Link>
         </LazyMotionDiv>
       </SectionContainer>

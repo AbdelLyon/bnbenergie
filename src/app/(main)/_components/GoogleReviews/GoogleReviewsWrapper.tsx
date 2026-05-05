@@ -6,7 +6,7 @@ import {
 
 export function GoogleReviewsWrapper() {
   return (
-    <SectionWrapper id="avis-google" background="white">
+    <SectionWrapper id="avis-google" background="gray">
       <SectionContainer>
         <ReviewsSection
           title="Ce Que Disent Nos Clients"

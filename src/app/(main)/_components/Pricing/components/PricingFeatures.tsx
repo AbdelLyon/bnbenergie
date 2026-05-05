@@ -1,33 +1,18 @@
-
-
 interface PricingFeaturesProps {
   features: string[];
 }
 
 export function PricingFeatures({ features }: PricingFeaturesProps) {
   return (
-    <ul className="space-y-3">
+    <ul className="space-y-2.5 py-1">
       {features.map((feature) => (
-        <li
-          key={feature}
-          className="flex items-start gap-3 text-sm text-neutral-700 dark:text-neutral-600"
-        >
-          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-green-400 to-emerald-500">
-            <svg
-              className="h-3 w-3 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={3}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M5 13l4 4L19 7"
-              />
+        <li key={feature} className="flex items-start gap-2.5 text-sm">
+          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-success/10">
+            <svg className="h-3 w-3 text-success-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
           </span>
-          <span className="font-medium">{feature}</span>
+          <span className="font-medium text-default-600">{feature}</span>
         </li>
       ))}
     </ul>

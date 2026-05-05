@@ -58,7 +58,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    "**/*.mts",
+    "src/config/hero.ts"
   ],
   "exclude": [
     "node_modules",

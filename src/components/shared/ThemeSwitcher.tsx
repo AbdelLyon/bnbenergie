@@ -1,10 +1,9 @@
-'use client';
+"use client";
 
-import { Sun, Moon } from 'lucide-react';
-import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
-import { LazyMotionDiv } from '@/components/LazyComponents';
+import { Sun, Moon } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import { AnimatePresence, m } from "framer-motion";
 
 export function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
@@ -15,49 +14,56 @@ export function ThemeSwitcher() {
   }, []);
 
   const toggleTheme = () => {
-    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
   };
 
   if (!mounted) {
     return (
       <button
-        type="button"
-        aria-label="Toggle theme"
         className="flex h-9 w-9 items-center justify-center rounded-full"
-      >
-        <div className="h-5 w-5" />
-      </button>
+        aria-label="toggle theme"
+      />
     );
   }
 
   return (
     <button
       type="button"
-      aria-label={`Passer au mode ${resolvedTheme === 'dark' ? 'clair' : 'sombre'}`}
+      aria-label={`Passer au mode ${
+        resolvedTheme === "dark" ? "clair" : "sombre"
+      }`}
       onClick={toggleTheme}
-      className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full text-neutral-500 transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+      className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full transition-colors duration-150 hover:bg-content1"
     >
-      <AnimatePresence mode="wait" initial={false}>
-        {resolvedTheme === 'dark' ? (
-          <LazyMotionDiv
+      <AnimatePresence initial={false} mode="sync">
+        {resolvedTheme === "dark" ? (
+          <m.div
             key="sun"
-            initial={{ y: -20, opacity: 0, rotate: -90 }}
-            animate={{ y: 0, opacity: 1, rotate: 0 }}
-            exit={{ y: 20, opacity: 0, rotate: 90 }}
-            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            className="absolute"
+            initial={{ opacity: 0, scale: 0.9, rotate: -20 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            exit={{ opacity: 0, scale: 1.05, rotate: 20 }}
+            transition={{
+              duration: 0.12,
+              ease: [0.2, 0.8, 0.2, 1],
+            }}
           >
-            <Sun className="h-5 w-5 text-amber-500" />
-          </LazyMotionDiv>
+            <Sun className="h-5 w-5 text-secondary" />
+          </m.div>
         ) : (
-          <LazyMotionDiv
+          <m.div
             key="moon"
-            initial={{ y: -20, opacity: 0, rotate: -90 }}
-            animate={{ y: 0, opacity: 1, rotate: 0 }}
-            exit={{ y: 20, opacity: 0, rotate: 90 }}
-            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            className="absolute"
+            initial={{ opacity: 0, scale: 0.9, rotate: -20 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            exit={{ opacity: 0, scale: 1.05, rotate: 20 }}
+            transition={{
+              duration: 0.12,
+              ease: [0.2, 0.8, 0.2, 1],
+            }}
           >
-            <Moon className="h-5 w-5 text-blue-600" />
-          </LazyMotionDiv>
+            <Moon className="h-5 w-5 text-primary" />
+          </m.div>
         )}
       </AnimatePresence>
     </button>

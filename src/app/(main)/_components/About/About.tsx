@@ -3,20 +3,20 @@ import {
   getStats,
   getBenefits,
   getPageHeader,
-} from '@/lib/payload-queries';
-import { AboutClient } from './AboutClient';
-import type { Media } from '@/payload-types';
+} from "@/lib/payload-queries";
+import { AboutClient } from "./AboutClient";
+import type { Media } from "@/payload-types";
 
 export async function About() {
   const [cards, stats, benefits, aboutHeader] = await Promise.all([
     getAboutCards(),
     getStats(),
     getBenefits(),
-    getPageHeader('about'),
+    getPageHeader("about"),
   ]);
 
   const fallbackImage =
-    'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=2070&auto=format&fit=crop';
+    "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=2070&auto=format&fit=crop";
 
   let headerImage = fallbackImage;
   if (aboutHeader?.singleImage) {
@@ -26,14 +26,14 @@ export async function About() {
 
   const data = {
     header: {
-      badge: aboutHeader?.badge || 'QUI SOMMES-NOUS',
-      title: aboutHeader?.title || 'Votre Partenaire Solaire de Confiance',
+      badge: aboutHeader?.badge || "QUI SOMMES-NOUS",
+      title: aboutHeader?.title || "Votre Partenaire Solaire de Confiance",
       subtitle:
         aboutHeader?.subtitle ||
         "Une expertise locale reconnue dans tout l'Ain",
       description:
         aboutHeader?.description ||
-        'BNB ÉNERGIE est votre expert local en solutions photovoltaïques. Basés à Bourg-en-Bresse, nous accompagnons les particuliers et professionnels dans leur transition énergétique avec des installations sur-mesure, performantes et durables.',
+        "BNB ÉNERGIE est votre expert local en solutions photovoltaïques. Basés à Bourg-en-Bresse, nous accompagnons les particuliers et professionnels dans leur transition énergétique avec des installations sur-mesure, performantes et durables.",
       image: headerImage,
     },
     stats: stats.map((stat) => ({
@@ -45,27 +45,27 @@ export async function About() {
       title: card.title,
       description: card.content,
       icon: card.icon,
-      stat: card.stat || '',
-      statLabel: card.statLabel || '',
-      gradient: card.gradient || '',
+      stat: card.stat || "",
+      statLabel: card.statLabel || "",
+      gradient: card.gradient || "",
     })),
     benefits: {
-      title: 'Nos Avantages',
+      title: "Nos Avantages",
       list: benefits.map((b) => b.text),
     },
     cta: {
-      title: 'Prêt à passer au solaire ?',
-      description: 'Demandez votre étude personnalisée gratuite',
-      button1: 'Demandez votre devis',
-      button2: 'En savoir plus',
+      title: "Prêt à passer au solaire ?",
+      description: "Demandez votre étude personnalisée gratuite",
+      button1: "Demandez votre devis",
+      button2: "En savoir plus",
     },
     seoContent: cards.map((card) => ({
       title: card.title,
       content: card.content,
       icon: card.icon,
-      stat: card.stat || '',
-      statLabel: card.statLabel || '',
-      gradient: card.gradient || '',
+      stat: card.stat || "",
+      statLabel: card.statLabel || "",
+      gradient: card.gradient || "",
     })),
   };
 

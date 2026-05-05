@@ -28,7 +28,7 @@ export const Footer = async () => {
     .slice(0, 24)
     .sort();
 
-const navigationLinks = [
+  const navigationLinks = [
     { label: "Page d'accueil", href: "/" },
     { label: "Services", href: "/services" },
     { label: "Réalisations", href: "/realisations" },
@@ -47,9 +47,7 @@ const navigationLinks = [
   ];
 
   return (
-    <footer className="relative  overflow-hidden bg-linear-to-b from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-950">
-      <div className="absolute inset-0 bg-linear-to-br from-amber-500/5 via-transparent to-blue-500/5 dark:from-amber-500/10 dark:via-transparent dark:to-blue-500/10" />
-
+    <footer className="relative overflow-hidden bg-linear-to-b from-default-50 to-default-100 dark:from-background dark:to-default-50">
       <div
         className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]"
         style={{
@@ -62,68 +60,68 @@ const navigationLinks = [
         <div className="mb-16 text-center">
           <div className="mb-6 inline-flex items-center gap-3">
             <div className="relative">
-              <div className="absolute inset-0 animate-pulse rounded-full bg-amber-500/20 blur-xl" />
+              <div className="absolute inset-0 rounded-full bg-amber-500/15 blur-xl" />
               <Sun className="relative h-12 w-12 text-amber-500 dark:text-amber-400" />
             </div>
-            <Heading className="bg-linear-to-r from-amber-600 to-amber-500 dark:from-amber-400 dark:to-amber-300 bg-clip-text text-3xl text-transparent">
+            <Heading className="text-3xl text-foreground font-black">
               {siteSettings.businessName || "BNB ÉNERGIE"}
             </Heading>
           </div>
-          <p className="mx-auto max-w-2xl text-lg font-medium text-neutral-700 dark:text-neutral-300">
+          <p className="mx-auto max-w-2xl text-lg font-medium text-default-700">
             Votre expert en panneaux solaires photovoltaïques dans l&apos;Ain
           </p>
-          <p className="mx-auto mt-2 max-w-xl text-sm text-neutral-600 dark:text-neutral-400">
+          <p className="mx-auto mt-2 max-w-xl text-sm text-default-500">
             Installation, maintenance et accompagnement pour votre transition
             énergétique
           </p>
         </div>
 
         <div className="mb-16 grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div className="group relative overflow-hidden rounded-2xl border border-amber-500/30 dark:border-amber-500/10 bg-white dark:bg-neutral-900 transition-all duration-300 hover:-translate-y-1">
+          <div className="group relative overflow-hidden rounded-2xl border border-secondary/20 bg-content1 transition-all duration-300 hover:-translate-y-1">
             <div className="relative flex flex-col items-center justify-center p-6">
               <div className="mb-4 rounded-full bg-linear-to-br from-amber-500 to-amber-600 p-4 shadow-lg shadow-amber-500/30 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-amber-500/50">
                 <Phone size={28} className="text-white" />
               </div>
-              <Heading as="h3" className="mb-2 text-sm text-neutral-500 dark:text-neutral-400">
+              <Heading as="h3" className="mb-2 text-sm text-default-500">
                 Téléphone
               </Heading>
               <a
                 href={`tel:${siteSettings.contactPhone || "0781251125"}`}
-                className="text-lg font-semibold text-neutral-900 dark:text-white transition-colors hover:text-amber-600 dark:hover:text-amber-400"
+                className="text-lg font-semibold text-foreground transition-colors hover:text-secondary"
               >
                 {siteSettings.contactPhone || "07 81 25 11 25"}
               </a>
             </div>
           </div>
 
-          <div className="group relative overflow-hidden rounded-2xl border border-amber-500/30 dark:border-amber-500/10 bg-white dark:bg-neutral-900 transition-all duration-300 hover:-translate-y-1">
+          <div className="group relative overflow-hidden rounded-2xl border border-secondary/20 bg-content1 transition-all duration-300 hover:-translate-y-1">
             <div className="relative flex flex-col items-center justify-center p-6">
               <div className="mb-4 rounded-full bg-linear-to-br from-amber-500 to-amber-600 p-4 shadow-lg shadow-amber-500/30 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-amber-500/50">
                 <Mail size={28} className="text-white" />
               </div>
-              <Heading as="h3" className="mb-2 text-sm text-neutral-500 dark:text-neutral-400">
+              <Heading as="h3" className="mb-2 text-sm text-default-500">
                 Email
               </Heading>
               <Link
                 href={`mailto:${
                   siteSettings.contactEmail || "contact@bnb-energie.fr"
                 }`}
-                className="text-lg font-semibold text-neutral-900 dark:text-white transition-colors hover:text-amber-600 dark:hover:text-amber-400"
+                className="text-lg font-semibold text-foreground transition-colors hover:text-secondary"
               >
                 {siteSettings.contactEmail || "contact@bnb-energie.fr"}
               </Link>
             </div>
           </div>
 
-          <div className="group relative overflow-hidden rounded-2xl border border-amber-500/30 dark:border-amber-500/10 bg-white dark:bg-neutral-900 transition-all duration-300 hover:-translate-y-1">
+          <div className="group relative overflow-hidden rounded-2xl border border-secondary/20 bg-content1 transition-all duration-300 hover:-translate-y-1">
             <div className="relative flex flex-col items-center justify-center p-6">
               <div className="mb-4 rounded-full bg-linear-to-br from-amber-500 to-amber-600 p-4 shadow-lg shadow-amber-500/30 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-amber-500/50">
                 <MapPin size={28} className="text-white" />
               </div>
-              <Heading as="h3" className="mb-2 text-sm text-neutral-500 dark:text-neutral-400">
+              <Heading as="h3" className="mb-2 text-sm text-default-500">
                 Adresse
               </Heading>
-              <p className="text-center text-lg font-semibold text-neutral-900 dark:text-white">
+              <p className="text-center text-lg font-semibold text-foreground">
                 {siteSettings.addressStreet
                   ? `${siteSettings.addressStreet}, ${siteSettings.addressZip} ${siteSettings.addressCity}`
                   : "Bourg-en-Bresse, Ain (01)"}
@@ -134,7 +132,10 @@ const navigationLinks = [
 
         <div className="mb-12 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Heading as="h3" className="mb-6 flex items-center gap-2 text-lg text-neutral-900 dark:text-white">
+            <Heading
+              as="h3"
+              className="mb-6 flex items-center gap-2 text-lg text-foreground"
+            >
               <ChevronRight className="h-5 w-5 text-amber-500" />
               Navigation
             </Heading>
@@ -143,7 +144,7 @@ const navigationLinks = [
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="group inline-flex items-center text-neutral-700 dark:text-neutral-300 transition-colors hover:text-amber-600 dark:hover:text-amber-400"
+                    className="group inline-flex items-center text-default-600 transition-colors hover:text-secondary"
                   >
                     <span className="mr-2 size-1 rounded-full bg-amber-500 transition-opacity" />
                     {link.label}
@@ -154,11 +155,14 @@ const navigationLinks = [
           </div>
 
           <div>
-            <Heading as="h3" className="mb-6 flex items-center gap-2 text-lg text-neutral-900 dark:text-white">
+            <Heading
+              as="h3"
+              className="mb-6 flex items-center gap-2 text-lg text-foreground"
+            >
               <Shield className="h-5 w-5 text-amber-500" />
               Nos Services
             </Heading>
-            <ul className="space-y-3 text-neutral-700 dark:text-neutral-300">
+            <ul className="space-y-3 text-default-600">
               <li className="flex items-start gap-2">
                 <Award className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
                 <span>Installation photovoltaïque</span>
@@ -179,7 +183,10 @@ const navigationLinks = [
           </div>
 
           <div className="lg:col-span-2">
-            <Heading as="h3" className="mb-6 flex items-center gap-2 text-lg text-neutral-900 dark:text-white">
+            <Heading
+              as="h3"
+              className="mb-6 flex items-center gap-2 text-lg text-foreground"
+            >
               <MapPin className="h-5 w-5 text-amber-500" />
               Zones d&apos;Intervention
             </Heading>
@@ -188,7 +195,7 @@ const navigationLinks = [
                 <Link
                   key={`${city}-${index}`}
                   href={`/zones-intervention/${slugify(city)}`}
-                  className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400 transition-colors hover:text-amber-600 dark:hover:text-amber-400"
+                  className="flex items-center gap-2 text-default-500 transition-colors hover:text-secondary"
                 >
                   <span className="h-1 w-1 rounded-full bg-amber-500 shrink-0" />
                   {city}
@@ -207,7 +214,7 @@ const navigationLinks = [
         </div>
 
         <div className="mb-12 flex flex-col items-center justify-center gap-6">
-          <Heading as="h3" className="text-lg text-neutral-900 dark:text-white">
+          <Heading as="h3" className="text-lg text-foreground">
             Suivez-nous
           </Heading>
           <div className="flex gap-4">
@@ -216,11 +223,11 @@ const navigationLinks = [
                 href={siteSettings.socialFacebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative rounded-full bg-linear-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-700 p-3 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/20"
+                className="group relative rounded-full bg-default-100 p-3 shadow-small transition-all duration-300 hover:-translate-y-1 hover:shadow-medium hover:shadow-primary/20"
                 aria-label="Facebook"
               >
                 <div className="absolute inset-0 rounded-full bg-linear-to-br from-blue-500 to-blue-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <Facebook className="relative h-6 w-6 text-neutral-700 dark:text-neutral-300 transition-colors group-hover:text-white" />
+                <Facebook className="relative h-6 w-6 text-default-600 transition-colors group-hover:text-white" />
               </a>
             )}
             {siteSettings.socialInstagram && (
@@ -228,11 +235,11 @@ const navigationLinks = [
                 href={siteSettings.socialInstagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative rounded-full bg-linear-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-700 p-3 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-pink-500/20"
+                className="group relative rounded-full bg-default-100 p-3 shadow-small transition-all duration-300 hover:-translate-y-1 hover:shadow-medium hover:shadow-pink-500/20"
                 aria-label="Instagram"
               >
                 <div className="absolute inset-0 rounded-full bg-linear-to-br from-pink-500 via-purple-500 to-orange-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <Instagram className="relative h-6 w-6 text-neutral-700 dark:text-neutral-300 transition-colors group-hover:text-white" />
+                <Instagram className="relative h-6 w-6 text-default-600 transition-colors group-hover:text-white" />
               </a>
             )}
             {siteSettings.socialLinkedin && (
@@ -240,11 +247,11 @@ const navigationLinks = [
                 href={siteSettings.socialLinkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative rounded-full bg-linear-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-700 p-3 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/20"
+                className="group relative rounded-full bg-default-100 p-3 shadow-small transition-all duration-300 hover:-translate-y-1 hover:shadow-medium hover:shadow-primary/20"
                 aria-label="LinkedIn"
               >
                 <div className="absolute inset-0 rounded-full bg-linear-to-br from-blue-600 to-blue-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <Linkedin className="relative h-6 w-6 text-neutral-700 dark:text-neutral-300 transition-colors group-hover:text-white" />
+                <Linkedin className="relative h-6 w-6 text-default-600 transition-colors group-hover:text-white" />
               </a>
             )}
           </div>
@@ -253,9 +260,9 @@ const navigationLinks = [
         <div className="mb-8 h-px bg-linear-to-r from-transparent via-amber-500/30 to-transparent" />
 
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-          <p className="text-center text-sm text-neutral-600 dark:text-neutral-400">
+          <p className="text-center text-sm text-default-500">
             © {new Date().getFullYear()}{" "}
-            <span className="font-semibold text-neutral-900 dark:text-white">
+            <span className="font-semibold text-foreground">
               {siteSettings.businessName || "BNB ÉNERGIE"}
             </span>{" "}
             - Tous droits réservés
@@ -265,12 +272,12 @@ const navigationLinks = [
               <span key={link.href} className="flex items-center gap-4">
                 <Link
                   href={link.href}
-                  className="text-neutral-600 dark:text-neutral-400 transition-colors hover:text-amber-600 dark:hover:text-amber-400"
+                  className="text-default-500 transition-colors hover:text-secondary"
                 >
                   {link.label}
                 </Link>
                 {index < legalLinks.length - 1 && (
-                  <span className="h-1 w-1 rounded-full bg-neutral-400 dark:bg-neutral-600" />
+                  <span className="h-1 w-1 rounded-full bg-default-300" />
                 )}
               </span>
             ))}

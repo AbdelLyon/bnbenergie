@@ -8,55 +8,43 @@ interface PricingHeaderProps {
 export function PricingHeader({ pack, isSpecialPrice }: PricingHeaderProps) {
   return (
     <>
-      {/* Badge populaire */}
       {pack.popular && (
-        <div className="absolute -top-5 left-1/2 z-50 -translate-x-1/2">
-          <div className="relative">
-            <div className="absolute inset-0 rounded-full bg-linear-to-r from-blue-600 to-cyan-500 opacity-75 blur-md" />
-            <span className="relative flex items-center gap-1.5 rounded-full bg-linear-to-r from-blue-600 to-cyan-600 px-5 py-1.5 text-xs font-bold text-white">
-              <span className="text-sm">⭐</span>
-              POPULAIRE
-            </span>
-          </div>
+        <div className="absolute -top-4 left-1/2 z-10 -translate-x-1/2">
+          <span className="flex items-center gap-1.5 rounded-full bg-primary px-4 py-1 text-[11px] font-bold uppercase tracking-wide text-white shadow-small">
+            ⭐ Populaire
+          </span>
         </div>
       )}
 
-      {/* En-tête avec icône et prix principal */}
-      <div className="relative mb-6 flex items-start justify-between">
+      <div className="mb-6 flex items-start justify-between">
         <div
-          className={`relative inline-flex h-14 w-14 items-center justify-center rounded-2xl transition-all duration-300 ${
+          className={`flex h-11 w-11 items-center justify-center rounded-xl text-xl ${
             pack.popular
-              ? 'bg-linear-to-br from-blue-500 to-cyan-500'
+              ? "bg-primary-50"
               : isSpecialPrice
-                ? 'bg-linear-to-br from-amber-400 to-orange-500'
-                : 'bg-linear-to-br from-blue-50 to-cyan-50'
+                ? "bg-secondary-50"
+                : "bg-default-50"
           }`}
         >
-          <span
-            className={`text-3xl ${pack.popular || isSpecialPrice ? 'drop-shadow-md' : ''}`}
-          >
-            ☀️
-          </span>
+          ☀️
         </div>
 
-        <div className="flex flex-col items-end">
-          <div className="flex items-baseline gap-2">
+        <div className="text-right">
+          <div className="flex items-baseline gap-1">
             <span
-              className={`bg-linear-to-br bg-clip-text text-[2.5rem] leading-none font-black tracking-tight transition-all duration-300 ${
+              className={`font-display text-4xl font-black leading-none tracking-tight ${
                 pack.popular
-                  ? 'from-blue-600 to-cyan-600 text-transparent'
+                  ? "text-primary"
                   : isSpecialPrice
-                    ? 'from-amber-600 to-orange-600 text-transparent'
-                    : 'text-neutral-900'
+                    ? "text-secondary"
+                    : "text-foreground"
               }`}
             >
               {pack.price}
             </span>
-            <span className="text-xl font-semibold text-neutral-600 dark:text-neutral-400">€</span>
+            <span className="text-lg font-medium text-default-400">€</span>
           </div>
-          <div className="mt-0.5 text-xs font-medium text-neutral-500 dark:text-neutral-500">
-            TTC
-          </div>
+          <div className="mt-0.5 text-[11px] font-medium text-default-400">TTC</div>
         </div>
       </div>
     </>

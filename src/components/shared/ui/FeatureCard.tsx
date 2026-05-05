@@ -1,7 +1,6 @@
 "use client";
 
 import { LazyMotionDiv } from "@/components/LazyComponents";
-import { TRANSITIONS } from "@/config/constants";
 import { Heading } from "@/components/shared/ui/Heading";
 import type { BaseCardProps } from "@/types";
 import { getLucideIcon } from "@/utils/getLucideIcon";
@@ -25,8 +24,6 @@ export function FeatureCard({
   title,
   description,
   items,
-  gradient = "from-blue-500 to-cyan-500",
-  iconColor = "text-blue-600",
   className,
   children,
   stat,
@@ -36,61 +33,46 @@ export function FeatureCard({
 
   return (
     <LazyMotionDiv
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.4, delay: 0 }}
+      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-neutral-200 dark:border-content2 bg-white dark:bg-content1 p-8 shadow-lg transition-shadow duration-300 hover:shadow-2xl",
+        "group relative rounded-2xl border border-default-200 bg-content1 p-7 shadow-small transition-all duration-300 hover:shadow-medium hover:-translate-y-0.5",
         className,
       )}
     >
-      <LazyMotionDiv
-        className={`mb-6 inline-flex rounded-xl bg-linear-to-br ${gradient} p-4`}
-        whileHover={{
-          scale: 1.1,
-          rotate: 5,
-          transition: TRANSITIONS.smooth,
-        }}
-      >
-        <Icon className="h-8 w-8 text-white" />
-      </LazyMotionDiv>
-
-      <Heading as="h3" className="mb-4 text-xl text-neutral-900 dark:text-foreground">
-        {title}
-      </Heading>
+      <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary-50">
+        <Icon className="h-5 w-5 text-primary" />
+      </div>
 
       {stat && (
-        <div className="absolute top-8 right-8">
-          <div className="text-right">
-            <div className="bg-linear-to-r from-amber-600 to-amber-500 dark:from-amber-400 dark:to-amber-300 bg-clip-text text-4xl font-black text-transparent">
-              {stat}
-            </div>
-            {statLabel && (
-              <div className="mt-1 text-xs font-bold text-amber-600/70 dark:text-amber-400/70 uppercase">
-                {statLabel}
-              </div>
-            )}
+        <div className="absolute top-7 right-7 text-right">
+          <div className="font-display text-3xl font-black text-secondary">
+            {stat}
           </div>
+          {statLabel && (
+            <div className="mt-0.5 text-[10px] font-bold uppercase tracking-widest text-default-400">
+              {statLabel}
+            </div>
+          )}
         </div>
       )}
 
-      <p className="mb-6 text-base leading-relaxed text-neutral-600 dark:text-neutral-400">
-        {description}
-      </p>
+      <Heading as="h3" className="mb-2 text-base font-bold text-foreground">
+        {title}
+      </Heading>
+
+      <p className="text-sm leading-relaxed text-default-500">{description}</p>
 
       {items && items.length > 0 && (
-        <ul className="space-y-3">
+        <ul className="mt-5 space-y-2">
           {items.map((item, idx) => (
-            <li key={idx} className="flex items-start gap-3">
-              <div
-                className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-${iconColor.replace("text-", "")}-100`}
-              >
-                <span className={`text-xs ${iconColor}`}>✓</span>
-              </div>
-              <span className="text-sm text-neutral-700 dark:text-neutral-300">
-                {item}
+            <li key={idx} className="flex items-start gap-2.5 text-sm">
+              <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-primary-50 text-[10px] font-bold text-primary">
+                ✓
               </span>
+              <span className="text-default-600">{item}</span>
             </li>
           ))}
         </ul>
