@@ -22,17 +22,8 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
-        <link
-          rel="preconnect"
-          href="https://images.unsplash.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preconnect"
-          href="https://public.blob.vercel-storage.com"
-          crossOrigin="anonymous"
-        />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://public.blob.vercel-storage.com" />
       </head>
       <body
         className={`${inter.variable} ${montserrat.variable} antialiased`}

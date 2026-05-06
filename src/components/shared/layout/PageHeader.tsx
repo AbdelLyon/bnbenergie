@@ -81,14 +81,9 @@ export function PageHeader({
           </LazyMotionDiv>
         )}
       </div>
-      <LazyMotionDiv
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 5, ease: [0.16, 1, 0.3, 1], delay: 0 }}
-        className="pointer-events-none absolute bottom-0 left-0 z-10 w-full"
-      >
+      <div className="pointer-events-none absolute bottom-0 left-0 z-10 w-full">
         <div className="h-px w-full bg-linear-to-r from-blue-400/10 via-blue-400/40 to-blue-400/10 dark:via-blue-400/40" />
-      </LazyMotionDiv>
+      </div>
     </section>
   );
 }

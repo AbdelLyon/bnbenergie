@@ -47,12 +47,7 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
       bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
       backgroundVariant="clean"
     >
-      <LazyMotionDiv
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 3, delay: 0 }}
-        className="flex max-w-6xl flex-col items-center gap-6"
-      >
+      <div className="flex max-w-6xl flex-col items-center gap-6">
         <div className="space-y-6 text-center">
           <Title
             staticText={data.title[0] ?? "BNB"}
@@ -80,7 +75,7 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
         >
           <Stats stats={data.stats} />
         </LazyMotionDiv>
-      </LazyMotionDiv>
+      </div>
     </PageHeader>
   );
 }

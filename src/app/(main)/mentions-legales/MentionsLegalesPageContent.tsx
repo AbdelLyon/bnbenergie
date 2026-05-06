@@ -91,12 +91,7 @@ export default function MentionsLegalesPageContent() {
   return (
     <PageMainWrapper variant="transparent">
       <PageHeader variant="simple" height="medium">
-        <LazyMotionDiv
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 3, delay: 0 }}
-          className="flex max-w-6xl flex-col items-center gap-6"
-        >
+        <div className="flex max-w-6xl flex-col items-center gap-6">
           <Title
             staticText="Mentions"
             animatedText="légales"
@@ -106,7 +101,7 @@ export default function MentionsLegalesPageContent() {
             Conformément à la loi pour la Confiance dans l'Économie Numérique
             (LCEN)
           </p>
-        </LazyMotionDiv>
+        </div>
       </PageHeader>
 
       <SectionContainer className="pb-20 -mt-20 relative z-10">
