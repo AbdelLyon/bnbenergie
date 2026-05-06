@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { Button } from '@heroui/button';
-import { Send, AlertCircle } from 'lucide-react';
-import type { ContactState } from '@/actions/contact';
-import { LazyMotionDiv } from '@/components/LazyComponents';
-import { getInputClasses } from '@/utils/classenames';
+import { useState, useEffect } from "react";
+import { Button } from "@/components/shared/ui/Button";
+import { Send, AlertCircle } from "lucide-react";
+import type { ContactState } from "@/actions/contact";
+import { LazyMotionDiv } from "@/components/LazyComponents";
+import { getInputClasses } from "@/utils/classenames";
 
 interface ContactFormProps {
   formAction: (formData: FormData) => void;
@@ -19,27 +19,27 @@ export function ContactForm({
   isPending,
 }: ContactFormProps) {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
   });
 
   useEffect(() => {
     if (state.success) {
       setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: '',
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
       });
     }
   }, [state.success]);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setFormData({
       ...formData,
@@ -115,9 +115,9 @@ export function ContactForm({
           size="lg"
           disabled={isPending}
           className="rounded-xl bg-linear-to-r w-max  from-blue-600 via-sky-500 to-cyan-500 py-7 text-lg font-bold text-white shadow-md shadow-sky-500/25 transition-all duration-300 hover:shadow-lg hover:shadow-sky-500/40 disabled:cursor-not-allowed disabled:opacity-70"
-          endContent={!isPending && <Send className="h-5 w-5" />}
+          endIcon={!isPending && <Send className="h-5 w-5" />}
         >
-          {isPending ? 'Envoi en cours...' : 'Envoyer ma demande'}
+          {isPending ? "Envoi en cours..." : "Envoyer ma demande"}
         </Button>
       </div>
 
@@ -134,17 +134,17 @@ export function ContactForm({
 interface FormFieldProps {
   label: string;
   name: string;
-  type: 'text' | 'email' | 'tel' | 'textarea';
+  type: "text" | "email" | "tel" | "textarea";
   value: string;
   onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
   error?: string;
   placeholder?: string;
   required?: boolean;
   rows?: number;
   delay?: number;
-  slideFrom?: 'left' | 'right';
+  slideFrom?: "left" | "right";
 }
 
 function FormField({
@@ -158,11 +158,11 @@ function FormField({
   required,
   rows,
   delay = 0,
-  slideFrom = 'left',
+  slideFrom = "left",
 }: FormFieldProps) {
   return (
     <LazyMotionDiv
-      initial={{ opacity: 0, x: slideFrom === 'left' ? -20 : 20 }}
+      initial={{ opacity: 0, x: slideFrom === "left" ? -20 : 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay }}
       className="group"
@@ -173,7 +173,7 @@ function FormField({
       >
         {label} {required && <span className="text-amber-500">*</span>}
       </label>
-      {type === 'textarea' ? (
+      {type === "textarea" ? (
         <textarea
           id={name}
           name={name}

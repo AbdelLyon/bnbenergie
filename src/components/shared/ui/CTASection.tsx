@@ -2,7 +2,7 @@
 
 import { LazyMotionDiv } from "@/components/LazyComponents";
 import { ANIMATION_DURATIONS } from "@/config/constants";
-import { cn } from "@heroui/theme";
+import { cn } from "@/utils/classenames";
 import { Heading } from "@/components/shared/ui/Heading";
 import { ArrowRight, Phone } from "lucide-react";
 import Link from "next/link";

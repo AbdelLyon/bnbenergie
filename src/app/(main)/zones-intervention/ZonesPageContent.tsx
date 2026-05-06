@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Title,
@@ -10,16 +10,17 @@ import {
   IntroSection,
   FeatureCard,
   CTASection,
-  HomeHeaderCTAButtons,
-} from '@/components';
+} from "@/components";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
 
-import Link from 'next/link';
-import { slugify } from '@/utils/slugify';
+import Link from "next/link";
+import { slugify } from "@/utils/slugify";
 import type {
   InterventionZone,
   PageHeader as PageHeaderType,
   SiteSetting,
-} from '@/payload-types';
+} from "@/payload-types";
+import { ArrowRight, Phone } from "lucide-react";
 
 interface ZonesPageContentProps {
   zones: InterventionZone[];
@@ -39,20 +40,33 @@ export default function ZonesPageContent({
         <PageHeader variant="simple" height="medium">
           <div className="flex max-w-6xl flex-col items-center gap-6">
             <Title
-              staticText={header?.title.split(' ')[0] || 'Zones'}
-              animatedText={header?.title.split(' ')[1] || "d'Intervention"}
-              subtitle={header?.subtitle || ''}
+              staticText={header?.title.split(" ")[0] || "Zones"}
+              animatedText={header?.title.split(" ")[1] || "d'Intervention"}
+              subtitle={header?.subtitle || ""}
             />
             <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
-              {header?.description || ''}
+              {header?.description || ""}
             </p>
 
-            <HomeHeaderCTAButtons
-              primaryText="Devis gratuit"
-              primaryHref="/contact#contact-form"
-              secondaryText="07 81 25 11 25"
-              secondaryHref="tel:0781251125"
-              primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
+            <CTAGroupButtons
+              items={[
+                {
+                  iconRight: <ArrowRight className="size-4" />,
+                  size: "sm",
+                  label: "Devis gratuit",
+                  href: "/contact#contact-form",
+                  className:
+                    "group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:text-base px-4",
+                },
+                {
+                  label: "07 81 25 11 25",
+                  href: "tel:0781251125",
+                  variant: "outline",
+                  size: "sm",
+                  iconLeft: <Phone className="size-4" />,
+                  className: "px-4",
+                },
+              ]}
             />
           </div>
         </PageHeader>
@@ -62,22 +76,22 @@ export default function ZonesPageContent({
           <StatsGrid
             stats={[
               {
-                value: '50 km',
+                value: "50 km",
                 label: "Rayon d'Intervention",
-                icon: 'Map',
-                gradient: 'from-blue-500 to-cyan-500',
+                icon: "Map",
+                gradient: "from-blue-500 to-cyan-500",
               },
               {
-                value: '48h',
-                label: 'Délai de Réponse',
-                icon: 'Clock',
-                gradient: 'from-green-500 to-emerald-500',
+                value: "48h",
+                label: "Délai de Réponse",
+                icon: "Clock",
+                gradient: "from-green-500 to-emerald-500",
               },
               {
-                value: '100%',
-                label: 'Proximité Client',
-                icon: 'Users',
-                gradient: 'from-orange-500 to-yellow-500',
+                value: "100%",
+                label: "Proximité Client",
+                icon: "Users",
+                gradient: "from-orange-500 to-yellow-500",
               },
             ]}
           />
@@ -88,7 +102,7 @@ export default function ZonesPageContent({
                 className="absolute inset-0"
                 style={{
                   backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                  backgroundSize: '32px 32px',
+                  backgroundSize: "32px 32px",
                 }}
               />
             </div>
@@ -113,7 +127,7 @@ export default function ZonesPageContent({
                   icon="MapPin"
                   title={group.zone}
                   description=""
-                  gradient={group.gradient || 'from-blue-500 to-cyan-500'}
+                  gradient={group.gradient || "from-blue-500 to-cyan-500"}
                   index={index}
                   className="[&_.feature-card-items]:mt-4"
                 >
@@ -142,12 +156,12 @@ export default function ZonesPageContent({
             </Heading>
             <div className="hidden lg:flex flex-wrap justify-center gap-3">
               {[
-                'Saône-et-Loire (71)',
-                'Jura (39)',
-                'Rhône (69)',
-                'Isère (38)',
-                'Savoie (73)',
-                'Haute-Savoie (74)',
+                "Saône-et-Loire (71)",
+                "Jura (39)",
+                "Rhône (69)",
+                "Isère (38)",
+                "Savoie (73)",
+                "Haute-Savoie (74)",
               ].map((dept) => (
                 <div
                   key={dept}
@@ -166,22 +180,22 @@ export default function ZonesPageContent({
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {[
                 {
-                  title: 'Réactivité Maximale',
-                  icon: 'Zap',
+                  title: "Réactivité Maximale",
+                  icon: "Zap",
                   description:
-                    'Intervention rapide en cas de panne ou de besoin de maintenance.',
+                    "Intervention rapide en cas de panne ou de besoin de maintenance.",
                 },
                 {
-                  title: 'Connaissance du Terrain',
-                  icon: 'Map',
+                  title: "Connaissance du Terrain",
+                  icon: "Map",
                   description:
-                    'Maîtrise des spécificités climatiques et administratives locales.',
+                    "Maîtrise des spécificités climatiques et administratives locales.",
                 },
                 {
-                  title: 'Relation de Confiance',
-                  icon: 'Heart',
+                  title: "Relation de Confiance",
+                  icon: "Heart",
                   description:
-                    'Un interlocuteur unique et disponible près de chez vous.',
+                    "Un interlocuteur unique et disponible près de chez vous.",
                 },
               ].map((advantage, index) => (
                 <FeatureCard
@@ -199,14 +213,14 @@ export default function ZonesPageContent({
           <CTASection
             title="Votre Projet Solaire Commence Ici"
             description="Vérifiez si vous êtes dans notre zone d'intervention et demandez votre devis gratuit"
-            phoneNumber={siteSettings.contactPhone || '07 81 25 11 25'}
+            phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
             primaryButton={{
-              text: 'Demander un devis gratuit',
-              href: '/contact#contact-form',
+              text: "Demander un devis gratuit",
+              href: "/contact#contact-form",
             }}
             secondaryButton={{
-              text: 'Découvrir nos services',
-              href: '/services',
+              text: "Découvrir nos services",
+              href: "/services",
             }}
             variant="gradient"
           />

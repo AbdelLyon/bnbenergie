@@ -8,13 +8,14 @@ import {
   StatsGrid,
   IntroSection,
   CTASection,
-  HomeHeaderCTAButtons,
 } from "@/components";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
 
 import type {
   PageHeader as PageHeaderType,
   SiteSetting,
 } from "@/payload-types";
+import { ArrowRight, Phone } from "lucide-react";
 import { ReactNode } from "react";
 
 interface NosPacksPageContentProps {
@@ -45,19 +46,31 @@ export default function NosPacksPageContent({
               "Découvrez nos packs d'installation de panneaux solaires personnalisés pour répondre à tous vos besoins énergétiques dans l'Ain. Tarifs transparents, garanties incluses et accompagnement personnalisé."}
           </p>
 
-          <HomeHeaderCTAButtons
-            primaryText="Devis gratuit"
-            primaryHref="/contact#contact-form"
-            secondaryText="07 81 25 11 25"
-            secondaryHref="tel:0781251125"
-            primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
+          <CTAGroupButtons
+            items={[
+              {
+                iconRight: <ArrowRight className="size-4" />,
+                size: "sm",
+                label: "Devis gratuit",
+                href: "/contact#contact-form",
+                className:
+                  "group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:text-base px-4",
+              },
+              {
+                iconLeft: <Phone className="size-4" />,
+                label: "07 81 25 11 25",
+                href: "tel:0781251125",
+                variant: "outline",
+                size: "sm",
+                className: "px-4",
+              },
+            ]}
           />
         </div>
       </PageHeader>
 
       <div className="relative z-10">
         <SectionContainer>
-
           <StatsGrid
             stats={[
               {
@@ -81,9 +94,7 @@ export default function NosPacksPageContent({
             ]}
           />
 
-
           <div className="relative mb-24 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 shadow-xl border border-neutral-100 dark:border-white/5">
-
             <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
               <div
                 className="absolute inset-0"
@@ -103,9 +114,7 @@ export default function NosPacksPageContent({
             </div>
           </div>
 
-
           {children}
-
 
           <CTASection
             title="Prêt à Investir dans l'Énergie Solaire ?"

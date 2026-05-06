@@ -4,7 +4,7 @@ import { LazyMotionHeader } from "@/components/LazyComponents";
 import { ANIMATION_DURATIONS, SPACING } from "@/config/constants";
 import { Heading } from "@/components/shared/ui/Heading";
 import type { SectionBackground, SectionWidth, TextAlignment } from "@/types";
-import { cn } from "@heroui/theme";
+import { cn } from "@/utils/classenames";
 import { ReactNode } from "react";
 
 interface SectionWrapperProps {

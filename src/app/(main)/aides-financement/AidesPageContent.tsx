@@ -10,14 +10,15 @@ import {
   SectionContainer,
   Title,
   Heading,
-  HomeHeaderCTAButtons,
 } from "@/components";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
 import { StatsGrid } from "@/components/shared/ui/StatsGrid";
 import type {
   FinancialAid,
   PageHeader as PageHeaderType,
   SiteSetting,
 } from "@/payload-types";
+import { ArrowRight, Phone } from "lucide-react";
 
 interface AidesPageContentProps {
   aids: {
@@ -49,12 +50,25 @@ export default function AidesPageContent({
             {header?.description || ""}
           </p>
 
-          <HomeHeaderCTAButtons
-            primaryText="Devis gratuit"
-            primaryHref="/contact#contact-form"
-            secondaryText="07 81 25 11 25"
-            secondaryHref="tel:0781251125"
-            primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
+          <CTAGroupButtons
+            items={[
+              {
+                label: "Devis gratuit",
+                size: "sm",
+                href: "/contact#contact-form",
+                iconRight: <ArrowRight className="size-4" />,
+                className:
+                  "group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:text-base px-4",
+              },
+              {
+                label: "07 81 25 11 25",
+                href: "tel:0781251125",
+                variant: "outline",
+                size: "sm",
+                iconLeft: <Phone className="size-4" />,
+                className: "px-4",
+              },
+            ]}
           />
         </div>
       </PageHeader>

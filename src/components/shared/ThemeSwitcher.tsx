@@ -1,7 +1,7 @@
 'use client';
 
 import { Sun, Moon } from 'lucide-react';
-import { Button } from '@heroui/button';
+import { Button } from '@/components/shared/ui/Button';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
@@ -11,7 +11,6 @@ export function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
   const { setTheme, resolvedTheme } = useTheme();
 
-  // Éviter les problèmes d'hydratation
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -20,29 +19,24 @@ export function ThemeSwitcher() {
     setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
   };
 
-  // Afficher un placeholder pendant le chargement
   if (!mounted) {
     return (
       <Button
-        isIconOnly
-        variant="light"
-        radius="full"
+        variant="ghost"
         aria-label="Toggle theme"
-        className="text-default-500"
+        className="text-default-500 rounded-full"
       >
-        <div className="h-5 w-5" />
+        <div className="size-5" />
       </Button>
     );
   }
 
   return (
     <Button
-      isIconOnly
-      variant="light"
-      radius="full"
+      variant="ghost"
       aria-label={`Passer au mode ${resolvedTheme === 'dark' ? 'clair' : 'sombre'}`}
-      onPress={toggleTheme}
-      className="relative overflow-hidden text-default-500 hover:bg-default-100 dark:hover:bg-default-50/10 transition-all duration-300"
+      onClick={toggleTheme}
+      className="bg-blue-600/10! size-9 mx-1 hover:bg-blue-600/20! rounded-full text-default-500 transition-colors"
     >
       <AnimatePresence mode="wait" initial={false}>
         {resolvedTheme === 'dark' ? (
@@ -53,7 +47,7 @@ export function ThemeSwitcher() {
             exit={{ y: 20, opacity: 0, rotate: 90 }}
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           >
-            <Sun className="h-5 w-5 text-amber-500" />
+            <Sun className="size-5 text-amber-500" />
           </LazyMotionDiv>
         ) : (
           <LazyMotionDiv
@@ -63,7 +57,7 @@ export function ThemeSwitcher() {
             exit={{ y: 20, opacity: 0, rotate: 90 }}
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           >
-            <Moon className="h-5 w-5 text-blue-600" />
+            <Moon className="size-5 text-blue-600" />
           </LazyMotionDiv>
         )}
       </AnimatePresence>

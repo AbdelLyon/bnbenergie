@@ -1,6 +1,6 @@
-"use client";
-import { LazyMotionButton } from "@/components/LazyComponents";
-import { ArrowDown } from "lucide-react";
+'use client';
+import { LazyMotionButton } from '@/components/LazyComponents';
+import { ChevronDown } from 'lucide-react';
 
 interface ScrollDownButtonProps {
   onClick?: () => void;
@@ -11,24 +11,21 @@ export function ScrollDownButton({ onClick }: ScrollDownButtonProps) {
     if (onClick) {
       onClick();
     } else {
-      // Default behavior: scroll to the next section
-      const nextSection = document.querySelector("main > div");
-      if (nextSection) {
-        nextSection.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      document
+        .querySelector('main > div')
+        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
   return (
     <LazyMotionButton
       onClick={handleClick}
-      initial={{ opacity: 1 }}
-      animate={{ opacity: 1, y: [0, 10, 0] }}
-      transition={{ duration: 2, repeat: Infinity, delay: 0 }}
-      className="flex w-max cursor-pointer items-center justify-center rounded-full bg-linear-to-r from-blue-500/40 via-cyan-500/20 to-yellow-400/20 p-2 transition-all hover:from-blue-500/60 hover:via-cyan-500/40 hover:to-yellow-400/40"
-      aria-label="Scroll to next section"
+      animate={{ y: [0, 6, 0] }}
+      transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+      className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/25 bg-white/8 backdrop-blur-sm transition-all hover:bg-white/15"
+      aria-label="Faire défiler vers le bas"
     >
-      <ArrowDown className="h-5 w-5 text-white md:h-6 md:w-6" />
+      <ChevronDown className="h-5 w-5 text-white/70" strokeWidth={1.5} />
     </LazyMotionButton>
   );
 }

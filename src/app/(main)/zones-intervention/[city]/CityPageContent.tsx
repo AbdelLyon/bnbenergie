@@ -9,8 +9,8 @@ import {
   StatsGrid,
   Title,
   Heading,
-  HomeHeaderCTAButtons,
 } from "@/components";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
 import { LazyMotionDiv } from "@/components/LazyComponents";
 import { getCityTheme } from "@/config/city-themes";
 import { MapPin, Award, ArrowRight, Phone, CheckCircle2 } from "lucide-react";
@@ -54,22 +54,37 @@ export default function CityPageContent({
             {zone.label}
           </span>
 
-         <Title staticText="SOLAIRE" animatedText={cityName} subtitle={tagline} />
+          <Title
+            staticText="SOLAIRE"
+            animatedText={cityName}
+            subtitle={tagline}
+          />
 
-          <HomeHeaderCTAButtons
-            primaryText={`Devis gratuit à ${cityName}`}
-            primaryHref="/contact#contact-form"
-            secondaryText={phone}
-            secondaryHref={phoneHref}
-            primaryClassName={`group relative overflow-hidden rounded-full bg-linear-to-r ${accentClass} px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base`}
+          <CTAGroupButtons
+            items={[
+              {
+                iconRight: <ArrowRight className="size-4" />,
+                size: "sm",
+                label: "Devis gratuit",
+                href: "/contact#contact-form",
+
+                className: `group relative overflow-hidden rounded-full bg-linear-to-r ${accentClass} px-4 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:text-base`,
+              },
+              {
+                label: phone,
+                href: phoneHref,
+                variant: "outline",
+                size: "sm",
+                iconLeft: <Phone className="size-4" />,
+                className: "px-4",
+              },
+            ]}
           />
         </div>
       </PageHeader>
 
-
       <div className="relative z-10">
         <SectionContainer>
-
           <StatsGrid
             stats={[
               {
@@ -93,11 +108,9 @@ export default function CityPageContent({
             ]}
           />
 
-
           <SolarDetailCard zone={zone} cityName={cityName} />
 
           <div className="mb-20 grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
-
             <div className="lg:col-span-3">
               <div>
                 <Heading className="text-3xl md:text-4xl text-neutral-900 dark:text-foreground mb-6">
@@ -314,7 +327,6 @@ export default function CityPageContent({
               </p>
             </div>
           )}
-
 
           <CTASection
             title={`Votre projet solaire à ${cityName}`}

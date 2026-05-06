@@ -7,7 +7,6 @@ export async function Navbar() {
     getSiteSettings(),
   ]);
 
-  // Transformer les données pour correspondre à la structure attendue par MegaMenuNavbar
   const menuCategories = [
     ...(navData.mainNav?.map((item) => ({
       label: item.label,

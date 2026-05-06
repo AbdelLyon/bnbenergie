@@ -1,6 +1,5 @@
 'use client';
 
-import { HeroUIProvider } from '@heroui/system';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
 import { REACT_QUERY_CONFIG } from '@/config/cache';
@@ -34,19 +33,17 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <HeroUIProvider>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          storageKey="bnb-theme"
-          disableTransitionOnChange
-        >
-          <LazyMotion features={loadFramerFeatures} strict>
-            {children}
-          </LazyMotion>
-        </ThemeProvider>
-      </HeroUIProvider>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="dark"
+        enableSystem
+        storageKey="bnb-theme"
+        disableTransitionOnChange
+      >
+        <LazyMotion features={loadFramerFeatures} strict>
+          {children}
+        </LazyMotion>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

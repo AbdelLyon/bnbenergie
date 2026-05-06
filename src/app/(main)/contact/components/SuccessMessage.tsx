@@ -1,6 +1,6 @@
 'use client';
 import { CheckCircle2 } from 'lucide-react';
-import { Button } from '@heroui/button';
+import { Button } from '@/components/shared/ui/Button';
 import { LazyMotionDiv } from '@/components/LazyComponents';
 import { Heading } from '@/components/shared/ui/Heading';
 

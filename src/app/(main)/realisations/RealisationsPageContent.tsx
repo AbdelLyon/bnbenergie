@@ -11,8 +11,8 @@ import {
   StatCard,
   ProjectCard,
   CTASection,
-  HomeHeaderCTAButtons,
 } from "@/components";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
 import { ReviewsSection } from "@/components/shared/ui/ReviewsSection";
 
 import type {
@@ -20,16 +20,13 @@ import type {
   PageHeader as PageHeaderType,
   SiteSetting,
 } from "@/payload-types";
-
-
+import { ArrowRight, Phone } from "lucide-react";
 
 const STATS = [
   { value: "100+", label: "Installations Réalisées", icon: "CircleCheck" },
   { value: "15+", label: "Ans d'Expérience", icon: "Award" },
   { value: "100%", label: "Clients Satisfaits", icon: "Star" },
 ] as const;
-
-
 
 const extractKw = (value?: string | number | null): number | null => {
   if (!value) return null;
@@ -39,14 +36,11 @@ const extractKw = (value?: string | number | null): number | null => {
   return match ? Number(match[1]) : null;
 };
 
-
 interface RealisationsPageContentProps {
   projects: Project[];
   header: PageHeaderType | null;
   siteSettings: SiteSetting;
 }
-
-
 
 export default function RealisationsPageContent({
   projects,
@@ -57,7 +51,6 @@ export default function RealisationsPageContent({
   type PowerFilter = (typeof POWERS)[number];
 
   const [selectedPower, setSelectedPower] = useState<PowerFilter>("all");
-
 
   const handleSelectPower = (power: PowerFilter) => {
     setSelectedPower(power);
@@ -79,7 +72,6 @@ export default function RealisationsPageContent({
   return (
     <PageMainWrapper variant="blue">
       <div className="relative z-10">
-
         <PageHeader variant="simple" height="medium">
           <div className="flex max-w-6xl flex-col items-center gap-6">
             <Title
@@ -92,18 +84,30 @@ export default function RealisationsPageContent({
               {header?.description || ""}
             </p>
 
-            <HomeHeaderCTAButtons
-              primaryText="Devis gratuit"
-              primaryHref="/contact#contact-form"
-              secondaryText="07 81 25 11 25"
-              secondaryHref="tel:0781251125"
-              primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
+            <CTAGroupButtons
+              items={[
+                {
+                  iconRight: <ArrowRight className="size-4" />,
+                  size: "sm",
+                  label: "Devis gratuit",
+                  href: "/contact#contact-form",
+                  className:
+                    "group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:text-base px-4",
+                },
+                {
+                  label: "07 81 25 11 25",
+                  href: "tel:0781251125",
+                  variant: "outline",
+                  size: "sm",
+                  iconLeft: <Phone className="size-4" />,
+                  className: "px-4",
+                },
+              ]}
             />
           </div>
         </PageHeader>
 
         <SectionContainer>
-
           <div className="relative z-20 -mt-20 mb-20">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {STATS.map((stat, index) => (
@@ -111,7 +115,6 @@ export default function RealisationsPageContent({
               ))}
             </div>
           </div>
-
 
           <div className="mx-auto mb-16 max-w-4xl text-center">
             <Heading className="mb-6 text-3xl md:text-4xl">
@@ -123,7 +126,6 @@ export default function RealisationsPageContent({
             </p>
           </div>
 
-     
           <div className="mb-6 flex flex-wrap gap-3">
             {POWERS.map((power) => (
               <button

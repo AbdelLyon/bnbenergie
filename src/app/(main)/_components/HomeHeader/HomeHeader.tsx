@@ -48,8 +48,9 @@ export async function HomeHeader() {
   const data = {
     heroImages,
     heroImageAlts,
-    chip: header?.badge || 'Certifié RGE QualiPV',
-    seoTitle: 'Installateur Panneaux Solaires Photovoltaïques Bourg-en-Bresse — BNB Énergie',
+    chip: header?.badge || 'Certifié RGE · Installateur solaire',
+    seoTitle:
+      'Installateur Panneaux Solaires Photovoltaïques Bourg-en-Bresse — BNB Énergie',
     title: header?.title
       ? header.title.split(' ')
       : ['BNB ÉNERGIE - ', 'Installateur Solaire'],

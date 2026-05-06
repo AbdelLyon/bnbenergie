@@ -5,7 +5,7 @@ import { TRANSITIONS } from "@/config/constants";
 import { Heading } from "@/components/shared/ui/Heading";
 import type { BaseCardProps } from "@/types";
 import { getLucideIcon } from "@/utils/getLucideIcon";
-import { cn } from "@heroui/theme";
+import { cn } from "@/utils/classenames";
 import { ReactNode } from "react";
 
 interface FeatureCardProps extends BaseCardProps {
