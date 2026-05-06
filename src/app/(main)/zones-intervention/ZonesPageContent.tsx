@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Title,
@@ -11,15 +11,15 @@ import {
   FeatureCard,
   CTASection,
   HomeHeaderCTAButtons,
-} from "@/components";
+} from '@/components';
 
-import Link from "next/link";
-import { slugify } from "@/utils/slugify";
+import Link from 'next/link';
+import { slugify } from '@/utils/slugify';
 import type {
   InterventionZone,
   PageHeader as PageHeaderType,
   SiteSetting,
-} from "@/payload-types";
+} from '@/payload-types';
 
 interface ZonesPageContentProps {
   zones: InterventionZone[];
@@ -39,12 +39,12 @@ export default function ZonesPageContent({
         <PageHeader variant="simple" height="medium">
           <div className="flex max-w-6xl flex-col items-center gap-6">
             <Title
-              staticText={header?.title.split(" ")[0] || "Zones"}
-              animatedText={header?.title.split(" ")[1] || "d'Intervention"}
-              subtitle={header?.subtitle || ""}
+              staticText={header?.title.split(' ')[0] || 'Zones'}
+              animatedText={header?.title.split(' ')[1] || "d'Intervention"}
+              subtitle={header?.subtitle || ''}
             />
             <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
-              {header?.description || ""}
+              {header?.description || ''}
             </p>
 
             <HomeHeaderCTAButtons
@@ -62,35 +62,33 @@ export default function ZonesPageContent({
           <StatsGrid
             stats={[
               {
-                value: "50 km",
+                value: '50 km',
                 label: "Rayon d'Intervention",
-                icon: "Map",
-                gradient: "from-blue-500 to-cyan-500",
+                icon: 'Map',
+                gradient: 'from-blue-500 to-cyan-500',
               },
               {
-                value: "48h",
-                label: "Délai de Réponse",
-                icon: "Clock",
-                gradient: "from-green-500 to-emerald-500",
+                value: '48h',
+                label: 'Délai de Réponse',
+                icon: 'Clock',
+                gradient: 'from-green-500 to-emerald-500',
               },
               {
-                value: "100%",
-                label: "Proximité Client",
-                icon: "Users",
-                gradient: "from-orange-500 to-yellow-500",
+                value: '100%',
+                label: 'Proximité Client',
+                icon: 'Users',
+                gradient: 'from-orange-500 to-yellow-500',
               },
             ]}
           />
 
-          {/* Introduction */}
           <div className="relative mb-24 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 shadow-xl border border-neutral-100 dark:border-white/5">
-            {/* Pattern decoratif subtil */}
             <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
               <div
                 className="absolute inset-0"
                 style={{
                   backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                  backgroundSize: "32px 32px",
+                  backgroundSize: '32px 32px',
                 }}
               />
             </div>
@@ -104,7 +102,6 @@ export default function ZonesPageContent({
             </div>
           </div>
 
-          {/* Zones principales */}
           <div className="mb-20">
             <Heading className="mb-12 text-center text-3xl text-neutral-900 dark:text-foreground md:text-4xl">
               Nos Secteurs d'Intervention
@@ -116,7 +113,7 @@ export default function ZonesPageContent({
                   icon="MapPin"
                   title={group.zone}
                   description=""
-                  gradient={group.gradient || "from-blue-500 to-cyan-500"}
+                  gradient={group.gradient || 'from-blue-500 to-cyan-500'}
                   index={index}
                   className="[&_.feature-card-items]:mt-4"
                 >
@@ -136,19 +133,21 @@ export default function ZonesPageContent({
             </div>
           </div>
 
-          {/* Autres villes (statique pour l'instant car non migré dans une collection spécifique) */}
           <div className="mb-20">
-            <Heading as="h3" className="mb-8 text-center text-2xl text-neutral-900 dark:text-foreground md:text-3xl">
+            <Heading
+              as="h3"
+              className="mb-8 text-center text-2xl text-neutral-900 dark:text-foreground md:text-3xl"
+            >
               Également présents dans les départements limitrophes
             </Heading>
             <div className="hidden lg:flex flex-wrap justify-center gap-3">
               {[
-                "Saône-et-Loire (71)",
-                "Jura (39)",
-                "Rhône (69)",
-                "Isère (38)",
-                "Savoie (73)",
-                "Haute-Savoie (74)",
+                'Saône-et-Loire (71)',
+                'Jura (39)',
+                'Rhône (69)',
+                'Isère (38)',
+                'Savoie (73)',
+                'Haute-Savoie (74)',
               ].map((dept) => (
                 <div
                   key={dept}
@@ -160,7 +159,6 @@ export default function ZonesPageContent({
             </div>
           </div>
 
-          {/* Avantages local */}
           <div className="mb-20">
             <Heading className="mb-12 text-center text-3xl text-neutral-900 dark:text-foreground md:text-4xl">
               Pourquoi Choisir un Installateur Local ?
@@ -168,22 +166,22 @@ export default function ZonesPageContent({
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {[
                 {
-                  title: "Réactivité Maximale",
-                  icon: "Zap",
+                  title: 'Réactivité Maximale',
+                  icon: 'Zap',
                   description:
-                    "Intervention rapide en cas de panne ou de besoin de maintenance.",
+                    'Intervention rapide en cas de panne ou de besoin de maintenance.',
                 },
                 {
-                  title: "Connaissance du Terrain",
-                  icon: "Map",
+                  title: 'Connaissance du Terrain',
+                  icon: 'Map',
                   description:
-                    "Maîtrise des spécificités climatiques et administratives locales.",
+                    'Maîtrise des spécificités climatiques et administratives locales.',
                 },
                 {
-                  title: "Relation de Confiance",
-                  icon: "Heart",
+                  title: 'Relation de Confiance',
+                  icon: 'Heart',
                   description:
-                    "Un interlocuteur unique et disponible près de chez vous.",
+                    'Un interlocuteur unique et disponible près de chez vous.',
                 },
               ].map((advantage, index) => (
                 <FeatureCard
@@ -198,18 +196,17 @@ export default function ZonesPageContent({
             </div>
           </div>
 
-          {/* Call-to-Action */}
           <CTASection
             title="Votre Projet Solaire Commence Ici"
             description="Vérifiez si vous êtes dans notre zone d'intervention et demandez votre devis gratuit"
-            phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
+            phoneNumber={siteSettings.contactPhone || '07 81 25 11 25'}
             primaryButton={{
-              text: "Demander un devis gratuit",
-              href: "/contact#contact-form",
+              text: 'Demander un devis gratuit',
+              href: '/contact#contact-form',
             }}
             secondaryButton={{
-              text: "Découvrir nos services",
-              href: "/services",
+              text: 'Découvrir nos services',
+              href: '/services',
             }}
             variant="gradient"
           />
