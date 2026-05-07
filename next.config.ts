@@ -41,12 +41,12 @@ const nextConfig: NextConfig = {
   },
 
   compiler: {
-    removeConsole: process.env["NODE_ENV"] === "production",
+    removeConsole: true,
   },
 
   experimental: {
     optimizePackageImports: ["@heroui/react", "lucide-react", "framer-motion"],
-    optimizeCss: process.env["NODE_ENV"] === "production",
+    optimizeCss: true,
     webpackBuildWorker: true,
     // Optimisations supplémentaires pour améliorer LCP et TBT
     optimizeServerReact: true,

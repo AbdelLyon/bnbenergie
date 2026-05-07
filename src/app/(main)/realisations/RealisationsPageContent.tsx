@@ -179,7 +179,7 @@ export default function RealisationsPageContent({
               text: "Obtenir un devis",
               href: "/contact#contact-form",
             }}
-            variant="gradient"
+            variant="minimal"
           />
         </SectionContainer>
       </div>

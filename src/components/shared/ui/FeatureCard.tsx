@@ -14,6 +14,7 @@ interface FeatureCardProps extends BaseCardProps {
   description: string;
   items?: string[];
   gradient?: string;
+  iconBg?: string;
   iconColor?: string;
   children?: ReactNode;
   stat?: string;
@@ -25,8 +26,8 @@ export function FeatureCard({
   title,
   description,
   items,
-  gradient = "from-blue-500 to-cyan-500",
-  iconColor = "text-blue-600",
+  iconBg = "bg-secondary",
+  iconColor = "text-foreground/60",
   className,
   children,
   stat,
@@ -36,8 +37,8 @@ export function FeatureCard({
 
   return (
     <LazyMotionDiv
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ y: 16 }}
+      whileInView={{ y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: 0 }}
       className={cn(
@@ -46,12 +47,8 @@ export function FeatureCard({
       )}
     >
       <LazyMotionDiv
-        className={`mb-6 inline-flex rounded-xl bg-linear-to-br ${gradient} p-4`}
-        whileHover={{
-          scale: 1.1,
-          rotate: 5,
-          transition: TRANSITIONS.smooth,
-        }}
+        className={`mb-6 inline-flex rounded-xl ${iconBg} p-4`}
+        whileHover={{ scale: 1.1, rotate: 5, transition: TRANSITIONS.smooth }}
       >
         <Icon className="h-8 w-8 text-white" />
       </LazyMotionDiv>
@@ -61,17 +58,15 @@ export function FeatureCard({
       </Heading>
 
       {stat && (
-        <div className="absolute top-8 right-8">
-          <div className="text-right">
-            <div className="bg-linear-to-r from-amber-600 to-amber-500 dark:from-amber-400 dark:to-amber-300 bg-clip-text text-4xl font-black text-transparent">
-              {stat}
-            </div>
-            {statLabel && (
-              <div className="mt-1 text-xs font-bold text-amber-600/70 dark:text-amber-400/70 uppercase">
-                {statLabel}
-              </div>
-            )}
+        <div className="absolute top-8 right-8 text-right">
+          <div className="text-4xl font-black text-secondary">
+            {stat}
           </div>
+          {statLabel && (
+            <div className="mt-1 text-xs font-bold text-secondary/60 uppercase">
+              {statLabel}
+            </div>
+          )}
         </div>
       )}
 
@@ -83,10 +78,8 @@ export function FeatureCard({
         <ul className="space-y-3">
           {items.map((item, idx) => (
             <li key={idx} className="flex items-start gap-3">
-              <div
-                className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-${iconColor.replace("text-", "")}-100`}
-              >
-                <span className={`text-xs ${iconColor}`}>✓</span>
+              <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-success">
+                <span className="text-xs text-white">✓</span>
               </div>
               <span className="text-sm text-neutral-700 dark:text-default-600">
                 {item}

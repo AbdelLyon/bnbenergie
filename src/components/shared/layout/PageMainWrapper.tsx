@@ -68,34 +68,7 @@ export function PageMainWrapper({
   const colors = colorVariants[variant];
 
   return (
-    <main
-      className={`relative min-h-screen overflow-x-hidden ${
-        variant === "transparent"
-          ? colors.gradient
-          : `bg-linear-to-b ${colors.gradient}`
-      } ${className}`}
-    >
-      {variant !== "transparent" && (
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          {/* Gradient orbs */}
-          {colors.orbs[0] && (
-            <div
-              className={`absolute -top-40 -right-40 h-96 w-96 rounded-full bg-linear-to-br ${colors.orbs[0]} blur-2xl`}
-            />
-          )}
-          {colors.orbs[1] && (
-            <div
-              className={`absolute top-1/3 -left-40 h-96 w-96 rounded-full bg-linear-to-br ${colors.orbs[1]} blur-2xl`}
-            />
-          )}
-          {colors.orbs[2] && (
-            <div
-              className={`absolute bottom-20 right-1/4 h-80 w-80 rounded-full bg-linear-to-br ${colors.orbs[2]} blur-2xl`}
-            />
-          )}
-        </div>
-      )}
-
+    <main className={`relative min-h-screen overflow-x-hidden ${className}`}>
       {children}
     </main>
   );

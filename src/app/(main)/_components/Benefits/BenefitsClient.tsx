@@ -1,6 +1,5 @@
 "use client";
 
-import { BackgroundEffects } from "@/components/shared/effects/BackgroundEffects";
 import { CTASection } from "@/components/shared/ui/CTASection";
 import {
   SectionContainer,
@@ -14,8 +13,6 @@ import { BenefitsList } from "./components/BenefitsList";
 export function BenefitsClient({ data }: { data: BenefitsData }) {
   return (
     <SectionWrapper id="avantages" background="white">
-      <BackgroundEffects variant="default" />
-
       <SectionContainer>
         <SectionHeader
           badge="✨ NOS AVANTAGES"

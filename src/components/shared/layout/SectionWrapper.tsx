@@ -3,7 +3,7 @@
 import { LazyMotionHeader } from "@/components/LazyComponents";
 import { ANIMATION_DURATIONS, SPACING } from "@/config/constants";
 import { Heading } from "@/components/shared/ui/Heading";
-import type { SectionBackground, SectionWidth, TextAlignment } from "@/types";
+import type { SectionWidth, TextAlignment } from "@/types";
 import { cn } from "@/utils/classenames";
 import { ReactNode } from "react";
 
@@ -11,32 +11,18 @@ interface SectionWrapperProps {
   children: ReactNode;
   id?: string;
   className?: string;
-  background?: SectionBackground;
+  background?: string;
 }
 
 export function SectionWrapper({
   children,
   id,
   className,
-  background = "white",
 }: SectionWrapperProps) {
-  const backgrounds: Record<SectionBackground, string> = {
-    white: "bg-[var(--bg-card)]",
-    gray: "bg-[var(--bg-section)]",
-    gradient:
-      "bg-gradient-to-br from-primary-50 to-accent-50 dark:from-transparent dark:to-transparent",
-    dark: "bg-neutral-900 text-white dark:bg-background",
-  };
-
   return (
     <section
       id={id}
-      className={cn(
-        "relative overflow-hidden",
-        SPACING.section.py,
-        backgrounds[background],
-        className,
-      )}
+      className={cn("relative overflow-hidden", SPACING.section.py, className)}
     >
       {children}
     </section>
@@ -93,16 +79,11 @@ export function SectionHeader({
 
   return (
     <LazyMotionHeader
-      initial={{ opacity: 0, y: 8 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ y: 12 }}
+      whileInView={{ y: 0 }}
       viewport={{ once: true, margin: "-30px" }}
       transition={{ duration: ANIMATION_DURATIONS.normal }}
-      className={cn(
-        "max-w-3xl",
-        SPACING.header.mb,
-        alignments[align],
-        className,
-      )}
+      className={cn("max-w-3xl", SPACING.header.mb, alignments[align])}
     >
       {badge && (
         <span className="border-primary-500/30 bg-primary-500/10 text-primary-700 dark:text-primary-400 shadow-primary-500/10 mb-5 inline-block rounded-full border px-4 py-2 text-xs font-bold shadow-lg backdrop-blur-md md:mb-6 md:px-6 md:py-3 md:text-sm">

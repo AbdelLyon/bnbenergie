@@ -95,16 +95,6 @@ export default function NosPacksPageContent({
           />
 
           <div className="relative mb-24 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 shadow-xl border border-neutral-100 dark:border-white/5">
-            <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                  backgroundSize: "32px 32px",
-                }}
-              />
-            </div>
-
             <div className="relative z-10 text-center max-w-4xl mx-auto">
               <IntroSection
                 title="Choisissez le Pack Adapté à Vos Besoins"

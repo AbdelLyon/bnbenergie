@@ -23,21 +23,11 @@ interface RealisationsData {
 
 export function RealisationsClient({ data }: { data: RealisationsData }) {
   return (
-    <SectionWrapper
-      id="realisations"
-      background="gray"
-      className="overflow-x-clip"
-    >
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 right-0 h-150 w-150 rounded-full bg-linear-to-br from-amber-400/10 to-orange-500/10 blur-3xl" />
-        <div className="absolute bottom-0 left-0 h-125 w-125 rounded-full bg-linear-to-tr from-blue-400/10 to-cyan-500/10 blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 h-100 w-100 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-300/5 blur-3xl" />
-      </div>
-
+    <SectionWrapper id="realisations" className="overflow-x-clip">
       <SectionContainer>
         <LazyMotionDiv
-          initial={{ opacity: 0, y: -8 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: -8 }}
+          whileInView={{ y: 0 }}
           viewport={{ once: true, margin: "-30px" }}
           transition={{ duration: 0.3 }}
         >
@@ -62,8 +52,8 @@ export function RealisationsClient({ data }: { data: RealisationsData }) {
           ))}
         </div>
         <LazyMotionDiv
-          initial={{ opacity: 0, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 8 }}
+          whileInView={{ y: 0 }}
           viewport={{ once: true, margin: "-20px" }}
           transition={{ duration: 0.3, delay: 0 }}
           className="mt-12 flex justify-center"

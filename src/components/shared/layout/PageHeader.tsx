@@ -71,17 +71,11 @@ export function PageHeader({
 
       {/* Scroll indicator */}
       {bottomElement && (
-        <LazyMotionDiv
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.8 }}
-          className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 sm:bottom-10"
-        >
+        <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 sm:bottom-10">
           {bottomElement}
-        </LazyMotionDiv>
+        </div>
       )}
 
-      {/* Bottom gradient */}
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-32 bg-linear-to-t from-black/25 to-transparent" />
     </section>
   );

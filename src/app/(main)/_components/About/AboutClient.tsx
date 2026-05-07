@@ -1,6 +1,5 @@
 "use client";
 
-import { BackgroundEffects } from "@/components/shared/effects/BackgroundEffects";
 import {
   SectionContainer,
   SectionHeader,
@@ -12,9 +11,7 @@ import type { AboutData } from "@/types";
 
 export function AboutClient({ data }: { data: AboutData }) {
   return (
-    <SectionWrapper id="entreprise" background="gradient">
-      <BackgroundEffects variant="full" particleCount={20} />
-
+    <SectionWrapper id="entreprise">
       <SectionContainer>
         <SectionHeader
           badge={data.header.badge}
@@ -33,7 +30,6 @@ export function AboutClient({ data }: { data: AboutData }) {
               icon={item.icon}
               title={item.title}
               description={item.content}
-              gradient="from-amber-400 to-amber-600"
               stat={item.stat}
               statLabel={item.statLabel}
               index={index}
