@@ -16,6 +16,15 @@ export async function WebSiteStructuredData() {
     publisher: {
       '@id': `${domain}/#organization`,
     },
+
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${domain}/zones-intervention?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
   };
 
   return (

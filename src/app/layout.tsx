@@ -1,18 +1,35 @@
-import "./globals.css";
-import { Inter, Montserrat } from "next/font/google";
+import './globals.css';
+import { Inter, Montserrat } from 'next/font/google';
+import type { Metadata, Viewport } from 'next';
+import { SITE_CONFIG } from '@/config/site';
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_CONFIG.url.replace(/\/$/, '')),
+};
 
 const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+  weight: ['400', '500', '600'],
 });
 
 const montserrat = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-montserrat",
-  display: "swap",
-  weight: ["400", "600", "700", "800"],
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+  display: 'swap',
+  weight: ['400', '600', '700', '800'],
 });
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f59e0b' },
+    { media: '(prefers-color-scheme: dark)', color: '#1e3a8a' },
+  ],
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export default function RootLayout({
   children,
@@ -26,6 +43,16 @@ export default function RootLayout({
         <link
           rel="dns-prefetch"
           href="https://public.blob.vercel-storage.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://public.blob.vercel-storage.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
         />
       </head>
       <body

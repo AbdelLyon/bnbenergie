@@ -5,15 +5,13 @@ export const revalidate = 3600;
 
 export function generateMetadata(): Metadata {
   return {
-    title: 'Mentions Légales | BNB ÉNERGIE',
-    description: 'Mentions légales de BNB ÉNERGIE.',
+    title: 'Mentions Légales',
+    description:
+      'Mentions légales de BNB ÉNERGIE - Installateur de panneaux solaires à Bourg-en-Bresse (Ain).',
     robots: { index: false, follow: false },
   };
 }
 
 export default async function MentionsLegalesPage() {
-  //TODO
-  // const siteSettings = await getSiteSettings();
-
   return <MentionsLegalesPageContent />;
 }

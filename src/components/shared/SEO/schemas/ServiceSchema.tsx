@@ -5,18 +5,26 @@ export async function ServiceStructuredData() {
 
   const domain = siteConfig.domain.replace(/\/$/, '');
 
-  const schema = {
+  const mainServiceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    '@id': `${domain}/#service`,
+    '@id': `${domain}/#service-installation`,
     name: 'Installation de Panneaux Solaires Photovoltaïques',
+    alternateName: 'Pose panneaux solaires photovoltaïques',
     description:
-      "Service complet d'installation de panneaux solaires photovoltaïques dans l'Ain (01) : étude gratuite, démarches Enedis, Consuel, mise en service.",
+      "Service complet d'installation de panneaux solaires photovoltaïques dans l'Ain (01) : étude gratuite de faisabilité, démarches Enedis, Consuel, mise en service et SAV.",
+    url: `${domain}/services`,
     provider: {
       '@type': 'LocalBusiness',
       '@id': `${domain}/#localbusiness`,
       name: siteConfig.siteName,
       url: domain,
+    },
+    category: 'Installation photovoltaïque',
+    serviceType: 'Installation Panneaux Solaires',
+    brand: {
+      '@type': 'Brand',
+      name: siteConfig.siteName,
     },
 
     serviceArea: [
@@ -25,8 +33,12 @@ export async function ServiceStructuredData() {
         name: 'Bourg-en-Bresse',
         containedIn: {
           '@type': 'AdministrativeArea',
-          name: "Ain",
+          name: 'Ain',
         },
+      },
+      {
+        '@type': 'AdministrativeArea',
+        name: 'Ain',
       },
       {
         '@type': 'GeoCircle',
@@ -47,50 +59,78 @@ export async function ServiceStructuredData() {
       },
       geoRadius: '50000',
     },
+
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'EUR',
+      lowPrice: '5990',
+      highPrice: '13990',
+      offerCount: '3',
+      availability: 'https://schema.org/InStock',
+    },
+
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: 'Services Installation Panneaux Solaires',
+      name: 'Étapes Installation Panneaux Solaires',
       itemListElement: [
         {
           '@type': 'Offer',
+          '@id': `${domain}/#service-etude`,
           itemOffered: {
             '@type': 'Service',
             name: 'Étude de Faisabilité Gratuite',
             description:
-              'Analyse technique gratuite de votre projet photovoltaïque',
+              'Analyse technique gratuite de votre projet photovoltaïque : toiture, orientation, ombrage, consommation. Simulation personnalisée.',
           },
         },
         {
           '@type': 'Offer',
+          '@id': `${domain}/#service-devis`,
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Devis & Accompagnement Aides',
+            description:
+              "Devis détaillé avec toutes les aides applicables : MaPrimeRénov, prime à l'autoconsommation, CEE, TVA 5,5%, éco-PTZ.",
+          },
+        },
+        {
+          '@type': 'Offer',
+          '@id': `${domain}/#service-admin`,
           itemOffered: {
             '@type': 'Service',
             name: 'Démarches Administratives',
             description:
-              'Gestion complète des démarches : Enedis, mairie, Consuel',
+              "Gestion complète des démarches : déclaration préalable en mairie, demande de raccordement Enedis, Consuel, contrat d'injection EDF OA.",
           },
         },
         {
           '@type': 'Offer',
+          '@id': `${domain}/#service-installation-rge`,
           itemOffered: {
             '@type': 'Service',
             name: 'Installation RGE QualiPV',
-            description: 'Installation certifiée par installateur RGE QualiPV',
+            description:
+              "Pose par nos techniciens certifiés RGE QualiPV. Garantie décennale sur l'installation. Matériaux de première qualité.",
           },
         },
         {
           '@type': 'Offer',
+          '@id': `${domain}/#service-raccordement`,
           itemOffered: {
             '@type': 'Service',
-            name: 'Raccordement Enedis',
-            description: 'Mise en service et raccordement réseau Enedis',
+            name: 'Raccordement Enedis & Mise en Service',
+            description:
+              'Raccordement réseau Enedis, passage du Consuel, mise en service et test de la production. Monitoring en temps réel inclus.',
           },
         },
         {
           '@type': 'Offer',
+          '@id': `${domain}/#service-sav`,
           itemOffered: {
             '@type': 'Service',
-            name: 'Maintenance et SAV',
-            description: 'Service après-vente et maintenance panneaux solaires',
+            name: 'Maintenance & SAV',
+            description:
+              'Service après-vente réactif, maintenance préventive et corrective des panneaux solaires. Interlocuteur unique dédié.',
           },
         },
       ],
@@ -100,7 +140,7 @@ export async function ServiceStructuredData() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(mainServiceSchema) }}
     />
   );
 }

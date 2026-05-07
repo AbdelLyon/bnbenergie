@@ -12,10 +12,8 @@ export const revalidate = 60;
 
 export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-    // Title: 56 chars (was 68 — too long)
     title: 'Aides Panneaux Solaires 2026 Ain | Prime & éco-PTZ',
 
-    // Description: 159 chars (was 164 — too long)
     description:
       "Aides panneaux solaires 2026 dans l'Ain : prime autoconsommation (80€/kWc), TVA 5,5%, éco-PTZ, CEE. Installateur RGE QualiPV à Bourg-en-Bresse. Devis gratuit.",
 
@@ -30,6 +28,8 @@ export function generateMetadata(): Metadata {
       'financement panneaux solaires Bourg-en-Bresse',
       'subventions photovoltaïque 2026',
       'tarif rachat surplus EDF OA 2026',
+      'MaPrimeRénov panneaux solaires 2026 Ain',
+      'comment financer installation solaire Ain',
     ],
   });
 }
@@ -43,11 +43,17 @@ export default async function AidesFinancementPage() {
 
   return (
     <>
-      <AidesPageContent aids={aids} header={header} siteSettings={siteSettings} />
-      <BreadcrumbStructuredData items={[
-        { name: 'Accueil', path: '/' },
-        { name: 'Aides & Financement', path: '/aides-financement' },
-      ]} />
+      <AidesPageContent
+        aids={aids}
+        header={header}
+        siteSettings={siteSettings}
+      />
+      <BreadcrumbStructuredData
+        items={[
+          { name: 'Accueil', path: '/' },
+          { name: 'Aides & Financement', path: '/aides-financement' },
+        ]}
+      />
     </>
   );
 }

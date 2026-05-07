@@ -1,6 +1,9 @@
 import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
 import ServicesPageContent from './ServicesPageContent';
-import { ServiceStructuredData, BreadcrumbStructuredData } from '@/components/shared/SEO/StructuredData';
+import {
+  ServiceStructuredData,
+  BreadcrumbStructuredData,
+} from '@/components/shared/SEO/StructuredData';
 import {
   getServices,
   getPageHeader,
@@ -12,7 +15,8 @@ export const revalidate = 60;
 
 export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-    title: 'Installation Panneaux Solaires Clé en Main Bourg-en-Bresse',
+    title: 'Installation Panneaux Solaires Bourg-en-Bresse',
+
     description:
       'Installateur panneaux photovoltaïques certifié RGE à Bourg-en-Bresse : étude gratuite, pose, démarches Enedis & Consuel. Garantie décennale. Devis 48h.',
     path: '/services',
@@ -26,6 +30,7 @@ export function generateMetadata(): Metadata {
       'démarches administratives panneaux solaires',
       'garantie décennale installation solaire Ain',
       'service clé en main photovoltaïque Bourg-en-Bresse',
+      'étapes installation panneaux solaires',
     ],
   });
 }
@@ -45,10 +50,12 @@ export default async function ServicesPage() {
         siteSettings={siteSettings}
       />
       <ServiceStructuredData />
-      <BreadcrumbStructuredData items={[
-        { name: 'Accueil', path: '/' },
-        { name: 'Nos Services', path: '/services' },
-      ]} />
+      <BreadcrumbStructuredData
+        items={[
+          { name: 'Accueil', path: '/' },
+          { name: 'Nos Services', path: '/services' },
+        ]}
+      />
     </>
   );
 }

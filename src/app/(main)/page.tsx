@@ -6,6 +6,7 @@ import { Pricing } from '@/app/(main)/_components/Pricing/Pricing';
 import { Realisations } from '@/app/(main)/_components/Realisations/Realisations';
 import { PageMainWrapper } from '@/components/shared/layout/PageMainWrapper';
 import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
+import { PricingStructuredData } from '@/components/shared/SEO/StructuredData';
 import { Metadata } from 'next';
 
 export const revalidate = 3600;
@@ -13,10 +14,10 @@ export const revalidate = 3600;
 export function generateMetadata(): Metadata {
   return {
     ...generateMetadataHelper({
-      title: 'Installateur Panneaux Solaires Bourg-en-Bresse | BNB Énergie',
+      title: 'Installateur Panneaux Solaires Bourg-en-Bresse',
 
       description:
-        "Installateur RGE QualiPV à Bourg-en-Bresse et dans l'Ain (01). Devis gratuit sous 48h, installation photovoltaïque clé en main. Garantie décennale. Appelez le 07 81 25 11 25.",
+        "Installateur RGE QualiPV à Bourg-en-Bresse et dans l'Ain (01). Devis gratuit 48h, installation photovoltaïque clé en main. Garantie décennale.",
 
       path: '/',
 
@@ -55,6 +56,7 @@ export default function Home() {
         <Realisations />
         <Pricing />
       </PageMainWrapper>
+      <PricingStructuredData />
     </>
   );
 }

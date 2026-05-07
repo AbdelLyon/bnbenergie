@@ -4,15 +4,12 @@ import ContactPageContent from './ContactPageContent';
 import { Metadata } from 'next';
 import { getPageHeader, getSiteSettings } from '@/lib/payload-queries';
 
-// ISR - Incremental Static Regeneration
-export const revalidate = 60; // MEDIUM_FREQUENCY
+export const revalidate = 60;
 
 export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-    // Title: 57 chars (was 62 — too long)
-    title: 'Devis Gratuit Panneaux Solaires Bourg-en-Bresse | 48h',
+    title: 'Devis Gratuit Panneaux Solaires Bourg-en-Bresse',
 
-    // Description: 150 chars (was 150 — borderline, now solidified)
     description:
       "Demandez votre devis panneaux solaires gratuit à Bourg-en-Bresse dans l'Ain (01). Réponse en 48h. Installateur RGE QualiPV certifié. Tél : 07 81 25 11 25.",
 
@@ -24,6 +21,7 @@ export function generateMetadata(): Metadata {
       'demander devis panneaux solaires Ain',
       'estimation prix panneaux solaires Bourg-en-Bresse',
       'rendez-vous installation solaire Ain',
+      'etude personnalisée panneaux solaires gratuite Ain',
     ],
   });
 }
@@ -37,10 +35,12 @@ export default async function ContactPage() {
   return (
     <>
       <ContactPageContent header={header} siteSettings={siteSettings} />
-      <BreadcrumbStructuredData items={[
-        { name: 'Accueil', path: '/' },
-        { name: 'Devis Gratuit', path: '/contact' },
-      ]} />
+      <BreadcrumbStructuredData
+        items={[
+          { name: 'Accueil', path: '/' },
+          { name: 'Devis Gratuit', path: '/contact' },
+        ]}
+      />
     </>
   );
 }

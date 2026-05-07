@@ -1,15 +1,9 @@
-/**
- * DEPRECATED: Ce fichier a été remplacé par une structure modulaire.
- * Utilisez les imports depuis './schemas' à la place.
- *
- * @see ./schemas/index.tsx pour les exports
- */
-
 export {
   LocalBusinessStructuredData,
   WebSiteStructuredData,
   OrganizationStructuredData,
   ServiceStructuredData,
+  LocalServiceStructuredData,
   PricingStructuredData,
   FAQStructuredData,
   BreadcrumbStructuredData,

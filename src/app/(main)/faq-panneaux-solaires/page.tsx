@@ -1,22 +1,18 @@
 import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
-import { FAQStructuredData, BreadcrumbStructuredData } from '@/components/shared/SEO/StructuredData';
+import {
+  FAQStructuredData,
+  BreadcrumbStructuredData,
+} from '@/components/shared/SEO/StructuredData';
 import { Metadata } from 'next';
 import FAQPageContent from './FAQPageContent';
-import {
-  getFaqs,
-  getPageHeader,
-  getSiteSettings,
-} from '@/lib/payload-queries';
+import { getFaqs, getPageHeader, getSiteSettings } from '@/lib/payload-queries';
 
-// ISR - Incremental Static Regeneration
-export const revalidate = 60; // MEDIUM_FREQUENCY
+export const revalidate = 60;
 
 export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-    // Title: 58 chars (was 61 — 1 char over)
-    title: 'FAQ Panneaux Solaires Bourg-en-Bresse | Questions Réponses',
+    title: 'FAQ Panneaux Solaires Bourg-en-Bresse',
 
-    // Description: 157 chars (was 166 — too long)
     description:
       "Réponses à vos questions sur les panneaux solaires à Bourg-en-Bresse : prix, rentabilité, aides, installation. FAQ par votre installateur RGE QualiPV dans l'Ain.",
 
@@ -42,11 +38,15 @@ export default async function FAQPage() {
   return (
     <>
       <FAQPageContent faqs={faqs} header={header} siteSettings={siteSettings} />
-      <FAQStructuredData faqs={faqs.map((f) => ({ question: f.question, answer: f.answer }))} />
-      <BreadcrumbStructuredData items={[
-        { name: 'Accueil', path: '/' },
-        { name: 'FAQ Panneaux Solaires', path: '/faq-panneaux-solaires' },
-      ]} />
+      <FAQStructuredData
+        faqs={faqs.map((f) => ({ question: f.question, answer: f.answer }))}
+      />
+      <BreadcrumbStructuredData
+        items={[
+          { name: 'Accueil', path: '/' },
+          { name: 'FAQ Panneaux Solaires', path: '/faq-panneaux-solaires' },
+        ]}
+      />
     </>
   );
 }

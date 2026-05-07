@@ -12,8 +12,7 @@ export const revalidate = 60;
 
 export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-
-    title: 'Réalisations Panneaux Solaires Bourg-en-Bresse | Ain',
+    title: "Réalisations Panneaux Solaires dans l'Ain",
 
     description:
       "Découvrez nos installations panneaux solaires dans l'Ain : Bourg-en-Bresse, Oyonnax, Bellegarde. Projets 3-9 kWc par BNB Énergie, installateur RGE QualiPV.",
@@ -45,10 +44,12 @@ export default async function RealisationsPage() {
         header={header}
         siteSettings={siteSettings}
       />
-      <BreadcrumbStructuredData items={[
-        { name: 'Accueil', path: '/' },
-        { name: 'Nos Réalisations', path: '/realisations' },
-      ]} />
+      <BreadcrumbStructuredData
+        items={[
+          { name: 'Accueil', path: '/' },
+          { name: 'Nos Réalisations', path: '/realisations' },
+        ]}
+      />
     </>
   );
 }

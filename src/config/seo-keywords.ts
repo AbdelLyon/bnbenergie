@@ -1,4 +1,3 @@
-
 export const PRIMARY_KEYWORDS = [
   'installateur panneaux solaires Bourg-en-Bresse',
   'installateur panneaux photovoltaïques Bourg-en-Bresse',
@@ -7,7 +6,6 @@ export const PRIMARY_KEYWORDS = [
   'panneaux solaires Bourg-en-Bresse',
   'photovoltaïque Bourg-en-Bresse',
 ] as const;
-
 
 export const BOURG_EN_BRESSE_KEYWORDS = [
   ...PRIMARY_KEYWORDS,
@@ -32,8 +30,8 @@ export const TRANSACTIONAL_KEYWORDS = [
   'tarif panneaux solaires Bourg-en-Bresse',
   'demander devis photovoltaïque Bourg-en-Bresse',
   'devis gratuit panneaux solaires Ain',
+  'devis installation solaire Ain 48h',
 ] as const;
-
 
 export const AIN_DEPARTMENT_KEYWORDS = [
   'installateur panneaux solaires Ain',
@@ -43,6 +41,7 @@ export const AIN_DEPARTMENT_KEYWORDS = [
   'entreprise panneaux solaires Ain certifiée',
   'installateur solaire Ain 01',
   'photovoltaïque Ain 01',
+  'énergie renouvelable Ain',
 ] as const;
 
 export const CITY_KEYWORDS = [
@@ -53,6 +52,10 @@ export const CITY_KEYWORDS = [
   'installateur solaire Ferney-Voltaire',
   'panneaux solaires Ambérieu-en-Bugey',
   'installation solaire Trévoux Ain',
+  'panneaux solaires Oyonnax Ain',
+  'installation photovoltaïque Pays de Gex',
+  'panneaux solaires Dombes',
+  'installateur solaire Nantua',
 ] as const;
 
 export const LONG_TAIL_KEYWORDS = [
@@ -66,6 +69,9 @@ export const LONG_TAIL_KEYWORDS = [
   'revente surplus électricité EDF OA Ain',
   'MaPrimeRénov panneaux solaires Bourg-en-Bresse',
   'financement panneaux solaires sans avance de frais Ain',
+  'panneaux solaires avec batterie Ain',
+  'monitoring production solaire temps réel',
+  'retour sur investissement panneaux solaires Ain',
 ] as const;
 
 export const EEAT_KEYWORDS = [
@@ -76,6 +82,18 @@ export const EEAT_KEYWORDS = [
   'prime autoconsommation 2026 Bourg-en-Bresse',
   'avis clients installateur solaire Bourg-en-Bresse',
   'certifié RGE QualiPV Ain 01',
+  'artisan RGE photovoltaïque Ain',
+] as const;
+
+export const AIDS_KEYWORDS = [
+  'prime autoconsommation photovoltaïque 2026',
+  'prime autoconsommation 80 euros kWc 2026',
+  'MaPrimeRénov panneaux solaires 2026',
+  'TVA 5,5% panneaux solaires 2026',
+  'éco-prêt taux zéro solaire Ain',
+  'CEE certificats économies énergie photovoltaïque',
+  'subventions photovoltaïque 2026 Ain',
+  'tarif rachat surplus EDF OA 2026',
 ] as const;
 
 export const SEO_KEYWORDS: string[] = [
@@ -85,8 +103,8 @@ export const SEO_KEYWORDS: string[] = [
   ...EEAT_KEYWORDS,
   ...AIN_DEPARTMENT_KEYWORDS,
   ...CITY_KEYWORDS,
+  ...AIDS_KEYWORDS,
 ];
-
 
 export const PAGE_SPECIFIC_KEYWORDS = {
   home: SEO_KEYWORDS,
@@ -102,6 +120,8 @@ export const PAGE_SPECIFIC_KEYWORDS = {
     'démarches administratives panneaux solaires',
     'garantie décennale installation solaire Ain',
     'service clé en main photovoltaïque Bourg-en-Bresse',
+    'étapes installation panneaux solaires',
+    'déclaration préalable travaux panneaux solaires',
   ],
 
   aidesFinancement: [
@@ -116,6 +136,7 @@ export const PAGE_SPECIFIC_KEYWORDS = {
     'subventions photovoltaïque 2026',
     'tarif rachat surplus EDF OA 2026',
     'MaPrimeRénov panneaux solaires 2026',
+    'comment financer panneaux solaires Ain',
   ],
 
   contact: [
@@ -125,6 +146,7 @@ export const PAGE_SPECIFIC_KEYWORDS = {
     'demander devis panneaux solaires Ain',
     'estimation prix panneaux solaires Bourg-en-Bresse',
     'rendez-vous installation solaire Ain',
+    'etude personnalisée panneaux solaires gratuite Ain',
   ],
 
   realisations: [
@@ -144,6 +166,9 @@ export const PAGE_SPECIFIC_KEYWORDS = {
     'offre panneaux solaires RGE Ain',
     'prix installation solaire clé en main Bourg-en-Bresse',
     'tarifs transparents installation solaire 2026',
+    'forfait installation solaire 3kWc Ain',
+    'forfait installation solaire 6kWc Ain',
+    'forfait installation solaire 9kWc Ain',
   ],
 
   garanties: [
@@ -170,5 +195,6 @@ export const PAGE_SPECIFIC_KEYWORDS = {
     'panneaux solaires Gex Ain',
     'couverture géographique installateur Ain 01',
     'déplacement gratuit installation solaire Ain',
+    'rayon intervention installateur solaire 50km Bourg-en-Bresse',
   ],
 } as const;

@@ -12,8 +12,7 @@ export const revalidate = 60;
 
 export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-
-    title: 'Zones Intervention Panneaux Solaires Ain (01) | 50 km',
+    title: 'Zones Intervention Solaire Ain (01) | Rayon 50 km',
 
     description:
       "Installateur panneaux solaires dans l'Ain (01) : Bourg-en-Bresse, Oyonnax, Bellegarde, Gex, Ferney-Voltaire. Déplacement gratuit. Certifié RGE QualiPV.",
@@ -27,6 +26,7 @@ export function generateMetadata(): Metadata {
       'installateur panneaux solaires Ain 01',
       'couverture géographique installateur Ain 01',
       'déplacement gratuit installation solaire Ain',
+      'rayon intervention 50km Bourg-en-Bresse',
     ],
   });
 }
@@ -45,10 +45,12 @@ export default async function ZonesInterventionPage() {
         header={header}
         siteSettings={siteSettings}
       />
-      <BreadcrumbStructuredData items={[
-        { name: 'Accueil', path: '/' },
-        { name: "Zones d'Intervention", path: '/zones-intervention' },
-      ]} />
+      <BreadcrumbStructuredData
+        items={[
+          { name: 'Accueil', path: '/' },
+          { name: "Zones d'Intervention", path: '/zones-intervention' },
+        ]}
+      />
     </>
   );
 }
