@@ -27,7 +27,6 @@ export function FeatureCard({
   description,
   items,
   iconBg = "bg-secondary",
-  iconColor = "text-foreground/60",
   className,
   children,
   stat,

@@ -83,7 +83,7 @@ export function SectionHeader({
       whileInView={{ y: 0 }}
       viewport={{ once: true, margin: "-30px" }}
       transition={{ duration: ANIMATION_DURATIONS.normal }}
-      className={cn("max-w-3xl", SPACING.header.mb, alignments[align])}
+      className={cn("max-w-3xl", SPACING.header.mb, alignments[align], className)}
     >
       {badge && (
         <span className="border-primary-500/30 bg-primary-500/10 text-primary-700 dark:text-primary-400 shadow-primary-500/10 mb-5 inline-block rounded-full border px-4 py-2 text-xs font-bold shadow-lg backdrop-blur-md md:mb-6 md:px-6 md:py-3 md:text-sm">

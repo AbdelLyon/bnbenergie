@@ -1,6 +1,5 @@
 "use client";
 
-import { LazyMotionDiv } from "@/components/LazyComponents";
 import { HeaderBackground } from "@/components/shared/effects/HeaderBackground";
 import dynamic from "next/dynamic";
 import { ReactNode } from "react";
