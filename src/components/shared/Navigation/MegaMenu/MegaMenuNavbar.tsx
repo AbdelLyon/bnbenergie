@@ -9,7 +9,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu, X, Phone, ChevronDown, ArrowRight, Zap } from "lucide-react";
+import { Menu, X, Phone, ArrowRight, Zap } from "lucide-react";
 import { useScrollPosition, useBodyScrollLock } from "@/hooks";
 import { getLucideIcon } from "@/utils/getLucideIcon";
 import { Logo as LogoIcon } from "@/components/shared/ui/Logo";
@@ -38,7 +38,11 @@ type MegaMenuData = {
   cta: { label: string; phoneHref: string };
 };
 
-type LogoProps = { isScrolled: boolean; subtitle: string; className?: string };
+type LogoProps = {
+  isScrolled: boolean;
+  subtitle: string;
+  className?: string;
+};
 
 const NavLogo = ({ isScrolled, subtitle, className }: LogoProps) => (
   <Link href="/" className={`group flex items-center gap-3 ${className ?? ""}`}>
@@ -63,66 +67,47 @@ const NavLogo = ({ isScrolled, subtitle, className }: LogoProps) => (
   </Link>
 );
 
-const iconColors: Record<string, string> = {
-  Settings: tokens.iconBg.primary,
-  Camera: tokens.iconBg.purple,
-  DollarSign: tokens.iconBg.success,
-  Shield: tokens.iconBg.secondary,
-  Euro: tokens.iconBg.primary,
-  MapPin: tokens.iconBg.danger,
-  HelpCircle: tokens.iconBg.success,
-  Home: tokens.iconBg.primary,
-  Mail: tokens.iconBg.purple,
-};
-
 export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeMega, setActiveMega] = useState<string | null>(null);
 
   const isScrolled = useScrollPosition(120);
   const pathname = usePathname();
+
+  useBodyScrollLock(isOpen);
 
   const isActive = (href?: string) =>
     href
       ? pathname === href || (href !== "/" && pathname.startsWith(href))
       : false;
 
-  const isMegaActive = (item: MegaMenuData["menuCategories"][number]) =>
-    item.sections?.some((section) =>
-      section.links.some((link) => isActive(link.href)),
-    ) ?? false;
-
-  useBodyScrollLock(isOpen);
-
   return (
     <>
+      {/* NAVBAR */}
       <LazyMotionNav
-        initial={false}
-        className={`fixed top-0 right-0 left-0 z-50 ${tokens.transition.slow} ${tokens.border.bottom.default}  ${
-          isScrolled
-            ? `${tokens.bg.glass} ${tokens.shadow.lg} `
-            : tokens.bg.navGlass
+        className={`fixed top-0 left-0 right-0 z-50 ${tokens.transition.slow} ${
+          isScrolled ? tokens.bg.glass : tokens.bg.navGlass
         }`}
       >
         <div className={tokens.layout.container}>
           <div className="flex h-16 items-center justify-between">
-            {/* LEFT: LOGO */}
-            <NavLogo
-              isScrolled={isScrolled}
-              subtitle={data.logo.subtitle}
-            />
 
-            {/* RIGHT: MOBILE (theme + burger) */}
+            {/* LOGO */}
+            <NavLogo isScrolled={isScrolled} subtitle={data.logo.subtitle} />
+
+            {/* MOBILE RIGHT */}
             <div className="flex items-center gap-2 lg:hidden">
+
+              {/* Theme switch moved here */}
               <ThemeSwitcher />
 
+              {/* Burger */}
               <LazyMotionButton
-                whileTap={{ scale: 0.88 }}
+                whileTap={{ scale: 0.9 }}
                 onClick={() => setIsOpen(!isOpen)}
-                className={`flex h-9 w-9 items-center justify-center rounded-xl ${tokens.transition.base} ${
+                className={`flex h-9 w-9 items-center justify-center rounded-xl transition ${
                   isScrolled
-                    ? `bg-default-100 hover:bg-default-200 ${tokens.text.base}`
-                    : `bg-white/10 ${tokens.bg.hoverOnDark} ${tokens.text.onDark}`
+                    ? "bg-default-100 text-default-900"
+                    : "bg-white/10 text-white"
                 }`}
                 aria-label="Toggle menu"
               >
@@ -133,7 +118,6 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                       initial={{ rotate: -90, opacity: 0 }}
                       animate={{ rotate: 0, opacity: 1 }}
                       exit={{ rotate: 90, opacity: 0 }}
-                      transition={{ duration: 0.15 }}
                     >
                       <X className="h-5 w-5" />
                     </LazyMotionDiv>
@@ -143,7 +127,6 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                       initial={{ rotate: 90, opacity: 0 }}
                       animate={{ rotate: 0, opacity: 1 }}
                       exit={{ rotate: -90, opacity: 0 }}
-                      transition={{ duration: 0.15 }}
                     >
                       <Menu className="h-5 w-5" />
                     </LazyMotionDiv>
@@ -152,29 +135,24 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
               </LazyMotionButton>
             </div>
 
-            {/* DESKTOP NAV */}
-            <div className="hidden items-center gap-0.5 lg:flex">
-              {data.menuCategories.map((item) => (
-                <div key={item.label} className="relative">
-                  {/* ton code desktop inchangé */}
-                </div>
-              ))}
+            {/* DESKTOP */}
+            <div className="hidden lg:flex items-center gap-4">
 
-              <div
-                className={`mx-3 h-4 w-px ${tokens.transition.base} ${
-                  isScrolled ? "bg-default-200" : "bg-white/20"
-                }`}
-              />
+              {data.menuCategories.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href ?? "#"}
+                  className="text-sm font-medium"
+                >
+                  {item.label}
+                </Link>
+              ))}
 
               <Link
                 href={data.cta.phoneHref}
-                className={`group inline-flex items-center gap-2 ${tokens.radius.sm} px-4 py-1.5 text-sm font-semibold ${tokens.transition.base} ${
-                  isScrolled
-                    ? `bg-secondary ${tokens.text.onDark}`
-                    : `bg-white/10 ${tokens.text.onDark}`
-                }`}
+                className="flex items-center gap-2 text-sm font-semibold"
               >
-                <Phone className="h-3.5 w-3.5 group-hover:rotate-12 transition-transform" />
+                <Phone className="h-4 w-4" />
                 {data.cta.label}
               </Link>
 
@@ -189,19 +167,12 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
         {isOpen && (
           <>
             <LazyMotionDiv
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-40 bg-black/40 lg:hidden"
               onClick={() => setIsOpen(false)}
-              className={`fixed inset-0 z-40 ${tokens.bg.backdrop} lg:hidden`}
             />
 
             <LazyMotionDiv
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.35 }}
-              className={`fixed top-0 right-0 bottom-0 z-50 flex w-full flex-col overflow-hidden ${tokens.bg.surface} sm:max-w-sm lg:hidden`}
+              className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-sm bg-white lg:hidden"
             >
               {/* HEADER */}
               <div className="flex items-center justify-between px-5 py-4">
@@ -211,28 +182,25 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                 />
 
                 <LazyMotionButton
-                  whileTap={{ scale: 0.88 }}
                   onClick={() => setIsOpen(false)}
-                  className="flex h-8 w-8 items-center justify-center rounded-xl bg-default-100"
+                  className="h-8 w-8 flex items-center justify-center"
                 >
                   <X className="h-4 w-4" />
                 </LazyMotionButton>
               </div>
 
-              {/* NAV */}
-              <nav className="flex-1 overflow-y-auto px-4 py-4">
-                <div className="space-y-0.5">
-                  {data.menuCategories.map((item) => (
-                    <div key={item.label}>{item.label}</div>
-                  ))}
-                </div>
-              </nav>
+              {/* MENU */}
+              <div className="px-4 py-4 space-y-2">
+                {data.menuCategories.map((item) => (
+                  <div key={item.label}>{item.label}</div>
+                ))}
+              </div>
 
-              {/* FOOTER (theme switcher SUPPRIMÉ ICI) */}
-              <div className={`px-4 py-4 border-t border-default-100 ${tokens.bg.subtleFill}`}>
+              {/* FOOTER */}
+              <div className="border-t p-4">
                 <a
                   href={data.cta.phoneHref}
-                  className="flex w-full items-center justify-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-bold text-white"
+                  className="flex items-center justify-center gap-2 font-semibold"
                 >
                   <Phone className="h-4 w-4" />
                   {data.cta.label}
