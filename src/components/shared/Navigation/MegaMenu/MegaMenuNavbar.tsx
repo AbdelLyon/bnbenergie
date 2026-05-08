@@ -178,7 +178,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                         className="absolute top-full left-1/2 z-50 w-140 -translate-x-1/2 pt-3"
                       >
                         <div
-                          className={`overflow-hidden ${tokens.radius.cardLg} border border-content2/80 ${tokens.bg.glassDense} ${tokens.shadow.drop}`}
+                          className={`overflow-hidden ${tokens.radius.cardLg} border border-content2/80 ${tokens.bg.glass} ${tokens.shadow.drop}`}
                         >
                           <div className="grid grid-cols-2 gap-0 p-4">
                             {item.sections?.map((section, idx) => (
