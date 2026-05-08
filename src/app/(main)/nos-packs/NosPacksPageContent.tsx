@@ -94,8 +94,8 @@ export default function NosPacksPageContent({
             ]}
           />
 
-          <div className="relative mb-24 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 shadow-xl border border-neutral-100 dark:border-white/5">
-            <div className="relative z-10 text-center max-w-4xl mx-auto">
+          <div className="relative mb-16 overflow-hidden rounded-2xl border border-neutral-100 bg-white px-4 py-10 shadow-xl dark:border-white/5 dark:bg-content1 sm:px-6 sm:py-12 md:mb-24 md:rounded-3xl md:px-10 lg:px-12">
+            <div className="relative z-10 mx-auto max-w-4xl text-center">
               <IntroSection
                 title="Choisissez le Pack Adapté à Vos Besoins"
                 description="Nos packs photovoltaïques sont conçus pour s'adapter à votre consommation énergétique et à votre budget. Installation clé en main avec démarches administratives incluses."
