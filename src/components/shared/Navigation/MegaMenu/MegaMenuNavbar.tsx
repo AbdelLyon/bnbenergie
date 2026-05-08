@@ -16,6 +16,7 @@ import { Logo as LogoIcon } from "@/components/shared/ui/Logo";
 import { ThemeSwitcher } from "@/components/shared/ThemeSwitcher";
 import { tokens } from "@/config/tokens";
 
+//new MegaMenuData
 type MegaMenuData = {
   logo: { title: string; subtitle: string };
   menuCategories: Array<{
