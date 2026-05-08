@@ -220,7 +220,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                                         className={`group flex items-center gap-3 ${tokens.radius.sm} p-2.5 ${tokens.transition.base} cursor-pointer ${
                                           childActive
                                             ? "bg-primary/8 ring-1 ring-primary/15"
-                                            : tokens.bg.hoverDefault
+                                            : tokens.bg.hoverOutline
                                         }`}
                                         onClick={() => setActiveMega(null)}
                                       >
