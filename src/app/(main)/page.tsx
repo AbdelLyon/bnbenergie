@@ -6,7 +6,6 @@ import { Pricing } from '@/app/(main)/_components/Pricing/Pricing';
 import { Realisations } from '@/app/(main)/_components/Realisations/Realisations';
 import { PageMainWrapper } from '@/components/shared/layout/PageMainWrapper';
 import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
-import { PricingStructuredData } from '@/components/shared/SEO/StructuredData';
 import { Metadata } from 'next';
 
 export const revalidate = 3600;
@@ -45,7 +44,6 @@ export function generateMetadata(): Metadata {
 
 export default function Home() {
   return (
-    <>
       <PageMainWrapper variant="amber">
         <HomeHeader />
         <About />
@@ -56,7 +54,5 @@ export default function Home() {
         <Realisations />
         <Pricing />
       </PageMainWrapper>
-      <PricingStructuredData />
-    </>
   );
 }
