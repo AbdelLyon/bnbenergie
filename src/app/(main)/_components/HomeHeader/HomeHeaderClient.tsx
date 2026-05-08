@@ -2,16 +2,10 @@
 
 import { useImageCarousel } from "@/hooks";
 import { useEffect } from "react";
-import {
-  CTAGroupButtons,
-  PageHeader,
-  ScrollDownButton,
-  Stats,
-  Title,
-} from "@/components";
+import { PageHeader, ScrollDownButton, Stats, Title } from "@/components";
 import type { Stat } from "@/payload-types";
-import { LazyMotionDiv } from "@/components/LazyComponents";
 import { ArrowRight, Phone, Zap } from "lucide-react";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
 
 interface HeaderData {
   chip?: string;
@@ -41,8 +35,6 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  console.log(data);
-
   return (
     <PageHeader
       variant="carousel"
@@ -53,36 +45,18 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
       bottomElement={<ScrollDownButton onClick={scrollToNext} />}
       backgroundVariant="clean"
     >
-      {/* Eyebrow chip */}
-      <LazyMotionDiv
-        initial={{ opacity: 0, y: -8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-      >
-        <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white backdrop-blur-sm">
-          <Zap
-            className="h-3 w-3 text-secondary-300"
-            fill="currentColor"
-            strokeWidth={0}
-          />
-          {data.chip}
-        </span>
-      </LazyMotionDiv>
+      <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white backdrop-blur-sm">
+        <Zap className="h-3 w-3 text-secondary-300" fill="currentColor" strokeWidth={0} />
+        {data.chip}
+      </span>
 
-      {/* Title */}
-      <LazyMotionDiv
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-        className="space-y-3"
-      >
-        <Title
-          staticText={data.title[0] ?? "BNB"}
-          animatedText={data.title[1] ?? "ÉNERGIE"}
-          seoTitle={data.seoTitle}
-          subtitle={data.description}
-        />
-      </LazyMotionDiv>
+      <Title
+        staticText={data.title[0] ?? "BNB"}
+        animatedText={data.title[1] ?? "ÉNERGIE"}
+        seoTitle={data.seoTitle}
+        subtitle={data.description}
+      />
+
       <CTAGroupButtons
         align="center"
         animated
@@ -93,7 +67,8 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
             variant: "default",
             size: "sm",
             iconRight: <ArrowRight className="size-4" />,
-            className: "bg-gradient-to-r from-secondary to-secondary-400",
+            className:
+              "group rounded-full bg-secondary text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:text-base px-4",
           },
           {
             label: data.cta2,
@@ -101,19 +76,12 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
             variant: "outline",
             size: "sm",
             iconLeft: <Phone className="size-4" />,
+            className: "px-4",
           },
         ]}
       />
 
-      {/* Stats */}
-      <LazyMotionDiv
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.9 }}
-        className="w-full"
-      >
-        <Stats stats={data.stats} />
-      </LazyMotionDiv>
+      <Stats stats={data.stats} />
     </PageHeader>
   );
 }
