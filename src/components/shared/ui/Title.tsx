@@ -108,17 +108,14 @@ export function Title({
     <div className="flex flex-col items-center text-center">
       <h1 className="font-display font-black uppercase leading-[0.9] tracking-tight [text-shadow:0_2px_12px_rgba(0,0,0,0.6)]">
         {seoTitle && <span className="sr-only">{seoTitle}</span>}
-        {/* 🧱 SINGLE LINE WRAPPER (IMPORTANT FIX) */}
-        <span className="inline-block whitespace-nowrap text-[clamp(2.2rem,6vw,4.6rem)]">
+  
+        <span className="inline-block text-[clamp(2.2rem,6vw,4.6rem)]">
           {/* STATIC PART */}
           <span>
             <span className="text-secondary">{staticSplit.first}</span>
             <span className="text-white">{staticSplit.rest}</span>
           </span>
-
-          {/* SPACE */}
-          <span className="mx-2" />
-
+           {" "}
           {/* ANIMATED PART */}
           <span className="text-white">
             {showAnimated ? (
