@@ -74,11 +74,6 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
 
   useBodyScrollLock(isOpen);
 
-  const isActive = (href?: string) =>
-    href
-      ? pathname === href || (href !== "/" && pathname.startsWith(href))
-      : false;
-
   return (
     <>
       {/* NAVBAR */}
@@ -96,37 +91,24 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
             {/* MOBILE RIGHT */}
             <div className="flex items-center gap-2 lg:hidden">
 
-              {/* Theme switch moved here */}
               <ThemeSwitcher />
 
-              {/* Burger */}
               <LazyMotionButton
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsOpen(!isOpen)}
-                className={`flex h-9 w-9 items-center justify-center rounded-xl transition ${
+                className={`flex h-9 w-9 items-center justify-center rounded-xl ${
                   isScrolled
                     ? "bg-default-100 text-default-900"
                     : "bg-white/10 text-white"
                 }`}
-                aria-label="Toggle menu"
               >
                 <AnimatePresence mode="wait">
                   {isOpen ? (
-                    <LazyMotionDiv
-                      key="close"
-                      initial={{ rotate: -90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: 90, opacity: 0 }}
-                    >
+                    <LazyMotionDiv key="close">
                       <X className="h-5 w-5" />
                     </LazyMotionDiv>
                   ) : (
-                    <LazyMotionDiv
-                      key="menu"
-                      initial={{ rotate: 90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: -90, opacity: 0 }}
-                    >
+                    <LazyMotionDiv key="menu">
                       <Menu className="h-5 w-5" />
                     </LazyMotionDiv>
                   )}
@@ -170,9 +152,8 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
               onClick={() => setIsOpen(false)}
             />
 
-            <LazyMotionDiv
-              className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-sm bg-white lg:hidden"
-            >
+            <LazyMotionDiv className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-sm bg-white lg:hidden">
+
               {/* HEADER */}
               <div className="flex items-center justify-between px-5 py-4">
                 <NavLogo
@@ -191,7 +172,14 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
               {/* MENU */}
               <div className="px-4 py-4 space-y-2">
                 {data.menuCategories.map((item) => (
-                  <div key={item.label}>{item.label}</div>
+                  <Link
+                    key={item.label}
+                    href={item.href ?? "#"}
+                    onClick={() => setIsOpen(false)}
+                    className="block text-sm font-medium"
+                  >
+                    {item.label}
+                  </Link>
                 ))}
               </div>
 
