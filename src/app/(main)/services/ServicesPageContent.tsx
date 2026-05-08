@@ -83,7 +83,7 @@ export default function ServicesPageContent({
             }))}
           />
 
-          <div className="relative mx-auto mb-20 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 border border-neutral-100 dark:border-white/5">
+          <div className="relative mx-auto mb-20 overflow-hidden rounded-3xl bg-white dark:bg-content1 border border-neutral-100 dark:border-white/5">
             <div className="relative z-10 text-center">
               <IntroSection
                 title="Un Accompagnement Complet de A à Z"
