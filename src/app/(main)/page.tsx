@@ -8,6 +8,8 @@ import { PageMainWrapper } from '@/components/shared/layout/PageMainWrapper';
 import { generateMetadata as generateMetadataHelper } from '@/config/metadata';
 import { Metadata } from 'next';
 
+//cache
+
 export const revalidate = 3600;
 
 export function generateMetadata(): Metadata {
