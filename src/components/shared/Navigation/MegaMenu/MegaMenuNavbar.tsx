@@ -11,11 +11,10 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { useScrollPosition, useBodyScrollLock } from "@/hooks";
-import { getLucideIcon } from "@/utils/getLucideIcon";
 import { Logo as LogoIcon } from "@/components/shared/ui/Logo";
 import { ThemeSwitcher } from "@/components/shared/ThemeSwitcher";
 import { tokens } from "@/config/tokens";
-//types
+
 type MegaMenuData = {
   logo: { title: string; subtitle: string };
   menuCategories: Array<{
