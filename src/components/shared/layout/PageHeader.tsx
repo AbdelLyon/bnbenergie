@@ -1,8 +1,16 @@
 "use client";
 
-import { LazyMotionDiv } from "@/components/LazyComponents";
 import { HeaderBackground } from "@/components/shared/effects/HeaderBackground";
+import dynamic from "next/dynamic";
 import { ReactNode } from "react";
+
+const ParticlesEffect = dynamic(
+  () =>
+    import("@/components/shared/effects/ParticlesEffect").then((m) => ({
+      default: m.ParticlesEffect,
+    })),
+  { ssr: false },
+);
 
 interface PageHeaderProps {
   images?: string[];
@@ -13,6 +21,7 @@ interface PageHeaderProps {
   children: ReactNode;
   bottomElement?: ReactNode;
   backgroundVariant?: "default" | "clean";
+  withParticles?: boolean; // ✅ NEW (optionnel)
 }
 
 export function PageHeader({
@@ -24,6 +33,7 @@ export function PageHeader({
   children,
   bottomElement,
   backgroundVariant = "default",
+  withParticles = true, // ✅ activé par défaut
 }: PageHeaderProps) {
   const heightClass = {
     full: "min-h-[100dvh]",
@@ -35,6 +45,7 @@ export function PageHeader({
     <section
       className={`relative ${heightClass} flex items-center justify-center overflow-hidden`}
     >
+      {/* Background */}
       <HeaderBackground
         images={variant === "carousel" && images.length > 0 ? images : []}
         imageAlts={imageAlts}
@@ -42,9 +53,13 @@ export function PageHeader({
         variant={backgroundVariant}
       />
 
+      {/* Overlay */}
       {backgroundVariant === "default" && (
         <div className="absolute inset-0 z-1 bg-black/50" />
       )}
+
+      {/* ✅ Particles (réintégré proprement) */}
+      {backgroundVariant === "default" && withParticles && <ParticlesEffect />}
 
       {/* Content */}
       <div className="relative z-10 mx-auto w-full max-w-5xl px-5 py-28 text-center sm:px-8 sm:py-32 md:py-40">
@@ -55,18 +70,12 @@ export function PageHeader({
 
       {/* Scroll indicator */}
       {bottomElement && (
-        <LazyMotionDiv
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.8 }}
-          className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 sm:bottom-10"
-        >
+        <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 sm:bottom-10">
           {bottomElement}
-        </LazyMotionDiv>
+        </div>
       )}
 
-      {/* Bottom gradient fade into next section */}
-   <div className="h-px w-full bg-linear-to-r from-blue-400/10 via-blue-400/40 to-blue-400/10 dark:via-blue-400/40" />
+    <div className="h-px w-full bg-linear-to-r from-blue-400/10 via-blue-400/40 to-blue-400/10 dark:via-blue-400/40" />
     </section>
   );
 }
