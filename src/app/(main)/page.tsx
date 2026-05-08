@@ -46,6 +46,7 @@ export function generateMetadata(): Metadata {
 
 export default function Home() {
   return (
+    <>
       <PageMainWrapper variant="amber">
         <HomeHeader />
         <About />
@@ -56,5 +57,6 @@ export default function Home() {
         <Realisations />
         <Pricing />
       </PageMainWrapper>
+    </>
   );
 }
