@@ -15,7 +15,7 @@ export const tokens = {
     hoverPrimary: "hover:bg-primary/5",                                  // hover avec teinte primaire
     hoverContent: "hover:bg-content2/70",                                // hover neutre sur fond clair/sombre
     hoverDefault: "hover:bg-default-50 dark:hover:bg-content2/60",  // hover neutre sur surfaces claires
-    hoverOutline: "bg-primary/10 ring-1 ring-primary/10",
+    hoverOutline: "hover:bg-primary/10 hover:ring-1 hover:ring-primary/15",
     hoverOnDark: "hover:bg-white/10",                                   // hover sur surfaces sombres/transparentes
     activeOnDark: "bg-white/15",                                         // état actif sur surface sombre
     infoSubtle: "bg-blue-500/10",                                      // fond bleu subtil (info, theme toggle)
