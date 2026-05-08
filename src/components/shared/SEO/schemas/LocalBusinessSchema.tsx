@@ -6,7 +6,7 @@ export async function LocalBusinessStructuredData() {
   const rating = REVIEWS_STATS.average;
   const reviewCount = REVIEWS_STATS.total;
 
-  const domain = siteConfig.domain.replace(/\/$/, '');
+  const domain = siteConfig.domain.replace(/\/$/, "");
 
   const reviews = GOOGLE_REVIEWS.slice(0, 5).map((review) => ({
     '@type': 'Review' as const,
@@ -27,16 +27,12 @@ export async function LocalBusinessStructuredData() {
   const schema = {
     '@context': 'https://schema.org',
 
-    '@type': [
-      'LocalBusiness',
-      'HomeAndConstructionBusiness',
-      'ElectricalContractor',
-    ],
+    '@type': ['LocalBusiness', 'HomeAndConstructionBusiness'],
     '@id': `${domain}/#localbusiness`,
     name: siteConfig.siteName,
     alternateName: siteConfig.businessName,
     description:
-      "Installateur de panneaux solaires photovoltaïques à Bourg-en-Bresse et dans l'Ain (01). Entreprise RGE QualiPV certifiée. Devis gratuit 48h, installation clé en main.",
+      "Installateur de panneaux solaires photovoltaïques à Bourg-en-Bresse et dans l'Ain (01). Entreprise RGE QualiPV certifiée.",
     url: `${domain}/`,
     telephone: siteConfig.contactPhone,
     email: siteConfig.contactEmail,
@@ -46,9 +42,10 @@ export async function LocalBusinessStructuredData() {
       url: `${domain}/logo.svg`,
     },
 
-    priceRange: '€€',
+    priceRange: '€€€',
     currenciesAccepted: 'EUR',
     paymentAccepted: 'Cash, Credit Card, Bank Transfer',
+
 
     hasMap: 'https://maps.google.com/?q=BNB+%C3%89NERGIE+Bourg-en-Bresse',
 
@@ -74,12 +71,6 @@ export async function LocalBusinessStructuredData() {
         opens: '08:00',
         closes: '18:00',
       },
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Saturday'],
-        opens: '09:00',
-        closes: '12:00',
-      },
     ],
 
     areaServed: [
@@ -92,41 +83,6 @@ export async function LocalBusinessStructuredData() {
         },
       },
       {
-        '@type': 'City',
-        name: 'Oyonnax',
-        containedIn: { '@type': 'AdministrativeArea', name: 'Ain' },
-      },
-      {
-        '@type': 'City',
-        name: 'Bellegarde-sur-Valserine',
-        containedIn: { '@type': 'AdministrativeArea', name: 'Ain' },
-      },
-      {
-        '@type': 'City',
-        name: 'Ambérieu-en-Bugey',
-        containedIn: { '@type': 'AdministrativeArea', name: 'Ain' },
-      },
-      {
-        '@type': 'City',
-        name: 'Gex',
-        containedIn: { '@type': 'AdministrativeArea', name: 'Ain' },
-      },
-      {
-        '@type': 'City',
-        name: 'Ferney-Voltaire',
-        containedIn: { '@type': 'AdministrativeArea', name: 'Ain' },
-      },
-      {
-        '@type': 'City',
-        name: 'Trévoux',
-        containedIn: { '@type': 'AdministrativeArea', name: 'Ain' },
-      },
-      {
-        '@type': 'AdministrativeArea',
-        name: 'Ain',
-        sameAs: 'https://www.wikidata.org/wiki/Q12779',
-      },
-      {
         '@type': 'GeoCircle',
         geoMidpoint: {
           '@type': 'GeoCoordinates',
@@ -134,18 +90,15 @@ export async function LocalBusinessStructuredData() {
           longitude: siteConfig.geoLongitude,
         },
         geoRadius: '50000',
-        description: "Bourg-en-Bresse et agglomération, rayon 50 km dans l'Ain",
+        description: "Bourg-en-Bresse et agglomération, rayon 50km dans l'Ain",
       },
     ],
 
     serviceType: [
       'Installation Panneaux Solaires Bourg-en-Bresse',
       'Installation Photovoltaïque Bourg-en-Bresse',
-      'Installation Panneaux Solaires Ain',
       'Maintenance Panneaux Solaires Ain',
       'Dépannage Panneaux Solaires Bourg-en-Bresse',
-      'Raccordement Enedis Photovoltaïque',
-      'Autoconsommation Solaire Ain',
     ],
 
     sameAs: [siteConfig.socialFacebook, siteConfig.socialInstagram].filter(
@@ -168,7 +121,7 @@ export async function LocalBusinessStructuredData() {
 
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: 'Services Installation Panneaux Solaires',
+      name: 'Services Panneaux Solaires',
       itemListElement: [
         {
           '@type': 'Offer',
@@ -176,7 +129,7 @@ export async function LocalBusinessStructuredData() {
             '@type': 'Service',
             name: 'Installation Panneaux Solaires 3 kWc',
             description:
-              'Installation complète de panneaux solaires 3 kWc pour particuliers, certifiée RGE QualiPV',
+              'Installation complète de panneaux solaires 3 kWc pour particuliers',
           },
         },
         {
@@ -185,7 +138,7 @@ export async function LocalBusinessStructuredData() {
             '@type': 'Service',
             name: 'Installation Panneaux Solaires 6 kWc',
             description:
-              'Installation complète de panneaux solaires 6 kWc pour maisons familiales, certifiée RGE QualiPV',
+              'Installation complète de panneaux solaires 6 kWc pour maisons familiales',
           },
         },
         {
@@ -194,25 +147,7 @@ export async function LocalBusinessStructuredData() {
             '@type': 'Service',
             name: 'Installation Panneaux Solaires 9 kWc',
             description:
-              'Installation complète de panneaux solaires 9 kWc pour grandes maisons et professionnels, certifiée RGE QualiPV',
-          },
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Étude de Faisabilité Gratuite',
-            description:
-              'Analyse technique gratuite de votre toiture et simulation de production photovoltaïque personnalisée',
-          },
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Démarches Administratives Complètes',
-            description:
-              'Gestion intégrale des démarches : déclaration mairie, Enedis, Consuel, contrat injection EDF OA',
+              'Installation complète de panneaux solaires 9 kWc pour grandes maisons et professionnels',
           },
         },
       ],
