@@ -66,7 +66,7 @@ export function PageHeader({
       )}
 
       {/* Bottom gradient fade into next section */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-32 bg-linear-to-t from-black/25 to-transparent" />
+   <div className="h-px w-full bg-linear-to-r from-blue-400/10 via-blue-400/40 to-blue-400/10 dark:via-blue-400/40" />
     </section>
   );
 }
