@@ -81,7 +81,7 @@ function CinematicSlide({
           alt={alt}
           fill
           priority={index === 0}
-          quality={100}
+          quality={85}
           className="object-cover object-center"
         />
 
@@ -129,16 +129,24 @@ export function HeaderBackground({
 }: HeaderBackgroundProps) {
   return (
     <div className="absolute inset-0 overflow-hidden bg-black perspective-[1800px]">
-      {images.map((image, index) => (
-        <CinematicSlide
-          key={image}
-          image={image}
-          alt={imageAlts?.[index] ?? `slide ${index}`}
-          index={index}
-          isActive={currentSlide === index}
-        />
-      ))}
-
+      {images.map((image, index) => {
+        if (
+          index !== currentSlide &&
+          index !== (currentSlide + 1) % images.length
+        ) {
+          return null;
+        }
+      
+        return (
+          <CinematicSlide
+            key={image}
+            image={image}
+            alt={imageAlts?.[index] ?? `slide ${index}`}
+            index={index}
+            isActive={currentSlide === index}
+          />
+        );
+      })}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
