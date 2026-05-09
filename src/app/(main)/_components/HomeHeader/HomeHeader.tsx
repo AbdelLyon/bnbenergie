@@ -1,7 +1,6 @@
 import { getPageHeader, getStats } from "@/lib/payload-queries";
 import { HomeHeaderClient } from "./HomeHeaderClient";
 import type { Media } from "@/payload-types";
-import { preload } from "react-dom";
 
 const fallbackHeroImages = [
   "https://images.unsplash.com/photo-1463173904305-ba479d2123b7?q=80&w=2070&auto=format&fit=crop",
