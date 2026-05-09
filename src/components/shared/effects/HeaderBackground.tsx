@@ -80,7 +80,8 @@ function CinematicSlide({
           src={image}
           alt={alt}
           fill
-          priority={index === 0}
+          priority={isActive}
+          loading={isActive ? "eager" : "lazy"}
           quality={85}
           className="object-cover object-center"
         />
@@ -139,7 +140,7 @@ export function HeaderBackground({
       
         return (
           <CinematicSlide
-            key={image}
+            key={`${image}-${index}`}
             image={image}
             alt={imageAlts?.[index] ?? `slide ${index}`}
             index={index}
