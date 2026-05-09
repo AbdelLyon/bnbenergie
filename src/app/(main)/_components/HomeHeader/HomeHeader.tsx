@@ -40,11 +40,6 @@ export async function HomeHeader() {
     }
   }
 
-  if (heroImages[0]) {
-    const encodedUrl = encodeURIComponent(heroImages[0]);
-    preload(`/_next/image?url=${encodedUrl}&w=828&q=80`, { as: "image" });
-  }
-
   const data = {
     heroImages,
     heroImageAlts,
