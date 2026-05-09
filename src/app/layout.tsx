@@ -1,11 +1,6 @@
 import './globals.css';
 import { Inter, Montserrat } from 'next/font/google';
 import type { Metadata, Viewport } from 'next';
-import { SITE_CONFIG } from '@/config/site';
-
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_CONFIG.url.replace(/\/$/, '')),
-};
 
 const inter = Inter({
   subsets: ['latin'],
