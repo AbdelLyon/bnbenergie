@@ -1,6 +1,6 @@
 import './globals.css';
 import { Inter, Montserrat } from 'next/font/google';
-import type { Metadata, Viewport } from 'next';
+import type { Viewport } from 'next';
 
 const inter = Inter({
   subsets: ['latin'],
