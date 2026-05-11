@@ -98,7 +98,7 @@ export function Title({ staticText, animatedText, subtitle }: TitleProps) {
       {subtitle && (
         <Heading
           as="h2"
-          className=" mt-3 md:mt-4 max-w-3xl text-center text-[clamp(0.9rem,1.6vw,1.05rem)] opacity-90 text-white/80 font-semibold uppercase tracking-wide"
+          className="font-display mt-3 md:mt-4 max-w-3xl text-[clamp(0.8rem,1.5vw,1rem)] text-white/70 font-semibold"
         >
           {subtitle}
         </Heading>

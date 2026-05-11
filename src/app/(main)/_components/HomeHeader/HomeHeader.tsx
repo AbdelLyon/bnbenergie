@@ -43,8 +43,6 @@ export async function HomeHeader() {
     heroImages,
     heroImageAlts,
     chip: header?.badge || "Certifié RGE · Installateur solaire",
-    seoTitle:
-      "Installateur Panneaux Solaires Photovoltaïques à Bourg-en-Bresse (Ain 01) — BNB Énergie",
     title: header?.title
       ? header.title.split(" ")
       : ["BNB ÉNERGIE - ", "Installateur Solaire"],
