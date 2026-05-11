@@ -58,7 +58,6 @@ export default function CityPageContent({
             staticText="BNB ÉNERGIE"
             animatedText={cityName}
             subtitle={tagline}
-            seoTitle={`Installateur panneaux solaires à Bourg-en-Bresse (Ain 01) et à ${cityName} | Devis gratuit`}
           />
 
           <CTAGroupButtons

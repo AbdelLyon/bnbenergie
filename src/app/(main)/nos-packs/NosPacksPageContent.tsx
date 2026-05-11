@@ -37,7 +37,6 @@ export default function NosPacksPageContent({
           <Title
             staticText={header?.title?.split(" ")[0] || "Nos"}
             animatedText={header?.title?.split(" ")[1] || "Packs"}
-            seoTitle="Des Solutions Adaptées à Vos Besoins"
             subtitle={header?.description || ""}
           />
 

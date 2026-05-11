@@ -114,7 +114,6 @@ export default function FAQPageContent({
               staticText={header?.title.split(" ")[0] || "Questions"}
               animatedText={header?.title.split(" ")[1] || "Fréquentes"}
               subtitle={header?.description || ""}
-              seoTitle="FAQ panneaux solaires à Bourg-en-Bresse (Ain 01) — installation RGE QualiPV dans tout l’Ain (01). Devis gratuit 48h."
             />
 
             <CTAGroupButtons

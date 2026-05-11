@@ -43,7 +43,6 @@ export default function ZonesPageContent({
               staticText={header?.title.split(" ")[0] || "Zones"}
               animatedText={header?.title.split(" ")[1] || "d'Intervention"}
               subtitle={header?.description || ""}
-              seoTitle="Installateur panneaux solaires à Bourg-en-Bresse (Ain 01) et dans tout le département de l’Ain (01) | Devis gratuit"
             />
 
             <CTAGroupButtons

@@ -46,7 +46,6 @@ export default function GarantiesPageContent({
             staticText={header?.title.split(" ")[0] || "Nos"}
             animatedText={header?.title.split(" ")[1] || "Garanties"}
             subtitle={header?.description || ""}
-            seoTitle="Garanties Panneaux Solaires Photovoltaïques — Certification RGE QualiPV & Garantie Décennale | BNB Énergie"
           />
 
           <CTAGroupButtons

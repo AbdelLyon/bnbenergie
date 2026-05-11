@@ -80,7 +80,6 @@ export default function ContactPageContent({
             staticText={header?.title.split("-")?.[0] || "Contactez"}
             animatedText={header?.title.split("-")?.[1] || "-nous"}
             subtitle={header?.description ?? ""}
-            seoTitle="Contact installateur panneaux solaires à Bourg-en-Bresse (Ain 01) – intervention dans tout l’Ain (01). Devis gratuit 48h."
           />
           <CTAGroupButtons
             align="center"

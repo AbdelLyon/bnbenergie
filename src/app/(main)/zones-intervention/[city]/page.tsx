@@ -36,9 +36,9 @@ export async function generateMetadata({
 
   const canonicalUrl = `${BASE_URL}/zones-intervention/${city}`;
 
-  const title = `Installateur Solaire Bourg-en-Bresse & ${cityName} (Ain 01) | Devis Gratuit`;
+  const title = `Installateur panneaux solaires à Bourg-en-Bresse (Ain 01) | Devis 48h`;
 
-  const description = `Panneaux solaires & photovoltaïques à Bourg-en-Bresse (et dans ${cityName}, Ain (01)). Installateur RGE QualiPV local, devis gratuit 48h, installation clé en main et garantie décennale.`;
+  const description = `Devis gratuit 48h pour panneaux solaires à Bourg-en-Bresse (Ain 01) et à ${cityName} (Ain 01). Installateur RGE QualiPV, pose clé en main.`;
 
   return {
     title,

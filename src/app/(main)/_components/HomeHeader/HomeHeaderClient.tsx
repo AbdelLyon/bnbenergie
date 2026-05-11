@@ -10,8 +10,6 @@ import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
 interface HeaderData {
   chip?: string;
   title: string[];
-  seoTitle: string;
-  subtitle: string;
   description: string;
   cta1: string;
   cta2: string;
@@ -46,14 +44,17 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
       backgroundVariant="clean"
     >
       <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white backdrop-blur-sm">
-        <Zap className="h-3 w-3 text-secondary-300" fill="currentColor" strokeWidth={0} />
+        <Zap
+          className="h-3 w-3 text-secondary-300"
+          fill="currentColor"
+          strokeWidth={0}
+        />
         {data.chip}
       </span>
 
       <Title
         staticText={data.title[0] ?? "BNB"}
         animatedText={data.title[1] ?? "ÉNERGIE"}
-        seoTitle={data.seoTitle}
         subtitle={data.description}
       />
 

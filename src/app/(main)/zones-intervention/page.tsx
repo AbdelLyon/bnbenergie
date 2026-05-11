@@ -12,10 +12,10 @@ export const revalidate = 60;
 
 export function generateMetadata(): Metadata {
   return generateMetadataHelper({
-    title: "Installateur Panneaux Solaires Bourg-en-Bresse & Ain (01) | 50 km",
+    title: "Installateur panneaux solaires à Bourg-en-Bresse (01) | 50 km",
 
     description:
-      "Installateur panneaux solaires à Bourg-en-Bresse (01) puis dans tout l'Ain (01) : Oyonnax, Bellegarde, Gex, Ferney-Voltaire. Déplacement gratuit. Certifié RGE QualiPV.",
+      "Installateur panneaux solaires à Bourg-en-Bresse (Ain 01) puis dans tout l’Ain : Oyonnax, Bellegarde, Gex, Ferney-Voltaire. Devis gratuit 48h.",
 
     path: "/zones-intervention",
     keywords: [
