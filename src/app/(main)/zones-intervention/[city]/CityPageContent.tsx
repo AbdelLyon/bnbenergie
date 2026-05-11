@@ -55,11 +55,10 @@ export default function CityPageContent({
           </span>
 
           <Title
-            staticText="SOLAIRE"
+            staticText="BNB ÉNERGIE"
             animatedText={cityName}
             subtitle={tagline}
-            //todo ajouter seo title
-            seoTitle=""
+            seoTitle={`Installateur panneaux solaires à Bourg-en-Bresse (Ain 01) et à ${cityName} | Devis gratuit`}
           />
 
           <CTAGroupButtons
@@ -122,7 +121,9 @@ export default function CityPageContent({
                     className={`bg-linear-to-r ${accentClass} bg-clip-text text-transparent`}
                   >
                     {cityName}
-                  </span>
+                  </span>{" "}
+                  en <b>Ain (01)</b> — expert basé à <b>Bourg-en-Bresse</b>{" "}
+                  (01).
                 </Heading>
                 <div className="space-y-5 text-neutral-700 dark:text-neutral-300 leading-relaxed text-base">
                   {paragraphs.map((p, i) => (

@@ -43,8 +43,7 @@ export default function ServicesPageContent({
             staticText={header?.title.split(" ")[0] || "Nos"}
             animatedText={header?.title.split(" ")[1] || "Services"}
             subtitle={header?.description || ""}
-            //todo ajouter seo title
-            seoTitle=""
+            seoTitle="Installateur panneaux solaires à Bourg-en-Bresse (Ain 01) — service complet dans l’Ain (01). Devis gratuit 48h."
           />
 
           <CTAGroupButtons

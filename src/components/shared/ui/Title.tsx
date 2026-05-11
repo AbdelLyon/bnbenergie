@@ -69,7 +69,12 @@ function splitFirst(text: string) {
   return { first: text[0] ?? "", rest: text.slice(1) };
 }
 
-export function Title({ staticText, animatedText, seoTitle, subtitle }: TitleProps) {
+export function Title({
+  staticText,
+  animatedText,
+  seoTitle,
+  subtitle,
+}: TitleProps) {
   const isDesktop = useIsDesktop();
   const upper = animatedText.toUpperCase();
   const animated = useTypewriter(animatedText, isDesktop);
@@ -81,15 +86,11 @@ export function Title({ staticText, animatedText, seoTitle, subtitle }: TitlePro
   return (
     <div className="flex flex-col items-center text-center">
       <h1 className="font-display font-black uppercase leading-[0.9] tracking-tight [text-shadow:0_1px_8px_rgba(0,0,0,0.4)]">
-        {seoTitle && <span className="sr-only">{seoTitle}</span>}
         <span className="inline-block text-[clamp(2rem,5.2vw,4rem)]">
           <span>
             <span className="text-secondary">{sf}</span>
             <span className="text-white">{sr}</span>
-          </span>
-
-         {" "}
-
+          </span>{" "}
           <span className="text-white">
             <span className="text-primary">{af}</span>
             {ar}
@@ -100,9 +101,18 @@ export function Title({ staticText, animatedText, seoTitle, subtitle }: TitlePro
         </span>
       </h1>
 
-      {subtitle && (
+      {seoTitle && (
         <Heading
           as="h2"
+          className=" mt-3 md:mt-4 max-w-3xl text-center text-sm md:text-base opacity-90 text-white/80 font-semibold uppercase tracking-wide"
+        >
+          {seoTitle}
+        </Heading>
+      )}
+
+      {subtitle && (
+        <Heading
+          as="h3"
           className="mt-4 md:text-xl opacity-90 text-white/70 font-medium lowercase!"
         >
           {subtitle}

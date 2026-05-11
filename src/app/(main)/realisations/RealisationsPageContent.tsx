@@ -77,8 +77,7 @@ export default function RealisationsPageContent({
             <Title
               staticText={header?.title.split(" ")[0] || "Nos"}
               animatedText={header?.title.split(" ")[1] || "Réalisations"}
-              //todo ajouter seo title
-              seoTitle=""
+              seoTitle="Réalisations panneaux solaires à Bourg-en-Bresse (Ain 01) — projets dans l’Ain (01). Installateur RGE QualiPV. Devis gratuit 48h."
               subtitle={header?.description || ""}
             />
 

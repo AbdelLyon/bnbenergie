@@ -1,14 +1,12 @@
-import { getInterventionZones, getSiteSettings } from '@/lib/payload-queries';
-import { BreadcrumbStructuredData } from '@/components/shared/SEO/StructuredData';
-import { SITE_CONFIG } from '@/config/site';
-import { slugify } from '@/utils/slugify';
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import CityPageContent from './CityPageContent';
-
+import { getInterventionZones, getSiteSettings } from "@/lib/payload-queries";
+import { BreadcrumbStructuredData } from "@/components/shared/SEO/StructuredData";
+import { SITE_CONFIG } from "@/config/site";
+import { slugify } from "@/utils/slugify";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import CityPageContent from "./CityPageContent";
 
 const BASE_URL = SITE_CONFIG.url.replace(/\/$/, "");
-
 
 async function findCityName(slug: string): Promise<string | undefined> {
   const zones = await getInterventionZones();
@@ -33,42 +31,45 @@ export async function generateMetadata({
   const cityName = await findCityName(city);
 
   if (!cityName) {
-    return { title: 'Zone non trouvée' };
+    return { title: "Zone non trouvée" };
   }
 
   const canonicalUrl = `${BASE_URL}/zones-intervention/${city}`;
 
+  const title = `Installateur Solaire Bourg-en-Bresse & ${cityName} (Ain 01) | Devis Gratuit`;
 
-  const title = `Installateur Solaire ${cityName} (Ain) | Devis Gratuit`;
-
-
-  const description = `Panneaux solaires & photovoltaïques à ${cityName}, Ain (01). Installateur RGE QualiPV local, devis gratuit 48h, installation clé en main et garantie décennale.`;
+  const description = `Panneaux solaires & photovoltaïques à Bourg-en-Bresse (et dans ${cityName}, Ain (01)). Installateur RGE QualiPV local, devis gratuit 48h, installation clé en main et garantie décennale.`;
 
   return {
     title,
     description,
     keywords: [
+      `installateur panneaux solaires Bourg-en-Bresse`,
       `installateur panneaux solaires ${cityName}`,
+      `installateur panneaux photovoltaïques Ain 01`,
       `installateur panneaux photovoltaïques ${cityName}`,
+      `installation solaire Ain (01)`,
       `installation solaire ${cityName}`,
+      `entreprise RGE Bourg-en-Bresse`,
       `entreprise RGE ${cityName}`,
+      `devis panneaux solaires Bourg-en-Bresse gratuit`,
       `devis panneaux solaires ${cityName} gratuit`,
     ],
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: `Installateur Panneaux Solaires ${cityName} | BNB ÉNERGIE`,
-      description: `Installateur RGE QualiPV local à ${cityName}. Installation clé en main, autoconsommation et économies d'énergie dans l'Ain (01).`,
+      title: `Installateur Panneaux Solaires Bourg-en-Bresse & ${cityName} | BNB ÉNERGIE`,
+      description: `Installateur RGE QualiPV à Bourg-en-Bresse (et à ${cityName}, Ain (01)). Installation clé en main, autoconsommation et économies d'énergie dans l'Ain (01).`,
       url: canonicalUrl,
-      type: 'website',
-      locale: 'fr_FR',
+      type: "website",
+      locale: "fr_FR",
       siteName: SITE_CONFIG.name,
     },
     twitter: {
-      card: 'summary_large_image',
-      title: `Installateur Panneaux Solaires ${cityName} | BNB ÉNERGIE`,
-      description: `Installateur RGE QualiPV local à ${cityName}. Installation clé en main, autoconsommation et économies d'énergie dans l'Ain (01).`,
+      card: "summary_large_image",
+      title: `Installateur Panneaux Solaires Bourg-en-Bresse & ${cityName} | BNB ÉNERGIE`,
+      description: `Installateur RGE QualiPV à Bourg-en-Bresse (et à ${cityName}, Ain (01)). Installation clé en main, autoconsommation et économies d'énergie dans l'Ain (01).`,
     },
     robots: {
       index: true,
@@ -76,9 +77,9 @@ export async function generateMetadata({
       googleBot: {
         index: true,
         follow: true,
-        'max-snippet': -1,
-        'max-image-preview': 'large',
-        'max-video-preview': -1,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+        "max-video-preview": -1,
       },
     },
   };
@@ -99,9 +100,8 @@ export default async function CityPage({
   }
 
   const cityGroup = zones.find((zone) =>
-    zone.communes.some((c) => c.name === cityName)
+    zone.communes.some((c) => c.name === cityName),
   );
-
 
   const relatedCities = (cityGroup?.communes ?? [])
     .filter((c) => c.name !== cityName)
@@ -112,15 +112,20 @@ export default async function CityPage({
     <>
       <CityPageContent
         cityName={cityName}
-        zoneName={cityGroup?.zone ?? ''}
+        zoneName={cityGroup?.zone ?? ""}
         siteSettings={siteSettings}
         relatedCities={relatedCities}
       />
-      <BreadcrumbStructuredData items={[
-        { name: 'Accueil', path: '/' },
-        { name: "Zones d'Intervention", path: '/zones-intervention' },
-        { name: `Installateur Solaire ${cityName}`, path: `/zones-intervention/${city}` },
-      ]} />
+      <BreadcrumbStructuredData
+        items={[
+          { name: "Accueil", path: "/" },
+          { name: "Zones d'Intervention", path: "/zones-intervention" },
+          {
+            name: `Installateur Solaire ${cityName}`,
+            path: `/zones-intervention/${city}`,
+          },
+        ]}
+      />
     </>
   );
 }

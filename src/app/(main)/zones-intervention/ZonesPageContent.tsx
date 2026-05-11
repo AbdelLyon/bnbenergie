@@ -43,8 +43,7 @@ export default function ZonesPageContent({
               staticText={header?.title.split(" ")[0] || "Zones"}
               animatedText={header?.title.split(" ")[1] || "d'Intervention"}
               subtitle={header?.description || ""}
-              //todo ajouter seo title
-              seoTitle=""
+              seoTitle="Installateur panneaux solaires à Bourg-en-Bresse (Ain 01) et dans tout le département de l’Ain (01) | Devis gratuit"
             />
 
             <CTAGroupButtons
@@ -112,7 +111,7 @@ export default function ZonesPageContent({
             <div className="relative z-10 text-center max-w-4xl mx-auto">
               <IntroSection
                 title="Un Installateur Local au Plus Proche de Vous"
-                description="Basés à Bourg-en-Bresse, nous intervenons dans tout le département de l'Ain pour vous garantir un service de proximité, réactif et de qualité. Notre ancrage local nous permet d'assurer un suivi personnalisé et une maintenance rapide de vos installations."
+                description="Basés à Bourg-en-Bresse, notre équipe intervient dans tout le département de l'Ain (01) pour vous garantir un service de proximité, réactif et de qualité. Avec un ancrage local à Bourg-en-Bresse, nous assurons un suivi personnalisé et une maintenance rapide de vos installations."
                 className="mb-0"
               />
             </div>

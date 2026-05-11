@@ -45,8 +45,7 @@ export default function AidesPageContent({
             staticText={header?.title.split(" ")[0] || "Aides"}
             animatedText={header?.title.split(" ")[1] || "Financement"}
             subtitle={header?.description || ""}
-            //todo ajouter seo title
-            seoTitle=""
+            seoTitle="Aides panneaux solaires 2026 à Bourg-en-Bresse (Ain 01) — dispositifs dans tout l’Ain (01). Prime autoconsommation, TVA 5,5 %, éco-PTZ. Devis gratuit 48h."
           />
 
           <CTAGroupButtons
