@@ -14,10 +14,10 @@ export function generateMetadata(): Metadata {
   return {
     ...generateMetadataHelper({
       title:
-        "Installateur panneaux solaires à Bourg-en-Bresse (Ain 01) | BNB Énergie",
+        "Installateur panneaux solaires à Bourg-en-Bresse (Ain 01) BNB Énergie",
 
       description:
-        "Installateur RGE QualiPV à Bourg-en-Bresse et dans l'Ain (01). Devis gratuit sous 48h, installation photovoltaïque clé en main. Garantie décennale. Appelez le 07 81 25 11 25.",
+        "Installateur RGE QualiPV à Bourg-en-Bresse et dans l'Ain (01). Devis gratuit sous 48h, installation photovoltaïque. Garantie décennale. Appelez 07 81 25 11 25",
 
       path: "/",
 

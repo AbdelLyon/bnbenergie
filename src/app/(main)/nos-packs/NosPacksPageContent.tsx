@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   PageHeader,
@@ -8,15 +8,15 @@ import {
   StatsGrid,
   IntroSection,
   CTASection,
-} from '@/components';
-import { CTAGroupButtons } from '@/components/shared/ui/CTAGroupButtons';
-import { ArrowRight, Phone } from 'lucide-react';
+} from "@/components";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
+import { ArrowRight, Phone } from "lucide-react";
 
 import type {
   PageHeader as PageHeaderType,
   SiteSetting,
-} from '@/payload-types';
-import { ReactNode } from 'react';
+} from "@/payload-types";
+import { ReactNode } from "react";
 
 interface NosPacksPageContentProps {
   header: PageHeaderType | null;
@@ -35,9 +35,9 @@ export default function NosPacksPageContent({
       <PageHeader variant="simple" height="medium">
         <div className="flex max-w-6xl flex-col items-center gap-6">
           <Title
-            staticText={header?.title?.split(' ')[0] || 'Nos'}
-            animatedText={header?.title?.split(' ')[1] || 'Packs'}
-            subtitle={header?.description || ''}
+            staticText={header?.title?.split(" ")[0] || "Nos"}
+            animatedText={header?.title?.split(" ")[1] || "Packs"}
+            subtitle={header?.description || ""}
           />
 
           <CTAGroupButtons
@@ -45,19 +45,18 @@ export default function NosPacksPageContent({
             animated
             items={[
               {
-                label: 'Devis gratuit',
-                href: '/contact#contact-form',
-                variant: 'default',
-                size: 'sm',
+                label: "Devis gratuit",
+                href: "/contact#contact-form",
+                variant: "default",
+                size: "sm",
                 iconRight: <ArrowRight className="size-4" />,
-                className:
-                  'bg-gradient-to-br from-primary-600 via-primary-600 to-primary-400',
+                className: "bg-gradient-to-br from-primary-200 to-cyan-500",
               },
               {
-                label: '07 81 25 11 25',
-                href: 'tel:0781251125',
-                variant: 'outline',
-                size: 'sm',
+                label: "07 81 25 11 25",
+                href: "tel:0781251125",
+                variant: "outline",
+                size: "sm",
                 iconLeft: <Phone className="size-4" />,
               },
             ]}
@@ -70,22 +69,22 @@ export default function NosPacksPageContent({
           <StatsGrid
             stats={[
               {
-                value: 'Pack 3 kWc',
-                label: 'Budget Maîtrisé',
-                icon: 'Zap',
-                gradient: 'from-blue-500 to-cyan-500',
+                value: "Pack 3 kWc",
+                label: "Budget Maîtrisé",
+                icon: "Zap",
+                gradient: "from-blue-500 to-cyan-500",
               },
               {
-                value: 'Pack 6 kWc',
-                label: 'Maison Familiale',
-                icon: 'Home',
-                gradient: 'from-green-500 to-emerald-500',
+                value: "Pack 6 kWc",
+                label: "Maison Familiale",
+                icon: "Home",
+                gradient: "from-green-500 to-emerald-500",
               },
               {
-                value: 'Pack 9 kWc',
-                label: 'Performance Max',
-                icon: 'TrendingUp',
-                gradient: 'from-orange-500 to-yellow-500',
+                value: "Pack 9 kWc",
+                label: "Performance Max",
+                icon: "TrendingUp",
+                gradient: "from-orange-500 to-yellow-500",
               },
             ]}
           />
@@ -96,7 +95,7 @@ export default function NosPacksPageContent({
                 className="absolute inset-0"
                 style={{
                   backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                  backgroundSize: '32px 32px',
+                  backgroundSize: "32px 32px",
                 }}
               />
             </div>
@@ -115,10 +114,10 @@ export default function NosPacksPageContent({
           <CTASection
             title="Prêt à Investir dans l'Énergie Solaire ?"
             description="Demandez votre étude gratuite et recevez votre devis personnalisé sous 48h"
-            phoneNumber={siteSettings.contactPhone || '07 81 25 11 25'}
+            phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
             primaryButton={{
-              text: 'Obtenir mon devis',
-              href: '/contact#contact-form',
+              text: "Obtenir mon devis",
+              href: "/contact#contact-form",
             }}
             variant="gradient"
           />

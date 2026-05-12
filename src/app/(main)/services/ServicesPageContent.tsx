@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   StatsGrid,
@@ -11,14 +11,14 @@ import {
   FeatureCard,
   CTASection,
   ServiceStep,
-} from '@/components';
-import { CTAGroupButtons } from '@/components/shared/ui/CTAGroupButtons';
-import { ArrowRight, Phone } from 'lucide-react';
+} from "@/components";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
+import { ArrowRight, Phone } from "lucide-react";
 import type {
   Service,
   PageHeader as PageHeaderType,
   SiteSetting,
-} from '@/payload-types';
+} from "@/payload-types";
 
 interface ServicesPageContentProps {
   services: Service[];
@@ -40,9 +40,9 @@ export default function ServicesPageContent({
       <PageHeader variant="simple" height="medium">
         <div className="flex max-w-6xl flex-col items-center gap-6">
           <Title
-            staticText={header?.title.split(' ')[0] || 'Nos'}
-            animatedText={header?.title.split(' ')[1] || 'Services'}
-            subtitle={header?.description || ''}
+            staticText={header?.title.split(" ")[0] || "Nos"}
+            animatedText={header?.title.split(" ")[1] || "Services"}
+            subtitle={header?.description || ""}
           />
 
           <CTAGroupButtons
@@ -50,19 +50,18 @@ export default function ServicesPageContent({
             animated
             items={[
               {
-                label: 'Devis gratuit',
-                href: '/contact#contact-form',
-                variant: 'default',
-                size: 'sm',
+                label: "Devis gratuit",
+                href: "/contact#contact-form",
+                variant: "default",
+                size: "sm",
                 iconRight: <ArrowRight className="size-4" />,
-                className:
-                  'bg-gradient-to-br from-primary-600 via-primary-600 to-primary-400',
+                className: "bg-gradient-to-br from-primary-200 to-cyan-500",
               },
               {
-                label: '07 81 25 11 25',
-                href: 'tel:0781251125',
-                variant: 'outline',
-                size: 'sm',
+                label: "07 81 25 11 25",
+                href: "tel:0781251125",
+                variant: "outline",
+                size: "sm",
                 iconLeft: <Phone className="size-4" />,
               },
             ]}
@@ -77,7 +76,7 @@ export default function ServicesPageContent({
               value: step.number,
               label: step.title,
               icon: step.icon,
-              gradient: 'from-blue-500 to-cyan-500',
+              gradient: "from-blue-500 to-cyan-500",
             }))}
           />
 
@@ -114,7 +113,7 @@ export default function ServicesPageContent({
                 description={step.description}
                 items={
                   step.highlights?.map(
-                    (h: { text?: string }) => h.text || ''
+                    (h: { text?: string }) => h.text || "",
                   ) || []
                 }
                 duration={step.duration}
@@ -148,10 +147,10 @@ export default function ServicesPageContent({
           <CTASection
             title="Prêt à Passer à l'Énergie Solaire ?"
             description="Demandez votre étude gratuite et recevez votre devis personnalisé sous 48h"
-            phoneNumber={siteSettings.contactPhone || '07 81 25 11 25'}
+            phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
             primaryButton={{
-              text: 'Obtenir un devis',
-              href: '/contact#contact-form',
+              text: "Obtenir un devis",
+              href: "/contact#contact-form",
             }}
             variant="gradient"
           />

@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState } from "react";
 
 import {
   PageHeader,
@@ -11,26 +11,26 @@ import {
   StatCard,
   ProjectCard,
   CTASection,
-} from '@/components';
-import { CTAGroupButtons } from '@/components/shared/ui/CTAGroupButtons';
-import { ArrowRight, Phone } from 'lucide-react';
-import { ReviewsSection } from '@/components/shared/ui/ReviewsSection';
+} from "@/components";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
+import { ArrowRight, Phone } from "lucide-react";
+import { ReviewsSection } from "@/components/shared/ui/ReviewsSection";
 
 import type {
   Project,
   PageHeader as PageHeaderType,
   SiteSetting,
-} from '@/payload-types';
+} from "@/payload-types";
 
 const STATS = [
-  { value: '100+', label: 'Installations Réalisées', icon: 'CircleCheck' },
-  { value: '15+', label: "Ans d'Expérience", icon: 'Award' },
-  { value: '100%', label: 'Clients Satisfaits', icon: 'Star' },
+  { value: "100+", label: "Installations Réalisées", icon: "CircleCheck" },
+  { value: "15+", label: "Ans d'Expérience", icon: "Award" },
+  { value: "100%", label: "Clients Satisfaits", icon: "Star" },
 ] as const;
 
 const extractKw = (value?: string | number | null): number | null => {
   if (!value) return null;
-  if (typeof value === 'number') return value;
+  if (typeof value === "number") return value;
 
   const match = value.match(/([\d.]+)/);
   return match ? Number(match[1]) : null;
@@ -47,17 +47,17 @@ export default function RealisationsPageContent({
   header,
   siteSettings,
 }: RealisationsPageContentProps) {
-  const POWERS = ['all', ...projects.map((project) => project.power)] as const;
+  const POWERS = ["all", ...projects.map((project) => project.power)] as const;
   type PowerFilter = (typeof POWERS)[number];
 
-  const [selectedPower, setSelectedPower] = useState<PowerFilter>('all');
+  const [selectedPower, setSelectedPower] = useState<PowerFilter>("all");
 
   const handleSelectPower = (power: PowerFilter) => {
     setSelectedPower(power);
   };
 
   const filteredProjects = useMemo(() => {
-    if (selectedPower === 'all') return projects;
+    if (selectedPower === "all") return projects;
 
     const selectedKw = extractKw(selectedPower);
     if (!selectedKw) return projects;
@@ -74,9 +74,9 @@ export default function RealisationsPageContent({
       <PageHeader variant="simple" height="medium">
         <div className="flex max-w-6xl flex-col items-center gap-6">
           <Title
-            staticText={header?.title.split(' ')[0] || 'Nos'}
-            animatedText={header?.title.split(' ')[1] || 'Réalisations'}
-            subtitle={header?.description || ''}
+            staticText={header?.title.split(" ")[0] || "Nos"}
+            animatedText={header?.title.split(" ")[1] || "Réalisations"}
+            subtitle={header?.description || ""}
           />
 
           <CTAGroupButtons
@@ -84,19 +84,18 @@ export default function RealisationsPageContent({
             animated
             items={[
               {
-                label: 'Devis gratuit',
-                href: '/contact#contact-form',
-                variant: 'default',
-                size: 'sm',
+                label: "Devis gratuit",
+                href: "/contact#contact-form",
+                variant: "default",
+                size: "sm",
                 iconRight: <ArrowRight className="size-4" />,
-                className:
-                  'bg-gradient-to-br from-primary-600 via-primary-600 to-primary-400',
+                className: "bg-gradient-to-br from-primary-200 to-cyan-500",
               },
               {
-                label: '07 81 25 11 25',
-                href: 'tel:0781251125',
-                variant: 'outline',
-                size: 'sm',
+                label: "07 81 25 11 25",
+                href: "tel:0781251125",
+                variant: "outline",
+                size: "sm",
                 iconLeft: <Phone className="size-4" />,
               },
             ]}
@@ -132,11 +131,11 @@ export default function RealisationsPageContent({
                 className={`rounded-full px-5 py-2 text-sm font-bold transition-all
                   ${
                     selectedPower === power
-                      ? 'bg-primary-500 text-white'
-                      : 'bg-neutral-200 hover:bg-neutral-200 dark:bg-content1'
+                      ? "bg-primary-500 text-white"
+                      : "bg-neutral-200 hover:bg-neutral-200 dark:bg-content1"
                   }`}
               >
-                {power === 'all' ? 'Tous les projets' : power}
+                {power === "all" ? "Tous les projets" : power}
               </button>
             ))}
           </div>
@@ -172,10 +171,10 @@ export default function RealisationsPageContent({
           <CTASection
             title="Prêt à Passer à l'Énergie Solaire ?"
             description="Demandez votre étude gratuite et recevez votre devis personnalisé sous 48h"
-            phoneNumber={siteSettings.contactPhone || '07 81 25 11 25'}
+            phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
             primaryButton={{
-              text: 'Obtenir un devis',
-              href: '/contact#contact-form',
+              text: "Obtenir un devis",
+              href: "/contact#contact-form",
             }}
             variant="gradient"
           />
