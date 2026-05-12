@@ -57,7 +57,7 @@ export default function AidesPageContent({
                 variant: "default",
                 size: "sm",
                 iconRight: <ArrowRight className="size-4" />,
-                className: "bg-gradient-to-r from-secondary to-secondary-400",
+                className: "bg-gradient-to-r from-primary to-primary-700",
               },
               {
                 label: "07 81 25 11 25",

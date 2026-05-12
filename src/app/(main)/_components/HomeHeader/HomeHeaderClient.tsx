@@ -68,8 +68,7 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
             variant: "default",
             size: "sm",
             iconRight: <ArrowRight className="size-4" />,
-            className:
-              "group rounded-full bg-secondary text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:text-base px-4",
+            className: "bg-gradient-to-r from-primary to-primary-700",
           },
           {
             label: data.cta2,
