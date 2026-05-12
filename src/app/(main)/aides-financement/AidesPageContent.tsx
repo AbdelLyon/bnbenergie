@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   AidCard,
@@ -10,15 +10,15 @@ import {
   SectionContainer,
   Title,
   Heading,
-} from "@/components";
-import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
-import { ArrowRight, Phone } from "lucide-react";
-import { StatsGrid } from "@/components/shared/ui/StatsGrid";
+} from '@/components';
+import { CTAGroupButtons } from '@/components/shared/ui/CTAGroupButtons';
+import { ArrowRight, Phone } from 'lucide-react';
+import { StatsGrid } from '@/components/shared/ui/StatsGrid';
 import type {
   FinancialAid,
   PageHeader as PageHeaderType,
   SiteSetting,
-} from "@/payload-types";
+} from '@/payload-types';
 
 interface AidesPageContentProps {
   aids: {
@@ -42,9 +42,9 @@ export default function AidesPageContent({
       <PageHeader variant="simple" height="medium">
         <div className="flex max-w-6xl flex-col items-center gap-6">
           <Title
-            staticText={header?.title.split(" ")[0] || "Aides"}
-            animatedText={header?.title.split(" ")[1] || "Financement"}
-            subtitle={header?.description || ""}
+            staticText={header?.title.split(' ')[0] || 'Aides'}
+            animatedText={header?.title.split(' ')[1] || 'Financement'}
+            subtitle={header?.description || ''}
           />
 
           <CTAGroupButtons
@@ -52,18 +52,19 @@ export default function AidesPageContent({
             animated
             items={[
               {
-                label: "Devis gratuit",
-                href: "/contact#contact-form",
-                variant: "default",
-                size: "sm",
+                label: 'Devis gratuit',
+                href: '/contact#contact-form',
+                variant: 'default',
+                size: 'sm',
                 iconRight: <ArrowRight className="size-4" />,
-                className: "bg-gradient-to-r from-primary to-primary-700",
+                className:
+                  'bg-gradient-to-br from-primary-600 via-primary-600 to-primary-400',
               },
               {
-                label: "07 81 25 11 25",
-                href: "tel:0781251125",
-                variant: "outline",
-                size: "sm",
+                label: '07 81 25 11 25',
+                href: 'tel:0781251125',
+                variant: 'outline',
+                size: 'sm',
                 iconLeft: <Phone className="size-4" />,
               },
             ]}
@@ -71,28 +72,28 @@ export default function AidesPageContent({
         </div>
       </PageHeader>
 
-      <div className="relative z-10">
+      <div id="aides-section" className="relative z-10 -mt-24 pb-24">
         <SectionContainer>
           {/* Stats */}
           <StatsGrid
             stats={[
               {
-                value: "80 €/kWc",
-                label: "Prime Autoconsommation 2026",
-                icon: "DollarSign",
-                gradient: "from-green-500 to-emerald-500",
+                value: '80 €/kWc',
+                label: 'Prime Autoconsommation 2026',
+                icon: 'DollarSign',
+                gradient: 'from-green-500 to-emerald-500',
               },
               {
-                value: "TVA 5,5 %",
-                label: "Taux réduit sous conditions",
-                icon: "TrendingUp",
-                gradient: "from-blue-500 to-cyan-500",
+                value: 'TVA 5,5 %',
+                label: 'Taux réduit sous conditions',
+                icon: 'TrendingUp',
+                gradient: 'from-blue-500 to-cyan-500',
               },
               {
                 value: "Jusqu'à 70 %",
-                label: "Économies sur votre facture",
-                icon: "PiggyBank",
-                gradient: "from-orange-500 to-yellow-500",
+                label: 'Économies sur votre facture',
+                icon: 'PiggyBank',
+                gradient: 'from-orange-500 to-yellow-500',
               },
             ]}
           />
@@ -103,7 +104,7 @@ export default function AidesPageContent({
                 className="absolute inset-0"
                 style={{
                   backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                  backgroundSize: "32px 32px",
+                  backgroundSize: '32px 32px',
                 }}
               />
             </div>
@@ -128,14 +129,14 @@ export default function AidesPageContent({
                   <AidCard
                     key={aid.id}
                     icon={aid.icon}
-                    badge={aid.badge || ""}
+                    badge={aid.badge || ''}
                     title={aid.title}
-                    subtitle={aid.subtitle || ""}
+                    subtitle={aid.subtitle || ''}
                     description={aid.description}
-                    gradient={aid.gradient || "from-green-500 to-emerald-500"}
+                    gradient={aid.gradient || 'from-green-500 to-emerald-500'}
                     conditions={
                       aid.conditions?.map(
-                        (c: { text?: string }) => c.text ?? "",
+                        (c: { text?: string }) => c.text ?? ''
                       ) || []
                     }
                     amounts={
@@ -162,7 +163,7 @@ export default function AidesPageContent({
                 {aids.local.map((aid, index) => (
                   <FeatureCard
                     key={aid.id}
-                    icon={aid.icon || "MapPin"}
+                    icon={aid.icon || 'MapPin'}
                     title={aid.title}
                     description={aid.description}
                     gradient="from-green-500 to-emerald-500"
@@ -182,12 +183,12 @@ export default function AidesPageContent({
                 {aids.financing.map((option, index) => (
                   <FeatureCard
                     key={option.id}
-                    icon={option.icon || "CreditCard"}
+                    icon={option.icon || 'CreditCard'}
                     title={option.title}
-                    description={option.description || ""}
+                    description={option.description || ''}
                     items={
                       option.features?.map(
-                        (f: { text?: string }) => f.text || "",
+                        (f: { text?: string }) => f.text || ''
                       ) || []
                     }
                     gradient="from-purple-500 to-indigo-500"
@@ -201,10 +202,10 @@ export default function AidesPageContent({
           <CTASection
             title="Calculez Vos Aides et Économies"
             description="Demandez votre étude personnalisée gratuite et découvrez combien vous pouvez économiser"
-            phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
+            phoneNumber={siteSettings.contactPhone || '07 81 25 11 25'}
             primaryButton={{
-              text: "Demander mon devis",
-              href: "/contact#contact-form",
+              text: 'Demander mon devis',
+              href: '/contact#contact-form',
             }}
             variant="gradient"
           />

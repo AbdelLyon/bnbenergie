@@ -1,27 +1,27 @@
-"use client";
+'use client';
 
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence } from 'framer-motion';
 import {
   LazyMotionDiv,
   LazyMotionButton,
   LazyMotionNav,
-} from "@/components/LazyComponents";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { Menu, X, Phone, ChevronDown, ArrowRight, Zap } from "lucide-react";
-import { useScrollPosition, useBodyScrollLock } from "@/hooks";
-import { getLucideIcon } from "@/utils/getLucideIcon";
-import { Logo as LogoIcon } from "@/components/shared/ui/Logo";
-import { ThemeSwitcher } from "@/components/shared/ThemeSwitcher";
-import { tokens } from "@/config/tokens";
+} from '@/components/LazyComponents';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+import { Menu, X, Phone, ChevronDown, ArrowRight, Zap } from 'lucide-react';
+import { useScrollPosition, useBodyScrollLock } from '@/hooks';
+import { getLucideIcon } from '@/utils/getLucideIcon';
+import { Logo as LogoIcon } from '@/components/shared/ui/Logo';
+import { ThemeSwitcher } from '@/components/shared/ThemeSwitcher';
+import { tokens } from '@/config/tokens';
 
 //new MegaMenuData
 type MegaMenuData = {
   logo: { title: string; subtitle: string };
   menuCategories: Array<{
     label: string;
-    type: "link" | "mega";
+    type: 'link' | 'mega';
     href?: string;
     icon: string;
     description?: string;
@@ -46,7 +46,7 @@ type LogoProps = {
 };
 
 const NavLogo = ({ isScrolled, subtitle, className }: LogoProps) => (
-  <Link href="/" className={`group flex items-center gap-3 ${className ?? ""}`}>
+  <Link href="/" className={`group flex items-center gap-3 ${className ?? ''}`}>
     <LogoIcon isScrolled={isScrolled} showRGEBadge size="md" />
 
     <div className="leading-none">
@@ -55,13 +55,13 @@ const NavLogo = ({ isScrolled, subtitle, className }: LogoProps) => (
           isScrolled ? tokens.text.base : tokens.text.onDark
         }`}
       >
-        <span className="text-secondary">B</span>NB{" "}
+        <span className="text-secondary">B</span>NB{' '}
         <span className="text-primary">É</span>NERGIE
       </div>
 
       <p
         className={`mt-0.5 text-[10px] font-medium tracking-wide transition-colors duration-300 ${
-          isScrolled ? "text-default-400" : "text-white/50"
+          isScrolled ? 'text-default-400' : 'text-white/80'
         }`}
       >
         {subtitle}
@@ -91,12 +91,12 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
 
   const isActive = (href?: string) =>
     href
-      ? pathname === href || (href !== "/" && pathname.startsWith(href))
+      ? pathname === href || (href !== '/' && pathname.startsWith(href))
       : false;
 
-  const isMegaActive = (item: MegaMenuData["menuCategories"][number]) =>
+  const isMegaActive = (item: MegaMenuData['menuCategories'][number]) =>
     item.sections?.some((section) =>
-      section.links.some((link) => isActive(link.href)),
+      section.links.some((link) => isActive(link.href))
     ) ?? false;
 
   useBodyScrollLock(isOpen);
@@ -113,10 +113,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
       >
         <div className={tokens.layout.container}>
           <div className="flex h-16 items-center justify-between">
-            <NavLogo
-              isScrolled={isScrolled}
-              subtitle={data.logo.subtitle}
-            />
+            <NavLogo isScrolled={isScrolled} subtitle={data.logo.subtitle} />
 
             {/* Desktop nav */}
             <div className="hidden items-center gap-0.5 lg:flex">
@@ -125,17 +122,17 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                   key={item.label}
                   className="relative"
                   onMouseEnter={() =>
-                    item.type === "mega" && setActiveMega(item.label)
+                    item.type === 'mega' && setActiveMega(item.label)
                   }
                   onMouseLeave={() => setActiveMega(null)}
                 >
-                  {item.type === "link" ? (
+                  {item.type === 'link' ? (
                     <Link
-                      href={item.href ?? "#"}
+                      href={item.href ?? '#'}
                       className={`relative flex items-center ${tokens.radius.sm} px-4 mx-1 py-1.5 text-sm font-medium ${tokens.transition.base} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
                         isActive(item.href)
                           ? isScrolled
-                            ? "bg-primary/10 text-primary font-semibold ring-1 ring-primary/15"
+                            ? 'bg-primary/10 text-primary font-semibold ring-1 ring-primary/15'
                             : `${tokens.bg.activeOnDark} ${tokens.text.onDark} font-semibold`
                           : isScrolled
                             ? `${tokens.text.muted} ${tokens.bg.hoverPrimary} hover:text-primary`
@@ -149,7 +146,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                       className={`flex cursor-pointer items-center gap-1 ${tokens.radius.sm} px-4 mx-1 py-1.5 text-sm font-medium ${tokens.transition.base} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
                         isMegaActive(item)
                           ? isScrolled
-                            ? "bg-primary/10 text-primary font-semibold ring-1 ring-primary/15"
+                            ? 'bg-primary/10 text-primary font-semibold ring-1 ring-primary/15'
                             : `${tokens.bg.activeOnDark} ${tokens.text.onDark} font-semibold`
                           : isScrolled
                             ? `${tokens.text.muted} ${tokens.bg.hoverPrimary} hover:text-primary`
@@ -160,14 +157,14 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
 
                       <ChevronDown
                         className={`h-3.5 w-3.5 ${tokens.transition.base} ${
-                          activeMega === item.label ? "rotate-180" : ""
+                          activeMega === item.label ? 'rotate-180' : ''
                         }`}
                       />
                     </button>
                   )}
 
                   <AnimatePresence>
-                    {item.type === "mega" && activeMega === item.label && (
+                    {item.type === 'mega' && activeMega === item.label && (
                       <LazyMotionDiv
                         initial={{ opacity: 0, y: 8, scale: 0.97 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -187,15 +184,15 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                                 key={idx}
                                 className={
                                   idx % 2 === 0
-                                    ? "border-r border-default dark:border-content2/80 pr-4"
-                                    : "pl-4"
+                                    ? 'border-r border-default dark:border-content2/80 pr-4'
+                                    : 'pl-4'
                                 }
                               >
                                 <div className="flex items-center gap-1.5 mb-2.5 px-2">
                                   <span className="h-1.5 w-1.5 rounded-full bg-primary/50" />
 
                                   <p
-                                    className={`${tokens.text.label} ${tokens.text.faint}`}
+                                    className={`${tokens.text.label} ${tokens.text.muted}`}
                                   >
                                     {section.title}
                                   </p>
@@ -204,7 +201,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                                 <div className="space-y-0.5">
                                   {section.links.map((link) => {
                                     const IconComponent = getLucideIcon(
-                                      link.icon,
+                                      link.icon
                                     );
 
                                     const iconCls =
@@ -216,10 +213,10 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                                     return (
                                       <Link
                                         key={link.href}
-                                        href={link.href ?? "#"}
+                                        href={link.href ?? '#'}
                                         className={`group flex items-center gap-3 ${tokens.radius.sm} p-2.5 ${tokens.transition.base} cursor-pointer ${
                                           childActive
-                                            ? "bg-primary/8 ring-1 ring-primary/15"
+                                            ? 'bg-primary/8 ring-1 ring-primary/15'
                                             : tokens.bg.hoverOutline
                                         }`}
                                         onClick={() => setActiveMega(null)}
@@ -237,8 +234,8 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                                           <div
                                             className={`text-[12.5px] font-semibold transition-colors duration-150 ${
                                               childActive
-                                                ? "text-primary"
-                                                : "text-foreground/85 group-hover:text-foreground"
+                                                ? 'text-primary'
+                                                : 'text-foreground/85 group-hover:text-foreground'
                                             }`}
                                           >
                                             {link.label}
@@ -280,7 +277,6 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                               onClick={() => setActiveMega(null)}
                             >
                               Devis gratuit
-
                               <ArrowRight className="h-3 w-3" />
                             </Link>
                           </div>
@@ -294,7 +290,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
               {/* Divider */}
               <div
                 className={`mx-3 h-4 w-px ${tokens.transition.base} ${
-                  isScrolled ? "bg-default-200" : "bg-white/20"
+                  isScrolled ? 'bg-default-200' : 'bg-white/20'
                 }`}
               />
 
@@ -377,18 +373,15 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
 
             {/* Drawer */}
             <LazyMotionDiv
-              initial={{ x: "100%" }}
+              initial={{ x: '100%' }}
               animate={{ x: 0 }}
-              exit={{ x: "100%" }}
+              exit={{ x: '100%' }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className={`fixed top-0 right-0 bottom-0 z-50 flex w-full flex-col overflow-hidden ${tokens.bg.surface} sm:max-w-sm lg:hidden`}
             >
               {/* Header */}
               <div className="flex items-center justify-between px-5 py-4">
-                <NavLogo
-                  isScrolled
-                  subtitle={data.logo.subtitle}
-                />
+                <NavLogo isScrolled subtitle={data.logo.subtitle} />
 
                 <LazyMotionButton
                   whileTap={{ scale: 0.88 }}
@@ -414,13 +407,13 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                         ease: [0.22, 1, 0.36, 1],
                       }}
                     >
-                      {item.type === "link" ? (
+                      {item.type === 'link' ? (
                         <Link
-                          href={item.href ?? "#"}
+                          href={item.href ?? '#'}
                           onClick={() => setIsOpen(false)}
                           className={`flex items-center gap-3 ${tokens.radius.sm} px-3 py-2.5 text-sm font-medium ${tokens.transition.base} ${
                             isActive(item.href)
-                              ? "bg-primary/8 text-primary font-semibold"
+                              ? 'bg-primary/8 text-primary font-semibold'
                               : `${tokens.text.muted} ${tokens.bg.hoverPrimary} hover:text-primary`
                           }`}
                         >
@@ -428,17 +421,13 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                             const Icon = getLucideIcon(item.icon);
 
                             const cls =
-                              iconColors[item.icon] ??
-                              tokens.iconBg.default;
+                              iconColors[item.icon] ?? tokens.iconBg.default;
 
                             return (
                               <span
                                 className={`flex h-7 w-7 shrink-0 items-center justify-center ${tokens.radius.icon} ${cls}`}
                               >
-                                <Icon
-                                  className="h-3.5 w-3.5"
-                                  strokeWidth={2}
-                                />
+                                <Icon className="h-3.5 w-3.5" strokeWidth={2} />
                               </span>
                             );
                           })()}
@@ -467,7 +456,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                                 return (
                                   <Link
                                     key={link.href}
-                                    href={link.href ?? "#"}
+                                    href={link.href ?? '#'}
                                     onClick={() => setIsOpen(false)}
                                     className={`group flex items-center gap-3 ${tokens.radius.sm} px-3 py-2.5 text-sm ${tokens.transition.base} ${tokens.bg.hoverDefault}`}
                                   >
@@ -493,7 +482,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                                     </div>
                                   </Link>
                                 );
-                              }),
+                              })
                             )}
                           </div>
                         </div>
@@ -519,9 +508,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                 <div className="flex items-center gap-1.5 px-1">
                   <Zap className="h-3 w-3 text-primary/50" />
 
-                  <p
-                    className={`text-[11px] ${tokens.text.faint} font-medium`}
-                  >
+                  <p className={`text-[11px] ${tokens.text.faint} font-medium`}>
                     Devis gratuit · Sans engagement
                   </p>
                 </div>

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Title,
@@ -11,15 +11,15 @@ import {
   FeatureCard,
   WarrantyCard,
   CTASection,
-} from "@/components";
-import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
-import { ArrowRight, Phone } from "lucide-react";
+} from '@/components';
+import { CTAGroupButtons } from '@/components/shared/ui/CTAGroupButtons';
+import { ArrowRight, Phone } from 'lucide-react';
 
 import type {
   Warranty,
   PageHeader as PageHeaderType,
   SiteSetting,
-} from "@/payload-types";
+} from '@/payload-types';
 
 interface GarantiesPageContentProps {
   warranties: {
@@ -43,9 +43,9 @@ export default function GarantiesPageContent({
       <PageHeader variant="simple" height="medium">
         <div className="flex max-w-6xl flex-col items-center gap-6">
           <Title
-            staticText={header?.title.split(" ")[0] || "Nos"}
-            animatedText={header?.title.split(" ")[1] || "Garanties"}
-            subtitle={header?.description || ""}
+            staticText={header?.title.split(' ')[0] || 'Nos'}
+            animatedText={header?.title.split(' ')[1] || 'Garanties'}
+            subtitle={header?.description || ''}
           />
 
           <CTAGroupButtons
@@ -53,18 +53,19 @@ export default function GarantiesPageContent({
             animated
             items={[
               {
-                label: "Devis gratuit",
-                href: "/contact#contact-form",
-                variant: "default",
-                size: "sm",
+                label: 'Devis gratuit',
+                href: '/contact#contact-form',
+                variant: 'default',
+                size: 'sm',
                 iconRight: <ArrowRight className="size-4" />,
-                className: "bg-gradient-to-r from-primary to-primary-700",
+                className:
+                  'bg-gradient-to-br from-primary-600 via-primary-600 to-primary-400',
               },
               {
-                label: "07 81 25 11 25",
-                href: "tel:0781251125",
-                variant: "outline",
-                size: "sm",
+                label: '07 81 25 11 25',
+                href: 'tel:0781251125',
+                variant: 'outline',
+                size: 'sm',
                 iconLeft: <Phone className="size-4" />,
               },
             ]}
@@ -72,28 +73,28 @@ export default function GarantiesPageContent({
         </div>
       </PageHeader>
 
-      <div className="relative z-10">
+      <div id="garanties-section" className="relative z-10 -mt-24 pb-24">
         <SectionContainer>
           {/* Stats */}
           <StatsGrid
             stats={[
               {
-                value: "10 ans",
-                label: "Garantie Décennale",
-                icon: "Shield",
-                gradient: "from-blue-500 to-cyan-500",
+                value: '10 ans',
+                label: 'Garantie Décennale',
+                icon: 'Shield',
+                gradient: 'from-blue-500 to-cyan-500',
               },
               {
-                value: "25 ans",
-                label: "Garantie Panneaux",
-                icon: "Award",
-                gradient: "from-green-500 to-emerald-500",
+                value: '25 ans',
+                label: 'Garantie Panneaux',
+                icon: 'Award',
+                gradient: 'from-green-500 to-emerald-500',
               },
               {
-                value: "RGE",
-                label: "Certifié QualiPV",
-                icon: "CheckCircle2",
-                gradient: "from-orange-500 to-yellow-500",
+                value: 'RGE',
+                label: 'Certifié QualiPV',
+                icon: 'CheckCircle2',
+                gradient: 'from-orange-500 to-yellow-500',
               },
             ]}
           />
@@ -106,7 +107,7 @@ export default function GarantiesPageContent({
                 className="absolute inset-0"
                 style={{
                   backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                  backgroundSize: "32px 32px",
+                  backgroundSize: '32px 32px',
                 }}
               />
             </div>
@@ -133,7 +134,7 @@ export default function GarantiesPageContent({
                     icon={cert.icon}
                     title={cert.title}
                     description={cert.description}
-                    gradient={cert.gradient || "from-blue-500 to-cyan-500"}
+                    gradient={cert.gradient || 'from-blue-500 to-cyan-500'}
                     index={index}
                   />
                 ))}
@@ -154,12 +155,12 @@ export default function GarantiesPageContent({
                     icon={product.icon}
                     title={product.title}
                     description={product.description}
-                    gradient={product.gradient || "from-blue-500 to-cyan-500"}
+                    gradient={product.gradient || 'from-blue-500 to-cyan-500'}
                     warranties={
                       product.warrantyDetails?.map((w) => ({
                         label: w.label,
                         duration: w.duration,
-                        description: w.description ?? "",
+                        description: w.description ?? '',
                       })) || []
                     }
                     features={product.features?.map((f) => f.text) || []}
@@ -195,10 +196,10 @@ export default function GarantiesPageContent({
           <CTASection
             title="Des Questions sur Nos Garanties ?"
             description="Notre équipe est à votre disposition pour vous expliquer en détail toutes nos garanties et certifications"
-            phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
+            phoneNumber={siteSettings.contactPhone || '07 81 25 11 25'}
             primaryButton={{
-              text: "Demander mon devis",
-              href: "/contact#contact-form",
+              text: 'Demander mon devis',
+              href: '/contact#contact-form',
             }}
             variant="gradient"
           />

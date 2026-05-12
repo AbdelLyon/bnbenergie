@@ -18,16 +18,16 @@ type CTAItem = {
 
 interface CTAGroupProps {
   items: CTAItem[];
-  direction?: "row" | "column";
   align?: "left" | "center" | "right";
   animated?: boolean;
+  wrap?: boolean; // 👈 contrôle du comportement responsive
 }
 
 export function CTAGroupButtons({
   items,
-  direction = "row",
   align = "center",
   animated = true,
+  wrap = true,
 }: CTAGroupProps) {
   const justify =
     align === "left"
@@ -36,11 +36,13 @@ export function CTAGroupButtons({
         ? "justify-end"
         : "justify-center";
 
-  const isRow = direction === "row";
-
   return (
     <div
-      className={`flex gap-4 ${isRow ? "flex-col sm:flex-row" : "flex-col"} ${justify}`}
+      className={`
+        flex flex-row items-center gap-3
+        ${wrap ? "flex-wrap" : "flex-nowrap overflow-x-auto"}
+        ${justify}
+      `}
     >
       {items.map((item, i) => {
         const sharedProps = {
@@ -48,7 +50,6 @@ export function CTAGroupButtons({
           size: item.size,
           startIcon: item.iconLeft,
           endIcon: item.iconRight,
-          fullWidth: isRow,
           className: item.className,
         };
 
@@ -62,7 +63,7 @@ export function CTAGroupButtons({
           </Button>
         );
 
-        const wrapperClass = isRow ? "w-full sm:w-auto" : undefined;
+        const wrapperClass = "shrink-0";
 
         if (!animated) {
           return (
@@ -76,8 +77,8 @@ export function CTAGroupButtons({
           <LazyMotionDiv
             key={i}
             className={wrapperClass}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.96 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
           >
             {btn}
           </LazyMotionDiv>

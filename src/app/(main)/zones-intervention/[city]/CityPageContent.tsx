@@ -54,11 +54,7 @@ export default function CityPageContent({
             {zone.label}
           </span>
 
-          <Title
-            staticText="BNB ÉNERGIE"
-            animatedText={cityName}
-            subtitle={tagline}
-          />
+          <Title staticText="BNB" animatedText={cityName} subtitle={tagline} />
 
           <CTAGroupButtons
             align="center"
@@ -84,7 +80,7 @@ export default function CityPageContent({
         </div>
       </PageHeader>
 
-      <div className="relative z-10">
+      <div id="city-section" className="relative z-10 -mt-24 pb-24">
         <SectionContainer>
           <StatsGrid
             stats={[

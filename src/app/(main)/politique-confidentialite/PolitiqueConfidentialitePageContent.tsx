@@ -223,77 +223,82 @@ export default function PolitiqueConfidentialitePageContent({
       </PageHeader>
 
       {/* ---------------- SECTIONS ---------------- */}
-      <SectionContainer className="pb-24 -mt-24 relative z-10">
-        {sections.map((section) => {
-          const Icon = section.icon;
-          return (
-            <LazyMotionDiv
-              key={section.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0 }}
-              className="group relative overflow-hidden rounded-3xl bg-white dark:bg-content1 p-8 shadow-xl border border-neutral-100 dark:border-white/5 mb-8"
-            >
-              <div
-                className={`absolute inset-0 bg-linear-to-br ${section.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-5`}
-              />
-              <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
+      <div
+        id="politique-confidentialite-section"
+        className="relative z-10 -mt-24 pb-24"
+      >
+        <SectionContainer className="pb-24 -mt-24 relative z-10">
+          {sections.map((section) => {
+            const Icon = section.icon;
+            return (
+              <LazyMotionDiv
+                key={section.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0 }}
+                className="group relative overflow-hidden rounded-3xl bg-white dark:bg-content1 p-8 shadow-xl border border-neutral-100 dark:border-white/5 mb-8"
+              >
                 <div
-                  className="absolute inset-0"
-                  style={{
-                    backgroundImage:
-                      "radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)",
-                    backgroundSize: "32px 32px",
-                  }}
+                  className={`absolute inset-0 bg-linear-to-br ${section.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-5`}
                 />
-              </div>
-
-              <div className="relative z-10">
-                <div className="mb-6 flex items-center gap-4">
+                <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
                   <div
-                    className={`inline-flex rounded-2xl bg-linear-to-br ${section.gradient} p-3 shadow-lg`}
-                  >
-                    <Icon className="h-5 w-5 text-white" />
-                  </div>
-                  <Heading className="text-2xl text-neutral-900 dark:text-white">
-                    {section.title}
-                  </Heading>
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage:
+                        "radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)",
+                      backgroundSize: "32px 32px",
+                    }}
+                  />
                 </div>
 
-                <div className="space-y-2">
-                  {section.content.map((item) => (
+                <div className="relative z-10">
+                  <div className="mb-6 flex items-center gap-4">
                     <div
-                      key={item.label}
-                      className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-neutral-100 dark:border-white/5 py-3 sm:py-2"
+                      className={`inline-flex rounded-2xl bg-linear-to-br ${section.gradient} p-3 shadow-lg`}
                     >
-                      <span className="font-medium text-neutral-700 dark:text-neutral-500">
-                        {item.label}
-                      </span>
-                      <span className="text-neutral-600 dark:text-neutral-400 sm:text-right">
-                        {item.value}
-                      </span>
+                      <Icon className="h-5 w-5 text-white" />
                     </div>
-                  ))}
-                </div>
-              </div>
-            </LazyMotionDiv>
-          );
-        })}
+                    <Heading className="text-2xl text-neutral-900 dark:text-white">
+                      {section.title}
+                    </Heading>
+                  </div>
 
-        {/* ---------------- FOOTER ---------------- */}
-        <LazyMotionDiv
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mt-12 rounded-2xl bg-linear-to-br from-purple-50 to-violet-50 dark:from-purple-950/30 dark:to-violet-950/30 p-8 text-center border border-purple-100 dark:border-purple-900/50"
-        >
-          <p className="text-sm text-neutral-600 dark:text-neutral-500">
-            Date de dernière mise à jour : 10 octobre 2025
-          </p>
-        </LazyMotionDiv>
-      </SectionContainer>
+                  <div className="space-y-2">
+                    {section.content.map((item) => (
+                      <div
+                        key={item.label}
+                        className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-neutral-100 dark:border-white/5 py-3 sm:py-2"
+                      >
+                        <span className="font-medium text-neutral-700 dark:text-neutral-500">
+                          {item.label}
+                        </span>
+                        <span className="text-neutral-600 dark:text-neutral-400 sm:text-right">
+                          {item.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </LazyMotionDiv>
+            );
+          })}
+
+          {/* ---------------- FOOTER ---------------- */}
+          <LazyMotionDiv
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mt-12 rounded-2xl bg-linear-to-br from-purple-50 to-violet-50 dark:from-purple-950/30 dark:to-violet-950/30 p-8 text-center border border-purple-100 dark:border-purple-900/50"
+          >
+            <p className="text-sm text-neutral-600 dark:text-neutral-500">
+              Date de dernière mise à jour : 10 octobre 2025
+            </p>
+          </LazyMotionDiv>
+        </SectionContainer>
+      </div>
     </PageMainWrapper>
   );
 }

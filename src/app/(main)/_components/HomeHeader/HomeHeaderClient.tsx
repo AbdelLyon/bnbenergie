@@ -68,7 +68,8 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
             variant: "default",
             size: "sm",
             iconRight: <ArrowRight className="size-4" />,
-            className: "bg-gradient-to-r from-primary to-primary-700",
+            className:
+              "bg-gradient-to-br from-primary-600 via-primary-600 to-primary-400",
           },
           {
             label: data.cta2,
