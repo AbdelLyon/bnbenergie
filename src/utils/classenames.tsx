@@ -4,3 +4,7 @@ export const getInputClasses = (err?: string) =>
       ? 'border-red-300 focus:border-red-500 dark:border-red-900 dark:focus:border-red-500'
       : 'border-slate-200 dark:border-neutral-700 focus:border-blue-500/30 dark:focus:border-blue-400/30'
   }`;
+
+export function cn(...inputs: (string | undefined | null | false | 0)[]): string {
+  return inputs.filter(Boolean).join(' ');
+}

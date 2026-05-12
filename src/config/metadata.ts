@@ -18,10 +18,13 @@ export function generateMetadata({
   images?: Array<{ url: string; width: number; height: number; alt: string }>;
 }): Metadata {
   const cleanPath = path.startsWith("/") ? path.slice(1) : path;
-  const url = cleanPath ? `${BASE_URL}/${cleanPath}` : BASE_URL;
 
+
+  const url = cleanPath ? `${BASE_URL}/${cleanPath}` : `${BASE_URL}/`;
+
+  // ✅ Image OG avec URL absolue complète
   const defaultImage = {
-    url: "/opengraph-image",
+    url: `${BASE_URL}/opengraph-image`,
     width: 1200,
     height: 630,
     alt: title,
@@ -54,7 +57,9 @@ export function generateMetadata({
       title,
       description,
       images:
-        images.length > 0 ? images.map((img) => img.url) : [defaultImage.url],
+        images.length > 0
+          ? images.map((img) => img.url)
+          : [defaultImage.url],
     },
 
     robots: {
@@ -72,7 +77,7 @@ export function generateMetadata({
 }
 
 export const defaultMetadata: Metadata = {
-  metadataBase: new URL(BASE_URL),
+ 
   title: {
     default: "Installateur Solaire Bourg-en-Bresse | BNB ÉNERGIE",
     template: "%s | BNB ÉNERGIE",
@@ -100,7 +105,7 @@ export const defaultMetadata: Metadata = {
     siteName: SITE_CONFIG.name,
     images: [
       {
-        url: "/opengraph-image",
+        url: `${BASE_URL}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: "BNB ÉNERGIE - Installateur Panneaux Solaires Bourg-en-Bresse",

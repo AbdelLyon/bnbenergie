@@ -1,10 +1,13 @@
 'use client';
 
-import { HeroUIProvider } from '@heroui/system';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
 import { REACT_QUERY_CONFIG } from '@/config/cache';
 import { ThemeProvider } from 'next-themes';
+import { LazyMotion } from 'framer-motion';
+
+const loadFramerFeatures = () =>
+  import('@/lib/framer-features').then((m) => m.default);
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(
@@ -18,6 +21,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
             retryDelay: REACT_QUERY_CONFIG.RETRY_DELAY,
             refetchOnWindowFocus: false,
             refetchOnReconnect: true,
+            refetchOnMount: false,
           },
           mutations: {
             retry: REACT_QUERY_CONFIG.RETRY_COUNT,
@@ -29,16 +33,17 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <HeroUIProvider>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          storageKey="bnb-theme"
-        >
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="dark"
+        enableSystem
+        storageKey="bnb-theme"
+        disableTransitionOnChange
+      >
+        <LazyMotion features={loadFramerFeatures} strict>
           {children}
-        </ThemeProvider>
-      </HeroUIProvider>
+        </LazyMotion>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

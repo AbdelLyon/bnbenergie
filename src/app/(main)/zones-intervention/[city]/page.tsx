@@ -6,7 +6,10 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import CityPageContent from './CityPageContent';
 
-// Helper to find city name from slug
+
+const BASE_URL = SITE_CONFIG.url.replace(/\/$/, "");
+
+
 async function findCityName(slug: string): Promise<string | undefined> {
   const zones = await getInterventionZones();
   const allCommunes = zones.flatMap((zone) => zone.communes.map((c) => c.name));
@@ -33,11 +36,17 @@ export async function generateMetadata({
     return { title: 'Zone non trouvée' };
   }
 
-  const canonicalUrl = `${SITE_CONFIG.url}/zones-intervention/${city}`;
+  const canonicalUrl = `${BASE_URL}/zones-intervention/${city}`;
+
+
+  const title = `Installateur Solaire ${cityName} (Ain) | Devis Gratuit`;
+
+
+  const description = `Panneaux solaires & photovoltaïques à ${cityName}, Ain (01). Installateur RGE QualiPV local, devis gratuit 48h, installation clé en main et garantie décennale.`;
 
   return {
-    title: `Installateur Panneaux Solaires ${cityName} | Devis Gratuit`,
-    description: `Installateur panneaux solaires & photovoltaïques à ${cityName}. Entreprise RGE QualiPV locale, devis gratuit 48h, intervention rapide et garantie décennale dans l'Ain.`,
+    title,
+    description,
     keywords: [
       `installateur panneaux solaires ${cityName}`,
       `installateur panneaux photovoltaïques ${cityName}`,
@@ -50,7 +59,7 @@ export async function generateMetadata({
     },
     openGraph: {
       title: `Installateur Panneaux Solaires ${cityName} | BNB ÉNERGIE`,
-      description: `Votre installateur local certifié RGE panneaux solaires à ${cityName}. Installation clé en main, autoconsommation et économies d'énergie.`,
+      description: `Installateur RGE QualiPV local à ${cityName}. Installation clé en main, autoconsommation et économies d'énergie dans l'Ain (01).`,
       url: canonicalUrl,
       type: 'website',
       locale: 'fr_FR',
@@ -59,7 +68,7 @@ export async function generateMetadata({
     twitter: {
       card: 'summary_large_image',
       title: `Installateur Panneaux Solaires ${cityName} | BNB ÉNERGIE`,
-      description: `Votre installateur local certifié RGE panneaux solaires à ${cityName}. Installation clé en main, autoconsommation et économies d'énergie.`,
+      description: `Installateur RGE QualiPV local à ${cityName}. Installation clé en main, autoconsommation et économies d'énergie dans l'Ain (01).`,
     },
     robots: {
       index: true,
@@ -93,7 +102,7 @@ export default async function CityPage({
     zone.communes.some((c) => c.name === cityName)
   );
 
-  // Villes de la même zone (hors ville courante) pour le maillage interne
+
   const relatedCities = (cityGroup?.communes ?? [])
     .filter((c) => c.name !== cityName)
     .map((c) => ({ name: c.name, slug: slugify(c.name) }))

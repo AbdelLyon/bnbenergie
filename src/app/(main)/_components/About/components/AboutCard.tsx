@@ -1,6 +1,7 @@
 "use client";
 
 import { LazyMotionArticle } from "@/components/LazyComponents";
+import { Heading } from "@/components/shared/ui/Heading";
 import type { BaseCardProps, IconCard } from "@/types";
 import { getLucideIcon } from "@/utils/getLucideIcon";
 
@@ -51,9 +52,9 @@ export function AboutCard({
         </div>
 
         {/* Titre et contenu */}
-        <h3 className="group-hover:text-amber-700 dark:group-hover:text-amber-400 mb-5 text-2xl font-black transition-colors duration-300">
+        <Heading as="h3" className="group-hover:text-amber-700 dark:group-hover:text-amber-400 mb-5 text-2xl transition-colors duration-300">
           {title}
-        </h3>
+        </Heading>
         <p className="leading-relaxed text-base opacity-70">{content}</p>
       </div>
     </LazyMotionArticle>

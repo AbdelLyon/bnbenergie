@@ -6,18 +6,23 @@ import type {
   PageHeader as PageHeaderType,
   SiteSetting,
 } from "@/payload-types";
+
 import {
   PageHeader,
   PageMainWrapper,
   SectionContainer,
   Title,
-  HomeHeaderCTAButtons,
+  Heading,
 } from "@/components";
+
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
+
 import { ContactForm } from "./components/ContactForm";
 import { ContactInfo } from "./components/ContactInfo";
 import { ContactMap } from "./components/ContactMap";
 import { SuccessMessage } from "./components/SuccessMessage";
-import { LazyMotionDiv } from "@/components/LazyComponents";
+
+import { ArrowRight, Phone } from "lucide-react";
 import { SITE_CONFIG } from "@/config/site";
 
 interface ContactPageContentProps {
@@ -74,53 +79,54 @@ export default function ContactPageContent({
   return (
     <PageMainWrapper variant="teal">
       <PageHeader variant="simple" height="medium">
-        <LazyMotionDiv
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 3, delay: 0 }}
-          className="flex max-w-6xl flex-col items-center gap-6"
-        >
+        <div className="flex max-w-6xl flex-col items-center gap-6">
           <Title
             staticText={header?.title.split("-")?.[0] || "Contactez"}
-            animatedText={`-${header?.title.split("-")?.[1] || "-nous"}`}
+            animatedText={header?.title.split("-")?.[1] || "-nous"}
             subtitle={header?.subtitle ?? ""}
-            spaceX=""
           />
 
           <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
             {header?.description || ""}
           </p>
-
-          <HomeHeaderCTAButtons
-            primaryText="Devis gratuit"
-            primaryHref="/contact#contact-form"
-            secondaryText={SITE_CONFIG.contact.phone}
-            secondaryHref={SITE_CONFIG.contact.phoneHref}
-            primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
+          <CTAGroupButtons
+            items={[
+              {
+                iconRight: <ArrowRight className="size-4" />,
+                size: "sm",
+                label: "Devis gratuit",
+                href: "/contact#contact-form",
+                className:
+                  "group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:text-base px-4",
+              },
+              {
+                label: SITE_CONFIG.contact.phone,
+                href: SITE_CONFIG.contact.phoneHref,
+                variant: "outline",
+                size: "sm",
+                iconLeft: <Phone className="size-4" />,
+                className: "px-4",
+              },
+            ]}
           />
-        </LazyMotionDiv>
+        </div>
       </PageHeader>
 
       <div id="contact-section" className="relative z-10 -mt-24 pb-24">
         <SectionContainer>
-          <LazyMotionDiv
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="overflow-hidden rounded-2xl shadow-2xl lg:grid lg:grid-cols-5"
-          >
-            <div className="relative bg-slate-900 dark:bg-black px-8 py-12 lg:col-span-2 lg:px-12 lg:py-16 overflow-hidden">
+          <div className="overflow-hidden rounded-2xl shadow-2xl lg:grid lg:grid-cols-5">
+            <div className="relative overflow-hidden bg-slate-900 px-8 py-12 dark:bg-black lg:col-span-2 lg:px-12 lg:py-16">
               <div className="absolute inset-0 bg-linear-to-br from-blue-900/20 to-slate-900/50" />
-              <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-blue-500/20 blur-3xl" />
+              <div className="absolute -left-24 -top-24 h-64 w-64 rounded-full bg-blue-500/20 blur-3xl" />
               <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-cyan-500/10 blur-3xl" />
 
-              <div className="relative z-10 h-full flex flex-col justify-between">
+              <div className="relative z-10 flex h-full flex-col justify-between">
                 <div>
-                  <h2 className="text-3xl font-display font-bold text-white mb-6">
+                  <Heading className="mb-6 text-3xl text-white">
                     Discutons de votre projet
-                  </h2>
-                  <p className="text-slate-300 mb-12 leading-relaxed text-lg">
+                  </Heading>
+
+                  <p className="mb-12 text-lg leading-relaxed text-slate-300">
                     Notre équipe d'experts est à votre écoute pour étudier vos
                     besoins et vous proposer la solution solaire la plus
                     adaptée.
@@ -129,7 +135,7 @@ export default function ContactPageContent({
                   <ContactInfo items={contactInfoItems} />
                 </div>
 
-                <div className="mt-12 pt-8 border-t border-white/10">
+                <div className="mt-12 border-t border-white/10 pt-8">
                   <p className="text-sm text-slate-400">
                     BNB ÉNERGIE - Votre partenaire solaire dans l'Ain
                   </p>
@@ -138,14 +144,15 @@ export default function ContactPageContent({
             </div>
 
             <div
-              className="bg-white dark:bg-content1 px-8 py-12 lg:col-span-3 lg:px-12 lg:py-16"
+              className="bg-white px-8 py-12 dark:bg-content1 lg:col-span-3 lg:px-12 lg:py-16"
               id="contact-form"
             >
-              <div className="max-w-lg mx-auto lg:mx-0 lg:max-w-none">
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+              <div className="mx-auto max-w-lg lg:mx-0 lg:max-w-none">
+                <Heading className="mb-2 text-2xl text-slate-900 dark:text-white">
                   Envoyez-nous un message
-                </h2>
-                <p className="text-slate-500 dark:text-default-500 mb-8">
+                </Heading>
+
+                <p className="mb-8 text-slate-500 dark:text-default-500">
                   Remplissez le formulaire ci-dessous, nous vous répondrons sous
                   24h.
                 </p>
@@ -161,10 +168,10 @@ export default function ContactPageContent({
                 )}
               </div>
             </div>
-          </LazyMotionDiv>
+          </div>
         </SectionContainer>
 
-        <div className="w-full h-125 relative z-0">
+        <div className="relative z-0 h-125 w-full">
           <ContactMap
             latitude={parseFloat(siteSettings.geoLatitude || "46.2059")}
             longitude={parseFloat(siteSettings.geoLongitude || "5.2255")}

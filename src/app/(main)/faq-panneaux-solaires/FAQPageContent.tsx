@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, Phone } from "lucide-react";
 import type {
   Faq,
   PageHeader as PageHeaderType,
@@ -10,14 +10,14 @@ import type {
 import {
   CTASection,
   FAQItem,
+  Heading,
   PageHeader,
   PageMainWrapper,
   SectionContainer,
   StatCard,
   Title,
-  HomeHeaderCTAButtons,
 } from "@/components";
-import { LazyMotionDiv } from "@/components/LazyComponents";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
 import { getLucideIcon } from "@/utils/getLucideIcon";
 
 interface FAQPageContentProps {
@@ -109,12 +109,7 @@ export default function FAQPageContent({
     <PageMainWrapper variant="purple">
       <div className="relative z-10">
         <PageHeader variant="simple" height="medium">
-          <LazyMotionDiv
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 3, delay: 0 }}
-            className="flex max-w-6xl flex-col items-center gap-6"
-          >
+          <div className="flex max-w-6xl flex-col items-center gap-6">
             <Title
               staticText={header?.title.split(" ")[0] || "Questions"}
               animatedText={header?.title.split(" ")[1] || "Fréquentes"}
@@ -124,14 +119,27 @@ export default function FAQPageContent({
               {header?.description || ""}
             </p>
 
-            <HomeHeaderCTAButtons
-              primaryText="Devis gratuit"
-              primaryHref="/contact#contact-form"
-              secondaryText="07 81 25 11 25"
-              secondaryHref="tel:0781251125"
-              primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
+            <CTAGroupButtons
+              items={[
+                {
+                  label: "Devis gratuit",
+                  iconRight: <ArrowRight className="size-4" />,
+                  size: "sm",
+                  href: "/contact#contact-form",
+                  className:
+                    "group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:text-base px-4",
+                },
+                {
+                  label: "07 81 25 11 25",
+                  href: "tel:0781251125",
+                  variant: "outline",
+                  size: "sm",
+                  iconLeft: <Phone className="size-4" />,
+                  className: "px-4",
+                },
+              ]}
             />
-          </LazyMotionDiv>
+          </div>
         </PageHeader>
 
         <SectionContainer>
@@ -169,12 +177,8 @@ export default function FAQPageContent({
               const isOpen = openCategory === category;
 
               return (
-                <LazyMotionDiv
+                <div
                   key={category}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: 0 }}
                   className={`rounded-2xl border bg-white dark:bg-content1 overflow-hidden transition-all duration-300 ${
                     isOpen
                       ? `shadow-lg ring-2 ${meta.ringColor} border-transparent`
@@ -196,11 +200,11 @@ export default function FAQPageContent({
 
                     {/* Titre + description */}
                     <div className="flex-1 min-w-0">
-                      <h2
-                        className={`text-base font-bold md:text-lg ${meta.labelColor} ${meta.labelColorDark}`}
+                      <Heading
+                        className={`text-base md:text-lg ${meta.labelColor} ${meta.labelColorDark}`}
                       >
                         {category}
-                      </h2>
+                      </Heading>
                       {meta.description && (
                         <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-0.5 leading-snug">
                           {meta.description}
@@ -252,7 +256,7 @@ export default function FAQPageContent({
                       ))}
                     </div>
                   </div>
-                </LazyMotionDiv>
+                </div>
               );
             })}
           </div>

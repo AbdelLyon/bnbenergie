@@ -2,7 +2,7 @@
 
 import { getLucideIcon } from '@/utils/getLucideIcon';
 import type { LucideIcon } from 'lucide-react';
-import { cn } from '@heroui/theme';
+import { cn } from '@/utils/classenames';
 
 interface IconBadgeProps {
   /** Nom de l'icône Lucide ou composant d'icône */

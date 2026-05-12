@@ -148,17 +148,19 @@
   );
 }
 
-/* Force font application */
+/* Force font application avec font-display: swap pour optimiser le chargement */
 .font-sans {
   font-family:
     var(--font-inter), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-display: swap;
 }
 
 .font-display {
   font-family:
     var(--font-montserrat), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-display: swap;
 }
 
 /* ============================================
@@ -683,3 +685,4 @@ body {
     will-change: auto;
   }
 }
+

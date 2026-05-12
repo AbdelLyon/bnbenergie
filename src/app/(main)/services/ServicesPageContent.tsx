@@ -6,18 +6,19 @@ import {
   PageMainWrapper,
   SectionContainer,
   Title,
+  Heading,
   IntroSection,
   FeatureCard,
   CTASection,
   ServiceStep,
-  HomeHeaderCTAButtons,
 } from "@/components";
-import { LazyMotionDiv, LazyMotionH2 } from "@/components/LazyComponents";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
 import type {
   Service,
   PageHeader as PageHeaderType,
   SiteSetting,
 } from "@/payload-types";
+import { ArrowRight, Phone } from "lucide-react";
 
 interface ServicesPageContentProps {
   services: Service[];
@@ -37,12 +38,7 @@ export default function ServicesPageContent({
     <PageMainWrapper variant="green">
       {/* Header */}
       <PageHeader variant="simple" height="medium">
-        <LazyMotionDiv
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 3, delay: 0 }}
-          className="flex max-w-6xl flex-col items-center gap-6"
-        >
+        <div className="flex max-w-6xl flex-col items-center gap-6">
           <Title
             staticText={header?.title.split(" ")[0] || "Nos"}
             animatedText={header?.title.split(" ")[1] || "Services"}
@@ -52,14 +48,27 @@ export default function ServicesPageContent({
             {header?.description || ""}
           </p>
 
-          <HomeHeaderCTAButtons
-            primaryText="Devis gratuit"
-            primaryHref="/contact#contact-form"
-            secondaryText="07 81 25 11 25"
-            secondaryHref="tel:0781251125"
-            primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
+          <CTAGroupButtons
+            items={[
+              {
+                iconRight: <ArrowRight className="size-4" />,
+                size: "sm",
+                label: "Devis gratuit",
+                href: "/contact#contact-form",
+                className:
+                  "group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:text-base px-4",
+              },
+              {
+                label: "07 81 25 11 25",
+                href: "tel:0781251125",
+                variant: "outline",
+                size: "sm",
+                iconLeft: <Phone className="size-4" />,
+                className: "px-4",
+              },
+            ]}
           />
-        </LazyMotionDiv>
+        </div>
       </PageHeader>
 
       <div className="relative z-10">
@@ -74,13 +83,7 @@ export default function ServicesPageContent({
             }))}
           />
 
-          <LazyMotionDiv
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="relative mx-auto mb-20 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 border border-neutral-100 dark:border-white/5"
-          >
+          <div className="relative mx-auto mb-20 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 border border-neutral-100 dark:border-white/5">
             <div className="relative z-10 text-center">
               <IntroSection
                 title="Un Accompagnement Complet de A à Z"
@@ -88,16 +91,19 @@ export default function ServicesPageContent({
                 className="mb-0 w-full "
               />
 
-              <h3 className="mb-4 text-xl font-medium text-neutral-700 dark:text-default-600">
+              <Heading
+                as="h3"
+                className="mb-4 text-xl text-neutral-700 dark:text-default-600"
+              >
                 Notre mission : transformer votre projet solaire en réalité
-              </h3>
+              </Heading>
               <p className="leading-relaxed text-neutral-500 dark:text-default-400 max-w-2xl mx-auto">
                 Chez BNB ÉNERGIE, nous gérons l'intégralité de votre projet
                 d'installation de panneaux solaires, de l'étude initiale à la
                 maintenance.
               </p>
             </div>
-          </LazyMotionDiv>
+          </div>
 
           <div className="mb-10 space-y-12">
             {steps.map((step, index) => (
@@ -123,15 +129,9 @@ export default function ServicesPageContent({
 
           {guarantees.length > 0 && (
             <div className="mb-20">
-              <LazyMotionH2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4 }}
-                className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
-              >
+              <Heading className="mb-12 text-center text-3xl text-neutral-900 dark:text-foreground md:text-4xl">
                 Nos Engagements Qualité
-              </LazyMotionH2>
+              </Heading>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {guarantees.map((service, index) => (
                   <FeatureCard

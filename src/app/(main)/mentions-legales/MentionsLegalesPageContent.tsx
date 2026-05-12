@@ -5,6 +5,7 @@ import {
   PageMainWrapper,
   SectionContainer,
   Title,
+  Heading,
 } from "@/components";
 import { LazyMotionDiv } from "@/components/LazyComponents";
 import { Building2, Globe } from "lucide-react";
@@ -90,12 +91,7 @@ export default function MentionsLegalesPageContent() {
   return (
     <PageMainWrapper variant="transparent">
       <PageHeader variant="simple" height="medium">
-        <LazyMotionDiv
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 3, delay: 0 }}
-          className="flex max-w-6xl flex-col items-center gap-6"
-        >
+        <div className="flex max-w-6xl flex-col items-center gap-6">
           <Title
             staticText="Mentions"
             animatedText="légales"
@@ -105,7 +101,7 @@ export default function MentionsLegalesPageContent() {
             Conformément à la loi pour la Confiance dans l'Économie Numérique
             (LCEN)
           </p>
-        </LazyMotionDiv>
+        </div>
       </PageHeader>
 
       <SectionContainer className="pb-20 -mt-20 relative z-10">
@@ -142,9 +138,9 @@ export default function MentionsLegalesPageContent() {
                     >
                       <Icon className="h-5 w-5 text-white" />
                     </div>
-                    <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">
+                    <Heading className="text-2xl text-neutral-900 dark:text-white">
                       {section.title}
-                    </h2>
+                    </Heading>
                   </div>
 
                   <div className="space-y-2">
@@ -179,9 +175,9 @@ export default function MentionsLegalesPageContent() {
               transition={{ duration: 0.5, delay: 0 }}
               className="rounded-2xl bg-white dark:bg-content1 p-6 border border-neutral-100 dark:border-white/5"
             >
-              <h3 className="text-lg font-semibold mb-2 text-neutral-900 dark:text-white">
+              <Heading as="h3" className="text-lg mb-2 text-neutral-900 dark:text-white">
                 {section.title}
-              </h3>
+              </Heading>
               <p className="text-sm sm:text-base text-neutral-700 dark:text-default-400 leading-relaxed whitespace-pre-line">
                 {section.content}
               </p>

@@ -5,7 +5,7 @@ export const FALLBACK_SITE_SETTINGS = {
   // Informations business
   siteName: 'BNB Énergie 01 - Panneaux Solaires Photovoltaïques Ain',
   businessName: 'BNB Énergie 01',
-  domain: 'https://bnbenergie01.com',
+  domain: 'https://bnbenergie01.com/',
 
   // Contact
   contactPhone: '07 81 25 11 25',
@@ -32,7 +32,7 @@ export const FALLBACK_SITE_SETTINGS = {
   seoTitleTemplate:
     '%s | BNB Énergie Bourg-en-Bresse',
   seoDescription:
-    "N°1 installateur panneaux solaires à Bourg-en-Bresse (01000). Entreprise RGE QualiPV certifiée dans l'Ain. Devis gratuit 48h, installation 3-9kWc, MaPrimeRénov'. Expert photovoltaïque local.",
+    "Installateur panneaux solaires à Bourg-en-Bresse (01000). Entreprise RGE QualiPV certifiée dans l'Ain. Devis gratuit 48h, installation 3-9kWc, MaPrimeRénov'. Expert photovoltaïque local.",
 
   seoKeywords: [],
 };

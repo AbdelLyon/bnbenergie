@@ -10,7 +10,7 @@ interface BenefitsListProps {
 export function BenefitsList({ benefits }: BenefitsListProps) {
   return (
     <div className="space-y-4">
-      <div className="grid gap-3">
+      <div className="grid gap-1">
         {benefits.map((benefit, index) => (
           <LazyMotionDiv
             key={`${benefit}-${index}`}

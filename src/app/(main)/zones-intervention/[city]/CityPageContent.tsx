@@ -8,8 +8,9 @@ import {
   FeatureCard,
   StatsGrid,
   Title,
-  HomeHeaderCTAButtons,
+  Heading,
 } from "@/components";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
 import { LazyMotionDiv } from "@/components/LazyComponents";
 import { getCityTheme } from "@/config/city-themes";
 import { MapPin, Award, ArrowRight, Phone, CheckCircle2 } from "lucide-react";
@@ -45,12 +46,7 @@ export default function CityPageContent({
         currentSlide={0}
         backgroundVariant="clean"
       >
-        <LazyMotionDiv
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 3, delay: 0 }}
-          className="flex max-w-6xl flex-col items-center gap-6"
-        >
+        <div className="flex max-w-6xl flex-col items-center gap-6">
           <span
             className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold backdrop-blur-sm ${badgeClass}`}
           >
@@ -58,26 +54,37 @@ export default function CityPageContent({
             {zone.label}
           </span>
 
-          <Title staticText="Installation" animatedText={`à ${cityName}`} />
-
-          <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
-            {tagline}
-          </p>
-
-          <HomeHeaderCTAButtons
-            primaryText={`Devis gratuit à ${cityName}`}
-            primaryHref="/contact#contact-form"
-            secondaryText={phone}
-            secondaryHref={phoneHref}
-            primaryClassName={`group relative overflow-hidden rounded-full bg-linear-to-r ${accentClass} px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base`}
+          <Title
+            staticText="SOLAIRE"
+            animatedText={cityName}
+            subtitle={tagline}
           />
-        </LazyMotionDiv>
+
+          <CTAGroupButtons
+            items={[
+              {
+                iconRight: <ArrowRight className="size-4" />,
+                size: "sm",
+                label: "Devis gratuit",
+                href: "/contact#contact-form",
+
+                className: `group relative overflow-hidden rounded-full bg-linear-to-r ${accentClass} px-4 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:text-base`,
+              },
+              {
+                label: phone,
+                href: phoneHref,
+                variant: "outline",
+                size: "sm",
+                iconLeft: <Phone className="size-4" />,
+                className: "px-4",
+              },
+            ]}
+          />
+        </div>
       </PageHeader>
 
-      {/* ═══════════════ CONTENU ═══════════════ */}
       <div className="relative z-10">
         <SectionContainer>
-          {/* Cards qui chevauchent le header — même pattern que Nos Services */}
           <StatsGrid
             stats={[
               {
@@ -101,43 +108,28 @@ export default function CityPageContent({
             ]}
           />
 
-          {/* ── Potentiel solaire détaillé ── */}
           <SolarDetailCard zone={zone} cityName={cityName} />
 
-          {/* ── Contenu local unique ── */}
           <div className="mb-20 grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
-            {/* Paragraphes uniques par ville */}
             <div className="lg:col-span-3">
-              <LazyMotionDiv
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-              >
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-neutral-900 dark:text-foreground mb-6">
+              <div>
+                <Heading className="text-3xl md:text-4xl text-neutral-900 dark:text-foreground mb-6">
                   Installation solaire à{" "}
                   <span
                     className={`bg-linear-to-r ${accentClass} bg-clip-text text-transparent`}
                   >
                     {cityName}
                   </span>
-                </h2>
+                </Heading>
                 <div className="space-y-5 text-neutral-700 dark:text-neutral-300 leading-relaxed text-base">
                   {paragraphs.map((p, i) => (
                     <p key={i}>{p}</p>
                   ))}
                 </div>
-              </LazyMotionDiv>
+              </div>
             </div>
 
-            {/* Encadré "Pourquoi BNB" */}
-            <LazyMotionDiv
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0 }}
-              className="lg:col-span-2 rounded-2xl border border-neutral-200 dark:border-content2 bg-white dark:bg-content1 p-6 shadow-sm"
-            >
+            <div className="lg:col-span-2 rounded-2xl border border-neutral-200 dark:border-content2 bg-white dark:bg-content1 p-6 shadow-sm">
               <p className="text-xs font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-5">
                 Pourquoi BNB ÉNERGIE à {cityName}
               </p>
@@ -181,30 +173,23 @@ export default function CityPageContent({
                   </li>
                 ))}
               </ul>
-            </LazyMotionDiv>
+            </div>
           </div>
 
-          {/* ── Atouts de zone ── */}
           <div className="mb-20">
-            <LazyMotionDiv
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
-              className="mb-10 text-center"
-            >
+            <div className="mb-10 text-center">
               <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-2">
                 Spécificités locales
               </p>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-neutral-900 dark:text-foreground">
+              <Heading className="text-3xl md:text-4xl text-neutral-900 dark:text-foreground">
                 Atouts de la zone{" "}
                 <span
                   className={`bg-linear-to-r ${accentClass} bg-clip-text text-transparent`}
                 >
                   {zone.label}
                 </span>
-              </h2>
-            </LazyMotionDiv>
+              </Heading>
+            </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {zone.advantages.map((adv, i) => (
                 <FeatureCard
@@ -220,21 +205,15 @@ export default function CityPageContent({
           </div>
 
           {/* ── Processus 4 étapes ── */}
-          <LazyMotionDiv
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45 }}
-            className="mb-20 rounded-3xl border border-neutral-200 dark:border-content2 bg-white dark:bg-content1 shadow-sm overflow-hidden"
-          >
+          <div className="mb-20 rounded-3xl border border-neutral-200 dark:border-content2 bg-white dark:bg-content1 shadow-sm overflow-hidden">
             <div className="h-1 w-full bg-linear-to-r" />
             <div className="p-8 md:p-10">
               <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-2 text-center">
                 Comment ça marche
               </p>
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-center text-neutral-900 dark:text-foreground mb-10">
+              <Heading className="text-2xl md:text-3xl text-center text-neutral-900 dark:text-foreground mb-10">
                 Votre installation solaire à {cityName} en 4 étapes
-              </h2>
+              </Heading>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {PROCESS_STEPS.map(
                   ({ icon: Icon, number, title, text, duration }, i) => (
@@ -277,16 +256,10 @@ export default function CityPageContent({
                 )}
               </div>
             </div>
-          </LazyMotionDiv>
+          </div>
 
           {/* ── Liens contextuels ── */}
-          <LazyMotionDiv
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="mb-12 hidden lg:flex flex-wrap justify-center gap-3 text-sm"
-          >
+          <div className="mb-12 hidden lg:flex flex-wrap justify-center gap-3 text-sm">
             {[
               {
                 href: "/services",
@@ -322,22 +295,16 @@ export default function CityPageContent({
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             ))}
-          </LazyMotionDiv>
+          </div>
 
           {/* ── Villes voisines ── */}
           {relatedCities.length > 0 && (
-            <LazyMotionDiv
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
-              className="mb-20 rounded-2xl border border-neutral-200 dark:border-content2 bg-white dark:bg-content1 p-8 shadow-sm"
-            >
+            <div className="mb-20 rounded-2xl border border-neutral-200 dark:border-content2 bg-white dark:bg-content1 p-8 shadow-sm">
               <div className="flex items-center gap-2 mb-6">
                 <MapPin className="h-5 w-5 text-neutral-400" />
-                <h2 className="font-display text-lg font-bold text-neutral-900 dark:text-foreground">
+                <Heading className="text-lg text-neutral-900 dark:text-foreground">
                   Communes voisines desservies
-                </h2>
+                </Heading>
               </div>
               <div className="flex flex-wrap gap-2">
                 {relatedCities.map((city) => (
@@ -358,10 +325,9 @@ export default function CityPageContent({
                   Voir toutes nos zones d&apos;intervention →
                 </Link>
               </p>
-            </LazyMotionDiv>
+            </div>
           )}
 
-          {/* ── CTA final ── */}
           <CTASection
             title={`Votre projet solaire à ${cityName}`}
             description={`Étude gratuite et sans engagement. Nous nous déplaçons à ${cityName} pour analyser votre toiture et vous proposer la solution la plus rentable.`}

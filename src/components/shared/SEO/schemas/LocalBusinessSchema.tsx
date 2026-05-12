@@ -6,6 +6,8 @@ export async function LocalBusinessStructuredData() {
   const rating = REVIEWS_STATS.average;
   const reviewCount = REVIEWS_STATS.total;
 
+  const domain = siteConfig.domain.replace(/\/$/, "");
+
   const reviews = GOOGLE_REVIEWS.slice(0, 5).map((review) => ({
     '@type': 'Review' as const,
     reviewRating: {
@@ -24,22 +26,28 @@ export async function LocalBusinessStructuredData() {
 
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    '@id': `${siteConfig.domain}/#localbusiness`,
+
+    '@type': ['LocalBusiness', 'HomeAndConstructionBusiness'],
+    '@id': `${domain}/#localbusiness`,
     name: siteConfig.siteName,
     alternateName: siteConfig.businessName,
     description:
       "Installateur de panneaux solaires photovoltaïques à Bourg-en-Bresse et dans l'Ain (01). Entreprise RGE QualiPV certifiée.",
-    url: siteConfig.domain,
+    url: `${domain}/`,
     telephone: siteConfig.contactPhone,
     email: siteConfig.contactEmail,
-    image: [`${siteConfig.domain}/opengraph-image`],
+    image: [`${domain}/opengraph-image`],
     logo: {
       '@type': 'ImageObject',
-      url: `${siteConfig.domain}/logo.svg`,
+      url: `${domain}/logo.svg`,
     },
 
     priceRange: '€€€',
+    currenciesAccepted: 'EUR',
+    paymentAccepted: 'Cash, Credit Card, Bank Transfer',
+
+
+    hasMap: 'https://maps.google.com/?q=BNB+%C3%89NERGIE+Bourg-en-Bresse',
 
     address: {
       '@type': 'PostalAddress',
@@ -98,7 +106,7 @@ export async function LocalBusinessStructuredData() {
     ),
 
     parentOrganization: {
-      '@id': `${siteConfig.domain}/#organization`,
+      '@id': `${domain}/#organization`,
     },
 
     aggregateRating: {

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect } from 'react';
+import { Heading } from '@/components/shared/ui/Heading';
 
 export default function Error({
   error,
@@ -36,9 +37,9 @@ export default function Error({
         </div>
 
         <div>
-          <h2 className="mb-2 text-2xl font-bold text-gray-900">
+          <Heading className="mb-2 text-2xl text-gray-900">
             Une erreur est survenue
-          </h2>
+          </Heading>
           <p className="text-gray-600">
             Nous sommes désolés, une erreur inattendue s&apos;est produite.
             Veuillez réessayer.

@@ -7,9 +7,9 @@ import {
   LazyMotionNav,
 } from "@/components/LazyComponents";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu, X, Phone, ChevronDown } from "lucide-react";
-import { Button } from "@heroui/button";
+import { Menu, X, Phone, ChevronDown, ArrowRight } from "lucide-react";
 import { useScrollPosition, useBodyScrollLock } from "@/hooks";
 import { getLucideIcon } from "@/utils/getLucideIcon";
 import { Logo as LogoIcon } from "@/components/shared/ui/Logo";
@@ -49,71 +49,75 @@ type LogoProps = {
   className?: string;
 };
 
-const Logo = ({ isScrolled, subtitle, className }: LogoProps) => {
-  return (
-    <Link href="/" className={`group flex items-center gap-2 ${className}`}>
-      <LogoIcon isScrolled={isScrolled} showRGEBadge={true} size="md" />
-      <div>
-        <div
-          className={`font-display text-xl font-bold transition-all duration-300 ease-out ${
-            isScrolled ? "text-gray-900 dark:text-white" : "text-white"
-          }`}
-        >
-          BNB{" "}
-          <span
-            className={`bg-linear-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent`}
-          >
-            ÉNERGIE
-          </span>
-        </div>
-        <p
-          className={`font-display ml-1 text-[10px] transition-all duration-300 ease-out ${
-            isScrolled ? "text-gray-600" : "text-white/80"
-          }`}
-        >
-          {subtitle}
-        </p>
+const NavLogo = ({ isScrolled, subtitle, className }: LogoProps) => (
+  <Link href="/" className={`group flex items-center gap-3 ${className ?? ""}`}>
+    <LogoIcon isScrolled={isScrolled} showRGEBadge size="md" />
+    <div className="leading-none">
+      <div
+        className={`font-display text-[17px] font-bold tracking-tight transition-colors duration-300 ${
+          isScrolled ? "text-foreground" : "text-white"
+        }`}
+      >
+        <span className="text-secondary">B</span>NB{" "}
+        <span className="text-primary">É</span>NERGIE
       </div>
-    </Link>
-  );
+      <p
+        className={`mt-0.5 text-[10px] font-medium tracking-wide transition-colors duration-300 ${
+          isScrolled ? "text-default-400" : "text-white/60"
+        }`}
+      >
+        {subtitle}
+      </p>
+    </div>
+  </Link>
+);
+
+const iconColors: Record<string, string> = {
+  Settings: "bg-primary/10 text-primary",
+  Camera: "bg-purple-500/10 text-purple-500",
+  DollarSign: "bg-success/10 text-success",
+  Shield: "bg-secondary/10 text-secondary",
+  Euro: "bg-primary/10 text-primary",
+  MapPin: "bg-danger/10 text-danger",
+  HelpCircle: "bg-success/10 text-success",
+  Home: "bg-primary/10 text-primary",
+  Mail: "bg-purple-500/10 text-purple-500",
 };
 
 export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeMega, setActiveMega] = useState<string | null>(null);
-  const isScrolled = useScrollPosition(20);
+  const isScrolled = useScrollPosition(120);
+  const pathname = usePathname();
+
+  const isActive = (href?: string) =>
+    href
+      ? pathname === href || (href !== "/" && pathname.startsWith(href))
+      : false;
 
   useBodyScrollLock(isOpen);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
 
   return (
     <>
       <LazyMotionNav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ease-out ${
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
           isScrolled
             ? "bg-white dark:bg-content1 shadow-lg shadow-black/5"
             : "bg-black/40 backdrop-blur-md"
         }`}
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-32">
-          <div className="flex h-[70px] items-center justify-between">
-            {}
-            <Logo isScrolled={isScrolled} subtitle={data.logo.subtitle} />
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <div className="flex h-16 items-center justify-between">
+            <NavLogo isScrolled={isScrolled} subtitle={data.logo.subtitle} />
 
-            {}
-            <div className="hidden items-center gap-1 lg:flex">
+            {/* Desktop nav */}
+            <div className="hidden items-center gap-0.5 lg:flex">
               {data.menuCategories.map((item) => (
-                <LazyMotionDiv
+                <div
                   key={item.label}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0 }}
                   className="relative"
                   onMouseEnter={() =>
                     item.type === "mega" && setActiveMega(item.label)
@@ -123,32 +127,33 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                   {item.type === "link" ? (
                     <Link
                       href={item.href ?? "#"}
-                      className={`group relative rounded-lg px-4 py-2 text-sm font-semibold transition-all ${
-                        isScrolled
-                          ? "text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400"
-                          : "text-white/90 hover:text-white"
+                      className={`relative flex items-center rounded-full px-5 py-1.5 mx-1 text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
+                        isActive(item.href)
+                          ? isScrolled
+                            ? "bg-primary/8 text-primary font-semibold"
+                            : "bg-white/10 text-white font-semibold"
+                          : isScrolled
+                            ? "text-default-600 hover:bg-default-100 hover:text-foreground"
+                            : "text-white/80 hover:bg-white/10 hover:text-white"
                       }`}
                     >
                       {item.label}
-                      <span className="absolute bottom-1 left-1/2 h-0.5 w-0 -translate-x-1/2 bg-linear-to-r from-blue-600 to-cyan-600 transition-all duration-300 group-hover:w-3/4" />
                     </Link>
                   ) : (
                     <button
-                      className={`group flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-semibold transition-all ${
-                        isScrolled
-                          ? "text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400"
-                          : "text-white/90 hover:text-white"
-                      } ${
+                      className={`flex cursor-pointer items-center gap-1 rounded-full px-5 py-1.5 text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
                         activeMega === item.label
                           ? isScrolled
-                            ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
-                            : "bg-white/10 text-white"
-                          : ""
+                            ? "bg-primary/8 text-primary font-medium"
+                            : "bg-white/10 text-white font-medium"
+                          : isScrolled
+                            ? "text-default-600 hover:bg-default-100 hover:text-foreground"
+                            : "text-white/80 hover:bg-white/10 hover:text-white"
                       }`}
                     >
                       {item.label}
                       <ChevronDown
-                        className={`h-4 w-4 transition-transform ${
+                        className={`h-3.5 w-3.5 transition-transform duration-200 ${
                           activeMega === item.label ? "rotate-180" : ""
                         }`}
                       />
@@ -157,297 +162,239 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
 
                   <AnimatePresence>
                     {item.type === "mega" && activeMega === item.label && (
-                      <div className="absolute top-full left-1/2 z-50 w-145 -translate-x-1/2 pt-2">
+                      <LazyMotionDiv
+                        initial={{ opacity: 0, y: 6, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                        transition={{ duration: 0.15, ease: "easeOut" }}
+                        className="absolute top-full left-1/2 z-50 w-[580px] -translate-x-1/2 pt-3"
+                      >
                         <div className="overflow-hidden rounded-xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-content1 shadow-xl shadow-black/5">
-                          <div className="grid grid-cols-2 gap-0 p-5">
+                          <div className="grid grid-cols-2 gap-0 p-4">
                             {item.sections?.map((section, idx) => (
                               <div
                                 key={idx}
                                 className={
                                   idx % 2 === 0
-                                    ? "border-r border-gray-100 dark:border-gray-800 pr-5"
-                                    : "pl-5"
+                                    ? "border-r border-default-100 pr-4"
+                                    : "pl-4"
                                 }
                               >
-                                <h3 className="mb-3 px-1 text-[10px] font-bold text-gray-400 uppercase">
+                                <p className="mb-2 px-2 text-[10px] font-bold tracking-widest text-default-400 uppercase">
                                   {section.title}
-                                </h3>
-
+                                </p>
                                 <div className="space-y-0.5">
-                                  {section.links.map((link) => (
-                                    <Link
-                                      key={link.href}
-                                      href={link.href ?? "#"}
-                                      className="group flex items-center gap-3 rounded-lg p-2.5 transition-all duration-200 hover:bg-gray-50 dark:hover:bg-white/5"
-                                      onClick={() => setActiveMega(null)}
-                                    >
-                                      {(() => {
-                                        const IconComponent = getLucideIcon(
-                                          link.icon,
-                                        );
-
-                                        const iconColors: Record<
-                                          string,
-                                          string
-                                        > = {
-                                          Settings:
-                                            "bg-linear-to-br from-blue-500 to-cyan-500",
-                                          Camera:
-                                            "bg-linear-to-br from-purple-500 to-pink-500",
-                                          DollarSign:
-                                            "bg-linear-to-br from-green-500 to-emerald-500",
-                                          Shield:
-                                            "bg-linear-to-br from-amber-500 to-orange-500",
-                                          Euro: "bg-linear-to-br from-indigo-500 to-blue-500",
-                                          MapPin:
-                                            "bg-linear-to-br from-red-500 to-rose-500",
-                                          HelpCircle:
-                                            "bg-linear-to-br from-teal-500 to-cyan-500",
-                                        };
-                                        const bgColor =
-                                          iconColors[link.icon] ||
-                                          "bg-linear-to-br from-gray-500 to-gray-600";
-
-                                        return (
-                                          <div
-                                            className={`rounded-xl p-2 ${bgColor} shadow-md transition-all group-hover:shadow-lg`}
-                                          >
-                                            <IconComponent
-                                              className="h-4 w-4 text-white"
-                                              strokeWidth={2}
-                                            />
-                                          </div>
-                                        );
-                                      })()}
-
-                                      {}
-                                      <div className="min-w-0 flex-1">
-                                        <div className="text-sm leading-tight font-semibold text-gray-700 dark:text-gray-200 transition-colors group-hover:text-gray-900 dark:group-hover:text-white">
-                                          {link.label}
-                                        </div>
-                                        <p className="mt-0.5 line-clamp-1 text-[11px] leading-snug text-gray-400">
-                                          {link.description}
-                                        </p>
-                                      </div>
-
-                                      {}
-                                      <svg
-                                        className="h-3.5 w-3.5 text-gray-300 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:text-gray-600 group-hover:opacity-100"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                        strokeWidth={2.5}
+                                  {section.links.map((link) => {
+                                    const IconComponent = getLucideIcon(
+                                      link.icon,
+                                    );
+                                    const iconCls =
+                                      iconColors[link.icon] ??
+                                      "bg-default-100 text-default-500";
+                                    return (
+                                      <Link
+                                        key={link.href}
+                                        href={link.href ?? "#"}
+                                        className="group flex items-center gap-3 rounded-xl p-2.5 transition-all duration-150 hover:bg-default-50"
+                                        onClick={() => setActiveMega(null)}
                                       >
-                                        <path
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
-                                          d="M9 5l7 7-7 7"
-                                        />
-                                      </svg>
-                                    </Link>
-                                  ))}
+                                        <div
+                                          className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${iconCls}`}
+                                        >
+                                          <IconComponent
+                                            className="h-4 w-4"
+                                            strokeWidth={2}
+                                          />
+                                        </div>
+                                        <div className="min-w-0 flex-1">
+                                          <div className="text-sm font-medium text-foreground">
+                                            {link.label}
+                                          </div>
+                                          <p className="line-clamp-1 text-[11px] text-default-400">
+                                            {link.description}
+                                          </p>
+                                        </div>
+                                        <ArrowRight className="h-3.5 w-3.5 shrink-0 text-default-300 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
+                                      </Link>
+                                    );
+                                  })}
                                 </div>
                               </div>
                             ))}
                           </div>
                         </div>
-                      </div>
+                      </LazyMotionDiv>
                     )}
                   </AnimatePresence>
-                </LazyMotionDiv>
+                </div>
               ))}
 
-              <Button
-                size="sm"
-                radius="full"
-                startContent={<Phone className="h-4 w-4" />}
-                className="ml-2 bg-linear-to-r from-blue-600 to-cyan-600 font-bold text-white shadow-md shadow-blue-500/20 transition-all hover:scale-105 hover:shadow-lg"
+              {/* Divider */}
+              <div
+                className={`mx-2 h-4 w-px ${isScrolled ? "bg-default-200" : "bg-white/20"}`}
+              />
+
+              {/* CTA */}
+              <Link
+                href={data.cta.phoneHref}
+                className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 hover:scale-[1.03] ${
+                  isScrolled
+                    ? "bg-secondary text-white shadow-small hover:shadow-medium"
+                    : "bg-white/10 text-white backdrop-blur-sm hover:bg-white/25"
+                }`}
               >
-                <Link href={data.cta.phoneHref}>{data.cta.label}</Link>
-              </Button>
-              <div className="ml-2">
-                <ThemeSwitcher />
-              </div>
+                <Phone className="h-3.5 w-3.5" />
+                {data.cta.label}
+              </Link>
+
+              <ThemeSwitcher />
             </div>
+
+            {/* Burger */}
             <LazyMotionButton
-              whileTap={{ scale: 0.95 }}
-              onClick={toggleMenu}
-              className="relative z-50 flex items-center justify-center rounded-xl transition-all lg:hidden"
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex h-9 w-9 items-center justify-center rounded-xl transition-all lg:hidden"
               aria-label="Toggle menu"
             >
               <AnimatePresence mode="wait">
-                {!isOpen ? (
+                {isOpen ? (
+                  <LazyMotionDiv
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.18 }}
+                  >
+                    <X
+                      className={`h-5 w-5 ${isScrolled ? "text-foreground" : "text-white"}`}
+                    />
+                  </LazyMotionDiv>
+                ) : (
                   <LazyMotionDiv
                     key="menu"
                     initial={{ rotate: 90, opacity: 0 }}
                     animate={{ rotate: 0, opacity: 1 }}
                     exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: 0.18 }}
                   >
                     <Menu
-                      className={`h-6 w-6 ${
-                        isScrolled
-                          ? "text-gray-900 dark:text-white"
-                          : "text-white"
-                      }`}
+                      className={`h-5 w-5 ${isScrolled ? "text-foreground" : "text-white"}`}
                     />
                   </LazyMotionDiv>
-                ) : null}
+                )}
               </AnimatePresence>
             </LazyMotionButton>
           </div>
         </div>
       </LazyMotionNav>
 
+      {/* Mobile drawer */}
       <AnimatePresence>
         {isOpen && (
           <>
-            {}
             <LazyMotionDiv
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={toggleMenu}
-              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-md lg:hidden"
+              transition={{ duration: 0.25 }}
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden"
             />
 
-            {}
             <LazyMotionDiv
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed top-0 right-0 bottom-0 z-50 flex w-full flex-col overflow-hidden bg-white dark:bg-content1 sm:max-w-md lg:hidden"
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed top-0 right-0 bottom-0 z-50 flex w-full flex-col overflow-hidden bg-background sm:max-w-sm lg:hidden"
             >
-              {}
-              <div className="relative bg-black/90 px-6 py-6">
-                {}
+              {/* Drawer header */}
+              <div className="flex items-center justify-between border-b border-default-100 px-5 py-4">
+                <NavLogo isScrolled subtitle={data.logo.subtitle} />
                 <LazyMotionButton
                   whileTap={{ scale: 0.9 }}
-                  onClick={toggleMenu}
-                  className="absolute top-2 right-2 z-50 flex size-7 cursor-pointer items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-all hover:bg-white/30"
+                  onClick={() => setIsOpen(false)}
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-default-100 text-default-500 transition-all hover:bg-default-200"
                   aria-label="Close menu"
                 >
-                  <X className="size-5 text-white" />
+                  <X className="h-4 w-4" />
                 </LazyMotionButton>
-
-                <Logo isScrolled={isScrolled} subtitle={data.logo.subtitle} />
-
-                <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-cyan-400/30 blur-3xl" />
-                <div className="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-blue-400/30 blur-3xl" />
               </div>
 
-              <nav className="flex-1 overflow-y-auto bg-gray-100 dark:bg-content2 px-6 py-6">
-                <div className="space-y-3">
-                  {data.menuCategories.map((item) => (
+              {/* Drawer nav */}
+              <nav className="flex-1 overflow-y-auto px-5 py-4">
+                <div className="space-y-1">
+                  {data.menuCategories.map((item, i) => (
                     <LazyMotionDiv
                       key={item.label}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: 0 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.25, delay: i * 0.04 }}
                     >
                       {item.type === "link" ? (
                         <Link
                           href={item.href ?? "#"}
-                          onClick={toggleMenu}
-                          className="group flex items-start gap-3 rounded-xl border border-amber-600/30 bg-white dark:bg-content1 p-3.5 transition-all duration-300 hover:border-blue-300 hover:shadow-md"
+                          onClick={() => setIsOpen(false)}
+                          className={`flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition-all ${
+                            isActive(item.href)
+                              ? "bg-primary/8 text-primary font-semibold"
+                              : "text-default-600 hover:bg-default-50 hover:text-foreground"
+                          }`}
                         >
                           {(() => {
-                            const IconComponent = getLucideIcon(item.icon);
-                            const iconColors: Record<string, string> = {
-                              Home: "from-blue-500 to-cyan-500",
-                              Mail: "from-purple-500 to-pink-500",
-                            };
-                            const gradient =
-                              iconColors[item.icon] ||
-                              "from-gray-500 to-gray-600";
-
+                            const Icon = getLucideIcon(item.icon);
+                            const cls =
+                              iconColors[item.icon] ??
+                              "bg-default-100 text-default-500";
                             return (
-                              <div
-                                className={`rounded-lg bg-linear-to-br p-2.5 ${gradient} shrink-0 shadow-sm transition-all group-hover:scale-105 group-hover:shadow-md`}
+                              <span
+                                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${cls}`}
                               >
-                                <IconComponent
-                                  className="h-4 w-4 text-white"
-                                  strokeWidth={2}
-                                />
-                              </div>
+                                <Icon className="h-3.5 w-3.5" strokeWidth={2} />
+                              </span>
                             );
                           })()}
-                          <div className="min-w-0 flex-1">
-                            <div className="text-sm leading-tight font-semibold text-gray-900 dark:text-white">
-                              {item.label}
-                            </div>
-                          </div>
-                          <ChevronDown className="mt-0.5 h-4 w-4 shrink-0 -rotate-90 text-gray-300 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
+                          {item.label}
                         </Link>
                       ) : (
-                        <div className="space-y-2">
-                          {}
-                          <div className="flex items-center gap-2 px-2 py-1">
-                            {(() => {
-                              const IconComponent = getLucideIcon(item.icon);
-                              return (
-                                <IconComponent
-                                  className="h-4 w-4 text-gray-400"
-                                  strokeWidth={2}
-                                />
-                              );
-                            })()}
-                            <span className="text-xs font-bold text-gray-500 uppercase">
-                              {item.label}
-                            </span>
-                          </div>
-
-                          <div className="space-y-2">
+                        <div>
+                          <p className="mb-1 mt-3 px-3 text-[10px] font-bold tracking-widest text-default-400 uppercase">
+                            {item.label}
+                          </p>
+                          <div className="space-y-1">
                             {item.sections?.map((section) =>
-                              section.links.map((link) => (
-                                <Link
-                                  key={link.href ?? ""}
-                                  href={link.href ?? "#"}
-                                  onClick={toggleMenu}
-                                  className="group flex items-start gap-3 rounded-xl border border-amber-600/30 bg-white dark:bg-content1 p-3.5 transition-all duration-300 hover:border-blue-300 hover:shadow-md"
-                                >
-                                  {(() => {
-                                    const IconComponent = getLucideIcon(
-                                      link.icon,
-                                    );
-                                    const iconColors: Record<string, string> = {
-                                      Settings: "from-blue-500 to-cyan-500",
-                                      Camera: "from-purple-500 to-pink-500",
-                                      DollarSign:
-                                        "from-green-500 to-emerald-500",
-                                      Shield: "from-amber-500 to-orange-500",
-                                      Euro: "from-indigo-500 to-blue-500",
-                                      MapPin: "from-red-500 to-rose-500",
-                                      HelpCircle: "from-teal-500 to-cyan-500",
-                                    };
-                                    const gradient =
-                                      iconColors[link.icon] ||
-                                      "from-gray-500 to-gray-600";
-
-                                    return (
-                                      <div
-                                        className={`rounded-lg bg-linear-to-br p-2.5 ${gradient} shrink-0 shadow-sm transition-all group-hover:scale-105 group-hover:shadow-md`}
-                                      >
-                                        <IconComponent
-                                          className="h-4 w-4 text-white"
-                                          strokeWidth={2}
-                                        />
+                              section.links.map((link) => {
+                                const Icon = getLucideIcon(link.icon);
+                                const cls =
+                                  iconColors[link.icon] ??
+                                  "bg-default-100 text-default-500";
+                                return (
+                                  <Link
+                                    key={link.href}
+                                    href={link.href ?? "#"}
+                                    onClick={() => setIsOpen(false)}
+                                    className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-all hover:bg-default-50"
+                                  >
+                                    <span
+                                      className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${cls}`}
+                                    >
+                                      <Icon
+                                        className="h-3.5 w-3.5"
+                                        strokeWidth={2}
+                                      />
+                                    </span>
+                                    <div>
+                                      <div className="font-semibold text-foreground">
+                                        {link.label}
                                       </div>
-                                    );
-                                  })()}
-                                  <div className="min-w-0 flex-1">
-                                    <div className="mb-0.5 text-sm leading-tight font-semibold text-gray-900 dark:text-white">
-                                      {link.label}
+                                      <div className="text-[11px] text-default-400">
+                                        {link.description}
+                                      </div>
                                     </div>
-                                    <div className="text-xs leading-snug text-gray-500">
-                                      {link.description}
-                                    </div>
-                                  </div>
-                                  <ChevronDown className="mt-0.5 h-4 w-4 shrink-0 -rotate-90 text-gray-300 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
-                                </Link>
-                              )),
+                                  </Link>
+                                );
+                              }),
                             )}
                           </div>
                         </div>
@@ -457,30 +404,21 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                 </div>
               </nav>
 
-              <div className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-content1 px-6 py-5">
-                <LazyMotionDiv
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0 }}
-                  className="space-y-3"
+              {/* Drawer footer */}
+              <div className="border-t border-default-100 px-5 py-4 space-y-3">
+                <a
+                  href={data.cta.phoneHref}
+                  className="flex w-full items-center justify-center gap-2 rounded-full bg-secondary px-6 py-3 text-sm font-bold text-white shadow-medium transition-all hover:scale-[1.02]"
                 >
-                  <Button
-                    as="a"
-                    href={data.cta.phoneHref}
-                    size="lg"
-                    radius="full"
-                    className="w-full bg-linear-to-r from-blue-600 to-cyan-600 font-bold text-white shadow-lg shadow-blue-500/30 transition-all hover:scale-[1.02] hover:shadow-xl"
-                    startContent={<Phone className="h-5 w-5" />}
-                  >
-                    {data.cta.label}
-                  </Button>
-                  <div className="flex justify-center pt-2">
-                    <ThemeSwitcher />
-                  </div>
-                  <p className="text-center text-xs text-gray-500">
-                    Devis gratuit • Sans engagement • Réponse en 24h
+                  <Phone className="h-4 w-4" />
+                  {data.cta.label}
+                </a>
+                <div className="flex items-center justify-between px-1">
+                  <p className="text-xs text-default-400">
+                    Devis gratuit · Sans engagement
                   </p>
-                </LazyMotionDiv>
+                  <ThemeSwitcher />
+                </div>
               </div>
             </LazyMotionDiv>
           </>

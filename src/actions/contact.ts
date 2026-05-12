@@ -26,7 +26,6 @@ export async function sendContactEmail(
   _prevState: ContactState,
   formData: FormData
 ): Promise<ContactState> {
-  // Simulate delay for better UX
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   const validatedFields = contactSchema.safeParse({
@@ -47,13 +46,8 @@ export async function sendContactEmail(
 
   const { name, email, phone, subject, message } = validatedFields.data;
 
-  // Check if SMTP configuration is present
   if (!hasSmtpConfig) {
     console.warn('SMTP configuration missing. Logging email instead.');
-    console.log('Email content:', { name, email, phone, subject, message });
-
-    // In development or without config, we'll return success but log a warning
-    // This allows the user to see the UI success state even without email config
     return {
       success: true,
       message: 'Message reçu (Mode simulation - Config SMTP manquante)',
@@ -64,21 +58,20 @@ export async function sendContactEmail(
     const transporter = nodemailer.createTransport({
       host: env.SMTP_HOST,
       port: Number(env.SMTP_PORT) || 587,
-      secure: false, // true for 465, false for other ports
+      secure: false,
       auth: {
         user: env.SMTP_USER,
         pass: env.SMTP_PASS,
       },
     });
 
-    // Verify connection configuration
     await transporter.verify();
 
     const mailOptions = {
-      from: `"${name}" <${env.SMTP_USER}>`, // Sender address
-      to: env.CONTACT_EMAIL || env.SMTP_USER, // List of receivers
+      from: `"${name}" <${env.SMTP_USER}>`,
+      to: env.CONTACT_EMAIL || env.SMTP_USER,
       replyTo: email,
-      subject: `[Contact Site] ${subject}`, // Subject line
+      subject: `[Contact Site] ${subject}`,
       text: `
         Nouveau message de contact
 
@@ -89,7 +82,8 @@ export async function sendContactEmail(
 
         Message:
         ${message}
-      `, // plain text body
+      `,
+
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #333;">Nouveau message de contact</h2>
@@ -103,7 +97,7 @@ export async function sendContactEmail(
             <p style="white-space: pre-wrap;">${message}</p>
           </div>
         </div>
-      `, // html body
+      `,
     };
 
     await transporter.sendMail(mailOptions);

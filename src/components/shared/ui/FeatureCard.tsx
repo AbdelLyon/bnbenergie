@@ -2,9 +2,10 @@
 
 import { LazyMotionDiv } from "@/components/LazyComponents";
 import { TRANSITIONS } from "@/config/constants";
+import { Heading } from "@/components/shared/ui/Heading";
 import type { BaseCardProps } from "@/types";
 import { getLucideIcon } from "@/utils/getLucideIcon";
-import { cn } from "@heroui/theme";
+import { cn } from "@/utils/classenames";
 import { ReactNode } from "react";
 
 interface FeatureCardProps extends BaseCardProps {
@@ -55,9 +56,9 @@ export function FeatureCard({
         <Icon className="h-8 w-8 text-white" />
       </LazyMotionDiv>
 
-      <h3 className="font-display mb-4 text-xl font-bold text-neutral-900 dark:text-foreground">
+      <Heading as="h3" className="mb-4 text-xl text-neutral-900 dark:text-foreground">
         {title}
-      </h3>
+      </Heading>
 
       {stat && (
         <div className="absolute top-8 right-8">

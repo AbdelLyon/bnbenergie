@@ -3,6 +3,7 @@
 import { useState, type FC, type SVGProps } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { getLucideIcon } from '@/utils/getLucideIcon';
+import { Heading } from '@/components/shared/ui/Heading';
 
 interface FAQItemProps {
   question: string;
@@ -110,9 +111,9 @@ export function FAQItem({ question, answer, category, categoryIcon }: FAQItemPro
               {category}
             </p>
           )}
-          <h3 className="text-sm font-semibold text-neutral-900 dark:text-white leading-snug md:text-base pr-2">
+          <Heading as="h3" className="text-sm text-neutral-900 dark:text-white leading-snug md:text-base pr-2">
             {question}
-          </h3>
+          </Heading>
         </div>
 
         {/* Chevron */}

@@ -2,12 +2,14 @@
 
 import { useImageCarousel } from "@/hooks";
 import { useEffect } from "react";
-import { HomeHeaderCTAButtons } from "./HomeHeaderCTAButtons";
 import { PageHeader, ScrollDownButton, Stats, Title } from "@/components";
 import type { Stat } from "@/payload-types";
 import { LazyMotionDiv } from "@/components/LazyComponents";
+import { ArrowRight, Phone, Zap } from "lucide-react";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
 
 interface HeaderData {
+  chip?: string;
   title: string[];
   seoTitle: string;
   subtitle: string;
@@ -24,17 +26,14 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
   const currentSlide = useImageCarousel(data.heroImages.length, 10000);
 
   useEffect(() => {
-    if ("scrollRestoration" in history) {
-      history.scrollRestoration = "manual";
-    }
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
   }, []);
 
-  const scrollToNextSection = () => {
-    const section = document.getElementById("pricing");
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+  const scrollToNext = () => {
+    document
+      .getElementById("entreprise")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
@@ -44,47 +43,71 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
       imageAlts={data.heroImageAlts}
       currentSlide={currentSlide}
       height="full"
-      bottomElement={<ScrollDownButton onClick={scrollToNextSection} />}
+      bottomElement={<ScrollDownButton onClick={scrollToNext} />}
       backgroundVariant="clean"
     >
+      {/* Eyebrow chip */}
+      <LazyMotionDiv
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
+        <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white backdrop-blur-sm">
+          <Zap
+            className="h-3 w-3 text-secondary-300"
+            fill="currentColor"
+            strokeWidth={0}
+          />
+          {data.chip}
+        </span>
+      </LazyMotionDiv>
+
+      {/* Title */}
+      <LazyMotionDiv
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        className="space-y-3"
+      >
+        <Title
+          staticText={data.title[0] ?? "BNB"}
+          animatedText={data.title[1] ?? "ÉNERGIE"}
+          seoTitle={data.seoTitle}
+          subtitle={data.description}
+        />
+      </LazyMotionDiv>
+      <CTAGroupButtons
+        align="center"
+        animated
+        items={[
+          {
+            label: data.cta1,
+            href: "/contact#contact-form",
+            variant: "default",
+            size: "sm",
+            iconRight: <ArrowRight className="size-4" />,
+            className:
+              "group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:text-base px-4",
+          },
+          {
+            label: data.cta2,
+            href: data.cta2_href,
+            variant: "outline",
+            size: "sm",
+            iconLeft: <Phone className="size-4" />,
+            className: "px-4",
+          },
+        ]}
+      />
+
+      {/* Stats */}
       <LazyMotionDiv
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 3, delay: 0 }}
-        className="flex max-w-6xl flex-col items-center gap-6"
+        transition={{ duration: 0.6, delay: 0.9 }}
+        className="w-full"
       >
-        <div className="space-y-6 text-center">
-          <Title
-            staticText={data.title[0] ?? "BNB"}
-            animatedText={data.title[1] ?? "ÉNERGIE"}
-            seoTitle={data.seoTitle}
-          />
-
-          <div className="mx-auto max-w-4xl space-y-2 lg:space-y-6">
-            <h2 className="px-4 font-medium text-white text-lg lg:text-2xl xl:text-3xl">
-              {data.subtitle}
-            </h2>
-            <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
-              {data.description}
-            </p>
-          </div>
-        </div>
-
-        <HomeHeaderCTAButtons
-          primaryText={data.cta1}
-          primaryHref="/contact#contact-form"
-          secondaryText={data.cta2}
-          secondaryHref={data.cta2_href}
-        />
-
-        <LazyMotionDiv
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35, delay: 0 }}
-          className="w-full"
-        >
-          <Stats stats={data.stats} />
-        </LazyMotionDiv>
+        <Stats stats={data.stats} />
       </LazyMotionDiv>
     </PageHeader>
   );

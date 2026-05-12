@@ -24,7 +24,7 @@ export function BenefitsClient({ data }: { data: BenefitsData }) {
         />
 
         <div
-          className={`grid grid-cols-1 items-center lg:grid-cols-2 ${SPACING.grid.gap}`}
+          className={`grid grid-cols-1 items-center lg:grid-cols-3 ${SPACING.grid.gap}`}
         >
           <BenefitsList benefits={data.benefits.list} />
           <CTASection
@@ -40,7 +40,7 @@ export function BenefitsClient({ data }: { data: BenefitsData }) {
               href: "/faq-panneaux-solaires",
             }}
             variant="gradient"
-            className="h-full"
+            className="h-full lg:col-span-2"
           />
         </div>
       </SectionContainer>

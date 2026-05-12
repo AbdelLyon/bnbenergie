@@ -2,7 +2,8 @@
 
 import { LazyMotionDiv } from "@/components/LazyComponents";
 import { ANIMATION_DURATIONS } from "@/config/constants";
-import { cn } from "@heroui/theme";
+import { cn } from "@/utils/classenames";
+import { Heading } from "@/components/shared/ui/Heading";
 import { ArrowRight, Phone } from "lucide-react";
 import Link from "next/link";
 
@@ -32,7 +33,7 @@ export function CTASection({
   className,
 }: CTASectionProps) {
   const variants = {
-    gradient: "bg-linear-to-br from-primary-800 to-primary-900 ",
+    gradient: "bg-linear-to-br from-primary-600 to-cyan-700 ",
     solid: "bg-neutral-900 dark:bg-neutral-950",
     minimal:
       "bg-neutral-50 dark:bg-content1 border border-neutral-200 dark:border-content2",
@@ -56,18 +57,16 @@ export function CTASection({
         className,
       )}
     >
-      <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-
       <div className="relative z-10">
         <div className="mx-auto max-w-3xl text-center">
-          <h2
+          <Heading
             className={cn(
-              "font-display mb-3 text-2xl font-bold md:text-3xl lg:text-4xl",
+              "mb-3 text-2xl md:text-3xl lg:text-4xl",
               textColors[variant],
             )}
           >
             {title}
-          </h2>
+          </Heading>
 
           <p
             className={cn(

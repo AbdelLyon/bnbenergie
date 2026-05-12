@@ -1,6 +1,7 @@
 "use client";
 
 import { LazyMotionDiv } from "@/components/LazyComponents";
+import { Heading } from "@/components/shared/ui/Heading";
 
 interface ContactMapProps {
   latitude: number;
@@ -32,9 +33,9 @@ export function ContactMap({ latitude, longitude, address }: ContactMapProps) {
           />
 
           <div className="absolute bottom-6 left-6 rounded-2xl border border-white dark:border-content2/50 bg-white dark:bg-content1/90 p-6 shadow-lg backdrop-blur-md">
-            <h3 className="mb-1 text-lg font-bold text-slate-800 dark:text-foreground">
+            <Heading as="h3" className="mb-1 text-lg text-slate-800 dark:text-foreground">
               Nous Trouver
-            </h3>
+            </Heading>
             <p className="text-sm text-slate-600 dark:text-default-500">
               {address}
             </p>

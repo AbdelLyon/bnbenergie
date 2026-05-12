@@ -9,15 +9,16 @@ import {
   PageMainWrapper,
   SectionContainer,
   Title,
-  HomeHeaderCTAButtons,
+  Heading,
 } from "@/components";
-import { LazyMotionDiv, LazyMotionH2 } from "@/components/LazyComponents";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
 import { StatsGrid } from "@/components/shared/ui/StatsGrid";
 import type {
   FinancialAid,
   PageHeader as PageHeaderType,
   SiteSetting,
 } from "@/payload-types";
+import { ArrowRight, Phone } from "lucide-react";
 
 interface AidesPageContentProps {
   aids: {
@@ -39,12 +40,7 @@ export default function AidesPageContent({
     <PageMainWrapper variant="purple">
       {/* Header */}
       <PageHeader variant="simple" height="medium">
-        <LazyMotionDiv
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 3, delay: 0 }}
-          className="flex max-w-6xl flex-col items-center gap-6"
-        >
+        <div className="flex max-w-6xl flex-col items-center gap-6">
           <Title
             staticText={header?.title.split(" ")[0] || "Aides"}
             animatedText={header?.title.split(" ")[1] || "Financement"}
@@ -54,14 +50,27 @@ export default function AidesPageContent({
             {header?.description || ""}
           </p>
 
-          <HomeHeaderCTAButtons
-            primaryText="Devis gratuit"
-            primaryHref="/contact#contact-form"
-            secondaryText="07 81 25 11 25"
-            secondaryHref="tel:0781251125"
-            primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
+          <CTAGroupButtons
+            items={[
+              {
+                label: "Devis gratuit",
+                size: "sm",
+                href: "/contact#contact-form",
+                iconRight: <ArrowRight className="size-4" />,
+                className:
+                  "group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:text-base px-4",
+              },
+              {
+                label: "07 81 25 11 25",
+                href: "tel:0781251125",
+                variant: "outline",
+                size: "sm",
+                iconLeft: <Phone className="size-4" />,
+                className: "px-4",
+              },
+            ]}
           />
-        </LazyMotionDiv>
+        </div>
       </PageHeader>
 
       <div className="relative z-10">
@@ -90,13 +99,7 @@ export default function AidesPageContent({
             ]}
           />
 
-          <LazyMotionDiv
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="relative mb-24 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 shadow-xl border border-neutral-100 dark:border-white/5"
-          >
+          <div className="relative mb-24 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 shadow-xl border border-neutral-100 dark:border-white/5">
             <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
               <div
                 className="absolute inset-0"
@@ -114,20 +117,14 @@ export default function AidesPageContent({
                 className="mb-0"
               />
             </div>
-          </LazyMotionDiv>
+          </div>
 
           {/* Aides principales */}
           {aids.main.length > 0 && (
             <div className="mb-20">
-              <LazyMotionH2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4 }}
-                className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
-              >
+              <Heading className="mb-12 text-center text-3xl text-neutral-900 dark:text-foreground md:text-4xl">
                 Les Principales Aides Disponibles
-              </LazyMotionH2>
+              </Heading>
               <div className="space-y-8">
                 {aids.main.map((aid, index) => (
                   <AidCard
@@ -160,15 +157,9 @@ export default function AidesPageContent({
 
           {aids.local.length > 0 && (
             <div className="mb-20">
-              <LazyMotionH2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4 }}
-                className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
-              >
+              <Heading className="mb-12 text-center text-3xl text-neutral-900 dark:text-foreground md:text-4xl">
                 Aides Locales & Complémentaires
-              </LazyMotionH2>
+              </Heading>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                 {aids.local.map((aid, index) => (
                   <FeatureCard
@@ -186,15 +177,9 @@ export default function AidesPageContent({
 
           {aids.financing.length > 0 && (
             <div className="mb-20">
-              <LazyMotionH2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4 }}
-                className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
-              >
+              <Heading className="mb-12 text-center text-3xl text-neutral-900 dark:text-foreground md:text-4xl">
                 Solutions de Financement
-              </LazyMotionH2>
+              </Heading>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                 {aids.financing.map((option, index) => (
                   <FeatureCard

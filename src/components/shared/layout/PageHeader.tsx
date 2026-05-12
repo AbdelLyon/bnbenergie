@@ -22,6 +22,7 @@ interface PageHeaderProps {
   children: ReactNode;
   bottomElement?: ReactNode;
   backgroundVariant?: "default" | "clean";
+  withParticles?: boolean; // ✅ NEW (optionnel)
 }
 
 export function PageHeader({
@@ -33,6 +34,7 @@ export function PageHeader({
   children,
   bottomElement,
   backgroundVariant = "default",
+  withParticles = true, // ✅ activé par défaut
 }: PageHeaderProps) {
   const heightClass = {
     full: "min-h-[100dvh]",
@@ -42,56 +44,45 @@ export function PageHeader({
 
   return (
     <section
-      className={`relative ${heightClass} flex items-center justify-center overflow-hidden antialiased`}
+      className={`relative ${heightClass} flex items-center justify-center overflow-hidden`}
     >
       {/* Background */}
-      {variant === "carousel" && images.length > 0 ? (
-        <HeaderBackground
-          images={images}
-          imageAlts={imageAlts}
-          currentSlide={currentSlide}
-          variant={backgroundVariant}
-        />
-      ) : (
-        <HeaderBackground
-          images={[]}
-          currentSlide={0}
-          variant={backgroundVariant}
-        />
-      )}
+      <HeaderBackground
+        images={variant === "carousel" && images.length > 0 ? images : []}
+        imageAlts={imageAlts}
+        currentSlide={currentSlide}
+        variant={backgroundVariant}
+      />
 
       {/* Overlay */}
       {backgroundVariant === "default" && (
         <div className="absolute inset-0 z-1 bg-black/50" />
       )}
 
-      {backgroundVariant === "default" && <ParticlesEffect />}
+      {/* ✅ Particles (réintégré proprement) */}
+      {backgroundVariant === "default" && withParticles && <ParticlesEffect />}
 
       {/* Content */}
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 text-center sm:px-6 py-28">
-        <div className="flex flex-col items-center justify-center gap-5 sm:gap-7 md:gap-8">
+      <div className="relative z-10 mx-auto w-full max-w-5xl px-5 py-28 text-center sm:px-8 sm:py-32 md:py-40">
+        <div className="flex flex-col items-center justify-center gap-8 sm:gap-6 md:gap-8">
           {children}
         </div>
-
-        {bottomElement && (
-          <LazyMotionDiv
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0 }}
-            className="absolute left-1/2 -translate-x-1/2 sm:bottom-20"
-          >
-            {bottomElement}
-          </LazyMotionDiv>
-        )}
       </div>
-      <LazyMotionDiv
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 5, ease: [0.16, 1, 0.3, 1], delay: 0 }}
-        className="pointer-events-none absolute bottom-0 left-0 z-10 w-full"
-      >
-        <div className="h-px w-full bg-linear-to-r from-blue-400/10 via-blue-400/60 to-blue-400/10 dark:via-blue-400/60" />
-      </LazyMotionDiv>
+
+      {/* Scroll indicator */}
+      {bottomElement && (
+        <LazyMotionDiv
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.8 }}
+          className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 sm:bottom-10"
+        >
+          {bottomElement}
+        </LazyMotionDiv>
+      )}
+
+      {/* Bottom gradient */}
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-32 bg-linear-to-t from-black/25 to-transparent" />
     </section>
   );
 }

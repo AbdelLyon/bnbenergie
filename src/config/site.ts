@@ -2,7 +2,7 @@ export const SITE_CONFIG = {
   name: 'BNB ÉNERGIE',
   fullName: 'BNB Énergie 01 - Panneaux Solaires Photovoltaïques Ain',
   businessName: 'BNB Énergie 01',
-  url: 'https://bnbenergie01.com',
+  url: 'https://bnbenergie01.com/',
 
   contact: {
     phone: '07 81 25 11 25',

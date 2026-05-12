@@ -1,4 +1,4 @@
-import { Card, CardBody } from "@heroui/card";
+import { Card, CardBody } from "@/components/shared/ui/Card";
 import {
   Phone,
   Mail,
@@ -14,6 +14,7 @@ import {
   Linkedin,
 } from "@/components/shared/ui/SocialIcons";
 import Link from "next/link";
+import { Heading } from "@/components/shared/ui/Heading";
 import { slugify } from "@/utils/slugify";
 import { getSiteSettings, getInterventionZones } from "@/lib/payload-queries";
 
@@ -28,11 +29,13 @@ export const Footer = async () => {
     .slice(0, 24)
     .sort();
 
-  const navigationLinks = [
+const navigationLinks = [
     { label: "Page d'accueil", href: "/" },
     { label: "Services", href: "/services" },
     { label: "Réalisations", href: "/realisations" },
     { label: "Aides & Financement", href: "/aides-financement" },
+    { label: "Zones d'intervention", href: "/zones-intervention" },
+    { label: "FAQ", href: "/faq-panneaux-solaires" },
     { label: "Nous contacter", href: "/contact" },
   ];
 
@@ -63,9 +66,9 @@ export const Footer = async () => {
               <div className="absolute inset-0 animate-pulse rounded-full bg-amber-500/20 blur-xl" />
               <Sun className="relative h-12 w-12 text-amber-500 dark:text-amber-400" />
             </div>
-            <h2 className="bg-linear-to-r from-amber-600 to-amber-500 dark:from-amber-400 dark:to-amber-300 bg-clip-text text-3xl font-bold text-transparent">
+            <Heading className="bg-linear-to-r from-amber-600 to-amber-500 dark:from-amber-400 dark:to-amber-300 bg-clip-text text-3xl text-transparent">
               {siteSettings.businessName || "BNB ÉNERGIE"}
-            </h2>
+            </Heading>
           </div>
           <p className="mx-auto max-w-2xl text-lg font-medium text-neutral-700 dark:text-neutral-300">
             Votre expert en panneaux solaires photovoltaïques dans l&apos;Ain
@@ -82,9 +85,9 @@ export const Footer = async () => {
               <div className="mb-4 rounded-full bg-linear-to-br from-amber-500 to-amber-600 p-4 shadow-lg shadow-amber-500/30 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-amber-500/50">
                 <Phone size={28} className="text-white" />
               </div>
-              <h3 className="mb-2 text-sm font-bold uppercase  text-neutral-500 dark:text-neutral-400">
+              <Heading as="h3" className="mb-2 text-sm text-neutral-500 dark:text-neutral-400">
                 Téléphone
-              </h3>
+              </Heading>
               <a
                 href={`tel:${siteSettings.contactPhone || "0781251125"}`}
                 className="text-lg font-semibold text-neutral-900 dark:text-white transition-colors hover:text-amber-600 dark:hover:text-amber-400"
@@ -99,9 +102,9 @@ export const Footer = async () => {
               <div className="mb-4 rounded-full bg-linear-to-br from-amber-500 to-amber-600 p-4 shadow-lg shadow-amber-500/30 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-amber-500/50">
                 <Mail size={28} className="text-white" />
               </div>
-              <h3 className="mb-2 text-sm font-bold uppercase  text-neutral-500 dark:text-neutral-400">
+              <Heading as="h3" className="mb-2 text-sm text-neutral-500 dark:text-neutral-400">
                 Email
-              </h3>
+              </Heading>
               <Link
                 href={`mailto:${
                   siteSettings.contactEmail || "contact@bnb-energie.fr"
@@ -118,9 +121,9 @@ export const Footer = async () => {
               <div className="mb-4 rounded-full bg-linear-to-br from-amber-500 to-amber-600 p-4 shadow-lg shadow-amber-500/30 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-amber-500/50">
                 <MapPin size={28} className="text-white" />
               </div>
-              <h3 className="mb-2 text-sm font-bold uppercase  text-neutral-500 dark:text-neutral-400">
+              <Heading as="h3" className="mb-2 text-sm text-neutral-500 dark:text-neutral-400">
                 Adresse
-              </h3>
+              </Heading>
               <p className="text-center text-lg font-semibold text-neutral-900 dark:text-white">
                 {siteSettings.addressStreet
                   ? `${siteSettings.addressStreet}, ${siteSettings.addressZip} ${siteSettings.addressCity}`
@@ -132,10 +135,10 @@ export const Footer = async () => {
 
         <div className="mb-12 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <h3 className="mb-6 flex items-center gap-2 text-lg font-bold text-neutral-900 dark:text-white">
+            <Heading as="h3" className="mb-6 flex items-center gap-2 text-lg text-neutral-900 dark:text-white">
               <ChevronRight className="h-5 w-5 text-amber-500" />
               Navigation
-            </h3>
+            </Heading>
             <ul className="space-y-3 flex flex-col">
               {navigationLinks.map((link) => (
                 <li key={link.href}>
@@ -152,10 +155,10 @@ export const Footer = async () => {
           </div>
 
           <div>
-            <h3 className="mb-6 flex items-center gap-2 text-lg font-bold text-neutral-900 dark:text-white">
+            <Heading as="h3" className="mb-6 flex items-center gap-2 text-lg text-neutral-900 dark:text-white">
               <Shield className="h-5 w-5 text-amber-500" />
               Nos Services
-            </h3>
+            </Heading>
             <ul className="space-y-3 text-neutral-700 dark:text-neutral-300">
               <li className="flex items-start gap-2">
                 <Award className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
@@ -177,10 +180,10 @@ export const Footer = async () => {
           </div>
 
           <div className="lg:col-span-2">
-            <h3 className="mb-6 flex items-center gap-2 text-lg font-bold text-neutral-900 dark:text-white">
+            <Heading as="h3" className="mb-6 flex items-center gap-2 text-lg text-neutral-900 dark:text-white">
               <MapPin className="h-5 w-5 text-amber-500" />
               Zones d&apos;Intervention
-            </h3>
+            </Heading>
             <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm md:grid-cols-3">
               {cities.map((city, index) => (
                 <Link
@@ -205,9 +208,9 @@ export const Footer = async () => {
         </div>
 
         <div className="mb-12 flex flex-col items-center justify-center gap-6">
-          <h3 className="text-lg font-bold text-neutral-900 dark:text-white">
+          <Heading as="h3" className="text-lg text-neutral-900 dark:text-white">
             Suivez-nous
-          </h3>
+          </Heading>
           <div className="flex gap-4">
             {siteSettings.socialFacebook && (
               <a

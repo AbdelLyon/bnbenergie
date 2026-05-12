@@ -1,7 +1,8 @@
 "use client";
 
-import { Title } from "@/components/shared/ui/Title";
 import {
+  Title,
+  Heading,
   PageHeader,
   PageMainWrapper,
   SectionContainer,
@@ -10,15 +11,15 @@ import {
   FeatureCard,
   WarrantyCard,
   CTASection,
-  HomeHeaderCTAButtons,
 } from "@/components";
+import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
 
 import type {
   Warranty,
   PageHeader as PageHeaderType,
   SiteSetting,
 } from "@/payload-types";
-import { LazyMotionDiv, LazyMotionH2 } from "@/components/LazyComponents";
+import { ArrowRight, Phone } from "lucide-react";
 
 interface GarantiesPageContentProps {
   warranties: {
@@ -40,29 +41,38 @@ export default function GarantiesPageContent({
     <PageMainWrapper variant="amber">
       {/* Header */}
       <PageHeader variant="simple" height="medium">
-        <LazyMotionDiv
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 3, delay: 0 }}
-          className="flex max-w-6xl flex-col items-center gap-6"
-        >
+        <div className="flex max-w-6xl flex-col items-center gap-6">
           <Title
             staticText={header?.title.split(" ")[0] || "Nos"}
             animatedText={header?.title.split(" ")[1] || "Garanties"}
             subtitle={header?.subtitle || ""}
+            seoTitle="Garanties Panneaux Solaires Photovoltaïques — Certification RGE QualiPV & Garantie Décennale | BNB Énergie"
           />
           <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
             {header?.description || ""}
           </p>
 
-          <HomeHeaderCTAButtons
-            primaryText="Devis gratuit"
-            primaryHref="/contact#contact-form"
-            secondaryText="07 81 25 11 25"
-            secondaryHref="tel:0781251125"
-            primaryClassName="group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 px-6 py-4.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:px-7 sm:text-base"
+          <CTAGroupButtons
+            items={[
+              {
+                size: "sm",
+                iconRight: <ArrowRight className="size-4" />,
+                label: "Devis gratuit",
+                href: "/contact#contact-form",
+                className:
+                  "group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:text-base px-4",
+              },
+              {
+                label: "07 81 25 11 25",
+                href: "tel:0781251125",
+                variant: "outline",
+                size: "sm",
+                iconLeft: <Phone className="size-4" />,
+                className: "px-4",
+              },
+            ]}
           />
-        </LazyMotionDiv>
+        </div>
       </PageHeader>
 
       <div className="relative z-10">
@@ -92,13 +102,7 @@ export default function GarantiesPageContent({
           />
 
           {/* Introduction avec background amélioré */}
-          <LazyMotionDiv
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="relative mb-24 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 shadow-xl border border-neutral-100 dark:border-white/5"
-          >
+          <div className="relative mb-24 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 shadow-xl border border-neutral-100 dark:border-white/5">
             {/* Pattern decoratif subtil */}
             <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
               <div
@@ -117,20 +121,14 @@ export default function GarantiesPageContent({
                 className="mb-0"
               />
             </div>
-          </LazyMotionDiv>
+          </div>
 
           {/* Certifications */}
           {warranties.certifications.length > 0 && (
             <div className="mb-20">
-              <LazyMotionH2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4 }}
-                className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
-              >
+              <Heading className="mb-12 text-center text-3xl text-neutral-900 dark:text-foreground md:text-4xl">
                 Nos Certifications Professionnelles
-              </LazyMotionH2>
+              </Heading>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {warranties.certifications.map((cert, index) => (
                   <FeatureCard
@@ -149,15 +147,9 @@ export default function GarantiesPageContent({
           {/* Garanties Produits */}
           {warranties.products.length > 0 && (
             <div className="mb-20">
-              <LazyMotionH2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4 }}
-                className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
-              >
+              <Heading className="mb-12 text-center text-3xl text-neutral-900 dark:text-foreground md:text-4xl">
                 Garanties Constructeurs & Matériel
-              </LazyMotionH2>
+              </Heading>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 {warranties.products.map((product, index) => (
                   <WarrantyCard
@@ -184,15 +176,9 @@ export default function GarantiesPageContent({
           {/* Engagements */}
           {warranties.commitments.length > 0 && (
             <div className="mb-20">
-              <LazyMotionH2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4 }}
-                className="font-display mb-12 text-center text-3xl font-bold text-neutral-900 dark:text-foreground md:text-4xl"
-              >
+              <Heading className="mb-12 text-center text-3xl text-neutral-900 dark:text-foreground md:text-4xl">
                 Nos Engagements Qualité
-              </LazyMotionH2>
+              </Heading>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {warranties.commitments.map((commitment, index) => (
                   <FeatureCard
