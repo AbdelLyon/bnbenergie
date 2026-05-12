@@ -89,7 +89,7 @@ export function Title({ staticText, animatedText, subtitle }: TitleProps) {
             <span className="text-primary">{af}</span>
             {ar}
             {isDesktop && (
-              <span className="ml-1 inline-block h-1 w-8 rounded-full bg-white/80 animate-[blink_1s_step-end_infinite]" />
+              <span className="ml-1 inline-block h-1 w-8 rounded-full bg-secondary/80 animate-[blink_1s_step-end_infinite]" />
             )}
           </span>
         </span>
