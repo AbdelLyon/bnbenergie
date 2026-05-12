@@ -12,6 +12,7 @@ interface TitleProps {
 
 type Phase = "typing" | "full" | "deleting" | "empty";
 
+/* 📱 hook desktop propre */
 function useIsDesktop() {
   const [isDesktop, setIsDesktop] = useState(false);
 
@@ -25,6 +26,7 @@ function useIsDesktop() {
   return isDesktop;
 }
 
+/* ⌨️ typewriter optimisé (moins de re-render) */
 function useTypewriter(text: string) {
   const [displayed, setDisplayed] = useState("");
   const [phase, setPhase] = useState<Phase>("typing");
@@ -78,6 +80,7 @@ function useTypewriter(text: string) {
   return displayed;
 }
 
+/* 🎯 clean string util */
 function splitFirstLetter(text: string) {
   return {
     first: text?.[0] ?? "",
