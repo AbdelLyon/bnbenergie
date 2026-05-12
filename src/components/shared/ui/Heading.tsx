@@ -8,15 +8,12 @@ interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
 
 export function Heading({
   as: Tag = "h2",
-  className = "",
+  className = "font-display font-bold -tracking-tight",
   children,
   ...props
 }: HeadingProps) {
   return (
-    <Tag
-      className={`font-display font-bold uppercase -tracking-tight ${className}`}
-      {...props}
-    >
+    <Tag className={className} {...props}>
       {children}
     </Tag>
   );
