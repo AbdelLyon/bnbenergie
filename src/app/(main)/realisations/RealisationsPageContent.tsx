@@ -98,7 +98,7 @@ export default function RealisationsPageContent({
             <Heading className="mb-6 text-3xl md:text-4xl">
               Nos Projets Photovoltaïques dans l&apos;Ain
             </Heading>
-            <p className="text-lg text-neutral-600 dark:text-default-500">
+            <p className="text-lg text-neutral-600">
               Découvrez quelques-unes de nos installations certifiées RGE
               QualiPV, classées par puissance.
             </p>
@@ -113,7 +113,7 @@ export default function RealisationsPageContent({
                   ${
                     selectedPower === power
                       ? "bg-primary text-white"
-                      : "bg-neutral-200 hover:bg-neutral-200 dark:bg-content1"
+                      : "bg-neutral-200 hover:bg-neutral-200"
                   }`}
               >
                 {power === "all" ? "Tous les projets" : power}

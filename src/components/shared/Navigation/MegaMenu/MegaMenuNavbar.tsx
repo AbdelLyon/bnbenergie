@@ -105,7 +105,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-white dark:bg-content1 shadow-lg shadow-black/5"
+            ? "bg-white shadow-lg shadow-black/5"
             : "bg-black/40 backdrop-blur-md"
         }`}
       >
@@ -170,7 +170,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                         transition={{ duration: 0.15, ease: "easeOut" }}
                         className="absolute top-full left-1/2 z-50 w-[580px] -translate-x-1/2 pt-3"
                       >
-                        <div className="overflow-hidden rounded-xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-content1 shadow-xl shadow-black/5">
+                        <div className="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-xl shadow-black/5">
                           <div className="grid grid-cols-2 gap-0 p-4">
                             {item.sections?.map((section, idx) => (
                               <div

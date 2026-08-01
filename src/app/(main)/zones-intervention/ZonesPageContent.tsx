@@ -75,8 +75,8 @@ export default function ZonesPageContent({
             ]}
           />
 
-          <div className="relative mb-24 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 shadow-xl border border-neutral-100 dark:border-white/5">
-            <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
+          <div className="relative mb-24 overflow-hidden rounded-3xl bg-white p-12 shadow-xl border border-neutral-100">
+            <div className="absolute inset-0 opacity-[0.03]">
               <div
                 className="absolute inset-0"
                 style={{
@@ -96,7 +96,7 @@ export default function ZonesPageContent({
           </div>
 
           <div className="mb-20">
-            <Heading className="mb-12 text-center text-3xl text-neutral-900 dark:text-foreground md:text-4xl">
+            <Heading className="mb-12 text-center text-3xl text-neutral-900 md:text-4xl">
               Nos Secteurs d'Intervention
             </Heading>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -115,7 +115,7 @@ export default function ZonesPageContent({
                       <Link
                         key={commune.name}
                         href={`/zones-intervention/${slugify(commune.name)}`}
-                        className="rounded-lg border border-neutral-200 dark:border-divider bg-neutral-50 dark:bg-content2 px-3 py-1.5 text-sm font-medium text-neutral-700 dark:text-default-600 transition-all duration-200 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 hover:shadow-md"
+                        className="rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-sm font-medium text-neutral-700 transition-all duration-200 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700 hover:shadow-md"
                       >
                         {commune.name}
                       </Link>
@@ -129,7 +129,7 @@ export default function ZonesPageContent({
           <div className="mb-20">
             <Heading
               as="h3"
-              className="mb-8 text-center text-2xl text-neutral-900 dark:text-foreground md:text-3xl"
+              className="mb-8 text-center text-2xl text-neutral-900 md:text-3xl"
             >
               Également présents dans les départements limitrophes
             </Heading>
@@ -144,7 +144,7 @@ export default function ZonesPageContent({
               ].map((dept) => (
                 <div
                   key={dept}
-                  className="rounded-full border border-neutral-200 dark:border-divider bg-white dark:bg-content1 px-4 py-2 text-sm font-medium text-neutral-700 dark:text-default-600"
+                  className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700"
                 >
                   {dept}
                 </div>
@@ -153,7 +153,7 @@ export default function ZonesPageContent({
           </div>
 
           <div className="mb-20">
-            <Heading className="mb-12 text-center text-3xl text-neutral-900 dark:text-foreground md:text-4xl">
+            <Heading className="mb-12 text-center text-3xl text-neutral-900 md:text-4xl">
               Pourquoi Choisir un Installateur Local ?
             </Heading>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

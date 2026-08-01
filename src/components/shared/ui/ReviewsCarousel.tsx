@@ -116,21 +116,21 @@ export function ReviewsCarousel({
           <LazyMotionButton
             whileTap={{ scale: 0.9 }}
             onClick={goToPrev}
-            className="absolute -left-4 top-1/2 z-10 -translate-y-1/2 cursor-pointer flex size-10 items-center justify-center rounded-full border border-neutral-200 dark:border-content2 bg-white/90 dark:bg-content1/90 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="absolute -left-4 top-1/2 z-10 -translate-y-1/2 cursor-pointer flex size-10 items-center justify-center rounded-full border border-neutral-200 bg-white/90 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-400 hover:bg-amber-50 disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={currentIndex === 0 && !autoPlay}
             aria-label="Avis précédent"
           >
-            <ChevronLeft className="size-6 text-neutral-700 dark:text-default-500" />
+            <ChevronLeft className="size-6 text-neutral-700" />
           </LazyMotionButton>
 
           <LazyMotionButton
             whileTap={{ scale: 0.9 }}
             onClick={goToNext}
-            className="absolute -right-4 top-1/2 z-10 -translate-y-1/2 flex size-10 cursor-pointer items-center justify-center rounded-full border border-neutral-200 dark:border-content2 bg-white/90 dark:bg-content1/90 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="absolute -right-4 top-1/2 z-10 -translate-y-1/2 flex size-10 cursor-pointer items-center justify-center rounded-full border border-neutral-200 bg-white/90 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-400 hover:bg-amber-50 disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={currentIndex === maxIndex && !autoPlay}
             aria-label="Avis suivant"
           >
-            <ChevronRight className="size-6 text-neutral-700 dark:text-default-500" />
+            <ChevronRight className="size-6 text-neutral-700" />
           </LazyMotionButton>
         </>
       )}
@@ -147,11 +147,11 @@ export function ReviewsCarousel({
               aria-label={`Aller au groupe d'avis ${idx + 1}`}
             >
               <div
-                className={`absolute inset-0 rounded-full bg-neutral-300 dark:bg-content2 transition-opacity duration-300 ${idx === currentIndex ? 'opacity-0' : 'opacity-100'}`}
+                className={`absolute inset-0 rounded-full bg-neutral-300 transition-opacity duration-300 ${idx === currentIndex ? 'opacity-0' : 'opacity-100'}`}
               />
 
               <div
-                className={`absolute inset-0 rounded-full bg-amber-500 dark:bg-amber-400 transition-opacity duration-300 ${idx === currentIndex ? 'opacity-100' : 'opacity-0'}`}
+                className={`absolute inset-0 rounded-full bg-amber-500 transition-opacity duration-300 ${idx === currentIndex ? 'opacity-100' : 'opacity-0'}`}
               />
 
               {idx === currentIndex && (

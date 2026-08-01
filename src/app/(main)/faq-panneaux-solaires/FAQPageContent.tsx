@@ -29,7 +29,6 @@ type CategoryMeta = {
   icon: string;
   gradient: string;
   labelColor: string;
-  labelColorDark: string;
   ringColor: string;
   description: string;
 };
@@ -48,32 +47,28 @@ const categoryMeta: Record<string, CategoryMeta> = {
     icon: "Banknote",
     gradient: "from-emerald-500 to-green-600",
     labelColor: "text-emerald-700",
-    labelColorDark: "dark:text-emerald-300",
-    ringColor: "ring-emerald-200 dark:ring-emerald-800/50",
+    ringColor: "ring-emerald-200",
     description: "Primes, TVA 5,5 %, éco-PTZ et aides régionales 2026",
   },
   "Prix & Rentabilité": {
     icon: "TrendingUp",
     gradient: "from-amber-400 to-orange-500",
     labelColor: "text-amber-700",
-    labelColorDark: "dark:text-amber-300",
-    ringColor: "ring-amber-200 dark:ring-amber-800/50",
+    ringColor: "ring-amber-200",
     description: "Tarifs, retour sur investissement et économies",
   },
   Technique: {
     icon: "Cpu",
     gradient: "from-blue-500 to-indigo-600",
     labelColor: "text-blue-700",
-    labelColorDark: "dark:text-blue-300",
-    ringColor: "ring-blue-200 dark:ring-blue-800/50",
+    ringColor: "ring-blue-200",
     description: "Installation, matériel et fonctionnement des panneaux",
   },
   "Démarches & Installation": {
     icon: "ClipboardList",
     gradient: "from-violet-500 to-purple-600",
     labelColor: "text-violet-700",
-    labelColorDark: "dark:text-violet-300",
-    ringColor: "ring-violet-200 dark:ring-violet-800/50",
+    ringColor: "ring-violet-200",
     description: "Administratif, délais et processus BNB ÉNERGIE",
   },
 };
@@ -82,8 +77,7 @@ const defaultMeta: CategoryMeta = {
   icon: "HelpCircle",
   gradient: "from-primary-500 to-primary-600",
   labelColor: "text-primary-700",
-  labelColorDark: "dark:text-primary-300",
-  ringColor: "ring-neutral-200 dark:ring-white/10",
+  ringColor: "ring-neutral-200",
   description: "",
 };
 
@@ -159,10 +153,10 @@ export default function FAQPageContent({
               return (
                 <div
                   key={category}
-                  className={`rounded-2xl border bg-white dark:bg-content1 overflow-hidden transition-all duration-300 ${
+                  className={`rounded-2xl border bg-white overflow-hidden transition-all duration-300 ${
                     isOpen
                       ? `shadow-lg ring-2 ${meta.ringColor} border-transparent`
-                      : "shadow-sm border-neutral-100 dark:border-white/5 hover:shadow-md"
+                      : "shadow-sm border-neutral-100 hover:shadow-md"
                   }`}
                 >
                   {/* Bouton accordéon — en-tête catégorie */}
@@ -181,12 +175,12 @@ export default function FAQPageContent({
                     {/* Titre + description */}
                     <div className="flex-1 min-w-0">
                       <Heading
-                        className={`text-base md:text-lg ${meta.labelColor} ${meta.labelColorDark}`}
+                        className={`text-base md:text-lg ${meta.labelColor}`}
                       >
                         {category}
                       </Heading>
                       {meta.description && (
-                        <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-0.5 leading-snug">
+                        <p className="text-sm text-neutral-500 mt-0.5 leading-snug">
                           {meta.description}
                         </p>
                       )}
@@ -203,14 +197,14 @@ export default function FAQPageContent({
                         className={`h-9 w-9 rounded-full flex items-center justify-center transition-all duration-300 ${
                           isOpen
                             ? `bg-linear-to-br ${meta.gradient} shadow-sm`
-                            : "bg-neutral-100 dark:bg-white/10"
+                            : "bg-neutral-100"
                         }`}
                       >
                         <ChevronDown
                           className={`h-5 w-5 transition-transform duration-300 ${
                             isOpen
                               ? "rotate-180 text-white"
-                              : "text-neutral-500 dark:text-neutral-400"
+                              : "text-neutral-500"
                           }`}
                         />
                       </div>
@@ -225,7 +219,7 @@ export default function FAQPageContent({
                         : "max-h-0 opacity-0"
                     }`}
                   >
-                    <div className="px-6 pb-6 space-y-3 border-t border-neutral-100 dark:border-white/5 pt-4">
+                    <div className="px-6 pb-6 space-y-3 border-t border-neutral-100 pt-4">
                       {items.map((faq) => (
                         <FAQItem
                           key={faq.id}

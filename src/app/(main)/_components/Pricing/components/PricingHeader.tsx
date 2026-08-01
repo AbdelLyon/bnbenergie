@@ -27,30 +27,30 @@ const TONE_STYLES: Record<PricingTone, PricingToneStyles> = {
   popular: {
     icon: Zap,
     iconContainer:
-      'border-blue-200/70 bg-blue-50/80 shadow-blue-950/5 dark:border-blue-400/15 dark:bg-blue-400/8',
-    iconColor: 'text-blue-600 dark:text-blue-400',
+      'border-blue-200/70 bg-blue-50/80 shadow-blue-950/5',
+    iconColor: 'text-blue-600',
     price:
-      'bg-linear-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent dark:from-blue-400 dark:to-cyan-300',
-    accent: 'bg-blue-500/10 dark:bg-blue-400/10',
+      'bg-linear-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent',
+    accent: 'bg-blue-500/10',
   },
 
   special: {
     icon: SunMedium,
     iconContainer:
-      'border-amber-200/70 bg-amber-50/80 shadow-amber-950/5 dark:border-amber-400/15 dark:bg-amber-400/8',
-    iconColor: 'text-amber-600 dark:text-amber-400',
+      'border-amber-200/70 bg-amber-50/80 shadow-amber-950/5',
+    iconColor: 'text-amber-600',
     price:
-      'bg-linear-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent dark:from-amber-400 dark:to-orange-300',
-    accent: 'bg-amber-500/10 dark:bg-amber-400/10',
+      'bg-linear-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent',
+    accent: 'bg-amber-500/10',
   },
 
   default: {
     icon: PanelsTopLeft,
     iconContainer:
-      'border-neutral-200/80 bg-white/80 shadow-neutral-950/5 dark:border-white/10 dark:bg-white/5',
-    iconColor: 'text-neutral-600 dark:text-neutral-300',
-    price: 'text-neutral-950 dark:text-white',
-    accent: 'bg-neutral-400/10 dark:bg-white/5',
+      'border-neutral-200/80 bg-white/80 shadow-neutral-950/5',
+    iconColor: 'text-neutral-600',
+    price: 'text-neutral-950',
+    accent: 'bg-neutral-400/10',
   },
 };
 
@@ -75,16 +75,16 @@ function PopularBadge() {
       <div className="relative">
         <div className="absolute inset-1 rounded-full bg-blue-500/20 blur-lg" />
 
-        <div className="relative inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-blue-200/70 bg-white/95 px-4 py-2 shadow-lg shadow-blue-950/8 ring-1 ring-black/5 backdrop-blur-xl dark:border-blue-400/20 dark:bg-neutral-950/90 dark:ring-white/10">
-          <span className="flex size-5 items-center justify-center rounded-full bg-blue-50 dark:bg-blue-400/10">
+        <div className="relative inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-blue-200/70 bg-white/95 px-4 py-2 shadow-lg shadow-blue-950/8 ring-1 ring-black/5 backdrop-blur-xl">
+          <span className="flex size-5 items-center justify-center rounded-full bg-blue-50">
             <BadgeCheck
               aria-hidden="true"
-              className="size-3.5 text-blue-600 dark:text-blue-400"
+              className="size-3.5 text-blue-600"
               strokeWidth={2}
             />
           </span>
 
-          <span className="text-[10px] leading-none font-semibold tracking-[0.14em] text-blue-700 uppercase dark:text-blue-300">
+          <span className="text-[10px] leading-none font-semibold tracking-[0.14em] text-blue-700 uppercase">
             Le plus choisi
           </span>
         </div>
@@ -161,12 +161,12 @@ export function PricingHeader({
               {pack.price}
             </span>
 
-            <span className="pb-1 font-[family:var(--font-manrope)] text-base leading-none font-medium text-neutral-500 dark:text-neutral-400">
+            <span className="pb-1 font-[family:var(--font-manrope)] text-base leading-none font-medium text-neutral-500">
               €
             </span>
           </div>
 
-          <span className="mt-1.5 text-[10px] font-medium tracking-[0.16em] text-neutral-500 uppercase dark:text-neutral-400">
+          <span className="mt-1.5 text-[10px] font-medium tracking-[0.16em] text-neutral-500 uppercase">
             Prix TTC
           </span>
         </div>

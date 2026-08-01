@@ -46,7 +46,7 @@ export function AidCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: 0 }}
-      className={`rounded-2xl border border-neutral-100 dark:border-content2 bg-white dark:bg-content1 p-8 shadow-lg transition-all duration-300 hover:shadow-xl ${className}`}
+      className={`rounded-2xl border border-neutral-100 bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl ${className}`}
     >
       <div className="flex flex-col gap-6 md:flex-row">
         <div
@@ -62,7 +62,7 @@ export function AidCard({
             >
               {badge}
             </span>
-            <Heading as="h3" className="mb-2 text-2xl text-neutral-900 dark:text-foreground">
+            <Heading as="h3" className="mb-2 text-2xl text-neutral-900">
               {title}
             </Heading>
             <p
@@ -72,13 +72,13 @@ export function AidCard({
             </p>
           </div>
 
-          <p className="mb-6 leading-relaxed text-neutral-600 dark:text-default-500">
+          <p className="mb-6 leading-relaxed text-neutral-600">
             {description}
           </p>
 
           {conditions && conditions.length > 0 && (
             <div className="mb-6">
-              <Heading as="h4" className="mb-3 text-sm text-neutral-900 dark:text-foreground">
+              <Heading as="h4" className="mb-3 text-sm text-neutral-900">
                 Conditions d&apos;éligibilité :
               </Heading>
               <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
@@ -95,7 +95,7 @@ export function AidCard({
                     className="flex items-start gap-2"
                   >
                     <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green-500" />
-                    <span className="text-sm text-neutral-700 dark:text-default-600">
+                    <span className="text-sm text-neutral-700">
                       {condition}
                     </span>
                   </LazyMotionDiv>
@@ -105,20 +105,20 @@ export function AidCard({
           )}
 
           {amounts && amounts.length > 0 && (
-            <div className="mb-4 rounded-xl bg-linear-to-br from-neutral-50 to-blue-50 dark:from-content2 dark:to-blue-900/20 p-6">
-              <Heading as="h4" className="mb-4 text-sm text-neutral-900 dark:text-foreground">
+            <div className="mb-4 rounded-xl bg-linear-to-br from-neutral-50 to-blue-50 p-6">
+              <Heading as="h4" className="mb-4 text-sm text-neutral-900">
                 Montants 2026 :
               </Heading>
               <div className="space-y-3">
                 {amounts.map((amount, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center justify-between border-b border-neutral-200 dark:border-content3 pb-3 last:border-0"
+                    className="flex items-center justify-between border-b border-neutral-200 pb-3 last:border-0"
                   >
-                    <span className="text-sm text-neutral-700 dark:text-default-600">
+                    <span className="text-sm text-neutral-700">
                       {amount.range}
                     </span>
-                    <span className="text-base font-bold text-blue-600 dark:text-blue-400">
+                    <span className="text-base font-bold text-blue-600">
                       {amount.amount}
                     </span>
                   </div>

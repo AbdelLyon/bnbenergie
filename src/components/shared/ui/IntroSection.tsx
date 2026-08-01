@@ -23,10 +23,10 @@ export function IntroSection({
       transition={{ duration: ANIMATION_DURATIONS.normal }}
       className={`mx-auto max-w-4xl text-center ${className}`}
     >
-      <Heading className="text-3xl mb-4 text-neutral-900 dark:text-foreground md:text-4xl">
+      <Heading className="text-3xl mb-4 text-neutral-900 md:text-4xl">
         {title}
       </Heading>
-      <p className="text-base leading-relaxed text-neutral-600 dark:text-default-500 md:text-lg">
+      <p className="text-base leading-relaxed text-neutral-600 md:text-lg">
         {description}
       </p>
     </LazyMotionDiv>

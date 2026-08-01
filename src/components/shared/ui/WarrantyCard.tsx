@@ -39,7 +39,7 @@ export function WarrantyCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: 0 }}
-      className={`rounded-2xl border border-neutral-100 dark:border-content2 bg-white dark:bg-content1 p-6 shadow-lg transition-all duration-300 hover:shadow-xl ${className}`}
+      className={`rounded-2xl border border-neutral-100 bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl ${className}`}
     >
       {/* En-tête */}
       <div className="mb-6 flex items-center gap-4">
@@ -49,27 +49,27 @@ export function WarrantyCard({
           <Icon className="h-8 w-8" />
         </div>
         <div className="flex-1">
-          <Heading as="h3" className="mb-1 text-xl text-neutral-900 dark:text-foreground">
+          <Heading as="h3" className="mb-1 text-xl text-neutral-900">
             {title}
           </Heading>
-          <p className="text-sm text-neutral-600 dark:text-default-500">
+          <p className="text-sm text-neutral-600">
             {description}
           </p>
         </div>
       </div>
 
-      <div className="mb-6 space-y-3 rounded-xl bg-neutral-50 dark:bg-content2 p-4">
+      <div className="mb-6 space-y-3 rounded-xl bg-neutral-50 p-4">
         {warranties.map((warranty, idx) => (
           <div key={idx} className="space-y-1">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-semibold text-neutral-900 dark:text-foreground">
+              <span className="text-sm font-semibold text-neutral-900">
                 {warranty.label}
               </span>
-              <span className="rounded-full bg-blue-100 dark:bg-blue-900/30 px-3 py-1 text-sm font-bold text-blue-600 dark:text-blue-400">
+              <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-bold text-blue-600">
                 {warranty.duration}
               </span>
             </div>
-            <p className="text-xs text-neutral-600 dark:text-default-500">
+            <p className="text-xs text-neutral-600">
               {warranty.description}
             </p>
           </div>
@@ -79,8 +79,8 @@ export function WarrantyCard({
       <div className="space-y-2">
         {features.map((feature, idx) => (
           <div key={idx} className="flex items-start gap-2">
-            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-blue-600 dark:text-blue-400" />
-            <span className="text-xs text-neutral-700 dark:text-default-600">
+            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-blue-600" />
+            <span className="text-xs text-neutral-700">
               {feature}
             </span>
           </div>

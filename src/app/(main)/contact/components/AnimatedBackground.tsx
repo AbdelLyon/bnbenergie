@@ -12,7 +12,7 @@ export function AnimatedBackground() {
           y: [0, -50, 0],
         }}
         transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute -top-40 -right-40 h-96 w-96 rounded-full bg-blue-400/10 dark:bg-blue-500/20 blur-3xl"
+        className="absolute -top-40 -right-40 h-96 w-96 rounded-full bg-blue-400/10 blur-3xl"
       />
       <LazyMotionDiv
         animate={{
@@ -21,7 +21,7 @@ export function AnimatedBackground() {
           y: [0, 80, 0],
         }}
         transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute -bottom-40 -left-40 h-96 w-96 rounded-full bg-amber-400/10 dark:bg-amber-500/20 blur-3xl"
+        className="absolute -bottom-40 -left-40 h-96 w-96 rounded-full bg-amber-400/10 blur-3xl"
       />
       <LazyMotionDiv
         animate={{
@@ -29,7 +29,7 @@ export function AnimatedBackground() {
           x: [0, -50, 0],
         }}
         transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 dark:bg-cyan-500/20 blur-3xl"
+        className="absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-3xl"
       />
     </div>
   );

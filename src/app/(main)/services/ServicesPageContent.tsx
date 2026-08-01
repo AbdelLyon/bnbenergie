@@ -62,7 +62,7 @@ export default function ServicesPageContent({
             }))}
           />
 
-          <div className="relative mx-auto mb-20 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 border border-neutral-100 dark:border-white/5">
+          <div className="relative mx-auto mb-20 overflow-hidden rounded-3xl bg-white p-12 border border-neutral-100">
             <div className="relative z-10 text-center">
               <IntroSection
                 title="Un Accompagnement Complet de A à Z"
@@ -72,11 +72,11 @@ export default function ServicesPageContent({
 
               <Heading
                 as="h3"
-                className="mb-4 text-xl text-neutral-700 dark:text-default-600"
+                className="mb-4 text-xl text-neutral-700"
               >
                 Notre mission : transformer votre projet solaire en réalité
               </Heading>
-              <p className="leading-relaxed text-neutral-500 dark:text-default-400 max-w-2xl mx-auto">
+              <p className="leading-relaxed text-neutral-500 max-w-2xl mx-auto">
                 Chez BNB ÉNERGIE, nous gérons l'intégralité de votre projet
                 d'installation de panneaux solaires, de l'étude initiale à la
                 maintenance.
@@ -108,7 +108,7 @@ export default function ServicesPageContent({
 
           {guarantees.length > 0 && (
             <div className="mb-20">
-              <Heading className="mb-12 text-center text-3xl text-neutral-900 dark:text-foreground md:text-4xl">
+              <Heading className="mb-12 text-center text-3xl text-neutral-900 md:text-4xl">
                 Nos Engagements Qualité
               </Heading>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

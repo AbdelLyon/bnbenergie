@@ -15,7 +15,7 @@ export function PricingFooter({ note, tags }: PricingFooterProps) {
       transition={{ duration: ANIMATION_DURATIONS.slow, delay: 0 }}
       className="my-10 text-center"
     >
-      <p className="mb-4 font-semibold text-neutral-600 dark:text-default-500">
+      <p className="mb-4 font-semibold text-neutral-600">
         {note}
       </p>
       <div className="flex flex-wrap justify-center gap-4">
@@ -30,7 +30,7 @@ export function PricingFooter({ note, tags }: PricingFooterProps) {
             <span className="flex h-5 w-5 items-center justify-center rounded-full bg-green-500 text-xs font-bold text-white">
               ✓
             </span>
-            <span className="text-sm font-semibold text-neutral-800 dark:text-default-600">
+            <span className="text-sm font-semibold text-neutral-800">
               {tag}
             </span>
           </LazyMotionDiv>

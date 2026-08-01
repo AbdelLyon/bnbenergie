@@ -23,11 +23,11 @@ export function BenefitsCTA({
       viewport={{ once: true, margin: "-20px" }}
       transition={{ duration: 0.4, delay: 0 }}
     >
-      <div className="relative overflow-hidden rounded-3xl border border-neutral-200/70 bg-white p-10 text-center shadow-sm md:p-12 dark:border-content2 dark:bg-content1">
-        <h3 className="mb-4 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl dark:text-white">
+      <div className="relative overflow-hidden rounded-3xl border border-neutral-200/70 bg-white p-10 text-center shadow-sm md:p-12">
+        <h3 className="mb-4 text-2xl font-semibold tracking-tight text-neutral-900 md:text-3xl">
           {title}
         </h3>
-        <p className="mx-auto mb-8 max-w-xl text-base leading-relaxed text-neutral-600 md:text-lg dark:text-default-500">
+        <p className="mx-auto mb-8 max-w-xl text-base leading-relaxed text-neutral-600 md:text-lg">
           {description}
         </p>
 
@@ -40,7 +40,7 @@ export function BenefitsCTA({
           </Link>
           <Link
             href="/faq-panneaux-solaires"
-            className="inline-flex items-center justify-center rounded-full border border-neutral-300 px-7 py-3.5 text-sm font-semibold text-neutral-800 transition-colors duration-200 hover:bg-neutral-50 dark:border-default-200 dark:text-foreground"
+            className="inline-flex items-center justify-center rounded-full border border-neutral-300 px-7 py-3.5 text-sm font-semibold text-neutral-800 transition-colors duration-200 hover:bg-neutral-50"
           >
             {button2}
           </Link>

@@ -169,7 +169,7 @@ function FormField({
     >
       <label
         htmlFor={name}
-        className="mb-2 ml-1 block text-sm font-bold text-slate-700 dark:text-default-700 transition-colors group-focus-within:text-blue-600 dark:group-focus-within:text-blue-400"
+        className="mb-2 ml-1 block text-sm font-bold text-slate-700 transition-colors group-focus-within:text-blue-600"
       >
         {label} {required && <span className="text-amber-500">*</span>}
       </label>

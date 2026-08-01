@@ -17,9 +17,7 @@ type CategoryConfig = {
   gradient: string;
   openBorder: string;
   answerBg: string;
-  answerBgDark: string;
   labelColor: string;
-  labelColorDark: string;
   chevronGradient: string;
 };
 
@@ -29,9 +27,7 @@ const categoryConfig: Record<string, CategoryConfig> = {
     gradient: 'from-emerald-500 to-green-600',
     openBorder: 'border-l-emerald-500',
     answerBg: 'bg-emerald-50',
-    answerBgDark: 'dark:bg-emerald-900/10',
     labelColor: 'text-emerald-700',
-    labelColorDark: 'dark:text-emerald-400',
     chevronGradient: 'from-emerald-500 to-green-600',
   },
   'Prix & Rentabilité': {
@@ -39,9 +35,7 @@ const categoryConfig: Record<string, CategoryConfig> = {
     gradient: 'from-amber-400 to-orange-500',
     openBorder: 'border-l-amber-500',
     answerBg: 'bg-amber-50',
-    answerBgDark: 'dark:bg-amber-900/10',
     labelColor: 'text-amber-700',
-    labelColorDark: 'dark:text-amber-400',
     chevronGradient: 'from-amber-400 to-orange-500',
   },
   'Technique': {
@@ -49,9 +43,7 @@ const categoryConfig: Record<string, CategoryConfig> = {
     gradient: 'from-blue-500 to-indigo-600',
     openBorder: 'border-l-blue-500',
     answerBg: 'bg-blue-50',
-    answerBgDark: 'dark:bg-blue-900/10',
     labelColor: 'text-blue-700',
-    labelColorDark: 'dark:text-blue-400',
     chevronGradient: 'from-blue-500 to-indigo-600',
   },
   'Démarches & Installation': {
@@ -59,9 +51,7 @@ const categoryConfig: Record<string, CategoryConfig> = {
     gradient: 'from-violet-500 to-purple-600',
     openBorder: 'border-l-violet-500',
     answerBg: 'bg-violet-50',
-    answerBgDark: 'dark:bg-violet-900/10',
     labelColor: 'text-violet-700',
-    labelColorDark: 'dark:text-violet-400',
     chevronGradient: 'from-violet-500 to-purple-600',
   },
 };
@@ -71,9 +61,7 @@ const defaultConfig: CategoryConfig = {
   gradient: 'from-primary-500 to-primary-600',
   openBorder: 'border-l-primary-500',
   answerBg: 'bg-primary-50',
-  answerBgDark: 'dark:bg-primary-900/10',
   labelColor: 'text-primary-700',
-  labelColorDark: 'dark:text-primary-400',
   chevronGradient: 'from-primary-500 to-primary-600',
 };
 
@@ -85,10 +73,10 @@ export function FAQItem({ question, answer, category, categoryIcon }: FAQItemPro
 
   return (
     <div
-      className={`group overflow-hidden rounded-2xl border bg-white dark:bg-content1 transition-all duration-300 border-l-4 ${
+      className={`group overflow-hidden rounded-2xl border bg-white transition-all duration-300 border-l-4 ${
         isOpen
-          ? `shadow-lg border-neutral-100 dark:border-white/5 ${config.openBorder}`
-          : 'shadow-sm hover:shadow-md border-neutral-100 dark:border-white/5 border-l-transparent hover:border-l-neutral-200 dark:hover:border-l-white/10'
+          ? `shadow-lg border-neutral-100 ${config.openBorder}`
+          : 'shadow-sm hover:shadow-md border-neutral-100 border-l-transparent hover:border-l-neutral-200'
       }`}
     >
       <button
@@ -107,11 +95,11 @@ export function FAQItem({ question, answer, category, categoryIcon }: FAQItemPro
         {/* Texte */}
         <div className="flex-1 min-w-0">
           {category && (
-            <p className={`text-[11px] font-semibold uppercase tracking-wider mb-0.5 ${config.labelColor} ${config.labelColorDark}`}>
+            <p className={`text-[11px] font-semibold uppercase tracking-wider mb-0.5 ${config.labelColor}`}>
               {category}
             </p>
           )}
-          <Heading as="h3" className="text-sm text-neutral-900 dark:text-white leading-snug md:text-base pr-2">
+          <Heading as="h3" className="text-sm text-neutral-900 leading-snug md:text-base pr-2">
             {question}
           </Heading>
         </div>
@@ -121,12 +109,12 @@ export function FAQItem({ question, answer, category, categoryIcon }: FAQItemPro
           className={`shrink-0 h-8 w-8 rounded-full flex items-center justify-center transition-all duration-300 ${
             isOpen
               ? `bg-linear-to-br ${config.chevronGradient} shadow-sm`
-              : 'bg-neutral-100 dark:bg-white/10'
+              : 'bg-neutral-100'
           }`}
         >
           <ChevronDown
             className={`h-4 w-4 transition-transform duration-300 ${
-              isOpen ? 'rotate-180 text-white' : 'text-neutral-500 dark:text-neutral-400'
+              isOpen ? 'rotate-180 text-white' : 'text-neutral-500'
             }`}
           />
         </div>
@@ -138,7 +126,7 @@ export function FAQItem({ question, answer, category, categoryIcon }: FAQItemPro
           isOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className={`mx-5 mb-5 rounded-xl px-4 py-4 text-sm leading-relaxed text-neutral-700 dark:text-neutral-300 ${config.answerBg} ${config.answerBgDark}`}>
+        <div className={`mx-5 mb-5 rounded-xl px-4 py-4 text-sm leading-relaxed text-neutral-700 ${config.answerBg}`}>
           {answer}
         </div>
       </div>

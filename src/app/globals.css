@@ -244,43 +244,14 @@ body {
     color 0.3s ease;
 }
 
-.dark {
-  /* Dark mode semantic tokens */
-  --bg-page: linear-gradient(
-    180deg,
-    #121214 0%,
-    #18181c 30%,
-    #1e1e22 70%,
-    #181820 100%
-  );
-  --bg-card: #222226;
-  --bg-section: #121214;
-  --bg-section-alt: #1c1c20;
 
-  --text-primary: #fafafa;
-  --text-secondary: #d4d4d8;
-  --text-tertiary: #a1a1aa;
-  --text-muted: #71717a;
-
-  --border-default: #27272a;
-  --border-light: #3f3f46;
-  --border-focus: var(--color-primary-400);
-}
-
-.dark body {
-  background: var(--bg-page);
-  color: var(--text-primary);
-}
 
 ::selection {
   background: var(--color-secondary-500);
   color: var(--color-white);
 }
 
-.dark ::selection {
-  background: var(--color-primary-600);
-  color: var(--color-white);
-}
+
 
 /* ============================================
    🎨 ANIMATIONS ORCHESTRÉES MODERNES

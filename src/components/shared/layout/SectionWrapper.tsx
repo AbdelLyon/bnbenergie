@@ -23,7 +23,7 @@ export function SectionWrapper({
     white: "bg-[var(--bg-card)]",
     gray: "bg-[var(--bg-section)]",
     gradient: "bg-[var(--bg-section)]",
-    dark: "bg-neutral-900 text-white dark:bg-background",
+    dark: "bg-neutral-900 text-white",
   };
 
   return (
@@ -80,38 +80,35 @@ export function SectionHeader({
   badge,
   title,
   subtitle,
-  align = "center",
   className,
 }: SectionHeaderProps) {
-  const alignments: Record<TextAlignment, string> = {
-    left: "text-left",
-    center: "text-center mx-auto",
-    right: "text-right ml-auto",
-  };
-
   return (
     <LazyMotionHeader
       initial={{ opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-30px" }}
       transition={{ duration: ANIMATION_DURATIONS.normal }}
-      className={cn(
-        "max-w-3xl",
-        SPACING.header.mb,
-        alignments[align],
-        className,
-      )}
+      className={cn("text-left", SPACING.header.mb, className)}
     >
       {badge && (
-        <span className="mb-4 inline-block rounded-full border border-neutral-200 bg-neutral-50/80 px-3.5 py-1.5 text-xs font-medium uppercase tracking-[0.12em] text-neutral-500 dark:border-content2 dark:bg-content2 dark:text-default-400">
+        <p className="mb-3 text-[13px] font-bold uppercase tracking-[0.16em] text-secondary-600">
           {badge}
-        </span>
+        </p>
       )}
-      <h2 className="mb-4 text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl lg:text-[2.75rem] dark:text-white">
-        {title}
-      </h2>
+
+      {/* Titre à gauche + trait qui file vers la droite (façon rifanor) */}
+      <div className="flex items-end gap-6">
+        <h2 className="max-w-[20ch] text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
+          {title}
+        </h2>
+        <span
+          aria-hidden="true"
+          className="mb-2.5 hidden h-px flex-1 bg-neutral-200 md:block"
+        />
+      </div>
+
       {subtitle && (
-        <p className="mx-auto max-w-2xl text-base font-normal leading-relaxed text-neutral-500 md:text-lg dark:text-default-500">
+        <p className="mt-4 max-w-2xl text-base font-normal leading-relaxed text-neutral-500 md:text-lg">
           {subtitle}
         </p>
       )}

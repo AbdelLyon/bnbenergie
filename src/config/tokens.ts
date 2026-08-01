@@ -4,17 +4,17 @@
 export const tokens = {
   // ── Arrière-plans ──────────────────────────────────────────────────────────
   bg: {
-    surface: "bg-white dark:bg-content1",                           // cartes, panels, modals
-    elevated: "bg-content1 dark:bg-content2",                        // surface sur-élevée
-    subtleFill: "bg-default-50/60 dark:bg-content2/20",               // zones secondaires, footer de dropdown
+    surface: "bg-white",                           // cartes, panels, modals
+    elevated: "bg-content1",                        // surface sur-élevée
+    subtleFill: "bg-default-50/60",               // zones secondaires, footer de dropdown
     overlay: "bg-black/40 backdrop-blur-md",                        // overlay générique
     navGlass: "bg-black/25 backdrop-blur-xl",                        // navbar transparent sur hero
     backdrop: "bg-black/60 backdrop-blur-sm",                        // fond modal / drawer
-    glass: "bg-white dark:bg-content1 backdrop-blur-md",   // navbar / header scrollé
-    glassDense: "bg-white/98 dark:bg-content1/98 backdrop-blur-md",   // dropdown, popover, panel flottant
+    glass: "bg-white backdrop-blur-md",   // navbar / header scrollé
+    glassDense: "bg-white/98 backdrop-blur-md",   // dropdown, popover, panel flottant
     hoverPrimary: "hover:bg-primary/5",                                  // hover avec teinte primaire
     hoverContent: "hover:bg-content2/70",                                // hover neutre sur fond clair/sombre
-    hoverDefault: "hover:bg-default-50 dark:hover:bg-content2/60",      // hover neutre sur surfaces claires
+    hoverDefault: "hover:bg-default-50",      // hover neutre sur surfaces claires
     hoverOnDark: "hover:bg-white/10",                                   // hover sur surfaces sombres/transparentes
     activeOnDark: "bg-white/15",                                         // état actif sur surface sombre
     infoSubtle: "bg-blue-500/10",                                      // fond bleu subtil (info, theme toggle)
@@ -30,7 +30,7 @@ export const tokens = {
   // ── Bordures ───────────────────────────────────────────────────────────────
   border: {
     default: "border border-default border-white/5",                 // bordure générique pour cartes, panels
-    subtle: "border border-default-100 dark:border-default-800",
+    subtle: "border border-default-100",
     primary: "border border-primary/20",
     bottom: {
       default: "border-b border-default border-white/5",
@@ -44,7 +44,7 @@ export const tokens = {
     md: "shadow-md shadow-black/5",
     lg: "shadow-lg shadow-black/5",
     xl: "shadow-xl shadow-black/5",
-    drop: "shadow-2xl shadow-black/10 dark:shadow-black/30",            // dropdown, panel flottant
+    drop: "shadow-2xl shadow-black/10",            // dropdown, panel flottant
   },
 
   // ── Rayons ─────────────────────────────────────────────────────────────────
@@ -66,7 +66,7 @@ export const tokens = {
     onDark: "text-white",
     onDarkMuted: "text-white/80",
     onDarkSubtle: "text-white/75",                                       // texte discret sur fond sombre
-    info: "text-blue-500 dark:text-blue-400",                   // texte info / lune
+    info: "text-blue-500",                   // texte info / lune
     warning: "text-amber-500",                                      // texte avertissement / soleil
   },
 

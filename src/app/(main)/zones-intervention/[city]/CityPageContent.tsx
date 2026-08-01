@@ -92,7 +92,7 @@ export default function CityPageContent({
           <div className="mb-20 grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
             <div className="lg:col-span-3">
               <div>
-                <Heading className="text-3xl md:text-4xl text-neutral-900 dark:text-foreground mb-6">
+                <Heading className="text-3xl md:text-4xl text-neutral-900 mb-6">
                   Installation solaire à{" "}
                   <span
                     className={`bg-linear-to-r ${accentClass} bg-clip-text text-transparent`}
@@ -100,7 +100,7 @@ export default function CityPageContent({
                     {cityName}
                   </span>
                 </Heading>
-                <div className="space-y-5 text-neutral-700 dark:text-neutral-300 leading-relaxed text-base">
+                <div className="space-y-5 text-neutral-700 leading-relaxed text-base">
                   {paragraphs.map((p, i) => (
                     <p key={i}>{p}</p>
                   ))}
@@ -108,8 +108,8 @@ export default function CityPageContent({
               </div>
             </div>
 
-            <div className="lg:col-span-2 rounded-2xl border border-neutral-200 dark:border-content2 bg-white dark:bg-content1 p-6 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-5">
+            <div className="lg:col-span-2 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+              <p className="text-xs font-semibold uppercase tracking-widest text-neutral-500 mb-5">
                 Pourquoi BNB ÉNERGIE à {cityName}
               </p>
               <ul className="space-y-4">
@@ -142,10 +142,10 @@ export default function CityPageContent({
                       {icon}
                     </span>
                     <div>
-                      <p className="text-sm font-semibold text-neutral-900 dark:text-foreground">
+                      <p className="text-sm font-semibold text-neutral-900">
                         {title}
                       </p>
-                      <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
+                      <p className="text-xs text-neutral-500 mt-0.5">
                         {text}
                       </p>
                     </div>
@@ -160,7 +160,7 @@ export default function CityPageContent({
               <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-2">
                 Spécificités locales
               </p>
-              <Heading className="text-3xl md:text-4xl text-neutral-900 dark:text-foreground">
+              <Heading className="text-3xl md:text-4xl text-neutral-900">
                 Atouts de la zone{" "}
                 <span
                   className={`bg-linear-to-r ${accentClass} bg-clip-text text-transparent`}
@@ -184,13 +184,13 @@ export default function CityPageContent({
           </div>
 
           {/* ── Processus 4 étapes ── */}
-          <div className="mb-20 rounded-3xl border border-neutral-200 dark:border-content2 bg-white dark:bg-content1 shadow-sm overflow-hidden">
+          <div className="mb-20 rounded-3xl border border-neutral-200 bg-white shadow-sm overflow-hidden">
             <div className="h-1 w-full bg-linear-to-r" />
             <div className="p-8 md:p-10">
               <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-2 text-center">
                 Comment ça marche
               </p>
-              <Heading className="text-2xl md:text-3xl text-center text-neutral-900 dark:text-foreground mb-10">
+              <Heading className="text-2xl md:text-3xl text-center text-neutral-900 mb-10">
                 Votre installation solaire à {cityName} en 4 étapes
               </Heading>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -205,7 +205,7 @@ export default function CityPageContent({
                       className="relative flex flex-col gap-3"
                     >
                       {i < PROCESS_STEPS.length - 1 && (
-                        <div className="hidden lg:block absolute top-5 left-[calc(100%-0.5rem)] w-full h-px bg-neutral-200 dark:bg-white/10 z-0" />
+                        <div className="hidden lg:block absolute top-5 left-[calc(100%-0.5rem)] w-full h-px bg-neutral-200 z-0" />
                       )}
                       <div className="relative z-10 flex items-center gap-3">
                         <div
@@ -213,15 +213,15 @@ export default function CityPageContent({
                         >
                           <Icon className="h-5 w-5" />
                         </div>
-                        <span className="text-3xl font-black text-neutral-100 dark:text-white/5 select-none leading-none">
+                        <span className="text-3xl font-black text-neutral-100 select-none leading-none">
                           {number}
                         </span>
                       </div>
                       <div>
-                        <p className="font-semibold text-neutral-900 dark:text-foreground text-sm mb-1">
+                        <p className="font-semibold text-neutral-900 text-sm mb-1">
                           {title}
                         </p>
-                        <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                        <p className="text-xs text-neutral-500 leading-relaxed">
                           {text}
                         </p>
                         <span
@@ -244,25 +244,25 @@ export default function CityPageContent({
                 href: "/services",
                 label: "Nos services d'installation",
                 color:
-                  "border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/40",
+                  "border-blue-200 bg-blue-50 text-blue-700 hover:bg-blue-100",
               },
               {
                 href: "/nos-packs",
                 label: "Tarifs & packs solaires",
                 color:
-                  "border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-900/40",
+                  "border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100",
               },
               {
                 href: "/aides-financement",
                 label: "Aides & financement 2026",
                 color:
-                  "border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 hover:bg-green-100 dark:hover:bg-green-900/40",
+                  "border-green-200 bg-green-50 text-green-700 hover:bg-green-100",
               },
               {
                 href: "/garanties",
                 label: "Nos garanties RGE",
                 color:
-                  "border-purple-200 dark:border-purple-800 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 hover:bg-purple-100 dark:hover:bg-purple-900/40",
+                  "border-purple-200 bg-purple-50 text-purple-700 hover:bg-purple-100",
               },
             ].map(({ href, label, color }) => (
               <Link
@@ -278,10 +278,10 @@ export default function CityPageContent({
 
           {/* ── Villes voisines ── */}
           {relatedCities.length > 0 && (
-            <div className="mb-20 rounded-2xl border border-neutral-200 dark:border-content2 bg-white dark:bg-content1 p-8 shadow-sm">
+            <div className="mb-20 rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm">
               <div className="flex items-center gap-2 mb-6">
                 <MapPin className="h-5 w-5 text-neutral-400" />
-                <Heading className="text-lg text-neutral-900 dark:text-foreground">
+                <Heading className="text-lg text-neutral-900">
                   Communes voisines desservies
                 </Heading>
               </div>
@@ -290,16 +290,16 @@ export default function CityPageContent({
                   <Link
                     key={city.slug ?? city.name}
                     href={`/zones-intervention/${city.slug}`}
-                    className="rounded-lg border border-neutral-200 dark:border-divider bg-neutral-50 dark:bg-content2 px-3 py-1.5 text-sm font-medium text-neutral-700 dark:text-default-600 transition-all duration-200 hover:bg-neutral-100 dark:hover:bg-content3"
+                    className="rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-sm font-medium text-neutral-700 transition-all duration-200 hover:bg-neutral-100"
                   >
                     {city.name}
                   </Link>
                 ))}
               </div>
-              <p className="mt-5 text-center text-xs text-neutral-400 dark:text-neutral-500">
+              <p className="mt-5 text-center text-xs text-neutral-400">
                 <Link
                   href="/zones-intervention"
-                  className="font-medium hover:text-amber-600 dark:hover:text-amber-400 hover:underline"
+                  className="font-medium hover:text-amber-600 hover:underline"
                 >
                   Voir toutes nos zones d&apos;intervention →
                 </Link>

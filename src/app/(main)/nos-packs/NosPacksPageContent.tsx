@@ -73,8 +73,8 @@ export default function NosPacksPageContent({
             ]}
           />
 
-          <div className="relative mb-24 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 shadow-xl border border-neutral-100 dark:border-white/5">
-            <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
+          <div className="relative mb-24 overflow-hidden rounded-3xl bg-white p-12 shadow-xl border border-neutral-100">
+            <div className="absolute inset-0 opacity-[0.03]">
               <div
                 className="absolute inset-0"
                 style={{

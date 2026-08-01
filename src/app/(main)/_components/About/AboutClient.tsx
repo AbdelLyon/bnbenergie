@@ -19,12 +19,16 @@ export function AboutClient({ data }: { data: AboutData }) {
           {/* Colonne gauche : titre + intro (sticky, façon rifanor) */}
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-28">
-              <span className="inline-block rounded-full border border-neutral-200 bg-neutral-50/80 px-3.5 py-1.5 text-xs font-medium uppercase tracking-[0.12em] text-neutral-500">
+              <p className="text-[13px] font-bold uppercase tracking-[0.16em] text-secondary-600">
                 {data.header.badge}
-              </span>
-              <h2 className="mt-5 max-w-[16ch] text-3xl font-semibold leading-[1.05] tracking-tight text-neutral-900 md:text-4xl">
+              </p>
+              <h2 className="mt-4 max-w-[16ch] text-3xl font-semibold leading-[1.05] tracking-tight text-neutral-900 md:text-4xl">
                 {title}
               </h2>
+              <span
+                aria-hidden="true"
+                className="mt-6 hidden h-px w-16 bg-secondary-500 md:block"
+              />
               <p className="mt-6 max-w-[46ch] text-base leading-[1.75] text-neutral-600">
                 {data.header.description}
               </p>

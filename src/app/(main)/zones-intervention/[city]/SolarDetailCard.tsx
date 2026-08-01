@@ -18,31 +18,31 @@ export function SolarDetailCard({ zone, cityName }: SolarDetailCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.55 }}
-      className="relative mb-16 overflow-hidden rounded-3xl border border-neutral-200 dark:border-content2 bg-white dark:bg-content1 shadow-lg"
+      className="relative mb-16 overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-lg"
     >
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
         {/* Score */}
-        <div className="flex flex-col justify-center gap-4 p-8 lg:border-r border-neutral-100 dark:border-white/5">
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
+        <div className="flex flex-col justify-center gap-4 p-8 lg:border-r border-neutral-100">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-neutral-500">
             <Sun className="h-4 w-4" />
             Potentiel solaire
           </div>
           <div>
-            <p className="text-2xl font-bold text-neutral-900 dark:text-foreground mb-1">
+            <p className="text-2xl font-bold text-neutral-900 mb-1">
               {cityName}
             </p>
-            <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-3">
+            <p className="text-sm text-neutral-500 mb-3">
               Zone : {zone.label}
             </p>
             <SolarScoreStars score={zone.solarScore} zoneKey={zone.key} />
           </div>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+          <p className="text-sm text-neutral-600 leading-relaxed">
             Évaluation basée sur les données météo locales, l&apos;altitude et
             l&apos;orientation moyenne des toitures.
           </p>
         </div>
         {/* Métriques */}
-        <div className="grid grid-cols-2 gap-px bg-neutral-100 dark:bg-white/5 lg:col-span-2">
+        <div className="grid grid-cols-2 gap-px bg-neutral-100 lg:col-span-2">
           {[
             {
               icon: <BarChart3 className="h-5 w-5" />,
@@ -71,20 +71,20 @@ export function SolarDetailCard({ zone, cityName }: SolarDetailCardProps) {
           ].map(({ icon, label, value, unit }) => (
             <div
               key={label}
-              className="flex flex-col gap-1 bg-white dark:bg-content1 p-6"
+              className="flex flex-col gap-1 bg-white p-6"
             >
               <div
                 className={`mb-1 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br ${accentClass} text-white`}
               >
                 {icon}
               </div>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400">
+              <p className="text-xs text-neutral-500">
                 {label}
               </p>
-              <p className="text-xl font-bold text-neutral-900 dark:text-foreground">
+              <p className="text-xl font-bold text-neutral-900">
                 {value}
               </p>
-              <p className="text-xs text-neutral-400 dark:text-neutral-500">
+              <p className="text-xs text-neutral-400">
                 {unit}
               </p>
             </div>

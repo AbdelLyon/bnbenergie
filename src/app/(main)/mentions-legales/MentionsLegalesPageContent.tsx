@@ -115,12 +115,12 @@ export default function MentionsLegalesPageContent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0 }}
-                className="group relative overflow-hidden rounded-3xl bg-white dark:bg-content1 p-8 shadow-xl border border-neutral-100 dark:border-white/5 mb-8"
+                className="group relative overflow-hidden rounded-3xl bg-white p-8 shadow-xl border border-neutral-100 mb-8"
               >
                 <div
                   className={`absolute inset-0 bg-linear-to-br ${section.gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-5`}
                 />
-                <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
+                <div className="absolute inset-0 opacity-[0.02]">
                   <div
                     className="absolute inset-0"
                     style={{
@@ -138,7 +138,7 @@ export default function MentionsLegalesPageContent() {
                     >
                       <Icon className="h-5 w-5 text-white" />
                     </div>
-                    <Heading className="text-2xl text-neutral-900 dark:text-white">
+                    <Heading className="text-2xl text-neutral-900">
                       {section.title}
                     </Heading>
                   </div>
@@ -147,12 +147,12 @@ export default function MentionsLegalesPageContent() {
                     {section.content.map((item) => (
                       <div
                         key={item.label}
-                        className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-neutral-100 dark:border-white/5 py-3 sm:py-2"
+                        className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4 border-b border-neutral-100 py-3 sm:py-2"
                       >
-                        <span className="font-medium text-neutral-700 dark:text-default-400">
+                        <span className="font-medium text-neutral-700">
                           {item.label}
                         </span>
-                        <span className="text-neutral-600 dark:text-default-500 sm:text-right">
+                        <span className="text-neutral-600 sm:text-right">
                           {item.value}
                         </span>
                       </div>
@@ -173,12 +173,12 @@ export default function MentionsLegalesPageContent() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0 }}
-              className="rounded-2xl bg-white dark:bg-content1 p-6 border border-neutral-100 dark:border-white/5"
+              className="rounded-2xl bg-white p-6 border border-neutral-100"
             >
-              <Heading as="h3" className="text-lg mb-2 text-neutral-900 dark:text-white">
+              <Heading as="h3" className="text-lg mb-2 text-neutral-900">
                 {section.title}
               </Heading>
-              <p className="text-sm sm:text-base text-neutral-700 dark:text-default-400 leading-relaxed whitespace-pre-line">
+              <p className="text-sm sm:text-base text-neutral-700 leading-relaxed whitespace-pre-line">
                 {section.content}
               </p>
             </LazyMotionDiv>
@@ -186,7 +186,7 @@ export default function MentionsLegalesPageContent() {
         </div>
 
         {/* Footer */}
-        <div className="mt-12 text-center text-sm text-neutral-600 dark:text-default-400">
+        <div className="mt-12 text-center text-sm text-neutral-600">
           Date de dernière mise à jour : 10 octobre 2025
         </div>
       </SectionContainer>

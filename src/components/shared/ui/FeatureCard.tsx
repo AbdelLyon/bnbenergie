@@ -39,12 +39,12 @@ export function FeatureCard({
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: 0 }}
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-neutral-200/70 dark:border-content2 bg-white dark:bg-content1 p-8 shadow-sm transition-shadow duration-300 hover:shadow-md",
+        "group relative overflow-hidden rounded-2xl border border-neutral-200/70 bg-white p-8 shadow-sm transition-shadow duration-300 hover:shadow-md",
         className,
       )}
     >
       <LazyMotionDiv
-        className="mb-6 inline-flex rounded-xl bg-neutral-100 p-4 text-neutral-700 dark:bg-content2 dark:text-foreground"
+        className="mb-6 inline-flex rounded-xl bg-neutral-100 p-4 text-neutral-700"
         whileHover={{
           scale: 1.05,
           transition: TRANSITIONS.smooth,
@@ -53,13 +53,13 @@ export function FeatureCard({
         <Icon className="h-7 w-7" />
       </LazyMotionDiv>
 
-      <h3 className="mb-3 text-xl font-semibold tracking-tight text-neutral-900 dark:text-white">
+      <h3 className="mb-3 text-xl font-semibold tracking-tight text-neutral-900">
         {title}
       </h3>
 
       {stat && (
         <div className="absolute top-8 right-8 text-right">
-          <div className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">
+          <div className="text-3xl font-bold tracking-tight text-neutral-900">
             {stat}
           </div>
           {statLabel && (
@@ -70,7 +70,7 @@ export function FeatureCard({
         </div>
       )}
 
-      <p className="mb-6 text-base leading-relaxed text-neutral-600 dark:text-default-500">
+      <p className="mb-6 text-base leading-relaxed text-neutral-600">
         {description}
       </p>
 
@@ -81,7 +81,7 @@ export function FeatureCard({
               <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-neutral-100">
                 <span className={`text-xs ${iconColor}`}>✓</span>
               </div>
-              <span className="text-sm text-neutral-700 dark:text-default-600">
+              <span className="text-sm text-neutral-700">
                 {item}
               </span>
             </li>

@@ -18,7 +18,7 @@ export function ContactMap({ latitude, longitude, address }: ContactMapProps) {
       transition={{ duration: 0.6, delay: 0 }}
       className="mt-12"
     >
-      <div className="overflow-hidden rounded-3xl border border-white dark:border-content2/60 bg-white dark:bg-content1/70 p-3 shadow-xl backdrop-blur-xl">
+      <div className="overflow-hidden rounded-3xl border border-white bg-white p-3 shadow-xl backdrop-blur-xl">
         <div className="relative h-125.5 w-full overflow-hidden rounded-2xl">
           <iframe
             src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2761.5!2d${longitude}!3d${latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDbCsDEyJzIxLjIiTiA1wrAxMyczMS44IkU!5e0!3m2!1sfr!2sfr!4v1234567890`}
@@ -32,11 +32,11 @@ export function ContactMap({ latitude, longitude, address }: ContactMapProps) {
             className="absolute inset-0 grayscale-[0.2] transition-all duration-700 hover:grayscale-0"
           />
 
-          <div className="absolute bottom-6 left-6 rounded-2xl border border-white dark:border-content2/50 bg-white dark:bg-content1/90 p-6 shadow-lg backdrop-blur-md">
-            <Heading as="h3" className="mb-1 text-lg text-slate-800 dark:text-foreground">
+          <div className="absolute bottom-6 left-6 rounded-2xl border border-white bg-white p-6 shadow-lg backdrop-blur-md">
+            <Heading as="h3" className="mb-1 text-lg text-slate-800">
               Nous Trouver
             </Heading>
-            <p className="text-sm text-slate-600 dark:text-default-500">
+            <p className="text-sm text-slate-600">
               {address}
             </p>
           </div>

@@ -13,7 +13,7 @@ export function PricingCTA({ pack }: PricingCTAProps) {
       className={`group/btn relative mt-5 block overflow-hidden rounded-xl px-4 py-3 text-center text-sm font-semibold transition-all duration-300 ${
         pack.popular
           ? 'bg-secondary-600 text-white hover:bg-secondary-700'
-          : 'border border-neutral-200 dark:border-default-200 bg-white dark:bg-content1 text-neutral-800 dark:text-foreground hover:border-secondary-300 hover:bg-secondary-50/50'
+          : 'border border-neutral-200 bg-white text-neutral-800 hover:border-secondary-300 hover:bg-secondary-50/50'
       }`}
     >
       <span className="relative z-10 flex items-center justify-center gap-2">

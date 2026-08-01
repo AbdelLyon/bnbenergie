@@ -78,8 +78,8 @@ export default function AidesPageContent({
             ]}
           />
 
-          <div className="relative mb-24 overflow-hidden rounded-3xl bg-white dark:bg-content1 p-12 shadow-xl border border-neutral-100 dark:border-white/5">
-            <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
+          <div className="relative mb-24 overflow-hidden rounded-3xl bg-white p-12 shadow-xl border border-neutral-100">
+            <div className="absolute inset-0 opacity-[0.03]">
               <div
                 className="absolute inset-0"
                 style={{
@@ -101,7 +101,7 @@ export default function AidesPageContent({
           {/* Aides principales */}
           {aids.main.length > 0 && (
             <div className="mb-20">
-              <Heading className="mb-12 text-center text-3xl text-neutral-900 dark:text-foreground md:text-4xl">
+              <Heading className="mb-12 text-center text-3xl text-neutral-900 md:text-4xl">
                 Les Principales Aides Disponibles
               </Heading>
               <div className="space-y-8">
@@ -136,7 +136,7 @@ export default function AidesPageContent({
 
           {aids.local.length > 0 && (
             <div className="mb-20">
-              <Heading className="mb-12 text-center text-3xl text-neutral-900 dark:text-foreground md:text-4xl">
+              <Heading className="mb-12 text-center text-3xl text-neutral-900 md:text-4xl">
                 Aides Locales & Complémentaires
               </Heading>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -156,7 +156,7 @@ export default function AidesPageContent({
 
           {aids.financing.length > 0 && (
             <div className="mb-20">
-              <Heading className="mb-12 text-center text-3xl text-neutral-900 dark:text-foreground md:text-4xl">
+              <Heading className="mb-12 text-center text-3xl text-neutral-900 md:text-4xl">
                 Solutions de Financement
               </Heading>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-3">

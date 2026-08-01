@@ -21,13 +21,13 @@ export function BenefitsList({ benefits }: BenefitsListProps) {
               duration: 0.3,
               delay: 0,
             }}
-            className="group flex w-max items-center gap-3 rounded-2xl p-3 transition-colors duration-200 hover:bg-neutral-50 dark:hover:bg-content2"
+            className="group flex w-max items-center gap-3 rounded-2xl p-3 transition-colors duration-200 hover:bg-neutral-50"
           >
-            <div className="rounded-full bg-green-50 p-1.5 text-green-600 dark:bg-green-500/10 dark:text-green-400">
+            <div className="rounded-full bg-green-50 p-1.5 text-green-600">
               <CheckCircle2 className="h-5 w-5" />
             </div>
 
-            <span className="text-base font-medium text-neutral-800 dark:text-foreground">
+            <span className="text-base font-medium text-neutral-800">
               {benefit}
             </span>
           </LazyMotionDiv>

@@ -27,14 +27,24 @@ export function ReviewsSection({
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
-        className="text-center"
+        className="text-left"
       >
-        <h2 className="mb-4 text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl lg:text-[2.75rem] dark:text-white">
-          {title}
-        </h2>
+        <p className="mb-3 text-[13px] font-bold uppercase tracking-[0.16em] text-secondary-600">
+          Témoignages
+        </p>
+
+        <div className="flex items-end gap-6">
+          <h2 className="max-w-[20ch] text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
+            {title}
+          </h2>
+          <span
+            aria-hidden="true"
+            className="mb-2.5 hidden h-px flex-1 bg-neutral-200 md:block"
+          />
+        </div>
 
         {subtitle && (
-          <p className="mx-auto max-w-2xl text-base leading-relaxed text-neutral-500 md:text-lg dark:text-default-500">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-neutral-500 md:text-lg">
             {subtitle}
           </p>
         )}
@@ -45,7 +55,7 @@ export function ReviewsSection({
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0 }}
-            className="mt-6 flex items-center justify-center gap-3"
+            className="mt-6 flex items-center gap-3"
           >
             <div className="flex gap-1">
               {Array.from({ length: 5 }).map((_, i) => (
@@ -56,11 +66,11 @@ export function ReviewsSection({
               ))}
             </div>
             <div className="text-left">
-              <p className="text-2xl font-bold text-neutral-900 dark:text-foreground">
+              <p className="text-2xl font-bold text-neutral-900">
                 {REVIEWS_STATS.average.toFixed(1)}/5
               </p>
             </div>
-            <p className="text-sm text-neutral-600 dark:text-default-500">
+            <p className="text-sm text-neutral-600">
               Basé sur {REVIEWS_STATS.total} avis Google
             </p>
           </LazyMotionDiv>

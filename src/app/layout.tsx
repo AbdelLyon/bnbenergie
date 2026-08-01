@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" suppressHydrationWarning>
+    <html lang="fr" className="light" suppressHydrationWarning>
       <head>
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <link

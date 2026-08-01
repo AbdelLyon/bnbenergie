@@ -33,14 +33,14 @@ export function CTASection({
 }: CTASectionProps) {
   const variants = {
     gradient: "bg-linear-to-br from-primary-600 to-cyan-700 ",
-    solid: "bg-neutral-900 dark:bg-neutral-950",
-    minimal: "bg-neutral-50 dark:bg-content1",
+    solid: "bg-neutral-900",
+    minimal: "bg-neutral-50",
   };
 
   const textColors = {
     gradient: "text-white",
     solid: "text-white",
-    minimal: "text-neutral-900 dark:text-foreground",
+    minimal: "text-neutral-900",
   };
 
   return (
@@ -70,7 +70,7 @@ export function CTASection({
             className={cn(
               "mb-10 text-base leading-relaxed md:text-lg",
               variant === "minimal"
-                ? "text-neutral-600 dark:text-default-500"
+                ? "text-neutral-600"
                 : "text-white/90",
             )}
           >
@@ -99,7 +99,7 @@ export function CTASection({
                 className={cn(
                   "group flex w-full items-center justify-center gap-2 rounded-full border px-5 py-3 text-base font-semibold transition-all duration-200 sm:w-auto",
                   variant === "minimal"
-                    ? "border-neutral-300 dark:border-default-200 bg-white dark:bg-content1 text-neutral-900 dark:text-foreground hover:border-neutral-400 dark:hover:border-default-300"
+                    ? "border-neutral-300 bg-white text-neutral-900 hover:border-neutral-400"
                     : "border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20",
                 )}
               >
@@ -114,7 +114,7 @@ export function CTASection({
                 className={cn(
                   "group flex w-full items-center justify-center gap-2 rounded-full border px-5 py-3 text-base font-semibold transition-all duration-200 sm:w-auto",
                   variant === "minimal"
-                    ? "border-neutral-300 dark:border-default-200 text-neutral-700 dark:text-default-600 hover:border-neutral-400 dark:hover:border-default-300 hover:bg-neutral-100 dark:hover:bg-content2"
+                    ? "border-neutral-300 text-neutral-700 hover:border-neutral-400 hover:bg-neutral-100"
                     : "border-white/30 text-white hover:bg-white/10",
                 )}
               >

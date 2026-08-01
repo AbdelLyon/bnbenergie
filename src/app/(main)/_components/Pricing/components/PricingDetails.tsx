@@ -7,10 +7,10 @@ interface PricingDetailsProps {
 export function PricingDetails({ pack }: PricingDetailsProps) {
   return (
     <>
-      <h3 className="mb-1 text-xl font-semibold tracking-tight text-neutral-900 dark:text-white">
+      <h3 className="mb-1 text-xl font-semibold tracking-tight text-neutral-900">
         {pack.name}
       </h3>
-      <p className="mb-1 text-sm font-medium text-neutral-600 dark:text-default-500">
+      <p className="mb-1 text-sm font-medium text-neutral-600">
         {pack.panels}
       </p>
 
@@ -21,9 +21,9 @@ export function PricingDetails({ pack }: PricingDetailsProps) {
               <span className="text-2xl font-bold text-neutral-400 line-through">
                 {pack.originalPrice}
               </span>
-              <span className="text-lg text-neutral-400 dark:text-default-400">€</span>
+              <span className="text-lg text-neutral-400">€</span>
             </div>
-            <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-green-700 dark:bg-green-500/10 dark:text-green-400">
+            <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-green-700">
               <svg
                 className="h-3 w-3"
                 fill="currentColor"
@@ -46,7 +46,7 @@ export function PricingDetails({ pack }: PricingDetailsProps) {
             </span>
           </div>
         )}
-        <div className="flex items-center gap-2 rounded-lg bg-neutral-100 dark:bg-content2 px-3 py-2">
+        <div className="flex items-center gap-2 rounded-lg bg-neutral-100 px-3 py-2">
           <svg
             className="h-4 w-4 text-neutral-500"
             fill="currentColor"
@@ -58,7 +58,7 @@ export function PricingDetails({ pack }: PricingDetailsProps) {
               clipRule="evenodd"
             />
           </svg>
-          <span className="text-xs font-semibold text-neutral-600 dark:text-default-500">
+          <span className="text-xs font-semibold text-neutral-600">
             Installation incluse
           </span>
         </div>

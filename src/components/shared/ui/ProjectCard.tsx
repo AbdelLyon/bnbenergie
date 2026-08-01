@@ -30,7 +30,7 @@ export function ProjectCard({ project, index, page, href }: ProjectCardProps) {
     >
       {/* Image arrondie (pas d'encadré de carte) */}
       <Link
-        className="relative block aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100 dark:bg-content2"
+        className="relative block aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100"
         href={href ?? "#"}
         tabIndex={-1}
         aria-hidden="true"
@@ -44,9 +44,9 @@ export function ProjectCard({ project, index, page, href }: ProjectCardProps) {
           priority={index < 2}
         />
 
-        <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1.5 backdrop-blur-sm dark:bg-black/70">
+        <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1.5 backdrop-blur-sm">
           <BoltIcon className="h-3.5 w-3.5 text-secondary-600" />
-          <span className="text-xs font-semibold text-neutral-800 dark:text-white">
+          <span className="text-xs font-semibold text-neutral-800">
             {project.power}
           </span>
         </div>
@@ -54,7 +54,7 @@ export function ProjectCard({ project, index, page, href }: ProjectCardProps) {
 
       {/* Texte nu sous l'image */}
       <div className="pt-4">
-        <h3 className="text-lg font-semibold tracking-tight text-neutral-900 dark:text-white">
+        <h3 className="text-lg font-semibold tracking-tight text-neutral-900">
           <Link
             href={href ?? "#"}
             className="transition-colors hover:text-secondary-600"
@@ -63,7 +63,7 @@ export function ProjectCard({ project, index, page, href }: ProjectCardProps) {
           </Link>
         </h3>
 
-        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-neutral-500 dark:text-default-400">
+        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-neutral-500">
           <Link
             href={`/zones-intervention/${slugify(project.location)}`}
             className="inline-flex items-center gap-1.5 transition-colors hover:text-secondary-600"
@@ -79,7 +79,7 @@ export function ProjectCard({ project, index, page, href }: ProjectCardProps) {
         </div>
 
         <p
-          className={`mt-3 text-sm leading-relaxed text-neutral-600 dark:text-default-500 ${
+          className={`mt-3 text-sm leading-relaxed text-neutral-600 ${
             page === "home" ? "line-clamp-2" : ""
           }`}
         >

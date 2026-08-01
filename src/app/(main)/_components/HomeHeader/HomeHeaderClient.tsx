@@ -38,6 +38,7 @@ export function HomeHeaderClient({ data }: { data: HeaderData }) {
       height="full"
       contentAlign="top"
       backgroundVariant="light"
+      
     >
       {/* Title */}
       <LazyMotionDiv

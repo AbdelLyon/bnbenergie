@@ -26,7 +26,7 @@ export function SolarScoreStars({ score, zoneKey }: SolarScoreStarsProps) {
       ))}
       {partial > 0 && (
         <div className="relative h-5 w-5">
-          <Sun className="absolute h-5 w-5 text-neutral-300 dark:text-neutral-600" />
+          <Sun className="absolute h-5 w-5 text-neutral-300" />
           <div
             className="absolute inset-0 overflow-hidden"
             style={{ width: `${partial * 100}%` }}
@@ -38,10 +38,10 @@ export function SolarScoreStars({ score, zoneKey }: SolarScoreStarsProps) {
       {Array.from({ length: empty }).map((_, i) => (
         <Sun
           key={`e-${i}`}
-          className="h-5 w-5 text-neutral-300 dark:text-neutral-600"
+          className="h-5 w-5 text-neutral-300"
         />
       ))}
-      <span className="ml-2 text-sm font-semibold text-neutral-600 dark:text-neutral-400">
+      <span className="ml-2 text-sm font-semibold text-neutral-600">
         {score.toFixed(1)}/5
       </span>
     </div>

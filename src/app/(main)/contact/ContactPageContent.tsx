@@ -93,7 +93,7 @@ export default function ContactPageContent({
       <div id="contact-section" className="relative z-10 -mt-24 pb-24">
         <SectionContainer>
           <div className="overflow-hidden rounded-2xl shadow-2xl lg:grid lg:grid-cols-5">
-            <div className="relative overflow-hidden bg-slate-900 px-8 py-12 dark:bg-black lg:col-span-2 lg:px-12 lg:py-16">
+            <div className="relative overflow-hidden bg-slate-900 px-8 py-12 lg:col-span-2 lg:px-12 lg:py-16">
               <div className="absolute inset-0 bg-linear-to-br from-blue-900/20 to-slate-900/50" />
               <div className="absolute -left-24 -top-24 h-64 w-64 rounded-full bg-blue-500/20 blur-3xl" />
               <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-cyan-500/10 blur-3xl" />
@@ -122,15 +122,15 @@ export default function ContactPageContent({
             </div>
 
             <div
-              className="bg-white px-8 py-12 dark:bg-content1 lg:col-span-3 lg:px-12 lg:py-16"
+              className="bg-white px-8 py-12 lg:col-span-3 lg:px-12 lg:py-16"
               id="contact-form"
             >
               <div className="mx-auto max-w-lg lg:mx-0 lg:max-w-none">
-                <Heading className="mb-2 text-2xl text-slate-900 dark:text-white">
+                <Heading className="mb-2 text-2xl text-slate-900">
                   Envoyez-nous un message
                 </Heading>
 
-                <p className="mb-8 text-slate-500 dark:text-default-500">
+                <p className="mb-8 text-slate-500">
                   Remplissez le formulaire ci-dessous, nous vous répondrons sous
                   24h.
                 </p>

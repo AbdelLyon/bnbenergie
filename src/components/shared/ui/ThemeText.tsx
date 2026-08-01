@@ -10,8 +10,7 @@ interface ThemeTextProps {
 }
 
 /**
- * Composant Text qui s'adapte automatiquement au thème
- * Utilise les tokens CSS variables au lieu de classes dark: répétées
+ * Composant Text basé sur les tokens CSS variables du thème
  */
 export function ThemeText({
   children,

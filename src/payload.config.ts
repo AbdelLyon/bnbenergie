@@ -25,6 +25,12 @@ const dirname = path.dirname(filename);
 import { fr } from '@payloadcms/translations/languages/fr';
 import { en } from '@payloadcms/translations/languages/en';
 
+const isVercelBlobEnabled = Boolean(
+  env.BLOB_READ_WRITE_TOKEN &&
+    env.BLOB_READ_WRITE_TOKEN.startsWith('vercel_blob_rw_') &&
+    !/localdev/i.test(env.BLOB_READ_WRITE_TOKEN)
+);
+
 export default buildConfig({
   i18n: {
     supportedLanguages: { fr, en },
@@ -370,12 +376,16 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-    vercelBlobStorage({
-      enabled: true,
-      collections: {
-        media: true,
-      },
-      token: env.BLOB_READ_WRITE_TOKEN,
-    }),
+    ...(isVercelBlobEnabled
+      ? [
+          vercelBlobStorage({
+            enabled: true,
+            collections: {
+              media: true,
+            },
+            token: env.BLOB_READ_WRITE_TOKEN,
+          }),
+        ]
+      : []),
   ],
 });
