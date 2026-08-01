@@ -2,6 +2,7 @@
 
 import { LazyMotionDiv } from "@/components/LazyComponents";
 import { HeaderBackground } from "@/components/shared/effects/HeaderBackground";
+import { HeroCanvas } from "@/components/shared/effects/HeroCanvas";
 import dynamic from "next/dynamic";
 import { ReactNode } from "react";
 
@@ -21,8 +22,9 @@ interface PageHeaderProps {
   height?: "full" | "medium" | "small";
   children: ReactNode;
   bottomElement?: ReactNode;
-  backgroundVariant?: "default" | "clean";
+  backgroundVariant?: "default" | "clean" | "light";
   withParticles?: boolean; // ✅ NEW (optionnel)
+  contentAlign?: "center" | "top"; // position verticale du contenu
 }
 
 export function PageHeader({
@@ -35,6 +37,7 @@ export function PageHeader({
   bottomElement,
   backgroundVariant = "default",
   withParticles = true, // ✅ activé par défaut
+  contentAlign = "center",
 }: PageHeaderProps) {
   const heightClass = {
     full: "min-h-[100dvh]",
@@ -42,31 +45,47 @@ export function PageHeader({
     small: "min-h-[30vh] md:min-h-[40vh]",
   }[height];
 
+  const alignClass = contentAlign === "top" ? "items-start" : "items-center";
+
   return (
     <section
-      className={`relative ${heightClass} flex items-center justify-center overflow-hidden`}
+      className={`relative ${heightClass} flex ${alignClass} justify-center overflow-hidden`}
     >
       {/* Background */}
-      <HeaderBackground
-        images={variant === "carousel" && images.length > 0 ? images : []}
-        imageAlts={imageAlts}
-        currentSlide={currentSlide}
-        variant={backgroundVariant}
-      />
+      {backgroundVariant === "light" ? (
+        <div className="absolute inset-0 z-0">
+          <HeroCanvas />
+        </div>
+      ) : (
+        <>
+          <HeaderBackground
+            images={variant === "carousel" && images.length > 0 ? images : []}
+            imageAlts={imageAlts}
+            currentSlide={currentSlide}
+            variant={backgroundVariant}
+          />
 
-      {/* Overlay */}
-      {backgroundVariant === "default" && (
-        <div className="absolute inset-0 z-1 bg-black/50" />
+          {/* Overlay */}
+          {backgroundVariant === "default" && (
+            <div className="absolute inset-0 z-1 bg-black/50" />
+          )}
+
+          {/* ✅ Particles (réintégré proprement) */}
+          {backgroundVariant === "default" && withParticles && (
+            <ParticlesEffect />
+          )}
+        </>
       )}
 
-      {/* ✅ Particles (réintégré proprement) */}
-      {backgroundVariant === "default" && withParticles && <ParticlesEffect />}
-
       {/* Content */}
-      <div className="relative z-10 mx-auto w-full max-w-5xl px-5 py-28 text-center sm:px-8 sm:py-32 md:py-40">
-        <div className="flex flex-col items-center justify-center gap-8 sm:gap-6 md:gap-8">
+      <div
+        className={`relative z-10 mx-auto w-full max-w-5xl px-5 text-center sm:px-8 ${
+          contentAlign === "top"
+            ? "pt-40 pb-16 sm:pt-48 md:pt-56"
+            : "py-28 sm:py-32 md:py-40"
+        }`}
+      >
           {children}
-        </div>
       </div>
 
       {/* Scroll indicator */}
@@ -81,8 +100,10 @@ export function PageHeader({
         </LazyMotionDiv>
       )}
 
-      {/* Bottom gradient */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-32 bg-linear-to-t from-black/25 to-transparent" />
+      {/* Bottom gradient (uniquement sur les hero sombres) */}
+      {backgroundVariant !== "light" && (
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-32 bg-linear-to-t from-black/25 to-transparent" />
+      )}
     </section>
   );
 }

@@ -6,9 +6,14 @@ import { getLucideIcon } from "@/utils/getLucideIcon";
 
 interface StatsProps {
   stats: Stat[];
+  /** onDark = texte blanc (hero image) ; onLight = texte sombre (hero clair) */
+  tone?: "onDark" | "onLight";
 }
 
-export function Stats({ stats }: StatsProps) {
+export function Stats({ stats, tone = "onDark" }: StatsProps) {
+  const isLight = tone === "onLight";
+  const numberColor = isLight ? "text-neutral-900" : "text-white";
+  const labelColor = isLight ? "text-neutral-500" : "text-white/70";
   return (
     <div className="w-full">
       <LazyMotionDiv
@@ -36,11 +41,15 @@ export function Stats({ stats }: StatsProps) {
                 >
                   <Icon className="h-5 w-5 text-white" />
                 </div>
-                <div className="font-display text-3xl font-black text-white md:text-4xl lg:text-5xl">
+                <div
+                  className={`font-display text-3xl font-black ${numberColor} md:text-4xl lg:text-5xl`}
+                >
                   {displayValue}
                 </div>
               </div>
-              <div className="text-sm font-medium uppercase text-white/70 md:text-base">
+              <div
+                className={`text-sm font-medium uppercase ${labelColor} md:text-base`}
+              >
                 {stat.label}
               </div>
             </LazyMotionDiv>

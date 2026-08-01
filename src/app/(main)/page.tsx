@@ -47,14 +47,15 @@ export default function Home() {
     <>
       <PageMainWrapper variant="amber">
         <HomeHeader />
+        {/* Prix qui flottent sur le hero (même principe que la carte de la page contact) */}
+        <div className="relative z-20 -mt-[calc(31vh+4rem)] md:-mt-[calc(29vh+5rem)]">
+          <Pricing />
+        </div>
+        <Realisations />
         <About />
         <Benefits />
       </PageMainWrapper>
       <GoogleReviewsWrapper />
-      <PageMainWrapper variant="amber">
-        <Realisations />
-        <Pricing />
-      </PageMainWrapper>
     </>
   );
 }

@@ -11,7 +11,6 @@ import {
   FeatureCard,
   CTASection,
 } from "@/components";
-import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
 
 import Link from "next/link";
 import { slugify } from "@/utils/slugify";
@@ -20,7 +19,6 @@ import type {
   PageHeader as PageHeaderType,
   SiteSetting,
 } from "@/payload-types";
-import { ArrowRight, Phone } from "lucide-react";
 
 interface ZonesPageContentProps {
   zones: InterventionZone[];
@@ -39,6 +37,7 @@ export default function ZonesPageContent({
         {/* Header */}
         <PageHeader variant="simple" height="medium">
           <div className="flex max-w-6xl flex-col items-center gap-6">
+      
             <Title
               staticText={header?.title.split(" ")[0] || "Zones"}
               animatedText={header?.title.split(" ")[1] || "d'Intervention"}
@@ -47,27 +46,7 @@ export default function ZonesPageContent({
             <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
               {header?.description || ""}
             </p>
-
-            <CTAGroupButtons
-              items={[
-                {
-                  iconRight: <ArrowRight className="size-4" />,
-                  size: "sm",
-                  label: "Devis gratuit",
-                  href: "/contact#contact-form",
-                  className:
-                    "group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:text-base px-4",
-                },
-                {
-                  label: "07 81 25 11 25",
-                  href: "tel:0781251125",
-                  variant: "outline",
-                  size: "sm",
-                  iconLeft: <Phone className="size-4" />,
-                  className: "px-4",
-                },
-              ]}
-            />
+                       
           </div>
         </PageHeader>
 

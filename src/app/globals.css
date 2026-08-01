@@ -3,12 +3,11 @@
 @source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
 @import "../styles/optimized-animations.css";
 
-@variant dark (.dark &);
 
 @theme inline {
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-manrope);
   --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-montserrat);
+  --font-display: var(--font-manrope);
 
   /* ============================================
      🎨 PALETTE
@@ -85,17 +84,19 @@
   /* Base */
   --color-white: #ffffff;
 
+  /* Tokens hero clair (repris de rifanor) */
+  --color-paper: #fbfbfa;
+  --color-paper-alt: #f3f3f1;
+  --color-ink: #100f0c;
+  --color-ink-soft: #1d1a14;
+  --color-ocean: #a47803;
+
   /* ============================================
      SEMANTIC TOKENS - Theme-aware colors
      ============================================ */
 
   /* Backgrounds */
-  --bg-page: linear-gradient(
-    180deg,
-    var(--color-neutral-50) 0%,
-    var(--color-white) 50%,
-    var(--color-sky-50) 100%
-  );
+  --bg-page: var(--color-white);
   --bg-card: var(--color-white);
   --bg-section: var(--color-neutral-50);
   --bg-section-alt: var(--color-white);
@@ -151,17 +152,71 @@
 /* Force font application avec font-display: swap pour optimiser le chargement */
 .font-sans {
   font-family:
-    var(--font-inter), ui-sans-serif, system-ui, sans-serif,
+    var(--font-manrope), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-display: swap;
 }
 
 .font-display {
   font-family:
-    var(--font-montserrat), ui-sans-serif, system-ui, sans-serif,
+    var(--font-manrope), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-display: swap;
 }
+
+/* ============================================
+   HERO TITLE — typo "antigravity" (repris de rifanor)
+   Grande taille, graisse légère (450), letter-spacing serré
+   ============================================ */
+:root {
+  --hero-antigravity-size: 80px;
+  --hero-antigravity-line-height: 80px;
+  --hero-antigravity-letter-spacing: -1.6px;
+}
+
+@media (max-width: 1600px) {
+  :root {
+    --hero-antigravity-size: 60px;
+    --hero-antigravity-line-height: 62px;
+    --hero-antigravity-letter-spacing: -1.2px;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --hero-antigravity-size: 46px;
+    --hero-antigravity-line-height: 49px;
+    --hero-antigravity-letter-spacing: -0.85px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --hero-antigravity-size: 34px;
+    --hero-antigravity-line-height: 38px;
+    --hero-antigravity-letter-spacing: -0.6px;
+  }
+}
+
+@media (max-width: 425px) {
+  :root {
+    --hero-antigravity-size: 32px;
+    --hero-antigravity-line-height: 36px;
+    --hero-antigravity-letter-spacing: -0.5px;
+  }
+}
+
+.hero-antigravity-title {
+  font-family: var(--font-display);
+  font-size: var(--hero-antigravity-size) ;
+  line-height: var(--hero-antigravity-line-height);
+  letter-spacing: var(--hero-antigravity-letter-spacing);
+  font-weight: 600;
+  
+  font-variation-settings: normal;
+}
+
+
 
 /* ============================================
    BASE STYLES
@@ -177,8 +232,8 @@ html {
 
 body {
   @apply antialiased text-foreground;
-  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  background: var(--bg-page);
+  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  /* background: var(--bg-page); */
   min-height: 100vh;
   font-feature-settings:
     "kern" 1,
@@ -225,82 +280,6 @@ body {
 .dark ::selection {
   background: var(--color-primary-600);
   color: var(--color-white);
-}
-
-/* ============================================
-   SCROLLBAR DYNAMIQUE THÈME SOLAIRE
-   ============================================ */
-
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: linear-gradient(
-    180deg,
-    rgba(248, 250, 252, 0.4) 0%,
-    rgba(241, 245, 249, 0.6) 50%,
-    rgba(248, 250, 252, 0.4) 100%
-  );
-  border-left: 1px solid rgba(203, 213, 225, 0.3);
-}
-
-.dark ::-webkit-scrollbar-track {
-  background: linear-gradient(
-    180deg,
-    rgba(15, 23, 42, 0.4) 0%,
-    rgba(30, 41, 59, 0.6) 50%,
-    rgba(15, 23, 42, 0.4) 100%
-  );
-  border-left: 1px solid rgba(51, 65, 85, 0.3);
-}
-
-/* Variable pour scrollbar - Dégradé subtil et élégant thème solaire */
-:root {
-  --scrollbar-gradient: linear-gradient(
-    180deg,
-    var(--color-secondary-400) 0%,
-    var(--color-primary-500) 100%
-  );
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-gradient);
-  border-radius: 10px;
-  border: 3px solid transparent;
-  background-clip: padding-box;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow:
-    inset 0 1px 2px rgba(255, 255, 255, 0.2),
-    0 0 0 1px rgba(0, 0, 0, 0.05),
-    0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  border-width: 2px;
-  box-shadow:
-    inset 0 1px 2px rgba(255, 255, 255, 0.2),
-    0 0 0 1px rgba(0, 0, 0, 0.08),
-    0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-::-webkit-scrollbar-thumb:active {
-  border-width: 1px;
-  filter: brightness(1.1);
-}
-
-.dark ::-webkit-scrollbar-thumb {
-  box-shadow:
-    inset 0 1px 2px rgba(255, 255, 255, 0.1),
-    0 0 0 1px rgba(0, 0, 0, 0.2),
-    0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-  box-shadow:
-    inset 0 1px 2px rgba(255, 255, 255, 0.12),
-    0 0 0 1px rgba(0, 0, 0, 0.3),
-    0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 /* ============================================

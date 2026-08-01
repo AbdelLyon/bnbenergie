@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, ChevronDown, Phone } from "lucide-react";
+import {  ChevronDown } from "lucide-react";
 import type {
   Faq,
   PageHeader as PageHeaderType,
@@ -17,7 +17,6 @@ import {
   StatCard,
   Title,
 } from "@/components";
-import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
 import { getLucideIcon } from "@/utils/getLucideIcon";
 
 interface FAQPageContentProps {
@@ -119,31 +118,12 @@ export default function FAQPageContent({
               {header?.description || ""}
             </p>
 
-            <CTAGroupButtons
-              items={[
-                {
-                  label: "Devis gratuit",
-                  iconRight: <ArrowRight className="size-4" />,
-                  size: "sm",
-                  href: "/contact#contact-form",
-                  className:
-                    "group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:text-base px-4",
-                },
-                {
-                  label: "07 81 25 11 25",
-                  href: "tel:0781251125",
-                  variant: "outline",
-                  size: "sm",
-                  iconLeft: <Phone className="size-4" />,
-                  className: "px-4",
-                },
-              ]}
-            />
+      
           </div>
         </PageHeader>
 
         <SectionContainer>
-          <div className="relative z-20 -mt-20 mb-16">
+          <div className="relative z-20 -mt-16 mb-20">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {[
                 {

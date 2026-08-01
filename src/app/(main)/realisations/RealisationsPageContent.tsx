@@ -12,7 +12,6 @@ import {
   ProjectCard,
   CTASection,
 } from "@/components";
-import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
 import { ReviewsSection } from "@/components/shared/ui/ReviewsSection";
 
 import type {
@@ -20,7 +19,6 @@ import type {
   PageHeader as PageHeaderType,
   SiteSetting,
 } from "@/payload-types";
-import { ArrowRight, Phone } from "lucide-react";
 
 const STATS = [
   { value: "100+", label: "Installations Réalisées", icon: "CircleCheck" },
@@ -84,31 +82,11 @@ export default function RealisationsPageContent({
               {header?.description || ""}
             </p>
 
-            <CTAGroupButtons
-              items={[
-                {
-                  iconRight: <ArrowRight className="size-4" />,
-                  size: "sm",
-                  label: "Devis gratuit",
-                  href: "/contact#contact-form",
-                  className:
-                    "group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:text-base px-4",
-                },
-                {
-                  label: "07 81 25 11 25",
-                  href: "tel:0781251125",
-                  variant: "outline",
-                  size: "sm",
-                  iconLeft: <Phone className="size-4" />,
-                  className: "px-4",
-                },
-              ]}
-            />
           </div>
         </PageHeader>
 
         <SectionContainer>
-          <div className="relative z-20 -mt-20 mb-20">
+          <div className="relative z-20 -mt-16 mb-20">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {STATS.map((stat, index) => (
                 <StatCard key={stat.label} {...stat} index={index} />

@@ -37,13 +37,13 @@ export function PricingCard({ pack, index, className }: PricingCardProps) {
         className || ""
       }`}
     >
-      <div
-        className={`group relative flex h-full flex-col justify-between rounded-2xl bg-white dark:bg-content1 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${
+     <div
+        className={`group relative flex h-full flex-col justify-between rounded-2xl border bg-white dark:bg-content1 transition-all duration-200 hover:shadow-lg ${
           pack.popular
-            ? "border border-blue-400/50 p-8 shadow-2xl ring-1 shadow-blue-500/20 ring-blue-400/50 md:min-h-[440px]"
+            ? "price-attention border-blue-500/30 hover:border-blue-500/50 p-8 md:min-h-110"
             : isSpecialPrice
-              ? "border border-amber-400/50 p-6 ring-1 ring-amber-400/10 hover:border-amber-500/70"
-              : "border-2 border-neutral-200/80 dark:border-content2 p-6 hover:border-blue-300/60"
+              ? "border-amber-400/30 hover:border-amber-400/50 p-6 "
+              : "border-neutral-200/40 p-6 shadow-sm hover:border-neutral-300"
         }`}
       >
         <PricingHeader pack={pack} isSpecialPrice={isSpecialPrice} />

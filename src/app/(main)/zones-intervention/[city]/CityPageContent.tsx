@@ -10,7 +10,6 @@ import {
   Title,
   Heading,
 } from "@/components";
-import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
 import { LazyMotionDiv } from "@/components/LazyComponents";
 import { getCityTheme } from "@/config/city-themes";
 import { MapPin, Award, ArrowRight, Phone, CheckCircle2 } from "lucide-react";
@@ -33,7 +32,6 @@ export default function CityPageContent({
     "bg-amber-500/20 text-amber-300 border-amber-500/30";
 
   const phone = siteSettings.contactPhone ?? "07 81 25 11 25";
-  const phoneHref = `tel:+33${phone.replace(/\s/g, "").replace(/^0/, "")}`;
   const unsplashUrl = `https://images.unsplash.com/${zone.unsplashId}?auto=format&fit=crop&w=1920&q=85`;
 
   return (
@@ -60,26 +58,7 @@ export default function CityPageContent({
             subtitle={tagline}
           />
 
-          <CTAGroupButtons
-            items={[
-              {
-                iconRight: <ArrowRight className="size-4" />,
-                size: "sm",
-                label: "Devis gratuit",
-                href: "/contact#contact-form",
-
-                className: `group relative overflow-hidden rounded-full bg-linear-to-r ${accentClass} px-4 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:text-base`,
-              },
-              {
-                label: phone,
-                href: phoneHref,
-                variant: "outline",
-                size: "sm",
-                iconLeft: <Phone className="size-4" />,
-                className: "px-4",
-              },
-            ]}
-          />
+      
         </div>
       </PageHeader>
 

@@ -15,15 +15,12 @@ import {
   Heading,
 } from "@/components";
 
-import { CTAGroupButtons } from "@/components/shared/ui/CTAGroupButtons";
 
 import { ContactForm } from "./components/ContactForm";
 import { ContactInfo } from "./components/ContactInfo";
 import { ContactMap } from "./components/ContactMap";
 import { SuccessMessage } from "./components/SuccessMessage";
 
-import { ArrowRight, Phone } from "lucide-react";
-import { SITE_CONFIG } from "@/config/site";
 
 interface ContactPageContentProps {
   header: PageHeaderType | null;
@@ -89,26 +86,7 @@ export default function ContactPageContent({
           <p className="px-4 text-base font-normal text-white/80 lg:text-lg">
             {header?.description || ""}
           </p>
-          <CTAGroupButtons
-            items={[
-              {
-                iconRight: <ArrowRight className="size-4" />,
-                size: "sm",
-                label: "Devis gratuit",
-                href: "/contact#contact-form",
-                className:
-                  "group relative overflow-hidden rounded-full bg-linear-to-r from-amber-400 to-orange-500 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg sm:text-base px-4",
-              },
-              {
-                label: SITE_CONFIG.contact.phone,
-                href: SITE_CONFIG.contact.phoneHref,
-                variant: "outline",
-                size: "sm",
-                iconLeft: <Phone className="size-4" />,
-                className: "px-4",
-              },
-            ]}
-          />
+  
         </div>
       </PageHeader>
 

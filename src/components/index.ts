@@ -6,7 +6,6 @@ export { FeatureCard } from './shared/ui/FeatureCard';
 export { IntroSection } from './shared/ui/IntroSection';
 export { Logo } from './shared/ui/Logo';
 export { ProjectCard } from './shared/ui/ProjectCard';
-export { ScrollDownButton } from './shared/ui/ScrollDownButton';
 export { ServiceStep } from './shared/ui/ServiceStep';
 export { StatCard } from './shared/ui/StatCard';
 export { Stats } from './shared/ui/Stats';
@@ -27,7 +26,6 @@ export {
 } from './shared/layout/SectionWrapper';
 
 // Effects (Client-side)
-export { BackgroundEffects } from './shared/effects/BackgroundEffects';
 export { HeaderBackground } from './shared/effects/HeaderBackground';
 export { ParticlesEffect } from './shared/effects/ParticlesEffect';
 

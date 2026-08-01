@@ -3,7 +3,6 @@
 import { LazyMotionDiv } from "@/components/LazyComponents";
 import { ANIMATION_DURATIONS } from "@/config/constants";
 import { cn } from "@/utils/classenames";
-import { Heading } from "@/components/shared/ui/Heading";
 import { ArrowRight, Phone } from "lucide-react";
 import Link from "next/link";
 
@@ -35,8 +34,7 @@ export function CTASection({
   const variants = {
     gradient: "bg-linear-to-br from-primary-600 to-cyan-700 ",
     solid: "bg-neutral-900 dark:bg-neutral-950",
-    minimal:
-      "bg-neutral-50 dark:bg-content1 border border-neutral-200 dark:border-content2",
+    minimal: "bg-neutral-50 dark:bg-content1",
   };
 
   const textColors = {
@@ -52,21 +50,21 @@ export function CTASection({
       viewport={{ once: true }}
       transition={{ duration: ANIMATION_DURATIONS.normal }}
       className={cn(
-        "relative overflow-hidden rounded-3xl p-4 shadow-2xl md:p-8 lg:p-12 mb-10",
+        "relative overflow-hidden rounded-3xl p-4 md:p-8 lg:p-12 mb-10",
         variants[variant],
         className,
       )}
     >
       <div className="relative z-10">
         <div className="mx-auto max-w-3xl text-center">
-          <Heading
+          <h3
             className={cn(
-              "mb-3 text-2xl md:text-3xl lg:text-4xl",
+              "mb-3 text-2xl font-semibold tracking-tight md:text-3xl lg:text-4xl",
               textColors[variant],
             )}
           >
             {title}
-          </Heading>
+          </h3>
 
           <p
             className={cn(
@@ -84,10 +82,10 @@ export function CTASection({
               <Link
                 href={primaryButton.href ?? "#"}
                 className={cn(
-                  "group flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-base font-bold transition-all duration-300 hover:scale-105 hover:shadow-xl sm:w-auto",
+                  "group flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-base font-semibold transition-all duration-200 hover:shadow-md sm:w-auto",
                   variant === "minimal"
-                    ? "bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
-                    : "bg-white text-blue-600 hover:bg-blue-50 dark:bg-white dark:text-blue-600",
+                    ? "bg-secondary-600 text-white hover:bg-secondary-700"
+                    : "bg-white text-secondary-600 hover:bg-secondary-50",
                 )}
               >
                 {primaryButton.text}
@@ -99,7 +97,7 @@ export function CTASection({
               <Link
                 href={`tel:${phoneNumber.replace(/\s/g, "")}`}
                 className={cn(
-                  "group flex w-full items-center justify-center gap-2 rounded-full border-2 px-5 py-3 text-base font-bold transition-all duration-300 hover:scale-105 sm:w-auto",
+                  "group flex w-full items-center justify-center gap-2 rounded-full border px-5 py-3 text-base font-semibold transition-all duration-200 sm:w-auto",
                   variant === "minimal"
                     ? "border-neutral-300 dark:border-default-200 bg-white dark:bg-content1 text-neutral-900 dark:text-foreground hover:border-neutral-400 dark:hover:border-default-300"
                     : "border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20",
@@ -114,7 +112,7 @@ export function CTASection({
               <Link
                 href={secondaryButton.href ?? "#"}
                 className={cn(
-                  "group flex w-full items-center justify-center gap-2 rounded-full border-2 px-5 py-3 text-base font-bold transition-all duration-300 hover:scale-105 sm:w-auto",
+                  "group flex w-full items-center justify-center gap-2 rounded-full border px-5 py-3 text-base font-semibold transition-all duration-200 sm:w-auto",
                   variant === "minimal"
                     ? "border-neutral-300 dark:border-default-200 text-neutral-700 dark:text-default-600 hover:border-neutral-400 dark:hover:border-default-300 hover:bg-neutral-100 dark:hover:bg-content2"
                     : "border-white/30 text-white hover:bg-white/10",

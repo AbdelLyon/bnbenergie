@@ -2,7 +2,6 @@
 
 import { LazyMotionHeader } from "@/components/LazyComponents";
 import { ANIMATION_DURATIONS, SPACING } from "@/config/constants";
-import { Heading } from "@/components/shared/ui/Heading";
 import type { SectionBackground, SectionWidth, TextAlignment } from "@/types";
 import { cn } from "@/utils/classenames";
 import { ReactNode } from "react";
@@ -23,8 +22,7 @@ export function SectionWrapper({
   const backgrounds: Record<SectionBackground, string> = {
     white: "bg-[var(--bg-card)]",
     gray: "bg-[var(--bg-section)]",
-    gradient:
-      "bg-gradient-to-br from-primary-50 to-accent-50 dark:from-transparent dark:to-transparent",
+    gradient: "bg-[var(--bg-section)]",
     dark: "bg-neutral-900 text-white dark:bg-background",
   };
 
@@ -105,15 +103,15 @@ export function SectionHeader({
       )}
     >
       {badge && (
-        <span className="border-primary-500/30 bg-primary-500/10 text-primary-700 dark:text-primary-400 shadow-primary-500/10 mb-5 inline-block rounded-full border px-4 py-2 text-xs font-bold shadow-lg backdrop-blur-md md:mb-6 md:px-6 md:py-3 md:text-sm">
+        <span className="mb-4 inline-block rounded-full border border-neutral-200 bg-neutral-50/80 px-3.5 py-1.5 text-xs font-medium uppercase tracking-[0.12em] text-neutral-500 dark:border-content2 dark:bg-content2 dark:text-default-400">
           {badge}
         </span>
       )}
-      <Heading className="mb-5 text-3xl md:text-4xl lg:text-5xl">
+      <h2 className="mb-4 text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl lg:text-[2.75rem] dark:text-white">
         {title}
-      </Heading>
+      </h2>
       {subtitle && (
-        <p className="mx-auto max-w-2xl text-lg leading-relaxed opacity-80 md:text-xl">
+        <p className="mx-auto max-w-2xl text-base font-normal leading-relaxed text-neutral-500 md:text-lg dark:text-default-500">
           {subtitle}
         </p>
       )}

@@ -1,17 +1,11 @@
 import "./globals.css";
-import { Inter, Montserrat } from "next/font/google";
+import { Manrope } from "next/font/google";
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: "variable",
+  variable: "--font-manrope",
   display: "swap",
-});
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-montserrat",
-  display: "swap",
-  weight: ["400", "600", "700", "800"],
 });
 
 export default function RootLayout({
@@ -29,7 +23,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${montserrat.variable} antialiased`}
+        className={`${manrope.variable} antialiased`}
         suppressHydrationWarning
       >
         {children}

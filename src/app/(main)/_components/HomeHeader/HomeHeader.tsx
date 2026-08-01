@@ -51,14 +51,13 @@ export async function HomeHeader() {
     chip: header?.badge || 'Certifié RGE · Installateur solaire',
     seoTitle:
       'Installateur Panneaux Solaires Photovoltaïques Bourg-en-Bresse — BNB Énergie',
+    // Titre hero court et pertinent : segment fixe + segment animé (typewriter)
     title: header?.title
       ? header.title.split(' ')
-      : ['BNB ÉNERGIE - ', 'Installateur Solaire'],
-    subtitle:
+      : ['BNB ÉNERGIE - ', 'Installateur Solaire'],    subtitle:
       header?.subtitle || "Expert Photovoltaïque dans l'Ain (01) - BNB ÉNERGIE",
     description:
-      header?.description ||
-      'Solutions solaires pour réduire vos factures, valoriser votre bien et contribuer à un avenir durable.',
+      "Votre installateur de panneaux solaires à Bourg-en-Bresse et dans tout l'Ain (01). Réduisez vos factures, valorisez votre bien et passez à une énergie durable.",
     cta1: 'Devis Gratuit',
     cta2: 'Nous Appeler',
     cta2_href: 'tel:0781251125',

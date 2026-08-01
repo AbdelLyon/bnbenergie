@@ -4,7 +4,6 @@ import { Star } from "lucide-react";
 import { ReviewsCarousel } from "./ReviewsCarousel";
 import { GOOGLE_REVIEWS, REVIEWS_STATS } from "@/data/google-reviews-data";
 import { LazyMotionDiv } from "@/components/LazyComponents";
-import { Heading } from "@/components/shared/ui/Heading";
 
 interface ReviewsSectionProps {
   title?: string;
@@ -30,10 +29,14 @@ export function ReviewsSection({
         transition={{ duration: 0.4 }}
         className="text-center"
       >
-        <Heading className="mb-4 text-3xl md:text-4xl">{title}</Heading>
+        <h2 className="mb-4 text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl lg:text-[2.75rem] dark:text-white">
+          {title}
+        </h2>
 
         {subtitle && (
-          <p className="mx-auto max-w-2xl text-lg opacity-80">{subtitle}</p>
+          <p className="mx-auto max-w-2xl text-base leading-relaxed text-neutral-500 md:text-lg dark:text-default-500">
+            {subtitle}
+          </p>
         )}
 
         {showStats && (

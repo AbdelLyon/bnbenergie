@@ -1,7 +1,6 @@
 "use client";
 
 import { LazyMotionArticle } from "@/components/LazyComponents";
-import { Heading } from "@/components/shared/ui/Heading";
 import type { BaseCardProps, IconCard } from "@/types";
 import { getLucideIcon } from "@/utils/getLucideIcon";
 
@@ -30,32 +29,26 @@ export function AboutCard({
       }}
       className={`group relative h-full ${className || ""}`}
     >
-      <div className="relative h-full rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-10 shadow-sm transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 hover:border-neutral-300 dark:hover:border-neutral-700">
-        <div className="absolute inset-0 bg-linear-to-br from-amber-500/0 via-amber-500/0 to-amber-500/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      <div className="relative h-full rounded-2xl border border-neutral-200/70 bg-white p-8 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-content2 dark:bg-content1">
+        <div className="mb-6 inline-flex rounded-xl bg-amber-50 p-4 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400">
+          <Icon className="h-7 w-7" />
+        </div>
 
-        <div className="relative mb-8 inline-flex">
-          <div className="absolute inset-0 rounded-2xl bg-amber-500/30 blur-xl group-hover:bg-amber-500/40 transition-all duration-300" />
-          <div className="relative bg-linear-to-br from-amber-400 to-amber-600 dark:from-amber-500 dark:to-amber-700 text-white mb-8 inline-flex rounded-2xl p-5 shadow-lg shadow-amber-500/30 group-hover:scale-105 transition-transform duration-200">
-            <Icon className="h-8 w-8" />
+        <div className="absolute top-8 right-8 text-right">
+          <div className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white">
+            {stat}
+          </div>
+          <div className="mt-1 text-[11px] font-medium uppercase tracking-wide text-neutral-400">
+            {statLabel}
           </div>
         </div>
 
-        <div className="absolute top-8 right-8">
-          <div className="text-right">
-            <div className="bg-linear-to-r from-amber-600 to-amber-500 dark:from-amber-400 dark:to-amber-300 bg-clip-text text-4xl font-black text-transparent">
-              {stat}
-            </div>
-            <div className="mt-1 text-xs font-bold text-amber-600/70 dark:text-amber-400/70 uppercase">
-              {statLabel}
-            </div>
-          </div>
-        </div>
-
-        {/* Titre et contenu */}
-        <Heading as="h3" className="group-hover:text-amber-700 dark:group-hover:text-amber-400 mb-5 text-2xl transition-colors duration-300">
+        <h3 className="mb-3 text-xl font-semibold tracking-tight text-neutral-900 dark:text-white">
           {title}
-        </Heading>
-        <p className="leading-relaxed text-base opacity-70">{content}</p>
+        </h3>
+        <p className="text-base leading-relaxed text-neutral-600 dark:text-default-500">
+          {content}
+        </p>
       </div>
     </LazyMotionArticle>
   );

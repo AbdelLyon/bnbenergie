@@ -17,7 +17,7 @@ export const ANIMATION_DURATIONS = {
  */
 export const SPACING = {
   section: {
-    py: "py-16 md:py-24 lg:py-32",
+    py: "py-10 md:py-14 lg:py-16",
     px: "px-4 sm:px-6 lg:px-8",
   },
   header: {
@@ -110,5 +110,4 @@ export const ORCHESTRATION = {
   // Content sections (relative to when section enters viewport)
   sectionDelay: 0.1,
   cardsStart: 0.2,
-  backgroundEffects: 0.4,
 } as const;

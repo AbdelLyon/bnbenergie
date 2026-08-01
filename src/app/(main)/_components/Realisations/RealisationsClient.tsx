@@ -28,12 +28,6 @@ export function RealisationsClient({ data }: { data: RealisationsData }) {
       background="gray"
       className="overflow-x-clip"
     >
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 right-0 h-150 w-150 rounded-full bg-linear-to-br from-amber-400/10 to-orange-500/10 blur-3xl" />
-        <div className="absolute bottom-0 left-0 h-125 w-125 rounded-full bg-linear-to-tr from-blue-400/10 to-cyan-500/10 blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 h-100 w-100 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-300/5 blur-3xl" />
-      </div>
-
       <SectionContainer>
         <LazyMotionDiv
           initial={{ opacity: 0, y: -8 }}
@@ -70,7 +64,7 @@ export function RealisationsClient({ data }: { data: RealisationsData }) {
         >
           <Link
             href="/realisations"
-            className="group inline-flex items-center gap-3 rounded-xl border border-primary px-8 py-4 text-lg font-bold text-primary transition-all duration-200 hover:bg-primary hover:text-white hover:shadow-lg hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-3 rounded-xl border border-primary px-6 py-3 font-semibold text-primary transition-all duration-200 hover:bg-primary/5"
           >
             Voir toutes nos réalisations
             <span className="transition-transform duration-200 group-hover:translate-x-0.5">

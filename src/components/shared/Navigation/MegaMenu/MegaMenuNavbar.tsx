@@ -10,10 +10,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X, Phone, ChevronDown, ArrowRight } from "lucide-react";
-import { useScrollPosition, useBodyScrollLock } from "@/hooks";
+import { useBodyScrollLock } from "@/hooks";
 import { getLucideIcon } from "@/utils/getLucideIcon";
 import { Logo as LogoIcon } from "@/components/shared/ui/Logo";
-import { ThemeSwitcher } from "@/components/shared/ThemeSwitcher";
+import Image from "next/image";
 
 type MegaMenuData = {
   logo: {
@@ -87,7 +87,7 @@ const iconColors: Record<string, string> = {
 export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeMega, setActiveMega] = useState<string | null>(null);
-  const isScrolled = useScrollPosition(120);
+  const isScrolled: boolean = true;
   const pathname = usePathname();
 
   const isActive = (href?: string) =>
@@ -111,7 +111,8 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="flex h-16 items-center justify-between">
-            <NavLogo isScrolled={isScrolled} subtitle={data.logo.subtitle} />
+            {/* <NavLogo isScrolled={isScrolled} subtitle={data.logo.subtitle} /> */}
+            <Image alt="logo" src="/logo-bnb.png" width={150} height={40} />
 
             {/* Desktop nav */}
             <div className="hidden items-center gap-0.5 lg:flex">
@@ -247,7 +248,6 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                 {data.cta.label}
               </Link>
 
-              <ThemeSwitcher />
             </div>
 
             {/* Burger */}
@@ -417,7 +417,6 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                   <p className="text-xs text-default-400">
                     Devis gratuit · Sans engagement
                   </p>
-                  <ThemeSwitcher />
                 </div>
               </div>
             </LazyMotionDiv>

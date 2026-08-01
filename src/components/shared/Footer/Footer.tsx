@@ -1,22 +1,107 @@
-import { Card, CardBody } from "@/components/shared/ui/Card";
+import Link from "next/link";
 import {
-  Phone,
-  Mail,
-  MapPin,
-  Sun,
-  Shield,
   Award,
   ChevronRight,
+  Mail,
+  MapPin,
+  Phone,
+  Shield,
+  Sun,
 } from "lucide-react";
+
+import { Card, CardBody } from "@/components/shared/ui/Card";
+import { Heading } from "@/components/shared/ui/Heading";
 import {
   Facebook,
   Instagram,
   Linkedin,
 } from "@/components/shared/ui/SocialIcons";
-import Link from "next/link";
-import { Heading } from "@/components/shared/ui/Heading";
+import {
+  getInterventionZones,
+  getSiteSettings,
+} from "@/lib/payload-queries";
 import { slugify } from "@/utils/slugify";
-import { getSiteSettings, getInterventionZones } from "@/lib/payload-queries";
+
+const navigationLinks = [
+  { label: "Page d'accueil", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Réalisations", href: "/realisations" },
+  { label: "Aides & Financement", href: "/aides-financement" },
+  { label: "Zones d'intervention", href: "/zones-intervention" },
+  { label: "FAQ", href: "/faq-panneaux-solaires" },
+  { label: "Nous contacter", href: "/contact" },
+] as const;
+
+const legalLinks = [
+  { label: "Mentions légales", href: "/mentions-legales" },
+  {
+    label: "Politique de confidentialité",
+    href: "/politique-confidentialite",
+  },
+] as const;
+
+const services = [
+  "Installation photovoltaïque",
+  "Maintenance & SAV",
+  "Étude personnalisée",
+  "Accompagnement administratif",
+] as const;
+
+interface ContactCardProps {
+  icon: React.ReactNode;
+  title: string;
+  children: React.ReactNode;
+}
+
+function ContactCard({
+  icon,
+  title,
+  children,
+}: Readonly<ContactCardProps>) {
+  return (
+    <Card className="h-full overflow-hidden rounded-2xl border border-white/8 bg-white/[0.035] shadow-none backdrop-blur-sm transition-colors duration-300 hover:border-amber-500/25 hover:bg-white/5.5">
+      <CardBody className="flex h-full min-h-44 flex-col items-center justify-center px-6 py-7 text-center">
+        <div className="mb-5 flex size-12 items-center justify-center rounded-xl border border-amber-400/15 bg-amber-400/10 text-amber-400">
+          {icon}
+        </div>
+
+        <Heading
+          as="h3"
+          className="mb-2 text-sm font-medium tracking-wide text-neutral-400"
+        >
+          {title}
+        </Heading>
+
+        <div className="flex min-h-14 items-center justify-center text-base font-semibold leading-6 text-white sm:text-lg">
+          {children}
+        </div>
+      </CardBody>
+    </Card>
+  );
+}
+
+interface FooterTitleProps {
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}
+
+function FooterTitle({
+  icon,
+  children,
+}: Readonly<FooterTitleProps>) {
+  return (
+    <Heading
+      as="h3"
+      className="mb-6 flex min-h-7 items-center gap-3 text-base font-semibold text-white"
+    >
+      <span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-amber-400/15 bg-amber-400/10 text-amber-400">
+        {icon}
+      </span>
+
+      <span>{children}</span>
+    </Heading>
+  );
+}
 
 export const Footer = async () => {
   const [siteSettings, interventionZones] = await Promise.all([
@@ -25,257 +110,282 @@ export const Footer = async () => {
   ]);
 
   const cities = interventionZones
-    .flatMap((zone) => zone.communes?.map((c) => c.name) || [])
+    .flatMap((zone) => zone.communes?.map((commune) => commune.name) ?? [])
+    .filter(Boolean)
     .slice(0, 24)
-    .sort();
+    .sort((firstCity, secondCity) =>
+      firstCity.localeCompare(secondCity, "fr"),
+    );
 
-const navigationLinks = [
-    { label: "Page d'accueil", href: "/" },
-    { label: "Services", href: "/services" },
-    { label: "Réalisations", href: "/realisations" },
-    { label: "Aides & Financement", href: "/aides-financement" },
-    { label: "Zones d'intervention", href: "/zones-intervention" },
-    { label: "FAQ", href: "/faq-panneaux-solaires" },
-    { label: "Nous contacter", href: "/contact" },
-  ];
+  const businessName = siteSettings.businessName || "BNB ÉNERGIE";
+  const contactPhone = siteSettings.contactPhone || "0781251125";
+  const displayedPhone = siteSettings.contactPhone || "07 81 25 11 25";
+  const contactEmail =
+    siteSettings.contactEmail || "contact@bnb-energie.fr";
 
-  const legalLinks = [
-    { label: "Mentions légales", href: "/mentions-legales" },
-    {
-      label: "Politique de confidentialité",
-      href: "/politique-confidentialite",
-    },
-  ];
+  const displayedAddress = siteSettings.addressStreet
+    ? `${siteSettings.addressStreet}, ${siteSettings.addressZip ?? ""} ${
+        siteSettings.addressCity ?? ""
+      }`.trim()
+    : "Bourg-en-Bresse, Ain (01)";
 
   return (
-    <footer className="relative  overflow-hidden bg-linear-to-b from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-950">
-      <div className="absolute inset-0 bg-linear-to-br from-amber-500/5 via-transparent to-blue-500/5 dark:from-amber-500/10 dark:via-transparent dark:to-blue-500/10" />
+    <footer className="relative overflow-hidden border-t border-white/5 bg-neutral-900">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(245,158,11,0.08),transparent_38%)]"
+      />
 
       <div
-        className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]"
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.025]"
         style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
-          backgroundSize: "40px 40px",
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
+          backgroundSize: "32px 32px",
         }}
       />
 
-      <div className="container relative mx-auto px-4 py-16">
-        <div className="mb-16 text-center">
-          <div className="mb-6 inline-flex items-center gap-3">
-            <div className="relative">
-              <div className="absolute inset-0 animate-pulse rounded-full bg-amber-500/20 blur-xl" />
-              <Sun className="relative h-12 w-12 text-amber-500 dark:text-amber-400" />
+      <div className="relative mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        <div className="mx-auto mb-12 flex max-w-3xl flex-col items-center text-center sm:mb-14">
+          <div className="mb-5 flex items-center justify-center gap-3">
+            <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-amber-400/20 bg-amber-400/10">
+              <Sun
+                aria-hidden="true"
+                className="size-7 text-amber-400"
+              />
             </div>
-            <Heading className="bg-linear-to-r from-amber-600 to-amber-500 dark:from-amber-400 dark:to-amber-300 bg-clip-text text-3xl text-transparent">
-              {siteSettings.businessName || "BNB ÉNERGIE"}
+
+            <Heading
+              as="h2"
+              className="text-2xl font-bold tracking-tight text-white sm:text-3xl"
+            >
+              {businessName}
             </Heading>
           </div>
-          <p className="mx-auto max-w-2xl text-lg font-medium text-neutral-700 dark:text-neutral-300">
+
+          <p className="max-w-2xl text-base font-medium leading-7 text-neutral-300 sm:text-lg">
             Votre expert en panneaux solaires photovoltaïques dans l&apos;Ain
           </p>
-          <p className="mx-auto mt-2 max-w-xl text-sm text-neutral-600 dark:text-neutral-400">
+
+          <p className="mt-2 max-w-xl text-sm leading-6 text-neutral-500 sm:text-base">
             Installation, maintenance et accompagnement pour votre transition
             énergétique
           </p>
         </div>
 
-        <div className="mb-16 grid grid-cols-1 gap-6 md:grid-cols-3">
-          <Card className="group relative overflow-hidden rounded-2xl border border-amber-500/30 dark:border-amber-500/10 bg-white dark:bg-neutral-900 transition-all duration-300 hover:-translate-y-1">
-            <CardBody className="relative flex flex-col items-center justify-center p-6">
-              <div className="mb-4 rounded-full bg-linear-to-br from-amber-500 to-amber-600 p-4 shadow-lg shadow-amber-500/30 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-amber-500/50">
-                <Phone size={28} className="text-white" />
-              </div>
-              <Heading as="h3" className="mb-2 text-sm text-neutral-500 dark:text-neutral-400">
-                Téléphone
-              </Heading>
-              <a
-                href={`tel:${siteSettings.contactPhone || "0781251125"}`}
-                className="text-lg font-semibold text-neutral-900 dark:text-white transition-colors hover:text-amber-600 dark:hover:text-amber-400"
-              >
-                {siteSettings.contactPhone || "07 81 25 11 25"}
-              </a>
-            </CardBody>
-          </Card>
+        <div className="mb-14 grid grid-cols-1 gap-4 md:grid-cols-3 lg:gap-5">
+          <ContactCard
+            icon={<Phone aria-hidden="true" className="size-6" />}
+            title="Téléphone"
+          >
+            <a
+              href={`tel:${contactPhone}`}
+              className="wrap-break-word transition-colors hover:text-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60"
+            >
+              {displayedPhone}
+            </a>
+          </ContactCard>
 
-          <Card className="group relative overflow-hidden rounded-2xl border border-amber-500/30 dark:border-amber-500/10 bg-white dark:bg-neutral-900 transition-all duration-300 hover:-translate-y-1">
-            <CardBody className="relative flex flex-col items-center justify-center p-6">
-              <div className="mb-4 rounded-full bg-linear-to-br from-amber-500 to-amber-600 p-4 shadow-lg shadow-amber-500/30 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-amber-500/50">
-                <Mail size={28} className="text-white" />
-              </div>
-              <Heading as="h3" className="mb-2 text-sm text-neutral-500 dark:text-neutral-400">
-                Email
-              </Heading>
-              <Link
-                href={`mailto:${
-                  siteSettings.contactEmail || "contact@bnb-energie.fr"
-                }`}
-                className="text-lg font-semibold text-neutral-900 dark:text-white transition-colors hover:text-amber-600 dark:hover:text-amber-400"
-              >
-                {siteSettings.contactEmail || "contact@bnb-energie.fr"}
-              </Link>
-            </CardBody>
-          </Card>
+          <ContactCard
+            icon={<Mail aria-hidden="true" className="size-6" />}
+            title="E-mail"
+          >
+            <a
+              href={`mailto:${contactEmail}`}
+              className="break-all transition-colors hover:text-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60"
+            >
+              {contactEmail}
+            </a>
+          </ContactCard>
 
-          <Card className="group relative overflow-hidden rounded-2xl border border-amber-500/30 dark:border-amber-500/10 bg-white dark:bg-neutral-900 transition-all duration-300 hover:-translate-y-1">
-            <CardBody className="relative flex flex-col items-center justify-center p-6">
-              <div className="mb-4 rounded-full bg-linear-to-br from-amber-500 to-amber-600 p-4 shadow-lg shadow-amber-500/30 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-amber-500/50">
-                <MapPin size={28} className="text-white" />
-              </div>
-              <Heading as="h3" className="mb-2 text-sm text-neutral-500 dark:text-neutral-400">
-                Adresse
-              </Heading>
-              <p className="text-center text-lg font-semibold text-neutral-900 dark:text-white">
-                {siteSettings.addressStreet
-                  ? `${siteSettings.addressStreet}, ${siteSettings.addressZip} ${siteSettings.addressCity}`
-                  : "Bourg-en-Bresse, Ain (01)"}
-              </p>
-            </CardBody>
-          </Card>
+          <ContactCard
+            icon={<MapPin aria-hidden="true" className="size-6" />}
+            title="Adresse"
+          >
+            <span className="max-w-72">{displayedAddress}</span>
+          </ContactCard>
         </div>
 
-        <div className="mb-12 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <Heading as="h3" className="mb-6 flex items-center gap-2 text-lg text-neutral-900 dark:text-white">
-              <ChevronRight className="h-5 w-5 text-amber-500" />
+        <div className="grid grid-cols-1 gap-x-8 gap-y-12 border-y border-white/8 py-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-x-10">
+          <div className="lg:col-span-3">
+            <FooterTitle
+              icon={
+                <ChevronRight
+                  aria-hidden="true"
+                  className="size-4"
+                />
+              }
+            >
               Navigation
-            </Heading>
-            <ul className="space-y-3 flex flex-col">
+            </FooterTitle>
+
+            <ul className="grid grid-cols-1 gap-3">
               {navigationLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="group inline-flex items-center text-neutral-700 dark:text-neutral-300 transition-colors hover:text-amber-600 dark:hover:text-amber-400"
+                    className="group inline-flex items-center gap-3 text-sm leading-6 text-neutral-400 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60"
                   >
-                    <span className="mr-2 size-1 rounded-full bg-amber-500 transition-opacity" />
-                    {link.label}
+                    <span className="size-1.5 shrink-0 rounded-full bg-neutral-700 transition-colors group-hover:bg-amber-400" />
+                    <span>{link.label}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div>
-            <Heading as="h3" className="mb-6 flex items-center gap-2 text-lg text-neutral-900 dark:text-white">
-              <Shield className="h-5 w-5 text-amber-500" />
-              Nos Services
-            </Heading>
-            <ul className="space-y-3 text-neutral-700 dark:text-neutral-300">
-              <li className="flex items-start gap-2">
-                <Award className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
-                <span>Installation photovoltaïque</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Award className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
-                <span>Maintenance & SAV</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Award className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
-                <span>Étude personnalisée</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Award className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
-                <span>Accompagnement administratif</span>
-              </li>
+          <div className="lg:col-span-3">
+            <FooterTitle
+              icon={<Shield aria-hidden="true" className="size-4" />}
+            >
+              Nos services
+            </FooterTitle>
+
+            <ul className="grid grid-cols-1 gap-3">
+              {services.map((service) => (
+                <li
+                  key={service}
+                  className="flex items-start gap-3 text-sm leading-6 text-neutral-400"
+                >
+                  <Award
+                    aria-hidden="true"
+                    className="mt-1 size-4 shrink-0 text-amber-400"
+                  />
+                  <span>{service}</span>
+                </li>
+              ))}
             </ul>
           </div>
 
-          <div className="lg:col-span-2">
-            <Heading as="h3" className="mb-6 flex items-center gap-2 text-lg text-neutral-900 dark:text-white">
-              <MapPin className="h-5 w-5 text-amber-500" />
-              Zones d&apos;Intervention
-            </Heading>
-            <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm md:grid-cols-3">
-              {cities.map((city, index) => (
-                <Link
-                  key={`${city}-${index}`}
-                  href={`/zones-intervention/${slugify(city)}`}
-                  className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400 transition-colors hover:text-amber-600 dark:hover:text-amber-400"
-                >
-                  <span className="h-1 w-1 rounded-full bg-amber-500 shrink-0" />
-                  {city}
-                </Link>
-              ))}
-            </div>
-            <div className="mt-4 text-center">
-              <Link
-                href="/zones-intervention"
-                className="text-xs font-medium text-amber-600 dark:text-amber-400 hover:underline"
-              >
-                Voir toutes nos zones →
-              </Link>
-            </div>
+          <div className="md:col-span-2 lg:col-span-6">
+            <FooterTitle
+              icon={<MapPin aria-hidden="true" className="size-4" />}
+            >
+              Zones d&apos;intervention
+            </FooterTitle>
+
+            {cities.length > 0 ? (
+              <div className="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3">
+                {cities.map((city) => (
+                  <Link
+                    key={city}
+                    href={`/zones-intervention/${slugify(city)}`}
+                    className="group flex min-w-0 items-center gap-3 text-sm leading-6 text-neutral-400 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60"
+                  >
+                    <span className="size-1.5 shrink-0 rounded-full bg-neutral-700 transition-colors group-hover:bg-amber-400" />
+                    <span className="truncate">{city}</span>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm leading-6 text-neutral-500">
+                Nos zones d&apos;intervention seront prochainement disponibles.
+              </p>
+            )}
+
+            <Link
+              href="/zones-intervention"
+              className="mt-7 inline-flex items-center gap-2 rounded-lg border border-amber-400/20 bg-amber-400/10 px-4 py-2.5 text-sm font-semibold text-amber-400 transition-colors hover:border-amber-400/35 hover:bg-amber-400/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60"
+            >
+              Voir toutes nos zones
+              <ChevronRight aria-hidden="true" className="size-4" />
+            </Link>
           </div>
         </div>
 
-        <div className="mb-12 flex flex-col items-center justify-center gap-6">
-          <Heading as="h3" className="text-lg text-neutral-900 dark:text-white">
-            Suivez-nous
-          </Heading>
-          <div className="flex gap-4">
+        <div className="flex flex-col items-center justify-between gap-7 py-10 md:flex-row">
+          <div className="text-center md:text-left">
+            <Heading
+              as="h3"
+              className="text-base font-semibold text-white"
+            >
+              Suivez-nous
+            </Heading>
+
+            <p className="mt-1 text-sm text-neutral-500">
+              Retrouvez nos actualités et nos réalisations
+            </p>
+          </div>
+
+          <div className="flex items-center gap-3">
             {siteSettings.socialFacebook && (
               <a
                 href={siteSettings.socialFacebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative rounded-full bg-linear-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-700 p-3 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/20"
-                aria-label="Facebook"
+                aria-label="Suivre BNB Énergie sur Facebook"
+                className="group flex size-11 items-center justify-center rounded-xl border border-[#1877F2]/25 bg-[#1877F2]/10 text-[#1877F2] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1877F2] hover:bg-[#1877F2] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1877F2]/60"
               >
-                <div className="absolute inset-0 rounded-full bg-linear-to-br from-blue-500 to-blue-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <Facebook className="relative h-6 w-6 text-neutral-700 dark:text-neutral-300 transition-colors group-hover:text-white" />
+                <Facebook
+                  aria-hidden="true"
+                  className="size-5"
+                />
               </a>
             )}
+
             {siteSettings.socialInstagram && (
               <a
                 href={siteSettings.socialInstagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative rounded-full bg-linear-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-700 p-3 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-pink-500/20"
-                aria-label="Instagram"
+                aria-label="Suivre BNB Énergie sur Instagram"
+                className="group relative flex size-11 items-center justify-center overflow-hidden rounded-xl border border-[#DD2A7B]/25 bg-white/5 transition-all duration-200 hover:-translate-y-0.5 hover:border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DD2A7B]/60"
               >
-                <div className="absolute inset-0 rounded-full bg-linear-to-br from-pink-500 via-purple-500 to-orange-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <Instagram className="relative h-6 w-6 text-neutral-700 dark:text-neutral-300 transition-colors group-hover:text-white" />
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-linear-to-br from-[#F58529] via-[#DD2A7B] to-[#8134AF] opacity-15 transition-opacity group-hover:opacity-100"
+                />
+
+                <Instagram
+                  aria-hidden="true"
+                  className="relative size-5 text-[#DD2A7B] transition-colors group-hover:text-white"
+                />
               </a>
             )}
+
             {siteSettings.socialLinkedin && (
               <a
                 href={siteSettings.socialLinkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative rounded-full bg-linear-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-700 p-3 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/20"
-                aria-label="LinkedIn"
+                aria-label="Suivre BNB Énergie sur LinkedIn"
+                className="group flex size-11 items-center justify-center rounded-xl border border-[#0A66C2]/25 bg-[#0A66C2]/10 text-[#0A66C2] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#0A66C2] hover:bg-[#0A66C2] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A66C2]/60"
               >
-                <div className="absolute inset-0 rounded-full bg-linear-to-br from-blue-600 to-blue-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <Linkedin className="relative h-6 w-6 text-neutral-700 dark:text-neutral-300 transition-colors group-hover:text-white" />
+                <Linkedin
+                  aria-hidden="true"
+                  className="size-5"
+                />
               </a>
             )}
           </div>
         </div>
 
-        <div className="mb-8 h-px bg-linear-to-r from-transparent via-amber-500/30 to-transparent" />
+        <div className="h-px w-full bg-linear-to-r from-transparent via-white/10 to-transparent" />
 
-        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-          <p className="text-center text-sm text-neutral-600 dark:text-neutral-400">
+        <div className="flex flex-col items-center justify-between gap-5 pt-8 md:flex-row">
+          <p className="text-center text-sm leading-6 text-neutral-500 md:text-left">
             © {new Date().getFullYear()}{" "}
-            <span className="font-semibold text-neutral-900 dark:text-white">
-              {siteSettings.businessName || "BNB ÉNERGIE"}
-            </span>{" "}
-            - Tous droits réservés
+            <span className="font-semibold text-neutral-300">
+              {businessName}
+            </span>
+            . Tous droits réservés.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 text-sm">
-            {legalLinks.map((link, index) => (
-              <span key={link.href} className="flex items-center gap-4">
-                <Link
-                  href={link.href}
-                  className="text-neutral-600 dark:text-neutral-400 transition-colors hover:text-amber-600 dark:hover:text-amber-400"
-                >
-                  {link.label}
-                </Link>
-                {index < legalLinks.length - 1 && (
-                  <span className="h-1 w-1 rounded-full bg-neutral-400 dark:bg-neutral-600" />
-                )}
-              </span>
+
+          <nav
+            aria-label="Liens juridiques"
+            className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2"
+          >
+            {legalLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm text-neutral-500 transition-colors hover:text-neutral-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60"
+              >
+                {link.label}
+              </Link>
             ))}
-          </div>
+          </nav>
         </div>
       </div>
     </footer>
