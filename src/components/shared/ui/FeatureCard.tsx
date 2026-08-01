@@ -6,6 +6,7 @@ import type { BaseCardProps } from "@/types";
 import { getLucideIcon } from "@/utils/getLucideIcon";
 import { cn } from "@/utils/classenames";
 import { ReactNode } from "react";
+import { Check } from "lucide-react";
 
 interface FeatureCardProps extends BaseCardProps {
   icon: string;
@@ -39,7 +40,7 @@ export function FeatureCard({
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: 0 }}
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-neutral-200/70 bg-white p-8 shadow-sm transition-shadow duration-300 hover:shadow-md",
+        "group relative overflow-hidden rounded-xl border border-neutral-200/50 bg-white p-8 transition-shadow duration-300 hover:shadow-md",
         className,
       )}
     >
@@ -50,7 +51,7 @@ export function FeatureCard({
           transition: TRANSITIONS.smooth,
         }}
       >
-        <Icon className="h-7 w-7" />
+          <Icon className={cn("h-7 w-7", iconColor)} />
       </LazyMotionDiv>
 
       <h3 className="mb-3 text-xl font-semibold tracking-tight text-neutral-900">
@@ -78,9 +79,9 @@ export function FeatureCard({
         <ul className="space-y-3">
           {items.map((item, idx) => (
             <li key={idx} className="flex items-start gap-3">
-              <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-neutral-100">
-                <span className={`text-xs ${iconColor}`}>✓</span>
-              </div>
+              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-green-400 to-emerald-500">
+            <Check className={`h-3 w-3 text-white`} />
+          </span>
               <span className="text-sm text-neutral-700">
                 {item}
               </span>

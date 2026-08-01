@@ -29,12 +29,15 @@ export function ReviewsSection({
         transition={{ duration: 0.4 }}
         className="text-left"
       >
-        <p className="mb-3 text-[13px] font-bold uppercase tracking-[0.16em] text-secondary-600">
+       <div className="mb-3 flex items-center gap-3">
+    <span className="h-px w-6 bg-secondary-600" />
+    <p className="text-[13px] font-bold uppercase tracking-[0.16em] text-secondary-600">
           Témoignages
-        </p>
+    </p>
+  </div>
 
         <div className="flex items-end gap-6">
-          <h2 className="max-w-[20ch] text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
+          <h2 className="max-w-[20ch] text-[clamp(1.25rem,2.5vw,2rem)] font-semibold tracking-tight text-neutral-900">
             {title}
           </h2>
           <span

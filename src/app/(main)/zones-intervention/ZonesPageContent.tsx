@@ -87,6 +87,8 @@ export default function ZonesPageContent({
                   key={group.id}
                   icon="MapPin"
                   title={group.zone}
+                  iconColor="text-primary"
+
                   description=""
                   gradient={group.gradient || "from-blue-500 to-cyan-500"}
                   index={index}
@@ -165,6 +167,7 @@ export default function ZonesPageContent({
                 <FeatureCard
                   key={advantage.title}
                   icon={advantage.icon}
+                    iconColor="text-primary"
                   title={advantage.title}
                   description={advantage.description}
                   gradient="from-blue-500 to-cyan-500"

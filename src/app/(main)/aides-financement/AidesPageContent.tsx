@@ -133,6 +133,7 @@ export default function AidesPageContent({
                     description={aid.description}
                     gradient="from-green-500 to-emerald-500"
                     index={index}
+                    iconColor="text-amber-500"
                   />
                 ))}
               </div>
@@ -154,6 +155,7 @@ export default function AidesPageContent({
                     icon={option.icon || "CreditCard"}
                     title={option.title}
                     description={option.description || ""}
+                      iconColor="text-primary"
                     items={
                       option.features?.map(
                         (f: { text?: string }) => f.text || "",

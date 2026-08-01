@@ -12,7 +12,7 @@ export function AboutCard({
   content,
   stat,
   statLabel,
-  index,
+  index = 0,
   className,
 }: AboutCardProps) {
   const Icon = getLucideIcon(icon);

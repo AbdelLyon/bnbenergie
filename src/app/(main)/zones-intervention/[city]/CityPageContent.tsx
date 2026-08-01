@@ -182,6 +182,7 @@ export default function CityPageContent({
                 <FeatureCard
                   key={adv.title}
                   icon={adv.icon}
+                    iconColor="text-emerald-500"
                   title={adv.title}
                   description={adv.text}
                   gradient={accentClass}

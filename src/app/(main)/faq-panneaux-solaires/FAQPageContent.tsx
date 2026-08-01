@@ -42,6 +42,8 @@ const CATEGORY_ORDER = [
 
 const DEFAULT_OPEN = "Aides & Financement";
 
+
+
 const categoryMeta: Record<string, CategoryMeta> = {
   "Aides & Financement": {
     icon: "Banknote",
@@ -98,6 +100,24 @@ export default function FAQPageContent({
   );
   if (others.length > 0) grouped.push({ category: "Général", items: others });
 
+  const stats = [
+  {
+    icon: "HelpCircle",
+    value: faqs.length.toString(),
+    label: "Questions",
+  },
+  {
+    icon: "CheckCircle2",
+    value: "100%",
+    label: "Réponses détaillées",
+  },
+  {
+    icon: "Zap",
+    value: "24/7",
+    label: "Support disponible",
+  },
+];
+
   return (
     <PageMainWrapper variant="purple">
       <div className="relative z-10">
@@ -117,31 +137,20 @@ export default function FAQPageContent({
         </PageHeader>
 
         <SectionContainer>
+        
           <div className="relative z-20 -mt-16 mb-20">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              {[
-                {
-                  value: faqs.length.toString(),
-                  label: "Questions",
-                  icon: "HelpCircle",
-                },
-                {
-                  value: "100%",
-                  label: "Réponses Détaillées",
-                  icon: "CheckCircle2",
-                },
-                { value: "24/7", label: "Support Disponible", icon: "Zap" },
-              ].map((stat, index) => (
-                <StatCard
-                  key={stat.label}
-                  icon={stat.icon}
-                  value={stat.value}
-                  label={stat.label}
-                  index={index}
-                />
-              ))}
-            </div>
-          </div>
+  <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+    {stats.map((stat, i) => (
+      <StatCard
+        key={stat.label}
+        icon={stat.icon}
+        value={stat.value}
+        label={stat.label}
+        index={i}
+      />
+    ))}
+  </div>
+</div>
 
           <SectionHeader
             badge="FAQ"

@@ -22,7 +22,7 @@ export function StatsGrid({
 }: StatsGridProps) {
   return (
     <div
-      className={`${elevated ? 'relative z-20 -mt-16 mb-20' : 'mb-16'} ${className}`}
+      className={`${elevated ? 'relative z-20 min-h-80 -mt-16 mb-20' : 'mb-16'} ${className}`}
     >
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {stats.map((stat, index) => (

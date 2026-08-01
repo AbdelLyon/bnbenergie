@@ -93,6 +93,8 @@ export default function GarantiesPageContent({
                   <FeatureCard
                     key={cert.id}
                     icon={cert.icon}
+                      iconColor="text-amber-500"
+
                     title={cert.title}
                     description={cert.description}
                     gradient={cert.gradient || "from-blue-500 to-cyan-500"}
@@ -150,6 +152,7 @@ export default function GarantiesPageContent({
                     key={commitment.id}
                     icon={commitment.icon}
                     title={commitment.title}
+                      iconColor="text-primary"
                     description={commitment.description}
                     gradient="from-blue-500 to-cyan-500"
                     index={index}

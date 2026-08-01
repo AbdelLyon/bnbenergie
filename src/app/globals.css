@@ -98,7 +98,7 @@
   /* Backgrounds */
   --bg-page: var(--color-white);
   --bg-card: var(--color-white);
-  --bg-section: var(--color-neutral-50);
+  --bg-section: var(--color-white);
   --bg-section-alt: var(--color-white);
 
   /* Text colors */

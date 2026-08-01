@@ -73,8 +73,6 @@ export default function ServicesPageContent({
               {steps.map((step, index) => (
                 <ServiceStep
                   key={step.id}
-                  number={step.number}
-                  icon={step.icon}
                   title={step.title}
                   subtitle={step.subtitle}
                   description={step.description}
@@ -105,6 +103,7 @@ export default function ServicesPageContent({
                   <FeatureCard
                     key={service.id}
                     icon={service.icon}
+                    iconColor="text-emerald-500"
                     title={service.title}
                     description={service.description}
                     gradient="from-blue-500 to-cyan-500"

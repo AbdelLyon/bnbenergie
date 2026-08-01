@@ -90,11 +90,14 @@ export function SectionHeader({
       transition={{ duration: ANIMATION_DURATIONS.normal }}
       className={cn("text-left", SPACING.header.mb, className)}
     >
-      {badge && (
-        <p className="mb-3 text-[13px] font-bold uppercase tracking-[0.16em] text-secondary-600">
-          {badge}
-        </p>
-      )}
+  {badge && (
+  <div className="mb-3 flex items-center gap-3">
+    <span className="h-px w-6 bg-secondary-600" />
+    <p className="text-[13px] font-bold uppercase tracking-[0.16em] text-secondary-600">
+      {badge}
+    </p>
+  </div>
+)}
 
       {/* Titre à gauche + trait qui file vers la droite (façon rifanor) */}
       <div className="flex items-end gap-5">
