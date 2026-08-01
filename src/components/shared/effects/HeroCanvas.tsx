@@ -183,8 +183,7 @@ export function HeroCanvas() {
         const py = baseY[k];
         if (px === undefined || py === undefined) continue;
 
-        // Seconde grille régulière, exactement à mi-distance des points
-        // d'origine : la densification conserve un alignement propre.
+   
         baseX.push(px + SP * 0.5);
         baseY.push(py + SP * 0.5);
         colorValues.push(
