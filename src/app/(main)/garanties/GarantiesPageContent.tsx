@@ -2,16 +2,15 @@
 
 import {
   Title,
-  Heading,
   PageHeader,
   PageMainWrapper,
   SectionContainer,
   StatsGrid,
-  IntroSection,
   FeatureCard,
   WarrantyCard,
   CTASection,
 } from "@/components";
+import { SectionHeader } from "@/components/shared/layout/SectionWrapper";
 
 import type {
   Warranty,
@@ -80,34 +79,15 @@ export default function GarantiesPageContent({
             ]}
           />
 
-          {/* Introduction avec background amélioré */}
-          <div className="relative mb-24 overflow-hidden rounded-3xl bg-white p-12 shadow-xl border border-neutral-100">
-            {/* Pattern decoratif subtil */}
-            <div className="absolute inset-0 opacity-[0.03]">
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                  backgroundSize: "32px 32px",
-                }}
-              />
-            </div>
-
-            <div className="relative z-10 text-center max-w-4xl mx-auto">
-              <IntroSection
-                title="Des Garanties Complètes pour Votre Sérénité"
-                description="Investir dans le solaire, c'est investir pour l'avenir. Chez BNB ÉNERGIE, nous vous offrons une couverture complète avec nos certifications professionnelles, nos garanties décennales et les garanties constructeurs de matériel premium."
-                className="mb-0"
-              />
-            </div>
-          </div>
-
           {/* Certifications */}
           {warranties.certifications.length > 0 && (
             <div className="mb-20">
-              <Heading className="mb-12 text-center text-3xl text-neutral-900 md:text-4xl">
-                Nos Certifications Professionnelles
-              </Heading>
+              <SectionHeader
+                badge="Certifications"
+                title="Nos Certifications Professionnelles"
+                subtitle="Des engagements concrets pour une installation solaire fiable, durable et sécurisée."
+                className="mb-10"
+              />
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {warranties.certifications.map((cert, index) => (
                   <FeatureCard
@@ -126,9 +106,12 @@ export default function GarantiesPageContent({
           {/* Garanties Produits */}
           {warranties.products.length > 0 && (
             <div className="mb-20">
-              <Heading className="mb-12 text-center text-3xl text-neutral-900 md:text-4xl">
-                Garanties Constructeurs & Matériel
-              </Heading>
+              <SectionHeader
+                badge="Matériel"
+                title="Garanties Constructeurs & Matériel"
+                subtitle="Les garanties des fabricants et la qualité des composants qui assurent votre tranquillité."
+                className="mb-10"
+              />
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 {warranties.products.map((product, index) => (
                   <WarrantyCard
@@ -155,9 +138,12 @@ export default function GarantiesPageContent({
           {/* Engagements */}
           {warranties.commitments.length > 0 && (
             <div className="mb-20">
-              <Heading className="mb-12 text-center text-3xl text-neutral-900 md:text-4xl">
-                Nos Engagements Qualité
-              </Heading>
+              <SectionHeader
+                badge="Engagement"
+                title="Nos Engagements Qualité"
+                subtitle="Une démarche de service orientée résultat, avec un accompagnement pensé pour chaque projet."
+                className="mb-10"
+              />
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {warranties.commitments.map((commitment, index) => (
                   <FeatureCard
@@ -175,14 +161,14 @@ export default function GarantiesPageContent({
 
           {/* Call-to-Action */}
           <CTASection
-            title="Des Questions sur Nos Garanties ?"
-            description="Notre équipe est à votre disposition pour vous expliquer en détail toutes nos garanties et certifications"
+            title="Prêt à passer au solaire ?"
+            description="Demandez votre devis gratuit et personnalisé. Réponse sous 48h."
             phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
             primaryButton={{
-              text: "Demander mon devis",
+              text: "Obtenir mon devis gratuit",
               href: "/contact#contact-form",
             }}
-            variant="gradient"
+            variant="minimal"
           />
         </SectionContainer>
       </div>

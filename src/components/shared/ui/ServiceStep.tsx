@@ -6,7 +6,7 @@ import { Heading } from "@/components/shared/ui/Heading";
 import type { BaseCardProps } from "@/types";
 import { SCROLL_VIEWPORT } from "@/utils/animations";
 import { getLucideIcon } from "@/utils/getLucideIcon";
-import { CheckCircle2, Clock } from "lucide-react";
+import {  Clock } from "lucide-react";
 
 interface ServiceStepProps extends BaseCardProps {
   number: string;
@@ -21,13 +21,13 @@ interface ServiceStepProps extends BaseCardProps {
 }
 
 export function ServiceStep({
+  number,
   icon,
   title,
   subtitle,
   description,
   items,
   duration,
-  gradient = "from-blue-500 to-cyan-500",
   isEven = false,
   className = "",
 }: ServiceStepProps) {
@@ -41,26 +41,23 @@ export function ServiceStep({
       transition={{ duration: ANIMATION_DURATIONS.medium, delay: 0 }}
       className={`group relative ${className}`}
     >
-      <div className="rounded-3xl border border-neutral-200 bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-2xl md:p-10">
-        <div className="flex flex-col gap-8 md:flex-row md:items-start">
-          {/* Numéro et icône */}
-          <div className="shrink-0">
-            <div
-              className={`relative z-10 rounded-2xl bg-linear-to-br ${gradient} p-6 text-white`}
-            >
-              <Icon className="h-12 w-12" />
+      <div className="border-b border-neutral-200 pb-8 last:border-b-0 md:pb-10">
+        <div className="grid gap-6 md:grid-cols-[88px_1fr] md:items-start">
+          <div className="flex items-center gap-3 md:flex-col md:items-start">
+            <div className="inline-flex rounded-2xl bg-primary-600 p-3 text-white shadow-sm">
+              <Icon className="h-6 w-6" />
             </div>
+            <span className="text-sm font-semibold tracking-[0.18em] text-neutral-500">
+              {number}
+            </span>
           </div>
 
-          {/* Contenu */}
           <div className="flex-1">
-            <div className="mb-4">
-              <span
-                className={`mb-2 inline-block bg-linear-to-r ${gradient} bg-clip-text text-sm font-bold text-transparent`}
-              >
+            <div className="mb-3">
+              <span className="mb-2 inline-block text-sm font-bold text-primary-700">
                 {subtitle}
               </span>
-              <Heading as="h3" className="mb-2 text-2xl text-neutral-900 md:text-3xl">
+              <Heading as="h3" className="mb-2 text-[clamp(1.5rem,2.2vw,2.25rem)] leading-tight text-neutral-900">
                 {title}
               </Heading>
               {duration && (
@@ -71,18 +68,18 @@ export function ServiceStep({
               )}
             </div>
 
-            <p className="mb-6 leading-relaxed text-neutral-600">
+            <p className="mb-5 max-w-3xl leading-relaxed text-neutral-600">
               {description}
             </p>
 
             {items && items.length > 0 && (
-              <ul className="space-y-2">
+              <ul className="flex flex-wrap gap-2">
                 {items.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-green-500" />
-                    <span className="text-sm text-neutral-700">
-                      {item}
-                    </span>
+                  <li
+                    key={idx}
+                    className="rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-sm text-neutral-700"
+                  >
+                    {item}
                   </li>
                 ))}
               </ul>

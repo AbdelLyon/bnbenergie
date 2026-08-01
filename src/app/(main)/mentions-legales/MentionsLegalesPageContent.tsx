@@ -5,8 +5,8 @@ import {
   PageMainWrapper,
   SectionContainer,
   Title,
-  Heading,
 } from "@/components";
+import { SectionHeader } from "@/components/shared/layout/SectionWrapper";
 import { LazyMotionDiv } from "@/components/LazyComponents";
 import { Building2, Globe } from "lucide-react";
 
@@ -105,6 +105,12 @@ export default function MentionsLegalesPageContent() {
       </PageHeader>
 
       <SectionContainer className="pb-20 -mt-20 relative z-10">
+        <SectionHeader
+          badge="Légales"
+          title="Mentions légales"
+          subtitle="Informations éditoriales, responsables, hébergement et obligations réglementaires du site."
+          className="mb-10"
+        />
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {sections.map((section) => {
             const Icon = section.icon;
@@ -138,9 +144,9 @@ export default function MentionsLegalesPageContent() {
                     >
                       <Icon className="h-5 w-5 text-white" />
                     </div>
-                    <Heading className="text-2xl text-neutral-900">
+                    <div className="text-[clamp(1.4rem,3vw,2rem)] font-semibold tracking-tight text-neutral-900">
                       {section.title}
-                    </Heading>
+                    </div>
                   </div>
 
                   <div className="space-y-2">
@@ -173,11 +179,11 @@ export default function MentionsLegalesPageContent() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0 }}
-              className="rounded-2xl bg-white p-6 border border-neutral-100"
+              className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm"
             >
-              <Heading as="h3" className="text-lg mb-2 text-neutral-900">
+              <div className="mb-2 text-lg font-semibold tracking-tight text-neutral-900 md:text-xl">
                 {section.title}
-              </Heading>
+              </div>
               <p className="text-sm sm:text-base text-neutral-700 leading-relaxed whitespace-pre-line">
                 {section.content}
               </p>

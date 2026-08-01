@@ -37,7 +37,7 @@ export function StatCard({
       </div>
       <div className="-mt-10">
 
-      <div className="font-display relative mb-1 text-3xl font-bold tracking-tight text-neutral-900">
+      <div className="font-display relative mb-1 text-2xl font-bold tracking-tight text-neutral-900">
         {value}
       </div>
 

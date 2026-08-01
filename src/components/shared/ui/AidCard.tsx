@@ -46,13 +46,13 @@ export function AidCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: 0 }}
-      className={`rounded-2xl border border-neutral-100 bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl ${className}`}
+      className={`rounded-[28px] border border-neutral-200 bg-white p-6 shadow-sm transition-all duration-300 md:p-8 ${className}`}
     >
       <div className="flex flex-col gap-6 md:flex-row">
         <div
-          className={`shrink-0 self-start rounded-xl bg-linear-to-br ${gradient} p-6 text-white`}
+          className={`shrink-0 self-start rounded-2xl bg-linear-to-br ${gradient} p-4 text-white shadow-sm`}
         >
-          <Icon className="h-12 w-12" />
+          <Icon className="h-8 w-8" />
         </div>
 
         <div className="flex-1">
@@ -62,7 +62,7 @@ export function AidCard({
             >
               {badge}
             </span>
-            <Heading as="h3" className="mb-2 text-2xl text-neutral-900">
+            <Heading as="h3" className="mb-2 text-[clamp(1.375rem,2.75vw,2.25rem)] leading-[1.05] tracking-[-0.04em] text-neutral-900">
               {title}
             </Heading>
             <p

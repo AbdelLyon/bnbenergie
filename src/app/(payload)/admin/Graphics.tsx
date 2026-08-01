@@ -1,24 +1,6 @@
 'use client';
 
-import { Logo as LogoIcon } from '@/components/shared/ui/Logo';
 
-export const Logo = () => (
-  <div className="group flex items-center gap-2">
-    {/* isScrolled={false} pour le style sur fond sombre (Glassmorphism + Texte Blanc) comme dans la Navbar */}
-    <LogoIcon isScrolled={false} showRGEBadge={true} size="md" />
-    <div>
-      <div className="font-display text-xl font-bold transition-all duration-300 ease-out text-white">
-        BNB{' '}
-        <span className="bg-linear-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
-          ÉNERGIE
-        </span>
-      </div>
-      <p className="font-display pl-2 text-[10px] transition-all duration-300 ease-out text-white/80">
-        Certifié RGE QualiPV
-      </p>
-    </div>
-  </div>
-);
 
 export const Icon = () => (
   <div

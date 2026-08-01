@@ -4,7 +4,6 @@ export { CTASection } from './shared/ui/CTASection';
 export { FAQItem } from './shared/ui/FAQItem';
 export { FeatureCard } from './shared/ui/FeatureCard';
 export { IntroSection } from './shared/ui/IntroSection';
-export { Logo } from './shared/ui/Logo';
 export { ProjectCard } from './shared/ui/ProjectCard';
 export { ServiceStep } from './shared/ui/ServiceStep';
 export { StatCard } from './shared/ui/StatCard';

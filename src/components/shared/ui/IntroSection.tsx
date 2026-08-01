@@ -21,12 +21,12 @@ export function IntroSection({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: ANIMATION_DURATIONS.normal }}
-      className={`mx-auto max-w-4xl text-center ${className}`}
+      className={`mx-auto max-w-4xl text-left ${className}`}
     >
-      <Heading className="text-3xl mb-4 text-neutral-900 md:text-4xl">
+      <Heading className="mb-4 text-[clamp(1.75rem,3vw,2.9rem)] font-semibold leading-[1.05] tracking-[-0.04em] text-neutral-900">
         {title}
       </Heading>
-      <p className="text-base leading-relaxed text-neutral-600 md:text-lg">
+      <p className="max-w-3xl text-base leading-8 text-neutral-600 md:text-lg">
         {description}
       </p>
     </LazyMotionDiv>

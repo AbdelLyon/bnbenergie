@@ -6,12 +6,11 @@ import {
   PageMainWrapper,
   SectionContainer,
   Title,
-  Heading,
-  IntroSection,
   FeatureCard,
   CTASection,
   ServiceStep,
 } from "@/components";
+import { SectionHeader } from "@/components/shared/layout/SectionWrapper";
 import type {
   Service,
   PageHeader as PageHeaderType,
@@ -62,55 +61,45 @@ export default function ServicesPageContent({
             }))}
           />
 
-          <div className="relative mx-auto mb-20 overflow-hidden rounded-3xl bg-white p-12 border border-neutral-100">
-            <div className="relative z-10 text-center">
-              <IntroSection
-                title="Un Accompagnement Complet de A à Z"
-                description=""
-                className="mb-0 w-full "
-              />
+          <div className="mb-16">
+            <SectionHeader
+              badge="Process"
+              title="Notre Processus de Mise en Service"
+              subtitle="De l'analyse personnalisée à la mise en service, chaque étape est pensée pour un projet solaire clair, rapide et sans friction."
+              className="mb-10"
+            />
 
-              <Heading
-                as="h3"
-                className="mb-4 text-xl text-neutral-700"
-              >
-                Notre mission : transformer votre projet solaire en réalité
-              </Heading>
-              <p className="leading-relaxed text-neutral-500 max-w-2xl mx-auto">
-                Chez BNB ÉNERGIE, nous gérons l'intégralité de votre projet
-                d'installation de panneaux solaires, de l'étude initiale à la
-                maintenance.
-              </p>
+            <div className="space-y-8">
+              {steps.map((step, index) => (
+                <ServiceStep
+                  key={step.id}
+                  number={step.number}
+                  icon={step.icon}
+                  title={step.title}
+                  subtitle={step.subtitle}
+                  description={step.description}
+                  items={
+                    step.highlights?.map(
+                      (h: { text?: string }) => h.text || "",
+                    ) || []
+                  }
+                  duration={step.duration}
+                  gradient={step.gradient}
+                  isEven={index % 2 === 0}
+                  index={index}
+                />
+              ))}
             </div>
-          </div>
-
-          <div className="mb-10 space-y-12">
-            {steps.map((step, index) => (
-              <ServiceStep
-                key={step.id}
-                number={step.number}
-                icon={step.icon}
-                title={step.title}
-                subtitle={step.subtitle}
-                description={step.description}
-                items={
-                  step.highlights?.map(
-                    (h: { text?: string }) => h.text || "",
-                  ) || []
-                }
-                duration={step.duration}
-                gradient={step.gradient}
-                isEven={index % 2 === 0}
-                index={index}
-              />
-            ))}
           </div>
 
           {guarantees.length > 0 && (
             <div className="mb-20">
-              <Heading className="mb-12 text-center text-3xl text-neutral-900 md:text-4xl">
-                Nos Engagements Qualité
-              </Heading>
+              <SectionHeader
+                badge="Engagement"
+                title="Nos Engagements Qualité"
+                subtitle="Un service pensé pour offrir à chaque client une expérience claire, rassurante et durable."
+                className="mb-10"
+              />
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {guarantees.map((service, index) => (
                   <FeatureCard
@@ -127,14 +116,14 @@ export default function ServicesPageContent({
           )}
 
           <CTASection
-            title="Prêt à Passer à l'Énergie Solaire ?"
-            description="Demandez votre étude gratuite et recevez votre devis personnalisé sous 48h"
+            title="Prêt à passer au solaire ?"
+            description="Demandez votre devis gratuit et personnalisé. Réponse sous 48h."
             phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
             primaryButton={{
-              text: "Obtenir un devis",
+              text: "Obtenir mon devis",
               href: "/contact#contact-form",
             }}
-            variant="gradient"
+            variant="minimal"
           />
         </SectionContainer>
       </div>

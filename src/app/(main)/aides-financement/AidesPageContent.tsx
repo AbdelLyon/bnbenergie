@@ -4,13 +4,12 @@ import {
   AidCard,
   CTASection,
   FeatureCard,
-  IntroSection,
   PageHeader,
   PageMainWrapper,
   SectionContainer,
   Title,
-  Heading,
 } from "@/components";
+import { SectionHeader } from "@/components/shared/layout/SectionWrapper";
 import { StatsGrid } from "@/components/shared/ui/StatsGrid";
 import type {
   FinancialAid,
@@ -78,32 +77,15 @@ export default function AidesPageContent({
             ]}
           />
 
-          <div className="relative mb-24 overflow-hidden rounded-3xl bg-white p-12 shadow-xl border border-neutral-100">
-            <div className="absolute inset-0 opacity-[0.03]">
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                  backgroundSize: "32px 32px",
-                }}
-              />
-            </div>
-
-            <div className="relative z-10 text-center max-w-4xl mx-auto">
-              <IntroSection
-                title="Des Aides Attractives pour Votre Transition Énergétique en 2026"
-                description="En 2026, l'État français maintient des dispositifs d'aide pour l'installation de panneaux solaires : prime à l'autoconsommation (80 €/kWc), TVA réduite à 5,5 % sous conditions, éco-PTZ jusqu'à 50 000 € et tarif de rachat du surplus garanti 20 ans. BNB ÉNERGIE, certifié RGE QualiPV, vous accompagne dans toutes les démarches administratives pour obtenir ces aides."
-                className="mb-0"
-              />
-            </div>
-          </div>
-
           {/* Aides principales */}
           {aids.main.length > 0 && (
             <div className="mb-20">
-              <Heading className="mb-12 text-center text-3xl text-neutral-900 md:text-4xl">
-                Les Principales Aides Disponibles
-              </Heading>
+              <SectionHeader
+                badge="Aides"
+                title="Les Principales Aides Disponibles"
+                subtitle="Les dispositifs d’aide pour réduire le coût de votre installation solaire et accélérer votre retour sur investissement."
+                className="mb-10"
+              />
               <div className="space-y-8">
                 {aids.main.map((aid, index) => (
                   <AidCard
@@ -136,9 +118,12 @@ export default function AidesPageContent({
 
           {aids.local.length > 0 && (
             <div className="mb-20">
-              <Heading className="mb-12 text-center text-3xl text-neutral-900 md:text-4xl">
-                Aides Locales & Complémentaires
-              </Heading>
+              <SectionHeader
+                badge="Local"
+                title="Aides Locales & Complémentaires"
+                subtitle="Des financements territoriaux et des aides additionnelles pour compléter votre projet solaire."
+                className="mb-10"
+              />
               <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                 {aids.local.map((aid, index) => (
                   <FeatureCard
@@ -156,9 +141,12 @@ export default function AidesPageContent({
 
           {aids.financing.length > 0 && (
             <div className="mb-20">
-              <Heading className="mb-12 text-center text-3xl text-neutral-900 md:text-4xl">
-                Solutions de Financement
-              </Heading>
+              <SectionHeader
+                badge="Financement"
+                title="Solutions de Financement"
+                subtitle="Comparez les options de financement pour rendre votre projet solaire encore plus accessible."
+                className="mb-10"
+              />
               <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                 {aids.financing.map((option, index) => (
                   <FeatureCard
@@ -180,14 +168,14 @@ export default function AidesPageContent({
           )}
 
           <CTASection
-            title="Calculez Vos Aides et Économies"
-            description="Demandez votre étude personnalisée gratuite et découvrez combien vous pouvez économiser"
+            title="Prêt à passer au solaire ?"
+            description="Demandez votre devis gratuit et personnalisé. Réponse sous 48h."
             phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
             primaryButton={{
-              text: "Demander mon devis",
+              text: "Obtenir mon devis gratuit",
               href: "/contact#contact-form",
             }}
-            variant="gradient"
+            variant="minimal"
           />
         </SectionContainer>
       </div>

@@ -90,8 +90,8 @@ export const defaultMetadata: Metadata = {
   publisher: "BNB ÉNERGIE",
 
   icons: {
-    icon: "/logo.svg",
-    apple: "/logo.svg",
+    icon: "/logo-final.png",
+    apple: "/logo-final.png",
   },
 
   formatDetection: {

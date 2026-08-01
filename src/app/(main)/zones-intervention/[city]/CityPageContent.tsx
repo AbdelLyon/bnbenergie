@@ -10,6 +10,7 @@ import {
   Title,
   Heading,
 } from "@/components";
+import { SectionHeader } from "@/components/shared/layout/SectionWrapper";
 import { LazyMotionDiv } from "@/components/LazyComponents";
 import { getCityTheme } from "@/config/city-themes";
 import { MapPin, Award, ArrowRight, Phone, CheckCircle2 } from "lucide-react";
@@ -92,14 +93,21 @@ export default function CityPageContent({
           <div className="mb-20 grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
             <div className="lg:col-span-3">
               <div>
-                <Heading className="text-3xl md:text-4xl text-neutral-900 mb-6">
-                  Installation solaire à{" "}
-                  <span
-                    className={`bg-linear-to-r ${accentClass} bg-clip-text text-transparent`}
-                  >
-                    {cityName}
-                  </span>
-                </Heading>
+                <SectionHeader
+                  badge="Local"
+                  title={
+                    <>
+                      Installation solaire à{" "}
+                      <span
+                        className={`bg-linear-to-r ${accentClass} bg-clip-text text-transparent`}
+                      >
+                        {cityName}
+                      </span>
+                    </>
+                  }
+                  subtitle="Une lecture claire du potentiel solaire de votre commune, de ses avantages et de la manière dont BNB ÉNERGIE peut vous accompagner."
+                  className="mb-8"
+                />
                 <div className="space-y-5 text-neutral-700 leading-relaxed text-base">
                   {paragraphs.map((p, i) => (
                     <p key={i}>{p}</p>
@@ -184,15 +192,14 @@ export default function CityPageContent({
           </div>
 
           {/* ── Processus 4 étapes ── */}
-          <div className="mb-20 rounded-3xl border border-neutral-200 bg-white shadow-sm overflow-hidden">
+          <div className="mb-20 rounded-[28px] border border-neutral-200 bg-white shadow-sm overflow-hidden">
             <div className="h-1 w-full bg-linear-to-r" />
             <div className="p-8 md:p-10">
-              <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-2 text-center">
-                Comment ça marche
-              </p>
-              <Heading className="text-2xl md:text-3xl text-center text-neutral-900 mb-10">
-                Votre installation solaire à {cityName} en 4 étapes
-              </Heading>
+              <SectionHeader
+                badge="Comment ça marche"
+                title={`Votre installation solaire à ${cityName} en 4 étapes`}
+                className="mb-10"
+              />
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {PROCESS_STEPS.map(
                   ({ icon: Icon, number, title, text, duration }, i) => (
@@ -308,15 +315,15 @@ export default function CityPageContent({
           )}
 
           <CTASection
-            title={`Votre projet solaire à ${cityName}`}
-            description={`Étude gratuite et sans engagement. Nous nous déplaçons à ${cityName} pour analyser votre toiture et vous proposer la solution la plus rentable.`}
+            title="Prêt à passer au solaire ?"
+            description="Demandez votre devis gratuit et personnalisé. Réponse sous 48h."
             phoneNumber={phone}
             primaryButton={{
-              text: "Demander mon devis gratuit",
+              text: "Obtenir mon devis gratuit",
               href: "/contact#contact-form",
             }}
             secondaryButton={{ text: "Nos garanties RGE", href: "/garanties" }}
-            variant="gradient"
+            variant="minimal"
           />
         </SectionContainer>
       </div>

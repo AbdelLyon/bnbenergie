@@ -2,15 +2,14 @@
 
 import {
   Title,
-  Heading,
   PageHeader,
   PageMainWrapper,
   SectionContainer,
   StatsGrid,
-  IntroSection,
   FeatureCard,
   CTASection,
 } from "@/components";
+import { SectionHeader } from "@/components/shared/layout/SectionWrapper";
 
 import Link from "next/link";
 import { slugify } from "@/utils/slugify";
@@ -75,30 +74,13 @@ export default function ZonesPageContent({
             ]}
           />
 
-          <div className="relative mb-24 overflow-hidden rounded-3xl bg-white p-12 shadow-xl border border-neutral-100">
-            <div className="absolute inset-0 opacity-[0.03]">
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                  backgroundSize: "32px 32px",
-                }}
-              />
-            </div>
-
-            <div className="relative z-10 text-center max-w-4xl mx-auto">
-              <IntroSection
-                title="Un Installateur Local au Plus Proche de Vous"
-                description="Basés à Bourg-en-Bresse, nous intervenons dans tout le département de l'Ain pour vous garantir un service de proximité, réactif et de qualité. Notre ancrage local nous permet d'assurer un suivi personnalisé et une maintenance rapide de vos installations."
-                className="mb-0"
-              />
-            </div>
-          </div>
-
           <div className="mb-20">
-            <Heading className="mb-12 text-center text-3xl text-neutral-900 md:text-4xl">
-              Nos Secteurs d'Intervention
-            </Heading>
+            <SectionHeader
+              badge="Intervention"
+              title="Nos Secteurs d'Intervention"
+              subtitle="Une présence locale et structurée sur l'Ain et ses départements limitrophes pour un suivi rapide et réactif."
+              className="mb-10"
+            />
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {zones.map((group, index) => (
                 <FeatureCard
@@ -127,12 +109,12 @@ export default function ZonesPageContent({
           </div>
 
           <div className="mb-20">
-            <Heading
-              as="h3"
-              className="mb-8 text-center text-2xl text-neutral-900 md:text-3xl"
-            >
-              Également présents dans les départements limitrophes
-            </Heading>
+            <SectionHeader
+              badge="Départements"
+              title="Également présents dans les départements limitrophes"
+              subtitle="Nous gardons une couverture territoriale élargie pour accompagner vos projets partout autour de chez vous."
+              className="mb-10"
+            />
             <div className="hidden lg:flex flex-wrap justify-center gap-3">
               {[
                 "Saône-et-Loire (71)",
@@ -153,9 +135,12 @@ export default function ZonesPageContent({
           </div>
 
           <div className="mb-20">
-            <Heading className="mb-12 text-center text-3xl text-neutral-900 md:text-4xl">
-              Pourquoi Choisir un Installateur Local ?
-            </Heading>
+            <SectionHeader
+              badge="Pourquoi"
+              title="Pourquoi Choisir un Installateur Local ?"
+              subtitle="La proximité, la réactivité et la connaissance du terrain sont des atouts décisifs pour la réussite de votre installation."
+              className="mb-10"
+            />
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {[
                 {
@@ -190,18 +175,18 @@ export default function ZonesPageContent({
           </div>
 
           <CTASection
-            title="Votre Projet Solaire Commence Ici"
-            description="Vérifiez si vous êtes dans notre zone d'intervention et demandez votre devis gratuit"
+            title="Prêt à passer au solaire ?"
+            description="Demandez votre devis gratuit et personnalisé. Réponse sous 48h."
             phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
             primaryButton={{
-              text: "Demander un devis gratuit",
+              text: "Obtenir mon devis gratuit",
               href: "/contact#contact-form",
             }}
             secondaryButton={{
               text: "Découvrir nos services",
               href: "/services",
             }}
-            variant="gradient"
+            variant="minimal"
           />
         </SectionContainer>
       </div>

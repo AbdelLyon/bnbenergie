@@ -12,7 +12,6 @@ import { useState } from "react";
 import { Menu, X, Phone, ChevronDown, ArrowRight } from "lucide-react";
 import { useBodyScrollLock } from "@/hooks";
 import { getLucideIcon } from "@/utils/getLucideIcon";
-import { Logo as LogoIcon } from "@/components/shared/ui/Logo";
 import Image from "next/image";
 
 type MegaMenuData = {
@@ -43,34 +42,8 @@ type MegaMenuData = {
   };
 };
 
-type LogoProps = {
-  isScrolled: boolean;
-  subtitle: string;
-  className?: string;
-};
 
-const NavLogo = ({ isScrolled, subtitle, className }: LogoProps) => (
-  <Link href="/" className={`group flex items-center gap-3 ${className ?? ""}`}>
-    <LogoIcon isScrolled={isScrolled} showRGEBadge size="md" />
-    <div className="leading-none">
-      <div
-        className={`font-display text-[17px] font-bold tracking-tight transition-colors duration-300 ${
-          isScrolled ? "text-foreground" : "text-white"
-        }`}
-      >
-        <span className="text-secondary">B</span>NB{" "}
-        <span className="text-primary">É</span>NERGIE
-      </div>
-      <p
-        className={`mt-0.5 text-[10px] font-medium tracking-wide transition-colors duration-300 ${
-          isScrolled ? "text-default-400" : "text-white/60"
-        }`}
-      >
-        {subtitle}
-      </p>
-    </div>
-  </Link>
-);
+
 
 const iconColors: Record<string, string> = {
   Settings: "bg-primary/10 text-primary",
@@ -111,8 +84,8 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="flex h-16 items-center justify-between">
-            {/* <NavLogo isScrolled={isScrolled} subtitle={data.logo.subtitle} /> */}
-            <Image alt="logo" src="/logo-bnb.png" width={150} height={40} />
+           
+          <Image alt="logo" src="/logo-final.png" className="object-contain -mt-2.5" width={120} height={40} />
 
             {/* Desktop nav */}
             <div className="hidden items-center gap-0.5 lg:flex">
@@ -168,7 +141,7 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 6, scale: 0.98 }}
                         transition={{ duration: 0.15, ease: "easeOut" }}
-                        className="absolute top-full left-1/2 z-50 w-[580px] -translate-x-1/2 pt-3"
+                        className="absolute top-full left-1/2 z-50 w-145 -translate-x-1/2 pt-3"
                       >
                         <div className="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-xl shadow-black/5">
                           <div className="grid grid-cols-2 gap-0 p-4">
@@ -310,8 +283,9 @@ export function MegaMenuNavbar({ data }: { data: MegaMenuData }) {
               className="fixed top-0 right-0 bottom-0 z-50 flex w-full flex-col overflow-hidden bg-background sm:max-w-sm lg:hidden"
             >
               {/* Drawer header */}
-              <div className="flex items-center justify-between border-b border-default-100 px-5 py-4">
-                <NavLogo isScrolled subtitle={data.logo.subtitle} />
+              <div className="flex items-center justify-between h-16 border-b border-default-100 px-5 py-4">
+                <Image alt="logo" src="/logo-final.png" className="object-contain -mt-2.5" width={120} height={40} />
+
                 <LazyMotionButton
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setIsOpen(false)}

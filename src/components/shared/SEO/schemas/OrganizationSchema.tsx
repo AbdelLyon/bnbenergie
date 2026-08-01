@@ -12,7 +12,7 @@ export async function OrganizationStructuredData() {
     url: domain,
     logo: {
       '@type': 'ImageObject',
-      url: `${domain}/logo.svg`,
+      url: `${domain}/logo-final.png`,
       width: '512',
       height: '512',
       caption: 'Logo BNB ÉNERGIE',

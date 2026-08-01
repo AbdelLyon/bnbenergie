@@ -6,9 +6,9 @@ import {
   Title,
   SectionContainer,
   StatsGrid,
-  IntroSection,
   CTASection,
 } from "@/components";
+import { SectionHeader } from "@/components/shared/layout/SectionWrapper";
 
 import type {
   PageHeader as PageHeaderType,
@@ -73,37 +73,24 @@ export default function NosPacksPageContent({
             ]}
           />
 
-          <div className="relative mb-24 overflow-hidden rounded-3xl bg-white p-12 shadow-xl border border-neutral-100">
-            <div className="absolute inset-0 opacity-[0.03]">
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                  backgroundSize: "32px 32px",
-                }}
-              />
-            </div>
-
-            <div className="relative z-10 text-center max-w-4xl mx-auto">
-              <IntroSection
-                title="Choisissez le Pack Adapté à Vos Besoins"
-                description="Nos packs photovoltaïques sont conçus pour s'adapter à votre consommation énergétique et à votre budget. Installation clé en main avec démarches administratives incluses."
-                className="mb-0"
-              />
-            </div>
-          </div>
+          <SectionHeader
+            badge="Packs"
+            title="Choisissez le pack solaire adapté à votre projet"
+            subtitle="Des solutions claires, professionnelles et pensées pour un retour sur investissement durable."
+            className="mb-10"
+          />
 
           {children}
 
           <CTASection
-            title="Prêt à Investir dans l'Énergie Solaire ?"
-            description="Demandez votre étude gratuite et recevez votre devis personnalisé sous 48h"
+            title="Prêt à passer au solaire ?"
+            description="Demandez votre devis gratuit et personnalisé. Réponse sous 48h."
             phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
             primaryButton={{
               text: "Obtenir mon devis",
               href: "/contact#contact-form",
             }}
-            variant="gradient"
+            variant="minimal"
           />
         </SectionContainer>
       </div>

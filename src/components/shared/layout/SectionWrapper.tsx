@@ -70,7 +70,7 @@ export function SectionContainer({
 
 interface SectionHeaderProps {
   badge?: string;
-  title: string;
+  title: ReactNode;
   subtitle?: string;
   align?: TextAlignment;
   className?: string;
@@ -97,10 +97,10 @@ export function SectionHeader({
       )}
 
       {/* Titre à gauche + trait qui file vers la droite (façon rifanor) */}
-      <div className="flex items-end gap-6">
-        <h2 className="max-w-[20ch] text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
-          {title}
-        </h2>
+      <div className="flex items-end gap-5">
+    <h2 className="max-w-[18ch] text-[clamp(1.375rem,2.75vw,2.25rem)] font-semibold leading-[1.05] tracking-[-0.04em] text-neutral-900">
+  {title}
+</h2>
         <span
           aria-hidden="true"
           className="mb-2.5 hidden h-px flex-1 bg-neutral-200 md:block"

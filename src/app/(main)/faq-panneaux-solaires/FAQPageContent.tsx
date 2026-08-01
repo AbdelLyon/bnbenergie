@@ -10,13 +10,13 @@ import type {
 import {
   CTASection,
   FAQItem,
-  Heading,
   PageHeader,
   PageMainWrapper,
   SectionContainer,
   StatCard,
   Title,
 } from "@/components";
+import { SectionHeader } from "@/components/shared/layout/SectionWrapper";
 import { getLucideIcon } from "@/utils/getLucideIcon";
 
 interface FAQPageContentProps {
@@ -143,6 +143,13 @@ export default function FAQPageContent({
             </div>
           </div>
 
+          <SectionHeader
+            badge="FAQ"
+            title="Questions fréquentes sur les panneaux solaires"
+            subtitle="Tout ce qu’il faut savoir avant de lancer votre projet photovoltaïque avec BNB ÉNERGIE."
+            className="mb-10"
+          />
+
           {/* Accordéons par catégorie */}
           <div className="mb-20 space-y-4">
             {grouped.map(({ category, items }) => {
@@ -174,11 +181,9 @@ export default function FAQPageContent({
 
                     {/* Titre + description */}
                     <div className="flex-1 min-w-0">
-                      <Heading
-                        className={`text-base md:text-lg ${meta.labelColor}`}
-                      >
+                      <div className={`text-base font-semibold md:text-lg ${meta.labelColor}`}>
                         {category}
-                      </Heading>
+                      </div>
                       {meta.description && (
                         <p className="text-sm text-neutral-500 mt-0.5 leading-snug">
                           {meta.description}
@@ -236,13 +241,14 @@ export default function FAQPageContent({
           </div>
 
           <CTASection
-            title="Vous ne trouvez pas votre réponse ?"
-            description="Notre équipe d'experts est à votre disposition pour répondre à toutes vos questions sur votre projet de panneaux solaires."
+            title="Prêt à passer au solaire ?"
+            description="Demandez votre devis gratuit et personnalisé. Réponse sous 48h."
             phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
             primaryButton={{
-              text: "Demander mon devis",
+              text: "Obtenir mon devis gratuit",
               href: "/contact#contact-form",
             }}
+            variant="minimal"
           />
         </SectionContainer>
       </div>

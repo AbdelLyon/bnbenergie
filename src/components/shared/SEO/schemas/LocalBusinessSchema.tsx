@@ -39,7 +39,7 @@ export async function LocalBusinessStructuredData() {
     image: [`${domain}/opengraph-image`],
     logo: {
       '@type': 'ImageObject',
-      url: `${domain}/logo.svg`,
+      url: `${domain}/logo-final.png`,
     },
 
     priceRange: '€€€',

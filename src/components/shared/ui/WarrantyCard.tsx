@@ -39,7 +39,7 @@ export function WarrantyCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: 0 }}
-      className={`rounded-2xl border border-neutral-100 bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl ${className}`}
+      className={`rounded-[28px] border border-neutral-200 bg-white p-6 shadow-sm transition-all duration-300 ${className}`}
     >
       {/* En-tête */}
       <div className="mb-6 flex items-center gap-4">

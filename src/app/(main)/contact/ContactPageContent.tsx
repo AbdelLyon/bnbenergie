@@ -92,19 +92,19 @@ export default function ContactPageContent({
 
       <div id="contact-section" className="relative z-10 -mt-24 pb-24">
         <SectionContainer>
-          <div className="overflow-hidden rounded-2xl shadow-2xl lg:grid lg:grid-cols-5">
-            <div className="relative overflow-hidden bg-slate-900 px-8 py-12 lg:col-span-2 lg:px-12 lg:py-16">
+          <div className="overflow-hidden rounded-3xl  shadow-xl lg:grid lg:grid-cols-5">
+            <div className="relative overflow-hidden bg-linear-to-br from-slate-900 via-blue-950 to-slate-900 px-8 py-12 lg:col-span-2 lg:px-12 lg:py-16">
               <div className="absolute inset-0 bg-linear-to-br from-blue-900/20 to-slate-900/50" />
               <div className="absolute -left-24 -top-24 h-64 w-64 rounded-full bg-blue-500/20 blur-3xl" />
               <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-cyan-500/10 blur-3xl" />
 
               <div className="relative z-10 flex h-full flex-col justify-between">
                 <div>
-                  <Heading className="mb-6 text-3xl text-white">
+                  <Heading className="mb-6 text-3xl font-semibold tracking-tight text-white md:text-4xl">
                     Discutons de votre projet
                   </Heading>
 
-                  <p className="mb-12 text-lg leading-relaxed text-slate-300">
+                  <p className="mb-12 text-base leading-relaxed text-slate-300 md:text-lg">
                     Notre équipe d'experts est à votre écoute pour étudier vos
                     besoins et vous proposer la solution solaire la plus
                     adaptée.
@@ -126,11 +126,11 @@ export default function ContactPageContent({
               id="contact-form"
             >
               <div className="mx-auto max-w-lg lg:mx-0 lg:max-w-none">
-                <Heading className="mb-2 text-2xl text-slate-900">
+                <Heading className="mb-2 text-[clamp(1.6rem,3vw,2.25rem)] font-semibold tracking-tight text-slate-900">
                   Envoyez-nous un message
                 </Heading>
 
-                <p className="mb-8 text-slate-500">
+                <p className="mb-8 text-base text-slate-500 md:text-lg">
                   Remplissez le formulaire ci-dessous, nous vous répondrons sous
                   24h.
                 </p>

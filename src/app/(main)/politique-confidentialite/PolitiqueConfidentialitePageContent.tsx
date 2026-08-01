@@ -5,8 +5,8 @@ import {
   PageMainWrapper,
   SectionContainer,
   Title,
-  Heading,
 } from '@/components';
+import { SectionHeader } from '@/components/shared/layout/SectionWrapper';
 import { LazyMotionDiv } from '@/components/LazyComponents';
 
 import type { SiteSetting } from '@/payload-types';
@@ -217,6 +217,12 @@ export default function PolitiqueConfidentialitePageContent({
       </PageHeader>
 
       <SectionContainer className="pb-24 -mt-24 relative z-10">
+        <SectionHeader
+          badge="Confidentialité"
+          title="Politique de confidentialité"
+          subtitle="Un cadre transparent pour protéger vos données personnelles et vos informations de projet."
+          className="mb-10"
+        />
         {sections.map((section) => {
           const Icon = section.icon;
           return (
@@ -249,9 +255,9 @@ export default function PolitiqueConfidentialitePageContent({
                   >
                     <Icon className="h-5 w-5 text-white" />
                   </div>
-                  <Heading className="text-2xl text-neutral-900">
+                  <div className="text-[clamp(1.4rem,3vw,2rem)] font-semibold tracking-tight text-neutral-900">
                     {section.title}
-                  </Heading>
+                  </div>
                 </div>
 
                 <div className="space-y-2">

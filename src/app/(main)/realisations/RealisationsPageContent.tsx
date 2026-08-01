@@ -7,11 +7,11 @@ import {
   PageMainWrapper,
   SectionContainer,
   Title,
-  Heading,
   StatCard,
   ProjectCard,
   CTASection,
 } from "@/components";
+import { SectionHeader } from "@/components/shared/layout/SectionWrapper";
 import { ReviewsSection } from "@/components/shared/ui/ReviewsSection";
 
 import type {
@@ -94,14 +94,13 @@ export default function RealisationsPageContent({
             </div>
           </div>
 
-          <div className="mx-auto mb-16 max-w-4xl text-center">
-            <Heading className="mb-6 text-3xl md:text-4xl">
-              Nos Projets Photovoltaïques dans l&apos;Ain
-            </Heading>
-            <p className="text-lg text-neutral-600">
-              Découvrez quelques-unes de nos installations certifiées RGE
-              QualiPV, classées par puissance.
-            </p>
+          <div className="mb-16">
+            <SectionHeader
+              badge="Réalisations"
+              title="Nos Projets Photovoltaïques dans l&apos;Ain"
+              subtitle="Découvrez quelques-unes de nos installations certifiées RGE QualiPV, classées par puissance."
+              className="mb-0"
+            />
           </div>
 
           <div className="mb-6 flex flex-wrap gap-3">
@@ -121,7 +120,7 @@ export default function RealisationsPageContent({
             ))}
           </div>
 
-          <section className="mx-auto max-w-7xl mb-12">
+          <section className="mb-12">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {filteredProjects.map((project, index) => (
                 <ProjectCard
@@ -150,14 +149,14 @@ export default function RealisationsPageContent({
           </section>
 
           <CTASection
-            title="Prêt à Passer à l'Énergie Solaire ?"
-            description="Demandez votre étude gratuite et recevez votre devis personnalisé sous 48h"
+            title="Prêt à passer au solaire ?"
+            description="Demandez votre devis gratuit et personnalisé. Réponse sous 48h."
             phoneNumber={siteSettings.contactPhone || "07 81 25 11 25"}
             primaryButton={{
-              text: "Obtenir un devis",
+              text: "Obtenir mon devis",
               href: "/contact#contact-form",
             }}
-            variant="gradient"
+            variant="minimal"
           />
         </SectionContainer>
       </div>
